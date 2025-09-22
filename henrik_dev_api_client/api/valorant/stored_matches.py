@@ -31,7 +31,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/valorant/v1/lifetime/matches/{affinity}/{name}/{tag}",
+        "url": f"/valorant/v1/stored-matches/{affinity}/{name}/{tag}",
         "params": params,
     }
 

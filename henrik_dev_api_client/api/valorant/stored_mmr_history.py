@@ -25,7 +25,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/valorant/v1/lifetime/mmr-history/{affinity}/{name}/{tag}",
+        "url": f"/valorant/v1/stored-mmr-history/{affinity}/{name}/{tag}",
         "params": params,
     }
 
