@@ -50,10 +50,10 @@ Use **`npm`**, **`yarn`**, or **`pnpm`** to install the client:
 
 ```bash
 # npm
-npm install 'https://gitpkg.vercel.app/raimannma/valorant-api-clients/typescript?main'
+npm install 'https://gitpkg.vercel.app/raimannma/valorant-api-clients/typescript?master'
 
 # yarn
-yarn add 'https://gitpkg.vercel.app/raimannma/valorant-api-clients/typescript?main'
+yarn add 'https://gitpkg.vercel.app/raimannma/valorant-api-clients/typescript?master'
 
 # pnpm
 pnpm add github:raimannma/valorant-api-clients#path:/typescript
@@ -127,7 +127,7 @@ The generation script fetches the latest OpenAPI specification from `https://api
 
 ### Automated Updates
 
-A GitHub Actions workflow automatically runs `make all` every day at midnight UTC. It will commit and push any changes to the `main` branch. This ensures the clients are always up-to-date with the latest API specification. The workflow can also be triggered manually.
+A GitHub Actions workflow automatically runs `make all` every day at midnight UTC. It will commit and push any changes to the `master` branch. This ensures the clients are always up-to-date with the latest API specification. The workflow can also be triggered manually.
 
 -----
 
