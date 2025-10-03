@@ -1,7 +1,3 @@
-Of course. Here is the revised `README.md` file, updated to reflect the removal of the assets API, the new API endpoint, and the flattened project structure.
-
------
-
 # Henrikdev Valorant API Client Libraries
 
 This repository contains the generated API client libraries for the [Henrikdev Valorant API](https://henrikdev.xyz/). The clients are available in multiple languages and are automatically generated from our OpenAPI specification.
