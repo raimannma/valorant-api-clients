@@ -1,123 +1,142 @@
-# henrik-dev-api-client
-A client library for accessing HenrikDev API
+Of course. Here is the revised `README.md` file, updated to reflect the removal of the assets API, the new API endpoint, and the flattened project structure.
+
+-----
+
+# Henrikdev Valorant API Client Libraries
+
+This repository contains the generated API client libraries for the [Henrikdev Valorant API](https://henrikdev.xyz/). The clients are available in multiple languages and are automatically generated from our OpenAPI specification.
+
+-----
+
+## Available Clients
+
+The clients are organized by language in the root of this repository:
+
+  * **Python**: `python/`
+  * **Rust**: `rust/`
+  * **TypeScript**: `typescript/`
+  * **Kotlin & Java**: `kotlin/`
+  * **Go**: `go/`
+  * **PHP**: `php/`
+
+-----
+
+## Installation from GitHub
+
+You can install the clients directly from this GitHub repository.
+
+### Rust
+
+Use **`cargo`** to add the client to your project:
+
+```bash
+cargo add --git https://github.com/raimannma/valorant-api-clients henrikdev-api-client
+```
+
+### Python
+
+Use **`pip`**, **`poetry`**, or **`uv`** to install the client:
+
+```bash
+# pip
+pip install git+https://github.com/raimannma/valorant-api-clients.git#subdirectory=python
+
+# poetry
+poetry add git+https://github.com/raimannma/valorant-api-clients.git#subdirectory=python
+
+# uv
+uv add git+https://github.com/raimannma/valorant-api-clients#subdirectory=python
+```
+
+### TypeScript
+
+Use **`npm`**, **`yarn`**, or **`pnpm`** to install the client:
+
+```bash
+# npm
+npm install 'https://gitpkg.vercel.app/raimannma/valorant-api-clients/typescript?main'
+
+# yarn
+yarn add 'https://gitpkg.vercel.app/raimannma/valorant-api-clients/typescript?main'
+
+# pnpm
+pnpm add github:raimannma/valorant-api-clients#path:/typescript
+```
+
+### Kotlin & Java
+
+Use **`gradle`** or **`maven`** to install the client by adding the repository to your settings:
+
+```groovy
+// settings.gradle
+sourceControl {
+    gitRepository(uri("https://github.com/raimannma/valorant-api-clients")) {
+        producesModule("xyz.henrikdev.api:henrikdev-api-client")
+        rootDir = "kotlin"
+    }
+}
+
+// build.gradle
+implementation 'xyz.henrikdev.api:henrikdev-api-client:0.1.0'
+```
+
+### Go
+
+Use **`go get`** to install the client:
+
+```bash
+go get github.com/raimannma/valorant-api-clients/go
+```
+
+-----
 
 ## Usage
-First, create a client:
 
-```python
-from henrik_dev_api_client import Client
+Each client is located in its respective directory. Please refer to the `README.md` and documentation within each client's directory for specific installation and usage instructions.
 
-client = Client(base_url="https://api.example.com")
-```
+-----
 
-If the endpoints you're going to hit require authentication, use `AuthenticatedClient` instead:
+## Client Generation
 
-```python
-from henrik_dev_api_client import AuthenticatedClient
+The clients in this repository are generated using `openapi-generator-cli`.
 
-client = AuthenticatedClient(base_url="https://api.example.com", token="SuperSecretToken", prefix="")
-```
+### Manual Generation
 
-Now call your endpoint and use your models:
+You can regenerate the clients manually using the provided `Makefile`:
 
-```python
-from henrik_dev_api_client.models import MyDataModel
-from henrik_dev_api_client.api.my_tag import get_my_data_model
-from henrik_dev_api_client.types import Response
+  * **Regenerate all clients:**
 
-with client as client:
-    my_data: MyDataModel = get_my_data_model.sync(client=client)
-    # or if you need more info (e.g. status_code)
-    response: Response[MyDataModel] = get_my_data_model.sync_detailed(client=client)
-```
+    ```bash
+    make all
+    ```
 
-Or do the same thing with an async version:
+  * **Regenerate clients for a specific language:**
 
-```python
-from henrik_dev_api_client.models import MyDataModel
-from henrik_dev_api_client.api.my_tag import get_my_data_model
-from henrik_dev_api_client.types import Response
+    ```bash
+    make python
+    make rust
+    make typescript
+    make kotlin
+    make go
+    make php
+    ```
 
-async with client as client:
-    my_data: MyDataModel = await get_my_data_model.asyncio(client=client)
-    response: Response[MyDataModel] = await get_my_data_model.asyncio_detailed(client=client)
-```
+  * **Clean all generated clients:**
 
-By default, when you're calling an HTTPS API it will attempt to verify that SSL is working correctly. Using certificate verification is highly recommended most of the time, but sometimes you may need to authenticate to a server (especially an internal server) using a custom certificate bundle.
+    ```bash
+    make clean
+    ```
 
-```python
-client = AuthenticatedClient(
-    base_url="https://internal_api.example.com", 
-    token="SuperSecretToken", prefix="",
-    verify_ssl="/path/to/certificate_bundle.pem",
-)
-```
+The generation script fetches the latest OpenAPI specification from `https://api.henrikdev.xyz/openapi.json`.
 
-You can also disable certificate validation altogether, but beware that **this is a security risk**.
+### Automated Updates
 
-```python
-client = AuthenticatedClient(
-    base_url="https://internal_api.example.com", 
-    token="SuperSecretToken", prefix="", 
-    verify_ssl=False
-)
-```
+A GitHub Actions workflow automatically runs `make all` every day at midnight UTC. It will commit and push any changes to the `main` branch. This ensures the clients are always up-to-date with the latest API specification. The workflow can also be triggered manually.
 
-Things to know:
-1. Every path/method combo becomes a Python module with four functions:
-    1. `sync`: Blocking request that returns parsed data (if successful) or `None`
-    1. `sync_detailed`: Blocking request that always returns a `Request`, optionally with `parsed` set if the request was successful.
-    1. `asyncio`: Like `sync` but async instead of blocking
-    1. `asyncio_detailed`: Like `sync_detailed` but async instead of blocking
+-----
 
-1. All path/query params, and bodies become method arguments.
-1. If your endpoint had any tags on it, the first tag will be used as a module name for the function (my_tag above)
-1. Any endpoint which did not have a tag will be in `henrik_dev_api_client.api.default`
+## Contributing
 
-## Advanced customizations
+**Please do not open pull requests with changes to the generated client code directly.**
 
-There are more settings on the generated `Client` class which let you control more runtime behavior, check out the docstring on that class for more info. You can also customize the underlying `httpx.Client` or `httpx.AsyncClient` (depending on your use-case):
-
-```python
-from henrik_dev_api_client import Client
-
-def log_request(request):
-    print(f"Request event hook: {request.method} {request.url} - Waiting for response")
-
-def log_response(response):
-    request = response.request
-    print(f"Response event hook: {request.method} {request.url} - Status {response.status_code}")
-
-client = Client(
-    base_url="https://api.example.com",
-    httpx_args={"event_hooks": {"request": [log_request], "response": [log_response]}},
-)
-
-# Or get the underlying httpx client to modify directly with client.get_httpx_client() or client.get_async_httpx_client()
-```
-
-You can even set the httpx client directly, but beware that this will override any existing settings (e.g., base_url):
-
-```python
-import httpx
-from henrik_dev_api_client import Client
-
-client = Client(
-    base_url="https://api.example.com",
-)
-# Note that base_url needs to be re-set, as would any shared cookies, headers, etc.
-client.set_httpx_client(httpx.Client(base_url="https://api.example.com", proxies="http://localhost:8030"))
-```
-
-## Building / publishing this package
-This project uses [uv](https://github.com/astral-sh/uv) to manage dependencies and packaging. Here are the basics:
-1. Update the metadata in `pyproject.toml` (e.g. authors, version).
-2. If you're using a private repository: https://docs.astral.sh/uv/guides/integration/alternative-indexes/
-3. Build a distribution with `uv build`, builds `sdist` and `wheel` by default.
-1. Publish the client with `uv publish`, see documentation for publishing to private indexes.
-
-If you want to install this client into another project without publishing it (e.g. for development) then:
-1. If that project **is using uv**, you can simply do `uv add <path-to-this-client>` from that project
-1. If that project is not using uv:
-    1. Build a wheel with `uv build --wheel`.
-    1. Install that wheel from the other project `pip install <path-to-wheel>`.
+Since all clients are auto-generated, any manual changes will be overwritten. If you find an issue or believe a change is needed, it should be addressed in the source OpenAPI specification itself. The clients in this repository will be updated in the next generation cycle.
