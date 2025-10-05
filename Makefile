@@ -1,5 +1,8 @@
+NPROCS = $(shell grep -c 'processor' /proc/cpuinfo)
+MAKEFLAGS += -j$(NPROCS)
+
 .PHONY: all python typescript rust kotlin go php dart clean
-all: python typescript rust kotlin go php dart
+all: | python typescript rust kotlin go php dart
 
 python:
 	@echo "--> Creating directory for the Python client..."
