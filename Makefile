@@ -1,5 +1,5 @@
-.PHONY: all python typescript rust kotlin go php clean
-all: python typescript rust kotlin go php
+.PHONY: all python typescript rust kotlin go php dart clean
+all: python typescript rust kotlin go php dart
 
 python:
 	@echo "--> Creating directory for the Python client..."
@@ -43,8 +43,15 @@ php:
 	pnpx @openapitools/openapi-generator-cli generate -i https://api.henrikdev.xyz/openapi.json -g php -o php/ --skip-validate-spec --additional-properties=packageName=HenrikdevApi,composerVendorName=henrikdev,composerProjectName=valorant-api,licenseName=MIT,developerOrganization=HenrikDEV,developerOrganizationUrl=https://henrikdev.xyz
 	@echo "--> PHP client generated successfully in php/"
 
+dart:
+	@echo "--> Creating directory for the Dart client..."
+	@mkdir -p dart
+	@echo "--> Generating Dart client..."
+	pnpx @openapitools/openapi-generator-cli generate -i https://api.henrikdev.xyz/openapi.json -g dart -o dart/ --skip-validate-spec  --additional-properties=pubName=henrikdev-api-client,pubLibrary=henrikdev_api_client,pubAuthor=henrikdev,pubHomepage=https://henrikdev.xyz,pubRepository=https://github.com/raimannma/valorant-api-clients
+	@echo "--> Dart client generated successfully in dart/"
+
 # Target to clean up all generated directories.
 clean:
 	@echo "--> Removing generated client directories..."
-	@rm -rf python typescript rust kotlin go php
+	@rm -rf openapitools.json python typescript rust kotlin go php dart
 	@echo "--> Cleanup complete."

@@ -1,0 +1,17 @@
+# henrikdev-api-client.model.QueueStatusV1HighSkill
+
+## Load the model package
+```dart
+import 'package:henrikdev-api-client/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**maxPartySize** | **int** |  | 
+**maxTier** | **int** |  | 
+**minTier** | **int** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
