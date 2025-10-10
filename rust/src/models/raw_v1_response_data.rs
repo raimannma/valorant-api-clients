@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RawV1ResponseData {
-    ArrayVecserde_json::Value(Vec<serde_json::Value>),
+    Array(Vec<serde_json::Value>),
     RawV1ErrorData(Box<models::RawV1ErrorData>),
 }
 
 impl Default for RawV1ResponseData {
     fn default() -> Self {
-        Self::ArrayVecserde_json::Value(Default::default())
+        Self::Array(Default::default())
     }
 }
 
