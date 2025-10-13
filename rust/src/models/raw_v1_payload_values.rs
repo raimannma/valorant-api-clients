@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[serde(untagged)]
 pub enum RawV1PayloadValues {
     String(String),
-    Array(Vec<String>),
+    ArrayVecString(Vec<String>),
 }
 
 impl Default for RawV1PayloadValues {

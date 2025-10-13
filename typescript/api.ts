@@ -23,1801 +23,346 @@ import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-/**
- * 
- * @export
- * @interface APIError
- */
 export interface APIError {
-    /**
-     * 
-     * @type {number}
-     * @memberof APIError
-     */
     'code': number;
-    /**
-     * 
-     * @type {any}
-     * @memberof APIError
-     */
     'details'?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof APIError
-     */
     'message': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof APIError
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface AccountV1Data
- */
 export interface AccountV1Data {
-    /**
-     * 
-     * @type {number}
-     * @memberof AccountV1Data
-     */
     'account_level': number;
-    /**
-     * 
-     * @type {AccountV1DataCard}
-     * @memberof AccountV1Data
-     */
     'card': AccountV1DataCard;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1Data
-     */
     'last_update': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof AccountV1Data
-     */
     'last_update_raw': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1Data
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1Data
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1Data
-     */
     'region': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1Data
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface AccountV1DataCard
- */
 export interface AccountV1DataCard {
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1DataCard
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1DataCard
-     */
     'large': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1DataCard
-     */
     'small': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV1DataCard
-     */
     'wide': string;
 }
-/**
- * 
- * @export
- * @interface AccountV1Response
- */
 export interface AccountV1Response {
-    /**
-     * 
-     * @type {AccountV1Data}
-     * @memberof AccountV1Response
-     */
     'data': AccountV1Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof AccountV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface AccountV2Data
- */
 export interface AccountV2Data {
-    /**
-     * 
-     * @type {number}
-     * @memberof AccountV2Data
-     */
     'account_level': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV2Data
-     */
     'card': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV2Data
-     */
     'name': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof AccountV2Data
-     */
     'platforms': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV2Data
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV2Data
-     */
     'region': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV2Data
-     */
     'tag': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV2Data
-     */
     'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountV2Data
-     */
     'updated_at': string;
 }
-/**
- * 
- * @export
- * @interface AccountV2Response
- */
 export interface AccountV2Response {
-    /**
-     * 
-     * @type {AccountV2Data}
-     * @memberof AccountV2Response
-     */
     'data': AccountV2Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof AccountV2Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface AgentIdNameCombo
- */
 export interface AgentIdNameCombo {
-    /**
-     * 
-     * @type {string}
-     * @memberof AgentIdNameCombo
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AgentIdNameCombo
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface Bundle
- */
 export interface Bundle {
-    /**
-     * 
-     * @type {string}
-     * @memberof Bundle
-     */
     'CurrencyID': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Bundle
-     */
     'DataAssetID': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof Bundle
-     */
     'DurationRemainingInSeconds': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Bundle
-     */
     'ID': string;
-    /**
-     * 
-     * @type {Array<BundleItem>}
-     * @memberof Bundle
-     */
     'Items': Array<BundleItem>;
-    /**
-     * 
-     * @type {number}
-     * @memberof Bundle
-     */
     'TotalDiscountPercent': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Bundle
-     */
     'WholesaleOnly': boolean;
 }
-/**
- * 
- * @export
- * @interface BundleItem
- */
 export interface BundleItem {
-    /**
-     * 
-     * @type {number}
-     * @memberof BundleItem
-     */
     'BasePrice': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof BundleItem
-     */
     'CurrencyID': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof BundleItem
-     */
     'DiscountPercent': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof BundleItem
-     */
     'DiscountedPrice': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BundleItem
-     */
     'IsPromoItem': boolean;
-    /**
-     * 
-     * @type {Item}
-     * @memberof BundleItem
-     */
     'Item': Item;
 }
-/**
- * 
- * @export
- * @interface ContentItem
- */
 export interface ContentItem {
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentItem
-     */
     'assetName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentItem
-     */
     'id'?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof ContentItem
-     */
     'localizedNames'?: { [key: string]: string; };
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentItem
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface ContentV1
- */
 export interface ContentV1 {
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'acts': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'ceremonies': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'characters': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'charmLevels': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'charms': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'chromas': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'equips': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'gameModes': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'maps': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'playerCards': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'playerTitles': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'skinLevels': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'skins': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'sprayLevels': Array<ContentItem>;
-    /**
-     * 
-     * @type {Array<ContentItem>}
-     * @memberof ContentV1
-     */
     'sprays': Array<ContentItem>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentV1
-     */
     'version': string;
 }
-/**
- * 
- * @export
- * @interface ContentV1Response
- */
 export interface ContentV1Response {
-    /**
-     * 
-     * @type {ContentV1}
-     * @memberof ContentV1Response
-     */
     'data': ContentV1;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContentV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface EsportsV1Data
- */
 export interface EsportsV1Data {
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1Data
-     */
     'date': string;
-    /**
-     * 
-     * @type {EsportsV1DataLeague}
-     * @memberof EsportsV1Data
-     */
     'league': EsportsV1DataLeague;
-    /**
-     * 
-     * @type {EsportsV1DataMatch}
-     * @memberof EsportsV1Data
-     */
     'match': EsportsV1DataMatch;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1Data
-     */
     'state': string;
-    /**
-     * 
-     * @type {EsportsV1DataTournament}
-     * @memberof EsportsV1Data
-     */
     'tournament': EsportsV1DataTournament;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1Data
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1Data
-     */
     'vod'?: string | null;
 }
-/**
- * 
- * @export
- * @interface EsportsV1DataLeague
- */
 export interface EsportsV1DataLeague {
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataLeague
-     */
     'icon': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataLeague
-     */
     'identifier': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataLeague
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataLeague
-     */
     'region': string;
 }
-/**
- * 
- * @export
- * @interface EsportsV1DataMatch
- */
 export interface EsportsV1DataMatch {
-    /**
-     * 
-     * @type {EsportsV1DataMatchGameType}
-     * @memberof EsportsV1DataMatch
-     */
     'game_type': EsportsV1DataMatchGameType;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataMatch
-     */
     'id'?: string | null;
-    /**
-     * 
-     * @type {Array<EsportsV1DataMatchTeams>}
-     * @memberof EsportsV1DataMatch
-     */
     'teams': Array<EsportsV1DataMatchTeams>;
 }
-/**
- * 
- * @export
- * @interface EsportsV1DataMatchGameType
- */
 export interface EsportsV1DataMatchGameType {
-    /**
-     * 
-     * @type {number}
-     * @memberof EsportsV1DataMatchGameType
-     */
     'count'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataMatchGameType
-     */
     'type'?: string | null;
 }
-/**
- * 
- * @export
- * @interface EsportsV1DataMatchTeams
- */
 export interface EsportsV1DataMatchTeams {
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataMatchTeams
-     */
     'code': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof EsportsV1DataMatchTeams
-     */
     'game_wins': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EsportsV1DataMatchTeams
-     */
     'has_won': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataMatchTeams
-     */
     'icon': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataMatchTeams
-     */
     'name': string;
-    /**
-     * 
-     * @type {EsportsV1DataMatchTeamsRecord}
-     * @memberof EsportsV1DataMatchTeams
-     */
     'record': EsportsV1DataMatchTeamsRecord;
 }
-/**
- * 
- * @export
- * @interface EsportsV1DataMatchTeamsRecord
- */
 export interface EsportsV1DataMatchTeamsRecord {
-    /**
-     * 
-     * @type {number}
-     * @memberof EsportsV1DataMatchTeamsRecord
-     */
     'losses': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EsportsV1DataMatchTeamsRecord
-     */
     'wins': number;
 }
-/**
- * 
- * @export
- * @interface EsportsV1DataTournament
- */
 export interface EsportsV1DataTournament {
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataTournament
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EsportsV1DataTournament
-     */
     'season': string;
 }
-/**
- * 
- * @export
- * @interface EsportsV1Response
- */
 export interface EsportsV1Response {
-    /**
-     * 
-     * @type {Array<EsportsV1Data>}
-     * @memberof EsportsV1Response
-     */
     'data': Array<EsportsV1Data>;
-    /**
-     * 
-     * @type {number}
-     * @memberof EsportsV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface FeaturedBundle
- */
 export interface FeaturedBundle {
-    /**
-     * 
-     * @type {Bundle}
-     * @memberof FeaturedBundle
-     */
     'Bundle': Bundle;
-    /**
-     * 
-     * @type {number}
-     * @memberof FeaturedBundle
-     */
     'BundleRemainingDurationInSeconds': number;
-    /**
-     * 
-     * @type {Array<Bundle>}
-     * @memberof FeaturedBundle
-     */
     'Bundles': Array<Bundle>;
 }
-/**
- * 
- * @export
- * @interface Item
- */
 export interface Item {
-    /**
-     * 
-     * @type {number}
-     * @memberof Item
-     */
     'Amount': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Item
-     */
     'ItemID': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Item
-     */
     'ItemTypeID': string;
 }
-/**
- * 
- * @export
- * @interface LeaderboardPVPPlayer
- */
 export interface LeaderboardPVPPlayer {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LeaderboardPVPPlayer
-     */
     'IsAnonymized': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LeaderboardPVPPlayer
-     */
     'IsBanned': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardPVPPlayer
-     */
     'PlayerCardID': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardPVPPlayer
-     */
     'TitleID': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardPVPPlayer
-     */
     'competitiveTier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardPVPPlayer
-     */
     'gameName': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardPVPPlayer
-     */
     'leaderboardRank': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardPVPPlayer
-     */
     'numberOfWins': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardPVPPlayer
-     */
     'puuid'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardPVPPlayer
-     */
     'rankedRating': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardPVPPlayer
-     */
     'tagLine': string;
 }
-/**
- * 
- * @export
- * @interface LeaderboardV2Response
- */
 export interface LeaderboardV2Response {
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV2Response
-     */
     'immortal_1_threshold': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV2Response
-     */
     'immortal_2_threshold': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV2Response
-     */
     'immortal_3_threshold': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV2Response
-     */
     'last_update': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV2Response
-     */
     'next_update': number;
-    /**
-     * 
-     * @type {Array<LeaderboardPVPPlayer>}
-     * @memberof LeaderboardV2Response
-     */
     'players': Array<LeaderboardPVPPlayer>;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV2Response
-     */
     'radiant_threshold': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV2Response
-     */
     'total_players': number;
 }
-/**
- * 
- * @export
- * @interface LeaderboardV3Data
- */
 export interface LeaderboardV3Data {
-    /**
-     * 
-     * @type {Array<LeaderboardV3DataPlayer>}
-     * @memberof LeaderboardV3Data
-     */
     'players': Array<LeaderboardV3DataPlayer>;
-    /**
-     * 
-     * @type {Array<LeaderboardV3DataThreshold>}
-     * @memberof LeaderboardV3Data
-     */
     'thresholds': Array<LeaderboardV3DataThreshold>;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3Data
-     */
     'updated_at': string;
 }
-/**
- * 
- * @export
- * @interface LeaderboardV3DataPlayer
- */
 export interface LeaderboardV3DataPlayer {
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'card': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'is_anonymized': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'is_banned': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'leaderboard_rank': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'puuid'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'rr': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'tag': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'tier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'updated_at': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3DataPlayer
-     */
     'wins': number;
 }
-/**
- * 
- * @export
- * @interface LeaderboardV3DataThreshold
- */
 export interface LeaderboardV3DataThreshold {
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3DataThreshold
-     */
     'start_index': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3DataThreshold
-     */
     'threshold': number;
-    /**
-     * 
-     * @type {LeaderboardV3DataThresholdTier}
-     * @memberof LeaderboardV3DataThreshold
-     */
     'tier': LeaderboardV3DataThresholdTier;
 }
-/**
- * 
- * @export
- * @interface LeaderboardV3DataThresholdTier
- */
 export interface LeaderboardV3DataThresholdTier {
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3DataThresholdTier
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LeaderboardV3DataThresholdTier
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface LeaderboardV3Response
- */
 export interface LeaderboardV3Response {
-    /**
-     * 
-     * @type {LeaderboardV3Data}
-     * @memberof LeaderboardV3Response
-     */
     'data': LeaderboardV3Data;
-    /**
-     * 
-     * @type {Pagination}
-     * @memberof LeaderboardV3Response
-     */
     'results': Pagination;
-    /**
-     * 
-     * @type {number}
-     * @memberof LeaderboardV3Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MMRDataImages
- */
 export interface MMRDataImages {
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRDataImages
-     */
     'large': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRDataImages
-     */
     'small': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRDataImages
-     */
     'triangle_down': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRDataImages
-     */
     'triangle_up': string;
 }
-/**
- * 
- * @export
- * @interface MMRHistoryV1Data
- */
 export interface MMRHistoryV1Data {
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV1Data
-     */
     'currenttier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1Data
-     */
     'currenttierpatched': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1Data
-     */
     'date': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV1Data
-     */
     'date_raw': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV1Data
-     */
     'elo': number;
-    /**
-     * 
-     * @type {MMRDataImages}
-     * @memberof MMRHistoryV1Data
-     */
     'images': MMRDataImages;
-    /**
-     * 
-     * @type {MMRHistoryV1DataMap}
-     * @memberof MMRHistoryV1Data
-     */
     'map': MMRHistoryV1DataMap;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1Data
-     */
     'match_id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV1Data
-     */
     'mmr_change_to_last_game': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV1Data
-     */
     'ranking_in_tier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1Data
-     */
     'season_id': string;
 }
-/**
- * 
- * @export
- * @interface MMRHistoryV1DataMap
- */
 export interface MMRHistoryV1DataMap {
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1DataMap
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1DataMap
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface MMRHistoryV1Response
- */
 export interface MMRHistoryV1Response {
-    /**
-     * 
-     * @type {Array<MMRHistoryV1Data>}
-     * @memberof MMRHistoryV1Response
-     */
     'data': Array<MMRHistoryV1Data>;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1Response
-     */
     'name': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV1Response
-     */
     'status': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV1Response
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface MMRHistoryV2Data
- */
 export interface MMRHistoryV2Data {
-    /**
-     * 
-     * @type {MMRV3Account}
-     * @memberof MMRHistoryV2Data
-     */
     'account': MMRV3Account;
-    /**
-     * 
-     * @type {Array<MMRHistoryV2History>}
-     * @memberof MMRHistoryV2Data
-     */
     'history': Array<MMRHistoryV2History>;
 }
-/**
- * 
- * @export
- * @interface MMRHistoryV2History
- */
 export interface MMRHistoryV2History {
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV2History
-     */
     'date': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV2History
-     */
     'elo': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV2History
-     */
     'last_change': number;
-    /**
-     * 
-     * @type {MapIdNameCombo}
-     * @memberof MMRHistoryV2History
-     */
     'map': MapIdNameCombo;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRHistoryV2History
-     */
     'match_id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV2History
-     */
     'refunded_rr': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV2History
-     */
     'rr': number;
-    /**
-     * 
-     * @type {SeasonIdShortCombo}
-     * @memberof MMRHistoryV2History
-     */
     'season': SeasonIdShortCombo;
-    /**
-     * 
-     * @type {TierIdNameCombo}
-     * @memberof MMRHistoryV2History
-     */
     'tier': TierIdNameCombo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MMRHistoryV2History
-     */
     'was_derank_protected': boolean;
 }
-/**
- * 
- * @export
- * @interface MMRHistoryV2Response
- */
 export interface MMRHistoryV2Response {
-    /**
-     * 
-     * @type {MMRHistoryV2Data}
-     * @memberof MMRHistoryV2Response
-     */
     'data': MMRHistoryV2Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRHistoryV2Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MMRV1Data
- */
 export interface MMRV1Data {
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV1Data
-     */
     'currenttier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV1Data
-     */
     'currenttierpatched': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV1Data
-     */
     'elo': number;
-    /**
-     * 
-     * @type {MMRDataImages}
-     * @memberof MMRV1Data
-     */
     'images': MMRDataImages;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV1Data
-     */
     'mmr_change_to_last_game': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV1Data
-     */
     'name': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MMRV1Data
-     */
     'old': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV1Data
-     */
     'ranking_in_tier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV1Data
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface MMRV1Response
- */
 export interface MMRV1Response {
-    /**
-     * 
-     * @type {MMRV1Data}
-     * @memberof MMRV1Response
-     */
     'data': MMRV1Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MMRV2CurrentData
- */
 export interface MMRV2CurrentData {
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV2CurrentData
-     */
     'currenttier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV2CurrentData
-     */
     'currenttierpatched': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV2CurrentData
-     */
     'elo': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV2CurrentData
-     */
     'games_needed_for_rating': number;
-    /**
-     * 
-     * @type {MMRDataImages}
-     * @memberof MMRV2CurrentData
-     */
     'images': MMRDataImages;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV2CurrentData
-     */
     'mmr_change_to_last_game': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MMRV2CurrentData
-     */
     'old': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV2CurrentData
-     */
     'ranking_in_tier': number;
 }
-/**
- * 
- * @export
- * @interface MMRV2Data
- */
 export interface MMRV2Data {
-    /**
-     * 
-     * @type {any}
-     * @memberof MMRV2Data
-     */
     'by_season': any;
-    /**
-     * 
-     * @type {MMRV2CurrentData}
-     * @memberof MMRV2Data
-     */
     'current_data': MMRV2CurrentData;
-    /**
-     * 
-     * @type {MMRV2HighestRank}
-     * @memberof MMRV2Data
-     */
     'highest_rank': MMRV2HighestRank;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV2Data
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV2Data
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV2Data
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface MMRV2HighestRank
- */
 export interface MMRV2HighestRank {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MMRV2HighestRank
-     */
     'old': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV2HighestRank
-     */
     'patched_tier': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV2HighestRank
-     */
     'season': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV2HighestRank
-     */
     'tier': number;
 }
-/**
- * 
- * @export
- * @interface MMRV2Response
- */
 export interface MMRV2Response {
-    /**
-     * 
-     * @type {MMRV2Data}
-     * @memberof MMRV2Response
-     */
     'data': MMRV2Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV2Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MMRV3Account
- */
 export interface MMRV3Account {
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV3Account
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV3Account
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV3Account
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface MMRV3Current
- */
 export interface MMRV3Current {
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Current
-     */
     'elo': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Current
-     */
     'games_needed_for_rating': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Current
-     */
     'last_change': number;
-    /**
-     * 
-     * @type {MMRV3LeaderboardPlacement}
-     * @memberof MMRV3Current
-     */
     'leaderboard_placement'?: MMRV3LeaderboardPlacement | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Current
-     */
     'rank_protection_shields': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Current
-     */
     'rr': number;
-    /**
-     * 
-     * @type {TierIdNameCombo}
-     * @memberof MMRV3Current
-     */
     'tier': TierIdNameCombo;
 }
-/**
- * 
- * @export
- * @interface MMRV3Data
- */
 export interface MMRV3Data {
-    /**
-     * 
-     * @type {MMRV3Account}
-     * @memberof MMRV3Data
-     */
     'account': MMRV3Account;
-    /**
-     * 
-     * @type {MMRV3Current}
-     * @memberof MMRV3Data
-     */
     'current': MMRV3Current;
-    /**
-     * 
-     * @type {MMRV3Peak}
-     * @memberof MMRV3Data
-     */
     'peak'?: MMRV3Peak | null;
-    /**
-     * 
-     * @type {Array<MMRV3Seasonal>}
-     * @memberof MMRV3Data
-     */
     'seasonal': Array<MMRV3Seasonal>;
 }
-/**
- * 
- * @export
- * @interface MMRV3LeaderboardPlacement
- */
 export interface MMRV3LeaderboardPlacement {
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3LeaderboardPlacement
-     */
     'rank': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV3LeaderboardPlacement
-     */
     'updated_at': string;
 }
-/**
- * 
- * @export
- * @interface MMRV3Peak
- */
 export interface MMRV3Peak {
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV3Peak
-     */
     'ranking_schema': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Peak
-     */
     'rr': number;
-    /**
-     * 
-     * @type {SeasonIdShortCombo}
-     * @memberof MMRV3Peak
-     */
     'season': SeasonIdShortCombo;
-    /**
-     * 
-     * @type {TierIdNameCombo}
-     * @memberof MMRV3Peak
-     */
     'tier': TierIdNameCombo;
 }
-/**
- * 
- * @export
- * @interface MMRV3Response
- */
 export interface MMRV3Response {
-    /**
-     * 
-     * @type {MMRV3Data}
-     * @memberof MMRV3Response
-     */
     'data': MMRV3Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MMRV3Seasonal
- */
 export interface MMRV3Seasonal {
-    /**
-     * 
-     * @type {Array<TierIdNameCombo>}
-     * @memberof MMRV3Seasonal
-     */
     'act_wins': Array<TierIdNameCombo>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Seasonal
-     */
     'end_rr': number;
-    /**
-     * 
-     * @type {TierIdNameCombo}
-     * @memberof MMRV3Seasonal
-     */
     'end_tier': TierIdNameCombo;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Seasonal
-     */
     'games': number;
-    /**
-     * 
-     * @type {MMRV3LeaderboardPlacement}
-     * @memberof MMRV3Seasonal
-     */
     'leaderboard_placement'?: MMRV3LeaderboardPlacement | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MMRV3Seasonal
-     */
     'ranking_schema': string;
-    /**
-     * 
-     * @type {SeasonIdShortCombo}
-     * @memberof MMRV3Seasonal
-     */
     'season': SeasonIdShortCombo;
-    /**
-     * 
-     * @type {number}
-     * @memberof MMRV3Seasonal
-     */
     'wins': number;
 }
-/**
- * 
- * @export
- * @interface MapIdNameCombo
- */
 export interface MapIdNameCombo {
-    /**
-     * 
-     * @type {string}
-     * @memberof MapIdNameCombo
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MapIdNameCombo
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const MatchMode = {
     Competitive: 'Competitive',
@@ -1830,4862 +375,944 @@ export const MatchMode = {
 export type MatchMode = typeof MatchMode[keyof typeof MatchMode];
 
 
-/**
- * 
- * @export
- * @interface MatchesV2Data
- */
 export interface MatchesV2Data {
-    /**
-     * 
-     * @type {Array<MatchesV2DataCoach>}
-     * @memberof MatchesV2Data
-     */
     'coaches': Array<MatchesV2DataCoach>;
-    /**
-     * 
-     * @type {Array<MatchesV2DataKill>}
-     * @memberof MatchesV2Data
-     */
     'kills': Array<MatchesV2DataKill>;
-    /**
-     * 
-     * @type {MatchesV2DataMetadata}
-     * @memberof MatchesV2Data
-     */
     'metadata': MatchesV2DataMetadata;
-    /**
-     * 
-     * @type {Array<MatchesV2DataObserver>}
-     * @memberof MatchesV2Data
-     */
     'observers': Array<MatchesV2DataObserver>;
-    /**
-     * 
-     * @type {MatchesV2DataPlayers}
-     * @memberof MatchesV2Data
-     */
     'players': MatchesV2DataPlayers;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRound>}
-     * @memberof MatchesV2Data
-     */
     'rounds': Array<MatchesV2DataRound>;
-    /**
-     * 
-     * @type {MatchesV2DataTeams}
-     * @memberof MatchesV2Data
-     */
     'teams': MatchesV2DataTeams;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataCoach
- */
 export interface MatchesV2DataCoach {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataCoach
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataCoach
-     */
     'team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataKill
- */
 export interface MatchesV2DataKill {
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerStatsKillEventsAssistants>}
-     * @memberof MatchesV2DataKill
-     */
     'assistants': Array<MatchesV2DataRoundPlayerStatsKillEventsAssistants>;
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsKillEventsAssets}
-     * @memberof MatchesV2DataKill
-     */
     'damage_weapon_assets': MatchesV2DataRoundPlayerStatsKillEventsAssets;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'damage_weapon_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'damage_weapon_name'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataKill
-     */
     'kill_time_in_match': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataKill
-     */
     'kill_time_in_round': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'killer_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'killer_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'killer_team': string;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerLocationsOnEvent>}
-     * @memberof MatchesV2DataKill
-     */
     'player_locations_on_kill': Array<MatchesV2DataRoundPlayerLocationsOnEvent>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataKill
-     */
     'round': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataKill
-     */
     'secondary_fire_mode': boolean;
-    /**
-     * 
-     * @type {MatchesV2DataRoundEventLocation}
-     * @memberof MatchesV2DataKill
-     */
     'victim_death_location': MatchesV2DataRoundEventLocation;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'victim_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'victim_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataKill
-     */
     'victim_team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataMetadata
- */
 export interface MatchesV2DataMetadata {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'cluster'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataMetadata
-     */
     'game_length': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataMetadata
-     */
     'game_start': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'game_start_patched': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'game_version': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'map'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'matchid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'mode'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'mode_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'platform': string;
-    /**
-     * 
-     * @type {MatchesV2DataMetadataPremierInfo}
-     * @memberof MatchesV2DataMetadata
-     */
     'premier_info': MatchesV2DataMetadataPremierInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'queue'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'region'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataMetadata
-     */
     'rounds_played': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadata
-     */
     'season_id': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataMetadataPremierInfo
- */
 export interface MatchesV2DataMetadataPremierInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadataPremierInfo
-     */
     'matchup_id'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataMetadataPremierInfo
-     */
     'tournament_id'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataObserver
- */
 export interface MatchesV2DataObserver {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataObserver
-     */
     'level': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataObserver
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataObserver
-     */
     'party_id': string;
-    /**
-     * 
-     * @type {MatchesV2DataPlatform}
-     * @memberof MatchesV2DataObserver
-     */
     'platform': MatchesV2DataPlatform;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataObserver
-     */
     'player_card': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataObserver
-     */
     'player_title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataObserver
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerSessionPlaytime}
-     * @memberof MatchesV2DataObserver
-     */
     'session_playtime': MatchesV2DataPlayerSessionPlaytime;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataObserver
-     */
     'tag': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataObserver
-     */
     'team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlatform
- */
 export interface MatchesV2DataPlatform {
-    /**
-     * 
-     * @type {MatchesV2DataPlatformOs}
-     * @memberof MatchesV2DataPlatform
-     */
     'os': MatchesV2DataPlatformOs;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlatform
-     */
     'type': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlatformOs
- */
 export interface MatchesV2DataPlatformOs {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlatformOs
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlatformOs
-     */
     'version': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayer
- */
 export interface MatchesV2DataPlayer {
-    /**
-     * 
-     * @type {MatchesV2DataPlayerAbilityCasts}
-     * @memberof MatchesV2DataPlayer
-     */
     'ability_casts': MatchesV2DataPlayerAbilityCasts;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerAssets}
-     * @memberof MatchesV2DataPlayer
-     */
     'assets': MatchesV2DataPlayerAssets;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerBehavior}
-     * @memberof MatchesV2DataPlayer
-     */
     'behavior': MatchesV2DataPlayerBehavior;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'character'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayer
-     */
     'currenttier': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'currenttier_patched': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayer
-     */
     'damage_made': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayer
-     */
     'damage_received': number;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerEconomy}
-     * @memberof MatchesV2DataPlayer
-     */
     'economy': MatchesV2DataPlayerEconomy;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayer
-     */
     'level': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'party_id': string;
-    /**
-     * 
-     * @type {MatchesV2DataPlatform}
-     * @memberof MatchesV2DataPlayer
-     */
     'platform': MatchesV2DataPlatform;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'player_card': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'player_title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerSessionPlaytime}
-     * @memberof MatchesV2DataPlayer
-     */
     'session_playtime': MatchesV2DataPlayerSessionPlaytime;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerStats}
-     * @memberof MatchesV2DataPlayer
-     */
     'stats': MatchesV2DataPlayerStats;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'tag': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayer
-     */
     'team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerAbilityCasts
- */
 export interface MatchesV2DataPlayerAbilityCasts {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerAbilityCasts
-     */
     'c_cast'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerAbilityCasts
-     */
     'e_cast'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerAbilityCasts
-     */
     'q_cast'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerAbilityCasts
-     */
     'x_cast'?: number | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerAssets
- */
 export interface MatchesV2DataPlayerAssets {
-    /**
-     * 
-     * @type {MatchesV2DataPlayerAssetsAgent}
-     * @memberof MatchesV2DataPlayerAssets
-     */
     'agent': MatchesV2DataPlayerAssetsAgent;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerAssetsCard}
-     * @memberof MatchesV2DataPlayerAssets
-     */
     'card': MatchesV2DataPlayerAssetsCard;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerAssetsAgent
- */
 export interface MatchesV2DataPlayerAssetsAgent {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayerAssetsAgent
-     */
     'bust': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayerAssetsAgent
-     */
     'full': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayerAssetsAgent
-     */
     'killfeed': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayerAssetsAgent
-     */
     'small': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerAssetsCard
- */
 export interface MatchesV2DataPlayerAssetsCard {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayerAssetsCard
-     */
     'large': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayerAssetsCard
-     */
     'small': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataPlayerAssetsCard
-     */
     'wide': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerBehavior
- */
 export interface MatchesV2DataPlayerBehavior {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerBehavior
-     */
     'afk_rounds': number;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerBehaviorFriendlyFire}
-     * @memberof MatchesV2DataPlayerBehavior
-     */
     'friendly_fire': MatchesV2DataPlayerBehaviorFriendlyFire;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerBehavior
-     */
     'rounds_in_spawn'?: number | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerBehaviorFriendlyFire
- */
 export interface MatchesV2DataPlayerBehaviorFriendlyFire {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerBehaviorFriendlyFire
-     */
     'incoming'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerBehaviorFriendlyFire
-     */
     'outgoing'?: number | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerEconomy
- */
 export interface MatchesV2DataPlayerEconomy {
-    /**
-     * 
-     * @type {MatchesV2DataPlayerEconomyValue}
-     * @memberof MatchesV2DataPlayerEconomy
-     */
     'loadout_value': MatchesV2DataPlayerEconomyValue;
-    /**
-     * 
-     * @type {MatchesV2DataPlayerEconomyValue}
-     * @memberof MatchesV2DataPlayerEconomy
-     */
     'spent': MatchesV2DataPlayerEconomyValue;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerEconomyValue
- */
 export interface MatchesV2DataPlayerEconomyValue {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerEconomyValue
-     */
     'average': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerEconomyValue
-     */
     'overall': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerSessionPlaytime
- */
 export interface MatchesV2DataPlayerSessionPlaytime {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerSessionPlaytime
-     */
     'milliseconds': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerSessionPlaytime
-     */
     'minutes': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerSessionPlaytime
-     */
     'seconds': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayerStats
- */
 export interface MatchesV2DataPlayerStats {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerStats
-     */
     'assists': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerStats
-     */
     'bodyshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerStats
-     */
     'deaths': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerStats
-     */
     'headshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerStats
-     */
     'kills': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerStats
-     */
     'legshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataPlayerStats
-     */
     'score': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataPlayers
- */
 export interface MatchesV2DataPlayers {
-    /**
-     * 
-     * @type {Array<MatchesV2DataPlayer>}
-     * @memberof MatchesV2DataPlayers
-     */
     'all_players': Array<MatchesV2DataPlayer>;
-    /**
-     * 
-     * @type {Array<MatchesV2DataPlayer>}
-     * @memberof MatchesV2DataPlayers
-     */
     'blue': Array<MatchesV2DataPlayer>;
-    /**
-     * 
-     * @type {Array<MatchesV2DataPlayer>}
-     * @memberof MatchesV2DataPlayers
-     */
     'red': Array<MatchesV2DataPlayer>;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRound
- */
 export interface MatchesV2DataRound {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataRound
-     */
     'bomb_defused': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataRound
-     */
     'bomb_planted': boolean;
-    /**
-     * 
-     * @type {MatchesV2DataRoundDefuseEvents}
-     * @memberof MatchesV2DataRound
-     */
     'defuse_events': MatchesV2DataRoundDefuseEvents;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRound
-     */
     'end_type': string;
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlantEvents}
-     * @memberof MatchesV2DataRound
-     */
     'plant_events': MatchesV2DataRoundPlantEvents;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerStats>}
-     * @memberof MatchesV2DataRound
-     */
     'player_stats': Array<MatchesV2DataRoundPlayerStats>;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRound
-     */
     'winning_team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundDefuseEvents
- */
 export interface MatchesV2DataRoundDefuseEvents {
-    /**
-     * 
-     * @type {MatchesV2DataRoundEventLocation}
-     * @memberof MatchesV2DataRoundDefuseEvents
-     */
     'defuse_location'?: MatchesV2DataRoundEventLocation | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundDefuseEvents
-     */
     'defuse_time_in_round'?: number | null;
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayer}
-     * @memberof MatchesV2DataRoundDefuseEvents
-     */
     'defused_by'?: MatchesV2DataRoundPlayer | null;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerLocationsOnEvent>}
-     * @memberof MatchesV2DataRoundDefuseEvents
-     */
     'player_locations_on_defuse'?: Array<MatchesV2DataRoundPlayerLocationsOnEvent> | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundEventLocation
- */
 export interface MatchesV2DataRoundEventLocation {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundEventLocation
-     */
     'x': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundEventLocation
-     */
     'y': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlantEvents
- */
 export interface MatchesV2DataRoundPlantEvents {
-    /**
-     * 
-     * @type {MatchesV2DataRoundEventLocation}
-     * @memberof MatchesV2DataRoundPlantEvents
-     */
     'plant_location'?: MatchesV2DataRoundEventLocation | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlantEvents
-     */
     'plant_site'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlantEvents
-     */
     'plant_time_in_round'?: number | null;
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayer}
-     * @memberof MatchesV2DataRoundPlantEvents
-     */
     'planted_by'?: MatchesV2DataRoundPlayer | null;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerLocationsOnEvent>}
-     * @memberof MatchesV2DataRoundPlantEvents
-     */
     'player_locations_on_plant'?: Array<MatchesV2DataRoundPlayerLocationsOnEvent> | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayer
- */
 export interface MatchesV2DataRoundPlayer {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayer
-     */
     'display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayer
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayer
-     */
     'team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerLocationsOnEvent
- */
 export interface MatchesV2DataRoundPlayerLocationsOnEvent {
-    /**
-     * 
-     * @type {MatchesV2DataRoundEventLocation}
-     * @memberof MatchesV2DataRoundPlayerLocationsOnEvent
-     */
     'location': MatchesV2DataRoundEventLocation;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerLocationsOnEvent
-     */
     'player_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerLocationsOnEvent
-     */
     'player_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerLocationsOnEvent
-     */
     'player_team': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerLocationsOnEvent
-     */
     'view_radians': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStats
- */
 export interface MatchesV2DataRoundPlayerStats {
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsAbilityCasts}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'ability_casts': MatchesV2DataRoundPlayerStatsAbilityCasts;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'bodyshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'damage': number;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerStatsDamageEvents>}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'damage_events': Array<MatchesV2DataRoundPlayerStatsDamageEvents>;
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsEconomy}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'economy': MatchesV2DataRoundPlayerStatsEconomy;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'headshots': number;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerStatsKillEvents>}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'kill_events': Array<MatchesV2DataRoundPlayerStatsKillEvents>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'kills': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'legshots': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'player_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'player_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'player_team': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'score': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'stayed_in_spawn': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'was_afk': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataRoundPlayerStats
-     */
     'was_penalized': boolean;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsAbilityCasts
- */
 export interface MatchesV2DataRoundPlayerStatsAbilityCasts {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsAbilityCasts
-     */
     'c_casts'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsAbilityCasts
-     */
     'e_casts'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsAbilityCasts
-     */
     'q_casts'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsAbilityCasts
-     */
     'x_casts'?: number | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsDamageEvents
- */
 export interface MatchesV2DataRoundPlayerStatsDamageEvents {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsDamageEvents
-     */
     'bodyshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsDamageEvents
-     */
     'damage': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsDamageEvents
-     */
     'headshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsDamageEvents
-     */
     'legshots': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsDamageEvents
-     */
     'receiver_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsDamageEvents
-     */
     'receiver_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsDamageEvents
-     */
     'receiver_team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsEconomy
- */
 export interface MatchesV2DataRoundPlayerStatsEconomy {
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomy
-     */
     'armor': MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomy
-     */
     'loadout_value': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomy
-     */
     'remaining': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomy
-     */
     'spent': number;
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomy
-     */
     'weapon': MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor
- */
 export interface MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor {
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor
-     */
     'assets': MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor
-     */
     'id'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor
-     */
     'name'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets
- */
 export interface MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets
-     */
     'display_icon'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets
-     */
     'killfeed_icon'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor
- */
 export interface MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor
-     */
     'display_icon'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon
- */
 export interface MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon {
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon
-     */
     'assets': MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon
-     */
     'id'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon
-     */
     'name'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsKillEvents
- */
 export interface MatchesV2DataRoundPlayerStatsKillEvents {
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerStatsKillEventsAssistants>}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'assistants': Array<MatchesV2DataRoundPlayerStatsKillEventsAssistants>;
-    /**
-     * 
-     * @type {MatchesV2DataRoundPlayerStatsKillEventsAssets}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'damage_weapon_assets': MatchesV2DataRoundPlayerStatsKillEventsAssets;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'damage_weapon_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'damage_weapon_name'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'kill_time_in_match': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'kill_time_in_round': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'killer_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'killer_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'killer_team': string;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRoundPlayerLocationsOnEvent>}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'player_locations_on_kill': Array<MatchesV2DataRoundPlayerLocationsOnEvent>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'secondary_fire_mode': boolean;
-    /**
-     * 
-     * @type {MatchesV2DataRoundEventLocation}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'victim_death_location': MatchesV2DataRoundEventLocation;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'victim_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'victim_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEvents
-     */
     'victim_team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsKillEventsAssets
- */
 export interface MatchesV2DataRoundPlayerStatsKillEventsAssets {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEventsAssets
-     */
     'display_icon'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEventsAssets
-     */
     'killfeed_icon'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataRoundPlayerStatsKillEventsAssistants
- */
 export interface MatchesV2DataRoundPlayerStatsKillEventsAssistants {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEventsAssistants
-     */
     'assistant_display_name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEventsAssistants
-     */
     'assistant_puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataRoundPlayerStatsKillEventsAssistants
-     */
     'assistant_team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataTeam
- */
 export interface MatchesV2DataTeam {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV2DataTeam
-     */
     'has_won'?: boolean | null;
-    /**
-     * 
-     * @type {MatchesV2DataTeamRoster}
-     * @memberof MatchesV2DataTeam
-     */
     'roster'?: MatchesV2DataTeamRoster | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataTeam
-     */
     'rounds_lost'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2DataTeam
-     */
     'rounds_won'?: number | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataTeamRoster
- */
 export interface MatchesV2DataTeamRoster {
-    /**
-     * 
-     * @type {MatchesV2DataTeamRosterCustomization}
-     * @memberof MatchesV2DataTeamRoster
-     */
     'customization': MatchesV2DataTeamRosterCustomization;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRoster
-     */
     'id': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof MatchesV2DataTeamRoster
-     */
     'members': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRoster
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRoster
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataTeamRosterCustomization
- */
 export interface MatchesV2DataTeamRosterCustomization {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRosterCustomization
-     */
     'icon': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRosterCustomization
-     */
     'image': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRosterCustomization
-     */
     'primary_color': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRosterCustomization
-     */
     'secondary_color': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV2DataTeamRosterCustomization
-     */
     'tertiary_color': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV2DataTeams
- */
 export interface MatchesV2DataTeams {
-    /**
-     * 
-     * @type {MatchesV2DataTeam}
-     * @memberof MatchesV2DataTeams
-     */
     'blue': MatchesV2DataTeam;
-    /**
-     * 
-     * @type {MatchesV2DataTeam}
-     * @memberof MatchesV2DataTeams
-     */
     'red': MatchesV2DataTeam;
 }
-/**
- * 
- * @export
- * @interface MatchesV2Response
- */
 export interface MatchesV2Response {
-    /**
-     * 
-     * @type {MatchesV2Data}
-     * @memberof MatchesV2Response
-     */
     'data': MatchesV2Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV2Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV3ListResponse
- */
 export interface MatchesV3ListResponse {
-    /**
-     * 
-     * @type {Array<MatchesV3ListResponseData>}
-     * @memberof MatchesV3ListResponse
-     */
     'data': Array<MatchesV3ListResponseData>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV3ListResponse
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV3ListResponseData
- */
 export interface MatchesV3ListResponseData {
-    /**
-     * 
-     * @type {Array<MatchesV2DataCoach>}
-     * @memberof MatchesV3ListResponseData
-     */
     'coaches': Array<MatchesV2DataCoach>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV3ListResponseData
-     */
     'is_available': boolean;
-    /**
-     * 
-     * @type {Array<MatchesV2DataKill>}
-     * @memberof MatchesV3ListResponseData
-     */
     'kills': Array<MatchesV2DataKill>;
-    /**
-     * 
-     * @type {MatchesV2DataMetadata}
-     * @memberof MatchesV3ListResponseData
-     */
     'metadata'?: MatchesV2DataMetadata | null;
-    /**
-     * 
-     * @type {Array<MatchesV2DataObserver>}
-     * @memberof MatchesV3ListResponseData
-     */
     'observers': Array<MatchesV2DataObserver>;
-    /**
-     * 
-     * @type {MatchesV2DataPlayers}
-     * @memberof MatchesV3ListResponseData
-     */
     'players'?: MatchesV2DataPlayers | null;
-    /**
-     * 
-     * @type {Array<MatchesV2DataRound>}
-     * @memberof MatchesV3ListResponseData
-     */
     'rounds': Array<MatchesV2DataRound>;
-    /**
-     * 
-     * @type {MatchesV2DataTeams}
-     * @memberof MatchesV3ListResponseData
-     */
     'teams'?: MatchesV2DataTeams | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV4Data
- */
 export interface MatchesV4Data {
-    /**
-     * 
-     * @type {Array<MatchesV4DataCoach>}
-     * @memberof MatchesV4Data
-     */
     'coaches': Array<MatchesV4DataCoach>;
-    /**
-     * 
-     * @type {Array<MatchesV4DataKill>}
-     * @memberof MatchesV4Data
-     */
     'kills': Array<MatchesV4DataKill>;
-    /**
-     * 
-     * @type {MatchesV4DataMetadata}
-     * @memberof MatchesV4Data
-     */
     'metadata': MatchesV4DataMetadata;
-    /**
-     * 
-     * @type {Array<MatchesV4DataObserver>}
-     * @memberof MatchesV4Data
-     */
     'observers': Array<MatchesV4DataObserver>;
-    /**
-     * 
-     * @type {Array<MatchesV4DataPlayer>}
-     * @memberof MatchesV4Data
-     */
     'players': Array<MatchesV4DataPlayer>;
-    /**
-     * 
-     * @type {Array<MatchesV4DataRound>}
-     * @memberof MatchesV4Data
-     */
     'rounds': Array<MatchesV4DataRound>;
-    /**
-     * 
-     * @type {Array<MatchesV4DataTeam>}
-     * @memberof MatchesV4Data
-     */
     'teams': Array<MatchesV4DataTeam>;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataCoach
- */
 export interface MatchesV4DataCoach {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataCoach
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataCoach
-     */
     'team_id': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataKill
- */
 export interface MatchesV4DataKill {
-    /**
-     * 
-     * @type {Array<MatchesV4DataRoundPlayer>}
-     * @memberof MatchesV4DataKill
-     */
     'assistants': Array<MatchesV4DataRoundPlayer>;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayer}
-     * @memberof MatchesV4DataKill
-     */
     'killer': MatchesV4DataRoundPlayer;
-    /**
-     * 
-     * @type {MatchesV4DataRoundLocation}
-     * @memberof MatchesV4DataKill
-     */
     'location': MatchesV4DataRoundLocation;
-    /**
-     * 
-     * @type {Array<MatchesV4DataRoundPlayerLocations>}
-     * @memberof MatchesV4DataKill
-     */
     'player_locations': Array<MatchesV4DataRoundPlayerLocations>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataKill
-     */
     'round': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV4DataKill
-     */
     'secondary_fire_mode': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataKill
-     */
     'time_in_match_in_ms': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataKill
-     */
     'time_in_round_in_ms': number;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayer}
-     * @memberof MatchesV4DataKill
-     */
     'victim': MatchesV4DataRoundPlayer;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayerStatsEconomyWeapon}
-     * @memberof MatchesV4DataKill
-     */
     'weapon': MatchesV4DataRoundPlayerStatsEconomyWeapon;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataMetadata
- */
 export interface MatchesV4DataMetadata {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadata
-     */
     'cluster'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataMetadata
-     */
     'game_length_in_ms': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadata
-     */
     'game_version': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV4DataMetadata
-     */
     'is_completed': boolean;
-    /**
-     * 
-     * @type {MapIdNameCombo}
-     * @memberof MatchesV4DataMetadata
-     */
     'map': MapIdNameCombo;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadata
-     */
     'match_id': string;
-    /**
-     * 
-     * @type {Array<MatchesV4DataMetadataPartyRRPenalty>}
-     * @memberof MatchesV4DataMetadata
-     */
     'party_rr_penaltys': Array<MatchesV4DataMetadataPartyRRPenalty>;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadata
-     */
     'platform': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof MatchesV4DataMetadata
-     */
     'premier'?: any;
-    /**
-     * 
-     * @type {MatchesV4DataMetadataQueue}
-     * @memberof MatchesV4DataMetadata
-     */
     'queue': MatchesV4DataMetadataQueue;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadata
-     */
     'region'?: string | null;
-    /**
-     * 
-     * @type {SeasonIdShortCombo}
-     * @memberof MatchesV4DataMetadata
-     */
     'season': SeasonIdShortCombo;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadata
-     */
     'started_at': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataMetadataPartyRRPenalty
- */
 export interface MatchesV4DataMetadataPartyRRPenalty {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadataPartyRRPenalty
-     */
     'party_id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataMetadataPartyRRPenalty
-     */
     'penalty': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataMetadataQueue
- */
 export interface MatchesV4DataMetadataQueue {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadataQueue
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadataQueue
-     */
     'mode_type'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataMetadataQueue
-     */
     'name'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataObserver
- */
 export interface MatchesV4DataObserver {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataObserver
-     */
     'account_level': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataObserver
-     */
     'card_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataObserver
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataObserver
-     */
     'party_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataObserver
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataObserver
-     */
     'session_playtime_in_ms': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataObserver
-     */
     'tag': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataObserver
-     */
     'title_id': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayer
- */
 export interface MatchesV4DataPlayer {
-    /**
-     * 
-     * @type {MatchesV4DataPlayerAbilityCasts}
-     * @memberof MatchesV4DataPlayer
-     */
     'ability_casts': MatchesV4DataPlayerAbilityCasts;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayer
-     */
     'account_level': number;
-    /**
-     * 
-     * @type {AgentIdNameCombo}
-     * @memberof MatchesV4DataPlayer
-     */
     'agent': AgentIdNameCombo;
-    /**
-     * 
-     * @type {MatchesV4DataPlayerBehavior}
-     * @memberof MatchesV4DataPlayer
-     */
     'behavior': MatchesV4DataPlayerBehavior;
-    /**
-     * 
-     * @type {MatchesV4DataPlayerCustomization}
-     * @memberof MatchesV4DataPlayer
-     */
     'customization': MatchesV4DataPlayerCustomization;
-    /**
-     * 
-     * @type {MatchesV4DataPlayerEconomy}
-     * @memberof MatchesV4DataPlayer
-     */
     'economy': MatchesV4DataPlayerEconomy;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayer
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayer
-     */
     'party_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayer
-     */
     'platform': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayer
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayer
-     */
     'session_playtime_in_ms': number;
-    /**
-     * 
-     * @type {MatchesV4DataPlayerStats}
-     * @memberof MatchesV4DataPlayer
-     */
     'stats': MatchesV4DataPlayerStats;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayer
-     */
     'tag': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayer
-     */
     'team_id': string;
-    /**
-     * 
-     * @type {TierIdNameCombo}
-     * @memberof MatchesV4DataPlayer
-     */
     'tier': TierIdNameCombo;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerAbilityCasts
- */
 export interface MatchesV4DataPlayerAbilityCasts {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerAbilityCasts
-     */
     'ability1'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerAbilityCasts
-     */
     'ability2'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerAbilityCasts
-     */
     'grenade'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerAbilityCasts
-     */
     'ultimate'?: number | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerBehavior
- */
 export interface MatchesV4DataPlayerBehavior {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerBehavior
-     */
     'afk_rounds': number;
-    /**
-     * 
-     * @type {MatchesV4DataPlayerBehaviorFriendlyFire}
-     * @memberof MatchesV4DataPlayerBehavior
-     */
     'friendly_fire': MatchesV4DataPlayerBehaviorFriendlyFire;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerBehavior
-     */
     'rounds_in_spawn': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerBehaviorFriendlyFire
- */
 export interface MatchesV4DataPlayerBehaviorFriendlyFire {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerBehaviorFriendlyFire
-     */
     'incoming': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerBehaviorFriendlyFire
-     */
     'outgoing': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerCustomization
- */
 export interface MatchesV4DataPlayerCustomization {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayerCustomization
-     */
     'card': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayerCustomization
-     */
     'preferred_level_border'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataPlayerCustomization
-     */
     'title': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerEconomy
- */
 export interface MatchesV4DataPlayerEconomy {
-    /**
-     * 
-     * @type {MatchesV4DataPlayerEconomyLoadoutValue}
-     * @memberof MatchesV4DataPlayerEconomy
-     */
     'loadout_value': MatchesV4DataPlayerEconomyLoadoutValue;
-    /**
-     * 
-     * @type {MatchesV4DataPlayerEconomySpent}
-     * @memberof MatchesV4DataPlayerEconomy
-     */
     'spent': MatchesV4DataPlayerEconomySpent;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerEconomyLoadoutValue
- */
 export interface MatchesV4DataPlayerEconomyLoadoutValue {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerEconomyLoadoutValue
-     */
     'average': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerEconomyLoadoutValue
-     */
     'overall': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerEconomySpent
- */
 export interface MatchesV4DataPlayerEconomySpent {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerEconomySpent
-     */
     'average': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerEconomySpent
-     */
     'overall': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerStats
- */
 export interface MatchesV4DataPlayerStats {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'assists': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'bodyshots': number;
-    /**
-     * 
-     * @type {MatchesV4DataPlayerStatsDamage}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'damage': MatchesV4DataPlayerStatsDamage;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'deaths': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'headshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'kills': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'legshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStats
-     */
     'score': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataPlayerStatsDamage
- */
 export interface MatchesV4DataPlayerStatsDamage {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStatsDamage
-     */
     'dealt': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataPlayerStatsDamage
-     */
     'received': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRound
- */
 export interface MatchesV4DataRound {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRound
-     */
     'ceremony': string;
-    /**
-     * 
-     * @type {MatchesV4DataRoundDefuse}
-     * @memberof MatchesV4DataRound
-     */
     'defuse'?: MatchesV4DataRoundDefuse | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRound
-     */
     'id': number;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlant}
-     * @memberof MatchesV4DataRound
-     */
     'plant'?: MatchesV4DataRoundPlant | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRound
-     */
     'result': string;
-    /**
-     * 
-     * @type {Array<MatchesV4DataRoundPlayerStats>}
-     * @memberof MatchesV4DataRound
-     */
     'stats': Array<MatchesV4DataRoundPlayerStats>;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRound
-     */
     'winning_team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundDefuse
- */
 export interface MatchesV4DataRoundDefuse {
-    /**
-     * 
-     * @type {MatchesV4DataRoundLocation}
-     * @memberof MatchesV4DataRoundDefuse
-     */
     'location': MatchesV4DataRoundLocation;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayer}
-     * @memberof MatchesV4DataRoundDefuse
-     */
     'player': MatchesV4DataRoundPlayer;
-    /**
-     * 
-     * @type {Array<MatchesV4DataRoundPlayerLocations>}
-     * @memberof MatchesV4DataRoundDefuse
-     */
     'player_locations': Array<MatchesV4DataRoundPlayerLocations>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundDefuse
-     */
     'round_time_in_ms': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundLocation
- */
 export interface MatchesV4DataRoundLocation {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundLocation
-     */
     'x': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundLocation
-     */
     'y': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlant
- */
 export interface MatchesV4DataRoundPlant {
-    /**
-     * 
-     * @type {MatchesV4DataRoundLocation}
-     * @memberof MatchesV4DataRoundPlant
-     */
     'location': MatchesV4DataRoundLocation;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayer}
-     * @memberof MatchesV4DataRoundPlant
-     */
     'player': MatchesV4DataRoundPlayer;
-    /**
-     * 
-     * @type {Array<MatchesV4DataRoundPlayerLocations>}
-     * @memberof MatchesV4DataRoundPlant
-     */
     'player_locations': Array<MatchesV4DataRoundPlayerLocations>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlant
-     */
     'round_time_in_ms': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlant
-     */
     'site': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayer
- */
 export interface MatchesV4DataRoundPlayer {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayer
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayer
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayer
-     */
     'tag': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayer
-     */
     'team': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerLocations
- */
 export interface MatchesV4DataRoundPlayerLocations {
-    /**
-     * 
-     * @type {MatchesV4DataRoundLocation}
-     * @memberof MatchesV4DataRoundPlayerLocations
-     */
     'location': MatchesV4DataRoundLocation;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayer}
-     * @memberof MatchesV4DataRoundPlayerLocations
-     */
     'player': MatchesV4DataRoundPlayer;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerLocations
-     */
     'view_radians': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerStats
- */
 export interface MatchesV4DataRoundPlayerStats {
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayerStatsAbilityCasts}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'ability_casts': MatchesV4DataRoundPlayerStatsAbilityCasts;
-    /**
-     * 
-     * @type {Array<MatchesV4DataRoundPlayerStatsDamageEvents>}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'damage_events': Array<MatchesV4DataRoundPlayerStatsDamageEvents>;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayerStatsEconomy}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'economy': MatchesV4DataRoundPlayerStatsEconomy;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayer}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'player': MatchesV4DataRoundPlayer;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'received_penalty': boolean;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayerStatsStats}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'stats': MatchesV4DataRoundPlayerStatsStats;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'stayed_in_spawn': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV4DataRoundPlayerStats
-     */
     'was_afk': boolean;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerStatsAbilityCasts
- */
 export interface MatchesV4DataRoundPlayerStatsAbilityCasts {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsAbilityCasts
-     */
     'ability_1'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsAbilityCasts
-     */
     'ability_2'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsAbilityCasts
-     */
     'grenade'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsAbilityCasts
-     */
     'ultimate'?: number | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerStatsDamageEvents
- */
 export interface MatchesV4DataRoundPlayerStatsDamageEvents {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsDamageEvents
-     */
     'bodyshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsDamageEvents
-     */
     'damage': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsDamageEvents
-     */
     'headshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsDamageEvents
-     */
     'legshots': number;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayer}
-     * @memberof MatchesV4DataRoundPlayerStatsDamageEvents
-     */
     'player': MatchesV4DataRoundPlayer;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerStatsEconomy
- */
 export interface MatchesV4DataRoundPlayerStatsEconomy {
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayerStatsEconomyArmor}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomy
-     */
     'armor'?: MatchesV4DataRoundPlayerStatsEconomyArmor | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomy
-     */
     'loadout_value': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomy
-     */
     'remaining': number;
-    /**
-     * 
-     * @type {MatchesV4DataRoundPlayerStatsEconomyWeapon}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomy
-     */
     'weapon'?: MatchesV4DataRoundPlayerStatsEconomyWeapon | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerStatsEconomyArmor
- */
 export interface MatchesV4DataRoundPlayerStatsEconomyArmor {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomyArmor
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomyArmor
-     */
     'name'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerStatsEconomyWeapon
- */
 export interface MatchesV4DataRoundPlayerStatsEconomyWeapon {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomyWeapon
-     */
     'id'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomyWeapon
-     */
     'name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataRoundPlayerStatsEconomyWeapon
-     */
     'type'?: string | null;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataRoundPlayerStatsStats
- */
 export interface MatchesV4DataRoundPlayerStatsStats {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsStats
-     */
     'bodyshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsStats
-     */
     'headshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsStats
-     */
     'kills': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsStats
-     */
     'legshots': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataRoundPlayerStatsStats
-     */
     'score': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataTeam
- */
 export interface MatchesV4DataTeam {
-    /**
-     * 
-     * @type {MatchesV4DataTeamPremierRoster}
-     * @memberof MatchesV4DataTeam
-     */
     'premier_roster'?: MatchesV4DataTeamPremierRoster | null;
-    /**
-     * 
-     * @type {MatchesV4DataTeamRounds}
-     * @memberof MatchesV4DataTeam
-     */
     'rounds': MatchesV4DataTeamRounds;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeam
-     */
     'team_id': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MatchesV4DataTeam
-     */
     'won': boolean;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataTeamPremierRoster
- */
 export interface MatchesV4DataTeamPremierRoster {
-    /**
-     * 
-     * @type {MatchesV4DataTeamPremierRosterCustomization}
-     * @memberof MatchesV4DataTeamPremierRoster
-     */
     'customization': MatchesV4DataTeamPremierRosterCustomization;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRoster
-     */
     'id': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof MatchesV4DataTeamPremierRoster
-     */
     'members': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRoster
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRoster
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataTeamPremierRosterCustomization
- */
 export interface MatchesV4DataTeamPremierRosterCustomization {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRosterCustomization
-     */
     'icon': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRosterCustomization
-     */
     'image': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRosterCustomization
-     */
     'primary_color': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRosterCustomization
-     */
     'secondary_color': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MatchesV4DataTeamPremierRosterCustomization
-     */
     'tertiary_color': string;
 }
-/**
- * 
- * @export
- * @interface MatchesV4DataTeamRounds
- */
 export interface MatchesV4DataTeamRounds {
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataTeamRounds
-     */
     'lost': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4DataTeamRounds
-     */
     'won': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4HistoryResponse
- */
 export interface MatchesV4HistoryResponse {
-    /**
-     * 
-     * @type {Array<MatchesV4Data>}
-     * @memberof MatchesV4HistoryResponse
-     */
     'data': Array<MatchesV4Data>;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4HistoryResponse
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface MatchesV4Response
- */
 export interface MatchesV4Response {
-    /**
-     * 
-     * @type {MatchesV4Data}
-     * @memberof MatchesV4Response
-     */
     'data': MatchesV4Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof MatchesV4Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface Pagination
- */
 export interface Pagination {
-    /**
-     * 
-     * @type {number}
-     * @memberof Pagination
-     */
     'after': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Pagination
-     */
     'before': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Pagination
-     */
     'returned': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Pagination
-     */
     'total': number;
 }
-/**
- * 
- * @export
- * @interface PremierSearchResponse
- */
 export interface PremierSearchResponse {
-    /**
-     * 
-     * @type {Array<PremierTeamLiteResponseData>}
-     * @memberof PremierSearchResponse
-     */
     'data': Array<PremierTeamLiteResponseData>;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierSearchResponse
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface PremierTeamGamesLeagueString
- */
 export interface PremierTeamGamesLeagueString {
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamGamesLeagueString
-     */
     'id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamGamesLeagueString
-     */
     'points_after': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamGamesLeagueString
-     */
     'points_before': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamGamesLeagueString
-     */
     'started_at': string;
 }
-/**
- * 
- * @export
- * @interface PremierTeamGamesTournament
- */
 export interface PremierTeamGamesTournament {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PremierTeamGamesTournament
-     */
     'matches': Array<string>;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamGamesTournament
-     */
     'placement': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamGamesTournament
-     */
     'placement_league_bonus': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamGamesTournament
-     */
     'points_after': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamGamesTournament
-     */
     'points_before': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamGamesTournament
-     */
     'tournament_id': string;
 }
-/**
- * 
- * @export
- * @interface PremierTeamHistoryV1Response
- */
 export interface PremierTeamHistoryV1Response {
-    /**
-     * 
-     * @type {PremierTeamHistoryV1ResponseData}
-     * @memberof PremierTeamHistoryV1Response
-     */
     'data': PremierTeamHistoryV1ResponseData;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamHistoryV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface PremierTeamHistoryV1ResponseData
- */
 export interface PremierTeamHistoryV1ResponseData {
-    /**
-     * 
-     * @type {Array<PremierTeamGamesLeagueString>}
-     * @memberof PremierTeamHistoryV1ResponseData
-     */
     'league_matches': Array<PremierTeamGamesLeagueString>;
-    /**
-     * 
-     * @type {Array<PremierTeamGamesTournament>}
-     * @memberof PremierTeamHistoryV1ResponseData
-     */
     'tournament_matches': Array<PremierTeamGamesTournament>;
 }
-/**
- * 
- * @export
- * @interface PremierTeamLiteResponseData
- */
 export interface PremierTeamLiteResponseData {
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamLiteResponseData
-     */
     'affinity': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamLiteResponseData
-     */
     'conference': string;
-    /**
-     * 
-     * @type {PremierTeamV1ResponseDataCustomization}
-     * @memberof PremierTeamLiteResponseData
-     */
     'customization': PremierTeamV1ResponseDataCustomization;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamLiteResponseData
-     */
     'division': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamLiteResponseData
-     */
     'id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamLiteResponseData
-     */
     'losses': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamLiteResponseData
-     */
     'name': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamLiteResponseData
-     */
     'ranking': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamLiteResponseData
-     */
     'region': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamLiteResponseData
-     */
     'score': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamLiteResponseData
-     */
     'tag': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamLiteResponseData
-     */
     'updated_at': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamLiteResponseData
-     */
     'wins': number;
 }
-/**
- * 
- * @export
- * @interface PremierTeamMember
- */
 export interface PremierTeamMember {
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamMember
-     */
     'name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamMember
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamMember
-     */
     'tag'?: string | null;
 }
-/**
- * 
- * @export
- * @interface PremierTeamV1Response
- */
 export interface PremierTeamV1Response {
-    /**
-     * 
-     * @type {PremierTeamV1ResponseData}
-     * @memberof PremierTeamV1Response
-     */
     'data': PremierTeamV1ResponseData;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface PremierTeamV1ResponseData
- */
 export interface PremierTeamV1ResponseData {
-    /**
-     * 
-     * @type {PremierTeamV1ResponseDataCustomization}
-     * @memberof PremierTeamV1ResponseData
-     */
     'customization': PremierTeamV1ResponseDataCustomization;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PremierTeamV1ResponseData
-     */
     'enrolled': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseData
-     */
     'id': string;
-    /**
-     * 
-     * @type {Array<PremierTeamMember>}
-     * @memberof PremierTeamV1ResponseData
-     */
     'member': Array<PremierTeamMember>;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseData
-     */
     'name': string;
-    /**
-     * 
-     * @type {PremierTeamV1ResponseDataPlacement}
-     * @memberof PremierTeamV1ResponseData
-     */
     'placement': PremierTeamV1ResponseDataPlacement;
-    /**
-     * 
-     * @type {PremierTeamV1ResponseDataStats}
-     * @memberof PremierTeamV1ResponseData
-     */
     'stats': PremierTeamV1ResponseDataStats;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseData
-     */
     'tag': string;
 }
-/**
- * 
- * @export
- * @interface PremierTeamV1ResponseDataCustomization
- */
 export interface PremierTeamV1ResponseDataCustomization {
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseDataCustomization
-     */
     'icon': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseDataCustomization
-     */
     'image': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseDataCustomization
-     */
     'primary': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseDataCustomization
-     */
     'secondary': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseDataCustomization
-     */
     'tertiary': string;
 }
-/**
- * 
- * @export
- * @interface PremierTeamV1ResponseDataPlacement
- */
 export interface PremierTeamV1ResponseDataPlacement {
-    /**
-     * 
-     * @type {string}
-     * @memberof PremierTeamV1ResponseDataPlacement
-     */
     'conference': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataPlacement
-     */
     'division': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataPlacement
-     */
     'place': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataPlacement
-     */
     'points': number;
 }
-/**
- * 
- * @export
- * @interface PremierTeamV1ResponseDataStats
- */
 export interface PremierTeamV1ResponseDataStats {
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataStats
-     */
     'losses': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataStats
-     */
     'matches': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataStats
-     */
     'rounds_lost': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataStats
-     */
     'rounds_won': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PremierTeamV1ResponseDataStats
-     */
     'wins': number;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1
- */
 export interface QueueStatusV1 {
-    /**
-     * 
-     * @type {Array<QueueStatusV1Data>}
-     * @memberof QueueStatusV1
-     */
     'data': Array<QueueStatusV1Data>;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1Data
- */
 export interface QueueStatusV1Data {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1Data
-     */
     'enabled': boolean;
-    /**
-     * 
-     * @type {QueueStatusV1GameRules}
-     * @memberof QueueStatusV1Data
-     */
     'game_rules': QueueStatusV1GameRules;
-    /**
-     * 
-     * @type {QueueStatusV1HighSkill}
-     * @memberof QueueStatusV1Data
-     */
     'high_skill': QueueStatusV1HighSkill;
-    /**
-     * 
-     * @type {Array<QueueStatusV1Maps>}
-     * @memberof QueueStatusV1Data
-     */
     'maps': Array<QueueStatusV1Maps>;
-    /**
-     * 
-     * @type {string}
-     * @memberof QueueStatusV1Data
-     */
     'mode': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof QueueStatusV1Data
-     */
     'mode_id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1Data
-     */
     'number_of_teams': number;
-    /**
-     * 
-     * @type {QueueStatusV1PartySize}
-     * @memberof QueueStatusV1Data
-     */
     'party_size': QueueStatusV1PartySize;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof QueueStatusV1Data
-     */
     'platforms': Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1Data
-     */
     'ranked': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1Data
-     */
     'required_account_level': number;
-    /**
-     * 
-     * @type {Array<QueueStatusV1SkillDisparity>}
-     * @memberof QueueStatusV1Data
-     */
     'skill_disparity': Array<QueueStatusV1SkillDisparity>;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1Data
-     */
     'team_size': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1Data
-     */
     'tournament': boolean;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1GameRules
- */
 export interface QueueStatusV1GameRules {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'allow_drop_out': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'allow_lenient_surrender': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'allow_overtime_draw_vote': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'assign_random_agents': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'overtime_win_by_two': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'overtime_win_by_two_capped': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'premier_mode': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1GameRules
-     */
     'skip_pregame': boolean;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1HighSkill
- */
 export interface QueueStatusV1HighSkill {
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1HighSkill
-     */
     'max_party_size': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1HighSkill
-     */
     'max_tier': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1HighSkill
-     */
     'min_tier': number;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1IDNamePair
- */
 export interface QueueStatusV1IDNamePair {
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1IDNamePair
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof QueueStatusV1IDNamePair
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1Map
- */
 export interface QueueStatusV1Map {
-    /**
-     * 
-     * @type {string}
-     * @memberof QueueStatusV1Map
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof QueueStatusV1Map
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1Maps
- */
 export interface QueueStatusV1Maps {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1Maps
-     */
     'enabled': boolean;
-    /**
-     * 
-     * @type {QueueStatusV1Map}
-     * @memberof QueueStatusV1Maps
-     */
     'map': QueueStatusV1Map;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1PartySize
- */
 export interface QueueStatusV1PartySize {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof QueueStatusV1PartySize
-     */
     'full_party_bypass': boolean;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof QueueStatusV1PartySize
-     */
     'invalid': Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1PartySize
-     */
     'max': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1PartySize
-     */
     'min': number;
 }
-/**
- * 
- * @export
- * @interface QueueStatusV1SkillDisparity
- */
 export interface QueueStatusV1SkillDisparity {
-    /**
-     * 
-     * @type {QueueStatusV1IDNamePair}
-     * @memberof QueueStatusV1SkillDisparity
-     */
     'max_tier': QueueStatusV1IDNamePair;
-    /**
-     * 
-     * @type {string}
-     * @memberof QueueStatusV1SkillDisparity
-     */
     'name': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof QueueStatusV1SkillDisparity
-     */
     'tier': number;
 }
-/**
- * 
- * @export
- * @interface RawV1ErrorData
- */
 export interface RawV1ErrorData {
-    /**
-     * 
-     * @type {number}
-     * @memberof RawV1ErrorData
-     */
     'code': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RawV1ErrorData
-     */
     'error': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof RawV1ErrorData
-     */
     'id': string;
 }
-/**
- * 
- * @export
- * @interface RawV1Payload
- */
 export interface RawV1Payload {
-    /**
-     * 
-     * @type {string}
-     * @memberof RawV1Payload
-     */
     'platform'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof RawV1Payload
-     */
     'queries'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof RawV1Payload
-     */
     'region': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RawV1Payload
-     */
     'type': string;
-    /**
-     * 
-     * @type {RawV1PayloadValues}
-     * @memberof RawV1Payload
-     */
     'value': RawV1PayloadValues;
 }
 /**
  * @type RawV1PayloadValues
- * @export
  */
 export type RawV1PayloadValues = Array<string> | string;
 
-/**
- * 
- * @export
- * @interface RawV1Response
- */
 export interface RawV1Response {
-    /**
-     * 
-     * @type {RawV1ResponseData}
-     * @memberof RawV1Response
-     */
     'data': RawV1ResponseData | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof RawV1Response
-     */
     'status': number;
 }
 /**
  * @type RawV1ResponseData
- * @export
  */
 export type RawV1ResponseData = Array<any> | RawV1ErrorData;
 
-/**
- * 
- * @export
- * @interface SeasonIdShortCombo
- */
 export interface SeasonIdShortCombo {
-    /**
-     * 
-     * @type {string}
-     * @memberof SeasonIdShortCombo
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeasonIdShortCombo
-     */
     'short': string;
 }
-/**
- * 
- * @export
- * @interface SendError
- */
 export interface SendError {
-    /**
-     * 
-     * @type {Array<APIError>}
-     * @memberof SendError
-     */
     'errors': Array<APIError>;
 }
-/**
- * 
- * @export
- * @interface StatusIncident
- */
 export interface StatusIncident {
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncident
-     */
     'archive_at'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncident
-     */
     'created_at': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StatusIncident
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncident
-     */
     'incident_severity': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncident
-     */
     'maintenance_status'?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof StatusIncident
-     */
     'platforms': Array<string>;
-    /**
-     * 
-     * @type {Array<StatusIncidentContent>}
-     * @memberof StatusIncident
-     */
     'titles': Array<StatusIncidentContent>;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncident
-     */
     'updated_at': string;
-    /**
-     * 
-     * @type {Array<StatusIncidentUpdate>}
-     * @memberof StatusIncident
-     */
     'updates': Array<StatusIncidentUpdate>;
 }
-/**
- * 
- * @export
- * @interface StatusIncidentContent
- */
 export interface StatusIncidentContent {
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncidentContent
-     */
     'content': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncidentContent
-     */
     'locale': string;
 }
-/**
- * 
- * @export
- * @interface StatusIncidentUpdate
- */
 export interface StatusIncidentUpdate {
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncidentUpdate
-     */
     'author': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncidentUpdate
-     */
     'created_at': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StatusIncidentUpdate
-     */
     'id': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StatusIncidentUpdate
-     */
     'publish': boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof StatusIncidentUpdate
-     */
     'publish_locations': Array<string>;
-    /**
-     * 
-     * @type {Array<StatusIncidentContent>}
-     * @memberof StatusIncidentUpdate
-     */
     'translations': Array<StatusIncidentContent>;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatusIncidentUpdate
-     */
     'updated_at': string;
 }
-/**
- * 
- * @export
- * @interface StatusV1
- */
 export interface StatusV1 {
-    /**
-     * 
-     * @type {StatusV1Data}
-     * @memberof StatusV1
-     */
     'data': StatusV1Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof StatusV1
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface StatusV1Data
- */
 export interface StatusV1Data {
-    /**
-     * 
-     * @type {Array<StatusIncident>}
-     * @memberof StatusV1Data
-     */
     'incidents': Array<StatusIncident>;
-    /**
-     * 
-     * @type {Array<StatusIncident>}
-     * @memberof StatusV1Data
-     */
     'maintenances': Array<StatusIncident>;
 }
-/**
- * 
- * @export
- * @interface StoreFeaturedV1
- */
 export interface StoreFeaturedV1 {
-    /**
-     * 
-     * @type {FeaturedBundle}
-     * @memberof StoreFeaturedV1
-     */
     'FeaturedBundle': FeaturedBundle;
 }
-/**
- * 
- * @export
- * @interface StoreOffersV1
- */
 export interface StoreOffersV1 {
-    /**
-     * 
-     * @type {Array<StoreOffersV1Offer>}
-     * @memberof StoreOffersV1
-     */
     'Offers': Array<StoreOffersV1Offer>;
-    /**
-     * 
-     * @type {Array<StoreOffersV1UpgradeCurrency>}
-     * @memberof StoreOffersV1
-     */
     'UpgradeCurrencyOffers': Array<StoreOffersV1UpgradeCurrency>;
 }
-/**
- * 
- * @export
- * @interface StoreOffersV1Offer
- */
 export interface StoreOffersV1Offer {
-    /**
-     * 
-     * @type {{ [key: string]: number; }}
-     * @memberof StoreOffersV1Offer
-     */
     'Cost': { [key: string]: number; };
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StoreOffersV1Offer
-     */
     'IsDirectPurchase': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoreOffersV1Offer
-     */
     'OfferID': string;
-    /**
-     * 
-     * @type {Array<StoreOffersV1Reward>}
-     * @memberof StoreOffersV1Offer
-     */
     'Rewards': Array<StoreOffersV1Reward>;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoreOffersV1Offer
-     */
     'StartDate': string;
 }
-/**
- * 
- * @export
- * @interface StoreOffersV1Response
- */
 export interface StoreOffersV1Response {
-    /**
-     * 
-     * @type {StoreOffersV1}
-     * @memberof StoreOffersV1Response
-     */
     'data': StoreOffersV1;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoreOffersV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface StoreOffersV1Reward
- */
 export interface StoreOffersV1Reward {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoreOffersV1Reward
-     */
     'ItemID': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoreOffersV1Reward
-     */
     'ItemTypeID': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoreOffersV1Reward
-     */
     'Quantity': number;
 }
-/**
- * 
- * @export
- * @interface StoreOffersV1UpgradeCurrency
- */
 export interface StoreOffersV1UpgradeCurrency {
-    /**
-     * 
-     * @type {number}
-     * @memberof StoreOffersV1UpgradeCurrency
-     */
     'DiscountedPercent': number;
-    /**
-     * 
-     * @type {StoreOffersV1Offer}
-     * @memberof StoreOffersV1UpgradeCurrency
-     */
     'Offer': StoreOffersV1Offer;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoreOffersV1UpgradeCurrency
-     */
     'OfferID': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoreOffersV1UpgradeCurrency
-     */
     'StorefrontItemID': string;
 }
-/**
- * 
- * @export
- * @interface StoredMMR
- */
 export interface StoredMMR {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMR
-     */
     'date': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMR
-     */
     'elo': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMR
-     */
     'last_mmr_change': number;
-    /**
-     * 
-     * @type {StoredMMRMap}
-     * @memberof StoredMMR
-     */
     'map': StoredMMRMap;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMR
-     */
     'match_id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMR
-     */
     'ranking_in_tier': number;
-    /**
-     * 
-     * @type {StoredMMRSeason}
-     * @memberof StoredMMR
-     */
     'season': StoredMMRSeason;
-    /**
-     * 
-     * @type {StoredMMRTier}
-     * @memberof StoredMMR
-     */
     'tier': StoredMMRTier;
 }
-/**
- * 
- * @export
- * @interface StoredMMRMap
- */
 export interface StoredMMRMap {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMRMap
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMRMap
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface StoredMMRResponse
- */
 export interface StoredMMRResponse {
-    /**
-     * 
-     * @type {Array<StoredMMR>}
-     * @memberof StoredMMRResponse
-     */
     'data': Array<StoredMMR>;
-    /**
-     * 
-     * @type {Pagination}
-     * @memberof StoredMMRResponse
-     */
     'results': Pagination;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMRResponse
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface StoredMMRSeason
- */
 export interface StoredMMRSeason {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMRSeason
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMRSeason
-     */
     'short': string;
 }
-/**
- * 
- * @export
- * @interface StoredMMRTier
- */
 export interface StoredMMRTier {
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMRTier
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMRTier
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface StoredMMRV2
- */
 export interface StoredMMRV2 {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMRV2
-     */
     'date': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMRV2
-     */
     'elo': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMRV2
-     */
     'last_change': number;
-    /**
-     * 
-     * @type {MapIdNameCombo}
-     * @memberof StoredMMRV2
-     */
     'map': MapIdNameCombo;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMMRV2
-     */
     'match_id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMRV2
-     */
     'refunded_rr': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMRV2
-     */
     'rr': number;
-    /**
-     * 
-     * @type {SeasonIdShortCombo}
-     * @memberof StoredMMRV2
-     */
     'season': SeasonIdShortCombo;
-    /**
-     * 
-     * @type {TierIdNameCombo}
-     * @memberof StoredMMRV2
-     */
     'tier': TierIdNameCombo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StoredMMRV2
-     */
     'was_derank_protected': boolean;
 }
-/**
- * 
- * @export
- * @interface StoredMMRV2Response
- */
 export interface StoredMMRV2Response {
-    /**
-     * 
-     * @type {Array<StoredMMRV2>}
-     * @memberof StoredMMRV2Response
-     */
     'data': Array<StoredMMRV2>;
-    /**
-     * 
-     * @type {Pagination}
-     * @memberof StoredMMRV2Response
-     */
     'results': Pagination;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMMRV2Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface StoredMatch
- */
 export interface StoredMatch {
-    /**
-     * 
-     * @type {StoredMatchMeta}
-     * @memberof StoredMatch
-     */
     'meta': StoredMatchMeta;
-    /**
-     * 
-     * @type {StoredMatchStats}
-     * @memberof StoredMatch
-     */
     'stats': StoredMatchStats;
-    /**
-     * 
-     * @type {StoredMatchTeam}
-     * @memberof StoredMatch
-     */
     'teams': StoredMatchTeam;
 }
-/**
- * 
- * @export
- * @interface StoredMatchMeta
- */
 export interface StoredMatchMeta {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMeta
-     */
     'cluster'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMeta
-     */
     'id': string;
-    /**
-     * 
-     * @type {StoredMatchMetaMap}
-     * @memberof StoredMatchMeta
-     */
     'map': StoredMatchMetaMap;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMeta
-     */
     'mode': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMeta
-     */
     'region': string;
-    /**
-     * 
-     * @type {StoredMatchMetaSeason}
-     * @memberof StoredMatchMeta
-     */
     'season': StoredMatchMetaSeason;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMeta
-     */
     'started_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMeta
-     */
     'version': string;
 }
-/**
- * 
- * @export
- * @interface StoredMatchMetaMap
- */
 export interface StoredMatchMetaMap {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMetaMap
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMetaMap
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface StoredMatchMetaSeason
- */
 export interface StoredMatchMetaSeason {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMetaSeason
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchMetaSeason
-     */
     'short': string;
 }
-/**
- * 
- * @export
- * @interface StoredMatchStats
- */
 export interface StoredMatchStats {
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStats
-     */
     'assists': number;
-    /**
-     * 
-     * @type {StoredMatchStatsCharacter}
-     * @memberof StoredMatchStats
-     */
     'character': StoredMatchStatsCharacter;
-    /**
-     * 
-     * @type {StoredMatchStatsDamage}
-     * @memberof StoredMatchStats
-     */
     'damage': StoredMatchStatsDamage;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStats
-     */
     'deaths': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStats
-     */
     'kills': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStats
-     */
     'level': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchStats
-     */
     'puuid': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStats
-     */
     'score': number;
-    /**
-     * 
-     * @type {StoredMatchStatsShots}
-     * @memberof StoredMatchStats
-     */
     'shots': StoredMatchStatsShots;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchStats
-     */
     'team': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStats
-     */
     'tier': number;
 }
-/**
- * 
- * @export
- * @interface StoredMatchStatsCharacter
- */
 export interface StoredMatchStatsCharacter {
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchStatsCharacter
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StoredMatchStatsCharacter
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface StoredMatchStatsDamage
- */
 export interface StoredMatchStatsDamage {
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStatsDamage
-     */
     'made': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStatsDamage
-     */
     'received': number;
 }
-/**
- * 
- * @export
- * @interface StoredMatchStatsShots
- */
 export interface StoredMatchStatsShots {
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStatsShots
-     */
     'body': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStatsShots
-     */
     'head': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchStatsShots
-     */
     'leg': number;
 }
-/**
- * 
- * @export
- * @interface StoredMatchTeam
- */
 export interface StoredMatchTeam {
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchTeam
-     */
     'blue': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchTeam
-     */
     'red': number;
 }
-/**
- * 
- * @export
- * @interface StoredMatchesResponse
- */
 export interface StoredMatchesResponse {
-    /**
-     * 
-     * @type {Array<StoredMatch>}
-     * @memberof StoredMatchesResponse
-     */
     'data': Array<StoredMatch>;
-    /**
-     * 
-     * @type {Pagination}
-     * @memberof StoredMatchesResponse
-     */
     'results': Pagination;
-    /**
-     * 
-     * @type {number}
-     * @memberof StoredMatchesResponse
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface TierIdNameCombo
- */
 export interface TierIdNameCombo {
-    /**
-     * 
-     * @type {number}
-     * @memberof TierIdNameCombo
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TierIdNameCombo
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface VersionV1Data
- */
 export interface VersionV1Data {
-    /**
-     * 
-     * @type {string}
-     * @memberof VersionV1Data
-     */
     'branch': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VersionV1Data
-     */
     'build_date': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VersionV1Data
-     */
     'build_ver': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VersionV1Data
-     */
     'last_checked': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VersionV1Data
-     */
     'region': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof VersionV1Data
-     */
     'version': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof VersionV1Data
-     */
     'version_for_api': string;
 }
-/**
- * 
- * @export
- * @interface VersionV1Response
- */
 export interface VersionV1Response {
-    /**
-     * 
-     * @type {VersionV1Data}
-     * @memberof VersionV1Response
-     */
     'data': VersionV1Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof VersionV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface WebsiteByIdV1Data
- */
 export interface WebsiteByIdV1Data {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'banner_url'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'category': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'content'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'date': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'external_link'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteByIdV1Data
-     */
     'url': string;
 }
-/**
- * 
- * @export
- * @interface WebsiteByIdV1Response
- */
 export interface WebsiteByIdV1Response {
-    /**
-     * 
-     * @type {WebsiteByIdV1Data}
-     * @memberof WebsiteByIdV1Response
-     */
     'data': WebsiteByIdV1Data;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebsiteByIdV1Response
-     */
     'status': number;
 }
-/**
- * 
- * @export
- * @interface WebsiteV1Data
- */
 export interface WebsiteV1Data {
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'banner_url'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'category': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'date': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'external_link'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebsiteV1Data
-     */
     'url': string;
 }
-/**
- * 
- * @export
- * @interface WebsiteV1Response
- */
 export interface WebsiteV1Response {
-    /**
-     * 
-     * @type {Array<WebsiteV1Data>}
-     * @memberof WebsiteV1Response
-     */
     'data': Array<WebsiteV1Data>;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebsiteV1Response
-     */
     'status': number;
 }
 
 /**
  * ValorantApi - axios parameter creator
- * @export
  */
 export const ValorantApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -8623,7 +3250,6 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * ValorantApi - functional programming interface
- * @export
  */
 export const ValorantApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ValorantApiAxiosParamCreator(configuration)
@@ -9275,7 +3901,6 @@ export const ValorantApiFp = function(configuration?: Configuration) {
 
 /**
  * ValorantApi - factory interface
- * @export
  */
 export const ValorantApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ValorantApiFp(configuration)
@@ -9699,1283 +4324,913 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * Request parameters for crosshair operation in ValorantApi.
- * @export
- * @interface ValorantApiCrosshairRequest
  */
 export interface ValorantApiCrosshairRequest {
     /**
      * Crosshair code
-     * @type {string}
-     * @memberof ValorantApiCrosshair
      */
     readonly id?: string
 }
 
 /**
  * Request parameters for esportsSchedulesV1 operation in ValorantApi.
- * @export
- * @interface ValorantApiEsportsSchedulesV1Request
  */
 export interface ValorantApiEsportsSchedulesV1Request {
     /**
      * Region filter (optional)
-     * @type {string}
-     * @memberof ValorantApiEsportsSchedulesV1
      */
     readonly region?: string
 }
 
 /**
  * Request parameters for getAccountByIdV1 operation in ValorantApi.
- * @export
- * @interface ValorantApiGetAccountByIdV1Request
  */
 export interface ValorantApiGetAccountByIdV1Request {
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetAccountByIdV1
      */
     readonly puuid: string
 
     /**
      * Bypass cache and refresh (optional)
-     * @type {boolean}
-     * @memberof ValorantApiGetAccountByIdV1
      */
     readonly force?: boolean
 }
 
 /**
  * Request parameters for getAccountByIdV2 operation in ValorantApi.
- * @export
- * @interface ValorantApiGetAccountByIdV2Request
  */
 export interface ValorantApiGetAccountByIdV2Request {
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetAccountByIdV2
      */
     readonly puuid: string
 
     /**
      * Bypass cache and refresh (optional)
-     * @type {boolean}
-     * @memberof ValorantApiGetAccountByIdV2
      */
     readonly force?: boolean
 }
 
 /**
  * Request parameters for getAccountV1 operation in ValorantApi.
- * @export
- * @interface ValorantApiGetAccountV1Request
  */
 export interface ValorantApiGetAccountV1Request {
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetAccountV1
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetAccountV1
      */
     readonly tag: string
 
     /**
      * Bypass cache and refresh (optional)
-     * @type {boolean}
-     * @memberof ValorantApiGetAccountV1
      */
     readonly force?: boolean
 }
 
 /**
  * Request parameters for getAccountV2 operation in ValorantApi.
- * @export
- * @interface ValorantApiGetAccountV2Request
  */
 export interface ValorantApiGetAccountV2Request {
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetAccountV2
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetAccountV2
      */
     readonly tag: string
 
     /**
      * Bypass cache and refresh (optional)
-     * @type {boolean}
-     * @memberof ValorantApiGetAccountV2
      */
     readonly force?: boolean
 }
 
 /**
  * Request parameters for getContentV1 operation in ValorantApi.
- * @export
- * @interface ValorantApiGetContentV1Request
  */
 export interface ValorantApiGetContentV1Request {
     /**
      * Locale code (e.g., en-US, de-DE) - optional
-     * @type {string}
-     * @memberof ValorantApiGetContentV1
      */
     readonly locale?: string
 }
 
 /**
  * Request parameters for getMatchesV3ById operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMatchesV3ByIdRequest
  */
 export interface ValorantApiGetMatchesV3ByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ById
      */
     readonly affinity: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ById
      */
     readonly puuid: string
 
     /**
      * Game mode filter (optional)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ById
      */
     readonly mode?: string
 
     /**
      * Map filter (optional)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ById
      */
     readonly map?: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiGetMatchesV3ById
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for getMatchesV3ByName operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMatchesV3ByNameRequest
  */
 export interface ValorantApiGetMatchesV3ByNameRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ByName
      */
     readonly affinity: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ByName
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ByName
      */
     readonly tag: string
 
     /**
      * Game mode filter (optional)
-     * @type {MatchMode}
-     * @memberof ValorantApiGetMatchesV3ByName
      */
     readonly mode?: MatchMode
 
     /**
      * Map filter (optional)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV3ByName
      */
     readonly map?: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiGetMatchesV3ByName
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for getMatchesV4ById operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMatchesV4ByIdRequest
  */
 export interface ValorantApiGetMatchesV4ByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ById
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ById
      */
     readonly platform: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ById
      */
     readonly puuid: string
 
     /**
      * Game mode filter (optional)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ById
      */
     readonly mode?: string
 
     /**
      * Map filter (optional)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ById
      */
     readonly map?: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiGetMatchesV4ById
      */
     readonly size?: number
 
     /**
      * Start index for pagination (optional)
-     * @type {number}
-     * @memberof ValorantApiGetMatchesV4ById
      */
     readonly start?: number
 }
 
 /**
  * Request parameters for getMatchesV4ByName operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMatchesV4ByNameRequest
  */
 export interface ValorantApiGetMatchesV4ByNameRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly platform: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly tag: string
 
     /**
      * Game mode filter (optional)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly mode?: string
 
     /**
      * Map filter (optional)
-     * @type {string}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly map?: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly size?: number
 
     /**
      * Start index for pagination (optional)
-     * @type {number}
-     * @memberof ValorantApiGetMatchesV4ByName
      */
     readonly start?: number
 }
 
 /**
  * Request parameters for getMmrHistoryById operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrHistoryByIdRequest
  */
 export interface ValorantApiGetMmrHistoryByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryById
      */
     readonly affinity: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryById
      */
     readonly puuid: string
 }
 
 /**
  * Request parameters for getMmrHistoryByName operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrHistoryByNameRequest
  */
 export interface ValorantApiGetMmrHistoryByNameRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryByName
      */
     readonly affinity: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryByName
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryByName
      */
     readonly tag: string
 }
 
 /**
  * Request parameters for getMmrHistoryV2ById operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrHistoryV2ByIdRequest
  */
 export interface ValorantApiGetMmrHistoryV2ByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryV2ById
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryV2ById
      */
     readonly platform: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryV2ById
      */
     readonly puuid: string
 }
 
 /**
  * Request parameters for getMmrHistoryV2ByName operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrHistoryV2ByNameRequest
  */
 export interface ValorantApiGetMmrHistoryV2ByNameRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryV2ByName
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryV2ByName
      */
     readonly platform: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryV2ByName
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetMmrHistoryV2ByName
      */
     readonly tag: string
 }
 
 /**
  * Request parameters for getMmrV1ById operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrV1ByIdRequest
  */
 export interface ValorantApiGetMmrV1ByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV1ById
      */
     readonly affinity: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetMmrV1ById
      */
     readonly puuid: string
 }
 
 /**
  * Request parameters for getMmrV1ByName operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrV1ByNameRequest
  */
 export interface ValorantApiGetMmrV1ByNameRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV1ByName
      */
     readonly affinity: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetMmrV1ByName
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetMmrV1ByName
      */
     readonly tag: string
 }
 
 /**
  * Request parameters for getMmrV2ById operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrV2ByIdRequest
  */
 export interface ValorantApiGetMmrV2ByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV2ById
      */
     readonly affinity: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetMmrV2ById
      */
     readonly puuid: string
 }
 
 /**
  * Request parameters for getMmrV2ByName operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrV2ByNameRequest
  */
 export interface ValorantApiGetMmrV2ByNameRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV2ByName
      */
     readonly affinity: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetMmrV2ByName
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetMmrV2ByName
      */
     readonly tag: string
 }
 
 /**
  * Request parameters for getMmrV3ById operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrV3ByIdRequest
  */
 export interface ValorantApiGetMmrV3ByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV3ById
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV3ById
      */
     readonly platform: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiGetMmrV3ById
      */
     readonly puuid: string
 }
 
 /**
  * Request parameters for getMmrV3ByName operation in ValorantApi.
- * @export
- * @interface ValorantApiGetMmrV3ByNameRequest
  */
 export interface ValorantApiGetMmrV3ByNameRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV3ByName
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiGetMmrV3ByName
      */
     readonly platform: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiGetMmrV3ByName
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiGetMmrV3ByName
      */
     readonly tag: string
 }
 
 /**
  * Request parameters for leaderboardV1 operation in ValorantApi.
- * @export
- * @interface ValorantApiLeaderboardV1Request
  */
 export interface ValorantApiLeaderboardV1Request {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV1
      */
     readonly affinity: string
 
     /**
      * Season ID (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV1
      */
     readonly season?: string
 
     /**
      * Player name to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV1
      */
     readonly name?: string
 
     /**
      * Player tag to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV1
      */
     readonly tag?: string
 }
 
 /**
  * Request parameters for leaderboardV2 operation in ValorantApi.
- * @export
- * @interface ValorantApiLeaderboardV2Request
  */
 export interface ValorantApiLeaderboardV2Request {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV2
      */
     readonly affinity: string
 
     /**
      * Season ID (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV2
      */
     readonly season?: string
 
     /**
      * Player name to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV2
      */
     readonly name?: string
 
     /**
      * Player tag to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV2
      */
     readonly tag?: string
 
     /**
      * Player UUID to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV2
      */
     readonly puuid?: string
 }
 
 /**
  * Request parameters for leaderboardV3 operation in ValorantApi.
- * @export
- * @interface ValorantApiLeaderboardV3Request
  */
 export interface ValorantApiLeaderboardV3Request {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV3
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV3
      */
     readonly platform: string
 
     /**
      * Season ID (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV3
      */
     readonly season?: string
 
     /**
      * Number of results per page (optional)
-     * @type {number}
-     * @memberof ValorantApiLeaderboardV3
      */
     readonly size?: number
 
     /**
      * Page number (optional)
-     * @type {number}
-     * @memberof ValorantApiLeaderboardV3
      */
     readonly page?: number
 
     /**
      * Player name to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV3
      */
     readonly name?: string
 
     /**
      * Player tag to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiLeaderboardV3
      */
     readonly tag?: string
 }
 
 /**
  * Request parameters for matchV2 operation in ValorantApi.
- * @export
- * @interface ValorantApiMatchV2Request
  */
 export interface ValorantApiMatchV2Request {
     /**
      * Match UUID
-     * @type {string}
-     * @memberof ValorantApiMatchV2
      */
     readonly matchId: string
 }
 
 /**
  * Request parameters for matchV4 operation in ValorantApi.
- * @export
- * @interface ValorantApiMatchV4Request
  */
 export interface ValorantApiMatchV4Request {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiMatchV4
      */
     readonly affinity: string
 
     /**
      * Match UUID
-     * @type {string}
-     * @memberof ValorantApiMatchV4
      */
     readonly matchId: string
 }
 
 /**
  * Request parameters for premierById operation in ValorantApi.
- * @export
- * @interface ValorantApiPremierByIdRequest
  */
 export interface ValorantApiPremierByIdRequest {
     /**
      * Team UUID
-     * @type {string}
-     * @memberof ValorantApiPremierById
      */
     readonly id: string
 }
 
 /**
  * Request parameters for premierByIdHistory operation in ValorantApi.
- * @export
- * @interface ValorantApiPremierByIdHistoryRequest
  */
 export interface ValorantApiPremierByIdHistoryRequest {
     /**
      * Team UUID
-     * @type {string}
-     * @memberof ValorantApiPremierByIdHistory
      */
     readonly id: string
 }
 
 /**
  * Request parameters for premierByName operation in ValorantApi.
- * @export
- * @interface ValorantApiPremierByNameRequest
  */
 export interface ValorantApiPremierByNameRequest {
     /**
      * Team name
-     * @type {string}
-     * @memberof ValorantApiPremierByName
      */
     readonly name: string
 
     /**
      * Team tag
-     * @type {string}
-     * @memberof ValorantApiPremierByName
      */
     readonly tag: string
 }
 
 /**
  * Request parameters for premierByNameHistory operation in ValorantApi.
- * @export
- * @interface ValorantApiPremierByNameHistoryRequest
  */
 export interface ValorantApiPremierByNameHistoryRequest {
     /**
      * Team name
-     * @type {string}
-     * @memberof ValorantApiPremierByNameHistory
      */
     readonly name: string
 
     /**
      * Team tag
-     * @type {string}
-     * @memberof ValorantApiPremierByNameHistory
      */
     readonly tag: string
 }
 
 /**
  * Request parameters for premierLeaderboard operation in ValorantApi.
- * @export
- * @interface ValorantApiPremierLeaderboardRequest
  */
 export interface ValorantApiPremierLeaderboardRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiPremierLeaderboard
      */
     readonly affinity: string
 
     /**
      * Conference filter (optional)
-     * @type {string}
-     * @memberof ValorantApiPremierLeaderboard
      */
     readonly conference?: string
 
     /**
      * Division filter (optional)
-     * @type {string}
-     * @memberof ValorantApiPremierLeaderboard
      */
     readonly division?: string
 }
 
 /**
  * Request parameters for premierSearch operation in ValorantApi.
- * @export
- * @interface ValorantApiPremierSearchRequest
  */
 export interface ValorantApiPremierSearchRequest {
     /**
      * Team name to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiPremierSearch
      */
     readonly name?: string
 
     /**
      * Team tag to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiPremierSearch
      */
     readonly tag?: string
 
     /**
      * Team UUID to search for (optional)
-     * @type {string}
-     * @memberof ValorantApiPremierSearch
      */
     readonly id?: string
 }
 
 /**
  * Request parameters for queueStatus operation in ValorantApi.
- * @export
- * @interface ValorantApiQueueStatusRequest
  */
 export interface ValorantApiQueueStatusRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiQueueStatus
      */
     readonly affinity: string
 }
 
 /**
  * Request parameters for raw operation in ValorantApi.
- * @export
- * @interface ValorantApiRawRequest
  */
 export interface ValorantApiRawRequest {
-    /**
-     * 
-     * @type {RawV1Payload}
-     * @memberof ValorantApiRaw
-     */
     readonly rawV1Payload: RawV1Payload
 }
 
 /**
  * Request parameters for status operation in ValorantApi.
- * @export
- * @interface ValorantApiStatusRequest
  */
 export interface ValorantApiStatusRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiStatus
      */
     readonly affinity: string
 }
 
 /**
  * Request parameters for storeFeatured operation in ValorantApi.
- * @export
- * @interface ValorantApiStoreFeaturedRequest
  */
 export interface ValorantApiStoreFeaturedRequest {
     /**
      * API version (v1, v2)
-     * @type {string}
-     * @memberof ValorantApiStoreFeatured
      */
     readonly version: string
 }
 
 /**
  * Request parameters for storeOffers operation in ValorantApi.
- * @export
- * @interface ValorantApiStoreOffersRequest
  */
 export interface ValorantApiStoreOffersRequest {
     /**
      * API version (v1, v2)
-     * @type {string}
-     * @memberof ValorantApiStoreOffers
      */
     readonly version: string
 }
 
 /**
  * Request parameters for storedMatches operation in ValorantApi.
- * @export
- * @interface ValorantApiStoredMatchesRequest
  */
 export interface ValorantApiStoredMatchesRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiStoredMatches
      */
     readonly affinity: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiStoredMatches
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiStoredMatches
      */
     readonly tag: string
 
     /**
      * Game mode filter (optional)
-     * @type {string}
-     * @memberof ValorantApiStoredMatches
      */
     readonly mode?: string
 
     /**
      * Map filter (optional)
-     * @type {string}
-     * @memberof ValorantApiStoredMatches
      */
     readonly map?: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiStoredMatches
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for storedMatchesById operation in ValorantApi.
- * @export
- * @interface ValorantApiStoredMatchesByIdRequest
  */
 export interface ValorantApiStoredMatchesByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiStoredMatchesById
      */
     readonly affinity: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiStoredMatchesById
      */
     readonly puuid: string
 
     /**
      * Game mode filter (optional)
-     * @type {string}
-     * @memberof ValorantApiStoredMatchesById
      */
     readonly mode?: string
 
     /**
      * Map filter (optional)
-     * @type {string}
-     * @memberof ValorantApiStoredMatchesById
      */
     readonly map?: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiStoredMatchesById
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for storedMmrHistory operation in ValorantApi.
- * @export
- * @interface ValorantApiStoredMmrHistoryRequest
  */
 export interface ValorantApiStoredMmrHistoryRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistory
      */
     readonly affinity: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistory
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistory
      */
     readonly tag: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiStoredMmrHistory
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for storedMmrHistoryById operation in ValorantApi.
- * @export
- * @interface ValorantApiStoredMmrHistoryByIdRequest
  */
 export interface ValorantApiStoredMmrHistoryByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryById
      */
     readonly affinity: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryById
      */
     readonly puuid: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiStoredMmrHistoryById
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for storedMmrHistoryV2 operation in ValorantApi.
- * @export
- * @interface ValorantApiStoredMmrHistoryV2Request
  */
 export interface ValorantApiStoredMmrHistoryV2Request {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryV2
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryV2
      */
     readonly platform: string
 
     /**
      * Riot ID name
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryV2
      */
     readonly name: string
 
     /**
      * Riot ID tag
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryV2
      */
     readonly tag: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiStoredMmrHistoryV2
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for storedMmrHistoryV2ById operation in ValorantApi.
- * @export
- * @interface ValorantApiStoredMmrHistoryV2ByIdRequest
  */
 export interface ValorantApiStoredMmrHistoryV2ByIdRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryV2ById
      */
     readonly affinity: string
 
     /**
      * Platform (pc, console)
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryV2ById
      */
     readonly platform: string
 
     /**
      * Player UUID
-     * @type {string}
-     * @memberof ValorantApiStoredMmrHistoryV2ById
      */
     readonly puuid: string
 
     /**
      * Number of results (optional)
-     * @type {number}
-     * @memberof ValorantApiStoredMmrHistoryV2ById
      */
     readonly size?: number
 }
 
 /**
  * Request parameters for version operation in ValorantApi.
- * @export
- * @interface ValorantApiVersionRequest
  */
 export interface ValorantApiVersionRequest {
     /**
      * Region/affinity (e.g., na, eu, ap, kr)
-     * @type {string}
-     * @memberof ValorantApiVersion
      */
     readonly affinity: string
 }
 
 /**
  * Request parameters for website operation in ValorantApi.
- * @export
- * @interface ValorantApiWebsiteRequest
  */
 export interface ValorantApiWebsiteRequest {
     /**
      * Country code (e.g., en-us, de-de)
-     * @type {string}
-     * @memberof ValorantApiWebsite
      */
     readonly countryCode: string
 
     /**
      * Category filter (optional)
-     * @type {string}
-     * @memberof ValorantApiWebsite
      */
     readonly category?: string
 }
 
 /**
  * Request parameters for websiteById operation in ValorantApi.
- * @export
- * @interface ValorantApiWebsiteByIdRequest
  */
 export interface ValorantApiWebsiteByIdRequest {
     /**
      * Database ID of the website entry
-     * @type {string}
-     * @memberof ValorantApiWebsiteById
      */
     readonly dbId: string
 
     /**
      * Country code (e.g., en-us, de-de)
-     * @type {string}
-     * @memberof ValorantApiWebsiteById
      */
     readonly countryCode: string
 }
 
 /**
  * ValorantApi - object-oriented interface
- * @export
- * @class ValorantApi
- * @extends {BaseAPI}
  */
 export class ValorantApi extends BaseAPI {
     /**
@@ -10983,7 +5238,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiCrosshairRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public crosshair(requestParameters: ValorantApiCrosshairRequest = {}, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).crosshair(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
@@ -10994,7 +5248,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiEsportsSchedulesV1Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public esportsSchedulesV1(requestParameters: ValorantApiEsportsSchedulesV1Request = {}, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).esportsSchedulesV1(requestParameters.region, options).then((request) => request(this.axios, this.basePath));
@@ -11005,7 +5258,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetAccountByIdV1Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getAccountByIdV1(requestParameters: ValorantApiGetAccountByIdV1Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getAccountByIdV1(requestParameters.puuid, requestParameters.force, options).then((request) => request(this.axios, this.basePath));
@@ -11016,7 +5268,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetAccountByIdV2Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getAccountByIdV2(requestParameters: ValorantApiGetAccountByIdV2Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getAccountByIdV2(requestParameters.puuid, requestParameters.force, options).then((request) => request(this.axios, this.basePath));
@@ -11027,7 +5278,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetAccountV1Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getAccountV1(requestParameters: ValorantApiGetAccountV1Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getAccountV1(requestParameters.name, requestParameters.tag, requestParameters.force, options).then((request) => request(this.axios, this.basePath));
@@ -11038,7 +5288,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetAccountV2Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getAccountV2(requestParameters: ValorantApiGetAccountV2Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getAccountV2(requestParameters.name, requestParameters.tag, requestParameters.force, options).then((request) => request(this.axios, this.basePath));
@@ -11049,7 +5298,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetContentV1Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getContentV1(requestParameters: ValorantApiGetContentV1Request = {}, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getContentV1(requestParameters.locale, options).then((request) => request(this.axios, this.basePath));
@@ -11060,7 +5308,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMatchesV3ByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMatchesV3ById(requestParameters: ValorantApiGetMatchesV3ByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMatchesV3ById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11071,7 +5318,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMatchesV3ByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMatchesV3ByName(requestParameters: ValorantApiGetMatchesV3ByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMatchesV3ByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11082,7 +5328,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMatchesV4ByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMatchesV4ById(requestParameters: ValorantApiGetMatchesV4ByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMatchesV4ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(this.axios, this.basePath));
@@ -11093,7 +5338,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMatchesV4ByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMatchesV4ByName(requestParameters: ValorantApiGetMatchesV4ByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMatchesV4ByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(this.axios, this.basePath));
@@ -11104,7 +5348,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrHistoryByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrHistoryById(requestParameters: ValorantApiGetMmrHistoryByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrHistoryById(requestParameters.affinity, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
@@ -11115,7 +5358,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrHistoryByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrHistoryByName(requestParameters: ValorantApiGetMmrHistoryByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrHistoryByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11126,7 +5368,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrHistoryV2ByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrHistoryV2ById(requestParameters: ValorantApiGetMmrHistoryV2ByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrHistoryV2ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
@@ -11137,7 +5378,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrHistoryV2ByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrHistoryV2ByName(requestParameters: ValorantApiGetMmrHistoryV2ByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrHistoryV2ByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11148,7 +5388,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrV1ByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrV1ById(requestParameters: ValorantApiGetMmrV1ByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrV1ById(requestParameters.affinity, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
@@ -11159,7 +5398,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrV1ByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrV1ByName(requestParameters: ValorantApiGetMmrV1ByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrV1ByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11170,7 +5408,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrV2ByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrV2ById(requestParameters: ValorantApiGetMmrV2ByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrV2ById(requestParameters.affinity, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
@@ -11181,7 +5418,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrV2ByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrV2ByName(requestParameters: ValorantApiGetMmrV2ByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrV2ByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11192,7 +5428,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrV3ByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrV3ById(requestParameters: ValorantApiGetMmrV3ByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrV3ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
@@ -11203,7 +5438,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiGetMmrV3ByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public getMmrV3ByName(requestParameters: ValorantApiGetMmrV3ByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).getMmrV3ByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11214,7 +5448,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiLeaderboardV1Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public leaderboardV1(requestParameters: ValorantApiLeaderboardV1Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).leaderboardV1(requestParameters.affinity, requestParameters.season, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11225,7 +5458,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiLeaderboardV2Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public leaderboardV2(requestParameters: ValorantApiLeaderboardV2Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).leaderboardV2(requestParameters.affinity, requestParameters.season, requestParameters.name, requestParameters.tag, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
@@ -11236,7 +5468,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiLeaderboardV3Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public leaderboardV3(requestParameters: ValorantApiLeaderboardV3Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).leaderboardV3(requestParameters.affinity, requestParameters.platform, requestParameters.season, requestParameters.size, requestParameters.page, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11247,7 +5478,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiMatchV2Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public matchV2(requestParameters: ValorantApiMatchV2Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).matchV2(requestParameters.matchId, options).then((request) => request(this.axios, this.basePath));
@@ -11258,7 +5488,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiMatchV4Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public matchV4(requestParameters: ValorantApiMatchV4Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).matchV4(requestParameters.affinity, requestParameters.matchId, options).then((request) => request(this.axios, this.basePath));
@@ -11269,7 +5498,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiPremierByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public premierById(requestParameters: ValorantApiPremierByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).premierById(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
@@ -11280,7 +5508,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiPremierByIdHistoryRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public premierByIdHistory(requestParameters: ValorantApiPremierByIdHistoryRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).premierByIdHistory(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
@@ -11291,7 +5518,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiPremierByNameRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public premierByName(requestParameters: ValorantApiPremierByNameRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).premierByName(requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11302,7 +5528,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiPremierByNameHistoryRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public premierByNameHistory(requestParameters: ValorantApiPremierByNameHistoryRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).premierByNameHistory(requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
@@ -11313,7 +5538,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiPremierLeaderboardRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public premierLeaderboard(requestParameters: ValorantApiPremierLeaderboardRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).premierLeaderboard(requestParameters.affinity, requestParameters.conference, requestParameters.division, options).then((request) => request(this.axios, this.basePath));
@@ -11324,7 +5548,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiPremierSearchRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public premierSearch(requestParameters: ValorantApiPremierSearchRequest = {}, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, options).then((request) => request(this.axios, this.basePath));
@@ -11335,7 +5558,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiQueueStatusRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public queueStatus(requestParameters: ValorantApiQueueStatusRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).queueStatus(requestParameters.affinity, options).then((request) => request(this.axios, this.basePath));
@@ -11346,7 +5568,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiRawRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public raw(requestParameters: ValorantApiRawRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).raw(requestParameters.rawV1Payload, options).then((request) => request(this.axios, this.basePath));
@@ -11357,7 +5578,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStatusRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public status(requestParameters: ValorantApiStatusRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).status(requestParameters.affinity, options).then((request) => request(this.axios, this.basePath));
@@ -11368,7 +5588,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoreFeaturedRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storeFeatured(requestParameters: ValorantApiStoreFeaturedRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storeFeatured(requestParameters.version, options).then((request) => request(this.axios, this.basePath));
@@ -11379,7 +5598,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoreOffersRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storeOffers(requestParameters: ValorantApiStoreOffersRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storeOffers(requestParameters.version, options).then((request) => request(this.axios, this.basePath));
@@ -11390,7 +5608,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoredMatchesRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storedMatches(requestParameters: ValorantApiStoredMatchesRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storedMatches(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11401,7 +5618,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoredMatchesByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storedMatchesById(requestParameters: ValorantApiStoredMatchesByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storedMatchesById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11412,7 +5628,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoredMmrHistoryRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storedMmrHistory(requestParameters: ValorantApiStoredMmrHistoryRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storedMmrHistory(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11423,7 +5638,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoredMmrHistoryByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storedMmrHistoryById(requestParameters: ValorantApiStoredMmrHistoryByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storedMmrHistoryById(requestParameters.affinity, requestParameters.puuid, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11434,7 +5648,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoredMmrHistoryV2Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storedMmrHistoryV2(requestParameters: ValorantApiStoredMmrHistoryV2Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storedMmrHistoryV2(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11445,7 +5658,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiStoredMmrHistoryV2ByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public storedMmrHistoryV2ById(requestParameters: ValorantApiStoredMmrHistoryV2ByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).storedMmrHistoryV2ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
@@ -11456,7 +5668,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiVersionRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public version(requestParameters: ValorantApiVersionRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).version(requestParameters.affinity, options).then((request) => request(this.axios, this.basePath));
@@ -11467,7 +5678,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiWebsiteRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public website(requestParameters: ValorantApiWebsiteRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).website(requestParameters.countryCode, requestParameters.category, options).then((request) => request(this.axios, this.basePath));
@@ -11478,7 +5688,6 @@ export class ValorantApi extends BaseAPI {
      * @param {ValorantApiWebsiteByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValorantApi
      */
     public websiteById(requestParameters: ValorantApiWebsiteByIdRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).websiteById(requestParameters.dbId, requestParameters.countryCode, options).then((request) => request(this.axios, this.basePath));
