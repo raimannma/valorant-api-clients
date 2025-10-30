@@ -1,5 +1,7 @@
 # OpenAPI\Client\ValorantApi
 
+Valorant public API endpoints
+
 All URIs are relative to https://api.henrikdev.xyz, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
