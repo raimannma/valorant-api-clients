@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PremierTeamMember } from 'henrikdev-api-client';
+import { PremierTeamMember } from 'henrikdev_api_client';
 
 const instance: PremierTeamMember = {
     name,

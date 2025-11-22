@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_mmrv2_response import StoredMMRV2Response
+from henrikdev_api_client.models.stored_mmrv2_response import StoredMMRV2Response
 
 class TestStoredMMRV2Response(unittest.TestCase):
     """StoredMMRV2Response unit test stubs"""
@@ -36,25 +36,25 @@ class TestStoredMMRV2Response(unittest.TestCase):
         if include_optional:
             return StoredMMRV2Response(
                 data = [
-                    henrikdev-api-client.models.mmr_history_v2_history.MMRHistoryV2History(
+                    henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
                         date = '', 
                         elo = 56, 
                         last_change = 56, 
-                        map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                        map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                             id = '', 
                             name = '', ), 
                         match_id = '', 
                         refunded_rr = 56, 
                         rr = 56, 
-                        season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                        season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
-                        tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), 
                         was_derank_protected = True, )
                     ],
-                results = henrikdev-api-client.models.pagination.Pagination(
+                results = henrikdev_api_client.models.pagination.Pagination(
                     after = 56, 
                     before = 56, 
                     returned = 56, 
@@ -64,25 +64,25 @@ class TestStoredMMRV2Response(unittest.TestCase):
         else:
             return StoredMMRV2Response(
                 data = [
-                    henrikdev-api-client.models.mmr_history_v2_history.MMRHistoryV2History(
+                    henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
                         date = '', 
                         elo = 56, 
                         last_change = 56, 
-                        map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                        map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                             id = '', 
                             name = '', ), 
                         match_id = '', 
                         refunded_rr = 56, 
                         rr = 56, 
-                        season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                        season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
-                        tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), 
                         was_derank_protected = True, )
                     ],
-                results = henrikdev-api-client.models.pagination.Pagination(
+                results = henrikdev_api_client.models.pagination.Pagination(
                     after = 56, 
                     before = 56, 
                     returned = 56, 

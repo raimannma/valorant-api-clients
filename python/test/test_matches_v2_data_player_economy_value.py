@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_player_economy_value import MatchesV2DataPlayerEconomyValue
+from henrikdev_api_client.models.matches_v2_data_player_economy_value import MatchesV2DataPlayerEconomyValue
 
 class TestMatchesV2DataPlayerEconomyValue(unittest.TestCase):
     """MatchesV2DataPlayerEconomyValue unit test stubs"""

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataCoach } from 'henrikdev-api-client';
+import { MatchesV4DataCoach } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataCoach = {
     puuid,

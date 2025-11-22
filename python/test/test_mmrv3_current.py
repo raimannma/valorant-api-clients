@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv3_current import MMRV3Current
+from henrikdev_api_client.models.mmrv3_current import MMRV3Current
 
 class TestMMRV3Current(unittest.TestCase):
     """MMRV3Current unit test stubs"""
@@ -38,12 +38,12 @@ class TestMMRV3Current(unittest.TestCase):
                 elo = 56,
                 games_needed_for_rating = 56,
                 last_change = 56,
-                leaderboard_placement = henrikdev-api-client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
+                leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                     rank = 0, 
                     updated_at = '', ),
                 rank_protection_shields = 56,
                 rr = 56,
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', )
             )
@@ -54,7 +54,7 @@ class TestMMRV3Current(unittest.TestCase):
                 last_change = 56,
                 rank_protection_shields = 56,
                 rr = 56,
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
         )

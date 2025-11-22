@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_coach import MatchesV4DataCoach
+from henrikdev_api_client.models.matches_v4_data_coach import MatchesV4DataCoach
 
 class TestMatchesV4DataCoach(unittest.TestCase):
     """MatchesV4DataCoach unit test stubs"""

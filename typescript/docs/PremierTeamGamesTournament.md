@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PremierTeamGamesTournament } from 'henrikdev-api-client';
+import { PremierTeamGamesTournament } from 'henrikdev_api_client';
 
 const instance: PremierTeamGamesTournament = {
     matches,

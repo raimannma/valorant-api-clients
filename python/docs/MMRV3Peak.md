@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.mmrv3_peak import MMRV3Peak
+from henrikdev_api_client.models.mmrv3_peak import MMRV3Peak
 
 # TODO update the JSON string below
 json = "{}"

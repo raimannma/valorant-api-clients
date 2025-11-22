@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_player_behavior_friendly_fire import MatchesV2DataPlayerBehaviorFriendlyFire
+from henrikdev_api_client.models.matches_v2_data_player_behavior_friendly_fire import MatchesV2DataPlayerBehaviorFriendlyFire
 
 class TestMatchesV2DataPlayerBehaviorFriendlyFire(unittest.TestCase):
     """MatchesV2DataPlayerBehaviorFriendlyFire unit test stubs"""

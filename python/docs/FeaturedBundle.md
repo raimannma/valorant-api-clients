@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.featured_bundle import FeaturedBundle
+from henrikdev_api_client.models.featured_bundle import FeaturedBundle
 
 # TODO update the JSON string below
 json = "{}"

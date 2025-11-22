@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match_stats_character import StoredMatchStatsCharacter
+from henrikdev_api_client.models.stored_match_stats_character import StoredMatchStatsCharacter
 
 class TestStoredMatchStatsCharacter(unittest.TestCase):
     """StoredMatchStatsCharacter unit test stubs"""

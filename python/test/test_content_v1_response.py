@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.content_v1_response import ContentV1Response
+from henrikdev_api_client.models.content_v1_response import ContentV1Response
 
 class TestContentV1Response(unittest.TestCase):
     """ContentV1Response unit test stubs"""
@@ -35,9 +35,9 @@ class TestContentV1Response(unittest.TestCase):
         model = ContentV1Response()
         if include_optional:
             return ContentV1Response(
-                data = henrikdev-api-client.models.content_v1.ContentV1(
+                data = henrikdev_api_client.models.content_v1.ContentV1(
                     acts = [
-                        henrikdev-api-client.models.content_item.ContentItem(
+                        henrikdev_api_client.models.content_item.ContentItem(
                             asset_name = '', 
                             id = '', 
                             localized_names = {
@@ -46,7 +46,7 @@ class TestContentV1Response(unittest.TestCase):
                             name = '', )
                         ], 
                     ceremonies = [
-                        henrikdev-api-client.models.content_item.ContentItem(
+                        henrikdev_api_client.models.content_item.ContentItem(
                             asset_name = '', 
                             id = '', 
                             name = '', )
@@ -95,9 +95,9 @@ class TestContentV1Response(unittest.TestCase):
             )
         else:
             return ContentV1Response(
-                data = henrikdev-api-client.models.content_v1.ContentV1(
+                data = henrikdev_api_client.models.content_v1.ContentV1(
                     acts = [
-                        henrikdev-api-client.models.content_item.ContentItem(
+                        henrikdev_api_client.models.content_item.ContentItem(
                             asset_name = '', 
                             id = '', 
                             localized_names = {
@@ -106,7 +106,7 @@ class TestContentV1Response(unittest.TestCase):
                             name = '', )
                         ], 
                     ceremonies = [
-                        henrikdev-api-client.models.content_item.ContentItem(
+                        henrikdev_api_client.models.content_item.ContentItem(
                             asset_name = '', 
                             id = '', 
                             name = '', )

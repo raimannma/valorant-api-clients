@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.season_id_short_combo import SeasonIdShortCombo
+from henrikdev_api_client.models.season_id_short_combo import SeasonIdShortCombo
 
 class TestSeasonIdShortCombo(unittest.TestCase):
     """SeasonIdShortCombo unit test stubs"""

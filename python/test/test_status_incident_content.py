@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.status_incident_content import StatusIncidentContent
+from henrikdev_api_client.models.status_incident_content import StatusIncidentContent
 
 class TestStatusIncidentContent(unittest.TestCase):
     """StatusIncidentContent unit test stubs"""

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.stored_match_stats_shots import StoredMatchStatsShots
+from henrikdev_api_client.models.stored_match_stats_shots import StoredMatchStatsShots
 
 # TODO update the JSON string below
 json = "{}"

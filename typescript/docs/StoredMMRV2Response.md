@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMMRV2Response } from 'henrikdev-api-client';
+import { StoredMMRV2Response } from 'henrikdev_api_client';
 
 const instance: StoredMMRV2Response = {
     data,

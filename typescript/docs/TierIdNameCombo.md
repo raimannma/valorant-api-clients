@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { TierIdNameCombo } from 'henrikdev-api-client';
+import { TierIdNameCombo } from 'henrikdev_api_client';
 
 const instance: TierIdNameCombo = {
     id,

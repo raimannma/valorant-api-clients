@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.leaderboard_pvp_player import LeaderboardPVPPlayer
+from henrikdev_api_client.models.leaderboard_pvp_player import LeaderboardPVPPlayer
 
 class TestLeaderboardPVPPlayer(unittest.TestCase):
     """LeaderboardPVPPlayer unit test stubs"""

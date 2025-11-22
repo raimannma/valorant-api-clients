@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_player_session_playtime import MatchesV2DataPlayerSessionPlaytime
+from henrikdev_api_client.models.matches_v2_data_player_session_playtime import MatchesV2DataPlayerSessionPlaytime
 
 class TestMatchesV2DataPlayerSessionPlaytime(unittest.TestCase):
     """MatchesV2DataPlayerSessionPlaytime unit test stubs"""

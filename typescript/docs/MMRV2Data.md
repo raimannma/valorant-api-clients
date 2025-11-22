@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRV2Data } from 'henrikdev-api-client';
+import { MMRV2Data } from 'henrikdev_api_client';
 
 const instance: MMRV2Data = {
     by_season,

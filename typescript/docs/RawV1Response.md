@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { RawV1Response } from 'henrikdev-api-client';
+import { RawV1Response } from 'henrikdev_api_client';
 
 const instance: RawV1Response = {
     data,

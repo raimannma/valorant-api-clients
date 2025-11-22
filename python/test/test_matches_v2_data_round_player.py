@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_player import MatchesV2DataRoundPlayer
+from henrikdev_api_client.models.matches_v2_data_round_player import MatchesV2DataRoundPlayer
 
 class TestMatchesV2DataRoundPlayer(unittest.TestCase):
     """MatchesV2DataRoundPlayer unit test stubs"""

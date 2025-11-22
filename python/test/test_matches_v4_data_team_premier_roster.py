@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_team_premier_roster import MatchesV4DataTeamPremierRoster
+from henrikdev_api_client.models.matches_v4_data_team_premier_roster import MatchesV4DataTeamPremierRoster
 
 class TestMatchesV4DataTeamPremierRoster(unittest.TestCase):
     """MatchesV4DataTeamPremierRoster unit test stubs"""
@@ -35,7 +35,7 @@ class TestMatchesV4DataTeamPremierRoster(unittest.TestCase):
         model = MatchesV4DataTeamPremierRoster()
         if include_optional:
             return MatchesV4DataTeamPremierRoster(
-                customization = henrikdev-api-client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
+                customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                     icon = '', 
                     image = '', 
                     primary_color = '', 
@@ -50,7 +50,7 @@ class TestMatchesV4DataTeamPremierRoster(unittest.TestCase):
             )
         else:
             return MatchesV4DataTeamPremierRoster(
-                customization = henrikdev-api-client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
+                customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                     icon = '', 
                     image = '', 
                     primary_color = '', 

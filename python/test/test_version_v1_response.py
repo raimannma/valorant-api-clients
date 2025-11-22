@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.version_v1_response import VersionV1Response
+from henrikdev_api_client.models.version_v1_response import VersionV1Response
 
 class TestVersionV1Response(unittest.TestCase):
     """VersionV1Response unit test stubs"""
@@ -35,7 +35,7 @@ class TestVersionV1Response(unittest.TestCase):
         model = VersionV1Response()
         if include_optional:
             return VersionV1Response(
-                data = henrikdev-api-client.models.version_v1_data.VersionV1Data(
+                data = henrikdev_api_client.models.version_v1_data.VersionV1Data(
                     branch = '', 
                     build_date = '', 
                     build_ver = '', 
@@ -47,7 +47,7 @@ class TestVersionV1Response(unittest.TestCase):
             )
         else:
             return VersionV1Response(
-                data = henrikdev-api-client.models.version_v1_data.VersionV1Data(
+                data = henrikdev_api_client.models.version_v1_data.VersionV1Data(
                     branch = '', 
                     build_date = '', 
                     build_ver = '', 

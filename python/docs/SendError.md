@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.send_error import SendError
+from henrikdev_api_client.models.send_error import SendError
 
 # TODO update the JSON string below
 json = "{}"

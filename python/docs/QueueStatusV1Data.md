@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.queue_status_v1_data import QueueStatusV1Data
+from henrikdev_api_client.models.queue_status_v1_data import QueueStatusV1Data
 
 # TODO update the JSON string below
 json = "{}"

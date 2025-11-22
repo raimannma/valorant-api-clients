@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv2_data import MMRV2Data
+from henrikdev_api_client.models.mmrv2_data import MMRV2Data
 
 class TestMMRV2Data(unittest.TestCase):
     """MMRV2Data unit test stubs"""
@@ -36,12 +36,12 @@ class TestMMRV2Data(unittest.TestCase):
         if include_optional:
             return MMRV2Data(
                 by_season = None,
-                current_data = henrikdev-api-client.models.mmrv2_current_data.MMRV2CurrentData(
+                current_data = henrikdev_api_client.models.mmrv2_current_data.MMRV2CurrentData(
                     currenttier = 56, 
                     currenttierpatched = '', 
                     elo = 56, 
                     games_needed_for_rating = 56, 
-                    images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                    images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                         large = '', 
                         small = '', 
                         triangle_down = '', 
@@ -49,7 +49,7 @@ class TestMMRV2Data(unittest.TestCase):
                     mmr_change_to_last_game = 56, 
                     old = True, 
                     ranking_in_tier = 56, ),
-                highest_rank = henrikdev-api-client.models.mmrv2_highest_rank.MMRV2HighestRank(
+                highest_rank = henrikdev_api_client.models.mmrv2_highest_rank.MMRV2HighestRank(
                     old = True, 
                     patched_tier = '', 
                     season = '', 
@@ -61,12 +61,12 @@ class TestMMRV2Data(unittest.TestCase):
         else:
             return MMRV2Data(
                 by_season = None,
-                current_data = henrikdev-api-client.models.mmrv2_current_data.MMRV2CurrentData(
+                current_data = henrikdev_api_client.models.mmrv2_current_data.MMRV2CurrentData(
                     currenttier = 56, 
                     currenttierpatched = '', 
                     elo = 56, 
                     games_needed_for_rating = 56, 
-                    images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                    images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                         large = '', 
                         small = '', 
                         triangle_down = '', 
@@ -74,7 +74,7 @@ class TestMMRV2Data(unittest.TestCase):
                     mmr_change_to_last_game = 56, 
                     old = True, 
                     ranking_in_tier = 56, ),
-                highest_rank = henrikdev-api-client.models.mmrv2_highest_rank.MMRV2HighestRank(
+                highest_rank = henrikdev_api_client.models.mmrv2_highest_rank.MMRV2HighestRank(
                     old = True, 
                     patched_tier = '', 
                     season = '', 

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRV3Current } from 'henrikdev-api-client';
+import { MMRV3Current } from 'henrikdev_api_client';
 
 const instance: MMRV3Current = {
     elo,

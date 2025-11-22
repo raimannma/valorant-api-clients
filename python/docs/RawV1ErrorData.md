@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.raw_v1_error_data import RawV1ErrorData
+from henrikdev_api_client.models.raw_v1_error_data import RawV1ErrorData
 
 # TODO update the JSON string below
 json = "{}"

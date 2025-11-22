@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StatusIncident } from 'henrikdev-api-client';
+import { StatusIncident } from 'henrikdev_api_client';
 
 const instance: StatusIncident = {
     archive_at,

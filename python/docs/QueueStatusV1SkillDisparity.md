@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.queue_status_v1_skill_disparity import QueueStatusV1SkillDisparity
+from henrikdev_api_client.models.queue_status_v1_skill_disparity import QueueStatusV1SkillDisparity
 
 # TODO update the JSON string below
 json = "{}"

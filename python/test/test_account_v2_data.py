@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.account_v2_data import AccountV2Data
+from henrikdev_api_client.models.account_v2_data import AccountV2Data
 
 class TestAccountV2Data(unittest.TestCase):
     """AccountV2Data unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.website_by_id_v1_response import WebsiteByIdV1Response
+from henrikdev_api_client.models.website_by_id_v1_response import WebsiteByIdV1Response
 
 class TestWebsiteByIdV1Response(unittest.TestCase):
     """WebsiteByIdV1Response unit test stubs"""
@@ -35,7 +35,7 @@ class TestWebsiteByIdV1Response(unittest.TestCase):
         model = WebsiteByIdV1Response()
         if include_optional:
             return WebsiteByIdV1Response(
-                data = henrikdev-api-client.models.website_by_id_v1_data.WebsiteByIdV1Data(
+                data = henrikdev_api_client.models.website_by_id_v1_data.WebsiteByIdV1Data(
                     banner_url = '', 
                     category = '', 
                     content = '', 
@@ -48,7 +48,7 @@ class TestWebsiteByIdV1Response(unittest.TestCase):
             )
         else:
             return WebsiteByIdV1Response(
-                data = henrikdev-api-client.models.website_by_id_v1_data.WebsiteByIdV1Data(
+                data = henrikdev_api_client.models.website_by_id_v1_data.WebsiteByIdV1Data(
                     banner_url = '', 
                     category = '', 
                     content = '', 

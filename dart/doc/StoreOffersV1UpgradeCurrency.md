@@ -1,8 +1,8 @@
-# henrikdev-api-client.model.StoreOffersV1UpgradeCurrency
+# henrikdev_api_client.model.StoreOffersV1UpgradeCurrency
 
 ## Load the model package
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 ```
 
 ## Properties

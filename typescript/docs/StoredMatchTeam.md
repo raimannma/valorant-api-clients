@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMatchTeam } from 'henrikdev-api-client';
+import { StoredMatchTeam } from 'henrikdev_api_client';
 
 const instance: StoredMatchTeam = {
     blue,

@@ -24,7 +24,7 @@ pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 
 Then import the package:
 ```python
-import henrikdev-api-client
+import henrikdev_api_client
 ```
 
 ### Setuptools
@@ -38,7 +38,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import henrikdev-api-client
+import henrikdev_api_client
 ```
 
 ### Tests
@@ -51,22 +51,22 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 
-import henrikdev-api-client
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     id = 'id_example' # str | Crosshair code (optional)
 
     try:

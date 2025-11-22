@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_assets import MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets
+from henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_assets import MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets
 
 class TestMatchesV2DataRoundPlayerStatsEconomyEquipmentAssets(unittest.TestCase):
     """MatchesV2DataRoundPlayerStatsEconomyEquipmentAssets unit test stubs"""

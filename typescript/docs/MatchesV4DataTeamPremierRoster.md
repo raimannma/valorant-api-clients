@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataTeamPremierRoster } from 'henrikdev-api-client';
+import { MatchesV4DataTeamPremierRoster } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataTeamPremierRoster = {
     customization,

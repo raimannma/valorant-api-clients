@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.website_v1_data import WebsiteV1Data
+from henrikdev_api_client.models.website_v1_data import WebsiteV1Data
 
 class TestWebsiteV1Data(unittest.TestCase):
     """WebsiteV1Data unit test stubs"""

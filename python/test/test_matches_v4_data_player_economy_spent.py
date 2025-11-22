@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_player_economy_spent import MatchesV4DataPlayerEconomySpent
+from henrikdev_api_client.models.matches_v4_data_player_economy_spent import MatchesV4DataPlayerEconomySpent
 
 class TestMatchesV4DataPlayerEconomySpent(unittest.TestCase):
     """MatchesV4DataPlayerEconomySpent unit test stubs"""

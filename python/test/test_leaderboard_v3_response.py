@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.leaderboard_v3_response import LeaderboardV3Response
+from henrikdev_api_client.models.leaderboard_v3_response import LeaderboardV3Response
 
 class TestLeaderboardV3Response(unittest.TestCase):
     """LeaderboardV3Response unit test stubs"""
@@ -35,9 +35,9 @@ class TestLeaderboardV3Response(unittest.TestCase):
         model = LeaderboardV3Response()
         if include_optional:
             return LeaderboardV3Response(
-                data = henrikdev-api-client.models.leaderboard_v3_data.LeaderboardV3Data(
+                data = henrikdev_api_client.models.leaderboard_v3_data.LeaderboardV3Data(
                     players = [
-                        henrikdev-api-client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
+                        henrikdev_api_client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
                             card = '', 
                             is_anonymized = True, 
                             is_banned = True, 
@@ -52,15 +52,15 @@ class TestLeaderboardV3Response(unittest.TestCase):
                             wins = 56, )
                         ], 
                     thresholds = [
-                        henrikdev-api-client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
+                        henrikdev_api_client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
                             start_index = 56, 
                             threshold = 56, 
-                            tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                            tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
                                 name = '', ), )
                         ], 
                     updated_at = '', ),
-                results = henrikdev-api-client.models.pagination.Pagination(
+                results = henrikdev_api_client.models.pagination.Pagination(
                     after = 56, 
                     before = 56, 
                     returned = 56, 
@@ -69,9 +69,9 @@ class TestLeaderboardV3Response(unittest.TestCase):
             )
         else:
             return LeaderboardV3Response(
-                data = henrikdev-api-client.models.leaderboard_v3_data.LeaderboardV3Data(
+                data = henrikdev_api_client.models.leaderboard_v3_data.LeaderboardV3Data(
                     players = [
-                        henrikdev-api-client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
+                        henrikdev_api_client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
                             card = '', 
                             is_anonymized = True, 
                             is_banned = True, 
@@ -86,15 +86,15 @@ class TestLeaderboardV3Response(unittest.TestCase):
                             wins = 56, )
                         ], 
                     thresholds = [
-                        henrikdev-api-client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
+                        henrikdev_api_client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
                             start_index = 56, 
                             threshold = 56, 
-                            tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                            tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
                                 name = '', ), )
                         ], 
                     updated_at = '', ),
-                results = henrikdev-api-client.models.pagination.Pagination(
+                results = henrikdev_api_client.models.pagination.Pagination(
                     after = 56, 
                     before = 56, 
                     returned = 56, 

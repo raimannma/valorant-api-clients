@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.raw_v1_error_data import RawV1ErrorData
+from henrikdev_api_client.models.raw_v1_error_data import RawV1ErrorData
 
 class TestRawV1ErrorData(unittest.TestCase):
     """RawV1ErrorData unit test stubs"""

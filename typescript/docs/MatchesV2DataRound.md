@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV2DataRound } from 'henrikdev-api-client';
+import { MatchesV2DataRound } from 'henrikdev_api_client';
 
 const instance: MatchesV2DataRound = {
     bomb_defused,

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_metadata import MatchesV2DataMetadata
+from henrikdev_api_client.models.matches_v2_data_metadata import MatchesV2DataMetadata
 
 class TestMatchesV2DataMetadata(unittest.TestCase):
     """MatchesV2DataMetadata unit test stubs"""
@@ -45,7 +45,7 @@ class TestMatchesV2DataMetadata(unittest.TestCase):
                 mode = '',
                 mode_id = '',
                 platform = '',
-                premier_info = henrikdev-api-client.models.matches_v2_data_metadata_premier_info.MatchesV2DataMetadataPremierInfo(
+                premier_info = henrikdev_api_client.models.matches_v2_data_metadata_premier_info.MatchesV2DataMetadataPremierInfo(
                     matchup_id = '', 
                     tournament_id = '', ),
                 queue = '',
@@ -62,7 +62,7 @@ class TestMatchesV2DataMetadata(unittest.TestCase):
                 matchid = '',
                 mode_id = '',
                 platform = '',
-                premier_info = henrikdev-api-client.models.matches_v2_data_metadata_premier_info.MatchesV2DataMetadataPremierInfo(
+                premier_info = henrikdev_api_client.models.matches_v2_data_metadata_premier_info.MatchesV2DataMetadataPremierInfo(
                     matchup_id = '', 
                     tournament_id = '', ),
                 rounds_played = 0,

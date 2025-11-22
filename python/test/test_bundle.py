@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.bundle import Bundle
+from henrikdev_api_client.models.bundle import Bundle
 
 class TestBundle(unittest.TestCase):
     """Bundle unit test stubs"""
@@ -40,13 +40,13 @@ class TestBundle(unittest.TestCase):
                 duration_remaining_in_seconds = 0,
                 id = '',
                 items = [
-                    henrikdev-api-client.models.bundle_item.BundleItem(
+                    henrikdev_api_client.models.bundle_item.BundleItem(
                         base_price = 56, 
                         currency_id = '', 
                         discount_percent = 1.337, 
                         discounted_price = 1.337, 
                         is_promo_item = True, 
-                        item = henrikdev-api-client.models.item.Item(
+                        item = henrikdev_api_client.models.item.Item(
                             amount = 0, 
                             item_id = '', 
                             item_type_id = '', ), )
@@ -61,13 +61,13 @@ class TestBundle(unittest.TestCase):
                 duration_remaining_in_seconds = 0,
                 id = '',
                 items = [
-                    henrikdev-api-client.models.bundle_item.BundleItem(
+                    henrikdev_api_client.models.bundle_item.BundleItem(
                         base_price = 56, 
                         currency_id = '', 
                         discount_percent = 1.337, 
                         discounted_price = 1.337, 
                         is_promo_item = True, 
-                        item = henrikdev-api-client.models.item.Item(
+                        item = henrikdev_api_client.models.item.Item(
                             amount = 0, 
                             item_id = '', 
                             item_type_id = '', ), )

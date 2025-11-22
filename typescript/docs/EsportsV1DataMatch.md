@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { EsportsV1DataMatch } from 'henrikdev-api-client';
+import { EsportsV1DataMatch } from 'henrikdev_api_client';
 
 const instance: EsportsV1DataMatch = {
     game_type,

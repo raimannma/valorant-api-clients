@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { LeaderboardV3DataPlayer } from 'henrikdev-api-client';
+import { LeaderboardV3DataPlayer } from 'henrikdev_api_client';
 
 const instance: LeaderboardV3DataPlayer = {
     card,

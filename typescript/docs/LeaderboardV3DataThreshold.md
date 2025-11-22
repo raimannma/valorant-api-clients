@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { LeaderboardV3DataThreshold } from 'henrikdev-api-client';
+import { LeaderboardV3DataThreshold } from 'henrikdev_api_client';
 
 const instance: LeaderboardV3DataThreshold = {
     start_index,

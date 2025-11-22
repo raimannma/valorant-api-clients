@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_round_defuse import MatchesV4DataRoundDefuse
+from henrikdev_api_client.models.matches_v4_data_round_defuse import MatchesV4DataRoundDefuse
 
 class TestMatchesV4DataRoundDefuse(unittest.TestCase):
     """MatchesV4DataRoundDefuse unit test stubs"""
@@ -35,20 +35,20 @@ class TestMatchesV4DataRoundDefuse(unittest.TestCase):
         model = MatchesV4DataRoundDefuse()
         if include_optional:
             return MatchesV4DataRoundDefuse(
-                location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                     x = 56, 
                     y = 56, ),
-                player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 
                     team = '', ),
                 player_locations = [
-                    henrikdev-api-client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                        location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                    henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
+                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                             x = 56, 
                             y = 56, ), 
-                        player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                        player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 
                             tag = '', 
@@ -59,20 +59,20 @@ class TestMatchesV4DataRoundDefuse(unittest.TestCase):
             )
         else:
             return MatchesV4DataRoundDefuse(
-                location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                     x = 56, 
                     y = 56, ),
-                player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 
                     team = '', ),
                 player_locations = [
-                    henrikdev-api-client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                        location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                    henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
+                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                             x = 56, 
                             y = 56, ), 
-                        player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                        player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 
                             tag = '', 

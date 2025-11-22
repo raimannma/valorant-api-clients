@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.queue_status_v1_party_size import QueueStatusV1PartySize
+from henrikdev_api_client.models.queue_status_v1_party_size import QueueStatusV1PartySize
 
 # TODO update the JSON string below
 json = "{}"

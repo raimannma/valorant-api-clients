@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.pagination import Pagination
+from henrikdev_api_client.models.pagination import Pagination
 
 # TODO update the JSON string below
 json = "{}"

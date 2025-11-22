@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_player_economy_loadout_value import MatchesV4DataPlayerEconomyLoadoutValue
+from henrikdev_api_client.models.matches_v4_data_player_economy_loadout_value import MatchesV4DataPlayerEconomyLoadoutValue
 
 class TestMatchesV4DataPlayerEconomyLoadoutValue(unittest.TestCase):
     """MatchesV4DataPlayerEconomyLoadoutValue unit test stubs"""

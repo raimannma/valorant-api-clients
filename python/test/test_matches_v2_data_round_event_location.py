@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_event_location import MatchesV2DataRoundEventLocation
+from henrikdev_api_client.models.matches_v2_data_round_event_location import MatchesV2DataRoundEventLocation
 
 class TestMatchesV2DataRoundEventLocation(unittest.TestCase):
     """MatchesV2DataRoundEventLocation unit test stubs"""

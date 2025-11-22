@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.store_offers_v1 import StoreOffersV1
+from henrikdev_api_client.models.store_offers_v1 import StoreOffersV1
 
 class TestStoreOffersV1(unittest.TestCase):
     """StoreOffersV1 unit test stubs"""
@@ -36,14 +36,14 @@ class TestStoreOffersV1(unittest.TestCase):
         if include_optional:
             return StoreOffersV1(
                 offers = [
-                    henrikdev-api-client.models.store_offers_v1_offer.StoreOffersV1Offer(
+                    henrikdev_api_client.models.store_offers_v1_offer.StoreOffersV1Offer(
                         cost = {
                             'key' : 56
                             }, 
                         is_direct_purchase = True, 
                         offer_id = '', 
                         rewards = [
-                            henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                            henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                                 item_id = '', 
                                 item_type_id = '', 
                                 quantity = 56, )
@@ -51,16 +51,16 @@ class TestStoreOffersV1(unittest.TestCase):
                         start_date = '', )
                     ],
                 upgrade_currency_offers = [
-                    henrikdev-api-client.models.store_offers_v1_upgrade_currency.StoreOffersV1UpgradeCurrency(
+                    henrikdev_api_client.models.store_offers_v1_upgrade_currency.StoreOffersV1UpgradeCurrency(
                         discounted_percent = 1.337, 
-                        offer = henrikdev-api-client.models.store_offers_v1_offer.StoreOffersV1Offer(
+                        offer = henrikdev_api_client.models.store_offers_v1_offer.StoreOffersV1Offer(
                             cost = {
                                 'key' : 56
                                 }, 
                             is_direct_purchase = True, 
                             offer_id = '', 
                             rewards = [
-                                henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                                henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                                     item_id = '', 
                                     item_type_id = '', 
                                     quantity = 56, )
@@ -73,14 +73,14 @@ class TestStoreOffersV1(unittest.TestCase):
         else:
             return StoreOffersV1(
                 offers = [
-                    henrikdev-api-client.models.store_offers_v1_offer.StoreOffersV1Offer(
+                    henrikdev_api_client.models.store_offers_v1_offer.StoreOffersV1Offer(
                         cost = {
                             'key' : 56
                             }, 
                         is_direct_purchase = True, 
                         offer_id = '', 
                         rewards = [
-                            henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                            henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                                 item_id = '', 
                                 item_type_id = '', 
                                 quantity = 56, )
@@ -88,16 +88,16 @@ class TestStoreOffersV1(unittest.TestCase):
                         start_date = '', )
                     ],
                 upgrade_currency_offers = [
-                    henrikdev-api-client.models.store_offers_v1_upgrade_currency.StoreOffersV1UpgradeCurrency(
+                    henrikdev_api_client.models.store_offers_v1_upgrade_currency.StoreOffersV1UpgradeCurrency(
                         discounted_percent = 1.337, 
-                        offer = henrikdev-api-client.models.store_offers_v1_offer.StoreOffersV1Offer(
+                        offer = henrikdev_api_client.models.store_offers_v1_offer.StoreOffersV1Offer(
                             cost = {
                                 'key' : 56
                                 }, 
                             is_direct_purchase = True, 
                             offer_id = '', 
                             rewards = [
-                                henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                                henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                                     item_id = '', 
                                     item_type_id = '', 
                                     quantity = 56, )

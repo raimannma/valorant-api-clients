@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.raw_v1_payload import RawV1Payload
+from henrikdev_api_client.models.raw_v1_payload import RawV1Payload
 
 class TestRawV1Payload(unittest.TestCase):
     """RawV1Payload unit test stubs"""

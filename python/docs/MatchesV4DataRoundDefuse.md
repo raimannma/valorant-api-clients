@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v4_data_round_defuse import MatchesV4DataRoundDefuse
+from henrikdev_api_client.models.matches_v4_data_round_defuse import MatchesV4DataRoundDefuse
 
 # TODO update the JSON string below
 json = "{}"

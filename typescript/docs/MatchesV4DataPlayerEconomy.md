@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataPlayerEconomy } from 'henrikdev-api-client';
+import { MatchesV4DataPlayerEconomy } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataPlayerEconomy = {
     loadout_value,

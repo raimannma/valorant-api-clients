@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1_maps import QueueStatusV1Maps
+from henrikdev_api_client.models.queue_status_v1_maps import QueueStatusV1Maps
 
 class TestQueueStatusV1Maps(unittest.TestCase):
     """QueueStatusV1Maps unit test stubs"""
@@ -36,14 +36,14 @@ class TestQueueStatusV1Maps(unittest.TestCase):
         if include_optional:
             return QueueStatusV1Maps(
                 enabled = True,
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', )
             )
         else:
             return QueueStatusV1Maps(
                 enabled = True,
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
         )

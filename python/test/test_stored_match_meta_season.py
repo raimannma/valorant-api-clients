@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match_meta_season import StoredMatchMetaSeason
+from henrikdev_api_client.models.stored_match_meta_season import StoredMatchMetaSeason
 
 class TestStoredMatchMetaSeason(unittest.TestCase):
     """StoredMatchMetaSeason unit test stubs"""

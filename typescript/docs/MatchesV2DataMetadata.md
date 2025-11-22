@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV2DataMetadata } from 'henrikdev-api-client';
+import { MatchesV2DataMetadata } from 'henrikdev_api_client';
 
 const instance: MatchesV2DataMetadata = {
     cluster,

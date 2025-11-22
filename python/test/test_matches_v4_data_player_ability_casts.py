@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_player_ability_casts import MatchesV4DataPlayerAbilityCasts
+from henrikdev_api_client.models.matches_v4_data_player_ability_casts import MatchesV4DataPlayerAbilityCasts
 
 class TestMatchesV4DataPlayerAbilityCasts(unittest.TestCase):
     """MatchesV4DataPlayerAbilityCasts unit test stubs"""

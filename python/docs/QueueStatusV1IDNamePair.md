@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.queue_status_v1_id_name_pair import QueueStatusV1IDNamePair
+from henrikdev_api_client.models.queue_status_v1_id_name_pair import QueueStatusV1IDNamePair
 
 # TODO update the JSON string below
 json = "{}"

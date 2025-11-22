@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.queue_status_v1_high_skill import QueueStatusV1HighSkill
+from henrikdev_api_client.models.queue_status_v1_high_skill import QueueStatusV1HighSkill
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# henrikdev-api-client.ValorantApi
+# henrikdev_api_client.ValorantApi
 
 All URIs are relative to *https://api.henrikdev.xyz*
 
@@ -59,21 +59,21 @@ Method | HTTP request | Description
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     id = 'id_example' # str | Crosshair code (optional)
 
     try:
@@ -121,22 +121,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.esports_v1_response import EsportsV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v1_response import EsportsV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     region = 'region_example' # str | Region filter (optional) (optional)
 
     try:
@@ -187,22 +187,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.account_v1_response import AccountV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.account_v1_response import AccountV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     puuid = 'puuid_example' # str | Player UUID
     force = True # bool | Bypass cache and refresh (optional) (optional)
 
@@ -255,22 +255,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.account_v2_response import AccountV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.account_v2_response import AccountV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     puuid = 'puuid_example' # str | Player UUID
     force = True # bool | Bypass cache and refresh (optional) (optional)
 
@@ -323,22 +323,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.account_v1_response import AccountV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.account_v1_response import AccountV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
     force = True # bool | Bypass cache and refresh (optional) (optional)
@@ -393,22 +393,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.account_v2_response import AccountV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.account_v2_response import AccountV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
     force = True # bool | Bypass cache and refresh (optional) (optional)
@@ -463,22 +463,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.content_v1_response import ContentV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.content_v1_response import ContentV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     locale = 'locale_example' # str | Locale code (e.g., en-US, de-DE) - optional (optional)
 
     try:
@@ -529,22 +529,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.matches_v3_list_response import MatchesV3ListResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.matches_v3_list_response import MatchesV3ListResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     puuid = 'puuid_example' # str | Player UUID
     mode = 'mode_example' # str | Game mode filter (optional) (optional)
@@ -603,27 +603,27 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.match_mode import MatchMode
-from henrikdev-api-client.models.matches_v3_list_response import MatchesV3ListResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.match_mode import MatchMode
+from henrikdev_api_client.models.matches_v3_list_response import MatchesV3ListResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
-    mode = henrikdev-api-client.MatchMode() # MatchMode | Game mode filter (optional) (optional)
+    mode = henrikdev_api_client.MatchMode() # MatchMode | Game mode filter (optional) (optional)
     map = 'map_example' # str | Map filter (optional) (optional)
     size = 56 # int | Number of results (optional) (optional)
 
@@ -680,22 +680,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.matches_v4_history_response import MatchesV4HistoryResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.matches_v4_history_response import MatchesV4HistoryResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     puuid = 'puuid_example' # str | Player UUID
@@ -758,22 +758,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.matches_v4_history_response import MatchesV4HistoryResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.matches_v4_history_response import MatchesV4HistoryResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     name = 'name_example' # str | Riot ID name
@@ -838,22 +838,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmr_history_v1_response import MMRHistoryV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmr_history_v1_response import MMRHistoryV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     puuid = 'puuid_example' # str | Player UUID
 
@@ -906,22 +906,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmr_history_v1_response import MMRHistoryV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmr_history_v1_response import MMRHistoryV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
@@ -976,22 +976,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmr_history_v2_response import MMRHistoryV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmr_history_v2_response import MMRHistoryV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     puuid = 'puuid_example' # str | Player UUID
@@ -1046,22 +1046,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmr_history_v2_response import MMRHistoryV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmr_history_v2_response import MMRHistoryV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     name = 'name_example' # str | Riot ID name
@@ -1118,22 +1118,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmrv1_response import MMRV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmrv1_response import MMRV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     puuid = 'puuid_example' # str | Player UUID
 
@@ -1186,22 +1186,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmrv1_response import MMRV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmrv1_response import MMRV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
@@ -1256,22 +1256,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmrv2_response import MMRV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmrv2_response import MMRV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     puuid = 'puuid_example' # str | Player UUID
 
@@ -1324,22 +1324,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmrv2_response import MMRV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmrv2_response import MMRV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
@@ -1394,22 +1394,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmrv3_response import MMRV3Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmrv3_response import MMRV3Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     puuid = 'puuid_example' # str | Player UUID
@@ -1464,22 +1464,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.mmrv3_response import MMRV3Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.mmrv3_response import MMRV3Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     name = 'name_example' # str | Riot ID name
@@ -1536,21 +1536,21 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     season = 'season_example' # str | Season ID (optional) (optional)
     name = 'name_example' # str | Player name to search for (optional) (optional)
@@ -1607,22 +1607,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.leaderboard_v2_response import LeaderboardV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.leaderboard_v2_response import LeaderboardV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     season = 'season_example' # str | Season ID (optional) (optional)
     name = 'name_example' # str | Player name to search for (optional) (optional)
@@ -1681,22 +1681,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.leaderboard_v3_response import LeaderboardV3Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.leaderboard_v3_response import LeaderboardV3Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     season = 'season_example' # str | Season ID (optional) (optional)
@@ -1759,22 +1759,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.matches_v2_response import MatchesV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.matches_v2_response import MatchesV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     match_id = 'match_id_example' # str | Match UUID
 
     try:
@@ -1825,22 +1825,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.matches_v4_response import MatchesV4Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.matches_v4_response import MatchesV4Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     match_id = 'match_id_example' # str | Match UUID
 
@@ -1893,22 +1893,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.premier_team_v1_response import PremierTeamV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     id = 'id_example' # str | Team UUID
 
     try:
@@ -1959,22 +1959,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.premier_team_v1_response import PremierTeamV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     id = 'id_example' # str | Team UUID
 
     try:
@@ -2025,22 +2025,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.premier_team_v1_response import PremierTeamV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Team name
     tag = 'tag_example' # str | Team tag
 
@@ -2093,22 +2093,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.premier_team_history_v1_response import PremierTeamHistoryV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_team_history_v1_response import PremierTeamHistoryV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Team name
     tag = 'tag_example' # str | Team tag
 
@@ -2159,22 +2159,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.premier_search_response import PremierSearchResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_search_response import PremierSearchResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     conference = 'conference_example' # str | Conference filter (optional) (optional)
     division = 'division_example' # str | Division filter (optional) (optional)
@@ -2229,22 +2229,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.premier_search_response import PremierSearchResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_search_response import PremierSearchResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Team name to search for (optional) (optional)
     tag = 'tag_example' # str | Team tag to search for (optional) (optional)
     id = 'id_example' # str | Team UUID to search for (optional) (optional)
@@ -2299,22 +2299,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.queue_status_v1 import QueueStatusV1
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.queue_status_v1 import QueueStatusV1
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
 
     try:
@@ -2365,24 +2365,24 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.raw_v1_payload import RawV1Payload
-from henrikdev-api-client.models.raw_v1_response import RawV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.raw_v1_payload import RawV1Payload
+from henrikdev_api_client.models.raw_v1_response import RawV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
-    raw_v1_payload = henrikdev-api-client.RawV1Payload() # RawV1Payload | 
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    raw_v1_payload = henrikdev_api_client.RawV1Payload() # RawV1Payload | 
 
     try:
         api_response = api_instance.raw(raw_v1_payload)
@@ -2432,22 +2432,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.status_v1 import StatusV1
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.status_v1 import StatusV1
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
 
     try:
@@ -2498,22 +2498,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.store_featured_v1 import StoreFeaturedV1
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.store_featured_v1 import StoreFeaturedV1
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     version = 'version_example' # str | API version (v1, v2)
 
     try:
@@ -2564,22 +2564,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.store_offers_v1_response import StoreOffersV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.store_offers_v1_response import StoreOffersV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     version = 'version_example' # str | API version (v1, v2)
 
     try:
@@ -2630,22 +2630,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.stored_matches_response import StoredMatchesResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.stored_matches_response import StoredMatchesResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
@@ -2706,22 +2706,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.stored_matches_response import StoredMatchesResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.stored_matches_response import StoredMatchesResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     puuid = 'puuid_example' # str | Player UUID
     mode = 'mode_example' # str | Game mode filter (optional) (optional)
@@ -2780,22 +2780,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.stored_mmr_response import StoredMMRResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.stored_mmr_response import StoredMMRResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
@@ -2852,22 +2852,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.stored_mmr_response import StoredMMRResponse
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.stored_mmr_response import StoredMMRResponse
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     puuid = 'puuid_example' # str | Player UUID
     size = 56 # int | Number of results (optional) (optional)
@@ -2922,22 +2922,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.stored_mmrv2_response import StoredMMRV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.stored_mmrv2_response import StoredMMRV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     name = 'name_example' # str | Riot ID name
@@ -2996,22 +2996,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.stored_mmrv2_response import StoredMMRV2Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.stored_mmrv2_response import StoredMMRV2Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     platform = 'platform_example' # str | Platform (pc, console)
     puuid = 'puuid_example' # str | Player UUID
@@ -3068,22 +3068,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.version_v1_response import VersionV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.version_v1_response import VersionV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
 
     try:
@@ -3134,22 +3134,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.website_v1_response import WebsiteV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.website_v1_response import WebsiteV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     country_code = 'country_code_example' # str | Country code (e.g., en-us, de-de)
     category = 'category_example' # str | Category filter (optional) (optional)
 
@@ -3202,22 +3202,22 @@ No authorization required
 
 
 ```python
-import henrikdev-api-client
-from henrikdev-api-client.models.website_by_id_v1_response import WebsiteByIdV1Response
-from henrikdev-api-client.rest import ApiException
+import henrikdev_api_client
+from henrikdev_api_client.models.website_by_id_v1_response import WebsiteByIdV1Response
+from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.henrikdev.xyz
 # See configuration.py for a list of all supported configuration parameters.
-configuration = henrikdev-api-client.Configuration(
+configuration = henrikdev_api_client.Configuration(
     host = "https://api.henrikdev.xyz"
 )
 
 
 # Enter a context with an instance of the API client
-with henrikdev-api-client.ApiClient(configuration) as api_client:
+with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = henrikdev-api-client.ValorantApi(api_client)
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
     db_id = 'db_id_example' # str | Database ID of the website entry
     country_code = 'country_code_example' # str | Country code (e.g., en-us, de-de)
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.esports_v1_response import EsportsV1Response
+from henrikdev_api_client.models.esports_v1_response import EsportsV1Response
 
 class TestEsportsV1Response(unittest.TestCase):
     """EsportsV1Response unit test stubs"""
@@ -36,31 +36,31 @@ class TestEsportsV1Response(unittest.TestCase):
         if include_optional:
             return EsportsV1Response(
                 data = [
-                    henrikdev-api-client.models.esports_v1_data.EsportsV1Data(
+                    henrikdev_api_client.models.esports_v1_data.EsportsV1Data(
                         date = '', 
-                        league = henrikdev-api-client.models.esports_v1_data_league.EsportsV1DataLeague(
+                        league = henrikdev_api_client.models.esports_v1_data_league.EsportsV1DataLeague(
                             icon = '', 
                             identifier = '', 
                             name = '', 
                             region = '', ), 
-                        match = henrikdev-api-client.models.esports_v1_data_match.EsportsV1DataMatch(
-                            game_type = henrikdev-api-client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
+                        match = henrikdev_api_client.models.esports_v1_data_match.EsportsV1DataMatch(
+                            game_type = henrikdev_api_client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
                                 count = 56, 
                                 type = '', ), 
                             id = '', 
                             teams = [
-                                henrikdev-api-client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
+                                henrikdev_api_client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
                                     code = '', 
                                     game_wins = 56, 
                                     has_won = True, 
                                     icon = '', 
                                     name = '', 
-                                    record = henrikdev-api-client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
+                                    record = henrikdev_api_client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
                                         losses = 56, 
                                         wins = 56, ), )
                                 ], ), 
                         state = '', 
-                        tournament = henrikdev-api-client.models.esports_v1_data_tournament.EsportsV1DataTournament(
+                        tournament = henrikdev_api_client.models.esports_v1_data_tournament.EsportsV1DataTournament(
                             name = '', 
                             season = '', ), 
                         type = '', 
@@ -71,31 +71,31 @@ class TestEsportsV1Response(unittest.TestCase):
         else:
             return EsportsV1Response(
                 data = [
-                    henrikdev-api-client.models.esports_v1_data.EsportsV1Data(
+                    henrikdev_api_client.models.esports_v1_data.EsportsV1Data(
                         date = '', 
-                        league = henrikdev-api-client.models.esports_v1_data_league.EsportsV1DataLeague(
+                        league = henrikdev_api_client.models.esports_v1_data_league.EsportsV1DataLeague(
                             icon = '', 
                             identifier = '', 
                             name = '', 
                             region = '', ), 
-                        match = henrikdev-api-client.models.esports_v1_data_match.EsportsV1DataMatch(
-                            game_type = henrikdev-api-client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
+                        match = henrikdev_api_client.models.esports_v1_data_match.EsportsV1DataMatch(
+                            game_type = henrikdev_api_client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
                                 count = 56, 
                                 type = '', ), 
                             id = '', 
                             teams = [
-                                henrikdev-api-client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
+                                henrikdev_api_client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
                                     code = '', 
                                     game_wins = 56, 
                                     has_won = True, 
                                     icon = '', 
                                     name = '', 
-                                    record = henrikdev-api-client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
+                                    record = henrikdev_api_client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
                                         losses = 56, 
                                         wins = 56, ), )
                                 ], ), 
                         state = '', 
-                        tournament = henrikdev-api-client.models.esports_v1_data_tournament.EsportsV1DataTournament(
+                        tournament = henrikdev_api_client.models.esports_v1_data_tournament.EsportsV1DataTournament(
                             name = '', 
                             season = '', ), 
                         type = '', 

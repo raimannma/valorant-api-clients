@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v2_data_player import MatchesV2DataPlayer
+from henrikdev_api_client.models.matches_v2_data_player import MatchesV2DataPlayer
 
 # TODO update the JSON string below
 json = "{}"

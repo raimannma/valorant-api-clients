@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.premier_team_v1_response_data_stats import PremierTeamV1ResponseDataStats
+from henrikdev_api_client.models.premier_team_v1_response_data_stats import PremierTeamV1ResponseDataStats
 
 # TODO update the JSON string below
 json = "{}"

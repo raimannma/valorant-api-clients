@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRV3Response } from 'henrikdev-api-client';
+import { MMRV3Response } from 'henrikdev_api_client';
 
 const instance: MMRV3Response = {
     data,

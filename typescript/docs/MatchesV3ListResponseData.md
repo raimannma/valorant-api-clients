@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV3ListResponseData } from 'henrikdev-api-client';
+import { MatchesV3ListResponseData } from 'henrikdev_api_client';
 
 const instance: MatchesV3ListResponseData = {
     coaches,

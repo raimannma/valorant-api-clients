@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmr_history_v1_response import MMRHistoryV1Response
+from henrikdev_api_client.models.mmr_history_v1_response import MMRHistoryV1Response
 
 class TestMMRHistoryV1Response(unittest.TestCase):
     """MMRHistoryV1Response unit test stubs"""
@@ -36,18 +36,18 @@ class TestMMRHistoryV1Response(unittest.TestCase):
         if include_optional:
             return MMRHistoryV1Response(
                 data = [
-                    henrikdev-api-client.models.mmr_history_v1_data.MMRHistoryV1Data(
+                    henrikdev_api_client.models.mmr_history_v1_data.MMRHistoryV1Data(
                         currenttier = 56, 
                         currenttierpatched = '', 
                         date = '', 
                         date_raw = 56, 
                         elo = 56, 
-                        images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                        images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                             large = '', 
                             small = '', 
                             triangle_down = '', 
                             triangle_up = '', ), 
-                        map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                        map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                             id = '', 
                             name = '', ), 
                         match_id = '', 
@@ -62,18 +62,18 @@ class TestMMRHistoryV1Response(unittest.TestCase):
         else:
             return MMRHistoryV1Response(
                 data = [
-                    henrikdev-api-client.models.mmr_history_v1_data.MMRHistoryV1Data(
+                    henrikdev_api_client.models.mmr_history_v1_data.MMRHistoryV1Data(
                         currenttier = 56, 
                         currenttierpatched = '', 
                         date = '', 
                         date_raw = 56, 
                         elo = 56, 
-                        images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                        images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                             large = '', 
                             small = '', 
                             triangle_down = '', 
                             triangle_up = '', ), 
-                        map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                        map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                             id = '', 
                             name = '', ), 
                         match_id = '', 

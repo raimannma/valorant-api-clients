@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.tier_id_name_combo import TierIdNameCombo
+from henrikdev_api_client.models.tier_id_name_combo import TierIdNameCombo
 
 class TestTierIdNameCombo(unittest.TestCase):
     """TierIdNameCombo unit test stubs"""

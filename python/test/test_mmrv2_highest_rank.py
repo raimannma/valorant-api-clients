@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv2_highest_rank import MMRV2HighestRank
+from henrikdev_api_client.models.mmrv2_highest_rank import MMRV2HighestRank
 
 class TestMMRV2HighestRank(unittest.TestCase):
     """MMRV2HighestRank unit test stubs"""

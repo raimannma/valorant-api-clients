@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_metadata import MatchesV4DataMetadata
+from henrikdev_api_client.models.matches_v4_data_metadata import MatchesV4DataMetadata
 
 class TestMatchesV4DataMetadata(unittest.TestCase):
     """MatchesV4DataMetadata unit test stubs"""
@@ -39,23 +39,23 @@ class TestMatchesV4DataMetadata(unittest.TestCase):
                 game_length_in_ms = 0,
                 game_version = '',
                 is_completed = True,
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 match_id = '',
                 party_rr_penaltys = [
-                    henrikdev-api-client.models.matches_v4_data_metadata_party_rr_penalty.MatchesV4DataMetadataPartyRRPenalty(
+                    henrikdev_api_client.models.matches_v4_data_metadata_party_rr_penalty.MatchesV4DataMetadataPartyRRPenalty(
                         party_id = '', 
                         penalty = 1.337, )
                     ],
                 platform = '',
                 premier = None,
-                queue = henrikdev-api-client.models.matches_v4_data_metadata_queue.MatchesV4DataMetadataQueue(
+                queue = henrikdev_api_client.models.matches_v4_data_metadata_queue.MatchesV4DataMetadataQueue(
                     id = '', 
                     mode_type = '', 
                     name = '', ),
                 region = '',
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
                 started_at = ''
@@ -65,21 +65,21 @@ class TestMatchesV4DataMetadata(unittest.TestCase):
                 game_length_in_ms = 0,
                 game_version = '',
                 is_completed = True,
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 match_id = '',
                 party_rr_penaltys = [
-                    henrikdev-api-client.models.matches_v4_data_metadata_party_rr_penalty.MatchesV4DataMetadataPartyRRPenalty(
+                    henrikdev_api_client.models.matches_v4_data_metadata_party_rr_penalty.MatchesV4DataMetadataPartyRRPenalty(
                         party_id = '', 
                         penalty = 1.337, )
                     ],
                 platform = '',
-                queue = henrikdev-api-client.models.matches_v4_data_metadata_queue.MatchesV4DataMetadataQueue(
+                queue = henrikdev_api_client.models.matches_v4_data_metadata_queue.MatchesV4DataMetadataQueue(
                     id = '', 
                     mode_type = '', 
                     name = '', ),
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
                 started_at = '',

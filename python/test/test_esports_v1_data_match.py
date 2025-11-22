@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.esports_v1_data_match import EsportsV1DataMatch
+from henrikdev_api_client.models.esports_v1_data_match import EsportsV1DataMatch
 
 class TestEsportsV1DataMatch(unittest.TestCase):
     """EsportsV1DataMatch unit test stubs"""
@@ -35,35 +35,35 @@ class TestEsportsV1DataMatch(unittest.TestCase):
         model = EsportsV1DataMatch()
         if include_optional:
             return EsportsV1DataMatch(
-                game_type = henrikdev-api-client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
+                game_type = henrikdev_api_client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
                     count = 56, 
                     type = '', ),
                 id = '',
                 teams = [
-                    henrikdev-api-client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
+                    henrikdev_api_client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
                         code = '', 
                         game_wins = 56, 
                         has_won = True, 
                         icon = '', 
                         name = '', 
-                        record = henrikdev-api-client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
+                        record = henrikdev_api_client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
                             losses = 56, 
                             wins = 56, ), )
                     ]
             )
         else:
             return EsportsV1DataMatch(
-                game_type = henrikdev-api-client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
+                game_type = henrikdev_api_client.models.esports_v1_data_match_game_type.EsportsV1DataMatchGameType(
                     count = 56, 
                     type = '', ),
                 teams = [
-                    henrikdev-api-client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
+                    henrikdev_api_client.models.esports_v1_data_match_teams.EsportsV1DataMatchTeams(
                         code = '', 
                         game_wins = 56, 
                         has_won = True, 
                         icon = '', 
                         name = '', 
-                        record = henrikdev-api-client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
+                        record = henrikdev_api_client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
                             losses = 56, 
                             wins = 56, ), )
                     ],

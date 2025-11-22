@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { QueueStatusV1PartySize } from 'henrikdev-api-client';
+import { QueueStatusV1PartySize } from 'henrikdev_api_client';
 
 const instance: QueueStatusV1PartySize = {
     full_party_bypass,

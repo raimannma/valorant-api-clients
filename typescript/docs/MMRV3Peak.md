@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRV3Peak } from 'henrikdev-api-client';
+import { MMRV3Peak } from 'henrikdev_api_client';
 
 const instance: MMRV3Peak = {
     ranking_schema,

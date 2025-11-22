@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_platform_os import MatchesV2DataPlatformOs
+from henrikdev_api_client.models.matches_v2_data_platform_os import MatchesV2DataPlatformOs
 
 class TestMatchesV2DataPlatformOs(unittest.TestCase):
     """MatchesV2DataPlatformOs unit test stubs"""

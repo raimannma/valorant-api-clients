@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { SendError } from 'henrikdev-api-client';
+import { SendError } from 'henrikdev_api_client';
 
 const instance: SendError = {
     errors,

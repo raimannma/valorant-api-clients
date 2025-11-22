@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_round_location import MatchesV4DataRoundLocation
+from henrikdev_api_client.models.matches_v4_data_round_location import MatchesV4DataRoundLocation
 
 class TestMatchesV4DataRoundLocation(unittest.TestCase):
     """MatchesV4DataRoundLocation unit test stubs"""

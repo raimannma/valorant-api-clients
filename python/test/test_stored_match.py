@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match import StoredMatch
+from henrikdev_api_client.models.stored_match import StoredMatch
 
 class TestStoredMatch(unittest.TestCase):
     """StoredMatch unit test stubs"""
@@ -35,25 +35,25 @@ class TestStoredMatch(unittest.TestCase):
         model = StoredMatch()
         if include_optional:
             return StoredMatch(
-                meta = henrikdev-api-client.models.stored_match_meta.StoredMatchMeta(
+                meta = henrikdev_api_client.models.stored_match_meta.StoredMatchMeta(
                     cluster = '', 
                     id = '', 
-                    map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                    map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                         id = '', 
                         name = '', ), 
                     mode = '', 
                     region = '', 
-                    season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                    season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                         id = '', 
                         short = '', ), 
                     started_at = '', 
                     version = '', ),
-                stats = henrikdev-api-client.models.stored_match_stats.StoredMatchStats(
+                stats = henrikdev_api_client.models.stored_match_stats.StoredMatchStats(
                     assists = 0, 
-                    character = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                    character = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                         id = '', 
                         name = '', ), 
-                    damage = henrikdev-api-client.models.stored_match_stats_damage.StoredMatchStatsDamage(
+                    damage = henrikdev_api_client.models.stored_match_stats_damage.StoredMatchStatsDamage(
                         made = 56, 
                         received = 56, ), 
                     deaths = 0, 
@@ -61,37 +61,37 @@ class TestStoredMatch(unittest.TestCase):
                     level = 0, 
                     puuid = '', 
                     score = 56, 
-                    shots = henrikdev-api-client.models.stored_match_stats_shots.StoredMatchStatsShots(
+                    shots = henrikdev_api_client.models.stored_match_stats_shots.StoredMatchStatsShots(
                         body = 0, 
                         head = 0, 
                         leg = 0, ), 
                     team = '', 
                     tier = 0, ),
-                teams = henrikdev-api-client.models.stored_match_team.StoredMatchTeam(
+                teams = henrikdev_api_client.models.stored_match_team.StoredMatchTeam(
                     blue = 0, 
                     red = 0, )
             )
         else:
             return StoredMatch(
-                meta = henrikdev-api-client.models.stored_match_meta.StoredMatchMeta(
+                meta = henrikdev_api_client.models.stored_match_meta.StoredMatchMeta(
                     cluster = '', 
                     id = '', 
-                    map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                    map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                         id = '', 
                         name = '', ), 
                     mode = '', 
                     region = '', 
-                    season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                    season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                         id = '', 
                         short = '', ), 
                     started_at = '', 
                     version = '', ),
-                stats = henrikdev-api-client.models.stored_match_stats.StoredMatchStats(
+                stats = henrikdev_api_client.models.stored_match_stats.StoredMatchStats(
                     assists = 0, 
-                    character = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                    character = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                         id = '', 
                         name = '', ), 
-                    damage = henrikdev-api-client.models.stored_match_stats_damage.StoredMatchStatsDamage(
+                    damage = henrikdev_api_client.models.stored_match_stats_damage.StoredMatchStatsDamage(
                         made = 56, 
                         received = 56, ), 
                     deaths = 0, 
@@ -99,13 +99,13 @@ class TestStoredMatch(unittest.TestCase):
                     level = 0, 
                     puuid = '', 
                     score = 56, 
-                    shots = henrikdev-api-client.models.stored_match_stats_shots.StoredMatchStatsShots(
+                    shots = henrikdev_api_client.models.stored_match_stats_shots.StoredMatchStatsShots(
                         body = 0, 
                         head = 0, 
                         leg = 0, ), 
                     team = '', 
                     tier = 0, ),
-                teams = henrikdev-api-client.models.stored_match_team.StoredMatchTeam(
+                teams = henrikdev_api_client.models.stored_match_team.StoredMatchTeam(
                     blue = 0, 
                     red = 0, ),
         )

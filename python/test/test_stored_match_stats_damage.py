@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match_stats_damage import StoredMatchStatsDamage
+from henrikdev_api_client.models.stored_match_stats_damage import StoredMatchStatsDamage
 
 class TestStoredMatchStatsDamage(unittest.TestCase):
     """StoredMatchStatsDamage unit test stubs"""

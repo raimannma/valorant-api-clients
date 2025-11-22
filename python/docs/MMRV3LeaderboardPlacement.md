@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.mmrv3_leaderboard_placement import MMRV3LeaderboardPlacement
+from henrikdev_api_client.models.mmrv3_leaderboard_placement import MMRV3LeaderboardPlacement
 
 # TODO update the JSON string below
 json = "{}"

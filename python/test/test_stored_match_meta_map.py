@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match_meta_map import StoredMatchMetaMap
+from henrikdev_api_client.models.stored_match_meta_map import StoredMatchMetaMap
 
 class TestStoredMatchMetaMap(unittest.TestCase):
     """StoredMatchMetaMap unit test stubs"""

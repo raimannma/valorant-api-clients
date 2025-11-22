@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match_meta import StoredMatchMeta
+from henrikdev_api_client.models.stored_match_meta import StoredMatchMeta
 
 class TestStoredMatchMeta(unittest.TestCase):
     """StoredMatchMeta unit test stubs"""
@@ -37,12 +37,12 @@ class TestStoredMatchMeta(unittest.TestCase):
             return StoredMatchMeta(
                 cluster = '',
                 id = '',
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 mode = '',
                 region = '',
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
                 started_at = '',
@@ -51,12 +51,12 @@ class TestStoredMatchMeta(unittest.TestCase):
         else:
             return StoredMatchMeta(
                 id = '',
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 mode = '',
                 region = '',
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
                 started_at = '',

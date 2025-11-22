@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRV2CurrentData } from 'henrikdev-api-client';
+import { MMRV2CurrentData } from 'henrikdev_api_client';
 
 const instance: MMRV2CurrentData = {
     currenttier,

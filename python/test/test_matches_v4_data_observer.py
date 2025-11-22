@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_observer import MatchesV4DataObserver
+from henrikdev_api_client.models.matches_v4_data_observer import MatchesV4DataObserver
 
 class TestMatchesV4DataObserver(unittest.TestCase):
     """MatchesV4DataObserver unit test stubs"""

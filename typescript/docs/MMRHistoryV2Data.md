@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRHistoryV2Data } from 'henrikdev-api-client';
+import { MMRHistoryV2Data } from 'henrikdev_api_client';
 
 const instance: MMRHistoryV2Data = {
     account,

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1 import QueueStatusV1
+from henrikdev_api_client.models.queue_status_v1 import QueueStatusV1
 
 class TestQueueStatusV1(unittest.TestCase):
     """QueueStatusV1 unit test stubs"""
@@ -36,9 +36,9 @@ class TestQueueStatusV1(unittest.TestCase):
         if include_optional:
             return QueueStatusV1(
                 data = [
-                    henrikdev-api-client.models.queue_status_v1_data.QueueStatusV1Data(
+                    henrikdev_api_client.models.queue_status_v1_data.QueueStatusV1Data(
                         enabled = True, 
-                        game_rules = henrikdev-api-client.models.queue_status_v1_game_rules.QueueStatusV1GameRules(
+                        game_rules = henrikdev_api_client.models.queue_status_v1_game_rules.QueueStatusV1GameRules(
                             allow_drop_out = True, 
                             allow_lenient_surrender = True, 
                             allow_overtime_draw_vote = True, 
@@ -47,21 +47,21 @@ class TestQueueStatusV1(unittest.TestCase):
                             overtime_win_by_two_capped = True, 
                             premier_mode = True, 
                             skip_pregame = True, ), 
-                        high_skill = henrikdev-api-client.models.queue_status_v1_high_skill.QueueStatusV1HighSkill(
+                        high_skill = henrikdev_api_client.models.queue_status_v1_high_skill.QueueStatusV1HighSkill(
                             max_party_size = 56, 
                             max_tier = 56, 
                             min_tier = 56, ), 
                         maps = [
-                            henrikdev-api-client.models.queue_status_v1_maps.QueueStatusV1Maps(
+                            henrikdev_api_client.models.queue_status_v1_maps.QueueStatusV1Maps(
                                 enabled = True, 
-                                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                                     id = '', 
                                     name = '', ), )
                             ], 
                         mode = '', 
                         mode_id = '', 
                         number_of_teams = 56, 
-                        party_size = henrikdev-api-client.models.queue_status_v1_party_size.QueueStatusV1PartySize(
+                        party_size = henrikdev_api_client.models.queue_status_v1_party_size.QueueStatusV1PartySize(
                             full_party_bypass = True, 
                             invalid = [
                                 56
@@ -74,8 +74,8 @@ class TestQueueStatusV1(unittest.TestCase):
                         ranked = True, 
                         required_account_level = 56, 
                         skill_disparity = [
-                            henrikdev-api-client.models.queue_status_v1_skill_disparity.QueueStatusV1SkillDisparity(
-                                max_tier = henrikdev-api-client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
+                            henrikdev_api_client.models.queue_status_v1_skill_disparity.QueueStatusV1SkillDisparity(
+                                max_tier = henrikdev_api_client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
                                     id = 0, 
                                     name = '', ), 
                                 name = '', 
@@ -89,9 +89,9 @@ class TestQueueStatusV1(unittest.TestCase):
         else:
             return QueueStatusV1(
                 data = [
-                    henrikdev-api-client.models.queue_status_v1_data.QueueStatusV1Data(
+                    henrikdev_api_client.models.queue_status_v1_data.QueueStatusV1Data(
                         enabled = True, 
-                        game_rules = henrikdev-api-client.models.queue_status_v1_game_rules.QueueStatusV1GameRules(
+                        game_rules = henrikdev_api_client.models.queue_status_v1_game_rules.QueueStatusV1GameRules(
                             allow_drop_out = True, 
                             allow_lenient_surrender = True, 
                             allow_overtime_draw_vote = True, 
@@ -100,21 +100,21 @@ class TestQueueStatusV1(unittest.TestCase):
                             overtime_win_by_two_capped = True, 
                             premier_mode = True, 
                             skip_pregame = True, ), 
-                        high_skill = henrikdev-api-client.models.queue_status_v1_high_skill.QueueStatusV1HighSkill(
+                        high_skill = henrikdev_api_client.models.queue_status_v1_high_skill.QueueStatusV1HighSkill(
                             max_party_size = 56, 
                             max_tier = 56, 
                             min_tier = 56, ), 
                         maps = [
-                            henrikdev-api-client.models.queue_status_v1_maps.QueueStatusV1Maps(
+                            henrikdev_api_client.models.queue_status_v1_maps.QueueStatusV1Maps(
                                 enabled = True, 
-                                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                                     id = '', 
                                     name = '', ), )
                             ], 
                         mode = '', 
                         mode_id = '', 
                         number_of_teams = 56, 
-                        party_size = henrikdev-api-client.models.queue_status_v1_party_size.QueueStatusV1PartySize(
+                        party_size = henrikdev_api_client.models.queue_status_v1_party_size.QueueStatusV1PartySize(
                             full_party_bypass = True, 
                             invalid = [
                                 56
@@ -127,8 +127,8 @@ class TestQueueStatusV1(unittest.TestCase):
                         ranked = True, 
                         required_account_level = 56, 
                         skill_disparity = [
-                            henrikdev-api-client.models.queue_status_v1_skill_disparity.QueueStatusV1SkillDisparity(
-                                max_tier = henrikdev-api-client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
+                            henrikdev_api_client.models.queue_status_v1_skill_disparity.QueueStatusV1SkillDisparity(
+                                max_tier = henrikdev_api_client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
                                     id = 0, 
                                     name = '', ), 
                                 name = '', 

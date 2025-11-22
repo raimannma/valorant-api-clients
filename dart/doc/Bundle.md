@@ -1,8 +1,8 @@
-# henrikdev-api-client.model.Bundle
+# henrikdev_api_client.model.Bundle
 
 ## Load the model package
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 ```
 
 ## Properties

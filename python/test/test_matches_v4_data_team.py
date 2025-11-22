@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_team import MatchesV4DataTeam
+from henrikdev_api_client.models.matches_v4_data_team import MatchesV4DataTeam
 
 class TestMatchesV4DataTeam(unittest.TestCase):
     """MatchesV4DataTeam unit test stubs"""
@@ -35,8 +35,8 @@ class TestMatchesV4DataTeam(unittest.TestCase):
         model = MatchesV4DataTeam()
         if include_optional:
             return MatchesV4DataTeam(
-                premier_roster = henrikdev-api-client.models.matches_v4_data_team_premier_roster.MatchesV4DataTeamPremierRoster(
-                    customization = henrikdev-api-client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
+                premier_roster = henrikdev_api_client.models.matches_v4_data_team_premier_roster.MatchesV4DataTeamPremierRoster(
+                    customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                         icon = '', 
                         image = '', 
                         primary_color = '', 
@@ -48,7 +48,7 @@ class TestMatchesV4DataTeam(unittest.TestCase):
                         ], 
                     name = '', 
                     tag = '', ),
-                rounds = henrikdev-api-client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
+                rounds = henrikdev_api_client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
                     lost = 0, 
                     won = 0, ),
                 team_id = '',
@@ -56,7 +56,7 @@ class TestMatchesV4DataTeam(unittest.TestCase):
             )
         else:
             return MatchesV4DataTeam(
-                rounds = henrikdev-api-client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
+                rounds = henrikdev_api_client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
                     lost = 0, 
                     won = 0, ),
                 team_id = '',

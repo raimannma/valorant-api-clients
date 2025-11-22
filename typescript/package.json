@@ -1,7 +1,7 @@
 {
-  "name": "henrikdev-api-client",
+  "name": "henrikdev_api_client",
   "version": "4.3.0",
-  "description": "OpenAPI client for henrikdev-api-client",
+  "description": "OpenAPI client for henrikdev_api_client",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "henrikdev-api-client"
+    "henrikdev_api_client"
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v4_data_kill import MatchesV4DataKill
+from henrikdev_api_client.models.matches_v4_data_kill import MatchesV4DataKill
 
 # TODO update the JSON string below
 json = "{}"

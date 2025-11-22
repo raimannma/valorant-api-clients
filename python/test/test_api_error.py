@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.api_error import APIError
+from henrikdev_api_client.models.api_error import APIError
 
 class TestAPIError(unittest.TestCase):
     """APIError unit test stubs"""

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.stored_match_meta_map import StoredMatchMetaMap
+from henrikdev_api_client.models.stored_match_meta_map import StoredMatchMetaMap
 
 # TODO update the JSON string below
 json = "{}"

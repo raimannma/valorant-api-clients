@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.account_v1_data_card import AccountV1DataCard
+from henrikdev_api_client.models.account_v1_data_card import AccountV1DataCard
 
 class TestAccountV1DataCard(unittest.TestCase):
     """AccountV1DataCard unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.leaderboard_v2_response import LeaderboardV2Response
+from henrikdev_api_client.models.leaderboard_v2_response import LeaderboardV2Response
 
 class TestLeaderboardV2Response(unittest.TestCase):
     """LeaderboardV2Response unit test stubs"""
@@ -41,7 +41,7 @@ class TestLeaderboardV2Response(unittest.TestCase):
                 last_update = 56,
                 next_update = 56,
                 players = [
-                    henrikdev-api-client.models.leaderboard_pvp_player.LeaderboardPVPPlayer(
+                    henrikdev_api_client.models.leaderboard_pvp_player.LeaderboardPVPPlayer(
                         is_anonymized = True, 
                         is_banned = True, 
                         player_card_id = '', 
@@ -65,7 +65,7 @@ class TestLeaderboardV2Response(unittest.TestCase):
                 last_update = 56,
                 next_update = 56,
                 players = [
-                    henrikdev-api-client.models.leaderboard_pvp_player.LeaderboardPVPPlayer(
+                    henrikdev_api_client.models.leaderboard_pvp_player.LeaderboardPVPPlayer(
                         is_anonymized = True, 
                         is_banned = True, 
                         player_card_id = '', 

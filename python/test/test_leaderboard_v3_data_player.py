@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.leaderboard_v3_data_player import LeaderboardV3DataPlayer
+from henrikdev_api_client.models.leaderboard_v3_data_player import LeaderboardV3DataPlayer
 
 class TestLeaderboardV3DataPlayer(unittest.TestCase):
     """LeaderboardV3DataPlayer unit test stubs"""

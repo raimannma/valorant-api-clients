@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v4_data_metadata_queue import MatchesV4DataMetadataQueue
+from henrikdev_api_client.models.matches_v4_data_metadata_queue import MatchesV4DataMetadataQueue
 
 # TODO update the JSON string below
 json = "{}"

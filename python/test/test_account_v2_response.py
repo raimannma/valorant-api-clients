@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.account_v2_response import AccountV2Response
+from henrikdev_api_client.models.account_v2_response import AccountV2Response
 
 class TestAccountV2Response(unittest.TestCase):
     """AccountV2Response unit test stubs"""
@@ -35,7 +35,7 @@ class TestAccountV2Response(unittest.TestCase):
         model = AccountV2Response()
         if include_optional:
             return AccountV2Response(
-                data = henrikdev-api-client.models.account_v2_data.AccountV2Data(
+                data = henrikdev_api_client.models.account_v2_data.AccountV2Data(
                     account_level = 56, 
                     card = '', 
                     name = '', 
@@ -51,7 +51,7 @@ class TestAccountV2Response(unittest.TestCase):
             )
         else:
             return AccountV2Response(
-                data = henrikdev-api-client.models.account_v2_data.AccountV2Data(
+                data = henrikdev_api_client.models.account_v2_data.AccountV2Data(
                     account_level = 56, 
                     card = '', 
                     name = '', 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_v1_response_data_customization import PremierTeamV1ResponseDataCustomization
+from henrikdev_api_client.models.premier_team_v1_response_data_customization import PremierTeamV1ResponseDataCustomization
 
 class TestPremierTeamV1ResponseDataCustomization(unittest.TestCase):
     """PremierTeamV1ResponseDataCustomization unit test stubs"""

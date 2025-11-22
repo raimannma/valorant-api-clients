@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
 
 class TestPremierTeamV1Response(unittest.TestCase):
     """PremierTeamV1Response unit test stubs"""
@@ -35,8 +35,8 @@ class TestPremierTeamV1Response(unittest.TestCase):
         model = PremierTeamV1Response()
         if include_optional:
             return PremierTeamV1Response(
-                data = henrikdev-api-client.models.premier_team_v1_response_data.PremierTeamV1ResponseData(
-                    customization = henrikdev-api-client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
+                data = henrikdev_api_client.models.premier_team_v1_response_data.PremierTeamV1ResponseData(
+                    customization = henrikdev_api_client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
                         icon = '', 
                         image = '', 
                         primary = '', 
@@ -45,18 +45,18 @@ class TestPremierTeamV1Response(unittest.TestCase):
                     enrolled = True, 
                     id = '', 
                     member = [
-                        henrikdev-api-client.models.premier_team_member.PremierTeamMember(
+                        henrikdev_api_client.models.premier_team_member.PremierTeamMember(
                             name = '', 
                             puuid = '', 
                             tag = '', )
                         ], 
                     name = '', 
-                    placement = henrikdev-api-client.models.premier_team_v1_response_data_placement.PremierTeamV1ResponseDataPlacement(
+                    placement = henrikdev_api_client.models.premier_team_v1_response_data_placement.PremierTeamV1ResponseDataPlacement(
                         conference = '', 
                         division = 56, 
                         place = 56, 
                         points = 56, ), 
-                    stats = henrikdev-api-client.models.premier_team_v1_response_data_stats.PremierTeamV1ResponseDataStats(
+                    stats = henrikdev_api_client.models.premier_team_v1_response_data_stats.PremierTeamV1ResponseDataStats(
                         losses = 56, 
                         matches = 56, 
                         rounds_lost = 56, 
@@ -67,8 +67,8 @@ class TestPremierTeamV1Response(unittest.TestCase):
             )
         else:
             return PremierTeamV1Response(
-                data = henrikdev-api-client.models.premier_team_v1_response_data.PremierTeamV1ResponseData(
-                    customization = henrikdev-api-client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
+                data = henrikdev_api_client.models.premier_team_v1_response_data.PremierTeamV1ResponseData(
+                    customization = henrikdev_api_client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
                         icon = '', 
                         image = '', 
                         primary = '', 
@@ -77,18 +77,18 @@ class TestPremierTeamV1Response(unittest.TestCase):
                     enrolled = True, 
                     id = '', 
                     member = [
-                        henrikdev-api-client.models.premier_team_member.PremierTeamMember(
+                        henrikdev_api_client.models.premier_team_member.PremierTeamMember(
                             name = '', 
                             puuid = '', 
                             tag = '', )
                         ], 
                     name = '', 
-                    placement = henrikdev-api-client.models.premier_team_v1_response_data_placement.PremierTeamV1ResponseDataPlacement(
+                    placement = henrikdev_api_client.models.premier_team_v1_response_data_placement.PremierTeamV1ResponseDataPlacement(
                         conference = '', 
                         division = 56, 
                         place = 56, 
                         points = 56, ), 
-                    stats = henrikdev-api-client.models.premier_team_v1_response_data_stats.PremierTeamV1ResponseDataStats(
+                    stats = henrikdev_api_client.models.premier_team_v1_response_data_stats.PremierTeamV1ResponseDataStats(
                         losses = 56, 
                         matches = 56, 
                         rounds_lost = 56, 

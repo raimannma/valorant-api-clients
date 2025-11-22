@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_round_player_stats_damage_events import MatchesV4DataRoundPlayerStatsDamageEvents
+from henrikdev_api_client.models.matches_v4_data_round_player_stats_damage_events import MatchesV4DataRoundPlayerStatsDamageEvents
 
 class TestMatchesV4DataRoundPlayerStatsDamageEvents(unittest.TestCase):
     """MatchesV4DataRoundPlayerStatsDamageEvents unit test stubs"""
@@ -39,7 +39,7 @@ class TestMatchesV4DataRoundPlayerStatsDamageEvents(unittest.TestCase):
                 damage = 0,
                 headshots = 0,
                 legshots = 0,
-                player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 
@@ -51,7 +51,7 @@ class TestMatchesV4DataRoundPlayerStatsDamageEvents(unittest.TestCase):
                 damage = 0,
                 headshots = 0,
                 legshots = 0,
-                player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 

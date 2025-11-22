@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.featured_bundle import FeaturedBundle
+from henrikdev_api_client.models.featured_bundle import FeaturedBundle
 
 class TestFeaturedBundle(unittest.TestCase):
     """FeaturedBundle unit test stubs"""
@@ -35,19 +35,19 @@ class TestFeaturedBundle(unittest.TestCase):
         model = FeaturedBundle()
         if include_optional:
             return FeaturedBundle(
-                bundle = henrikdev-api-client.models.bundle.Bundle(
+                bundle = henrikdev_api_client.models.bundle.Bundle(
                     currency_id = '', 
                     data_asset_id = '', 
                     duration_remaining_in_seconds = 0, 
                     id = '', 
                     items = [
-                        henrikdev-api-client.models.bundle_item.BundleItem(
+                        henrikdev_api_client.models.bundle_item.BundleItem(
                             base_price = 56, 
                             currency_id = '', 
                             discount_percent = 1.337, 
                             discounted_price = 1.337, 
                             is_promo_item = True, 
-                            item = henrikdev-api-client.models.item.Item(
+                            item = henrikdev_api_client.models.item.Item(
                                 amount = 0, 
                                 item_id = '', 
                                 item_type_id = '', ), )
@@ -56,19 +56,19 @@ class TestFeaturedBundle(unittest.TestCase):
                     wholesale_only = True, ),
                 bundle_remaining_duration_in_seconds = 0,
                 bundles = [
-                    henrikdev-api-client.models.bundle.Bundle(
+                    henrikdev_api_client.models.bundle.Bundle(
                         currency_id = '', 
                         data_asset_id = '', 
                         duration_remaining_in_seconds = 0, 
                         id = '', 
                         items = [
-                            henrikdev-api-client.models.bundle_item.BundleItem(
+                            henrikdev_api_client.models.bundle_item.BundleItem(
                                 base_price = 56, 
                                 currency_id = '', 
                                 discount_percent = 1.337, 
                                 discounted_price = 1.337, 
                                 is_promo_item = True, 
-                                item = henrikdev-api-client.models.item.Item(
+                                item = henrikdev_api_client.models.item.Item(
                                     amount = 0, 
                                     item_id = '', 
                                     item_type_id = '', ), )
@@ -79,19 +79,19 @@ class TestFeaturedBundle(unittest.TestCase):
             )
         else:
             return FeaturedBundle(
-                bundle = henrikdev-api-client.models.bundle.Bundle(
+                bundle = henrikdev_api_client.models.bundle.Bundle(
                     currency_id = '', 
                     data_asset_id = '', 
                     duration_remaining_in_seconds = 0, 
                     id = '', 
                     items = [
-                        henrikdev-api-client.models.bundle_item.BundleItem(
+                        henrikdev_api_client.models.bundle_item.BundleItem(
                             base_price = 56, 
                             currency_id = '', 
                             discount_percent = 1.337, 
                             discounted_price = 1.337, 
                             is_promo_item = True, 
-                            item = henrikdev-api-client.models.item.Item(
+                            item = henrikdev_api_client.models.item.Item(
                                 amount = 0, 
                                 item_id = '', 
                                 item_type_id = '', ), )
@@ -100,19 +100,19 @@ class TestFeaturedBundle(unittest.TestCase):
                     wholesale_only = True, ),
                 bundle_remaining_duration_in_seconds = 0,
                 bundles = [
-                    henrikdev-api-client.models.bundle.Bundle(
+                    henrikdev_api_client.models.bundle.Bundle(
                         currency_id = '', 
                         data_asset_id = '', 
                         duration_remaining_in_seconds = 0, 
                         id = '', 
                         items = [
-                            henrikdev-api-client.models.bundle_item.BundleItem(
+                            henrikdev_api_client.models.bundle_item.BundleItem(
                                 base_price = 56, 
                                 currency_id = '', 
                                 discount_percent = 1.337, 
                                 discounted_price = 1.337, 
                                 is_promo_item = True, 
-                                item = henrikdev-api-client.models.item.Item(
+                                item = henrikdev_api_client.models.item.Item(
                                     amount = 0, 
                                     item_id = '', 
                                     item_type_id = '', ), )

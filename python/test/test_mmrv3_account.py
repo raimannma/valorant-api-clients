@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv3_account import MMRV3Account
+from henrikdev_api_client.models.mmrv3_account import MMRV3Account
 
 class TestMMRV3Account(unittest.TestCase):
     """MMRV3Account unit test stubs"""

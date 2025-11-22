@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.match_mode import MatchMode
+from henrikdev_api_client.models.match_mode import MatchMode
 
 class TestMatchMode(unittest.TestCase):
     """MatchMode unit test stubs"""

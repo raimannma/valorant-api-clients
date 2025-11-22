@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_mmr_tier import StoredMMRTier
+from henrikdev_api_client.models.stored_mmr_tier import StoredMMRTier
 
 class TestStoredMMRTier(unittest.TestCase):
     """StoredMMRTier unit test stubs"""

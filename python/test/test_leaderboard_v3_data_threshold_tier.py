@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.leaderboard_v3_data_threshold_tier import LeaderboardV3DataThresholdTier
+from henrikdev_api_client.models.leaderboard_v3_data_threshold_tier import LeaderboardV3DataThresholdTier
 
 class TestLeaderboardV3DataThresholdTier(unittest.TestCase):
     """LeaderboardV3DataThresholdTier unit test stubs"""

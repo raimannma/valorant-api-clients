@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_metadata_party_rr_penalty import MatchesV4DataMetadataPartyRRPenalty
+from henrikdev_api_client.models.matches_v4_data_metadata_party_rr_penalty import MatchesV4DataMetadataPartyRRPenalty
 
 class TestMatchesV4DataMetadataPartyRRPenalty(unittest.TestCase):
     """MatchesV4DataMetadataPartyRRPenalty unit test stubs"""

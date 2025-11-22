@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv2_current_data import MMRV2CurrentData
+from henrikdev_api_client.models.mmrv2_current_data import MMRV2CurrentData
 
 class TestMMRV2CurrentData(unittest.TestCase):
     """MMRV2CurrentData unit test stubs"""
@@ -39,7 +39,7 @@ class TestMMRV2CurrentData(unittest.TestCase):
                 currenttierpatched = '',
                 elo = 56,
                 games_needed_for_rating = 56,
-                images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                     large = '', 
                     small = '', 
                     triangle_down = '', 
@@ -54,7 +54,7 @@ class TestMMRV2CurrentData(unittest.TestCase):
                 currenttierpatched = '',
                 elo = 56,
                 games_needed_for_rating = 56,
-                images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                     large = '', 
                     small = '', 
                     triangle_down = '', 

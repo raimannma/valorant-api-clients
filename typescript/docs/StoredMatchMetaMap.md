@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMatchMetaMap } from 'henrikdev-api-client';
+import { StoredMatchMetaMap } from 'henrikdev_api_client';
 
 const instance: StoredMatchMetaMap = {
     id,

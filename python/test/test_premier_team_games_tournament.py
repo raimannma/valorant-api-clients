@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_games_tournament import PremierTeamGamesTournament
+from henrikdev_api_client.models.premier_team_games_tournament import PremierTeamGamesTournament
 
 class TestPremierTeamGamesTournament(unittest.TestCase):
     """PremierTeamGamesTournament unit test stubs"""

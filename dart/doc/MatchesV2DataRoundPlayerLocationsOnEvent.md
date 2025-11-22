@@ -1,8 +1,8 @@
-# henrikdev-api-client.model.MatchesV2DataRoundPlayerLocationsOnEvent
+# henrikdev_api_client.model.MatchesV2DataRoundPlayerLocationsOnEvent
 
 ## Load the model package
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 ```
 
 ## Properties

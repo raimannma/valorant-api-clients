@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataRoundPlayerStatsAbilityCasts } from 'henrikdev-api-client';
+import { MatchesV4DataRoundPlayerStatsAbilityCasts } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataRoundPlayerStatsAbilityCasts = {
     ability_1,

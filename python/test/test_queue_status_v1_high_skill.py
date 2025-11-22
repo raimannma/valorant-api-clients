@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1_high_skill import QueueStatusV1HighSkill
+from henrikdev_api_client.models.queue_status_v1_high_skill import QueueStatusV1HighSkill
 
 class TestQueueStatusV1HighSkill(unittest.TestCase):
     """QueueStatusV1HighSkill unit test stubs"""

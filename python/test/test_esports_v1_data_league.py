@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.esports_v1_data_league import EsportsV1DataLeague
+from henrikdev_api_client.models.esports_v1_data_league import EsportsV1DataLeague
 
 class TestEsportsV1DataLeague(unittest.TestCase):
     """EsportsV1DataLeague unit test stubs"""

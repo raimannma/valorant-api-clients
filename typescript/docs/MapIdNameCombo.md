@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MapIdNameCombo } from 'henrikdev-api-client';
+import { MapIdNameCombo } from 'henrikdev_api_client';
 
 const instance: MapIdNameCombo = {
     id,

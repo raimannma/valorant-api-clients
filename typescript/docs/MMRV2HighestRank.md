@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRV2HighestRank } from 'henrikdev-api-client';
+import { MMRV2HighestRank } from 'henrikdev_api_client';
 
 const instance: MMRV2HighestRank = {
     old,

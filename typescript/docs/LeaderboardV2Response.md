@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { LeaderboardV2Response } from 'henrikdev-api-client';
+import { LeaderboardV2Response } from 'henrikdev_api_client';
 
 const instance: LeaderboardV2Response = {
     immortal_1_threshold,

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.store_offers_v1_reward import StoreOffersV1Reward
+from henrikdev_api_client.models.store_offers_v1_reward import StoreOffersV1Reward
 
 class TestStoreOffersV1Reward(unittest.TestCase):
     """StoreOffersV1Reward unit test stubs"""

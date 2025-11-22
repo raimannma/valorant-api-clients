@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.stored_mmr_tier import StoredMMRTier
+from henrikdev_api_client.models.stored_mmr_tier import StoredMMRTier
 
 # TODO update the JSON string below
 json = "{}"

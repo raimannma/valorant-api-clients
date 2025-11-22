@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { Pagination } from 'henrikdev-api-client';
+import { Pagination } from 'henrikdev_api_client';
 
 const instance: Pagination = {
     after,

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_mmrv2 import StoredMMRV2
+from henrikdev_api_client.models.stored_mmrv2 import StoredMMRV2
 
 class TestStoredMMRV2(unittest.TestCase):
     """StoredMMRV2 unit test stubs"""
@@ -38,16 +38,16 @@ class TestStoredMMRV2(unittest.TestCase):
                 var_date = '',
                 elo = 56,
                 last_change = 56,
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 match_id = '',
                 refunded_rr = 56,
                 rr = 56,
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
                 was_derank_protected = True
@@ -57,16 +57,16 @@ class TestStoredMMRV2(unittest.TestCase):
                 var_date = '',
                 elo = 56,
                 last_change = 56,
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 match_id = '',
                 refunded_rr = 56,
                 rr = 56,
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
                 was_derank_protected = True,

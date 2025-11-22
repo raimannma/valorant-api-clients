@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_round_player_stats_economy import MatchesV4DataRoundPlayerStatsEconomy
+from henrikdev_api_client.models.matches_v4_data_round_player_stats_economy import MatchesV4DataRoundPlayerStatsEconomy
 
 class TestMatchesV4DataRoundPlayerStatsEconomy(unittest.TestCase):
     """MatchesV4DataRoundPlayerStatsEconomy unit test stubs"""
@@ -35,12 +35,12 @@ class TestMatchesV4DataRoundPlayerStatsEconomy(unittest.TestCase):
         model = MatchesV4DataRoundPlayerStatsEconomy()
         if include_optional:
             return MatchesV4DataRoundPlayerStatsEconomy(
-                armor = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
+                armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
                     id = '', 
                     name = '', ),
                 loadout_value = 56,
                 remaining = 56,
-                weapon = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
+                weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
                     id = '', 
                     name = '', 
                     type = '', )

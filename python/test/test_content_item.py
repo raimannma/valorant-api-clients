@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.content_item import ContentItem
+from henrikdev_api_client.models.content_item import ContentItem
 
 class TestContentItem(unittest.TestCase):
     """ContentItem unit test stubs"""

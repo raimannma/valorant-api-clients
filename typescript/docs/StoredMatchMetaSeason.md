@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMatchMetaSeason } from 'henrikdev-api-client';
+import { StoredMatchMetaSeason } from 'henrikdev_api_client';
 
 const instance: StoredMatchMetaSeason = {
     id,

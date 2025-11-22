@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRV3Account } from 'henrikdev-api-client';
+import { MMRV3Account } from 'henrikdev_api_client';
 
 const instance: MMRV3Account = {
     name,

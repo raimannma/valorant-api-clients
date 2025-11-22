@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.map_id_name_combo import MapIdNameCombo
+from henrikdev_api_client.models.map_id_name_combo import MapIdNameCombo
 
 class TestMapIdNameCombo(unittest.TestCase):
     """MapIdNameCombo unit test stubs"""

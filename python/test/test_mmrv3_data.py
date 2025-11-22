@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv3_data import MMRV3Data
+from henrikdev_api_client.models.mmrv3_data import MMRV3Data
 
 class TestMMRV3Data(unittest.TestCase):
     """MMRV3Data unit test stubs"""
@@ -35,48 +35,48 @@ class TestMMRV3Data(unittest.TestCase):
         model = MMRV3Data()
         if include_optional:
             return MMRV3Data(
-                account = henrikdev-api-client.models.mmrv3_account.MMRV3Account(
+                account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
                     name = '', 
                     puuid = '', 
                     tag = '', ),
-                current = henrikdev-api-client.models.mmrv3_current.MMRV3Current(
+                current = henrikdev_api_client.models.mmrv3_current.MMRV3Current(
                     elo = 56, 
                     games_needed_for_rating = 56, 
                     last_change = 56, 
-                    leaderboard_placement = henrikdev-api-client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
+                    leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                         rank = 0, 
                         updated_at = '', ), 
                     rank_protection_shields = 56, 
                     rr = 56, 
-                    tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', ), ),
-                peak = henrikdev-api-client.models.mmrv3_peak.MMRV3Peak(
+                peak = henrikdev_api_client.models.mmrv3_peak.MMRV3Peak(
                     ranking_schema = '', 
                     rr = 56, 
-                    season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                    season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                         id = '', 
                         short = '', ), 
-                    tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', ), ),
                 seasonal = [
-                    henrikdev-api-client.models.mmrv3_seasonal.MMRV3Seasonal(
+                    henrikdev_api_client.models.mmrv3_seasonal.MMRV3Seasonal(
                         act_wins = [
-                            henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                            henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
                                 name = '', )
                             ], 
                         end_rr = 56, 
-                        end_tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        end_tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), 
                         games = 56, 
-                        leaderboard_placement = henrikdev-api-client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
+                        leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                             rank = 0, 
                             updated_at = '', ), 
                         ranking_schema = '', 
-                        season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                        season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
                         wins = 56, )
@@ -84,39 +84,39 @@ class TestMMRV3Data(unittest.TestCase):
             )
         else:
             return MMRV3Data(
-                account = henrikdev-api-client.models.mmrv3_account.MMRV3Account(
+                account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
                     name = '', 
                     puuid = '', 
                     tag = '', ),
-                current = henrikdev-api-client.models.mmrv3_current.MMRV3Current(
+                current = henrikdev_api_client.models.mmrv3_current.MMRV3Current(
                     elo = 56, 
                     games_needed_for_rating = 56, 
                     last_change = 56, 
-                    leaderboard_placement = henrikdev-api-client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
+                    leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                         rank = 0, 
                         updated_at = '', ), 
                     rank_protection_shields = 56, 
                     rr = 56, 
-                    tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', ), ),
                 seasonal = [
-                    henrikdev-api-client.models.mmrv3_seasonal.MMRV3Seasonal(
+                    henrikdev_api_client.models.mmrv3_seasonal.MMRV3Seasonal(
                         act_wins = [
-                            henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                            henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
                                 name = '', )
                             ], 
                         end_rr = 56, 
-                        end_tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        end_tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), 
                         games = 56, 
-                        leaderboard_placement = henrikdev-api-client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
+                        leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                             rank = 0, 
                             updated_at = '', ), 
                         ranking_schema = '', 
-                        season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                        season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
                         wins = 56, )

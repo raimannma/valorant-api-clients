@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v2_data_observer import MatchesV2DataObserver
+from henrikdev_api_client.models.matches_v2_data_observer import MatchesV2DataObserver
 
 # TODO update the JSON string below
 json = "{}"

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.version_v1_data import VersionV1Data
+from henrikdev_api_client.models.version_v1_data import VersionV1Data
 
 # TODO update the JSON string below
 json = "{}"

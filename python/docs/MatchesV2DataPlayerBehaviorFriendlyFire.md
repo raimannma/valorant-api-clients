@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v2_data_player_behavior_friendly_fire import MatchesV2DataPlayerBehaviorFriendlyFire
+from henrikdev_api_client.models.matches_v2_data_player_behavior_friendly_fire import MatchesV2DataPlayerBehaviorFriendlyFire
 
 # TODO update the JSON string below
 json = "{}"

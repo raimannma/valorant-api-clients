@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.stored_match_meta import StoredMatchMeta
+from henrikdev_api_client.models.stored_match_meta import StoredMatchMeta
 
 # TODO update the JSON string below
 json = "{}"

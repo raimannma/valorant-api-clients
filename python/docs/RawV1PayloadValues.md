@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.raw_v1_payload_values import RawV1PayloadValues
+from henrikdev_api_client.models.raw_v1_payload_values import RawV1PayloadValues
 
 # TODO update the JSON string below
 json = "{}"

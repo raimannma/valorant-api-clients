@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMatchMeta } from 'henrikdev-api-client';
+import { StoredMatchMeta } from 'henrikdev_api_client';
 
 const instance: StoredMatchMeta = {
     cluster,

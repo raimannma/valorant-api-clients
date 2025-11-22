@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_member import PremierTeamMember
+from henrikdev_api_client.models.premier_team_member import PremierTeamMember
 
 class TestPremierTeamMember(unittest.TestCase):
     """PremierTeamMember unit test stubs"""

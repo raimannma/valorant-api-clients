@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmr_data_images import MMRDataImages
+from henrikdev_api_client.models.mmr_data_images import MMRDataImages
 
 class TestMMRDataImages(unittest.TestCase):
     """MMRDataImages unit test stubs"""

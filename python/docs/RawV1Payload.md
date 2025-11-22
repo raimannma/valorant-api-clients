@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.raw_v1_payload import RawV1Payload
+from henrikdev_api_client.models.raw_v1_payload import RawV1Payload
 
 # TODO update the JSON string below
 json = "{}"

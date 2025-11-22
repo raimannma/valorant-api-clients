@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.item import Item
+from henrikdev_api_client.models.item import Item
 
 class TestItem(unittest.TestCase):
     """Item unit test stubs"""

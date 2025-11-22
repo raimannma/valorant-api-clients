@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v2_response import MatchesV2Response
+from henrikdev_api_client.models.matches_v2_response import MatchesV2Response
 
 # TODO update the JSON string below
 json = "{}"

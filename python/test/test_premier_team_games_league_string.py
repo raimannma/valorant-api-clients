@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_games_league_string import PremierTeamGamesLeagueString
+from henrikdev_api_client.models.premier_team_games_league_string import PremierTeamGamesLeagueString
 
 class TestPremierTeamGamesLeagueString(unittest.TestCase):
     """PremierTeamGamesLeagueString unit test stubs"""

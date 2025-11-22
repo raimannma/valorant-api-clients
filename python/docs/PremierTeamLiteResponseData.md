@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.premier_team_lite_response_data import PremierTeamLiteResponseData
+from henrikdev_api_client.models.premier_team_lite_response_data import PremierTeamLiteResponseData
 
 # TODO update the JSON string below
 json = "{}"

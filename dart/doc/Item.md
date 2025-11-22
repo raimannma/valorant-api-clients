@@ -1,8 +1,8 @@
-# henrikdev-api-client.model.Item
+# henrikdev_api_client.model.Item
 
 ## Load the model package
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 ```
 
 ## Properties

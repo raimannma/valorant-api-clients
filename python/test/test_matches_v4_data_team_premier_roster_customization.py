@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_team_premier_roster_customization import MatchesV4DataTeamPremierRosterCustomization
+from henrikdev_api_client.models.matches_v4_data_team_premier_roster_customization import MatchesV4DataTeamPremierRosterCustomization
 
 class TestMatchesV4DataTeamPremierRosterCustomization(unittest.TestCase):
     """MatchesV4DataTeamPremierRosterCustomization unit test stubs"""

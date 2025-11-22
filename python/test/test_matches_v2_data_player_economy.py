@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_player_economy import MatchesV2DataPlayerEconomy
+from henrikdev_api_client.models.matches_v2_data_player_economy import MatchesV2DataPlayerEconomy
 
 class TestMatchesV2DataPlayerEconomy(unittest.TestCase):
     """MatchesV2DataPlayerEconomy unit test stubs"""
@@ -35,19 +35,19 @@ class TestMatchesV2DataPlayerEconomy(unittest.TestCase):
         model = MatchesV2DataPlayerEconomy()
         if include_optional:
             return MatchesV2DataPlayerEconomy(
-                loadout_value = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                     average = 1.337, 
                     overall = 56, ),
-                spent = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                     average = 1.337, 
                     overall = 56, )
             )
         else:
             return MatchesV2DataPlayerEconomy(
-                loadout_value = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                     average = 1.337, 
                     overall = 56, ),
-                spent = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                     average = 1.337, 
                     overall = 56, ),
         )

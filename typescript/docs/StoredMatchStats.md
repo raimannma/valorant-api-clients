@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMatchStats } from 'henrikdev-api-client';
+import { StoredMatchStats } from 'henrikdev_api_client';
 
 const instance: StoredMatchStats = {
     assists,

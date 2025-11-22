@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.leaderboard_v3_data_threshold import LeaderboardV3DataThreshold
+from henrikdev_api_client.models.leaderboard_v3_data_threshold import LeaderboardV3DataThreshold
 
 class TestLeaderboardV3DataThreshold(unittest.TestCase):
     """LeaderboardV3DataThreshold unit test stubs"""
@@ -37,7 +37,7 @@ class TestLeaderboardV3DataThreshold(unittest.TestCase):
             return LeaderboardV3DataThreshold(
                 start_index = 56,
                 threshold = 56,
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', )
             )
@@ -45,7 +45,7 @@ class TestLeaderboardV3DataThreshold(unittest.TestCase):
             return LeaderboardV3DataThreshold(
                 start_index = 56,
                 threshold = 56,
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
         )

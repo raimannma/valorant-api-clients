@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv3_leaderboard_placement import MMRV3LeaderboardPlacement
+from henrikdev_api_client.models.mmrv3_leaderboard_placement import MMRV3LeaderboardPlacement
 
 class TestMMRV3LeaderboardPlacement(unittest.TestCase):
     """MMRV3LeaderboardPlacement unit test stubs"""

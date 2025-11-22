@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PremierTeamV1ResponseDataCustomization } from 'henrikdev-api-client';
+import { PremierTeamV1ResponseDataCustomization } from 'henrikdev_api_client';
 
 const instance: PremierTeamV1ResponseDataCustomization = {
     icon,

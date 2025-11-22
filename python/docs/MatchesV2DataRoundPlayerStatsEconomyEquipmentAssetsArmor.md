@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_assets_armor import MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor
+from henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_assets_armor import MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_player_behavior import MatchesV4DataPlayerBehavior
+from henrikdev_api_client.models.matches_v4_data_player_behavior import MatchesV4DataPlayerBehavior
 
 class TestMatchesV4DataPlayerBehavior(unittest.TestCase):
     """MatchesV4DataPlayerBehavior unit test stubs"""
@@ -36,7 +36,7 @@ class TestMatchesV4DataPlayerBehavior(unittest.TestCase):
         if include_optional:
             return MatchesV4DataPlayerBehavior(
                 afk_rounds = 1.337,
-                friendly_fire = henrikdev-api-client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
+                friendly_fire = henrikdev_api_client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
                     incoming = 1.337, 
                     outgoing = 1.337, ),
                 rounds_in_spawn = 1.337
@@ -44,7 +44,7 @@ class TestMatchesV4DataPlayerBehavior(unittest.TestCase):
         else:
             return MatchesV4DataPlayerBehavior(
                 afk_rounds = 1.337,
-                friendly_fire = henrikdev-api-client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
+                friendly_fire = henrikdev_api_client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
                     incoming = 1.337, 
                     outgoing = 1.337, ),
                 rounds_in_spawn = 1.337,

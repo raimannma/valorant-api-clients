@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1_skill_disparity import QueueStatusV1SkillDisparity
+from henrikdev_api_client.models.queue_status_v1_skill_disparity import QueueStatusV1SkillDisparity
 
 class TestQueueStatusV1SkillDisparity(unittest.TestCase):
     """QueueStatusV1SkillDisparity unit test stubs"""
@@ -35,7 +35,7 @@ class TestQueueStatusV1SkillDisparity(unittest.TestCase):
         model = QueueStatusV1SkillDisparity()
         if include_optional:
             return QueueStatusV1SkillDisparity(
-                max_tier = henrikdev-api-client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
+                max_tier = henrikdev_api_client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
                     id = 0, 
                     name = '', ),
                 name = '',
@@ -43,7 +43,7 @@ class TestQueueStatusV1SkillDisparity(unittest.TestCase):
             )
         else:
             return QueueStatusV1SkillDisparity(
-                max_tier = henrikdev-api-client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
+                max_tier = henrikdev_api_client.models.queue_status_v1_id_name_pair.QueueStatusV1IDNamePair(
                     id = 0, 
                     name = '', ),
                 name = '',

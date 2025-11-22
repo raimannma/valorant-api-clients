@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.leaderboard_v3_data_threshold_tier import LeaderboardV3DataThresholdTier
+from henrikdev_api_client.models.leaderboard_v3_data_threshold_tier import LeaderboardV3DataThresholdTier
 
 # TODO update the JSON string below
 json = "{}"

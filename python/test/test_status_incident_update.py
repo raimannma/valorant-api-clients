@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.status_incident_update import StatusIncidentUpdate
+from henrikdev_api_client.models.status_incident_update import StatusIncidentUpdate
 
 class TestStatusIncidentUpdate(unittest.TestCase):
     """StatusIncidentUpdate unit test stubs"""
@@ -43,7 +43,7 @@ class TestStatusIncidentUpdate(unittest.TestCase):
                     ''
                     ],
                 translations = [
-                    henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                    henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                         content = '', 
                         locale = '', )
                     ],
@@ -59,7 +59,7 @@ class TestStatusIncidentUpdate(unittest.TestCase):
                     ''
                     ],
                 translations = [
-                    henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                    henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                         content = '', 
                         locale = '', )
                     ],

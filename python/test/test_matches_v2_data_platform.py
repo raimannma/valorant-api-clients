@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_platform import MatchesV2DataPlatform
+from henrikdev_api_client.models.matches_v2_data_platform import MatchesV2DataPlatform
 
 class TestMatchesV2DataPlatform(unittest.TestCase):
     """MatchesV2DataPlatform unit test stubs"""
@@ -35,14 +35,14 @@ class TestMatchesV2DataPlatform(unittest.TestCase):
         model = MatchesV2DataPlatform()
         if include_optional:
             return MatchesV2DataPlatform(
-                os = henrikdev-api-client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
+                os = henrikdev_api_client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
                     name = '', 
                     version = '', ),
                 type = ''
             )
         else:
             return MatchesV2DataPlatform(
-                os = henrikdev-api-client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
+                os = henrikdev_api_client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
                     name = '', 
                     version = '', ),
                 type = '',

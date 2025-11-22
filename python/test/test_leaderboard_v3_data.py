@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.leaderboard_v3_data import LeaderboardV3Data
+from henrikdev_api_client.models.leaderboard_v3_data import LeaderboardV3Data
 
 class TestLeaderboardV3Data(unittest.TestCase):
     """LeaderboardV3Data unit test stubs"""
@@ -36,7 +36,7 @@ class TestLeaderboardV3Data(unittest.TestCase):
         if include_optional:
             return LeaderboardV3Data(
                 players = [
-                    henrikdev-api-client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
+                    henrikdev_api_client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
                         card = '', 
                         is_anonymized = True, 
                         is_banned = True, 
@@ -51,10 +51,10 @@ class TestLeaderboardV3Data(unittest.TestCase):
                         wins = 56, )
                     ],
                 thresholds = [
-                    henrikdev-api-client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
+                    henrikdev_api_client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
                         start_index = 56, 
                         threshold = 56, 
-                        tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), )
                     ],
@@ -63,7 +63,7 @@ class TestLeaderboardV3Data(unittest.TestCase):
         else:
             return LeaderboardV3Data(
                 players = [
-                    henrikdev-api-client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
+                    henrikdev_api_client.models.leaderboard_v3_data_player.LeaderboardV3DataPlayer(
                         card = '', 
                         is_anonymized = True, 
                         is_banned = True, 
@@ -78,10 +78,10 @@ class TestLeaderboardV3Data(unittest.TestCase):
                         wins = 56, )
                     ],
                 thresholds = [
-                    henrikdev-api-client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
+                    henrikdev_api_client.models.leaderboard_v3_data_threshold.LeaderboardV3DataThreshold(
                         start_index = 56, 
                         threshold = 56, 
-                        tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), )
                     ],

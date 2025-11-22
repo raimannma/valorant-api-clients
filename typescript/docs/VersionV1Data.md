@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { VersionV1Data } from 'henrikdev-api-client';
+import { VersionV1Data } from 'henrikdev_api_client';
 
 const instance: VersionV1Data = {
     branch,

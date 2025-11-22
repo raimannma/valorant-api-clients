@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_round import MatchesV4DataRound
+from henrikdev_api_client.models.matches_v4_data_round import MatchesV4DataRound
 
 class TestMatchesV4DataRound(unittest.TestCase):
     """MatchesV4DataRound unit test stubs"""
@@ -36,21 +36,21 @@ class TestMatchesV4DataRound(unittest.TestCase):
         if include_optional:
             return MatchesV4DataRound(
                 ceremony = '',
-                defuse = henrikdev-api-client.models.matches_v4_data_round_defuse.MatchesV4DataRoundDefuse(
-                    location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                defuse = henrikdev_api_client.models.matches_v4_data_round_defuse.MatchesV4DataRoundDefuse(
+                    location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                         x = 56, 
                         y = 56, ), 
-                    player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                         name = '', 
                         puuid = '', 
                         tag = '', 
                         team = '', ), 
                     player_locations = [
-                        henrikdev-api-client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                            location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                        henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
+                            location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                                 x = 56, 
                                 y = 56, ), 
-                            player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                            player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                                 name = '', 
                                 puuid = '', 
                                 tag = '', 
@@ -59,21 +59,21 @@ class TestMatchesV4DataRound(unittest.TestCase):
                         ], 
                     round_time_in_ms = 56, ),
                 id = 0,
-                plant = henrikdev-api-client.models.matches_v4_data_round_plant.MatchesV4DataRoundPlant(
-                    location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                plant = henrikdev_api_client.models.matches_v4_data_round_plant.MatchesV4DataRoundPlant(
+                    location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                         x = 56, 
                         y = 56, ), 
-                    player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                         name = '', 
                         puuid = '', 
                         tag = '', 
                         team = '', ), 
                     player_locations = [
-                        henrikdev-api-client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                            location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                        henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
+                            location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                                 x = 56, 
                                 y = 56, ), 
-                            player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                            player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                                 name = '', 
                                 puuid = '', 
                                 tag = '', 
@@ -84,41 +84,41 @@ class TestMatchesV4DataRound(unittest.TestCase):
                     site = '', ),
                 result = '',
                 stats = [
-                    henrikdev-api-client.models.matches_v4_data_round_player_stats.MatchesV4DataRoundPlayerStats(
-                        ability_casts = henrikdev-api-client.models.matches_v4_data_round_player_stats_ability_casts.MatchesV4DataRoundPlayerStatsAbilityCasts(
+                    henrikdev_api_client.models.matches_v4_data_round_player_stats.MatchesV4DataRoundPlayerStats(
+                        ability_casts = henrikdev_api_client.models.matches_v4_data_round_player_stats_ability_casts.MatchesV4DataRoundPlayerStatsAbilityCasts(
                             ability_1 = 0, 
                             ability_2 = 0, 
                             grenade = 0, 
                             ultimate = 0, ), 
                         damage_events = [
-                            henrikdev-api-client.models.matches_v4_data_round_player_stats_damage_events.MatchesV4DataRoundPlayerStatsDamageEvents(
+                            henrikdev_api_client.models.matches_v4_data_round_player_stats_damage_events.MatchesV4DataRoundPlayerStatsDamageEvents(
                                 bodyshots = 0, 
                                 damage = 0, 
                                 headshots = 0, 
                                 legshots = 0, 
-                                player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                                     name = '', 
                                     puuid = '', 
                                     tag = '', 
                                     team = '', ), )
                             ], 
-                        economy = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
-                            armor = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
+                        economy = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
+                            armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
                                 id = '', 
                                 name = '', ), 
                             loadout_value = 56, 
                             remaining = 56, 
-                            weapon = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
+                            weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
                                 id = '', 
                                 name = '', 
                                 type = '', ), ), 
-                        player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                        player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 
                             tag = '', 
                             team = '', ), 
                         received_penalty = True, 
-                        stats = henrikdev-api-client.models.matches_v4_data_round_player_stats_stats.MatchesV4DataRoundPlayerStatsStats(
+                        stats = henrikdev_api_client.models.matches_v4_data_round_player_stats_stats.MatchesV4DataRoundPlayerStatsStats(
                             bodyshots = 0, 
                             headshots = 0, 
                             kills = 0, 
@@ -135,41 +135,41 @@ class TestMatchesV4DataRound(unittest.TestCase):
                 id = 0,
                 result = '',
                 stats = [
-                    henrikdev-api-client.models.matches_v4_data_round_player_stats.MatchesV4DataRoundPlayerStats(
-                        ability_casts = henrikdev-api-client.models.matches_v4_data_round_player_stats_ability_casts.MatchesV4DataRoundPlayerStatsAbilityCasts(
+                    henrikdev_api_client.models.matches_v4_data_round_player_stats.MatchesV4DataRoundPlayerStats(
+                        ability_casts = henrikdev_api_client.models.matches_v4_data_round_player_stats_ability_casts.MatchesV4DataRoundPlayerStatsAbilityCasts(
                             ability_1 = 0, 
                             ability_2 = 0, 
                             grenade = 0, 
                             ultimate = 0, ), 
                         damage_events = [
-                            henrikdev-api-client.models.matches_v4_data_round_player_stats_damage_events.MatchesV4DataRoundPlayerStatsDamageEvents(
+                            henrikdev_api_client.models.matches_v4_data_round_player_stats_damage_events.MatchesV4DataRoundPlayerStatsDamageEvents(
                                 bodyshots = 0, 
                                 damage = 0, 
                                 headshots = 0, 
                                 legshots = 0, 
-                                player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                                     name = '', 
                                     puuid = '', 
                                     tag = '', 
                                     team = '', ), )
                             ], 
-                        economy = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
-                            armor = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
+                        economy = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
+                            armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
                                 id = '', 
                                 name = '', ), 
                             loadout_value = 56, 
                             remaining = 56, 
-                            weapon = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
+                            weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
                                 id = '', 
                                 name = '', 
                                 type = '', ), ), 
-                        player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                        player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 
                             tag = '', 
                             team = '', ), 
                         received_penalty = True, 
-                        stats = henrikdev-api-client.models.matches_v4_data_round_player_stats_stats.MatchesV4DataRoundPlayerStatsStats(
+                        stats = henrikdev_api_client.models.matches_v4_data_round_player_stats_stats.MatchesV4DataRoundPlayerStatsStats(
                             bodyshots = 0, 
                             headshots = 0, 
                             kills = 0, 

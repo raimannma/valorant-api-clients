@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_player_stats_economy import MatchesV2DataRoundPlayerStatsEconomy
+from henrikdev_api_client.models.matches_v2_data_round_player_stats_economy import MatchesV2DataRoundPlayerStatsEconomy
 
 class TestMatchesV2DataRoundPlayerStatsEconomy(unittest.TestCase):
     """MatchesV2DataRoundPlayerStatsEconomy unit test stubs"""
@@ -35,16 +35,16 @@ class TestMatchesV2DataRoundPlayerStatsEconomy(unittest.TestCase):
         model = MatchesV2DataRoundPlayerStatsEconomy()
         if include_optional:
             return MatchesV2DataRoundPlayerStatsEconomy(
-                armor = henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor(
-                    assets = henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_assets_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor(
+                armor = henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor(
+                    assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_assets_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor(
                         display_icon = '', ), 
                     id = '', 
                     name = '', ),
                 loadout_value = 0,
                 remaining = 0,
                 spent = 56,
-                weapon = henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_weapon.MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(
-                    assets = henrikdev-api-client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
+                weapon = henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_weapon.MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(
+                    assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
                         display_icon = '', 
                         killfeed_icon = '', ), 
                     id = '', 
@@ -52,16 +52,16 @@ class TestMatchesV2DataRoundPlayerStatsEconomy(unittest.TestCase):
             )
         else:
             return MatchesV2DataRoundPlayerStatsEconomy(
-                armor = henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor(
-                    assets = henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_assets_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor(
+                armor = henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentArmor(
+                    assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_assets_armor.MatchesV2DataRoundPlayerStatsEconomyEquipmentAssetsArmor(
                         display_icon = '', ), 
                     id = '', 
                     name = '', ),
                 loadout_value = 0,
                 remaining = 0,
                 spent = 56,
-                weapon = henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_weapon.MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(
-                    assets = henrikdev-api-client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
+                weapon = henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_weapon.MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(
+                    assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
                         display_icon = '', 
                         killfeed_icon = '', ), 
                     id = '', 

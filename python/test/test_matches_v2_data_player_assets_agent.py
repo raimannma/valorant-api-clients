@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_player_assets_agent import MatchesV2DataPlayerAssetsAgent
+from henrikdev_api_client.models.matches_v2_data_player_assets_agent import MatchesV2DataPlayerAssetsAgent
 
 class TestMatchesV2DataPlayerAssetsAgent(unittest.TestCase):
     """MatchesV2DataPlayerAssetsAgent unit test stubs"""

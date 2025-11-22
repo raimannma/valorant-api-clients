@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_player_assets import MatchesV2DataPlayerAssets
+from henrikdev_api_client.models.matches_v2_data_player_assets import MatchesV2DataPlayerAssets
 
 class TestMatchesV2DataPlayerAssets(unittest.TestCase):
     """MatchesV2DataPlayerAssets unit test stubs"""
@@ -35,24 +35,24 @@ class TestMatchesV2DataPlayerAssets(unittest.TestCase):
         model = MatchesV2DataPlayerAssets()
         if include_optional:
             return MatchesV2DataPlayerAssets(
-                agent = henrikdev-api-client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
+                agent = henrikdev_api_client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
                     bust = '', 
                     full = '', 
                     killfeed = '', 
                     small = '', ),
-                card = henrikdev-api-client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
+                card = henrikdev_api_client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
                     large = '', 
                     small = '', 
                     wide = '', )
             )
         else:
             return MatchesV2DataPlayerAssets(
-                agent = henrikdev-api-client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
+                agent = henrikdev_api_client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
                     bust = '', 
                     full = '', 
                     killfeed = '', 
                     small = '', ),
-                card = henrikdev-api-client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
+                card = henrikdev_api_client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
                     large = '', 
                     small = '', 
                     wide = '', ),

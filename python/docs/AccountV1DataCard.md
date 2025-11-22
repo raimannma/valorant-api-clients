@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.account_v1_data_card import AccountV1DataCard
+from henrikdev_api_client.models.account_v1_data_card import AccountV1DataCard
 
 # TODO update the JSON string below
 json = "{}"

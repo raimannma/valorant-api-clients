@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.esports_v1_data_match_teams import EsportsV1DataMatchTeams
+from henrikdev_api_client.models.esports_v1_data_match_teams import EsportsV1DataMatchTeams
 
 class TestEsportsV1DataMatchTeams(unittest.TestCase):
     """EsportsV1DataMatchTeams unit test stubs"""
@@ -40,7 +40,7 @@ class TestEsportsV1DataMatchTeams(unittest.TestCase):
                 has_won = True,
                 icon = '',
                 name = '',
-                record = henrikdev-api-client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
+                record = henrikdev_api_client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
                     losses = 56, 
                     wins = 56, )
             )
@@ -51,7 +51,7 @@ class TestEsportsV1DataMatchTeams(unittest.TestCase):
                 has_won = True,
                 icon = '',
                 name = '',
-                record = henrikdev-api-client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
+                record = henrikdev_api_client.models.esports_v1_data_match_teams_record.EsportsV1DataMatchTeamsRecord(
                     losses = 56, 
                     wins = 56, ),
         )

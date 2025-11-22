@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { RawV1ResponseData } from 'henrikdev-api-client';
+import { RawV1ResponseData } from 'henrikdev_api_client';
 
 const instance: RawV1ResponseData = {
     code,

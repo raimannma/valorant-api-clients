@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv3_seasonal import MMRV3Seasonal
+from henrikdev_api_client.models.mmrv3_seasonal import MMRV3Seasonal
 
 class TestMMRV3Seasonal(unittest.TestCase):
     """MMRV3Seasonal unit test stubs"""
@@ -36,20 +36,20 @@ class TestMMRV3Seasonal(unittest.TestCase):
         if include_optional:
             return MMRV3Seasonal(
                 act_wins = [
-                    henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', )
                     ],
                 end_rr = 56,
-                end_tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                end_tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
                 games = 56,
-                leaderboard_placement = henrikdev-api-client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
+                leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                     rank = 0, 
                     updated_at = '', ),
                 ranking_schema = '',
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
                 wins = 56
@@ -57,17 +57,17 @@ class TestMMRV3Seasonal(unittest.TestCase):
         else:
             return MMRV3Seasonal(
                 act_wins = [
-                    henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', )
                     ],
                 end_rr = 56,
-                end_tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                end_tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
                 games = 56,
                 ranking_schema = '',
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
                 wins = 56,

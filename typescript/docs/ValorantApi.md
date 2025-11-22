@@ -61,7 +61,7 @@ All URIs are relative to *https://api.henrikdev.xyz*
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -113,7 +113,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -166,7 +166,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -222,7 +222,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -278,7 +278,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -337,7 +337,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -396,7 +396,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -449,7 +449,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -514,7 +514,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -582,7 +582,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -653,7 +653,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -727,7 +727,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -783,7 +783,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -842,7 +842,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -901,7 +901,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -963,7 +963,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1019,7 +1019,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1078,7 +1078,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1134,7 +1134,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1193,7 +1193,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1252,7 +1252,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1314,7 +1314,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1376,7 +1376,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1441,7 +1441,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1512,7 +1512,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1565,7 +1565,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1621,7 +1621,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1674,7 +1674,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1727,7 +1727,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1783,7 +1783,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1837,7 +1837,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1896,7 +1896,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -1955,7 +1955,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2009,7 +2009,7 @@ import {
     ValorantApi,
     Configuration,
     RawV1Payload
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2062,7 +2062,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2115,7 +2115,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2168,7 +2168,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2221,7 +2221,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2289,7 +2289,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2354,7 +2354,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2416,7 +2416,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2475,7 +2475,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2540,7 +2540,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2602,7 +2602,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2655,7 +2655,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
@@ -2711,7 +2711,7 @@ No authorization required
 import {
     ValorantApi,
     Configuration
-} from 'henrikdev-api-client';
+} from 'henrikdev_api_client';
 
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.stored_match_meta_season import StoredMatchMetaSeason
+from henrikdev_api_client.models.stored_match_meta_season import StoredMatchMetaSeason
 
 # TODO update the JSON string below
 json = "{}"

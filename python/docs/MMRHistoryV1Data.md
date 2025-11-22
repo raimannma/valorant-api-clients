@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.mmr_history_v1_data import MMRHistoryV1Data
+from henrikdev_api_client.models.mmr_history_v1_data import MMRHistoryV1Data
 
 # TODO update the JSON string below
 json = "{}"

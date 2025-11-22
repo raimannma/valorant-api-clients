@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { QueueStatusV1GameRules } from 'henrikdev-api-client';
+import { QueueStatusV1GameRules } from 'henrikdev_api_client';
 
 const instance: QueueStatusV1GameRules = {
     allow_drop_out,

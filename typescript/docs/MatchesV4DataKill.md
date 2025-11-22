@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataKill } from 'henrikdev-api-client';
+import { MatchesV4DataKill } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataKill = {
     assistants,

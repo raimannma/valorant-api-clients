@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { EsportsV1DataMatchGameType } from 'henrikdev-api-client';
+import { EsportsV1DataMatchGameType } from 'henrikdev_api_client';
 
 const instance: EsportsV1DataMatchGameType = {
     count,

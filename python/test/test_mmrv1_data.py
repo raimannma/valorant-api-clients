@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv1_data import MMRV1Data
+from henrikdev_api_client.models.mmrv1_data import MMRV1Data
 
 class TestMMRV1Data(unittest.TestCase):
     """MMRV1Data unit test stubs"""
@@ -38,7 +38,7 @@ class TestMMRV1Data(unittest.TestCase):
                 currenttier = 56,
                 currenttierpatched = '',
                 elo = 56,
-                images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                     large = '', 
                     small = '', 
                     triangle_down = '', 
@@ -54,7 +54,7 @@ class TestMMRV1Data(unittest.TestCase):
                 currenttier = 56,
                 currenttierpatched = '',
                 elo = 56,
-                images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                     large = '', 
                     small = '', 
                     triangle_down = '', 

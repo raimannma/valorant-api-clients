@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match_stats import StoredMatchStats
+from henrikdev_api_client.models.stored_match_stats import StoredMatchStats
 
 class TestStoredMatchStats(unittest.TestCase):
     """StoredMatchStats unit test stubs"""
@@ -36,10 +36,10 @@ class TestStoredMatchStats(unittest.TestCase):
         if include_optional:
             return StoredMatchStats(
                 assists = 0,
-                character = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                character = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
-                damage = henrikdev-api-client.models.stored_match_stats_damage.StoredMatchStatsDamage(
+                damage = henrikdev_api_client.models.stored_match_stats_damage.StoredMatchStatsDamage(
                     made = 56, 
                     received = 56, ),
                 deaths = 0,
@@ -47,7 +47,7 @@ class TestStoredMatchStats(unittest.TestCase):
                 level = 0,
                 puuid = '',
                 score = 56,
-                shots = henrikdev-api-client.models.stored_match_stats_shots.StoredMatchStatsShots(
+                shots = henrikdev_api_client.models.stored_match_stats_shots.StoredMatchStatsShots(
                     body = 0, 
                     head = 0, 
                     leg = 0, ),
@@ -57,10 +57,10 @@ class TestStoredMatchStats(unittest.TestCase):
         else:
             return StoredMatchStats(
                 assists = 0,
-                character = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                character = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
-                damage = henrikdev-api-client.models.stored_match_stats_damage.StoredMatchStatsDamage(
+                damage = henrikdev_api_client.models.stored_match_stats_damage.StoredMatchStatsDamage(
                     made = 56, 
                     received = 56, ),
                 deaths = 0,
@@ -68,7 +68,7 @@ class TestStoredMatchStats(unittest.TestCase):
                 level = 0,
                 puuid = '',
                 score = 56,
-                shots = henrikdev-api-client.models.stored_match_stats_shots.StoredMatchStatsShots(
+                shots = henrikdev_api_client.models.stored_match_stats_shots.StoredMatchStatsShots(
                     body = 0, 
                     head = 0, 
                     leg = 0, ),

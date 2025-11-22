@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_search_response import PremierSearchResponse
+from henrikdev_api_client.models.premier_search_response import PremierSearchResponse
 
 class TestPremierSearchResponse(unittest.TestCase):
     """PremierSearchResponse unit test stubs"""
@@ -36,10 +36,10 @@ class TestPremierSearchResponse(unittest.TestCase):
         if include_optional:
             return PremierSearchResponse(
                 data = [
-                    henrikdev-api-client.models.premier_team_lite_response_data.PremierTeamLiteResponseData(
+                    henrikdev_api_client.models.premier_team_lite_response_data.PremierTeamLiteResponseData(
                         affinity = '', 
                         conference = '', 
-                        customization = henrikdev-api-client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
+                        customization = henrikdev_api_client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
                             icon = '', 
                             image = '', 
                             primary = '', 
@@ -61,10 +61,10 @@ class TestPremierSearchResponse(unittest.TestCase):
         else:
             return PremierSearchResponse(
                 data = [
-                    henrikdev-api-client.models.premier_team_lite_response_data.PremierTeamLiteResponseData(
+                    henrikdev_api_client.models.premier_team_lite_response_data.PremierTeamLiteResponseData(
                         affinity = '', 
                         conference = '', 
-                        customization = henrikdev-api-client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
+                        customization = henrikdev_api_client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
                             icon = '', 
                             image = '', 
                             primary = '', 

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRDataImages } from 'henrikdev-api-client';
+import { MMRDataImages } from 'henrikdev_api_client';
 
 const instance: MMRDataImages = {
     large,

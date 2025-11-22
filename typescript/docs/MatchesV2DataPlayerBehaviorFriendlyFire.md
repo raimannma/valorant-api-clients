@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV2DataPlayerBehaviorFriendlyFire } from 'henrikdev-api-client';
+import { MatchesV2DataPlayerBehaviorFriendlyFire } from 'henrikdev_api_client';
 
 const instance: MatchesV2DataPlayerBehaviorFriendlyFire = {
     incoming,

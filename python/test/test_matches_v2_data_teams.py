@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_teams import MatchesV2DataTeams
+from henrikdev_api_client.models.matches_v2_data_teams import MatchesV2DataTeams
 
 class TestMatchesV2DataTeams(unittest.TestCase):
     """MatchesV2DataTeams unit test stubs"""
@@ -35,10 +35,10 @@ class TestMatchesV2DataTeams(unittest.TestCase):
         model = MatchesV2DataTeams()
         if include_optional:
             return MatchesV2DataTeams(
-                blue = henrikdev-api-client.models.matches_v2_data_team.MatchesV2DataTeam(
+                blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev-api-client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev-api-client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
+                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
+                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                             icon = '', 
                             image = '', 
                             primary_color = '', 
@@ -52,10 +52,10 @@ class TestMatchesV2DataTeams(unittest.TestCase):
                         tag = '', ), 
                     rounds_lost = 0, 
                     rounds_won = 0, ),
-                red = henrikdev-api-client.models.matches_v2_data_team.MatchesV2DataTeam(
+                red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev-api-client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev-api-client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
+                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
+                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                             icon = '', 
                             image = '', 
                             primary_color = '', 
@@ -72,10 +72,10 @@ class TestMatchesV2DataTeams(unittest.TestCase):
             )
         else:
             return MatchesV2DataTeams(
-                blue = henrikdev-api-client.models.matches_v2_data_team.MatchesV2DataTeam(
+                blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev-api-client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev-api-client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
+                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
+                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                             icon = '', 
                             image = '', 
                             primary_color = '', 
@@ -89,10 +89,10 @@ class TestMatchesV2DataTeams(unittest.TestCase):
                         tag = '', ), 
                     rounds_lost = 0, 
                     rounds_won = 0, ),
-                red = henrikdev-api-client.models.matches_v2_data_team.MatchesV2DataTeam(
+                red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev-api-client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev-api-client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
+                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
+                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                             icon = '', 
                             image = '', 
                             primary_color = '', 

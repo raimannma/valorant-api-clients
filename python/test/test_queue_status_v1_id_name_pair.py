@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1_id_name_pair import QueueStatusV1IDNamePair
+from henrikdev_api_client.models.queue_status_v1_id_name_pair import QueueStatusV1IDNamePair
 
 class TestQueueStatusV1IDNamePair(unittest.TestCase):
     """QueueStatusV1IDNamePair unit test stubs"""

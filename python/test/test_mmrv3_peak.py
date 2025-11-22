@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv3_peak import MMRV3Peak
+from henrikdev_api_client.models.mmrv3_peak import MMRV3Peak
 
 class TestMMRV3Peak(unittest.TestCase):
     """MMRV3Peak unit test stubs"""
@@ -37,10 +37,10 @@ class TestMMRV3Peak(unittest.TestCase):
             return MMRV3Peak(
                 ranking_schema = '',
                 rr = 56,
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', )
             )
@@ -48,10 +48,10 @@ class TestMMRV3Peak(unittest.TestCase):
             return MMRV3Peak(
                 ranking_schema = '',
                 rr = 56,
-                season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
         )

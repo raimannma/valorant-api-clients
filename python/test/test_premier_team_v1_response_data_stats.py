@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_v1_response_data_stats import PremierTeamV1ResponseDataStats
+from henrikdev_api_client.models.premier_team_v1_response_data_stats import PremierTeamV1ResponseDataStats
 
 class TestPremierTeamV1ResponseDataStats(unittest.TestCase):
     """PremierTeamV1ResponseDataStats unit test stubs"""

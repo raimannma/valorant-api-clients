@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { RawV1PayloadValues } from 'henrikdev-api-client';
+import { RawV1PayloadValues } from 'henrikdev_api_client';
 
 const instance: RawV1PayloadValues = {
 };

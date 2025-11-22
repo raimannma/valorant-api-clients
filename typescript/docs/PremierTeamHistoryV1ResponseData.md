@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PremierTeamHistoryV1ResponseData } from 'henrikdev-api-client';
+import { PremierTeamHistoryV1ResponseData } from 'henrikdev_api_client';
 
 const instance: PremierTeamHistoryV1ResponseData = {
     league_matches,

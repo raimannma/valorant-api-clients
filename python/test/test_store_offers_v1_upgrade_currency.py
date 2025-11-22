@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.store_offers_v1_upgrade_currency import StoreOffersV1UpgradeCurrency
+from henrikdev_api_client.models.store_offers_v1_upgrade_currency import StoreOffersV1UpgradeCurrency
 
 class TestStoreOffersV1UpgradeCurrency(unittest.TestCase):
     """StoreOffersV1UpgradeCurrency unit test stubs"""
@@ -36,14 +36,14 @@ class TestStoreOffersV1UpgradeCurrency(unittest.TestCase):
         if include_optional:
             return StoreOffersV1UpgradeCurrency(
                 discounted_percent = 1.337,
-                offer = henrikdev-api-client.models.store_offers_v1_offer.StoreOffersV1Offer(
+                offer = henrikdev_api_client.models.store_offers_v1_offer.StoreOffersV1Offer(
                     cost = {
                         'key' : 56
                         }, 
                     is_direct_purchase = True, 
                     offer_id = '', 
                     rewards = [
-                        henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                        henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                             item_id = '', 
                             item_type_id = '', 
                             quantity = 56, )
@@ -55,14 +55,14 @@ class TestStoreOffersV1UpgradeCurrency(unittest.TestCase):
         else:
             return StoreOffersV1UpgradeCurrency(
                 discounted_percent = 1.337,
-                offer = henrikdev-api-client.models.store_offers_v1_offer.StoreOffersV1Offer(
+                offer = henrikdev_api_client.models.store_offers_v1_offer.StoreOffersV1Offer(
                     cost = {
                         'key' : 56
                         }, 
                     is_direct_purchase = True, 
                     offer_id = '', 
                     rewards = [
-                        henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                        henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                             item_id = '', 
                             item_type_id = '', 
                             quantity = 56, )

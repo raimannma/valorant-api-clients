@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { APIError } from 'henrikdev-api-client';
+import { APIError } from 'henrikdev_api_client';
 
 const instance: APIError = {
     code,

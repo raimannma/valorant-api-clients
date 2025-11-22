@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.pagination import Pagination
+from henrikdev_api_client.models.pagination import Pagination
 
 class TestPagination(unittest.TestCase):
     """Pagination unit test stubs"""

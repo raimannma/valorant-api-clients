@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.store_offers_v1_upgrade_currency import StoreOffersV1UpgradeCurrency
+from henrikdev_api_client.models.store_offers_v1_upgrade_currency import StoreOffersV1UpgradeCurrency
 
 # TODO update the JSON string below
 json = "{}"

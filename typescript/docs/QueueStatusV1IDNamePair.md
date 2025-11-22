@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { QueueStatusV1IDNamePair } from 'henrikdev-api-client';
+import { QueueStatusV1IDNamePair } from 'henrikdev_api_client';
 
 const instance: QueueStatusV1IDNamePair = {
     id,

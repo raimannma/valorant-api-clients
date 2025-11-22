@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { QueueStatusV1SkillDisparity } from 'henrikdev-api-client';
+import { QueueStatusV1SkillDisparity } from 'henrikdev_api_client';
 
 const instance: QueueStatusV1SkillDisparity = {
     max_tier,

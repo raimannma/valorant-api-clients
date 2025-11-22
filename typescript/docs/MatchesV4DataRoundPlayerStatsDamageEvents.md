@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataRoundPlayerStatsDamageEvents } from 'henrikdev-api-client';
+import { MatchesV4DataRoundPlayerStatsDamageEvents } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataRoundPlayerStatsDamageEvents = {
     bodyshots,

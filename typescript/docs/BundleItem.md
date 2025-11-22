@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { BundleItem } from 'henrikdev-api-client';
+import { BundleItem } from 'henrikdev_api_client';
 
 const instance: BundleItem = {
     BasePrice,

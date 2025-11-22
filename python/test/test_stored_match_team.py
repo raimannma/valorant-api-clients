@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_match_team import StoredMatchTeam
+from henrikdev_api_client.models.stored_match_team import StoredMatchTeam
 
 class TestStoredMatchTeam(unittest.TestCase):
     """StoredMatchTeam unit test stubs"""

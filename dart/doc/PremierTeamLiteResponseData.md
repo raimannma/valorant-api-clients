@@ -1,8 +1,8 @@
-# henrikdev-api-client.model.PremierTeamLiteResponseData
+# henrikdev_api_client.model.PremierTeamLiteResponseData
 
 ## Load the model package
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 ```
 
 ## Properties

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MMRHistoryV1Response } from 'henrikdev-api-client';
+import { MMRHistoryV1Response } from 'henrikdev_api_client';
 
 const instance: MMRHistoryV1Response = {
     data,

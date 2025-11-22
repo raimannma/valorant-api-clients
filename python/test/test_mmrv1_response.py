@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmrv1_response import MMRV1Response
+from henrikdev_api_client.models.mmrv1_response import MMRV1Response
 
 class TestMMRV1Response(unittest.TestCase):
     """MMRV1Response unit test stubs"""
@@ -35,11 +35,11 @@ class TestMMRV1Response(unittest.TestCase):
         model = MMRV1Response()
         if include_optional:
             return MMRV1Response(
-                data = henrikdev-api-client.models.mmrv1_data.MMRV1Data(
+                data = henrikdev_api_client.models.mmrv1_data.MMRV1Data(
                     currenttier = 56, 
                     currenttierpatched = '', 
                     elo = 56, 
-                    images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                    images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                         large = '', 
                         small = '', 
                         triangle_down = '', 
@@ -53,11 +53,11 @@ class TestMMRV1Response(unittest.TestCase):
             )
         else:
             return MMRV1Response(
-                data = henrikdev-api-client.models.mmrv1_data.MMRV1Data(
+                data = henrikdev_api_client.models.mmrv1_data.MMRV1Data(
                     currenttier = 56, 
                     currenttierpatched = '', 
                     elo = 56, 
-                    images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                    images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                         large = '', 
                         small = '', 
                         triangle_down = '', 

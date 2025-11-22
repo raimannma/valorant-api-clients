@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_metadata_premier_info import MatchesV2DataMetadataPremierInfo
+from henrikdev_api_client.models.matches_v2_data_metadata_premier_info import MatchesV2DataMetadataPremierInfo
 
 class TestMatchesV2DataMetadataPremierInfo(unittest.TestCase):
     """MatchesV2DataMetadataPremierInfo unit test stubs"""

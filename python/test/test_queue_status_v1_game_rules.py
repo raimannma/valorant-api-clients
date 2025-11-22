@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1_game_rules import QueueStatusV1GameRules
+from henrikdev_api_client.models.queue_status_v1_game_rules import QueueStatusV1GameRules
 
 class TestQueueStatusV1GameRules(unittest.TestCase):
     """QueueStatusV1GameRules unit test stubs"""

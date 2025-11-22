@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.stored_mmr_response import StoredMMRResponse
+from henrikdev_api_client.models.stored_mmr_response import StoredMMRResponse
 
 # TODO update the JSON string below
 json = "{}"

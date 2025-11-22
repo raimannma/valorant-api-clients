@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.mmrv2_highest_rank import MMRV2HighestRank
+from henrikdev_api_client.models.mmrv2_highest_rank import MMRV2HighestRank
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMMRTier } from 'henrikdev-api-client';
+import { StoredMMRTier } from 'henrikdev_api_client';
 
 const instance: StoredMMRTier = {
     id,

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_plant_events import MatchesV2DataRoundPlantEvents
+from henrikdev_api_client.models.matches_v2_data_round_plant_events import MatchesV2DataRoundPlantEvents
 
 class TestMatchesV2DataRoundPlantEvents(unittest.TestCase):
     """MatchesV2DataRoundPlantEvents unit test stubs"""
@@ -35,18 +35,18 @@ class TestMatchesV2DataRoundPlantEvents(unittest.TestCase):
         model = MatchesV2DataRoundPlantEvents()
         if include_optional:
             return MatchesV2DataRoundPlantEvents(
-                plant_location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                plant_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                     x = 56, 
                     y = 56, ),
                 plant_site = '',
                 plant_time_in_round = 0,
-                planted_by = henrikdev-api-client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
+                planted_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
                     display_name = '', 
                     puuid = '', 
                     team = '', ),
                 player_locations_on_plant = [
-                    henrikdev-api-client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
-                        location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                    henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                             x = 56, 
                             y = 56, ), 
                         player_display_name = '', 

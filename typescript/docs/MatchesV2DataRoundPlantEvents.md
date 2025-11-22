@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV2DataRoundPlantEvents } from 'henrikdev-api-client';
+import { MatchesV2DataRoundPlantEvents } from 'henrikdev_api_client';
 
 const instance: MatchesV2DataRoundPlantEvents = {
     plant_location,

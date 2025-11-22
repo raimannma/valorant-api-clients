@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoreFeaturedV1 } from 'henrikdev-api-client';
+import { StoreFeaturedV1 } from 'henrikdev_api_client';
 
 const instance: StoreFeaturedV1 = {
     FeaturedBundle,

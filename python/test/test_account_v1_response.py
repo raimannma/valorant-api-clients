@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.account_v1_response import AccountV1Response
+from henrikdev_api_client.models.account_v1_response import AccountV1Response
 
 class TestAccountV1Response(unittest.TestCase):
     """AccountV1Response unit test stubs"""
@@ -35,9 +35,9 @@ class TestAccountV1Response(unittest.TestCase):
         model = AccountV1Response()
         if include_optional:
             return AccountV1Response(
-                data = henrikdev-api-client.models.account_v1_data.AccountV1Data(
+                data = henrikdev_api_client.models.account_v1_data.AccountV1Data(
                     account_level = 56, 
-                    card = henrikdev-api-client.models.account_v1_data_card.AccountV1DataCard(
+                    card = henrikdev_api_client.models.account_v1_data_card.AccountV1DataCard(
                         id = '', 
                         large = '', 
                         small = '', 
@@ -52,9 +52,9 @@ class TestAccountV1Response(unittest.TestCase):
             )
         else:
             return AccountV1Response(
-                data = henrikdev-api-client.models.account_v1_data.AccountV1Data(
+                data = henrikdev_api_client.models.account_v1_data.AccountV1Data(
                     account_level = 56, 
-                    card = henrikdev-api-client.models.account_v1_data_card.AccountV1DataCard(
+                    card = henrikdev_api_client.models.account_v1_data_card.AccountV1DataCard(
                         id = '', 
                         large = '', 
                         small = '', 

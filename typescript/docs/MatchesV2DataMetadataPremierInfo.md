@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV2DataMetadataPremierInfo } from 'henrikdev-api-client';
+import { MatchesV2DataMetadataPremierInfo } from 'henrikdev_api_client';
 
 const instance: MatchesV2DataMetadataPremierInfo = {
     matchup_id,

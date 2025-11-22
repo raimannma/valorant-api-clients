@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMMR } from 'henrikdev-api-client';
+import { StoredMMR } from 'henrikdev_api_client';
 
 const instance: StoredMMR = {
     date,

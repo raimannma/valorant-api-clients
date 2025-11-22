@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.send_error import SendError
+from henrikdev_api_client.models.send_error import SendError
 
 class TestSendError(unittest.TestCase):
     """SendError unit test stubs"""
@@ -36,7 +36,7 @@ class TestSendError(unittest.TestCase):
         if include_optional:
             return SendError(
                 errors = [
-                    henrikdev-api-client.models.api_error.APIError(
+                    henrikdev_api_client.models.api_error.APIError(
                         code = 0, 
                         details = null, 
                         message = '', 
@@ -46,7 +46,7 @@ class TestSendError(unittest.TestCase):
         else:
             return SendError(
                 errors = [
-                    henrikdev-api-client.models.api_error.APIError(
+                    henrikdev_api_client.models.api_error.APIError(
                         code = 0, 
                         details = null, 
                         message = '', 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataMetadataPartyRRPenalty } from 'henrikdev-api-client';
+import { MatchesV4DataMetadataPartyRRPenalty } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataMetadataPartyRRPenalty = {
     party_id,

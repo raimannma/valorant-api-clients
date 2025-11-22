@@ -1,8 +1,8 @@
-# henrikdev-api-client.model.MatchesV4DataRoundPlant
+# henrikdev_api_client.model.MatchesV4DataRoundPlant
 
 ## Load the model package
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 ```
 
 ## Properties

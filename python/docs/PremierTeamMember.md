@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.premier_team_member import PremierTeamMember
+from henrikdev_api_client.models.premier_team_member import PremierTeamMember
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_defuse_events import MatchesV2DataRoundDefuseEvents
+from henrikdev_api_client.models.matches_v2_data_round_defuse_events import MatchesV2DataRoundDefuseEvents
 
 class TestMatchesV2DataRoundDefuseEvents(unittest.TestCase):
     """MatchesV2DataRoundDefuseEvents unit test stubs"""
@@ -35,17 +35,17 @@ class TestMatchesV2DataRoundDefuseEvents(unittest.TestCase):
         model = MatchesV2DataRoundDefuseEvents()
         if include_optional:
             return MatchesV2DataRoundDefuseEvents(
-                defuse_location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                defuse_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                     x = 56, 
                     y = 56, ),
                 defuse_time_in_round = 0,
-                defused_by = henrikdev-api-client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
+                defused_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
                     display_name = '', 
                     puuid = '', 
                     team = '', ),
                 player_locations_on_defuse = [
-                    henrikdev-api-client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
-                        location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                    henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                             x = 56, 
                             y = 56, ), 
                         player_display_name = '', 

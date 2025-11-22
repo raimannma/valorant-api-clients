@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { EsportsV1Data } from 'henrikdev-api-client';
+import { EsportsV1Data } from 'henrikdev_api_client';
 
 const instance: EsportsV1Data = {
     date,

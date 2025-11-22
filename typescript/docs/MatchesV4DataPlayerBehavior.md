@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataPlayerBehavior } from 'henrikdev-api-client';
+import { MatchesV4DataPlayerBehavior } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataPlayerBehavior = {
     afk_rounds,

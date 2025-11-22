@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { LeaderboardV3Response } from 'henrikdev-api-client';
+import { LeaderboardV3Response } from 'henrikdev_api_client';
 
 const instance: LeaderboardV3Response = {
     data,

@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { LeaderboardPVPPlayer } from 'henrikdev-api-client';
+import { LeaderboardPVPPlayer } from 'henrikdev_api_client';
 
 const instance: LeaderboardPVPPlayer = {
     IsAnonymized,

@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_player import MatchesV4DataPlayer
+from henrikdev_api_client.models.matches_v4_data_player import MatchesV4DataPlayer
 
 class TestMatchesV4DataPlayer(unittest.TestCase):
     """MatchesV4DataPlayer unit test stubs"""
@@ -35,30 +35,30 @@ class TestMatchesV4DataPlayer(unittest.TestCase):
         model = MatchesV4DataPlayer()
         if include_optional:
             return MatchesV4DataPlayer(
-                ability_casts = henrikdev-api-client.models.matches_v4_data_player_ability_casts.MatchesV4DataPlayerAbilityCasts(
+                ability_casts = henrikdev_api_client.models.matches_v4_data_player_ability_casts.MatchesV4DataPlayerAbilityCasts(
                     ability1 = 0, 
                     ability2 = 0, 
                     grenade = 0, 
                     ultimate = 0, ),
                 account_level = 0,
-                agent = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                agent = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
-                behavior = henrikdev-api-client.models.matches_v4_data_player_behavior.MatchesV4DataPlayerBehavior(
+                behavior = henrikdev_api_client.models.matches_v4_data_player_behavior.MatchesV4DataPlayerBehavior(
                     afk_rounds = 1.337, 
-                    friendly_fire = henrikdev-api-client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
+                    friendly_fire = henrikdev_api_client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
                         incoming = 1.337, 
                         outgoing = 1.337, ), 
                     rounds_in_spawn = 1.337, ),
-                customization = henrikdev-api-client.models.matches_v4_data_player_customization.MatchesV4DataPlayerCustomization(
+                customization = henrikdev_api_client.models.matches_v4_data_player_customization.MatchesV4DataPlayerCustomization(
                     card = '', 
                     preferred_level_border = '', 
                     title = '', ),
-                economy = henrikdev-api-client.models.matches_v4_data_player_economy.MatchesV4DataPlayerEconomy(
-                    loadout_value = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                economy = henrikdev_api_client.models.matches_v4_data_player_economy.MatchesV4DataPlayerEconomy(
+                    loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                         average = 1.337, 
                         overall = 56, ), 
-                    spent = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                    spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                         average = 1.337, 
                         overall = 56, ), ),
                 name = '',
@@ -66,10 +66,10 @@ class TestMatchesV4DataPlayer(unittest.TestCase):
                 platform = '',
                 puuid = '',
                 session_playtime_in_ms = 0,
-                stats = henrikdev-api-client.models.matches_v4_data_player_stats.MatchesV4DataPlayerStats(
+                stats = henrikdev_api_client.models.matches_v4_data_player_stats.MatchesV4DataPlayerStats(
                     assists = 0, 
                     bodyshots = 0, 
-                    damage = henrikdev-api-client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
+                    damage = henrikdev_api_client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
                         dealt = 56, 
                         received = 56, ), 
                     deaths = 0, 
@@ -79,36 +79,36 @@ class TestMatchesV4DataPlayer(unittest.TestCase):
                     score = 56, ),
                 tag = '',
                 team_id = '',
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', )
             )
         else:
             return MatchesV4DataPlayer(
-                ability_casts = henrikdev-api-client.models.matches_v4_data_player_ability_casts.MatchesV4DataPlayerAbilityCasts(
+                ability_casts = henrikdev_api_client.models.matches_v4_data_player_ability_casts.MatchesV4DataPlayerAbilityCasts(
                     ability1 = 0, 
                     ability2 = 0, 
                     grenade = 0, 
                     ultimate = 0, ),
                 account_level = 0,
-                agent = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                agent = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
-                behavior = henrikdev-api-client.models.matches_v4_data_player_behavior.MatchesV4DataPlayerBehavior(
+                behavior = henrikdev_api_client.models.matches_v4_data_player_behavior.MatchesV4DataPlayerBehavior(
                     afk_rounds = 1.337, 
-                    friendly_fire = henrikdev-api-client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
+                    friendly_fire = henrikdev_api_client.models.matches_v4_data_player_behavior_friendly_fire.MatchesV4DataPlayerBehaviorFriendlyFire(
                         incoming = 1.337, 
                         outgoing = 1.337, ), 
                     rounds_in_spawn = 1.337, ),
-                customization = henrikdev-api-client.models.matches_v4_data_player_customization.MatchesV4DataPlayerCustomization(
+                customization = henrikdev_api_client.models.matches_v4_data_player_customization.MatchesV4DataPlayerCustomization(
                     card = '', 
                     preferred_level_border = '', 
                     title = '', ),
-                economy = henrikdev-api-client.models.matches_v4_data_player_economy.MatchesV4DataPlayerEconomy(
-                    loadout_value = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                economy = henrikdev_api_client.models.matches_v4_data_player_economy.MatchesV4DataPlayerEconomy(
+                    loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                         average = 1.337, 
                         overall = 56, ), 
-                    spent = henrikdev-api-client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                    spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
                         average = 1.337, 
                         overall = 56, ), ),
                 name = '',
@@ -116,10 +116,10 @@ class TestMatchesV4DataPlayer(unittest.TestCase):
                 platform = '',
                 puuid = '',
                 session_playtime_in_ms = 0,
-                stats = henrikdev-api-client.models.matches_v4_data_player_stats.MatchesV4DataPlayerStats(
+                stats = henrikdev_api_client.models.matches_v4_data_player_stats.MatchesV4DataPlayerStats(
                     assists = 0, 
                     bodyshots = 0, 
-                    damage = henrikdev-api-client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
+                    damage = henrikdev_api_client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
                         dealt = 56, 
                         received = 56, ), 
                     deaths = 0, 
@@ -129,7 +129,7 @@ class TestMatchesV4DataPlayer(unittest.TestCase):
                     score = 56, ),
                 tag = '',
                 team_id = '',
-                tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
                     name = '', ),
         )

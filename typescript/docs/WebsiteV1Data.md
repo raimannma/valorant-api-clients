@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { WebsiteV1Data } from 'henrikdev-api-client';
+import { WebsiteV1Data } from 'henrikdev_api_client';
 
 const instance: WebsiteV1Data = {
     banner_url,

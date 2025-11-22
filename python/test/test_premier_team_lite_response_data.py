@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_lite_response_data import PremierTeamLiteResponseData
+from henrikdev_api_client.models.premier_team_lite_response_data import PremierTeamLiteResponseData
 
 class TestPremierTeamLiteResponseData(unittest.TestCase):
     """PremierTeamLiteResponseData unit test stubs"""
@@ -37,7 +37,7 @@ class TestPremierTeamLiteResponseData(unittest.TestCase):
             return PremierTeamLiteResponseData(
                 affinity = '',
                 conference = '',
-                customization = henrikdev-api-client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
+                customization = henrikdev_api_client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
                     icon = '', 
                     image = '', 
                     primary = '', 
@@ -58,7 +58,7 @@ class TestPremierTeamLiteResponseData(unittest.TestCase):
             return PremierTeamLiteResponseData(
                 affinity = '',
                 conference = '',
-                customization = henrikdev-api-client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
+                customization = henrikdev_api_client.models.premier_team_v1_response_data_customization.PremierTeamV1ResponseDataCustomization(
                     icon = '', 
                     image = '', 
                     primary = '', 

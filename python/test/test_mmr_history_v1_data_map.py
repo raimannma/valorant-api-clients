@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmr_history_v1_data_map import MMRHistoryV1DataMap
+from henrikdev_api_client.models.mmr_history_v1_data_map import MMRHistoryV1DataMap
 
 class TestMMRHistoryV1DataMap(unittest.TestCase):
     """MMRHistoryV1DataMap unit test stubs"""

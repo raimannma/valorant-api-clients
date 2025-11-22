@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.leaderboard_v2_response import LeaderboardV2Response
+from henrikdev_api_client.models.leaderboard_v2_response import LeaderboardV2Response
 
 # TODO update the JSON string below
 json = "{}"

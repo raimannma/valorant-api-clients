@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMMRV2 } from 'henrikdev-api-client';
+import { StoredMMRV2 } from 'henrikdev_api_client';
 
 const instance: StoredMMRV2 = {
     date,

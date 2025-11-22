@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { ContentItem } from 'henrikdev-api-client';
+import { ContentItem } from 'henrikdev_api_client';
 
 const instance: ContentItem = {
     assetName,

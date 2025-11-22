@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.season_id_short_combo import SeasonIdShortCombo
+from henrikdev_api_client.models.season_id_short_combo import SeasonIdShortCombo
 
 # TODO update the JSON string below
 json = "{}"

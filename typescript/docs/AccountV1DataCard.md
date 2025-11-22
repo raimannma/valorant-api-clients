@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { AccountV1DataCard } from 'henrikdev-api-client';
+import { AccountV1DataCard } from 'henrikdev_api_client';
 
 const instance: AccountV1DataCard = {
     id,

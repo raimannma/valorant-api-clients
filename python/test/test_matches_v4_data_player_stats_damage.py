@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_player_stats_damage import MatchesV4DataPlayerStatsDamage
+from henrikdev_api_client.models.matches_v4_data_player_stats_damage import MatchesV4DataPlayerStatsDamage
 
 class TestMatchesV4DataPlayerStatsDamage(unittest.TestCase):
     """MatchesV4DataPlayerStatsDamage unit test stubs"""

@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { QueueStatusV1Data } from 'henrikdev-api-client';
+import { QueueStatusV1Data } from 'henrikdev_api_client';
 
 const instance: QueueStatusV1Data = {
     enabled,

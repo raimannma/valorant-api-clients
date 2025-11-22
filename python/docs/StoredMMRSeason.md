@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.stored_mmr_season import StoredMMRSeason
+from henrikdev_api_client.models.stored_mmr_season import StoredMMRSeason
 
 # TODO update the JSON string below
 json = "{}"

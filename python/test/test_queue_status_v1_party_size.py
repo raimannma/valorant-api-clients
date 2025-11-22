@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1_party_size import QueueStatusV1PartySize
+from henrikdev_api_client.models.queue_status_v1_party_size import QueueStatusV1PartySize
 
 class TestQueueStatusV1PartySize(unittest.TestCase):
     """QueueStatusV1PartySize unit test stubs"""

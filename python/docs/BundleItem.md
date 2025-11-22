@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.bundle_item import BundleItem
+from henrikdev_api_client.models.bundle_item import BundleItem
 
 # TODO update the JSON string below
 json = "{}"

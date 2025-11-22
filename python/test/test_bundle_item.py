@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.bundle_item import BundleItem
+from henrikdev_api_client.models.bundle_item import BundleItem
 
 class TestBundleItem(unittest.TestCase):
     """BundleItem unit test stubs"""
@@ -40,7 +40,7 @@ class TestBundleItem(unittest.TestCase):
                 discount_percent = 1.337,
                 discounted_price = 1.337,
                 is_promo_item = True,
-                item = henrikdev-api-client.models.item.Item(
+                item = henrikdev_api_client.models.item.Item(
                     amount = 0, 
                     item_id = '', 
                     item_type_id = '', )
@@ -52,7 +52,7 @@ class TestBundleItem(unittest.TestCase):
                 discount_percent = 1.337,
                 discounted_price = 1.337,
                 is_promo_item = True,
-                item = henrikdev-api-client.models.item.Item(
+                item = henrikdev_api_client.models.item.Item(
                     amount = 0, 
                     item_id = '', 
                     item_type_id = '', ),

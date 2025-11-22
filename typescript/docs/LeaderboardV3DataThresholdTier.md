@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { LeaderboardV3DataThresholdTier } from 'henrikdev-api-client';
+import { LeaderboardV3DataThresholdTier } from 'henrikdev_api_client';
 
 const instance: LeaderboardV3DataThresholdTier = {
     id,

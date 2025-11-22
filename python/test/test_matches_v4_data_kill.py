@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_kill import MatchesV4DataKill
+from henrikdev_api_client.models.matches_v4_data_kill import MatchesV4DataKill
 
 class TestMatchesV4DataKill(unittest.TestCase):
     """MatchesV4DataKill unit test stubs"""
@@ -36,26 +36,26 @@ class TestMatchesV4DataKill(unittest.TestCase):
         if include_optional:
             return MatchesV4DataKill(
                 assistants = [
-                    henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                         name = '', 
                         puuid = '', 
                         tag = '', 
                         team = '', )
                     ],
-                killer = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                killer = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 
                     team = '', ),
-                location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                     x = 56, 
                     y = 56, ),
                 player_locations = [
-                    henrikdev-api-client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                        location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                    henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
+                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                             x = 56, 
                             y = 56, ), 
-                        player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                        player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 
                             tag = '', 
@@ -66,12 +66,12 @@ class TestMatchesV4DataKill(unittest.TestCase):
                 secondary_fire_mode = True,
                 time_in_match_in_ms = 0,
                 time_in_round_in_ms = 0,
-                victim = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                victim = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 
                     team = '', ),
-                weapon = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
+                weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
                     id = '', 
                     name = '', 
                     type = '', )
@@ -79,26 +79,26 @@ class TestMatchesV4DataKill(unittest.TestCase):
         else:
             return MatchesV4DataKill(
                 assistants = [
-                    henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                         name = '', 
                         puuid = '', 
                         tag = '', 
                         team = '', )
                     ],
-                killer = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                killer = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 
                     team = '', ),
-                location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                     x = 56, 
                     y = 56, ),
                 player_locations = [
-                    henrikdev-api-client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                        location = henrikdev-api-client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                    henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
+                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                             x = 56, 
                             y = 56, ), 
-                        player = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                        player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 
                             tag = '', 
@@ -109,12 +109,12 @@ class TestMatchesV4DataKill(unittest.TestCase):
                 secondary_fire_mode = True,
                 time_in_match_in_ms = 0,
                 time_in_round_in_ms = 0,
-                victim = henrikdev-api-client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                victim = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                     name = '', 
                     puuid = '', 
                     tag = '', 
                     team = '', ),
-                weapon = henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
+                weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
                     id = '', 
                     name = '', 
                     type = '', ),

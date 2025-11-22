@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoredMatchStatsCharacter } from 'henrikdev-api-client';
+import { StoredMatchStatsCharacter } from 'henrikdev_api_client';
 
 const instance: StoredMatchStatsCharacter = {
     id,

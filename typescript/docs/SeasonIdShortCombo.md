@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { SeasonIdShortCombo } from 'henrikdev-api-client';
+import { SeasonIdShortCombo } from 'henrikdev_api_client';
 
 const instance: SeasonIdShortCombo = {
     id,

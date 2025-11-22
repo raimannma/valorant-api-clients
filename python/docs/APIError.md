@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.api_error import APIError
+from henrikdev_api_client.models.api_error import APIError
 
 # TODO update the JSON string below
 json = "{}"

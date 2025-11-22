@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.queue_status_v1_map import QueueStatusV1Map
+from henrikdev_api_client.models.queue_status_v1_map import QueueStatusV1Map
 
 class TestQueueStatusV1Map(unittest.TestCase):
     """QueueStatusV1Map unit test stubs"""

@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.leaderboard_pvp_player import LeaderboardPVPPlayer
+from henrikdev_api_client.models.leaderboard_pvp_player import LeaderboardPVPPlayer
 
 # TODO update the JSON string below
 json = "{}"

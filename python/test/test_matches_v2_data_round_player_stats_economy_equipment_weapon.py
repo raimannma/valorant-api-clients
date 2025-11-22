@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_player_stats_economy_equipment_weapon import MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon
+from henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_weapon import MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon
 
 class TestMatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(unittest.TestCase):
     """MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon unit test stubs"""
@@ -35,7 +35,7 @@ class TestMatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(unittest.TestCase)
         model = MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon()
         if include_optional:
             return MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(
-                assets = henrikdev-api-client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
+                assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
                     display_icon = '', 
                     killfeed_icon = '', ),
                 id = '',
@@ -43,7 +43,7 @@ class TestMatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(unittest.TestCase)
             )
         else:
             return MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon(
-                assets = henrikdev-api-client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
+                assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
                     display_icon = '', 
                     killfeed_icon = '', ),
         )

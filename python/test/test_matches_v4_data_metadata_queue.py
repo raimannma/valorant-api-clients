@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_metadata_queue import MatchesV4DataMetadataQueue
+from henrikdev_api_client.models.matches_v4_data_metadata_queue import MatchesV4DataMetadataQueue
 
 class TestMatchesV4DataMetadataQueue(unittest.TestCase):
     """MatchesV4DataMetadataQueue unit test stubs"""

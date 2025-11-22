@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_observer import MatchesV2DataObserver
+from henrikdev_api_client.models.matches_v2_data_observer import MatchesV2DataObserver
 
 class TestMatchesV2DataObserver(unittest.TestCase):
     """MatchesV2DataObserver unit test stubs"""
@@ -38,15 +38,15 @@ class TestMatchesV2DataObserver(unittest.TestCase):
                 level = 0,
                 name = '',
                 party_id = '',
-                platform = henrikdev-api-client.models.matches_v2_data_platform.MatchesV2DataPlatform(
-                    os = henrikdev-api-client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
+                platform = henrikdev_api_client.models.matches_v2_data_platform.MatchesV2DataPlatform(
+                    os = henrikdev_api_client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
                         name = '', 
                         version = '', ), 
                     type = '', ),
                 player_card = '',
                 player_title = '',
                 puuid = '',
-                session_playtime = henrikdev-api-client.models.matches_v2_data_player_session_playtime.MatchesV2DataPlayerSessionPlaytime(
+                session_playtime = henrikdev_api_client.models.matches_v2_data_player_session_playtime.MatchesV2DataPlayerSessionPlaytime(
                     milliseconds = 0, 
                     minutes = 0, 
                     seconds = 0, ),
@@ -58,15 +58,15 @@ class TestMatchesV2DataObserver(unittest.TestCase):
                 level = 0,
                 name = '',
                 party_id = '',
-                platform = henrikdev-api-client.models.matches_v2_data_platform.MatchesV2DataPlatform(
-                    os = henrikdev-api-client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
+                platform = henrikdev_api_client.models.matches_v2_data_platform.MatchesV2DataPlatform(
+                    os = henrikdev_api_client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
                         name = '', 
                         version = '', ), 
                     type = '', ),
                 player_card = '',
                 player_title = '',
                 puuid = '',
-                session_playtime = henrikdev-api-client.models.matches_v2_data_player_session_playtime.MatchesV2DataPlayerSessionPlaytime(
+                session_playtime = henrikdev_api_client.models.matches_v2_data_player_session_playtime.MatchesV2DataPlayerSessionPlaytime(
                     milliseconds = 0, 
                     minutes = 0, 
                     seconds = 0, ),

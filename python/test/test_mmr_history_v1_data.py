@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmr_history_v1_data import MMRHistoryV1Data
+from henrikdev_api_client.models.mmr_history_v1_data import MMRHistoryV1Data
 
 class TestMMRHistoryV1Data(unittest.TestCase):
     """MMRHistoryV1Data unit test stubs"""
@@ -40,12 +40,12 @@ class TestMMRHistoryV1Data(unittest.TestCase):
                 var_date = '',
                 date_raw = 56,
                 elo = 56,
-                images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                     large = '', 
                     small = '', 
                     triangle_down = '', 
                     triangle_up = '', ),
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 match_id = '',
@@ -60,12 +60,12 @@ class TestMMRHistoryV1Data(unittest.TestCase):
                 var_date = '',
                 date_raw = 56,
                 elo = 56,
-                images = henrikdev-api-client.models.mmr_data_images.MMRDataImages(
+                images = henrikdev_api_client.models.mmr_data_images.MMRDataImages(
                     large = '', 
                     small = '', 
                     triangle_down = '', 
                     triangle_up = '', ),
-                map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                     id = '', 
                     name = '', ),
                 match_id = '',

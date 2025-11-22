@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.map_id_name_combo import MapIdNameCombo
+from henrikdev_api_client.models.map_id_name_combo import MapIdNameCombo
 
 # TODO update the JSON string below
 json = "{}"

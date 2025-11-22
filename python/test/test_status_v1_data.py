@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.status_v1_data import StatusV1Data
+from henrikdev_api_client.models.status_v1_data import StatusV1Data
 
 class TestStatusV1Data(unittest.TestCase):
     """StatusV1Data unit test stubs"""
@@ -36,7 +36,7 @@ class TestStatusV1Data(unittest.TestCase):
         if include_optional:
             return StatusV1Data(
                 incidents = [
-                    henrikdev-api-client.models.status_incident.StatusIncident(
+                    henrikdev_api_client.models.status_incident.StatusIncident(
                         archive_at = '', 
                         created_at = '', 
                         id = 0, 
@@ -46,13 +46,13 @@ class TestStatusV1Data(unittest.TestCase):
                             ''
                             ], 
                         titles = [
-                            henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                            henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                 content = '', 
                                 locale = '', )
                             ], 
                         updated_at = '', 
                         updates = [
-                            henrikdev-api-client.models.status_incident_update.StatusIncidentUpdate(
+                            henrikdev_api_client.models.status_incident_update.StatusIncidentUpdate(
                                 author = '', 
                                 created_at = '', 
                                 id = 0, 
@@ -61,7 +61,7 @@ class TestStatusV1Data(unittest.TestCase):
                                     ''
                                     ], 
                                 translations = [
-                                    henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                                    henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                         content = '', 
                                         locale = '', )
                                     ], 
@@ -69,7 +69,7 @@ class TestStatusV1Data(unittest.TestCase):
                             ], )
                     ],
                 maintenances = [
-                    henrikdev-api-client.models.status_incident.StatusIncident(
+                    henrikdev_api_client.models.status_incident.StatusIncident(
                         archive_at = '', 
                         created_at = '', 
                         id = 0, 
@@ -79,13 +79,13 @@ class TestStatusV1Data(unittest.TestCase):
                             ''
                             ], 
                         titles = [
-                            henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                            henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                 content = '', 
                                 locale = '', )
                             ], 
                         updated_at = '', 
                         updates = [
-                            henrikdev-api-client.models.status_incident_update.StatusIncidentUpdate(
+                            henrikdev_api_client.models.status_incident_update.StatusIncidentUpdate(
                                 author = '', 
                                 created_at = '', 
                                 id = 0, 
@@ -94,7 +94,7 @@ class TestStatusV1Data(unittest.TestCase):
                                     ''
                                     ], 
                                 translations = [
-                                    henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                                    henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                         content = '', 
                                         locale = '', )
                                     ], 
@@ -105,7 +105,7 @@ class TestStatusV1Data(unittest.TestCase):
         else:
             return StatusV1Data(
                 incidents = [
-                    henrikdev-api-client.models.status_incident.StatusIncident(
+                    henrikdev_api_client.models.status_incident.StatusIncident(
                         archive_at = '', 
                         created_at = '', 
                         id = 0, 
@@ -115,13 +115,13 @@ class TestStatusV1Data(unittest.TestCase):
                             ''
                             ], 
                         titles = [
-                            henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                            henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                 content = '', 
                                 locale = '', )
                             ], 
                         updated_at = '', 
                         updates = [
-                            henrikdev-api-client.models.status_incident_update.StatusIncidentUpdate(
+                            henrikdev_api_client.models.status_incident_update.StatusIncidentUpdate(
                                 author = '', 
                                 created_at = '', 
                                 id = 0, 
@@ -130,7 +130,7 @@ class TestStatusV1Data(unittest.TestCase):
                                     ''
                                     ], 
                                 translations = [
-                                    henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                                    henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                         content = '', 
                                         locale = '', )
                                     ], 
@@ -138,7 +138,7 @@ class TestStatusV1Data(unittest.TestCase):
                             ], )
                     ],
                 maintenances = [
-                    henrikdev-api-client.models.status_incident.StatusIncident(
+                    henrikdev_api_client.models.status_incident.StatusIncident(
                         archive_at = '', 
                         created_at = '', 
                         id = 0, 
@@ -148,13 +148,13 @@ class TestStatusV1Data(unittest.TestCase):
                             ''
                             ], 
                         titles = [
-                            henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                            henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                 content = '', 
                                 locale = '', )
                             ], 
                         updated_at = '', 
                         updates = [
-                            henrikdev-api-client.models.status_incident_update.StatusIncidentUpdate(
+                            henrikdev_api_client.models.status_incident_update.StatusIncidentUpdate(
                                 author = '', 
                                 created_at = '', 
                                 id = 0, 
@@ -163,7 +163,7 @@ class TestStatusV1Data(unittest.TestCase):
                                     ''
                                     ], 
                                 translations = [
-                                    henrikdev-api-client.models.status_incident_content.StatusIncidentContent(
+                                    henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
                                         content = '', 
                                         locale = '', )
                                     ], 

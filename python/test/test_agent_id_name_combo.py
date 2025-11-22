@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.agent_id_name_combo import AgentIdNameCombo
+from henrikdev_api_client.models.agent_id_name_combo import AgentIdNameCombo
 
 class TestAgentIdNameCombo(unittest.TestCase):
     """AgentIdNameCombo unit test stubs"""

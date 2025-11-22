@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_v1_response_data_placement import PremierTeamV1ResponseDataPlacement
+from henrikdev_api_client.models.premier_team_v1_response_data_placement import PremierTeamV1ResponseDataPlacement
 
 class TestPremierTeamV1ResponseDataPlacement(unittest.TestCase):
     """PremierTeamV1ResponseDataPlacement unit test stubs"""

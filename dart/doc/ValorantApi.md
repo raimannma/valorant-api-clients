@@ -1,8 +1,8 @@
-# henrikdev-api-client.api.ValorantApi
+# henrikdev_api_client.api.ValorantApi
 
 ## Load the API package
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 ```
 
 All URIs are relative to *https://api.henrikdev.xyz*
@@ -64,7 +64,7 @@ Method | HTTP request | Description
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final id = id_example; // String | Crosshair code
@@ -104,7 +104,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final region = region_example; // String | Region filter (optional)
@@ -145,7 +145,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final puuid = puuid_example; // String | Player UUID
@@ -188,7 +188,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final puuid = puuid_example; // String | Player UUID
@@ -231,7 +231,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final name = name_example; // String | Riot ID name
@@ -276,7 +276,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final name = name_example; // String | Riot ID name
@@ -321,7 +321,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final locale = locale_example; // String | Locale code (e.g., en-US, de-DE) - optional
@@ -362,7 +362,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -411,7 +411,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -462,7 +462,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -515,7 +515,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -570,7 +570,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -613,7 +613,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -658,7 +658,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -703,7 +703,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -750,7 +750,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -793,7 +793,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -838,7 +838,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -881,7 +881,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -926,7 +926,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -971,7 +971,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1018,7 +1018,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1065,7 +1065,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1114,7 +1114,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1167,7 +1167,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final matchId = matchId_example; // String | Match UUID
@@ -1208,7 +1208,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1251,7 +1251,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final id = id_example; // String | Team UUID
@@ -1292,7 +1292,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final id = id_example; // String | Team UUID
@@ -1333,7 +1333,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final name = name_example; // String | Team name
@@ -1376,7 +1376,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final name = name_example; // String | Team name
@@ -1419,7 +1419,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1464,7 +1464,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final name = name_example; // String | Team name to search for (optional)
@@ -1509,7 +1509,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1550,7 +1550,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final rawV1Payload = RawV1Payload(); // RawV1Payload | 
@@ -1591,7 +1591,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1632,7 +1632,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final version = version_example; // String | API version (v1, v2)
@@ -1673,7 +1673,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final version = version_example; // String | API version (v1, v2)
@@ -1714,7 +1714,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1765,7 +1765,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1814,7 +1814,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1861,7 +1861,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1906,7 +1906,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -1955,7 +1955,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -2002,7 +2002,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
@@ -2043,7 +2043,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final countryCode = countryCode_example; // String | Country code (e.g., en-us, de-de)
@@ -2086,7 +2086,7 @@ No authorization required
 
 ### Example
 ```dart
-import 'package:henrikdev-api-client/api.dart';
+import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final dbId = dbId_example; // String | Database ID of the website entry

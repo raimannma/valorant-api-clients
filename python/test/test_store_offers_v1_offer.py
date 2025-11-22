@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.store_offers_v1_offer import StoreOffersV1Offer
+from henrikdev_api_client.models.store_offers_v1_offer import StoreOffersV1Offer
 
 class TestStoreOffersV1Offer(unittest.TestCase):
     """StoreOffersV1Offer unit test stubs"""
@@ -41,7 +41,7 @@ class TestStoreOffersV1Offer(unittest.TestCase):
                 is_direct_purchase = True,
                 offer_id = '',
                 rewards = [
-                    henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                    henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                         item_id = '', 
                         item_type_id = '', 
                         quantity = 56, )
@@ -56,7 +56,7 @@ class TestStoreOffersV1Offer(unittest.TestCase):
                 is_direct_purchase = True,
                 offer_id = '',
                 rewards = [
-                    henrikdev-api-client.models.store_offers_v1_reward.StoreOffersV1Reward(
+                    henrikdev_api_client.models.store_offers_v1_reward.StoreOffersV1Reward(
                         item_id = '', 
                         item_type_id = '', 
                         quantity = 56, )

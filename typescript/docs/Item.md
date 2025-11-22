@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { Item } from 'henrikdev-api-client';
+import { Item } from 'henrikdev_api_client';
 
 const instance: Item = {
     Amount,

@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MatchesV4DataPlayer } from 'henrikdev-api-client';
+import { MatchesV4DataPlayer } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataPlayer = {
     ability_casts,

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.matches_v2_data_player_assets_card import MatchesV2DataPlayerAssetsCard
+from henrikdev_api_client.models.matches_v2_data_player_assets_card import MatchesV2DataPlayerAssetsCard
 
 # TODO update the JSON string below
 json = "{}"

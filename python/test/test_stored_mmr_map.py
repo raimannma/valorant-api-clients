@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.stored_mmr_map import StoredMMRMap
+from henrikdev_api_client.models.stored_mmr_map import StoredMMRMap
 
 class TestStoredMMRMap(unittest.TestCase):
     """StoredMMRMap unit test stubs"""

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { AccountV2Data } from 'henrikdev-api-client';
+import { AccountV2Data } from 'henrikdev_api_client';
 
 const instance: AccountV2Data = {
     account_level,

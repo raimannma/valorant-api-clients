@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { StoreOffersV1Response } from 'henrikdev-api-client';
+import { StoreOffersV1Response } from 'henrikdev_api_client';
 
 const instance: StoreOffersV1Response = {
     data,

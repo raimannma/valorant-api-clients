@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v2_data_round_player_stats_kill_events_assets import MatchesV2DataRoundPlayerStatsKillEventsAssets
+from henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assets import MatchesV2DataRoundPlayerStatsKillEventsAssets
 
 class TestMatchesV2DataRoundPlayerStatsKillEventsAssets(unittest.TestCase):
     """MatchesV2DataRoundPlayerStatsKillEventsAssets unit test stubs"""

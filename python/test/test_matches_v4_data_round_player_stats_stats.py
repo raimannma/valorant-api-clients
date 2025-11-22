@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_round_player_stats_stats import MatchesV4DataRoundPlayerStatsStats
+from henrikdev_api_client.models.matches_v4_data_round_player_stats_stats import MatchesV4DataRoundPlayerStatsStats
 
 class TestMatchesV4DataRoundPlayerStatsStats(unittest.TestCase):
     """MatchesV4DataRoundPlayerStatsStats unit test stubs"""

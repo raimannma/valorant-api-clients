@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PremierTeamLiteResponseData } from 'henrikdev-api-client';
+import { PremierTeamLiteResponseData } from 'henrikdev_api_client';
 
 const instance: PremierTeamLiteResponseData = {
     affinity,

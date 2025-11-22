@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_round_player_stats_economy_weapon import MatchesV4DataRoundPlayerStatsEconomyWeapon
+from henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon import MatchesV4DataRoundPlayerStatsEconomyWeapon
 
 class TestMatchesV4DataRoundPlayerStatsEconomyWeapon(unittest.TestCase):
     """MatchesV4DataRoundPlayerStatsEconomyWeapon unit test stubs"""

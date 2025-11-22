@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from henrikdev-api-client.models.content_item import ContentItem
+from henrikdev_api_client.models.content_item import ContentItem
 
 # TODO update the JSON string below
 json = "{}"

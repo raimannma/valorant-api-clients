@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.mmr_history_v2_response import MMRHistoryV2Response
+from henrikdev_api_client.models.mmr_history_v2_response import MMRHistoryV2Response
 
 class TestMMRHistoryV2Response(unittest.TestCase):
     """MMRHistoryV2Response unit test stubs"""
@@ -35,26 +35,26 @@ class TestMMRHistoryV2Response(unittest.TestCase):
         model = MMRHistoryV2Response()
         if include_optional:
             return MMRHistoryV2Response(
-                data = henrikdev-api-client.models.mmr_history_v2_data.MMRHistoryV2Data(
-                    account = henrikdev-api-client.models.mmrv3_account.MMRV3Account(
+                data = henrikdev_api_client.models.mmr_history_v2_data.MMRHistoryV2Data(
+                    account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
                         name = '', 
                         puuid = '', 
                         tag = '', ), 
                     history = [
-                        henrikdev-api-client.models.mmr_history_v2_history.MMRHistoryV2History(
+                        henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
                             date = '', 
                             elo = 56, 
                             last_change = 56, 
-                            map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                            map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                                 id = '', 
                                 name = '', ), 
                             match_id = '', 
                             refunded_rr = 56, 
                             rr = 56, 
-                            season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                            season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                                 id = '', 
                                 short = '', ), 
-                            tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                            tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
                                 name = '', ), 
                             was_derank_protected = True, )
@@ -63,26 +63,26 @@ class TestMMRHistoryV2Response(unittest.TestCase):
             )
         else:
             return MMRHistoryV2Response(
-                data = henrikdev-api-client.models.mmr_history_v2_data.MMRHistoryV2Data(
-                    account = henrikdev-api-client.models.mmrv3_account.MMRV3Account(
+                data = henrikdev_api_client.models.mmr_history_v2_data.MMRHistoryV2Data(
+                    account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
                         name = '', 
                         puuid = '', 
                         tag = '', ), 
                     history = [
-                        henrikdev-api-client.models.mmr_history_v2_history.MMRHistoryV2History(
+                        henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
                             date = '', 
                             elo = 56, 
                             last_change = 56, 
-                            map = henrikdev-api-client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                            map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                                 id = '', 
                                 name = '', ), 
                             match_id = '', 
                             refunded_rr = 56, 
                             rr = 56, 
-                            season = henrikdev-api-client.models.season_id_short_combo.SeasonIdShortCombo(
+                            season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                                 id = '', 
                                 short = '', ), 
-                            tier = henrikdev-api-client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                            tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
                                 name = '', ), 
                             was_derank_protected = True, )

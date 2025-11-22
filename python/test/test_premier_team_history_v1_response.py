@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.premier_team_history_v1_response import PremierTeamHistoryV1Response
+from henrikdev_api_client.models.premier_team_history_v1_response import PremierTeamHistoryV1Response
 
 class TestPremierTeamHistoryV1Response(unittest.TestCase):
     """PremierTeamHistoryV1Response unit test stubs"""
@@ -35,16 +35,16 @@ class TestPremierTeamHistoryV1Response(unittest.TestCase):
         model = PremierTeamHistoryV1Response()
         if include_optional:
             return PremierTeamHistoryV1Response(
-                data = henrikdev-api-client.models.premier_team_history_v1_response_data.PremierTeamHistoryV1ResponseData(
+                data = henrikdev_api_client.models.premier_team_history_v1_response_data.PremierTeamHistoryV1ResponseData(
                     league_matches = [
-                        henrikdev-api-client.models.premier_team_games_league_string.PremierTeamGamesLeagueString(
+                        henrikdev_api_client.models.premier_team_games_league_string.PremierTeamGamesLeagueString(
                             id = '', 
                             points_after = 56, 
                             points_before = 56, 
                             started_at = '', )
                         ], 
                     tournament_matches = [
-                        henrikdev-api-client.models.premier_team_games_tournament.PremierTeamGamesTournament(
+                        henrikdev_api_client.models.premier_team_games_tournament.PremierTeamGamesTournament(
                             matches = [
                                 ''
                                 ], 
@@ -58,16 +58,16 @@ class TestPremierTeamHistoryV1Response(unittest.TestCase):
             )
         else:
             return PremierTeamHistoryV1Response(
-                data = henrikdev-api-client.models.premier_team_history_v1_response_data.PremierTeamHistoryV1ResponseData(
+                data = henrikdev_api_client.models.premier_team_history_v1_response_data.PremierTeamHistoryV1ResponseData(
                     league_matches = [
-                        henrikdev-api-client.models.premier_team_games_league_string.PremierTeamGamesLeagueString(
+                        henrikdev_api_client.models.premier_team_games_league_string.PremierTeamGamesLeagueString(
                             id = '', 
                             points_after = 56, 
                             points_before = 56, 
                             started_at = '', )
                         ], 
                     tournament_matches = [
-                        henrikdev-api-client.models.premier_team_games_tournament.PremierTeamGamesTournament(
+                        henrikdev_api_client.models.premier_team_games_tournament.PremierTeamGamesTournament(
                             matches = [
                                 ''
                                 ], 

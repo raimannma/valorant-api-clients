@@ -14,7 +14,7 @@
 
 import unittest
 
-from henrikdev-api-client.models.matches_v4_data_player_stats import MatchesV4DataPlayerStats
+from henrikdev_api_client.models.matches_v4_data_player_stats import MatchesV4DataPlayerStats
 
 class TestMatchesV4DataPlayerStats(unittest.TestCase):
     """MatchesV4DataPlayerStats unit test stubs"""
@@ -37,7 +37,7 @@ class TestMatchesV4DataPlayerStats(unittest.TestCase):
             return MatchesV4DataPlayerStats(
                 assists = 0,
                 bodyshots = 0,
-                damage = henrikdev-api-client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
+                damage = henrikdev_api_client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
                     dealt = 56, 
                     received = 56, ),
                 deaths = 0,
@@ -50,7 +50,7 @@ class TestMatchesV4DataPlayerStats(unittest.TestCase):
             return MatchesV4DataPlayerStats(
                 assists = 0,
                 bodyshots = 0,
-                damage = henrikdev-api-client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
+                damage = henrikdev_api_client.models.matches_v4_data_player_stats_damage.MatchesV4DataPlayerStatsDamage(
                     dealt = 56, 
                     received = 56, ),
                 deaths = 0,
