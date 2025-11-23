@@ -18839,3 +18839,12 @@ components:
       required:
       - data
       - status
+  securitySchemes:
+    api_key_header:
+      in: header
+      name: Authorization
+      type: apiKey
+    api_key_query:
+      in: query
+      name: api_key
+      type: apiKey

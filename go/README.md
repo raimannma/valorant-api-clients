@@ -327,7 +327,49 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
-Endpoints do not require authorization.
+
+Authentication schemes defined for the API:
+### api_key_header
+
+- **Type**: API key
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
+
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: api_key_header and passed in as the auth context for each request.
+
+Example
+
+```go
+auth := context.WithValue(
+		context.Background(),
+		henrikdevapiclient.ContextAPIKeys,
+		map[string]henrikdevapiclient.APIKey{
+			"api_key_header": {Key: "API_KEY_STRING"},
+		},
+	)
+r, err := client.Service.Operation(auth, args)
+```
+
+### api_key_query
+
+- **Type**: API key
+- **API key parameter name**: api_key
+- **Location**: URL query string
+
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: api_key_query and passed in as the auth context for each request.
+
+Example
+
+```go
+auth := context.WithValue(
+		context.Background(),
+		henrikdevapiclient.ContextAPIKeys,
+		map[string]henrikdevapiclient.APIKey{
+			"api_key_query": {Key: "API_KEY_STRING"},
+		},
+	)
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ## Documentation for Utility Methods
