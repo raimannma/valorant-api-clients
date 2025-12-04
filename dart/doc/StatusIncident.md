@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **maintenanceStatus** | **String** |  | [optional] 
 **platforms** | **List<String>** |  | [default to const []]
 **titles** | [**List<StatusIncidentContent>**](StatusIncidentContent.md) |  | [default to const []]
-**updatedAt** | **String** |  | 
+**updatedAt** | **String** |  | [optional] 
 **updates** | [**List<StatusIncidentUpdate>**](StatusIncidentUpdate.md) |  | [default to const []]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

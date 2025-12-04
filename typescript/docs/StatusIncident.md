@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **maintenance_status** | **string** |  | [optional] [default to undefined]
 **platforms** | **Array&lt;string&gt;** |  | [default to undefined]
 **titles** | [**Array&lt;StatusIncidentContent&gt;**](StatusIncidentContent.md) |  | [default to undefined]
-**updated_at** | **string** |  | [default to undefined]
+**updated_at** | **string** |  | [optional] [default to undefined]
 **updates** | [**Array&lt;StatusIncidentUpdate&gt;**](StatusIncidentUpdate.md) |  | [default to undefined]
 
 ## Example

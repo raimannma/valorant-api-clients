@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **maintenance_status** | **string** |  | [optional]
 **platforms** | **string[]** |  |
 **titles** | [**\OpenAPI\Client\Model\StatusIncidentContent[]**](StatusIncidentContent.md) |  |
-**updated_at** | **string** |  |
+**updated_at** | **string** |  | [optional]
 **updates** | [**\OpenAPI\Client\Model\StatusIncidentUpdate[]**](StatusIncidentUpdate.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

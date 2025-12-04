@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **maintenance_status** | **str** |  | [optional] 
 **platforms** | **List[str]** |  | 
 **titles** | [**List[StatusIncidentContent]**](StatusIncidentContent.md) |  | 
-**updated_at** | **str** |  | 
+**updated_at** | **str** |  | [optional] 
 **updates** | [**List[StatusIncidentUpdate]**](StatusIncidentUpdate.md) |  | 
 
 ## Example

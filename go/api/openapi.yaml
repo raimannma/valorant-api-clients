@@ -4,7 +4,7 @@ info:
   license:
     name: ""
   title: HenrikDev API
-  version: 4.3.0
+  version: 4.4.1
 servers:
 - url: https://api.henrikdev.xyz
 tags:
@@ -17320,6 +17320,7 @@ components:
             $ref: "#/components/schemas/StatusIncidentContent"
           type: array
         updated_at:
+          nullable: true
           type: string
         updates:
           items:
@@ -17331,7 +17332,6 @@ components:
       - incident_severity
       - platforms
       - titles
-      - updated_at
       - updates
     StatusIncidentContent:
       example:

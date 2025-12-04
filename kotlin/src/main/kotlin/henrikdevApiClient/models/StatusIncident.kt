@@ -29,10 +29,10 @@ import com.squareup.moshi.JsonClass
  * @param incidentSeverity 
  * @param platforms 
  * @param titles 
- * @param updatedAt 
  * @param updates 
  * @param archiveAt 
  * @param maintenanceStatus 
+ * @param updatedAt 
  */
 
 
@@ -53,9 +53,6 @@ data class StatusIncident (
     @Json(name = "titles")
     val titles: kotlin.collections.List<StatusIncidentContent>,
 
-    @Json(name = "updated_at")
-    val updatedAt: kotlin.String,
-
     @Json(name = "updates")
     val updates: kotlin.collections.List<StatusIncidentUpdate>,
 
@@ -63,7 +60,10 @@ data class StatusIncident (
     val archiveAt: kotlin.String? = null,
 
     @Json(name = "maintenance_status")
-    val maintenanceStatus: kotlin.String? = null
+    val maintenanceStatus: kotlin.String? = null,
+
+    @Json(name = "updated_at")
+    val updatedAt: kotlin.String? = null
 
 ) {
 

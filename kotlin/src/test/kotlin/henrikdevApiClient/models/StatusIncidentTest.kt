@@ -57,12 +57,6 @@ class StatusIncidentTest : ShouldSpec() {
             //modelInstance.titles shouldBe ("TODO")
         }
 
-        // to test the property `updatedAt`
-        should("test updatedAt") {
-            // uncomment below to test the property
-            //modelInstance.updatedAt shouldBe ("TODO")
-        }
-
         // to test the property `updates`
         should("test updates") {
             // uncomment below to test the property
@@ -79,6 +73,12 @@ class StatusIncidentTest : ShouldSpec() {
         should("test maintenanceStatus") {
             // uncomment below to test the property
             //modelInstance.maintenanceStatus shouldBe ("TODO")
+        }
+
+        // to test the property `updatedAt`
+        should("test updatedAt") {
+            // uncomment below to test the property
+            //modelInstance.updatedAt shouldBe ("TODO")
         }
 
     }

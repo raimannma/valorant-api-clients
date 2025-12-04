@@ -11,14 +11,14 @@ Name | Type | Description | Notes
 **MaintenanceStatus** | Pointer to **NullableString** |  | [optional] 
 **Platforms** | **[]string** |  | 
 **Titles** | [**[]StatusIncidentContent**](StatusIncidentContent.md) |  | 
-**UpdatedAt** | **string** |  | 
+**UpdatedAt** | Pointer to **NullableString** |  | [optional] 
 **Updates** | [**[]StatusIncidentUpdate**](StatusIncidentUpdate.md) |  | 
 
 ## Methods
 
 ### NewStatusIncident
 
-`func NewStatusIncident(createdAt string, id int32, incidentSeverity string, platforms []string, titles []StatusIncidentContent, updatedAt string, updates []StatusIncidentUpdate, ) *StatusIncident`
+`func NewStatusIncident(createdAt string, id int32, incidentSeverity string, platforms []string, titles []StatusIncidentContent, updates []StatusIncidentUpdate, ) *StatusIncident`
 
 NewStatusIncident instantiates a new StatusIncident object
 This constructor will assign default values to properties that have it defined,
@@ -222,7 +222,22 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+### HasUpdatedAt
 
+`func (o *StatusIncident) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
+
+### SetUpdatedAtNil
+
+`func (o *StatusIncident) SetUpdatedAtNil(b bool)`
+
+ SetUpdatedAtNil sets the value for UpdatedAt to be an explicit nil
+
+### UnsetUpdatedAt
+`func (o *StatusIncident) UnsetUpdatedAt()`
+
+UnsetUpdatedAt ensures that no value is present for UpdatedAt, not even an explicit nil
 ### GetUpdates
 
 `func (o *StatusIncident) GetUpdates() []StatusIncidentUpdate`
