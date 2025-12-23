@@ -38,14 +38,9 @@ class TestMatchesV2DataRound(unittest.TestCase):
                 bomb_defused = True,
                 bomb_planted = True,
                 defuse_events = henrikdev_api_client.models.matches_v2_data_round_defuse_events.MatchesV2DataRoundDefuseEvents(
-                    defuse_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
-                        x = 56, 
-                        y = 56, ), 
+                    defuse_location = null, 
                     defuse_time_in_round = 0, 
-                    defused_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                        display_name = '', 
-                        puuid = '', 
-                        team = '', ), 
+                    defused_by = null, 
                     player_locations_on_defuse = [
                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                             location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
@@ -58,15 +53,10 @@ class TestMatchesV2DataRound(unittest.TestCase):
                         ], ),
                 end_type = '',
                 plant_events = henrikdev_api_client.models.matches_v2_data_round_plant_events.MatchesV2DataRoundPlantEvents(
-                    plant_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
-                        x = 56, 
-                        y = 56, ), 
+                    plant_location = null, 
                     plant_site = '', 
                     plant_time_in_round = 0, 
-                    planted_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                        display_name = '', 
-                        puuid = '', 
-                        team = '', ), 
+                    planted_by = null, 
                     player_locations_on_plant = [
                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                             location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
@@ -165,14 +155,9 @@ class TestMatchesV2DataRound(unittest.TestCase):
                 bomb_defused = True,
                 bomb_planted = True,
                 defuse_events = henrikdev_api_client.models.matches_v2_data_round_defuse_events.MatchesV2DataRoundDefuseEvents(
-                    defuse_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
-                        x = 56, 
-                        y = 56, ), 
+                    defuse_location = null, 
                     defuse_time_in_round = 0, 
-                    defused_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                        display_name = '', 
-                        puuid = '', 
-                        team = '', ), 
+                    defused_by = null, 
                     player_locations_on_defuse = [
                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                             location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
@@ -185,15 +170,10 @@ class TestMatchesV2DataRound(unittest.TestCase):
                         ], ),
                 end_type = '',
                 plant_events = henrikdev_api_client.models.matches_v2_data_round_plant_events.MatchesV2DataRoundPlantEvents(
-                    plant_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
-                        x = 56, 
-                        y = 56, ), 
+                    plant_location = null, 
                     plant_site = '', 
                     plant_time_in_round = 0, 
-                    planted_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                        display_name = '', 
-                        puuid = '', 
-                        team = '', ), 
+                    planted_by = null, 
                     player_locations_on_plant = [
                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                             location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(

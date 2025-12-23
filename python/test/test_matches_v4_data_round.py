@@ -103,15 +103,10 @@ class TestMatchesV4DataRound(unittest.TestCase):
                                     team = '', ), )
                             ], 
                         economy = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
-                            armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
-                                id = '', 
-                                name = '', ), 
+                            armor = null, 
                             loadout_value = 56, 
                             remaining = 56, 
-                            weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
-                                id = '', 
-                                name = '', 
-                                type = '', ), ), 
+                            weapon = null, ), 
                         player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 
@@ -154,15 +149,10 @@ class TestMatchesV4DataRound(unittest.TestCase):
                                     team = '', ), )
                             ], 
                         economy = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
-                            armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
-                                id = '', 
-                                name = '', ), 
+                            armor = null, 
                             loadout_value = 56, 
                             remaining = 56, 
-                            weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
-                                id = '', 
-                                name = '', 
-                                type = '', ), ), 
+                            weapon = null, ), 
                         player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
                             name = '', 
                             puuid = '', 

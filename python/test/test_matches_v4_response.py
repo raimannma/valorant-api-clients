@@ -165,23 +165,9 @@ class TestMatchesV4Response(unittest.TestCase):
                     rounds = [
                         henrikdev_api_client.models.matches_v4_data_round.MatchesV4DataRound(
                             ceremony = '', 
-                            defuse = henrikdev_api_client.models.matches_v4_data_round_defuse.MatchesV4DataRoundDefuse(
-                                location = , 
-                                player = , 
-                                player_locations = [
-                                    henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                                        location = , 
-                                        player = , 
-                                        view_radians = 1.337, )
-                                    ], 
-                                round_time_in_ms = 56, ), 
+                            defuse = null, 
                             id = 0, 
-                            plant = henrikdev_api_client.models.matches_v4_data_round_plant.MatchesV4DataRoundPlant(
-                                location = , 
-                                player = , 
-                                player_locations = , 
-                                round_time_in_ms = 56, 
-                                site = '', ), 
+                            plant = null, 
                             result = '', 
                             stats = [
                                 henrikdev_api_client.models.matches_v4_data_round_player_stats.MatchesV4DataRoundPlayerStats(
@@ -199,9 +185,7 @@ class TestMatchesV4Response(unittest.TestCase):
                                             player = , )
                                         ], 
                                     economy = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
-                                        armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
-                                            id = '', 
-                                            name = '', ), 
+                                        armor = null, 
                                         loadout_value = 56, 
                                         remaining = 56, ), 
                                     player = , 
@@ -219,19 +203,7 @@ class TestMatchesV4Response(unittest.TestCase):
                         ], 
                     teams = [
                         henrikdev_api_client.models.matches_v4_data_team.MatchesV4DataTeam(
-                            premier_roster = henrikdev_api_client.models.matches_v4_data_team_premier_roster.MatchesV4DataTeamPremierRoster(
-                                customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                                    icon = '', 
-                                    image = '', 
-                                    primary_color = '', 
-                                    secondary_color = '', 
-                                    tertiary_color = '', ), 
-                                id = '', 
-                                members = [
-                                    ''
-                                    ], 
-                                name = '', 
-                                tag = '', ), 
+                            premier_roster = null, 
                             rounds = henrikdev_api_client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
                                 lost = 0, 
                                 won = 0, ), 
@@ -372,23 +344,9 @@ class TestMatchesV4Response(unittest.TestCase):
                     rounds = [
                         henrikdev_api_client.models.matches_v4_data_round.MatchesV4DataRound(
                             ceremony = '', 
-                            defuse = henrikdev_api_client.models.matches_v4_data_round_defuse.MatchesV4DataRoundDefuse(
-                                location = , 
-                                player = , 
-                                player_locations = [
-                                    henrikdev_api_client.models.matches_v4_data_round_player_locations.MatchesV4DataRoundPlayerLocations(
-                                        location = , 
-                                        player = , 
-                                        view_radians = 1.337, )
-                                    ], 
-                                round_time_in_ms = 56, ), 
+                            defuse = null, 
                             id = 0, 
-                            plant = henrikdev_api_client.models.matches_v4_data_round_plant.MatchesV4DataRoundPlant(
-                                location = , 
-                                player = , 
-                                player_locations = , 
-                                round_time_in_ms = 56, 
-                                site = '', ), 
+                            plant = null, 
                             result = '', 
                             stats = [
                                 henrikdev_api_client.models.matches_v4_data_round_player_stats.MatchesV4DataRoundPlayerStats(
@@ -406,9 +364,7 @@ class TestMatchesV4Response(unittest.TestCase):
                                             player = , )
                                         ], 
                                     economy = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy.MatchesV4DataRoundPlayerStatsEconomy(
-                                        armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
-                                            id = '', 
-                                            name = '', ), 
+                                        armor = null, 
                                         loadout_value = 56, 
                                         remaining = 56, ), 
                                     player = , 
@@ -426,19 +382,7 @@ class TestMatchesV4Response(unittest.TestCase):
                         ], 
                     teams = [
                         henrikdev_api_client.models.matches_v4_data_team.MatchesV4DataTeam(
-                            premier_roster = henrikdev_api_client.models.matches_v4_data_team_premier_roster.MatchesV4DataTeamPremierRoster(
-                                customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                                    icon = '', 
-                                    image = '', 
-                                    primary_color = '', 
-                                    secondary_color = '', 
-                                    tertiary_color = '', ), 
-                                id = '', 
-                                members = [
-                                    ''
-                                    ], 
-                                name = '', 
-                                tag = '', ), 
+                            premier_roster = null, 
                             rounds = henrikdev_api_client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
                                 lost = 0, 
                                 won = 0, ), 

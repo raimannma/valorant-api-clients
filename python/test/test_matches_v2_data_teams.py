@@ -37,36 +37,12 @@ class TestMatchesV2DataTeams(unittest.TestCase):
             return MatchesV2DataTeams(
                 blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                            icon = '', 
-                            image = '', 
-                            primary_color = '', 
-                            secondary_color = '', 
-                            tertiary_color = '', ), 
-                        id = '', 
-                        members = [
-                            ''
-                            ], 
-                        name = '', 
-                        tag = '', ), 
+                    roster = null, 
                     rounds_lost = 0, 
                     rounds_won = 0, ),
                 red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                            icon = '', 
-                            image = '', 
-                            primary_color = '', 
-                            secondary_color = '', 
-                            tertiary_color = '', ), 
-                        id = '', 
-                        members = [
-                            ''
-                            ], 
-                        name = '', 
-                        tag = '', ), 
+                    roster = null, 
                     rounds_lost = 0, 
                     rounds_won = 0, )
             )
@@ -74,36 +50,12 @@ class TestMatchesV2DataTeams(unittest.TestCase):
             return MatchesV2DataTeams(
                 blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                            icon = '', 
-                            image = '', 
-                            primary_color = '', 
-                            secondary_color = '', 
-                            tertiary_color = '', ), 
-                        id = '', 
-                        members = [
-                            ''
-                            ], 
-                        name = '', 
-                        tag = '', ), 
+                    roster = null, 
                     rounds_lost = 0, 
                     rounds_won = 0, ),
                 red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                     has_won = True, 
-                    roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                        customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                            icon = '', 
-                            image = '', 
-                            primary_color = '', 
-                            secondary_color = '', 
-                            tertiary_color = '', ), 
-                        id = '', 
-                        members = [
-                            ''
-                            ], 
-                        name = '', 
-                        tag = '', ), 
+                    roster = null, 
                     rounds_lost = 0, 
                     rounds_won = 0, ),
         )

@@ -4490,14 +4490,12 @@ components:
       - tag
     MMRV3Current:
       example:
-        rr: 2
+        rr: 5
         tier:
           name: name
           id: 5
         last_change: 1
-        leaderboard_placement:
-          updated_at: updated_at
-          rank: 0
+        leaderboard_placement: ""
         rank_protection_shields: 5
         elo: 0
         games_needed_for_rating: 6
@@ -4512,7 +4510,9 @@ components:
           format: int32
           type: integer
         leaderboard_placement:
-          $ref: "#/components/schemas/MMRV3LeaderboardPlacement"
+          allOf:
+          - $ref: "#/components/schemas/MMRV3LeaderboardPlacement"
+          nullable: true
         rank_protection_shields:
           format: int32
           type: integer
@@ -4531,24 +4531,20 @@ components:
     MMRV3Data:
       example:
         current:
-          rr: 2
+          rr: 5
           tier:
             name: name
             id: 5
           last_change: 1
-          leaderboard_placement:
-            updated_at: updated_at
-            rank: 0
+          leaderboard_placement: ""
           rank_protection_shields: 5
           elo: 0
           games_needed_for_rating: 6
         seasonal:
-        - wins: 2
-          end_rr: 9
-          leaderboard_placement:
-            updated_at: updated_at
-            rank: 0
-          games: 3
+        - wins: 9
+          end_rr: 2
+          leaderboard_placement: ""
+          games: 7
           season:
             short: short
             id: id
@@ -4561,12 +4557,10 @@ components:
           end_tier:
             name: name
             id: 5
-        - wins: 2
-          end_rr: 9
-          leaderboard_placement:
-            updated_at: updated_at
-            rank: 0
-          games: 3
+        - wins: 9
+          end_rr: 2
+          leaderboard_placement: ""
+          games: 7
           season:
             short: short
             id: id
@@ -4579,15 +4573,7 @@ components:
           end_tier:
             name: name
             id: 5
-        peak:
-          rr: 7
-          tier:
-            name: name
-            id: 5
-          season:
-            short: short
-            id: id
-          ranking_schema: ranking_schema
+        peak: ""
         account:
           name: name
           puuid: puuid
@@ -4598,7 +4584,9 @@ components:
         current:
           $ref: "#/components/schemas/MMRV3Current"
         peak:
-          $ref: "#/components/schemas/MMRV3Peak"
+          allOf:
+          - $ref: "#/components/schemas/MMRV3Peak"
+          nullable: true
         seasonal:
           items:
             $ref: "#/components/schemas/MMRV3Seasonal"
@@ -4608,9 +4596,6 @@ components:
       - current
       - seasonal
     MMRV3LeaderboardPlacement:
-      example:
-        updated_at: updated_at
-        rank: 0
       properties:
         rank:
           format: int32
@@ -4622,15 +4607,6 @@ components:
       - rank
       - updated_at
     MMRV3Peak:
-      example:
-        rr: 7
-        tier:
-          name: name
-          id: 5
-        season:
-          short: short
-          id: id
-        ranking_schema: ranking_schema
       properties:
         ranking_schema:
           type: string
@@ -4650,24 +4626,20 @@ components:
       example:
         data:
           current:
-            rr: 2
+            rr: 5
             tier:
               name: name
               id: 5
             last_change: 1
-            leaderboard_placement:
-              updated_at: updated_at
-              rank: 0
+            leaderboard_placement: ""
             rank_protection_shields: 5
             elo: 0
             games_needed_for_rating: 6
           seasonal:
-          - wins: 2
-            end_rr: 9
-            leaderboard_placement:
-              updated_at: updated_at
-              rank: 0
-            games: 3
+          - wins: 9
+            end_rr: 2
+            leaderboard_placement: ""
+            games: 7
             season:
               short: short
               id: id
@@ -4680,12 +4652,10 @@ components:
             end_tier:
               name: name
               id: 5
-          - wins: 2
-            end_rr: 9
-            leaderboard_placement:
-              updated_at: updated_at
-              rank: 0
-            games: 3
+          - wins: 9
+            end_rr: 2
+            leaderboard_placement: ""
+            games: 7
             season:
               short: short
               id: id
@@ -4698,15 +4668,7 @@ components:
             end_tier:
               name: name
               id: 5
-          peak:
-            rr: 7
-            tier:
-              name: name
-              id: 5
-            season:
-              short: short
-              id: id
-            ranking_schema: ranking_schema
+          peak: ""
           account:
             name: name
             puuid: puuid
@@ -4724,12 +4686,10 @@ components:
       - status
     MMRV3Seasonal:
       example:
-        wins: 2
-        end_rr: 9
-        leaderboard_placement:
-          updated_at: updated_at
-          rank: 0
-        games: 3
+        wins: 9
+        end_rr: 2
+        leaderboard_placement: ""
+        games: 7
         season:
           short: short
           id: id
@@ -4756,7 +4716,9 @@ components:
           format: int32
           type: integer
         leaderboard_placement:
-          $ref: "#/components/schemas/MMRV3LeaderboardPlacement"
+          allOf:
+          - $ref: "#/components/schemas/MMRV3LeaderboardPlacement"
+          nullable: true
         ranking_schema:
           type: string
         season:
@@ -4900,36 +4862,12 @@ components:
           queue: queue
         teams:
           red:
-            roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            roster: ""
             rounds_won: 0
             has_won: true
             rounds_lost: 0
           blue:
-            roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            roster: ""
             rounds_won: 0
             has_won: true
             rounds_lost: 0
@@ -5322,9 +5260,7 @@ components:
             type: type
         rounds:
         - plant_events:
-            plant_location:
-              x: 1
-              "y": 5
+            plant_location: ""
             plant_time_in_round: 0
             player_locations_on_plant:
             - player_puuid: player_puuid
@@ -5342,10 +5278,7 @@ components:
               player_team: player_team
               view_radians: 5.637377
             plant_site: plant_site
-            planted_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            planted_by: ""
           end_type: end_type
           player_stats:
           - damage_events:
@@ -5601,13 +5534,8 @@ components:
             player_display_name: player_display_name
             was_afk: true
           defuse_events:
-            defuse_location:
-              x: 1
-              "y": 5
-            defused_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            defuse_location: ""
+            defused_by: ""
             player_locations_on_defuse:
             - player_puuid: player_puuid
               location:
@@ -5628,9 +5556,7 @@ components:
           bomb_defused: true
           bomb_planted: true
         - plant_events:
-            plant_location:
-              x: 1
-              "y": 5
+            plant_location: ""
             plant_time_in_round: 0
             player_locations_on_plant:
             - player_puuid: player_puuid
@@ -5648,10 +5574,7 @@ components:
               player_team: player_team
               view_radians: 5.637377
             plant_site: plant_site
-            planted_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            planted_by: ""
           end_type: end_type
           player_stats:
           - damage_events:
@@ -5907,13 +5830,8 @@ components:
             player_display_name: player_display_name
             was_afk: true
           defuse_events:
-            defuse_location:
-              x: 1
-              "y": 5
-            defused_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            defuse_location: ""
+            defused_by: ""
             player_locations_on_defuse:
             - player_puuid: player_puuid
               location:
@@ -6953,9 +6871,7 @@ components:
     MatchesV2DataRound:
       example:
         plant_events:
-          plant_location:
-            x: 1
-            "y": 5
+          plant_location: ""
           plant_time_in_round: 0
           player_locations_on_plant:
           - player_puuid: player_puuid
@@ -6973,10 +6889,7 @@ components:
             player_team: player_team
             view_radians: 5.637377
           plant_site: plant_site
-          planted_by:
-            puuid: puuid
-            team: team
-            display_name: display_name
+          planted_by: ""
         end_type: end_type
         player_stats:
         - damage_events:
@@ -7232,13 +7145,8 @@ components:
           player_display_name: player_display_name
           was_afk: true
         defuse_events:
-          defuse_location:
-            x: 1
-            "y": 5
-          defused_by:
-            puuid: puuid
-            team: team
-            display_name: display_name
+          defuse_location: ""
+          defused_by: ""
           player_locations_on_defuse:
           - player_puuid: player_puuid
             location:
@@ -7285,13 +7193,8 @@ components:
       - winning_team
     MatchesV2DataRoundDefuseEvents:
       example:
-        defuse_location:
-          x: 1
-          "y": 5
-        defused_by:
-          puuid: puuid
-          team: team
-          display_name: display_name
+        defuse_location: ""
+        defused_by: ""
         player_locations_on_defuse:
         - player_puuid: player_puuid
           location:
@@ -7310,14 +7213,18 @@ components:
         defuse_time_in_round: 0
       properties:
         defuse_location:
-          $ref: "#/components/schemas/MatchesV2DataRoundEventLocation"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataRoundEventLocation"
+          nullable: true
         defuse_time_in_round:
           format: int64
           minimum: 0
           nullable: true
           type: integer
         defused_by:
-          $ref: "#/components/schemas/MatchesV2DataRoundPlayer"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataRoundPlayer"
+          nullable: true
         player_locations_on_defuse:
           items:
             $ref: "#/components/schemas/MatchesV2DataRoundPlayerLocationsOnEvent"
@@ -7339,9 +7246,7 @@ components:
       - "y"
     MatchesV2DataRoundPlantEvents:
       example:
-        plant_location:
-          x: 1
-          "y": 5
+        plant_location: ""
         plant_time_in_round: 0
         player_locations_on_plant:
         - player_puuid: player_puuid
@@ -7359,13 +7264,12 @@ components:
           player_team: player_team
           view_radians: 5.637377
         plant_site: plant_site
-        planted_by:
-          puuid: puuid
-          team: team
-          display_name: display_name
+        planted_by: ""
       properties:
         plant_location:
-          $ref: "#/components/schemas/MatchesV2DataRoundEventLocation"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataRoundEventLocation"
+          nullable: true
         plant_site:
           nullable: true
           type: string
@@ -7375,17 +7279,15 @@ components:
           nullable: true
           type: integer
         planted_by:
-          $ref: "#/components/schemas/MatchesV2DataRoundPlayer"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataRoundPlayer"
+          nullable: true
         player_locations_on_plant:
           items:
             $ref: "#/components/schemas/MatchesV2DataRoundPlayerLocationsOnEvent"
           nullable: true
           type: array
     MatchesV2DataRoundPlayer:
-      example:
-        puuid: puuid
-        team: team
-        display_name: display_name
       properties:
         display_name:
           type: string
@@ -7900,19 +7802,7 @@ components:
       - assistant_team
     MatchesV2DataTeam:
       example:
-        roster:
-          customization:
-            tertiary_color: tertiary_color
-            image: image
-            icon: icon
-            secondary_color: secondary_color
-            primary_color: primary_color
-          members:
-          - members
-          - members
-          name: name
-          id: id
-          tag: tag
+        roster: ""
         rounds_won: 0
         has_won: true
         rounds_lost: 0
@@ -7921,7 +7811,9 @@ components:
           nullable: true
           type: boolean
         roster:
-          $ref: "#/components/schemas/MatchesV2DataTeamRoster"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataTeamRoster"
+          nullable: true
         rounds_lost:
           format: int32
           minimum: 0
@@ -7933,19 +7825,6 @@ components:
           nullable: true
           type: integer
     MatchesV2DataTeamRoster:
-      example:
-        customization:
-          tertiary_color: tertiary_color
-          image: image
-          icon: icon
-          secondary_color: secondary_color
-          primary_color: primary_color
-        members:
-        - members
-        - members
-        name: name
-        id: id
-        tag: tag
       properties:
         customization:
           $ref: "#/components/schemas/MatchesV2DataTeamRosterCustomization"
@@ -7966,12 +7845,6 @@ components:
       - name
       - tag
     MatchesV2DataTeamRosterCustomization:
-      example:
-        tertiary_color: tertiary_color
-        image: image
-        icon: icon
-        secondary_color: secondary_color
-        primary_color: primary_color
       properties:
         icon:
           type: string
@@ -7992,36 +7865,12 @@ components:
     MatchesV2DataTeams:
       example:
         red:
-          roster:
-            customization:
-              tertiary_color: tertiary_color
-              image: image
-              icon: icon
-              secondary_color: secondary_color
-              primary_color: primary_color
-            members:
-            - members
-            - members
-            name: name
-            id: id
-            tag: tag
+          roster: ""
           rounds_won: 0
           has_won: true
           rounds_lost: 0
         blue:
-          roster:
-            customization:
-              tertiary_color: tertiary_color
-              image: image
-              icon: icon
-              secondary_color: secondary_color
-              primary_color: primary_color
-            members:
-            - members
-            - members
-            name: name
-            id: id
-            tag: tag
+          roster: ""
           rounds_won: 0
           has_won: true
           rounds_lost: 0
@@ -8142,36 +7991,12 @@ components:
             queue: queue
           teams:
             red:
-              roster:
-                customization:
-                  tertiary_color: tertiary_color
-                  image: image
-                  icon: icon
-                  secondary_color: secondary_color
-                  primary_color: primary_color
-                members:
-                - members
-                - members
-                name: name
-                id: id
-                tag: tag
+              roster: ""
               rounds_won: 0
               has_won: true
               rounds_lost: 0
             blue:
-              roster:
-                customization:
-                  tertiary_color: tertiary_color
-                  image: image
-                  icon: icon
-                  secondary_color: secondary_color
-                  primary_color: primary_color
-                members:
-                - members
-                - members
-                name: name
-                id: id
-                tag: tag
+              roster: ""
               rounds_won: 0
               has_won: true
               rounds_lost: 0
@@ -8564,9 +8389,7 @@ components:
               type: type
           rounds:
           - plant_events:
-              plant_location:
-                x: 1
-                "y": 5
+              plant_location: ""
               plant_time_in_round: 0
               player_locations_on_plant:
               - player_puuid: player_puuid
@@ -8584,10 +8407,7 @@ components:
                 player_team: player_team
                 view_radians: 5.637377
               plant_site: plant_site
-              planted_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              planted_by: ""
             end_type: end_type
             player_stats:
             - damage_events:
@@ -8843,13 +8663,8 @@ components:
               player_display_name: player_display_name
               was_afk: true
             defuse_events:
-              defuse_location:
-                x: 1
-                "y": 5
-              defused_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              defuse_location: ""
+              defused_by: ""
               player_locations_on_defuse:
               - player_puuid: player_puuid
                 location:
@@ -8870,9 +8685,7 @@ components:
             bomb_defused: true
             bomb_planted: true
           - plant_events:
-              plant_location:
-                x: 1
-                "y": 5
+              plant_location: ""
               plant_time_in_round: 0
               player_locations_on_plant:
               - player_puuid: player_puuid
@@ -8890,10 +8703,7 @@ components:
                 player_team: player_team
                 view_radians: 5.637377
               plant_site: plant_site
-              planted_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              planted_by: ""
             end_type: end_type
             player_stats:
             - damage_events:
@@ -9149,13 +8959,8 @@ components:
               player_display_name: player_display_name
               was_afk: true
             defuse_events:
-              defuse_location:
-                x: 1
-                "y": 5
-              defused_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              defuse_location: ""
+              defused_by: ""
               player_locations_on_defuse:
               - player_puuid: player_puuid
                 location:
@@ -9275,411 +9080,9 @@ components:
             secondary_fire_mode: true
             victim_team: victim_team
             damage_weapon_name: damage_weapon_name
-          metadata:
-            cluster: cluster
-            game_version: game_version
-            game_start: 0
-            rounds_played: 0
-            season_id: season_id
-            platform: platform
-            mode: mode
-            premier_info:
-              matchup_id: matchup_id
-              tournament_id: tournament_id
-            mode_id: mode_id
-            game_length: 0
-            region: region
-            map: map
-            game_start_patched: game_start_patched
-            matchid: matchid
-            queue: queue
-          teams:
-            red:
-              roster:
-                customization:
-                  tertiary_color: tertiary_color
-                  image: image
-                  icon: icon
-                  secondary_color: secondary_color
-                  primary_color: primary_color
-                members:
-                - members
-                - members
-                name: name
-                id: id
-                tag: tag
-              rounds_won: 0
-              has_won: true
-              rounds_lost: 0
-            blue:
-              roster:
-                customization:
-                  tertiary_color: tertiary_color
-                  image: image
-                  icon: icon
-                  secondary_color: secondary_color
-                  primary_color: primary_color
-                members:
-                - members
-                - members
-                name: name
-                id: id
-                tag: tag
-              rounds_won: 0
-              has_won: true
-              rounds_lost: 0
-          players:
-            red:
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            all_players:
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            blue:
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
+          metadata: ""
+          teams: ""
+          players: ""
           observers:
           - player_card: player_card
             session_playtime:
@@ -9717,9 +9120,7 @@ components:
               type: type
           rounds:
           - plant_events:
-              plant_location:
-                x: 1
-                "y": 5
+              plant_location: ""
               plant_time_in_round: 0
               player_locations_on_plant:
               - player_puuid: player_puuid
@@ -9737,10 +9138,7 @@ components:
                 player_team: player_team
                 view_radians: 5.637377
               plant_site: plant_site
-              planted_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              planted_by: ""
             end_type: end_type
             player_stats:
             - damage_events:
@@ -9996,13 +9394,8 @@ components:
               player_display_name: player_display_name
               was_afk: true
             defuse_events:
-              defuse_location:
-                x: 1
-                "y": 5
-              defused_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              defuse_location: ""
+              defused_by: ""
               player_locations_on_defuse:
               - player_puuid: player_puuid
                 location:
@@ -10023,9 +9416,7 @@ components:
             bomb_defused: true
             bomb_planted: true
           - plant_events:
-              plant_location:
-                x: 1
-                "y": 5
+              plant_location: ""
               plant_time_in_round: 0
               player_locations_on_plant:
               - player_puuid: player_puuid
@@ -10043,10 +9434,7 @@ components:
                 player_team: player_team
                 view_radians: 5.637377
               plant_site: plant_site
-              planted_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              planted_by: ""
             end_type: end_type
             player_stats:
             - damage_events:
@@ -10302,13 +9690,8 @@ components:
               player_display_name: player_display_name
               was_afk: true
             defuse_events:
-              defuse_location:
-                x: 1
-                "y": 5
-              defused_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              defuse_location: ""
+              defused_by: ""
               player_locations_on_defuse:
               - player_puuid: player_puuid
                 location:
@@ -10415,411 +9798,9 @@ components:
             secondary_fire_mode: true
             victim_team: victim_team
             damage_weapon_name: damage_weapon_name
-          metadata:
-            cluster: cluster
-            game_version: game_version
-            game_start: 0
-            rounds_played: 0
-            season_id: season_id
-            platform: platform
-            mode: mode
-            premier_info:
-              matchup_id: matchup_id
-              tournament_id: tournament_id
-            mode_id: mode_id
-            game_length: 0
-            region: region
-            map: map
-            game_start_patched: game_start_patched
-            matchid: matchid
-            queue: queue
-          teams:
-            red:
-              roster:
-                customization:
-                  tertiary_color: tertiary_color
-                  image: image
-                  icon: icon
-                  secondary_color: secondary_color
-                  primary_color: primary_color
-                members:
-                - members
-                - members
-                name: name
-                id: id
-                tag: tag
-              rounds_won: 0
-              has_won: true
-              rounds_lost: 0
-            blue:
-              roster:
-                customization:
-                  tertiary_color: tertiary_color
-                  image: image
-                  icon: icon
-                  secondary_color: secondary_color
-                  primary_color: primary_color
-                members:
-                - members
-                - members
-                name: name
-                id: id
-                tag: tag
-              rounds_won: 0
-              has_won: true
-              rounds_lost: 0
-          players:
-            red:
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            all_players:
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            blue:
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
-            - damage_made: 6
-              player_card: player_card
-              currenttier_patched: currenttier_patched
-              level: 0
-              ability_casts:
-                q_cast: 0
-                c_cast: 0
-                x_cast: 0
-                e_cast: 0
-              puuid: puuid
-              economy:
-                spent:
-                  average: 9.018348
-                  overall: 6
-                loadout_value:
-                  average: 9.018348
-                  overall: 6
-              team: team
-              platform:
-                os:
-                  name: name
-                  version: version
-                type: type
-              character: character
-              assets:
-                agent:
-                  small: small
-                  killfeed: killfeed
-                  bust: bust
-                  full: full
-                card:
-                  small: small
-                  large: large
-                  wide: wide
-              session_playtime:
-                milliseconds: 0
-                seconds: 0
-                minutes: 0
-              stats:
-                kills: 0
-                score: 6
-                bodyshots: 0
-                headshots: 0
-                assists: 0
-                legshots: 0
-                deaths: 0
-              damage_received: 8
-              party_id: party_id
-              player_title: player_title
-              name: name
-              tag: tag
-              behavior:
-                friendly_fire:
-                  incoming: 4.9652185
-                  outgoing: 5.025005
-                rounds_in_spawn: 9.965781
-                afk_rounds: 1.1730742
-              currenttier: 0
+          metadata: ""
+          teams: ""
+          players: ""
           observers:
           - player_card: player_card
             session_playtime:
@@ -10857,9 +9838,7 @@ components:
               type: type
           rounds:
           - plant_events:
-              plant_location:
-                x: 1
-                "y": 5
+              plant_location: ""
               plant_time_in_round: 0
               player_locations_on_plant:
               - player_puuid: player_puuid
@@ -10877,10 +9856,7 @@ components:
                 player_team: player_team
                 view_radians: 5.637377
               plant_site: plant_site
-              planted_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              planted_by: ""
             end_type: end_type
             player_stats:
             - damage_events:
@@ -11136,13 +10112,8 @@ components:
               player_display_name: player_display_name
               was_afk: true
             defuse_events:
-              defuse_location:
-                x: 1
-                "y": 5
-              defused_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              defuse_location: ""
+              defused_by: ""
               player_locations_on_defuse:
               - player_puuid: player_puuid
                 location:
@@ -11163,9 +10134,7 @@ components:
             bomb_defused: true
             bomb_planted: true
           - plant_events:
-              plant_location:
-                x: 1
-                "y": 5
+              plant_location: ""
               plant_time_in_round: 0
               player_locations_on_plant:
               - player_puuid: player_puuid
@@ -11183,10 +10152,7 @@ components:
                 player_team: player_team
                 view_radians: 5.637377
               plant_site: plant_site
-              planted_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              planted_by: ""
             end_type: end_type
             player_stats:
             - damage_events:
@@ -11442,13 +10408,8 @@ components:
               player_display_name: player_display_name
               was_afk: true
             defuse_events:
-              defuse_location:
-                x: 1
-                "y": 5
-              defused_by:
-                puuid: puuid
-                team: team
-                display_name: display_name
+              defuse_location: ""
+              defused_by: ""
               player_locations_on_defuse:
               - player_puuid: player_puuid
                 location:
@@ -11570,411 +10531,9 @@ components:
           secondary_fire_mode: true
           victim_team: victim_team
           damage_weapon_name: damage_weapon_name
-        metadata:
-          cluster: cluster
-          game_version: game_version
-          game_start: 0
-          rounds_played: 0
-          season_id: season_id
-          platform: platform
-          mode: mode
-          premier_info:
-            matchup_id: matchup_id
-            tournament_id: tournament_id
-          mode_id: mode_id
-          game_length: 0
-          region: region
-          map: map
-          game_start_patched: game_start_patched
-          matchid: matchid
-          queue: queue
-        teams:
-          red:
-            roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
-            rounds_won: 0
-            has_won: true
-            rounds_lost: 0
-          blue:
-            roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
-            rounds_won: 0
-            has_won: true
-            rounds_lost: 0
-        players:
-          red:
-          - damage_made: 6
-            player_card: player_card
-            currenttier_patched: currenttier_patched
-            level: 0
-            ability_casts:
-              q_cast: 0
-              c_cast: 0
-              x_cast: 0
-              e_cast: 0
-            puuid: puuid
-            economy:
-              spent:
-                average: 9.018348
-                overall: 6
-              loadout_value:
-                average: 9.018348
-                overall: 6
-            team: team
-            platform:
-              os:
-                name: name
-                version: version
-              type: type
-            character: character
-            assets:
-              agent:
-                small: small
-                killfeed: killfeed
-                bust: bust
-                full: full
-              card:
-                small: small
-                large: large
-                wide: wide
-            session_playtime:
-              milliseconds: 0
-              seconds: 0
-              minutes: 0
-            stats:
-              kills: 0
-              score: 6
-              bodyshots: 0
-              headshots: 0
-              assists: 0
-              legshots: 0
-              deaths: 0
-            damage_received: 8
-            party_id: party_id
-            player_title: player_title
-            name: name
-            tag: tag
-            behavior:
-              friendly_fire:
-                incoming: 4.9652185
-                outgoing: 5.025005
-              rounds_in_spawn: 9.965781
-              afk_rounds: 1.1730742
-            currenttier: 0
-          - damage_made: 6
-            player_card: player_card
-            currenttier_patched: currenttier_patched
-            level: 0
-            ability_casts:
-              q_cast: 0
-              c_cast: 0
-              x_cast: 0
-              e_cast: 0
-            puuid: puuid
-            economy:
-              spent:
-                average: 9.018348
-                overall: 6
-              loadout_value:
-                average: 9.018348
-                overall: 6
-            team: team
-            platform:
-              os:
-                name: name
-                version: version
-              type: type
-            character: character
-            assets:
-              agent:
-                small: small
-                killfeed: killfeed
-                bust: bust
-                full: full
-              card:
-                small: small
-                large: large
-                wide: wide
-            session_playtime:
-              milliseconds: 0
-              seconds: 0
-              minutes: 0
-            stats:
-              kills: 0
-              score: 6
-              bodyshots: 0
-              headshots: 0
-              assists: 0
-              legshots: 0
-              deaths: 0
-            damage_received: 8
-            party_id: party_id
-            player_title: player_title
-            name: name
-            tag: tag
-            behavior:
-              friendly_fire:
-                incoming: 4.9652185
-                outgoing: 5.025005
-              rounds_in_spawn: 9.965781
-              afk_rounds: 1.1730742
-            currenttier: 0
-          all_players:
-          - damage_made: 6
-            player_card: player_card
-            currenttier_patched: currenttier_patched
-            level: 0
-            ability_casts:
-              q_cast: 0
-              c_cast: 0
-              x_cast: 0
-              e_cast: 0
-            puuid: puuid
-            economy:
-              spent:
-                average: 9.018348
-                overall: 6
-              loadout_value:
-                average: 9.018348
-                overall: 6
-            team: team
-            platform:
-              os:
-                name: name
-                version: version
-              type: type
-            character: character
-            assets:
-              agent:
-                small: small
-                killfeed: killfeed
-                bust: bust
-                full: full
-              card:
-                small: small
-                large: large
-                wide: wide
-            session_playtime:
-              milliseconds: 0
-              seconds: 0
-              minutes: 0
-            stats:
-              kills: 0
-              score: 6
-              bodyshots: 0
-              headshots: 0
-              assists: 0
-              legshots: 0
-              deaths: 0
-            damage_received: 8
-            party_id: party_id
-            player_title: player_title
-            name: name
-            tag: tag
-            behavior:
-              friendly_fire:
-                incoming: 4.9652185
-                outgoing: 5.025005
-              rounds_in_spawn: 9.965781
-              afk_rounds: 1.1730742
-            currenttier: 0
-          - damage_made: 6
-            player_card: player_card
-            currenttier_patched: currenttier_patched
-            level: 0
-            ability_casts:
-              q_cast: 0
-              c_cast: 0
-              x_cast: 0
-              e_cast: 0
-            puuid: puuid
-            economy:
-              spent:
-                average: 9.018348
-                overall: 6
-              loadout_value:
-                average: 9.018348
-                overall: 6
-            team: team
-            platform:
-              os:
-                name: name
-                version: version
-              type: type
-            character: character
-            assets:
-              agent:
-                small: small
-                killfeed: killfeed
-                bust: bust
-                full: full
-              card:
-                small: small
-                large: large
-                wide: wide
-            session_playtime:
-              milliseconds: 0
-              seconds: 0
-              minutes: 0
-            stats:
-              kills: 0
-              score: 6
-              bodyshots: 0
-              headshots: 0
-              assists: 0
-              legshots: 0
-              deaths: 0
-            damage_received: 8
-            party_id: party_id
-            player_title: player_title
-            name: name
-            tag: tag
-            behavior:
-              friendly_fire:
-                incoming: 4.9652185
-                outgoing: 5.025005
-              rounds_in_spawn: 9.965781
-              afk_rounds: 1.1730742
-            currenttier: 0
-          blue:
-          - damage_made: 6
-            player_card: player_card
-            currenttier_patched: currenttier_patched
-            level: 0
-            ability_casts:
-              q_cast: 0
-              c_cast: 0
-              x_cast: 0
-              e_cast: 0
-            puuid: puuid
-            economy:
-              spent:
-                average: 9.018348
-                overall: 6
-              loadout_value:
-                average: 9.018348
-                overall: 6
-            team: team
-            platform:
-              os:
-                name: name
-                version: version
-              type: type
-            character: character
-            assets:
-              agent:
-                small: small
-                killfeed: killfeed
-                bust: bust
-                full: full
-              card:
-                small: small
-                large: large
-                wide: wide
-            session_playtime:
-              milliseconds: 0
-              seconds: 0
-              minutes: 0
-            stats:
-              kills: 0
-              score: 6
-              bodyshots: 0
-              headshots: 0
-              assists: 0
-              legshots: 0
-              deaths: 0
-            damage_received: 8
-            party_id: party_id
-            player_title: player_title
-            name: name
-            tag: tag
-            behavior:
-              friendly_fire:
-                incoming: 4.9652185
-                outgoing: 5.025005
-              rounds_in_spawn: 9.965781
-              afk_rounds: 1.1730742
-            currenttier: 0
-          - damage_made: 6
-            player_card: player_card
-            currenttier_patched: currenttier_patched
-            level: 0
-            ability_casts:
-              q_cast: 0
-              c_cast: 0
-              x_cast: 0
-              e_cast: 0
-            puuid: puuid
-            economy:
-              spent:
-                average: 9.018348
-                overall: 6
-              loadout_value:
-                average: 9.018348
-                overall: 6
-            team: team
-            platform:
-              os:
-                name: name
-                version: version
-              type: type
-            character: character
-            assets:
-              agent:
-                small: small
-                killfeed: killfeed
-                bust: bust
-                full: full
-              card:
-                small: small
-                large: large
-                wide: wide
-            session_playtime:
-              milliseconds: 0
-              seconds: 0
-              minutes: 0
-            stats:
-              kills: 0
-              score: 6
-              bodyshots: 0
-              headshots: 0
-              assists: 0
-              legshots: 0
-              deaths: 0
-            damage_received: 8
-            party_id: party_id
-            player_title: player_title
-            name: name
-            tag: tag
-            behavior:
-              friendly_fire:
-                incoming: 4.9652185
-                outgoing: 5.025005
-              rounds_in_spawn: 9.965781
-              afk_rounds: 1.1730742
-            currenttier: 0
+        metadata: ""
+        teams: ""
+        players: ""
         observers:
         - player_card: player_card
           session_playtime:
@@ -12012,9 +10571,7 @@ components:
             type: type
         rounds:
         - plant_events:
-            plant_location:
-              x: 1
-              "y": 5
+            plant_location: ""
             plant_time_in_round: 0
             player_locations_on_plant:
             - player_puuid: player_puuid
@@ -12032,10 +10589,7 @@ components:
               player_team: player_team
               view_radians: 5.637377
             plant_site: plant_site
-            planted_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            planted_by: ""
           end_type: end_type
           player_stats:
           - damage_events:
@@ -12291,13 +10845,8 @@ components:
             player_display_name: player_display_name
             was_afk: true
           defuse_events:
-            defuse_location:
-              x: 1
-              "y": 5
-            defused_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            defuse_location: ""
+            defused_by: ""
             player_locations_on_defuse:
             - player_puuid: player_puuid
               location:
@@ -12318,9 +10867,7 @@ components:
           bomb_defused: true
           bomb_planted: true
         - plant_events:
-            plant_location:
-              x: 1
-              "y": 5
+            plant_location: ""
             plant_time_in_round: 0
             player_locations_on_plant:
             - player_puuid: player_puuid
@@ -12338,10 +10885,7 @@ components:
               player_team: player_team
               view_radians: 5.637377
             plant_site: plant_site
-            planted_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            planted_by: ""
           end_type: end_type
           player_stats:
           - damage_events:
@@ -12597,13 +11141,8 @@ components:
             player_display_name: player_display_name
             was_afk: true
           defuse_events:
-            defuse_location:
-              x: 1
-              "y": 5
-            defused_by:
-              puuid: puuid
-              team: team
-              display_name: display_name
+            defuse_location: ""
+            defused_by: ""
             player_locations_on_defuse:
             - player_puuid: player_puuid
               location:
@@ -12636,19 +11175,25 @@ components:
             $ref: "#/components/schemas/MatchesV2DataKill"
           type: array
         metadata:
-          $ref: "#/components/schemas/MatchesV2DataMetadata"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataMetadata"
+          nullable: true
         observers:
           items:
             $ref: "#/components/schemas/MatchesV2DataObserver"
           type: array
         players:
-          $ref: "#/components/schemas/MatchesV2DataPlayers"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataPlayers"
+          nullable: true
         rounds:
           items:
             $ref: "#/components/schemas/MatchesV2DataRound"
           type: array
         teams:
-          $ref: "#/components/schemas/MatchesV2DataTeams"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV2DataTeams"
+          nullable: true
       required:
       - coaches
       - is_available
@@ -12788,37 +11333,13 @@ components:
             id: id
         teams:
         - won: true
-          premier_roster:
-            customization:
-              tertiary_color: tertiary_color
-              image: image
-              icon: icon
-              secondary_color: secondary_color
-              primary_color: primary_color
-            members:
-            - members
-            - members
-            name: name
-            id: id
-            tag: tag
+          premier_roster: ""
           team_id: team_id
           rounds:
             lost: 0
             won: 0
         - won: true
-          premier_roster:
-            customization:
-              tertiary_color: tertiary_color
-              image: image
-              icon: icon
-              secondary_color: secondary_color
-              primary_color: primary_color
-            members:
-            - members
-            - members
-            name: name
-            id: id
-            tag: tag
+          premier_roster: ""
           team_id: team_id
           rounds:
             lost: 0
@@ -12960,7 +11481,7 @@ components:
             stayed_in_spawn: true
             stats:
               kills: 0
-              score: 3
+              score: 8
               bodyshots: 0
               headshots: 0
               legshots: 0
@@ -12970,15 +11491,10 @@ components:
               ability_1: 0
               ultimate: 0
             economy:
-              weapon:
-                name: name
-                id: id
-                type: type
-              armor:
-                name: name
-                id: id
+              weapon: ""
+              armor: ""
               loadout_value: 7
-              remaining: 6
+              remaining: 0
             received_penalty: true
             was_afk: true
             player:
@@ -13008,7 +11524,7 @@ components:
             stayed_in_spawn: true
             stats:
               kills: 0
-              score: 3
+              score: 8
               bodyshots: 0
               headshots: 0
               legshots: 0
@@ -13018,15 +11534,10 @@ components:
               ability_1: 0
               ultimate: 0
             economy:
-              weapon:
-                name: name
-                id: id
-                type: type
-              armor:
-                name: name
-                id: id
+              weapon: ""
+              armor: ""
               loadout_value: 7
-              remaining: 6
+              remaining: 0
             received_penalty: true
             was_afk: true
             player:
@@ -13035,65 +11546,8 @@ components:
               tag: tag
               team: team
           ceremony: ceremony
-          defuse:
-            round_time_in_ms: 6
-            location:
-              x: 1
-              "y": 5
-            player_locations:
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
-          plant:
-            site: site
-            round_time_in_ms: 2
-            location:
-              x: 1
-              "y": 5
-            player_locations:
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
+          defuse: ""
+          plant: ""
           winning_team: winning_team
           id: 0
         - result: result
@@ -13120,7 +11574,7 @@ components:
             stayed_in_spawn: true
             stats:
               kills: 0
-              score: 3
+              score: 8
               bodyshots: 0
               headshots: 0
               legshots: 0
@@ -13130,15 +11584,10 @@ components:
               ability_1: 0
               ultimate: 0
             economy:
-              weapon:
-                name: name
-                id: id
-                type: type
-              armor:
-                name: name
-                id: id
+              weapon: ""
+              armor: ""
               loadout_value: 7
-              remaining: 6
+              remaining: 0
             received_penalty: true
             was_afk: true
             player:
@@ -13168,7 +11617,7 @@ components:
             stayed_in_spawn: true
             stats:
               kills: 0
-              score: 3
+              score: 8
               bodyshots: 0
               headshots: 0
               legshots: 0
@@ -13178,15 +11627,10 @@ components:
               ability_1: 0
               ultimate: 0
             economy:
-              weapon:
-                name: name
-                id: id
-                type: type
-              armor:
-                name: name
-                id: id
+              weapon: ""
+              armor: ""
               loadout_value: 7
-              remaining: 6
+              remaining: 0
             received_penalty: true
             was_afk: true
             player:
@@ -13195,65 +11639,8 @@ components:
               tag: tag
               team: team
           ceremony: ceremony
-          defuse:
-            round_time_in_ms: 6
-            location:
-              x: 1
-              "y": 5
-            player_locations:
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
-          plant:
-            site: site
-            round_time_in_ms: 2
-            location:
-              x: 1
-              "y": 5
-            player_locations:
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            - location:
-                x: 1
-                "y": 5
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-              view_radians: 0.8008282
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
+          defuse: ""
+          plant: ""
           winning_team: winning_team
           id: 0
       properties:
@@ -13846,7 +12233,7 @@ components:
           stayed_in_spawn: true
           stats:
             kills: 0
-            score: 3
+            score: 8
             bodyshots: 0
             headshots: 0
             legshots: 0
@@ -13856,15 +12243,10 @@ components:
             ability_1: 0
             ultimate: 0
           economy:
-            weapon:
-              name: name
-              id: id
-              type: type
-            armor:
-              name: name
-              id: id
+            weapon: ""
+            armor: ""
             loadout_value: 7
-            remaining: 6
+            remaining: 0
           received_penalty: true
           was_afk: true
           player:
@@ -13894,7 +12276,7 @@ components:
           stayed_in_spawn: true
           stats:
             kills: 0
-            score: 3
+            score: 8
             bodyshots: 0
             headshots: 0
             legshots: 0
@@ -13904,15 +12286,10 @@ components:
             ability_1: 0
             ultimate: 0
           economy:
-            weapon:
-              name: name
-              id: id
-              type: type
-            armor:
-              name: name
-              id: id
+            weapon: ""
+            armor: ""
             loadout_value: 7
-            remaining: 6
+            remaining: 0
           received_penalty: true
           was_afk: true
           player:
@@ -13921,78 +12298,25 @@ components:
             tag: tag
             team: team
         ceremony: ceremony
-        defuse:
-          round_time_in_ms: 6
-          location:
-            x: 1
-            "y": 5
-          player_locations:
-          - location:
-              x: 1
-              "y": 5
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
-            view_radians: 0.8008282
-          - location:
-              x: 1
-              "y": 5
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
-            view_radians: 0.8008282
-          player:
-            name: name
-            puuid: puuid
-            tag: tag
-            team: team
-        plant:
-          site: site
-          round_time_in_ms: 2
-          location:
-            x: 1
-            "y": 5
-          player_locations:
-          - location:
-              x: 1
-              "y": 5
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
-            view_radians: 0.8008282
-          - location:
-              x: 1
-              "y": 5
-            player:
-              name: name
-              puuid: puuid
-              tag: tag
-              team: team
-            view_radians: 0.8008282
-          player:
-            name: name
-            puuid: puuid
-            tag: tag
-            team: team
+        defuse: ""
+        plant: ""
         winning_team: winning_team
         id: 0
       properties:
         ceremony:
           type: string
         defuse:
-          $ref: "#/components/schemas/MatchesV4DataRoundDefuse"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV4DataRoundDefuse"
+          nullable: true
         id:
           format: int32
           minimum: 0
           type: integer
         plant:
-          $ref: "#/components/schemas/MatchesV4DataRoundPlant"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV4DataRoundPlant"
+          nullable: true
         result:
           type: string
         stats:
@@ -14008,35 +12332,6 @@ components:
       - stats
       - winning_team
     MatchesV4DataRoundDefuse:
-      example:
-        round_time_in_ms: 6
-        location:
-          x: 1
-          "y": 5
-        player_locations:
-        - location:
-            x: 1
-            "y": 5
-          player:
-            name: name
-            puuid: puuid
-            tag: tag
-            team: team
-          view_radians: 0.8008282
-        - location:
-            x: 1
-            "y": 5
-          player:
-            name: name
-            puuid: puuid
-            tag: tag
-            team: team
-          view_radians: 0.8008282
-        player:
-          name: name
-          puuid: puuid
-          tag: tag
-          team: team
       properties:
         location:
           $ref: "#/components/schemas/MatchesV4DataRoundLocation"
@@ -14069,36 +12364,6 @@ components:
       - x
       - "y"
     MatchesV4DataRoundPlant:
-      example:
-        site: site
-        round_time_in_ms: 2
-        location:
-          x: 1
-          "y": 5
-        player_locations:
-        - location:
-            x: 1
-            "y": 5
-          player:
-            name: name
-            puuid: puuid
-            tag: tag
-            team: team
-          view_radians: 0.8008282
-        - location:
-            x: 1
-            "y": 5
-          player:
-            name: name
-            puuid: puuid
-            tag: tag
-            team: team
-          view_radians: 0.8008282
-        player:
-          name: name
-          puuid: puuid
-          tag: tag
-          team: team
       properties:
         location:
           $ref: "#/components/schemas/MatchesV4DataRoundLocation"
@@ -14186,7 +12451,7 @@ components:
         stayed_in_spawn: true
         stats:
           kills: 0
-          score: 3
+          score: 8
           bodyshots: 0
           headshots: 0
           legshots: 0
@@ -14196,15 +12461,10 @@ components:
           ability_1: 0
           ultimate: 0
         economy:
-          weapon:
-            name: name
-            id: id
-            type: type
-          armor:
-            name: name
-            id: id
+          weapon: ""
+          armor: ""
           loadout_value: 7
-          remaining: 6
+          remaining: 0
         received_penalty: true
         was_afk: true
         player:
@@ -14305,18 +12565,15 @@ components:
       - player
     MatchesV4DataRoundPlayerStatsEconomy:
       example:
-        weapon:
-          name: name
-          id: id
-          type: type
-        armor:
-          name: name
-          id: id
+        weapon: ""
+        armor: ""
         loadout_value: 7
-        remaining: 6
+        remaining: 0
       properties:
         armor:
-          $ref: "#/components/schemas/MatchesV4DataRoundPlayerStatsEconomyArmor"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV4DataRoundPlayerStatsEconomyArmor"
+          nullable: true
         loadout_value:
           format: int32
           type: integer
@@ -14324,14 +12581,13 @@ components:
           format: int32
           type: integer
         weapon:
-          $ref: "#/components/schemas/MatchesV4DataRoundPlayerStatsEconomyWeapon"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV4DataRoundPlayerStatsEconomyWeapon"
+          nullable: true
       required:
       - loadout_value
       - remaining
     MatchesV4DataRoundPlayerStatsEconomyArmor:
-      example:
-        name: name
-        id: id
       properties:
         id:
           type: string
@@ -14358,7 +12614,7 @@ components:
     MatchesV4DataRoundPlayerStatsStats:
       example:
         kills: 0
-        score: 3
+        score: 8
         bodyshots: 0
         headshots: 0
         legshots: 0
@@ -14391,26 +12647,16 @@ components:
     MatchesV4DataTeam:
       example:
         won: true
-        premier_roster:
-          customization:
-            tertiary_color: tertiary_color
-            image: image
-            icon: icon
-            secondary_color: secondary_color
-            primary_color: primary_color
-          members:
-          - members
-          - members
-          name: name
-          id: id
-          tag: tag
+        premier_roster: ""
         team_id: team_id
         rounds:
           lost: 0
           won: 0
       properties:
         premier_roster:
-          $ref: "#/components/schemas/MatchesV4DataTeamPremierRoster"
+          allOf:
+          - $ref: "#/components/schemas/MatchesV4DataTeamPremierRoster"
+          nullable: true
         rounds:
           $ref: "#/components/schemas/MatchesV4DataTeamRounds"
         team_id:
@@ -14422,19 +12668,6 @@ components:
       - team_id
       - won
     MatchesV4DataTeamPremierRoster:
-      example:
-        customization:
-          tertiary_color: tertiary_color
-          image: image
-          icon: icon
-          secondary_color: secondary_color
-          primary_color: primary_color
-        members:
-        - members
-        - members
-        name: name
-        id: id
-        tag: tag
       properties:
         customization:
           $ref: "#/components/schemas/MatchesV4DataTeamPremierRosterCustomization"
@@ -14455,12 +12688,6 @@ components:
       - name
       - tag
     MatchesV4DataTeamPremierRosterCustomization:
-      example:
-        tertiary_color: tertiary_color
-        image: image
-        icon: icon
-        secondary_color: secondary_color
-        primary_color: primary_color
       properties:
         icon:
           type: string
@@ -14628,37 +12855,13 @@ components:
               id: id
           teams:
           - won: true
-            premier_roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            premier_roster: ""
             team_id: team_id
             rounds:
               lost: 0
               won: 0
           - won: true
-            premier_roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            premier_roster: ""
             team_id: team_id
             rounds:
               lost: 0
@@ -14800,7 +13003,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -14810,15 +13013,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -14848,7 +13046,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -14858,15 +13056,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -14875,65 +13068,8 @@ components:
                 tag: tag
                 team: team
             ceremony: ceremony
-            defuse:
-              round_time_in_ms: 6
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-            plant:
-              site: site
-              round_time_in_ms: 2
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
+            defuse: ""
+            plant: ""
             winning_team: winning_team
             id: 0
           - result: result
@@ -14960,7 +13096,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -14970,15 +13106,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -15008,7 +13139,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -15018,15 +13149,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -15035,65 +13161,8 @@ components:
                 tag: tag
                 team: team
             ceremony: ceremony
-            defuse:
-              round_time_in_ms: 6
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-            plant:
-              site: site
-              round_time_in_ms: 2
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
+            defuse: ""
+            plant: ""
             winning_team: winning_team
             id: 0
         - coaches:
@@ -15227,37 +13296,13 @@ components:
               id: id
           teams:
           - won: true
-            premier_roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            premier_roster: ""
             team_id: team_id
             rounds:
               lost: 0
               won: 0
           - won: true
-            premier_roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            premier_roster: ""
             team_id: team_id
             rounds:
               lost: 0
@@ -15399,7 +13444,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -15409,15 +13454,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -15447,7 +13487,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -15457,15 +13497,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -15474,65 +13509,8 @@ components:
                 tag: tag
                 team: team
             ceremony: ceremony
-            defuse:
-              round_time_in_ms: 6
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-            plant:
-              site: site
-              round_time_in_ms: 2
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
+            defuse: ""
+            plant: ""
             winning_team: winning_team
             id: 0
           - result: result
@@ -15559,7 +13537,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -15569,15 +13547,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -15607,7 +13580,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -15617,15 +13590,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -15634,65 +13602,8 @@ components:
                 tag: tag
                 team: team
             ceremony: ceremony
-            defuse:
-              round_time_in_ms: 6
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-            plant:
-              site: site
-              round_time_in_ms: 2
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
+            defuse: ""
+            plant: ""
             winning_team: winning_team
             id: 0
         status: 0
@@ -15842,37 +13753,13 @@ components:
               id: id
           teams:
           - won: true
-            premier_roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            premier_roster: ""
             team_id: team_id
             rounds:
               lost: 0
               won: 0
           - won: true
-            premier_roster:
-              customization:
-                tertiary_color: tertiary_color
-                image: image
-                icon: icon
-                secondary_color: secondary_color
-                primary_color: primary_color
-              members:
-              - members
-              - members
-              name: name
-              id: id
-              tag: tag
+            premier_roster: ""
             team_id: team_id
             rounds:
               lost: 0
@@ -16014,7 +13901,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -16024,15 +13911,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -16062,7 +13944,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -16072,15 +13954,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -16089,65 +13966,8 @@ components:
                 tag: tag
                 team: team
             ceremony: ceremony
-            defuse:
-              round_time_in_ms: 6
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-            plant:
-              site: site
-              round_time_in_ms: 2
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
+            defuse: ""
+            plant: ""
             winning_team: winning_team
             id: 0
           - result: result
@@ -16174,7 +13994,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -16184,15 +14004,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -16222,7 +14037,7 @@ components:
               stayed_in_spawn: true
               stats:
                 kills: 0
-                score: 3
+                score: 8
                 bodyshots: 0
                 headshots: 0
                 legshots: 0
@@ -16232,15 +14047,10 @@ components:
                 ability_1: 0
                 ultimate: 0
               economy:
-                weapon:
-                  name: name
-                  id: id
-                  type: type
-                armor:
-                  name: name
-                  id: id
+                weapon: ""
+                armor: ""
                 loadout_value: 7
-                remaining: 6
+                remaining: 0
               received_penalty: true
               was_afk: true
               player:
@@ -16249,65 +14059,8 @@ components:
                 tag: tag
                 team: team
             ceremony: ceremony
-            defuse:
-              round_time_in_ms: 6
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
-            plant:
-              site: site
-              round_time_in_ms: 2
-              location:
-                x: 1
-                "y": 5
-              player_locations:
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              - location:
-                  x: 1
-                  "y": 5
-                player:
-                  name: name
-                  puuid: puuid
-                  tag: tag
-                  team: team
-                view_radians: 0.8008282
-              player:
-                name: name
-                puuid: puuid
-                tag: tag
-                team: team
+            defuse: ""
+            plant: ""
             winning_team: winning_team
             id: 0
         status: 0

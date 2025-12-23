@@ -242,14 +242,9 @@ class TestMatchesV2Data(unittest.TestCase):
                         bomb_defused = True, 
                         bomb_planted = True, 
                         defuse_events = henrikdev_api_client.models.matches_v2_data_round_defuse_events.MatchesV2DataRoundDefuseEvents(
-                            defuse_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
-                                x = 56, 
-                                y = 56, ), 
+                            defuse_location = null, 
                             defuse_time_in_round = 0, 
-                            defused_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                display_name = '', 
-                                puuid = '', 
-                                team = '', ), 
+                            defused_by = null, 
                             player_locations_on_defuse = [
                                 henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                                     location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
@@ -262,16 +257,15 @@ class TestMatchesV2Data(unittest.TestCase):
                                 ], ), 
                         end_type = '', 
                         plant_events = henrikdev_api_client.models.matches_v2_data_round_plant_events.MatchesV2DataRoundPlantEvents(
-                            plant_location = , 
+                            plant_location = null, 
                             plant_site = '', 
                             plant_time_in_round = 0, 
-                            planted_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                display_name = '', 
-                                puuid = '', 
-                                team = '', ), 
+                            planted_by = null, 
                             player_locations_on_plant = [
                                 henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
-                                    location = , 
+                                    location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                        x = 56, 
+                                        y = 56, ), 
                                     player_display_name = '', 
                                     player_puuid = '', 
                                     player_team = '', 
@@ -354,23 +348,12 @@ class TestMatchesV2Data(unittest.TestCase):
                 teams = henrikdev_api_client.models.matches_v2_data_teams.MatchesV2DataTeams(
                     blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                         has_won = True, 
-                        roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                            customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                                icon = '', 
-                                image = '', 
-                                primary_color = '', 
-                                secondary_color = '', 
-                                tertiary_color = '', ), 
-                            id = '', 
-                            members = [
-                                ''
-                                ], 
-                            name = '', 
-                            tag = '', ), 
+                        roster = null, 
                         rounds_lost = 0, 
                         rounds_won = 0, ), 
                     red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                         has_won = True, 
+                        roster = null, 
                         rounds_lost = 0, 
                         rounds_won = 0, ), )
             )
@@ -583,14 +566,9 @@ class TestMatchesV2Data(unittest.TestCase):
                         bomb_defused = True, 
                         bomb_planted = True, 
                         defuse_events = henrikdev_api_client.models.matches_v2_data_round_defuse_events.MatchesV2DataRoundDefuseEvents(
-                            defuse_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
-                                x = 56, 
-                                y = 56, ), 
+                            defuse_location = null, 
                             defuse_time_in_round = 0, 
-                            defused_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                display_name = '', 
-                                puuid = '', 
-                                team = '', ), 
+                            defused_by = null, 
                             player_locations_on_defuse = [
                                 henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                                     location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
@@ -603,16 +581,15 @@ class TestMatchesV2Data(unittest.TestCase):
                                 ], ), 
                         end_type = '', 
                         plant_events = henrikdev_api_client.models.matches_v2_data_round_plant_events.MatchesV2DataRoundPlantEvents(
-                            plant_location = , 
+                            plant_location = null, 
                             plant_site = '', 
                             plant_time_in_round = 0, 
-                            planted_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                display_name = '', 
-                                puuid = '', 
-                                team = '', ), 
+                            planted_by = null, 
                             player_locations_on_plant = [
                                 henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
-                                    location = , 
+                                    location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                        x = 56, 
+                                        y = 56, ), 
                                     player_display_name = '', 
                                     player_puuid = '', 
                                     player_team = '', 
@@ -695,23 +672,12 @@ class TestMatchesV2Data(unittest.TestCase):
                 teams = henrikdev_api_client.models.matches_v2_data_teams.MatchesV2DataTeams(
                     blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                         has_won = True, 
-                        roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                            customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                                icon = '', 
-                                image = '', 
-                                primary_color = '', 
-                                secondary_color = '', 
-                                tertiary_color = '', ), 
-                            id = '', 
-                            members = [
-                                ''
-                                ], 
-                            name = '', 
-                            tag = '', ), 
+                        roster = null, 
                         rounds_lost = 0, 
                         rounds_won = 0, ), 
                     red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
                         has_won = True, 
+                        roster = null, 
                         rounds_lost = 0, 
                         rounds_won = 0, ), ),
         )

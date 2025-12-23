@@ -68,7 +68,7 @@ import henrikdevApiClient.infrastructure.ResponseType
 import henrikdevApiClient.infrastructure.Success
 import henrikdevApiClient.infrastructure.toMultiValue
 
-class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
+open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {

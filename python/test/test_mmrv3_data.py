@@ -43,9 +43,7 @@ class TestMMRV3Data(unittest.TestCase):
                     elo = 56, 
                     games_needed_for_rating = 56, 
                     last_change = 56, 
-                    leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
-                        rank = 0, 
-                        updated_at = '', ), 
+                    leaderboard_placement = null, 
                     rank_protection_shields = 56, 
                     rr = 56, 
                     tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
@@ -72,9 +70,7 @@ class TestMMRV3Data(unittest.TestCase):
                             id = 56, 
                             name = '', ), 
                         games = 56, 
-                        leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
-                            rank = 0, 
-                            updated_at = '', ), 
+                        leaderboard_placement = null, 
                         ranking_schema = '', 
                         season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
@@ -92,9 +88,7 @@ class TestMMRV3Data(unittest.TestCase):
                     elo = 56, 
                     games_needed_for_rating = 56, 
                     last_change = 56, 
-                    leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
-                        rank = 0, 
-                        updated_at = '', ), 
+                    leaderboard_placement = null, 
                     rank_protection_shields = 56, 
                     rr = 56, 
                     tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
@@ -112,9 +106,7 @@ class TestMMRV3Data(unittest.TestCase):
                             id = 56, 
                             name = '', ), 
                         games = 56, 
-                        leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
-                            rank = 0, 
-                            updated_at = '', ), 
+                        leaderboard_placement = null, 
                         ranking_schema = '', 
                         season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 

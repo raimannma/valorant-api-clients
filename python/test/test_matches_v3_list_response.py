@@ -80,24 +80,7 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                 victim_puuid = '', 
                                 victim_team = '', )
                             ], 
-                        metadata = henrikdev_api_client.models.matches_v2_data_metadata.MatchesV2DataMetadata(
-                            cluster = '', 
-                            game_length = 0, 
-                            game_start = 0, 
-                            game_start_patched = '', 
-                            game_version = '', 
-                            map = '', 
-                            matchid = '', 
-                            mode = '', 
-                            mode_id = '', 
-                            platform = '', 
-                            premier_info = henrikdev_api_client.models.matches_v2_data_metadata_premier_info.MatchesV2DataMetadataPremierInfo(
-                                matchup_id = '', 
-                                tournament_id = '', ), 
-                            queue = '', 
-                            region = '', 
-                            rounds_played = 0, 
-                            season_id = '', ), 
+                        metadata = null, 
                         observers = [
                             henrikdev_api_client.models.matches_v2_data_observer.MatchesV2DataObserver(
                                 level = 0, 
@@ -118,132 +101,15 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                 tag = '', 
                                 team = '', )
                             ], 
-                        players = henrikdev_api_client.models.matches_v2_data_players.MatchesV2DataPlayers(
-                            all_players = [
-                                henrikdev_api_client.models.matches_v2_data_player.MatchesV2DataPlayer(
-                                    ability_casts = henrikdev_api_client.models.matches_v2_data_player_ability_casts.MatchesV2DataPlayerAbilityCasts(
-                                        c_cast = 0, 
-                                        e_cast = 0, 
-                                        q_cast = 0, 
-                                        x_cast = 0, ), 
-                                    assets = henrikdev_api_client.models.matches_v2_data_player_assets.MatchesV2DataPlayerAssets(
-                                        agent = henrikdev_api_client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
-                                            bust = '', 
-                                            full = '', 
-                                            killfeed = '', 
-                                            small = '', ), 
-                                        card = henrikdev_api_client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
-                                            large = '', 
-                                            small = '', 
-                                            wide = '', ), ), 
-                                    behavior = henrikdev_api_client.models.matches_v2_data_player_behavior.MatchesV2DataPlayerBehavior(
-                                        afk_rounds = 1.337, 
-                                        friendly_fire = henrikdev_api_client.models.matches_v2_data_player_behavior_friendly_fire.MatchesV2DataPlayerBehaviorFriendlyFire(
-                                            incoming = 1.337, 
-                                            outgoing = 1.337, ), 
-                                        rounds_in_spawn = 1.337, ), 
-                                    character = '', 
-                                    currenttier = 0, 
-                                    currenttier_patched = '', 
-                                    damage_made = 56, 
-                                    damage_received = 56, 
-                                    economy = henrikdev_api_client.models.matches_v2_data_player_economy.MatchesV2DataPlayerEconomy(
-                                        loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
-                                            average = 1.337, 
-                                            overall = 56, ), 
-                                        spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
-                                            average = 1.337, 
-                                            overall = 56, ), ), 
-                                    level = 0, 
-                                    name = '', 
-                                    party_id = '', 
-                                    platform = henrikdev_api_client.models.matches_v2_data_platform.MatchesV2DataPlatform(
-                                        os = henrikdev_api_client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
-                                            name = '', 
-                                            version = '', ), 
-                                        type = '', ), 
-                                    player_card = '', 
-                                    player_title = '', 
-                                    puuid = '', 
-                                    session_playtime = henrikdev_api_client.models.matches_v2_data_player_session_playtime.MatchesV2DataPlayerSessionPlaytime(
-                                        milliseconds = 0, 
-                                        minutes = 0, 
-                                        seconds = 0, ), 
-                                    stats = henrikdev_api_client.models.matches_v2_data_player_stats.MatchesV2DataPlayerStats(
-                                        assists = 0, 
-                                        bodyshots = 0, 
-                                        deaths = 0, 
-                                        headshots = 0, 
-                                        kills = 0, 
-                                        legshots = 0, 
-                                        score = 56, ), 
-                                    tag = '', 
-                                    team = '', )
-                                ], 
-                            blue = [
-                                henrikdev_api_client.models.matches_v2_data_player.MatchesV2DataPlayer(
-                                    ability_casts = henrikdev_api_client.models.matches_v2_data_player_ability_casts.MatchesV2DataPlayerAbilityCasts(
-                                        c_cast = 0, 
-                                        e_cast = 0, 
-                                        q_cast = 0, 
-                                        x_cast = 0, ), 
-                                    assets = henrikdev_api_client.models.matches_v2_data_player_assets.MatchesV2DataPlayerAssets(
-                                        agent = henrikdev_api_client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
-                                            bust = '', 
-                                            full = '', 
-                                            killfeed = '', 
-                                            small = '', ), 
-                                        card = henrikdev_api_client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
-                                            large = '', 
-                                            small = '', 
-                                            wide = '', ), ), 
-                                    behavior = henrikdev_api_client.models.matches_v2_data_player_behavior.MatchesV2DataPlayerBehavior(
-                                        afk_rounds = 1.337, 
-                                        friendly_fire = henrikdev_api_client.models.matches_v2_data_player_behavior_friendly_fire.MatchesV2DataPlayerBehaviorFriendlyFire(
-                                            incoming = 1.337, 
-                                            outgoing = 1.337, ), 
-                                        rounds_in_spawn = 1.337, ), 
-                                    character = '', 
-                                    currenttier = 0, 
-                                    currenttier_patched = '', 
-                                    damage_made = 56, 
-                                    damage_received = 56, 
-                                    economy = henrikdev_api_client.models.matches_v2_data_player_economy.MatchesV2DataPlayerEconomy(
-                                        loadout_value = , 
-                                        spent = , ), 
-                                    level = 0, 
-                                    name = '', 
-                                    party_id = '', 
-                                    platform = , 
-                                    player_card = '', 
-                                    player_title = '', 
-                                    puuid = '', 
-                                    session_playtime = , 
-                                    stats = henrikdev_api_client.models.matches_v2_data_player_stats.MatchesV2DataPlayerStats(
-                                        assists = 0, 
-                                        bodyshots = 0, 
-                                        deaths = 0, 
-                                        headshots = 0, 
-                                        kills = 0, 
-                                        legshots = 0, 
-                                        score = 56, ), 
-                                    tag = '', 
-                                    team = '', )
-                                ], 
-                            red = [
-                                
-                                ], ), 
+                        players = null, 
                         rounds = [
                             henrikdev_api_client.models.matches_v2_data_round.MatchesV2DataRound(
                                 bomb_defused = True, 
                                 bomb_planted = True, 
                                 defuse_events = henrikdev_api_client.models.matches_v2_data_round_defuse_events.MatchesV2DataRoundDefuseEvents(
-                                    defuse_location = , 
+                                    defuse_location = null, 
                                     defuse_time_in_round = 0, 
-                                    defused_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                        display_name = '', 
-                                        puuid = '', 
-                                        team = '', ), 
+                                    defused_by = null, 
                                     player_locations_on_defuse = [
                                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                                             location = , 
@@ -254,13 +120,10 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                         ], ), 
                                 end_type = '', 
                                 plant_events = henrikdev_api_client.models.matches_v2_data_round_plant_events.MatchesV2DataRoundPlantEvents(
-                                    plant_location = , 
+                                    plant_location = null, 
                                     plant_site = '', 
                                     plant_time_in_round = 0, 
-                                    planted_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                        display_name = '', 
-                                        puuid = '', 
-                                        team = '', ), 
+                                    planted_by = null, 
                                     player_locations_on_plant = [
                                         
                                         ], ), 
@@ -336,28 +199,7 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                     ], 
                                 winning_team = '', )
                             ], 
-                        teams = henrikdev_api_client.models.matches_v2_data_teams.MatchesV2DataTeams(
-                            blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
-                                has_won = True, 
-                                roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                                    customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                                        icon = '', 
-                                        image = '', 
-                                        primary_color = '', 
-                                        secondary_color = '', 
-                                        tertiary_color = '', ), 
-                                    id = '', 
-                                    members = [
-                                        ''
-                                        ], 
-                                    name = '', 
-                                    tag = '', ), 
-                                rounds_lost = 0, 
-                                rounds_won = 0, ), 
-                            red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
-                                has_won = True, 
-                                rounds_lost = 0, 
-                                rounds_won = 0, ), ), )
+                        teams = null, )
                     ],
                 status = 0
             )
@@ -408,24 +250,7 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                 victim_puuid = '', 
                                 victim_team = '', )
                             ], 
-                        metadata = henrikdev_api_client.models.matches_v2_data_metadata.MatchesV2DataMetadata(
-                            cluster = '', 
-                            game_length = 0, 
-                            game_start = 0, 
-                            game_start_patched = '', 
-                            game_version = '', 
-                            map = '', 
-                            matchid = '', 
-                            mode = '', 
-                            mode_id = '', 
-                            platform = '', 
-                            premier_info = henrikdev_api_client.models.matches_v2_data_metadata_premier_info.MatchesV2DataMetadataPremierInfo(
-                                matchup_id = '', 
-                                tournament_id = '', ), 
-                            queue = '', 
-                            region = '', 
-                            rounds_played = 0, 
-                            season_id = '', ), 
+                        metadata = null, 
                         observers = [
                             henrikdev_api_client.models.matches_v2_data_observer.MatchesV2DataObserver(
                                 level = 0, 
@@ -446,132 +271,15 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                 tag = '', 
                                 team = '', )
                             ], 
-                        players = henrikdev_api_client.models.matches_v2_data_players.MatchesV2DataPlayers(
-                            all_players = [
-                                henrikdev_api_client.models.matches_v2_data_player.MatchesV2DataPlayer(
-                                    ability_casts = henrikdev_api_client.models.matches_v2_data_player_ability_casts.MatchesV2DataPlayerAbilityCasts(
-                                        c_cast = 0, 
-                                        e_cast = 0, 
-                                        q_cast = 0, 
-                                        x_cast = 0, ), 
-                                    assets = henrikdev_api_client.models.matches_v2_data_player_assets.MatchesV2DataPlayerAssets(
-                                        agent = henrikdev_api_client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
-                                            bust = '', 
-                                            full = '', 
-                                            killfeed = '', 
-                                            small = '', ), 
-                                        card = henrikdev_api_client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
-                                            large = '', 
-                                            small = '', 
-                                            wide = '', ), ), 
-                                    behavior = henrikdev_api_client.models.matches_v2_data_player_behavior.MatchesV2DataPlayerBehavior(
-                                        afk_rounds = 1.337, 
-                                        friendly_fire = henrikdev_api_client.models.matches_v2_data_player_behavior_friendly_fire.MatchesV2DataPlayerBehaviorFriendlyFire(
-                                            incoming = 1.337, 
-                                            outgoing = 1.337, ), 
-                                        rounds_in_spawn = 1.337, ), 
-                                    character = '', 
-                                    currenttier = 0, 
-                                    currenttier_patched = '', 
-                                    damage_made = 56, 
-                                    damage_received = 56, 
-                                    economy = henrikdev_api_client.models.matches_v2_data_player_economy.MatchesV2DataPlayerEconomy(
-                                        loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
-                                            average = 1.337, 
-                                            overall = 56, ), 
-                                        spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
-                                            average = 1.337, 
-                                            overall = 56, ), ), 
-                                    level = 0, 
-                                    name = '', 
-                                    party_id = '', 
-                                    platform = henrikdev_api_client.models.matches_v2_data_platform.MatchesV2DataPlatform(
-                                        os = henrikdev_api_client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
-                                            name = '', 
-                                            version = '', ), 
-                                        type = '', ), 
-                                    player_card = '', 
-                                    player_title = '', 
-                                    puuid = '', 
-                                    session_playtime = henrikdev_api_client.models.matches_v2_data_player_session_playtime.MatchesV2DataPlayerSessionPlaytime(
-                                        milliseconds = 0, 
-                                        minutes = 0, 
-                                        seconds = 0, ), 
-                                    stats = henrikdev_api_client.models.matches_v2_data_player_stats.MatchesV2DataPlayerStats(
-                                        assists = 0, 
-                                        bodyshots = 0, 
-                                        deaths = 0, 
-                                        headshots = 0, 
-                                        kills = 0, 
-                                        legshots = 0, 
-                                        score = 56, ), 
-                                    tag = '', 
-                                    team = '', )
-                                ], 
-                            blue = [
-                                henrikdev_api_client.models.matches_v2_data_player.MatchesV2DataPlayer(
-                                    ability_casts = henrikdev_api_client.models.matches_v2_data_player_ability_casts.MatchesV2DataPlayerAbilityCasts(
-                                        c_cast = 0, 
-                                        e_cast = 0, 
-                                        q_cast = 0, 
-                                        x_cast = 0, ), 
-                                    assets = henrikdev_api_client.models.matches_v2_data_player_assets.MatchesV2DataPlayerAssets(
-                                        agent = henrikdev_api_client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
-                                            bust = '', 
-                                            full = '', 
-                                            killfeed = '', 
-                                            small = '', ), 
-                                        card = henrikdev_api_client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
-                                            large = '', 
-                                            small = '', 
-                                            wide = '', ), ), 
-                                    behavior = henrikdev_api_client.models.matches_v2_data_player_behavior.MatchesV2DataPlayerBehavior(
-                                        afk_rounds = 1.337, 
-                                        friendly_fire = henrikdev_api_client.models.matches_v2_data_player_behavior_friendly_fire.MatchesV2DataPlayerBehaviorFriendlyFire(
-                                            incoming = 1.337, 
-                                            outgoing = 1.337, ), 
-                                        rounds_in_spawn = 1.337, ), 
-                                    character = '', 
-                                    currenttier = 0, 
-                                    currenttier_patched = '', 
-                                    damage_made = 56, 
-                                    damage_received = 56, 
-                                    economy = henrikdev_api_client.models.matches_v2_data_player_economy.MatchesV2DataPlayerEconomy(
-                                        loadout_value = , 
-                                        spent = , ), 
-                                    level = 0, 
-                                    name = '', 
-                                    party_id = '', 
-                                    platform = , 
-                                    player_card = '', 
-                                    player_title = '', 
-                                    puuid = '', 
-                                    session_playtime = , 
-                                    stats = henrikdev_api_client.models.matches_v2_data_player_stats.MatchesV2DataPlayerStats(
-                                        assists = 0, 
-                                        bodyshots = 0, 
-                                        deaths = 0, 
-                                        headshots = 0, 
-                                        kills = 0, 
-                                        legshots = 0, 
-                                        score = 56, ), 
-                                    tag = '', 
-                                    team = '', )
-                                ], 
-                            red = [
-                                
-                                ], ), 
+                        players = null, 
                         rounds = [
                             henrikdev_api_client.models.matches_v2_data_round.MatchesV2DataRound(
                                 bomb_defused = True, 
                                 bomb_planted = True, 
                                 defuse_events = henrikdev_api_client.models.matches_v2_data_round_defuse_events.MatchesV2DataRoundDefuseEvents(
-                                    defuse_location = , 
+                                    defuse_location = null, 
                                     defuse_time_in_round = 0, 
-                                    defused_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                        display_name = '', 
-                                        puuid = '', 
-                                        team = '', ), 
+                                    defused_by = null, 
                                     player_locations_on_defuse = [
                                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
                                             location = , 
@@ -582,13 +290,10 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                         ], ), 
                                 end_type = '', 
                                 plant_events = henrikdev_api_client.models.matches_v2_data_round_plant_events.MatchesV2DataRoundPlantEvents(
-                                    plant_location = , 
+                                    plant_location = null, 
                                     plant_site = '', 
                                     plant_time_in_round = 0, 
-                                    planted_by = henrikdev_api_client.models.matches_v2_data_round_player.MatchesV2DataRoundPlayer(
-                                        display_name = '', 
-                                        puuid = '', 
-                                        team = '', ), 
+                                    planted_by = null, 
                                     player_locations_on_plant = [
                                         
                                         ], ), 
@@ -664,28 +369,7 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                     ], 
                                 winning_team = '', )
                             ], 
-                        teams = henrikdev_api_client.models.matches_v2_data_teams.MatchesV2DataTeams(
-                            blue = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
-                                has_won = True, 
-                                roster = henrikdev_api_client.models.matches_v2_data_team_roster.MatchesV2DataTeamRoster(
-                                    customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
-                                        icon = '', 
-                                        image = '', 
-                                        primary_color = '', 
-                                        secondary_color = '', 
-                                        tertiary_color = '', ), 
-                                    id = '', 
-                                    members = [
-                                        ''
-                                        ], 
-                                    name = '', 
-                                    tag = '', ), 
-                                rounds_lost = 0, 
-                                rounds_won = 0, ), 
-                            red = henrikdev_api_client.models.matches_v2_data_team.MatchesV2DataTeam(
-                                has_won = True, 
-                                rounds_lost = 0, 
-                                rounds_won = 0, ), ), )
+                        teams = null, )
                     ],
                 status = 0,
         )
