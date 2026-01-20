@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**by_season** | Option<[**serde_json::Value**](.md)> |  | 
+**by_season** | Option<**serde_json::Value**> |  | 
 **current_data** | [**models::Mmrv2CurrentData**](MMRV2CurrentData.md) |  | 
 **highest_rank** | [**models::Mmrv2HighestRank**](MMRV2HighestRank.md) |  | 
 **name** | **String** |  | 

@@ -1271,7 +1271,7 @@ pub async fn get_matches_v3_by_name(configuration: &configuration::Configuration
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.mode {
-        req_builder = req_builder.query(&[("mode", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.map {
         req_builder = req_builder.query(&[("map", &param_value.to_string())]);

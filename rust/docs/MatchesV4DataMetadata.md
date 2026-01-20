@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **match_id** | **String** |  | 
 **party_rr_penaltys** | [**Vec<models::MatchesV4DataMetadataPartyRrPenalty>**](MatchesV4DataMetadataPartyRRPenalty.md) |  | 
 **platform** | **String** |  | 
-**premier** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**premier** | Option<**serde_json::Value**> |  | [optional]
 **queue** | [**models::MatchesV4DataMetadataQueue**](MatchesV4DataMetadataQueue.md) |  | 
 **region** | Option<**String**> |  | [optional]
 **season** | [**models::SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 

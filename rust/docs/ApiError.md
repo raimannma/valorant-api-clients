@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **u32** |  | 
-**details** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**details** | Option<**serde_json::Value**> |  | [optional]
 **message** | **String** |  | 
 **status** | **u32** |  | 
 

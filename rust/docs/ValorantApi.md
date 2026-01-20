@@ -300,7 +300,7 @@ Name | Type | Description  | Required | Notes
 **affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
-**mode** | Option<[**MatchMode**](.md)> | Game mode filter (optional) |  |
+**mode** | Option<[**MatchMode**](MatchMode.md)> | Game mode filter (optional) |  |
 **map** | Option<**String**> | Map filter (optional) |  |
 **size** | Option<**i32**> | Number of results (optional) |  |
 
