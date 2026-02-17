@@ -22,8 +22,48 @@ void main() {
       // TODO
     });
 
-    //Future<EsportsV1Response> esportsSchedulesV1({ String region }) async
+    //Future<EsportsV2EventResponse> esportsEventV2(int eventId) async
+    test('test esportsEventV2', () async {
+      // TODO
+    });
+
+    //Future<EsportsV2EventsResponse> esportsEventsV2({ EsportsV2Region region, EsportsV2EventType type, int page }) async
+    test('test esportsEventsV2', () async {
+      // TODO
+    });
+
+    //Future<EsportsV2MatchesResponse> esportsMatchV2(int matchId) async
+    test('test esportsMatchV2', () async {
+      // TODO
+    });
+
+    //Future<EsportsV2PlayerMatchesResponse> esportsPlayerMatchesV2(int player, { int page }) async
+    test('test esportsPlayerMatchesV2', () async {
+      // TODO
+    });
+
+    //Future<EsportsV2PlayerResponse> esportsPlayerV2(int player, { EsportsV2PlayerTimespan timespan }) async
+    test('test esportsPlayerV2', () async {
+      // TODO
+    });
+
+    //Future<EsportsV1Response> esportsSchedulesV1({ String region, String league }) async
     test('test esportsSchedulesV1', () async {
+      // TODO
+    });
+
+    //Future<EsportsV2TeamMatchListResponse> esportsTeamMatchesV2(int teamId, { int page }) async
+    test('test esportsTeamMatchesV2', () async {
+      // TODO
+    });
+
+    //Future<EsportsV2TeamTransactionsResponse> esportsTeamTransactionsV2(int teamId) async
+    test('test esportsTeamTransactionsV2', () async {
+      // TODO
+    });
+
+    //Future<EsportsV2TeamResponse> esportsTeamV2(int teamId) async
+    test('test esportsTeamV2', () async {
       // TODO
     });
 

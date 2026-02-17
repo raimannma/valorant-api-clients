@@ -46,6 +46,11 @@ void main() {
       // TODO
     });
 
+    // String name
+    test('to test the property `name`', () async {
+      // TODO
+    });
+
     // String puuid
     test('to test the property `puuid`', () async {
       // TODO
@@ -58,6 +63,11 @@ void main() {
 
     // StoredMatchStatsShots shots
     test('to test the property `shots`', () async {
+      // TODO
+    });
+
+    // String tag
+    test('to test the property `tag`', () async {
       // TODO
     });
 

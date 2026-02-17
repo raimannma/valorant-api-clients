@@ -10,7 +10,15 @@ All URIs are relative to *https://api.henrikdev.xyz*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**crosshair**](ValorantApi.md#crosshair) | **GET** /valorant/v1/crosshair/generate | 
+[**esportsEventV2**](ValorantApi.md#esportseventv2) | **GET** /valorant/v2/esports/vlr/events/{event_id}/matches | 
+[**esportsEventsV2**](ValorantApi.md#esportseventsv2) | **GET** /valorant/v2/esports/vlr/events | 
+[**esportsMatchV2**](ValorantApi.md#esportsmatchv2) | **GET** /valorant/v2/esports/vlr/matches/{match_id} | 
+[**esportsPlayerMatchesV2**](ValorantApi.md#esportsplayermatchesv2) | **GET** /valorant/v2/esports/vlr/players/{player}/matches | 
+[**esportsPlayerV2**](ValorantApi.md#esportsplayerv2) | **GET** /valorant/v2/esports/vlr/players/{player_id} | 
 [**esportsSchedulesV1**](ValorantApi.md#esportsschedulesv1) | **GET** /valorant/v1/esports/schedule | 
+[**esportsTeamMatchesV2**](ValorantApi.md#esportsteammatchesv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | 
+[**esportsTeamTransactionsV2**](ValorantApi.md#esportsteamtransactionsv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | 
+[**esportsTeamV2**](ValorantApi.md#esportsteamv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | 
 [**getAccountByIdV1**](ValorantApi.md#getaccountbyidv1) | **GET** /valorant/v1/by-puuid/account/{puuid} | 
 [**getAccountByIdV2**](ValorantApi.md#getaccountbyidv2) | **GET** /valorant/v2/by-puuid/account/{puuid} | 
 [**getAccountV1**](ValorantApi.md#getaccountv1) | **GET** /valorant/v1/account/{name}/{tag} | 
@@ -97,8 +105,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **esportsSchedulesV1**
-> EsportsV1Response esportsSchedulesV1(region)
+# **esportsEventV2**
+> EsportsV2EventResponse esportsEventV2(eventId)
 
 
 
@@ -107,10 +115,224 @@ No authorization required
 import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
-final region = region_example; // String | Region filter (optional)
+final eventId = 56; // int | 
 
 try {
-    final result = api_instance.esportsSchedulesV1(region);
+    final result = api_instance.esportsEventV2(eventId);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsEventV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **eventId** | **int**|  | 
+
+### Return type
+
+[**EsportsV2EventResponse**](EsportsV2EventResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsEventsV2**
+> EsportsV2EventsResponse esportsEventsV2(region, type, page)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final region = ; // EsportsV2Region | 
+final type = ; // EsportsV2EventType | 
+final page = 56; // int | 
+
+try {
+    final result = api_instance.esportsEventsV2(region, type, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsEventsV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region** | [**EsportsV2Region**](.md)|  | [optional] 
+ **type** | [**EsportsV2EventType**](.md)|  | [optional] 
+ **page** | **int**|  | [optional] 
+
+### Return type
+
+[**EsportsV2EventsResponse**](EsportsV2EventsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsMatchV2**
+> EsportsV2MatchesResponse esportsMatchV2(matchId)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final matchId = 56; // int | 
+
+try {
+    final result = api_instance.esportsMatchV2(matchId);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsMatchV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **matchId** | **int**|  | 
+
+### Return type
+
+[**EsportsV2MatchesResponse**](EsportsV2MatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsPlayerMatchesV2**
+> EsportsV2PlayerMatchesResponse esportsPlayerMatchesV2(player, page)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final player = 56; // int | 
+final page = 56; // int | 
+
+try {
+    final result = api_instance.esportsPlayerMatchesV2(player, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsPlayerMatchesV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **player** | **int**|  | 
+ **page** | **int**|  | [optional] 
+
+### Return type
+
+[**EsportsV2PlayerMatchesResponse**](EsportsV2PlayerMatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsPlayerV2**
+> EsportsV2PlayerResponse esportsPlayerV2(player, timespan)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final player = 56; // int | 
+final timespan = ; // EsportsV2PlayerTimespan | 
+
+try {
+    final result = api_instance.esportsPlayerV2(player, timespan);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsPlayerV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **player** | **int**|  | 
+ **timespan** | [**EsportsV2PlayerTimespan**](.md)|  | [optional] 
+
+### Return type
+
+[**EsportsV2PlayerResponse**](EsportsV2PlayerResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsSchedulesV1**
+> EsportsV1Response esportsSchedulesV1(region, league)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final region = region_example; // String | 
+final league = league_example; // String | 
+
+try {
+    final result = api_instance.esportsSchedulesV1(region, league);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->esportsSchedulesV1: $e\n');
@@ -121,11 +343,137 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **region** | **String**| Region filter (optional) | [optional] 
+ **region** | **String**|  | [optional] 
+ **league** | **String**|  | [optional] 
 
 ### Return type
 
 [**EsportsV1Response**](EsportsV1Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsTeamMatchesV2**
+> EsportsV2TeamMatchListResponse esportsTeamMatchesV2(teamId, page)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final teamId = 56; // int | 
+final page = 56; // int | 
+
+try {
+    final result = api_instance.esportsTeamMatchesV2(teamId, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsTeamMatchesV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **int**|  | 
+ **page** | **int**|  | [optional] 
+
+### Return type
+
+[**EsportsV2TeamMatchListResponse**](EsportsV2TeamMatchListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsTeamTransactionsV2**
+> EsportsV2TeamTransactionsResponse esportsTeamTransactionsV2(teamId)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final teamId = 56; // int | 
+
+try {
+    final result = api_instance.esportsTeamTransactionsV2(teamId);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsTeamTransactionsV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **int**|  | 
+
+### Return type
+
+[**EsportsV2TeamTransactionsResponse**](EsportsV2TeamTransactionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsTeamV2**
+> EsportsV2TeamResponse esportsTeamV2(teamId)
+
+
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+
+final api_instance = ValorantApi();
+final teamId = 56; // int | 
+
+try {
+    final result = api_instance.esportsTeamV2(teamId);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->esportsTeamV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **int**|  | 
+
+### Return type
+
+[**EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
 
 ### Authorization
 

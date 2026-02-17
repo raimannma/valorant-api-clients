@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **deaths** | **int** |  |
 **kills** | **int** |  |
 **level** | **int** |  |
+**name** | **string** |  | [optional]
 **puuid** | **string** |  |
 **score** | **int** |  |
 **shots** | [**\OpenAPI\Client\Model\StoredMatchStatsShots**](StoredMatchStatsShots.md) |  |
+**tag** | **string** |  | [optional]
 **team** | **string** |  |
 **tier** | **int** |  |
 

@@ -36,6 +36,8 @@ import com.squareup.moshi.JsonClass
  * @param shots 
  * @param team 
  * @param tier 
+ * @param name 
+ * @param tag 
  */
 
 
@@ -72,7 +74,13 @@ data class StoredMatchStats (
     val team: kotlin.String,
 
     @Json(name = "tier")
-    val tier: kotlin.Int
+    val tier: kotlin.Int,
+
+    @Json(name = "name")
+    val name: kotlin.String? = null,
+
+    @Json(name = "tag")
+    val tag: kotlin.String? = null
 
 ) {
 

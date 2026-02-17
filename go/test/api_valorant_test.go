@@ -33,11 +33,121 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ValorantAPIService EsportsEventV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var eventId int32
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsEventV2(context.Background(), eventId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService EsportsEventsV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsEventsV2(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService EsportsMatchV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var matchId int32
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsMatchV2(context.Background(), matchId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService EsportsPlayerMatchesV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var player int32
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsPlayerMatchesV2(context.Background(), player).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService EsportsPlayerV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var player int32
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsPlayerV2(context.Background(), player).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ValorantAPIService EsportsSchedulesV1", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ValorantAPI.EsportsSchedulesV1(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService EsportsTeamMatchesV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var teamId int32
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsTeamMatchesV2(context.Background(), teamId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService EsportsTeamTransactionsV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var teamId int32
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsTeamTransactionsV2(context.Background(), teamId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService EsportsTeamV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var teamId int32
+
+		resp, httpRes, err := apiClient.ValorantAPI.EsportsTeamV2(context.Background(), teamId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -7,7 +7,15 @@ All URIs are relative to https://api.henrikdev.xyz, except if the operation defi
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**crosshair()**](ValorantApi.md#crosshair) | **GET** /valorant/v1/crosshair/generate |  |
+| [**esportsEventV2()**](ValorantApi.md#esportsEventV2) | **GET** /valorant/v2/esports/vlr/events/{event_id}/matches |  |
+| [**esportsEventsV2()**](ValorantApi.md#esportsEventsV2) | **GET** /valorant/v2/esports/vlr/events |  |
+| [**esportsMatchV2()**](ValorantApi.md#esportsMatchV2) | **GET** /valorant/v2/esports/vlr/matches/{match_id} |  |
+| [**esportsPlayerMatchesV2()**](ValorantApi.md#esportsPlayerMatchesV2) | **GET** /valorant/v2/esports/vlr/players/{player}/matches |  |
+| [**esportsPlayerV2()**](ValorantApi.md#esportsPlayerV2) | **GET** /valorant/v2/esports/vlr/players/{player_id} |  |
 | [**esportsSchedulesV1()**](ValorantApi.md#esportsSchedulesV1) | **GET** /valorant/v1/esports/schedule |  |
+| [**esportsTeamMatchesV2()**](ValorantApi.md#esportsTeamMatchesV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches |  |
+| [**esportsTeamTransactionsV2()**](ValorantApi.md#esportsTeamTransactionsV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions |  |
+| [**esportsTeamV2()**](ValorantApi.md#esportsTeamV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} |  |
 | [**getAccountByIdV1()**](ValorantApi.md#getAccountByIdV1) | **GET** /valorant/v1/by-puuid/account/{puuid} |  |
 | [**getAccountByIdV2()**](ValorantApi.md#getAccountByIdV2) | **GET** /valorant/v2/by-puuid/account/{puuid} |  |
 | [**getAccountV1()**](ValorantApi.md#getAccountV1) | **GET** /valorant/v1/account/{name}/{tag} |  |
@@ -107,10 +115,10 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `esportsSchedulesV1()`
+## `esportsEventV2()`
 
 ```php
-esportsSchedulesV1($region): \OpenAPI\Client\Model\EsportsV1Response
+esportsEventV2($event_id): \OpenAPI\Client\Model\EsportsV2EventResponse
 ```
 
 
@@ -128,10 +136,289 @@ $apiInstance = new OpenAPI\Client\Api\ValorantApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$region = 'region_example'; // string | Region filter (optional)
+$event_id = 56; // int
 
 try {
-    $result = $apiInstance->esportsSchedulesV1($region);
+    $result = $apiInstance->esportsEventV2($event_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsEventV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **event_id** | **int**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2EventResponse**](../Model/EsportsV2EventResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsEventsV2()`
+
+```php
+esportsEventsV2($region, $type, $page): \OpenAPI\Client\Model\EsportsV2EventsResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$region = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\EsportsV2Region(); // \OpenAPI\Client\Model\EsportsV2Region
+$type = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\EsportsV2EventType(); // \OpenAPI\Client\Model\EsportsV2EventType
+$page = 56; // int
+
+try {
+    $result = $apiInstance->esportsEventsV2($region, $type, $page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsEventsV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **region** | [**\OpenAPI\Client\Model\EsportsV2Region**](../Model/.md)|  | [optional] |
+| **type** | [**\OpenAPI\Client\Model\EsportsV2EventType**](../Model/.md)|  | [optional] |
+| **page** | **int**|  | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2EventsResponse**](../Model/EsportsV2EventsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsMatchV2()`
+
+```php
+esportsMatchV2($match_id): \OpenAPI\Client\Model\EsportsV2MatchesResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$match_id = 56; // int
+
+try {
+    $result = $apiInstance->esportsMatchV2($match_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsMatchV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **match_id** | **int**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2MatchesResponse**](../Model/EsportsV2MatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsPlayerMatchesV2()`
+
+```php
+esportsPlayerMatchesV2($player, $page): \OpenAPI\Client\Model\EsportsV2PlayerMatchesResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$player = 56; // int
+$page = 56; // int
+
+try {
+    $result = $apiInstance->esportsPlayerMatchesV2($player, $page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsPlayerMatchesV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **player** | **int**|  | |
+| **page** | **int**|  | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2PlayerMatchesResponse**](../Model/EsportsV2PlayerMatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsPlayerV2()`
+
+```php
+esportsPlayerV2($player, $timespan): \OpenAPI\Client\Model\EsportsV2PlayerResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$player = 56; // int
+$timespan = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\EsportsV2PlayerTimespan(); // \OpenAPI\Client\Model\EsportsV2PlayerTimespan
+
+try {
+    $result = $apiInstance->esportsPlayerV2($player, $timespan);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsPlayerV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **player** | **int**|  | |
+| **timespan** | [**\OpenAPI\Client\Model\EsportsV2PlayerTimespan**](../Model/.md)|  | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2PlayerResponse**](../Model/EsportsV2PlayerResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsSchedulesV1()`
+
+```php
+esportsSchedulesV1($region, $league): \OpenAPI\Client\Model\EsportsV1Response
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$region = 'region_example'; // string
+$league = 'league_example'; // string
+
+try {
+    $result = $apiInstance->esportsSchedulesV1($region, $league);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ValorantApi->esportsSchedulesV1: ', $e->getMessage(), PHP_EOL;
@@ -142,11 +429,176 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **region** | **string**| Region filter (optional) | [optional] |
+| **region** | **string**|  | [optional] |
+| **league** | **string**|  | [optional] |
 
 ### Return type
 
 [**\OpenAPI\Client\Model\EsportsV1Response**](../Model/EsportsV1Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsTeamMatchesV2()`
+
+```php
+esportsTeamMatchesV2($team_id, $page): \OpenAPI\Client\Model\EsportsV2TeamMatchListResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$team_id = 56; // int
+$page = 56; // int
+
+try {
+    $result = $apiInstance->esportsTeamMatchesV2($team_id, $page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsTeamMatchesV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **team_id** | **int**|  | |
+| **page** | **int**|  | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2TeamMatchListResponse**](../Model/EsportsV2TeamMatchListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsTeamTransactionsV2()`
+
+```php
+esportsTeamTransactionsV2($team_id): \OpenAPI\Client\Model\EsportsV2TeamTransactionsResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$team_id = 56; // int
+
+try {
+    $result = $apiInstance->esportsTeamTransactionsV2($team_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsTeamTransactionsV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **team_id** | **int**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2TeamTransactionsResponse**](../Model/EsportsV2TeamTransactionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `esportsTeamV2()`
+
+```php
+esportsTeamV2($team_id): \OpenAPI\Client\Model\EsportsV2TeamResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$team_id = 56; // int
+
+try {
+    $result = $apiInstance->esportsTeamV2($team_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->esportsTeamV2: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **team_id** | **int**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\EsportsV2TeamResponse**](../Model/EsportsV2TeamResponse.md)
 
 ### Authorization
 

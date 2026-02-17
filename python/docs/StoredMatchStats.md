@@ -11,9 +11,11 @@ Name | Type | Description | Notes
 **deaths** | **int** |  | 
 **kills** | **int** |  | 
 **level** | **int** |  | 
+**name** | **str** |  | [optional] 
 **puuid** | **str** |  | 
 **score** | **int** |  | 
 **shots** | [**StoredMatchStatsShots**](StoredMatchStatsShots.md) |  | 
+**tag** | **str** |  | [optional] 
 **team** | **str** |  | 
 **tier** | **int** |  | 
 

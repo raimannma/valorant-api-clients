@@ -5,7 +5,15 @@ All URIs are relative to *https://api.henrikdev.xyz*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Crosshair**](ValorantAPI.md#Crosshair) | **Get** /valorant/v1/crosshair/generate | 
+[**EsportsEventV2**](ValorantAPI.md#EsportsEventV2) | **Get** /valorant/v2/esports/vlr/events/{event_id}/matches | 
+[**EsportsEventsV2**](ValorantAPI.md#EsportsEventsV2) | **Get** /valorant/v2/esports/vlr/events | 
+[**EsportsMatchV2**](ValorantAPI.md#EsportsMatchV2) | **Get** /valorant/v2/esports/vlr/matches/{match_id} | 
+[**EsportsPlayerMatchesV2**](ValorantAPI.md#EsportsPlayerMatchesV2) | **Get** /valorant/v2/esports/vlr/players/{player}/matches | 
+[**EsportsPlayerV2**](ValorantAPI.md#EsportsPlayerV2) | **Get** /valorant/v2/esports/vlr/players/{player_id} | 
 [**EsportsSchedulesV1**](ValorantAPI.md#EsportsSchedulesV1) | **Get** /valorant/v1/esports/schedule | 
+[**EsportsTeamMatchesV2**](ValorantAPI.md#EsportsTeamMatchesV2) | **Get** /valorant/v2/esports/vlr/teams/{team_id}/matches | 
+[**EsportsTeamTransactionsV2**](ValorantAPI.md#EsportsTeamTransactionsV2) | **Get** /valorant/v2/esports/vlr/teams/{team_id}/transactions | 
+[**EsportsTeamV2**](ValorantAPI.md#EsportsTeamV2) | **Get** /valorant/v2/esports/vlr/teams/{team_id} | 
 [**GetAccountByIdV1**](ValorantAPI.md#GetAccountByIdV1) | **Get** /valorant/v1/by-puuid/account/{puuid} | 
 [**GetAccountByIdV2**](ValorantAPI.md#GetAccountByIdV2) | **Get** /valorant/v2/by-puuid/account/{puuid} | 
 [**GetAccountV1**](ValorantAPI.md#GetAccountV1) | **Get** /valorant/v1/account/{name}/{tag} | 
@@ -115,9 +123,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## EsportsSchedulesV1
+## EsportsEventV2
 
-> EsportsV1Response EsportsSchedulesV1(ctx).Region(region).Execute()
+> EsportsV2EventResponse EsportsEventV2(ctx, eventId).Execute()
 
 
 
@@ -134,11 +142,356 @@ import (
 )
 
 func main() {
-	region := "region_example" // string | Region filter (optional) (optional)
+	eventId := int32(56) // int32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.EsportsSchedulesV1(context.Background()).Region(region).Execute()
+	resp, r, err := apiClient.ValorantAPI.EsportsEventV2(context.Background(), eventId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsEventV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsEventV2`: EsportsV2EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsEventV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**eventId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsEventV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**EsportsV2EventResponse**](EsportsV2EventResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsEventsV2
+
+> EsportsV2EventsResponse EsportsEventsV2(ctx).Region(region).Type_(type_).Page(page).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	region := openapiclient.EsportsV2Region("north_america") // EsportsV2Region |  (optional)
+	type_ := openapiclient.EsportsV2EventType("completed") // EsportsV2EventType |  (optional)
+	page := int32(56) // int32 |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsEventsV2(context.Background()).Region(region).Type_(type_).Page(page).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsEventsV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsEventsV2`: EsportsV2EventsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsEventsV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsEventsV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region** | [**EsportsV2Region**](EsportsV2Region.md) |  | 
+ **type_** | [**EsportsV2EventType**](EsportsV2EventType.md) |  | 
+ **page** | **int32** |  | 
+
+### Return type
+
+[**EsportsV2EventsResponse**](EsportsV2EventsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsMatchV2
+
+> EsportsV2MatchesResponse EsportsMatchV2(ctx, matchId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	matchId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsMatchV2(context.Background(), matchId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsMatchV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsMatchV2`: EsportsV2MatchesResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsMatchV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**matchId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsMatchV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**EsportsV2MatchesResponse**](EsportsV2MatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsPlayerMatchesV2
+
+> EsportsV2PlayerMatchesResponse EsportsPlayerMatchesV2(ctx, player).Page(page).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	player := int32(56) // int32 | 
+	page := int32(56) // int32 |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsPlayerMatchesV2(context.Background(), player).Page(page).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsPlayerMatchesV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsPlayerMatchesV2`: EsportsV2PlayerMatchesResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsPlayerMatchesV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**player** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsPlayerMatchesV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **int32** |  | 
+
+### Return type
+
+[**EsportsV2PlayerMatchesResponse**](EsportsV2PlayerMatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsPlayerV2
+
+> EsportsV2PlayerResponse EsportsPlayerV2(ctx, player).Timespan(timespan).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	player := int32(56) // int32 | 
+	timespan := openapiclient.EsportsV2PlayerTimespan("30d") // EsportsV2PlayerTimespan |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsPlayerV2(context.Background(), player).Timespan(timespan).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsPlayerV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsPlayerV2`: EsportsV2PlayerResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsPlayerV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**player** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsPlayerV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **timespan** | [**EsportsV2PlayerTimespan**](EsportsV2PlayerTimespan.md) |  | 
+
+### Return type
+
+[**EsportsV2PlayerResponse**](EsportsV2PlayerResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsSchedulesV1
+
+> EsportsV1Response EsportsSchedulesV1(ctx).Region(region).League(league).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	region := "region_example" // string |  (optional)
+	league := "league_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsSchedulesV1(context.Background()).Region(region).League(league).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsSchedulesV1``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -159,11 +512,218 @@ Other parameters are passed through a pointer to a apiEsportsSchedulesV1Request 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **region** | **string** | Region filter (optional) | 
+ **region** | **string** |  | 
+ **league** | **string** |  | 
 
 ### Return type
 
 [**EsportsV1Response**](EsportsV1Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsTeamMatchesV2
+
+> EsportsV2TeamMatchListResponse EsportsTeamMatchesV2(ctx, teamId).Page(page).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	teamId := int32(56) // int32 | 
+	page := int32(56) // int32 |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsTeamMatchesV2(context.Background(), teamId).Page(page).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsTeamMatchesV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsTeamMatchesV2`: EsportsV2TeamMatchListResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsTeamMatchesV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**teamId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsTeamMatchesV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **int32** |  | 
+
+### Return type
+
+[**EsportsV2TeamMatchListResponse**](EsportsV2TeamMatchListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsTeamTransactionsV2
+
+> EsportsV2TeamTransactionsResponse EsportsTeamTransactionsV2(ctx, teamId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	teamId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsTeamTransactionsV2(context.Background(), teamId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsTeamTransactionsV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsTeamTransactionsV2`: EsportsV2TeamTransactionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsTeamTransactionsV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**teamId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsTeamTransactionsV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**EsportsV2TeamTransactionsResponse**](EsportsV2TeamTransactionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EsportsTeamV2
+
+> EsportsV2TeamResponse EsportsTeamV2(ctx, teamId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	teamId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.EsportsTeamV2(context.Background(), teamId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.EsportsTeamV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EsportsTeamV2`: EsportsV2TeamResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.EsportsTeamV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**teamId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEsportsTeamV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
 
 ### Authorization
 

@@ -5,7 +5,15 @@ All URIs are relative to *https://api.henrikdev.xyz*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**crosshair**](#crosshair) | **GET** /valorant/v1/crosshair/generate | |
+|[**esportsEventV2**](#esportseventv2) | **GET** /valorant/v2/esports/vlr/events/{event_id}/matches | |
+|[**esportsEventsV2**](#esportseventsv2) | **GET** /valorant/v2/esports/vlr/events | |
+|[**esportsMatchV2**](#esportsmatchv2) | **GET** /valorant/v2/esports/vlr/matches/{match_id} | |
+|[**esportsPlayerMatchesV2**](#esportsplayermatchesv2) | **GET** /valorant/v2/esports/vlr/players/{player}/matches | |
+|[**esportsPlayerV2**](#esportsplayerv2) | **GET** /valorant/v2/esports/vlr/players/{player_id} | |
 |[**esportsSchedulesV1**](#esportsschedulesv1) | **GET** /valorant/v1/esports/schedule | |
+|[**esportsTeamMatchesV2**](#esportsteammatchesv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | |
+|[**esportsTeamTransactionsV2**](#esportsteamtransactionsv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | |
+|[**esportsTeamV2**](#esportsteamv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | |
 |[**getAccountByIdV1**](#getaccountbyidv1) | **GET** /valorant/v1/by-puuid/account/{puuid} | |
 |[**getAccountByIdV2**](#getaccountbyidv2) | **GET** /valorant/v2/by-puuid/account/{puuid} | |
 |[**getAccountV1**](#getaccountv1) | **GET** /valorant/v1/account/{name}/{tag} | |
@@ -103,6 +111,278 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **esportsEventV2**
+> EsportsV2EventResponse esportsEventV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let eventId: number; // (default to undefined)
+
+const { status, data } = await apiInstance.esportsEventV2(
+    eventId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | [**number**] |  | defaults to undefined|
+
+
+### Return type
+
+**EsportsV2EventResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports event matches retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsEventsV2**
+> EsportsV2EventsResponse esportsEventsV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let region: EsportsV2Region; // (optional) (default to undefined)
+let type: EsportsV2EventType; // (optional) (default to undefined)
+let page: number; // (optional) (default to undefined)
+
+const { status, data } = await apiInstance.esportsEventsV2(
+    region,
+    type,
+    page
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **region** | **EsportsV2Region** |  | (optional) defaults to undefined|
+| **type** | **EsportsV2EventType** |  | (optional) defaults to undefined|
+| **page** | [**number**] |  | (optional) defaults to undefined|
+
+
+### Return type
+
+**EsportsV2EventsResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports events retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsMatchV2**
+> EsportsV2MatchesResponse esportsMatchV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let matchId: number; // (default to undefined)
+
+const { status, data } = await apiInstance.esportsMatchV2(
+    matchId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **matchId** | [**number**] |  | defaults to undefined|
+
+
+### Return type
+
+**EsportsV2MatchesResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports match details retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsPlayerMatchesV2**
+> EsportsV2PlayerMatchesResponse esportsPlayerMatchesV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let player: number; // (default to undefined)
+let page: number; // (optional) (default to undefined)
+
+const { status, data } = await apiInstance.esportsPlayerMatchesV2(
+    player,
+    page
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **player** | [**number**] |  | defaults to undefined|
+| **page** | [**number**] |  | (optional) defaults to undefined|
+
+
+### Return type
+
+**EsportsV2PlayerMatchesResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports player matches retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsPlayerV2**
+> EsportsV2PlayerResponse esportsPlayerV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let player: number; // (default to undefined)
+let timespan: EsportsV2PlayerTimespan; // (optional) (default to undefined)
+
+const { status, data } = await apiInstance.esportsPlayerV2(
+    player,
+    timespan
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **player** | [**number**] |  | defaults to undefined|
+| **timespan** | **EsportsV2PlayerTimespan** |  | (optional) defaults to undefined|
+
+
+### Return type
+
+**EsportsV2PlayerResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports player profile retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **esportsSchedulesV1**
 > EsportsV1Response esportsSchedulesV1()
 
@@ -118,10 +398,12 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
 
-let region: string; //Region filter (optional) (optional) (default to undefined)
+let region: string; // (optional) (default to undefined)
+let league: string; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.esportsSchedulesV1(
-    region
+    region,
+    league
 );
 ```
 
@@ -129,7 +411,8 @@ const { status, data } = await apiInstance.esportsSchedulesV1(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **region** | [**string**] | Region filter (optional) | (optional) defaults to undefined|
+| **region** | [**string**] |  | (optional) defaults to undefined|
+| **league** | [**string**] |  | (optional) defaults to undefined|
 
 
 ### Return type
@@ -152,6 +435,165 @@ No authorization required
 |**200** | Esports schedule retrieved successfully |  -  |
 |**400** | Bad Request |  -  |
 |**404** | Schedule not found |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsTeamMatchesV2**
+> EsportsV2TeamMatchListResponse esportsTeamMatchesV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let teamId: number; // (default to undefined)
+let page: number; // (optional) (default to undefined)
+
+const { status, data } = await apiInstance.esportsTeamMatchesV2(
+    teamId,
+    page
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **teamId** | [**number**] |  | defaults to undefined|
+| **page** | [**number**] |  | (optional) defaults to undefined|
+
+
+### Return type
+
+**EsportsV2TeamMatchListResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports team matches retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsTeamTransactionsV2**
+> EsportsV2TeamTransactionsResponse esportsTeamTransactionsV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let teamId: number; // (default to undefined)
+
+const { status, data } = await apiInstance.esportsTeamTransactionsV2(
+    teamId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **teamId** | [**number**] |  | defaults to undefined|
+
+
+### Return type
+
+**EsportsV2TeamTransactionsResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports team transactions retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esportsTeamV2**
+> EsportsV2TeamResponse esportsTeamV2()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let teamId: number; // (default to undefined)
+
+const { status, data } = await apiInstance.esportsTeamV2(
+    teamId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **teamId** | [**number**] |  | defaults to undefined|
+
+
+### Return type
+
+**EsportsV2TeamResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Esports team profile retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
 |**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

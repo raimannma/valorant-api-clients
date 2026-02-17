@@ -15,6 +15,8 @@
 | **shots** | [**StoredMatchStatsShots**](StoredMatchStatsShots.md) |  |  |
 | **team** | **kotlin.String** |  |  |
 | **tier** | **kotlin.Int** |  |  |
+| **name** | **kotlin.String** |  |  [optional] |
+| **tag** | **kotlin.String** |  |  [optional] |
 
 
 

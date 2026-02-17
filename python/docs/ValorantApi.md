@@ -5,7 +5,15 @@ All URIs are relative to *https://api.henrikdev.xyz*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**crosshair**](ValorantApi.md#crosshair) | **GET** /valorant/v1/crosshair/generate | 
+[**esports_event_v2**](ValorantApi.md#esports_event_v2) | **GET** /valorant/v2/esports/vlr/events/{event_id}/matches | 
+[**esports_events_v2**](ValorantApi.md#esports_events_v2) | **GET** /valorant/v2/esports/vlr/events | 
+[**esports_match_v2**](ValorantApi.md#esports_match_v2) | **GET** /valorant/v2/esports/vlr/matches/{match_id} | 
+[**esports_player_matches_v2**](ValorantApi.md#esports_player_matches_v2) | **GET** /valorant/v2/esports/vlr/players/{player}/matches | 
+[**esports_player_v2**](ValorantApi.md#esports_player_v2) | **GET** /valorant/v2/esports/vlr/players/{player_id} | 
 [**esports_schedules_v1**](ValorantApi.md#esports_schedules_v1) | **GET** /valorant/v1/esports/schedule | 
+[**esports_team_matches_v2**](ValorantApi.md#esports_team_matches_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | 
+[**esports_team_transactions_v2**](ValorantApi.md#esports_team_transactions_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | 
+[**esports_team_v2**](ValorantApi.md#esports_team_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | 
 [**get_account_by_id_v1**](ValorantApi.md#get_account_by_id_v1) | **GET** /valorant/v1/by-puuid/account/{puuid} | 
 [**get_account_by_id_v2**](ValorantApi.md#get_account_by_id_v2) | **GET** /valorant/v2/by-puuid/account/{puuid} | 
 [**get_account_v1**](ValorantApi.md#get_account_v1) | **GET** /valorant/v1/account/{name}/{tag} | 
@@ -114,8 +122,344 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **esports_event_v2**
+> EsportsV2EventResponse esports_event_v2(event_id)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_event_response import EsportsV2EventResponse
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    event_id = 56 # int | 
+
+    try:
+        api_response = api_instance.esports_event_v2(event_id)
+        print("The response of ValorantApi->esports_event_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_event_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **event_id** | **int**|  | 
+
+### Return type
+
+[**EsportsV2EventResponse**](EsportsV2EventResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports event matches retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esports_events_v2**
+> EsportsV2EventsResponse esports_events_v2(region=region, type=type, page=page)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_event_type import EsportsV2EventType
+from henrikdev_api_client.models.esports_v2_events_response import EsportsV2EventsResponse
+from henrikdev_api_client.models.esports_v2_region import EsportsV2Region
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    region = henrikdev_api_client.EsportsV2Region() # EsportsV2Region |  (optional)
+    type = henrikdev_api_client.EsportsV2EventType() # EsportsV2EventType |  (optional)
+    page = 56 # int |  (optional)
+
+    try:
+        api_response = api_instance.esports_events_v2(region=region, type=type, page=page)
+        print("The response of ValorantApi->esports_events_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_events_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region** | [**EsportsV2Region**](.md)|  | [optional] 
+ **type** | [**EsportsV2EventType**](.md)|  | [optional] 
+ **page** | **int**|  | [optional] 
+
+### Return type
+
+[**EsportsV2EventsResponse**](EsportsV2EventsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports events retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esports_match_v2**
+> EsportsV2MatchesResponse esports_match_v2(match_id)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_matches_response import EsportsV2MatchesResponse
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    match_id = 56 # int | 
+
+    try:
+        api_response = api_instance.esports_match_v2(match_id)
+        print("The response of ValorantApi->esports_match_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_match_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **match_id** | **int**|  | 
+
+### Return type
+
+[**EsportsV2MatchesResponse**](EsportsV2MatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports match details retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esports_player_matches_v2**
+> EsportsV2PlayerMatchesResponse esports_player_matches_v2(player, page=page)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_player_matches_response import EsportsV2PlayerMatchesResponse
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    player = 56 # int | 
+    page = 56 # int |  (optional)
+
+    try:
+        api_response = api_instance.esports_player_matches_v2(player, page=page)
+        print("The response of ValorantApi->esports_player_matches_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_player_matches_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **player** | **int**|  | 
+ **page** | **int**|  | [optional] 
+
+### Return type
+
+[**EsportsV2PlayerMatchesResponse**](EsportsV2PlayerMatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports player matches retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esports_player_v2**
+> EsportsV2PlayerResponse esports_player_v2(player, timespan=timespan)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_player_response import EsportsV2PlayerResponse
+from henrikdev_api_client.models.esports_v2_player_timespan import EsportsV2PlayerTimespan
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    player = 56 # int | 
+    timespan = henrikdev_api_client.EsportsV2PlayerTimespan() # EsportsV2PlayerTimespan |  (optional)
+
+    try:
+        api_response = api_instance.esports_player_v2(player, timespan=timespan)
+        print("The response of ValorantApi->esports_player_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_player_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **player** | **int**|  | 
+ **timespan** | [**EsportsV2PlayerTimespan**](.md)|  | [optional] 
+
+### Return type
+
+[**EsportsV2PlayerResponse**](EsportsV2PlayerResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports player profile retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **esports_schedules_v1**
-> EsportsV1Response esports_schedules_v1(region=region)
+> EsportsV1Response esports_schedules_v1(region=region, league=league)
 
 ### Example
 
@@ -137,10 +481,11 @@ configuration = henrikdev_api_client.Configuration(
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    region = 'region_example' # str | Region filter (optional) (optional)
+    region = 'region_example' # str |  (optional)
+    league = 'league_example' # str |  (optional)
 
     try:
-        api_response = api_instance.esports_schedules_v1(region=region)
+        api_response = api_instance.esports_schedules_v1(region=region, league=league)
         print("The response of ValorantApi->esports_schedules_v1:\n")
         pprint(api_response)
     except Exception as e:
@@ -154,7 +499,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **region** | **str**| Region filter (optional) | [optional] 
+ **region** | **str**|  | [optional] 
+ **league** | **str**|  | [optional] 
 
 ### Return type
 
@@ -176,6 +522,203 @@ No authorization required
 **200** | Esports schedule retrieved successfully |  -  |
 **400** | Bad Request |  -  |
 **404** | Schedule not found |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esports_team_matches_v2**
+> EsportsV2TeamMatchListResponse esports_team_matches_v2(team_id, page=page)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_team_match_list_response import EsportsV2TeamMatchListResponse
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    team_id = 56 # int | 
+    page = 56 # int |  (optional)
+
+    try:
+        api_response = api_instance.esports_team_matches_v2(team_id, page=page)
+        print("The response of ValorantApi->esports_team_matches_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_team_matches_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **int**|  | 
+ **page** | **int**|  | [optional] 
+
+### Return type
+
+[**EsportsV2TeamMatchListResponse**](EsportsV2TeamMatchListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports team matches retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esports_team_transactions_v2**
+> EsportsV2TeamTransactionsResponse esports_team_transactions_v2(team_id)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_team_transactions_response import EsportsV2TeamTransactionsResponse
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    team_id = 56 # int | 
+
+    try:
+        api_response = api_instance.esports_team_transactions_v2(team_id)
+        print("The response of ValorantApi->esports_team_transactions_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_team_transactions_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **int**|  | 
+
+### Return type
+
+[**EsportsV2TeamTransactionsResponse**](EsportsV2TeamTransactionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports team transactions retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **esports_team_v2**
+> EsportsV2TeamResponse esports_team_v2(team_id)
+
+### Example
+
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.esports_v2_team_response import EsportsV2TeamResponse
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    team_id = 56 # int | 
+
+    try:
+        api_response = api_instance.esports_team_v2(team_id)
+        print("The response of ValorantApi->esports_team_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->esports_team_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **int**|  | 
+
+### Return type
+
+[**EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Esports team profile retrieved successfully |  -  |
+**400** | Bad Request |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

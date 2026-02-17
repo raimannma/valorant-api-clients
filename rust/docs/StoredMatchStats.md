@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **deaths** | **u32** |  | 
 **kills** | **u32** |  | 
 **level** | **u32** |  | 
+**name** | Option<**String**> |  | [optional]
 **puuid** | **String** |  | 
 **score** | **i32** |  | 
 **shots** | [**models::StoredMatchStatsShots**](StoredMatchStatsShots.md) |  | 
+**tag** | Option<**String**> |  | [optional]
 **team** | **String** |  | 
 **tier** | **u32** |  | 
 

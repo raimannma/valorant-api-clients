@@ -71,7 +71,15 @@ All URIs are relative to *https://api.henrikdev.xyz*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ValorantApi* | [**crosshair**](docs/Api/ValorantApi.md#crosshair) | **GET** /valorant/v1/crosshair/generate | 
+*ValorantApi* | [**esportsEventV2**](docs/Api/ValorantApi.md#esportseventv2) | **GET** /valorant/v2/esports/vlr/events/{event_id}/matches | 
+*ValorantApi* | [**esportsEventsV2**](docs/Api/ValorantApi.md#esportseventsv2) | **GET** /valorant/v2/esports/vlr/events | 
+*ValorantApi* | [**esportsMatchV2**](docs/Api/ValorantApi.md#esportsmatchv2) | **GET** /valorant/v2/esports/vlr/matches/{match_id} | 
+*ValorantApi* | [**esportsPlayerMatchesV2**](docs/Api/ValorantApi.md#esportsplayermatchesv2) | **GET** /valorant/v2/esports/vlr/players/{player}/matches | 
+*ValorantApi* | [**esportsPlayerV2**](docs/Api/ValorantApi.md#esportsplayerv2) | **GET** /valorant/v2/esports/vlr/players/{player_id} | 
 *ValorantApi* | [**esportsSchedulesV1**](docs/Api/ValorantApi.md#esportsschedulesv1) | **GET** /valorant/v1/esports/schedule | 
+*ValorantApi* | [**esportsTeamMatchesV2**](docs/Api/ValorantApi.md#esportsteammatchesv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | 
+*ValorantApi* | [**esportsTeamTransactionsV2**](docs/Api/ValorantApi.md#esportsteamtransactionsv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | 
+*ValorantApi* | [**esportsTeamV2**](docs/Api/ValorantApi.md#esportsteamv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | 
 *ValorantApi* | [**getAccountByIdV1**](docs/Api/ValorantApi.md#getaccountbyidv1) | **GET** /valorant/v1/by-puuid/account/{puuid} | 
 *ValorantApi* | [**getAccountByIdV2**](docs/Api/ValorantApi.md#getaccountbyidv2) | **GET** /valorant/v2/by-puuid/account/{puuid} | 
 *ValorantApi* | [**getAccountV1**](docs/Api/ValorantApi.md#getaccountv1) | **GET** /valorant/v1/account/{name}/{tag} | 
@@ -139,6 +147,70 @@ Class | Method | HTTP request | Description
 - [EsportsV1DataMatchTeamsRecord](docs/Model/EsportsV1DataMatchTeamsRecord.md)
 - [EsportsV1DataTournament](docs/Model/EsportsV1DataTournament.md)
 - [EsportsV1Response](docs/Model/EsportsV1Response.md)
+- [EsportsV2AgentPerformanceStats](docs/Model/EsportsV2AgentPerformanceStats.md)
+- [EsportsV2AgentUsage](docs/Model/EsportsV2AgentUsage.md)
+- [EsportsV2Country](docs/Model/EsportsV2Country.md)
+- [EsportsV2Date](docs/Model/EsportsV2Date.md)
+- [EsportsV2Event](docs/Model/EsportsV2Event.md)
+- [EsportsV2EventDetail](docs/Model/EsportsV2EventDetail.md)
+- [EsportsV2EventPlacement](docs/Model/EsportsV2EventPlacement.md)
+- [EsportsV2EventResponse](docs/Model/EsportsV2EventResponse.md)
+- [EsportsV2EventStatus](docs/Model/EsportsV2EventStatus.md)
+- [EsportsV2EventType](docs/Model/EsportsV2EventType.md)
+- [EsportsV2EventsQuery](docs/Model/EsportsV2EventsQuery.md)
+- [EsportsV2EventsResponse](docs/Model/EsportsV2EventsResponse.md)
+- [EsportsV2HeadToHeadEvent](docs/Model/EsportsV2HeadToHeadEvent.md)
+- [EsportsV2HeadToHeadMatch](docs/Model/EsportsV2HeadToHeadMatch.md)
+- [EsportsV2HeadToHeadScore](docs/Model/EsportsV2HeadToHeadScore.md)
+- [EsportsV2IdSlug](docs/Model/EsportsV2IdSlug.md)
+- [EsportsV2KillMatrixEntry](docs/Model/EsportsV2KillMatrixEntry.md)
+- [EsportsV2Match](docs/Model/EsportsV2Match.md)
+- [EsportsV2MatchEconomy](docs/Model/EsportsV2MatchEconomy.md)
+- [EsportsV2MatchEvent](docs/Model/EsportsV2MatchEvent.md)
+- [EsportsV2MatchGame](docs/Model/EsportsV2MatchGame.md)
+- [EsportsV2MatchGamePlayer](docs/Model/EsportsV2MatchGamePlayer.md)
+- [EsportsV2MatchGamePlayerStats](docs/Model/EsportsV2MatchGamePlayerStats.md)
+- [EsportsV2MatchGameRound](docs/Model/EsportsV2MatchGameRound.md)
+- [EsportsV2MatchGameTeam](docs/Model/EsportsV2MatchGameTeam.md)
+- [EsportsV2MatchHeader](docs/Model/EsportsV2MatchHeader.md)
+- [EsportsV2MatchHeaderTeam](docs/Model/EsportsV2MatchHeaderTeam.md)
+- [EsportsV2MatchLeague](docs/Model/EsportsV2MatchLeague.md)
+- [EsportsV2MatchPerformance](docs/Model/EsportsV2MatchPerformance.md)
+- [EsportsV2MatchPlayer](docs/Model/EsportsV2MatchPlayer.md)
+- [EsportsV2MatchStream](docs/Model/EsportsV2MatchStream.md)
+- [EsportsV2MatchTeam](docs/Model/EsportsV2MatchTeam.md)
+- [EsportsV2MatchesResponse](docs/Model/EsportsV2MatchesResponse.md)
+- [EsportsV2PastMatch](docs/Model/EsportsV2PastMatch.md)
+- [EsportsV2PastMatchOpponent](docs/Model/EsportsV2PastMatchOpponent.md)
+- [EsportsV2PastMatchScore](docs/Model/EsportsV2PastMatchScore.md)
+- [EsportsV2PlacementEntry](docs/Model/EsportsV2PlacementEntry.md)
+- [EsportsV2PlacementEvent](docs/Model/EsportsV2PlacementEvent.md)
+- [EsportsV2Player](docs/Model/EsportsV2Player.md)
+- [EsportsV2PlayerAgentStats](docs/Model/EsportsV2PlayerAgentStats.md)
+- [EsportsV2PlayerMatch](docs/Model/EsportsV2PlayerMatch.md)
+- [EsportsV2PlayerMatchTeam](docs/Model/EsportsV2PlayerMatchTeam.md)
+- [EsportsV2PlayerMatchesResponse](docs/Model/EsportsV2PlayerMatchesResponse.md)
+- [EsportsV2PlayerPerformance](docs/Model/EsportsV2PlayerPerformance.md)
+- [EsportsV2PlayerPerformanceClutches](docs/Model/EsportsV2PlayerPerformanceClutches.md)
+- [EsportsV2PlayerPerformanceMultiKills](docs/Model/EsportsV2PlayerPerformanceMultiKills.md)
+- [EsportsV2PlayerPerformancePlayer](docs/Model/EsportsV2PlayerPerformancePlayer.md)
+- [EsportsV2PlayerResponse](docs/Model/EsportsV2PlayerResponse.md)
+- [EsportsV2PlayerTeam](docs/Model/EsportsV2PlayerTeam.md)
+- [EsportsV2PlayerTimespan](docs/Model/EsportsV2PlayerTimespan.md)
+- [EsportsV2Region](docs/Model/EsportsV2Region.md)
+- [EsportsV2Social](docs/Model/EsportsV2Social.md)
+- [EsportsV2Team](docs/Model/EsportsV2Team.md)
+- [EsportsV2TeamEconomy](docs/Model/EsportsV2TeamEconomy.md)
+- [EsportsV2TeamEconomyRoundWon](docs/Model/EsportsV2TeamEconomyRoundWon.md)
+- [EsportsV2TeamMatch](docs/Model/EsportsV2TeamMatch.md)
+- [EsportsV2TeamMatchListResponse](docs/Model/EsportsV2TeamMatchListResponse.md)
+- [EsportsV2TeamMatchTeam](docs/Model/EsportsV2TeamMatchTeam.md)
+- [EsportsV2TeamPastMatches](docs/Model/EsportsV2TeamPastMatches.md)
+- [EsportsV2TeamResponse](docs/Model/EsportsV2TeamResponse.md)
+- [EsportsV2TeamRosterMember](docs/Model/EsportsV2TeamRosterMember.md)
+- [EsportsV2TeamTransaction](docs/Model/EsportsV2TeamTransaction.md)
+- [EsportsV2TeamTransactionsResponse](docs/Model/EsportsV2TeamTransactionsResponse.md)
+- [EsportsV2TransactionPlayer](docs/Model/EsportsV2TransactionPlayer.md)
 - [FeaturedBundle](docs/Model/FeaturedBundle.md)
 - [Item](docs/Model/Item.md)
 - [LeaderboardPVPPlayer](docs/Model/LeaderboardPVPPlayer.md)
@@ -349,6 +421,6 @@ vendor/bin/phpunit
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `4.4.1`
-    - Generator version: `7.19.0`
+- API version: `4.6.0`
+    - Generator version: `7.20.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

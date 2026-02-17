@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **Deaths** | **int32** |  | 
 **Kills** | **int32** |  | 
 **Level** | **int32** |  | 
+**Name** | Pointer to **NullableString** |  | [optional] 
 **Puuid** | **string** |  | 
 **Score** | **int32** |  | 
 **Shots** | [**StoredMatchStatsShots**](StoredMatchStatsShots.md) |  | 
+**Tag** | Pointer to **NullableString** |  | [optional] 
 **Team** | **string** |  | 
 **Tier** | **int32** |  | 
 
@@ -155,6 +157,41 @@ and a boolean to check if the value has been set.
 SetLevel sets Level field to given value.
 
 
+### GetName
+
+`func (o *StoredMatchStats) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *StoredMatchStats) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *StoredMatchStats) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *StoredMatchStats) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *StoredMatchStats) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *StoredMatchStats) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPuuid
 
 `func (o *StoredMatchStats) GetPuuid() string`
@@ -215,6 +252,41 @@ and a boolean to check if the value has been set.
 SetShots sets Shots field to given value.
 
 
+### GetTag
+
+`func (o *StoredMatchStats) GetTag() string`
+
+GetTag returns the Tag field if non-nil, zero value otherwise.
+
+### GetTagOk
+
+`func (o *StoredMatchStats) GetTagOk() (*string, bool)`
+
+GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTag
+
+`func (o *StoredMatchStats) SetTag(v string)`
+
+SetTag sets Tag field to given value.
+
+### HasTag
+
+`func (o *StoredMatchStats) HasTag() bool`
+
+HasTag returns a boolean if a field has been set.
+
+### SetTagNil
+
+`func (o *StoredMatchStats) SetTagNil(b bool)`
+
+ SetTagNil sets the value for Tag to be an explicit nil
+
+### UnsetTag
+`func (o *StoredMatchStats) UnsetTag()`
+
+UnsetTag ensures that no value is present for Tag, not even an explicit nil
 ### GetTeam
 
 `func (o *StoredMatchStats) GetTeam() string`

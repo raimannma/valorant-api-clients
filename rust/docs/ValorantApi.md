@@ -5,7 +5,15 @@ All URIs are relative to *https://api.henrikdev.xyz*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**crosshair**](ValorantApi.md#crosshair) | **GET** /valorant/v1/crosshair/generate | 
+[**esports_event_v2**](ValorantApi.md#esports_event_v2) | **GET** /valorant/v2/esports/vlr/events/{event_id}/matches | 
+[**esports_events_v2**](ValorantApi.md#esports_events_v2) | **GET** /valorant/v2/esports/vlr/events | 
+[**esports_match_v2**](ValorantApi.md#esports_match_v2) | **GET** /valorant/v2/esports/vlr/matches/{match_id} | 
+[**esports_player_matches_v2**](ValorantApi.md#esports_player_matches_v2) | **GET** /valorant/v2/esports/vlr/players/{player}/matches | 
+[**esports_player_v2**](ValorantApi.md#esports_player_v2) | **GET** /valorant/v2/esports/vlr/players/{player_id} | 
 [**esports_schedules_v1**](ValorantApi.md#esports_schedules_v1) | **GET** /valorant/v1/esports/schedule | 
+[**esports_team_matches_v2**](ValorantApi.md#esports_team_matches_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | 
+[**esports_team_transactions_v2**](ValorantApi.md#esports_team_transactions_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | 
+[**esports_team_v2**](ValorantApi.md#esports_team_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | 
 [**get_account_by_id_v1**](ValorantApi.md#get_account_by_id_v1) | **GET** /valorant/v1/by-puuid/account/{puuid} | 
 [**get_account_by_id_v2**](ValorantApi.md#get_account_by_id_v2) | **GET** /valorant/v2/by-puuid/account/{puuid} | 
 [**get_account_v1**](ValorantApi.md#get_account_v1) | **GET** /valorant/v1/account/{name}/{tag} | 
@@ -81,9 +89,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## esports_schedules_v1
+## esports_event_v2
 
-> models::EsportsV1Response esports_schedules_v1(region)
+> models::EsportsV2EventResponse esports_event_v2(event_id)
 
 
 ### Parameters
@@ -91,11 +99,241 @@ No authorization required
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**region** | Option<**String**> | Region filter (optional) |  |
+**event_id** | **u32** |  | [required] |
+
+### Return type
+
+[**models::EsportsV2EventResponse**](EsportsV2EventResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_events_v2
+
+> models::EsportsV2EventsResponse esports_events_v2(region, r#type, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**region** | Option<[**EsportsV2Region**](EsportsV2Region.md)> |  |  |
+**r#type** | Option<[**EsportsV2EventType**](EsportsV2EventType.md)> |  |  |
+**page** | Option<**u32**> |  |  |
+
+### Return type
+
+[**models::EsportsV2EventsResponse**](EsportsV2EventsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_match_v2
+
+> models::EsportsV2MatchesResponse esports_match_v2(match_id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**match_id** | **u32** |  | [required] |
+
+### Return type
+
+[**models::EsportsV2MatchesResponse**](EsportsV2MatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_player_matches_v2
+
+> models::EsportsV2PlayerMatchesResponse esports_player_matches_v2(player, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**player** | **u32** |  | [required] |
+**page** | Option<**u32**> |  |  |
+
+### Return type
+
+[**models::EsportsV2PlayerMatchesResponse**](EsportsV2PlayerMatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_player_v2
+
+> models::EsportsV2PlayerResponse esports_player_v2(player, timespan)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**player** | **u32** |  | [required] |
+**timespan** | Option<[**EsportsV2PlayerTimespan**](EsportsV2PlayerTimespan.md)> |  |  |
+
+### Return type
+
+[**models::EsportsV2PlayerResponse**](EsportsV2PlayerResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_schedules_v1
+
+> models::EsportsV1Response esports_schedules_v1(region, league)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**region** | Option<**String**> |  |  |
+**league** | Option<**String**> |  |  |
 
 ### Return type
 
 [**models::EsportsV1Response**](EsportsV1Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_team_matches_v2
+
+> models::EsportsV2TeamMatchListResponse esports_team_matches_v2(team_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**team_id** | **u32** |  | [required] |
+**page** | Option<**u32**> |  |  |
+
+### Return type
+
+[**models::EsportsV2TeamMatchListResponse**](EsportsV2TeamMatchListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_team_transactions_v2
+
+> models::EsportsV2TeamTransactionsResponse esports_team_transactions_v2(team_id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**team_id** | **u32** |  | [required] |
+
+### Return type
+
+[**models::EsportsV2TeamTransactionsResponse**](EsportsV2TeamTransactionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## esports_team_v2
+
+> models::EsportsV2TeamResponse esports_team_v2(team_id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**team_id** | **u32** |  | [required] |
+
+### Return type
+
+[**models::EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
 
 ### Authorization
 

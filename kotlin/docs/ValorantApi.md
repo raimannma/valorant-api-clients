@@ -5,7 +5,15 @@ All URIs are relative to *https://api.henrikdev.xyz*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**crosshair**](ValorantApi.md#crosshair) | **GET** /valorant/v1/crosshair/generate |  |
+| [**esportsEventV2**](ValorantApi.md#esportsEventV2) | **GET** /valorant/v2/esports/vlr/events/{event_id}/matches |  |
+| [**esportsEventsV2**](ValorantApi.md#esportsEventsV2) | **GET** /valorant/v2/esports/vlr/events |  |
+| [**esportsMatchV2**](ValorantApi.md#esportsMatchV2) | **GET** /valorant/v2/esports/vlr/matches/{match_id} |  |
+| [**esportsPlayerMatchesV2**](ValorantApi.md#esportsPlayerMatchesV2) | **GET** /valorant/v2/esports/vlr/players/{player}/matches |  |
+| [**esportsPlayerV2**](ValorantApi.md#esportsPlayerV2) | **GET** /valorant/v2/esports/vlr/players/{player_id} |  |
 | [**esportsSchedulesV1**](ValorantApi.md#esportsSchedulesV1) | **GET** /valorant/v1/esports/schedule |  |
+| [**esportsTeamMatchesV2**](ValorantApi.md#esportsTeamMatchesV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches |  |
+| [**esportsTeamTransactionsV2**](ValorantApi.md#esportsTeamTransactionsV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions |  |
+| [**esportsTeamV2**](ValorantApi.md#esportsTeamV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} |  |
 | [**getAccountByIdV1**](ValorantApi.md#getAccountByIdV1) | **GET** /valorant/v1/by-puuid/account/{puuid} |  |
 | [**getAccountByIdV2**](ValorantApi.md#getAccountByIdV2) | **GET** /valorant/v2/by-puuid/account/{puuid} |  |
 | [**getAccountV1**](ValorantApi.md#getAccountV1) | **GET** /valorant/v1/account/{name}/{tag} |  |
@@ -95,9 +103,9 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a id="esportsSchedulesV1"></a>
-# **esportsSchedulesV1**
-> EsportsV1Response esportsSchedulesV1(region)
+<a id="esportsEventV2"></a>
+# **esportsEventV2**
+> EsportsV2EventResponse esportsEventV2(eventId)
 
 
 
@@ -108,9 +116,238 @@ No authorization required
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val region : kotlin.String = region_example // kotlin.String | Region filter (optional)
+val eventId : kotlin.Int = 56 // kotlin.Int | 
 try {
-    val result : EsportsV1Response = apiInstance.esportsSchedulesV1(region)
+    val result : EsportsV2EventResponse = apiInstance.esportsEventV2(eventId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsEventV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsEventV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **eventId** | **kotlin.Int**|  | |
+
+### Return type
+
+[**EsportsV2EventResponse**](EsportsV2EventResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsEventsV2"></a>
+# **esportsEventsV2**
+> EsportsV2EventsResponse esportsEventsV2(region, type, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val region : EsportsV2Region =  // EsportsV2Region | 
+val type : EsportsV2EventType =  // EsportsV2EventType | 
+val page : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : EsportsV2EventsResponse = apiInstance.esportsEventsV2(region, type, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsEventsV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsEventsV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **region** | [**EsportsV2Region**](.md)|  | [optional] [enum: north_america, europe, brazil, asia_pacific, korea, japan, latin_america, oceania, mena, gc, collegiate] |
+| **type** | [**EsportsV2EventType**](.md)|  | [optional] [enum: completed, upcoming] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **page** | **kotlin.Int**|  | [optional] |
+
+### Return type
+
+[**EsportsV2EventsResponse**](EsportsV2EventsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsMatchV2"></a>
+# **esportsMatchV2**
+> EsportsV2MatchesResponse esportsMatchV2(matchId)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val matchId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : EsportsV2MatchesResponse = apiInstance.esportsMatchV2(matchId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsMatchV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsMatchV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **matchId** | **kotlin.Int**|  | |
+
+### Return type
+
+[**EsportsV2MatchesResponse**](EsportsV2MatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsPlayerMatchesV2"></a>
+# **esportsPlayerMatchesV2**
+> EsportsV2PlayerMatchesResponse esportsPlayerMatchesV2(player, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val player : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : EsportsV2PlayerMatchesResponse = apiInstance.esportsPlayerMatchesV2(player, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsPlayerMatchesV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsPlayerMatchesV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **player** | **kotlin.Int**|  | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **page** | **kotlin.Int**|  | [optional] |
+
+### Return type
+
+[**EsportsV2PlayerMatchesResponse**](EsportsV2PlayerMatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsPlayerV2"></a>
+# **esportsPlayerV2**
+> EsportsV2PlayerResponse esportsPlayerV2(player, timespan)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val player : kotlin.Int = 56 // kotlin.Int | 
+val timespan : EsportsV2PlayerTimespan =  // EsportsV2PlayerTimespan | 
+try {
+    val result : EsportsV2PlayerResponse = apiInstance.esportsPlayerV2(player, timespan)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsPlayerV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsPlayerV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **player** | **kotlin.Int**|  | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **timespan** | [**EsportsV2PlayerTimespan**](.md)|  | [optional] [enum: 30d, 60d, 90d, all] |
+
+### Return type
+
+[**EsportsV2PlayerResponse**](EsportsV2PlayerResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsSchedulesV1"></a>
+# **esportsSchedulesV1**
+> EsportsV1Response esportsSchedulesV1(region, league)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val region : kotlin.String = region_example // kotlin.String | 
+val league : kotlin.String = league_example // kotlin.String | 
+try {
+    val result : EsportsV1Response = apiInstance.esportsSchedulesV1(region, league)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#esportsSchedulesV1")
@@ -122,13 +359,148 @@ try {
 ```
 
 ### Parameters
+| **region** | **kotlin.String**|  | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **region** | **kotlin.String**| Region filter (optional) | [optional] |
+| **league** | **kotlin.String**|  | [optional] |
 
 ### Return type
 
 [**EsportsV1Response**](EsportsV1Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsTeamMatchesV2"></a>
+# **esportsTeamMatchesV2**
+> EsportsV2TeamMatchListResponse esportsTeamMatchesV2(teamId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val teamId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : EsportsV2TeamMatchListResponse = apiInstance.esportsTeamMatchesV2(teamId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsTeamMatchesV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsTeamMatchesV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **teamId** | **kotlin.Int**|  | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **page** | **kotlin.Int**|  | [optional] |
+
+### Return type
+
+[**EsportsV2TeamMatchListResponse**](EsportsV2TeamMatchListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsTeamTransactionsV2"></a>
+# **esportsTeamTransactionsV2**
+> EsportsV2TeamTransactionsResponse esportsTeamTransactionsV2(teamId)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val teamId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : EsportsV2TeamTransactionsResponse = apiInstance.esportsTeamTransactionsV2(teamId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsTeamTransactionsV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsTeamTransactionsV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **kotlin.Int**|  | |
+
+### Return type
+
+[**EsportsV2TeamTransactionsResponse**](EsportsV2TeamTransactionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="esportsTeamV2"></a>
+# **esportsTeamV2**
+> EsportsV2TeamResponse esportsTeamV2(teamId)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val teamId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : EsportsV2TeamResponse = apiInstance.esportsTeamV2(teamId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#esportsTeamV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#esportsTeamV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **kotlin.Int**|  | |
+
+### Return type
+
+[**EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
 
 ### Authorization
 

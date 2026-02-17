@@ -23,6 +23,17 @@ import henrikdevApiClient.models.AccountV1Response
 import henrikdevApiClient.models.AccountV2Response
 import henrikdevApiClient.models.ContentV1Response
 import henrikdevApiClient.models.EsportsV1Response
+import henrikdevApiClient.models.EsportsV2EventResponse
+import henrikdevApiClient.models.EsportsV2EventType
+import henrikdevApiClient.models.EsportsV2EventsResponse
+import henrikdevApiClient.models.EsportsV2MatchesResponse
+import henrikdevApiClient.models.EsportsV2PlayerMatchesResponse
+import henrikdevApiClient.models.EsportsV2PlayerResponse
+import henrikdevApiClient.models.EsportsV2PlayerTimespan
+import henrikdevApiClient.models.EsportsV2Region
+import henrikdevApiClient.models.EsportsV2TeamMatchListResponse
+import henrikdevApiClient.models.EsportsV2TeamResponse
+import henrikdevApiClient.models.EsportsV2TeamTransactionsResponse
 import henrikdevApiClient.models.LeaderboardV2Response
 import henrikdevApiClient.models.LeaderboardV3Response
 import henrikdevApiClient.models.MMRHistoryV1Response
@@ -64,11 +75,81 @@ class ValorantApiTest : ShouldSpec() {
             //apiInstance.crosshair(id)
         }
 
+        // to test esportsEventV2
+        should("test esportsEventV2") {
+            // uncomment below to test esportsEventV2
+            //val eventId : kotlin.Int = 56 // kotlin.Int | 
+            //val result : EsportsV2EventResponse = apiInstance.esportsEventV2(eventId)
+            //result shouldBe ("TODO")
+        }
+
+        // to test esportsEventsV2
+        should("test esportsEventsV2") {
+            // uncomment below to test esportsEventsV2
+            //val region : EsportsV2Region =  // EsportsV2Region | 
+            //val type : EsportsV2EventType =  // EsportsV2EventType | 
+            //val page : kotlin.Int = 56 // kotlin.Int | 
+            //val result : EsportsV2EventsResponse = apiInstance.esportsEventsV2(region, type, page)
+            //result shouldBe ("TODO")
+        }
+
+        // to test esportsMatchV2
+        should("test esportsMatchV2") {
+            // uncomment below to test esportsMatchV2
+            //val matchId : kotlin.Int = 56 // kotlin.Int | 
+            //val result : EsportsV2MatchesResponse = apiInstance.esportsMatchV2(matchId)
+            //result shouldBe ("TODO")
+        }
+
+        // to test esportsPlayerMatchesV2
+        should("test esportsPlayerMatchesV2") {
+            // uncomment below to test esportsPlayerMatchesV2
+            //val player : kotlin.Int = 56 // kotlin.Int | 
+            //val page : kotlin.Int = 56 // kotlin.Int | 
+            //val result : EsportsV2PlayerMatchesResponse = apiInstance.esportsPlayerMatchesV2(player, page)
+            //result shouldBe ("TODO")
+        }
+
+        // to test esportsPlayerV2
+        should("test esportsPlayerV2") {
+            // uncomment below to test esportsPlayerV2
+            //val player : kotlin.Int = 56 // kotlin.Int | 
+            //val timespan : EsportsV2PlayerTimespan =  // EsportsV2PlayerTimespan | 
+            //val result : EsportsV2PlayerResponse = apiInstance.esportsPlayerV2(player, timespan)
+            //result shouldBe ("TODO")
+        }
+
         // to test esportsSchedulesV1
         should("test esportsSchedulesV1") {
             // uncomment below to test esportsSchedulesV1
-            //val region : kotlin.String = region_example // kotlin.String | Region filter (optional)
-            //val result : EsportsV1Response = apiInstance.esportsSchedulesV1(region)
+            //val region : kotlin.String = region_example // kotlin.String | 
+            //val league : kotlin.String = league_example // kotlin.String | 
+            //val result : EsportsV1Response = apiInstance.esportsSchedulesV1(region, league)
+            //result shouldBe ("TODO")
+        }
+
+        // to test esportsTeamMatchesV2
+        should("test esportsTeamMatchesV2") {
+            // uncomment below to test esportsTeamMatchesV2
+            //val teamId : kotlin.Int = 56 // kotlin.Int | 
+            //val page : kotlin.Int = 56 // kotlin.Int | 
+            //val result : EsportsV2TeamMatchListResponse = apiInstance.esportsTeamMatchesV2(teamId, page)
+            //result shouldBe ("TODO")
+        }
+
+        // to test esportsTeamTransactionsV2
+        should("test esportsTeamTransactionsV2") {
+            // uncomment below to test esportsTeamTransactionsV2
+            //val teamId : kotlin.Int = 56 // kotlin.Int | 
+            //val result : EsportsV2TeamTransactionsResponse = apiInstance.esportsTeamTransactionsV2(teamId)
+            //result shouldBe ("TODO")
+        }
+
+        // to test esportsTeamV2
+        should("test esportsTeamV2") {
+            // uncomment below to test esportsTeamV2
+            //val teamId : kotlin.Int = 56 // kotlin.Int | 
+            //val result : EsportsV2TeamResponse = apiInstance.esportsTeamV2(teamId)
             //result shouldBe ("TODO")
         }
 

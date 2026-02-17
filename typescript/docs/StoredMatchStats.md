@@ -11,9 +11,11 @@ Name | Type | Description | Notes
 **deaths** | **number** |  | [default to undefined]
 **kills** | **number** |  | [default to undefined]
 **level** | **number** |  | [default to undefined]
+**name** | **string** |  | [optional] [default to undefined]
 **puuid** | **string** |  | [default to undefined]
 **score** | **number** |  | [default to undefined]
 **shots** | [**StoredMatchStatsShots**](StoredMatchStatsShots.md) |  | [default to undefined]
+**tag** | **string** |  | [optional] [default to undefined]
 **team** | **string** |  | [default to undefined]
 **tier** | **number** |  | [default to undefined]
 
@@ -29,9 +31,11 @@ const instance: StoredMatchStats = {
     deaths,
     kills,
     level,
+    name,
     puuid,
     score,
     shots,
+    tag,
     team,
     tier,
 };

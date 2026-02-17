@@ -94,5 +94,17 @@ class StoredMatchStatsTest : ShouldSpec() {
             //modelInstance.tier shouldBe ("TODO")
         }
 
+        // to test the property `name`
+        should("test name") {
+            // uncomment below to test the property
+            //modelInstance.name shouldBe ("TODO")
+        }
+
+        // to test the property `tag`
+        should("test tag") {
+            // uncomment below to test the property
+            //modelInstance.tag shouldBe ("TODO")
+        }
+
     }
 }

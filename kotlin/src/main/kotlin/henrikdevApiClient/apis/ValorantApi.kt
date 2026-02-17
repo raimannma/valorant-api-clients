@@ -23,6 +23,17 @@ import henrikdevApiClient.models.AccountV1Response
 import henrikdevApiClient.models.AccountV2Response
 import henrikdevApiClient.models.ContentV1Response
 import henrikdevApiClient.models.EsportsV1Response
+import henrikdevApiClient.models.EsportsV2EventResponse
+import henrikdevApiClient.models.EsportsV2EventType
+import henrikdevApiClient.models.EsportsV2EventsResponse
+import henrikdevApiClient.models.EsportsV2MatchesResponse
+import henrikdevApiClient.models.EsportsV2PlayerMatchesResponse
+import henrikdevApiClient.models.EsportsV2PlayerResponse
+import henrikdevApiClient.models.EsportsV2PlayerTimespan
+import henrikdevApiClient.models.EsportsV2Region
+import henrikdevApiClient.models.EsportsV2TeamMatchListResponse
+import henrikdevApiClient.models.EsportsV2TeamResponse
+import henrikdevApiClient.models.EsportsV2TeamTransactionsResponse
 import henrikdevApiClient.models.LeaderboardV2Response
 import henrikdevApiClient.models.LeaderboardV3Response
 import henrikdevApiClient.models.MMRHistoryV1Response
@@ -153,10 +164,409 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     }
 
     /**
+     * GET /valorant/v2/esports/vlr/events/{event_id}/matches
+     * 
+     * 
+     * @param eventId 
+     * @return EsportsV2EventResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsEventV2(eventId: kotlin.Int) : EsportsV2EventResponse {
+        val localVarResponse = esportsEventV2WithHttpInfo(eventId = eventId)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2EventResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/events/{event_id}/matches
+     * 
+     * 
+     * @param eventId 
+     * @return ApiResponse<EsportsV2EventResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsEventV2WithHttpInfo(eventId: kotlin.Int) : ApiResponse<EsportsV2EventResponse?> {
+        val localVariableConfig = esportsEventV2RequestConfig(eventId = eventId)
+
+        return request<Unit, EsportsV2EventResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsEventV2
+     *
+     * @param eventId 
+     * @return RequestConfig
+     */
+    fun esportsEventV2RequestConfig(eventId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/events/{event_id}/matches".replace("{"+"event_id"+"}", encodeURIComponent(eventId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/events
+     * 
+     * 
+     * @param region  (optional)
+     * @param type  (optional)
+     * @param page  (optional)
+     * @return EsportsV2EventsResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsEventsV2(region: EsportsV2Region? = null, type: EsportsV2EventType? = null, page: kotlin.Int? = null) : EsportsV2EventsResponse {
+        val localVarResponse = esportsEventsV2WithHttpInfo(region = region, type = type, page = page)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2EventsResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/events
+     * 
+     * 
+     * @param region  (optional)
+     * @param type  (optional)
+     * @param page  (optional)
+     * @return ApiResponse<EsportsV2EventsResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsEventsV2WithHttpInfo(region: EsportsV2Region?, type: EsportsV2EventType?, page: kotlin.Int?) : ApiResponse<EsportsV2EventsResponse?> {
+        val localVariableConfig = esportsEventsV2RequestConfig(region = region, type = type, page = page)
+
+        return request<Unit, EsportsV2EventsResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsEventsV2
+     *
+     * @param region  (optional)
+     * @param type  (optional)
+     * @param page  (optional)
+     * @return RequestConfig
+     */
+    fun esportsEventsV2RequestConfig(region: EsportsV2Region?, type: EsportsV2EventType?, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (region != null) {
+                    put("region", listOf(region.toString()))
+                }
+                if (type != null) {
+                    put("type", listOf(type.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/events",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/matches/{match_id}
+     * 
+     * 
+     * @param matchId 
+     * @return EsportsV2MatchesResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsMatchV2(matchId: kotlin.Int) : EsportsV2MatchesResponse {
+        val localVarResponse = esportsMatchV2WithHttpInfo(matchId = matchId)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2MatchesResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/matches/{match_id}
+     * 
+     * 
+     * @param matchId 
+     * @return ApiResponse<EsportsV2MatchesResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsMatchV2WithHttpInfo(matchId: kotlin.Int) : ApiResponse<EsportsV2MatchesResponse?> {
+        val localVariableConfig = esportsMatchV2RequestConfig(matchId = matchId)
+
+        return request<Unit, EsportsV2MatchesResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsMatchV2
+     *
+     * @param matchId 
+     * @return RequestConfig
+     */
+    fun esportsMatchV2RequestConfig(matchId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/matches/{match_id}".replace("{"+"match_id"+"}", encodeURIComponent(matchId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/players/{player}/matches
+     * 
+     * 
+     * @param player 
+     * @param page  (optional)
+     * @return EsportsV2PlayerMatchesResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsPlayerMatchesV2(player: kotlin.Int, page: kotlin.Int? = null) : EsportsV2PlayerMatchesResponse {
+        val localVarResponse = esportsPlayerMatchesV2WithHttpInfo(player = player, page = page)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2PlayerMatchesResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/players/{player}/matches
+     * 
+     * 
+     * @param player 
+     * @param page  (optional)
+     * @return ApiResponse<EsportsV2PlayerMatchesResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsPlayerMatchesV2WithHttpInfo(player: kotlin.Int, page: kotlin.Int?) : ApiResponse<EsportsV2PlayerMatchesResponse?> {
+        val localVariableConfig = esportsPlayerMatchesV2RequestConfig(player = player, page = page)
+
+        return request<Unit, EsportsV2PlayerMatchesResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsPlayerMatchesV2
+     *
+     * @param player 
+     * @param page  (optional)
+     * @return RequestConfig
+     */
+    fun esportsPlayerMatchesV2RequestConfig(player: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/players/{player}/matches".replace("{"+"player"+"}", encodeURIComponent(player.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/players/{player_id}
+     * 
+     * 
+     * @param player 
+     * @param timespan  (optional)
+     * @return EsportsV2PlayerResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsPlayerV2(player: kotlin.Int, timespan: EsportsV2PlayerTimespan? = null) : EsportsV2PlayerResponse {
+        val localVarResponse = esportsPlayerV2WithHttpInfo(player = player, timespan = timespan)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2PlayerResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/players/{player_id}
+     * 
+     * 
+     * @param player 
+     * @param timespan  (optional)
+     * @return ApiResponse<EsportsV2PlayerResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsPlayerV2WithHttpInfo(player: kotlin.Int, timespan: EsportsV2PlayerTimespan?) : ApiResponse<EsportsV2PlayerResponse?> {
+        val localVariableConfig = esportsPlayerV2RequestConfig(player = player, timespan = timespan)
+
+        return request<Unit, EsportsV2PlayerResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsPlayerV2
+     *
+     * @param player 
+     * @param timespan  (optional)
+     * @return RequestConfig
+     */
+    fun esportsPlayerV2RequestConfig(player: kotlin.Int, timespan: EsportsV2PlayerTimespan?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (timespan != null) {
+                    put("timespan", listOf(timespan.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/players/{player_id}".replace("{"+"player"+"}", encodeURIComponent(player.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /valorant/v1/esports/schedule
      * 
      * 
-     * @param region Region filter (optional) (optional)
+     * @param region  (optional)
+     * @param league  (optional)
      * @return EsportsV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -166,8 +576,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun esportsSchedulesV1(region: kotlin.String? = null) : EsportsV1Response {
-        val localVarResponse = esportsSchedulesV1WithHttpInfo(region = region)
+    fun esportsSchedulesV1(region: kotlin.String? = null, league: kotlin.String? = null) : EsportsV1Response {
+        val localVarResponse = esportsSchedulesV1WithHttpInfo(region = region, league = league)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV1Response
@@ -188,15 +598,16 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/esports/schedule
      * 
      * 
-     * @param region Region filter (optional) (optional)
+     * @param region  (optional)
+     * @param league  (optional)
      * @return ApiResponse<EsportsV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun esportsSchedulesV1WithHttpInfo(region: kotlin.String?) : ApiResponse<EsportsV1Response?> {
-        val localVariableConfig = esportsSchedulesV1RequestConfig(region = region)
+    fun esportsSchedulesV1WithHttpInfo(region: kotlin.String?, league: kotlin.String?) : ApiResponse<EsportsV1Response?> {
+        val localVariableConfig = esportsSchedulesV1RequestConfig(region = region, league = league)
 
         return request<Unit, EsportsV1Response>(
             localVariableConfig
@@ -206,15 +617,19 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation esportsSchedulesV1
      *
-     * @param region Region filter (optional) (optional)
+     * @param region  (optional)
+     * @param league  (optional)
      * @return RequestConfig
      */
-    fun esportsSchedulesV1RequestConfig(region: kotlin.String?) : RequestConfig<Unit> {
+    fun esportsSchedulesV1RequestConfig(region: kotlin.String?, league: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (region != null) {
                     put("region", listOf(region.toString()))
+                }
+                if (league != null) {
+                    put("league", listOf(league.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -223,6 +638,233 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/valorant/v1/esports/schedule",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/teams/{team_id}/matches
+     * 
+     * 
+     * @param teamId 
+     * @param page  (optional)
+     * @return EsportsV2TeamMatchListResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsTeamMatchesV2(teamId: kotlin.Int, page: kotlin.Int? = null) : EsportsV2TeamMatchListResponse {
+        val localVarResponse = esportsTeamMatchesV2WithHttpInfo(teamId = teamId, page = page)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2TeamMatchListResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/teams/{team_id}/matches
+     * 
+     * 
+     * @param teamId 
+     * @param page  (optional)
+     * @return ApiResponse<EsportsV2TeamMatchListResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsTeamMatchesV2WithHttpInfo(teamId: kotlin.Int, page: kotlin.Int?) : ApiResponse<EsportsV2TeamMatchListResponse?> {
+        val localVariableConfig = esportsTeamMatchesV2RequestConfig(teamId = teamId, page = page)
+
+        return request<Unit, EsportsV2TeamMatchListResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsTeamMatchesV2
+     *
+     * @param teamId 
+     * @param page  (optional)
+     * @return RequestConfig
+     */
+    fun esportsTeamMatchesV2RequestConfig(teamId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/teams/{team_id}/matches".replace("{"+"team_id"+"}", encodeURIComponent(teamId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/teams/{team_id}/transactions
+     * 
+     * 
+     * @param teamId 
+     * @return EsportsV2TeamTransactionsResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsTeamTransactionsV2(teamId: kotlin.Int) : EsportsV2TeamTransactionsResponse {
+        val localVarResponse = esportsTeamTransactionsV2WithHttpInfo(teamId = teamId)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2TeamTransactionsResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/teams/{team_id}/transactions
+     * 
+     * 
+     * @param teamId 
+     * @return ApiResponse<EsportsV2TeamTransactionsResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsTeamTransactionsV2WithHttpInfo(teamId: kotlin.Int) : ApiResponse<EsportsV2TeamTransactionsResponse?> {
+        val localVariableConfig = esportsTeamTransactionsV2RequestConfig(teamId = teamId)
+
+        return request<Unit, EsportsV2TeamTransactionsResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsTeamTransactionsV2
+     *
+     * @param teamId 
+     * @return RequestConfig
+     */
+    fun esportsTeamTransactionsV2RequestConfig(teamId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/teams/{team_id}/transactions".replace("{"+"team_id"+"}", encodeURIComponent(teamId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/teams/{team_id}
+     * 
+     * 
+     * @param teamId 
+     * @return EsportsV2TeamResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun esportsTeamV2(teamId: kotlin.Int) : EsportsV2TeamResponse {
+        val localVarResponse = esportsTeamV2WithHttpInfo(teamId = teamId)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as EsportsV2TeamResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/esports/vlr/teams/{team_id}
+     * 
+     * 
+     * @param teamId 
+     * @return ApiResponse<EsportsV2TeamResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun esportsTeamV2WithHttpInfo(teamId: kotlin.Int) : ApiResponse<EsportsV2TeamResponse?> {
+        val localVariableConfig = esportsTeamV2RequestConfig(teamId = teamId)
+
+        return request<Unit, EsportsV2TeamResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation esportsTeamV2
+     *
+     * @param teamId 
+     * @return RequestConfig
+     */
+    fun esportsTeamV2RequestConfig(teamId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/esports/vlr/teams/{team_id}".replace("{"+"team_id"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = false,
