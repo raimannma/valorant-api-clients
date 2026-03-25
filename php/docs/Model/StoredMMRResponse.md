@@ -1,4 +1,4 @@
-# # StoredMMRResponse
+# StoredMMRResponse
 
 ## Properties
 

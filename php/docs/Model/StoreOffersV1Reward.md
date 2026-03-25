@@ -1,4 +1,4 @@
-# # StoreOffersV1Reward
+# StoreOffersV1Reward
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # EsportsV2HeadToHeadMatch
+# EsportsV2HeadToHeadMatch
 
 ## Properties
 

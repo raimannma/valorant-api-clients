@@ -1,4 +1,4 @@
-# # MMRHistoryV2Response
+# MMRHistoryV2Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # PremierTeamGamesLeagueString
+# PremierTeamGamesLeagueString
 
 ## Properties
 

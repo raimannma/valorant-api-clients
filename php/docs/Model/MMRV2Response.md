@@ -1,4 +1,4 @@
-# # MMRV2Response
+# MMRV2Response
 
 ## Properties
 

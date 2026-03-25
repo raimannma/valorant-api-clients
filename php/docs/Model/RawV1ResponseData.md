@@ -1,4 +1,4 @@
-# # RawV1ResponseData
+# RawV1ResponseData
 
 ## Properties
 

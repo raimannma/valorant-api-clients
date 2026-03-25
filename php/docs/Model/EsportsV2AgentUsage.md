@@ -1,4 +1,4 @@
-# # EsportsV2AgentUsage
+# EsportsV2AgentUsage
 
 ## Properties
 

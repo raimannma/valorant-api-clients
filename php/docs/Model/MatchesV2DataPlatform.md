@@ -1,4 +1,4 @@
-# # MatchesV2DataPlatform
+# MatchesV2DataPlatform
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # EsportsV2TeamPastMatches
+# EsportsV2TeamPastMatches
 
 ## Properties
 

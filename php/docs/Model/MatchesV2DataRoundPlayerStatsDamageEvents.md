@@ -1,4 +1,4 @@
-# # MatchesV2DataRoundPlayerStatsDamageEvents
+# MatchesV2DataRoundPlayerStatsDamageEvents
 
 ## Properties
 

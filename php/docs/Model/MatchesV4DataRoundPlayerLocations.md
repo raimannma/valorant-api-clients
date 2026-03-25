@@ -1,4 +1,4 @@
-# # MatchesV4DataRoundPlayerLocations
+# MatchesV4DataRoundPlayerLocations
 
 ## Properties
 

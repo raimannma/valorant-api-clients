@@ -1,4 +1,4 @@
-# # MatchesV4DataPlayerEconomySpent
+# MatchesV4DataPlayerEconomySpent
 
 ## Properties
 

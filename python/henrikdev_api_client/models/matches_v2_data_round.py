@@ -24,6 +24,7 @@ from henrikdev_api_client.models.matches_v2_data_round_plant_events import Match
 from henrikdev_api_client.models.matches_v2_data_round_player_stats import MatchesV2DataRoundPlayerStats
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class MatchesV2DataRound(BaseModel):
     """
@@ -39,7 +40,8 @@ class MatchesV2DataRound(BaseModel):
     __properties: ClassVar[List[str]] = ["bomb_defused", "bomb_planted", "defuse_events", "end_type", "plant_events", "player_stats", "winning_team"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -51,8 +53,7 @@ class MatchesV2DataRound(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

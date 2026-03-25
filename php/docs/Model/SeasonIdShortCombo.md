@@ -1,4 +1,4 @@
-# # SeasonIdShortCombo
+# SeasonIdShortCombo
 
 ## Properties
 

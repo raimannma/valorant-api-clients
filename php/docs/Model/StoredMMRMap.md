@@ -1,4 +1,4 @@
-# # StoredMMRMap
+# StoredMMRMap
 
 ## Properties
 

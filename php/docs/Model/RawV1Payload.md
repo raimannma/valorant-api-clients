@@ -1,4 +1,4 @@
-# # RawV1Payload
+# RawV1Payload
 
 ## Properties
 

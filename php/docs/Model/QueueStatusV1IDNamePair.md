@@ -1,4 +1,4 @@
-# # QueueStatusV1IDNamePair
+# QueueStatusV1IDNamePair
 
 ## Properties
 

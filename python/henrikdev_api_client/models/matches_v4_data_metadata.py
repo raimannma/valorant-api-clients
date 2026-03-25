@@ -26,6 +26,7 @@ from henrikdev_api_client.models.matches_v4_data_metadata_queue import MatchesV4
 from henrikdev_api_client.models.season_id_short_combo import SeasonIdShortCombo
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class MatchesV4DataMetadata(BaseModel):
     """
@@ -47,7 +48,8 @@ class MatchesV4DataMetadata(BaseModel):
     __properties: ClassVar[List[str]] = ["cluster", "game_length_in_ms", "game_version", "is_completed", "map", "match_id", "party_rr_penaltys", "platform", "premier", "queue", "region", "season", "started_at"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -59,8 +61,7 @@ class MatchesV4DataMetadata(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

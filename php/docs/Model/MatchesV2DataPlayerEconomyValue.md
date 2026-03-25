@@ -1,4 +1,4 @@
-# # MatchesV2DataPlayerEconomyValue
+# MatchesV2DataPlayerEconomyValue
 
 ## Properties
 

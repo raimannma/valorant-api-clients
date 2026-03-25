@@ -1,4 +1,4 @@
-# # StoredMMRSeason
+# StoredMMRSeason
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # QueueStatusV1HighSkill
+# QueueStatusV1HighSkill
 
 ## Properties
 

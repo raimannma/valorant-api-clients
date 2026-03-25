@@ -1,4 +1,4 @@
-# # ContentV1Response
+# ContentV1Response
 
 ## Properties
 

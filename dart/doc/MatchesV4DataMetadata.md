@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **matchId** | **String** |  | 
 **partyRrPenaltys** | [**List<MatchesV4DataMetadataPartyRRPenalty>**](MatchesV4DataMetadataPartyRRPenalty.md) |  | [default to const []]
 **platform** | **String** |  | 
-**premier** | [**Object**](.md) |  | [optional] 
+**premier** | **Object** |  | [optional] 
 **queue** | [**MatchesV4DataMetadataQueue**](MatchesV4DataMetadataQueue.md) |  | 
 **region** | **String** |  | [optional] 
 **season** | [**SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 

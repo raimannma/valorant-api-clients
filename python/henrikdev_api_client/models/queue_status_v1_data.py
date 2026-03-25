@@ -26,6 +26,7 @@ from henrikdev_api_client.models.queue_status_v1_party_size import QueueStatusV1
 from henrikdev_api_client.models.queue_status_v1_skill_disparity import QueueStatusV1SkillDisparity
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class QueueStatusV1Data(BaseModel):
     """
@@ -48,7 +49,8 @@ class QueueStatusV1Data(BaseModel):
     __properties: ClassVar[List[str]] = ["enabled", "game_rules", "high_skill", "maps", "mode", "mode_id", "number_of_teams", "party_size", "platforms", "ranked", "required_account_level", "skill_disparity", "team_size", "tournament"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -60,8 +62,7 @@ class QueueStatusV1Data(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

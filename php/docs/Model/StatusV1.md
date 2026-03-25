@@ -1,4 +1,4 @@
-# # StatusV1
+# StatusV1
 
 ## Properties
 

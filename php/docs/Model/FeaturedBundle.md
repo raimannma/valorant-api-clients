@@ -1,4 +1,4 @@
-# # FeaturedBundle
+# FeaturedBundle
 
 ## Properties
 

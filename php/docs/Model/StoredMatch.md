@@ -1,4 +1,4 @@
-# # StoredMatch
+# StoredMatch
 
 ## Properties
 

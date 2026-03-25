@@ -1,4 +1,4 @@
-# # EsportsV2MatchPerformance
+# EsportsV2MatchPerformance
 
 ## Properties
 

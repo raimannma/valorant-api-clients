@@ -26,6 +26,7 @@ from henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_
 from henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assistants import MatchesV2DataRoundPlayerStatsKillEventsAssistants
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class MatchesV2DataKill(BaseModel):
     """
@@ -50,7 +51,8 @@ class MatchesV2DataKill(BaseModel):
     __properties: ClassVar[List[str]] = ["assistants", "damage_weapon_assets", "damage_weapon_id", "damage_weapon_name", "kill_time_in_match", "kill_time_in_round", "killer_display_name", "killer_puuid", "killer_team", "player_locations_on_kill", "round", "secondary_fire_mode", "victim_death_location", "victim_display_name", "victim_puuid", "victim_team"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -62,8 +64,7 @@ class MatchesV2DataKill(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -1,4 +1,4 @@
-# # PremierTeamV1ResponseDataPlacement
+# PremierTeamV1ResponseDataPlacement
 
 ## Properties
 

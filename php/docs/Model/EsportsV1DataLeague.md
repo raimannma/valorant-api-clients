@@ -1,4 +1,4 @@
-# # EsportsV1DataLeague
+# EsportsV1DataLeague
 
 ## Properties
 

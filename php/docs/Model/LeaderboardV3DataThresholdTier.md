@@ -1,4 +1,4 @@
-# # LeaderboardV3DataThresholdTier
+# LeaderboardV3DataThresholdTier
 
 ## Properties
 

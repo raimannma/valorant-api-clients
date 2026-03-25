@@ -24,6 +24,7 @@ from henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equi
 from henrikdev_api_client.models.matches_v2_data_round_player_stats_economy_equipment_weapon import MatchesV2DataRoundPlayerStatsEconomyEquipmentWeapon
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class MatchesV2DataRoundPlayerStatsEconomy(BaseModel):
     """
@@ -37,7 +38,8 @@ class MatchesV2DataRoundPlayerStatsEconomy(BaseModel):
     __properties: ClassVar[List[str]] = ["armor", "loadout_value", "remaining", "spent", "weapon"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -49,8 +51,7 @@ class MatchesV2DataRoundPlayerStatsEconomy(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

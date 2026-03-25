@@ -1,4 +1,4 @@
-# # MMRV3Seasonal
+# MMRV3Seasonal
 
 ## Properties
 

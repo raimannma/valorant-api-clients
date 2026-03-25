@@ -1,4 +1,4 @@
-# # EsportsV2MatchEconomy
+# EsportsV2MatchEconomy
 
 ## Properties
 

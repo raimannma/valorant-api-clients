@@ -1,4 +1,4 @@
-# # EsportsV2TransactionPlayer
+# EsportsV2TransactionPlayer
 
 ## Properties
 

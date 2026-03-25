@@ -1,4 +1,4 @@
-# # MatchesV2DataPlayerSessionPlaytime
+# MatchesV2DataPlayerSessionPlaytime
 
 ## Properties
 

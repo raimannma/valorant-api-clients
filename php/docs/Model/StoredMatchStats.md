@@ -1,4 +1,4 @@
-# # StoredMatchStats
+# StoredMatchStats
 
 ## Properties
 

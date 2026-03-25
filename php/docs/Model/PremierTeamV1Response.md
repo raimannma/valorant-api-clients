@@ -1,4 +1,4 @@
-# # PremierTeamV1Response
+# PremierTeamV1Response
 
 ## Properties
 

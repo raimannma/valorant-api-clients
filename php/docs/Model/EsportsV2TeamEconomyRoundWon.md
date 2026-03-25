@@ -1,4 +1,4 @@
-# # EsportsV2TeamEconomyRoundWon
+# EsportsV2TeamEconomyRoundWon
 
 ## Properties
 

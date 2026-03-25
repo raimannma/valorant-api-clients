@@ -1,4 +1,4 @@
-# # EsportsV2IdSlug
+# EsportsV2IdSlug
 
 ## Properties
 

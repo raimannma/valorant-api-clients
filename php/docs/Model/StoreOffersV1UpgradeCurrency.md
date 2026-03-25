@@ -1,4 +1,4 @@
-# # StoreOffersV1UpgradeCurrency
+# StoreOffersV1UpgradeCurrency
 
 ## Properties
 

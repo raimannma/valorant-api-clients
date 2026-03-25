@@ -1,4 +1,4 @@
-# # QueueStatusV1GameRules
+# QueueStatusV1GameRules
 
 ## Properties
 

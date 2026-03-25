@@ -1,4 +1,4 @@
-# # EsportsV2Player
+# EsportsV2Player
 
 ## Properties
 

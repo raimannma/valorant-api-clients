@@ -1,4 +1,4 @@
-# # StoredMatchStatsDamage
+# StoredMatchStatsDamage
 
 ## Properties
 

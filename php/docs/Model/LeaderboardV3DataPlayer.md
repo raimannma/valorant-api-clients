@@ -1,4 +1,4 @@
-# # LeaderboardV3DataPlayer
+# LeaderboardV3DataPlayer
 
 ## Properties
 

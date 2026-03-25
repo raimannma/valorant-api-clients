@@ -1,4 +1,4 @@
-# # StatusIncidentUpdate
+# StatusIncidentUpdate
 
 ## Properties
 

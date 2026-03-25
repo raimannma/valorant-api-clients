@@ -1,4 +1,4 @@
-# # MMRV3Account
+# MMRV3Account
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # MatchesV4DataPlayerBehaviorFriendlyFire
+# MatchesV4DataPlayerBehaviorFriendlyFire
 
 ## Properties
 

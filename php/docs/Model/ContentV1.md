@@ -1,4 +1,4 @@
-# # ContentV1
+# ContentV1
 
 ## Properties
 

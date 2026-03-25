@@ -1,4 +1,4 @@
-# # QueueStatusV1SkillDisparity
+# QueueStatusV1SkillDisparity
 
 ## Properties
 

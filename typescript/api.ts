@@ -221,7 +221,7 @@ export const EsportsV2EventStatus = {
     Completed: 'completed',
     Ongoing: 'ongoing',
     Upcoming: 'upcoming',
-    Unknown: 'unknown'
+    Unknown: 'unknown',
 } as const;
 
 export type EsportsV2EventStatus = typeof EsportsV2EventStatus[keyof typeof EsportsV2EventStatus];
@@ -230,7 +230,7 @@ export type EsportsV2EventStatus = typeof EsportsV2EventStatus[keyof typeof Espo
 
 export const EsportsV2EventType = {
     Completed: 'completed',
-    Upcoming: 'upcoming'
+    Upcoming: 'upcoming',
 } as const;
 
 export type EsportsV2EventType = typeof EsportsV2EventType[keyof typeof EsportsV2EventType];
@@ -477,7 +477,7 @@ export const EsportsV2PlayerTimespan = {
     _30d: '30d',
     _60d: '60d',
     _90d: '90d',
-    All: 'all'
+    All: 'all',
 } as const;
 
 export type EsportsV2PlayerTimespan = typeof EsportsV2PlayerTimespan[keyof typeof EsportsV2PlayerTimespan];
@@ -495,7 +495,7 @@ export const EsportsV2Region = {
     Oceania: 'oceania',
     Mena: 'mena',
     Gc: 'gc',
-    Collegiate: 'collegiate'
+    Collegiate: 'collegiate',
 } as const;
 
 export type EsportsV2Region = typeof EsportsV2Region[keyof typeof EsportsV2Region];
@@ -791,7 +791,7 @@ export const MatchMode = {
     Unrated: 'Unrated',
     Custom: 'Custom',
     Practice: 'Practice',
-    Unknown: 'Unknown'
+    Unknown: 'Unknown',
 } as const;
 
 export type MatchMode = typeof MatchMode[keyof typeof MatchMode];

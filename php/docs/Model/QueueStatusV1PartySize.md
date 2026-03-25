@@ -1,4 +1,4 @@
-# # QueueStatusV1PartySize
+# QueueStatusV1PartySize
 
 ## Properties
 

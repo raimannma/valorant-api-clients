@@ -1,4 +1,4 @@
-# # StoredMMRV2
+# StoredMMRV2
 
 ## Properties
 

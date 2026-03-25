@@ -1,4 +1,4 @@
-# # EsportsV1Data
+# EsportsV1Data
 
 ## Properties
 

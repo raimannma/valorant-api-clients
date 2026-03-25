@@ -1,4 +1,4 @@
-# # EsportsV2MatchStream
+# EsportsV2MatchStream
 
 ## Properties
 

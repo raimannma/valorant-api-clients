@@ -1,4 +1,4 @@
-# # EsportsV2PlacementEvent
+# EsportsV2PlacementEvent
 
 ## Properties
 

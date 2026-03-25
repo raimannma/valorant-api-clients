@@ -1,4 +1,4 @@
-# # EsportsV2MatchLeague
+# EsportsV2MatchLeague
 
 ## Properties
 

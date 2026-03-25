@@ -1,4 +1,4 @@
-# # StoredMMRTier
+# StoredMMRTier
 
 ## Properties
 

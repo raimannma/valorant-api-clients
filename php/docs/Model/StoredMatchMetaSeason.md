@@ -1,4 +1,4 @@
-# # StoredMatchMetaSeason
+# StoredMatchMetaSeason
 
 ## Properties
 

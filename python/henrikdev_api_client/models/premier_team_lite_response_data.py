@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List
 from henrikdev_api_client.models.premier_team_v1_response_data_customization import PremierTeamV1ResponseDataCustomization
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class PremierTeamLiteResponseData(BaseModel):
     """
@@ -43,7 +44,8 @@ class PremierTeamLiteResponseData(BaseModel):
     __properties: ClassVar[List[str]] = ["affinity", "conference", "customization", "division", "id", "losses", "name", "ranking", "region", "score", "tag", "updated_at", "wins"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -55,8 +57,7 @@ class PremierTeamLiteResponseData(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -1,4 +1,4 @@
-# # StoreOffersV1Response
+# StoreOffersV1Response
 
 ## Properties
 

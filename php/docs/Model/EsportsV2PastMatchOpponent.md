@@ -1,4 +1,4 @@
-# # EsportsV2PastMatchOpponent
+# EsportsV2PastMatchOpponent
 
 ## Properties
 

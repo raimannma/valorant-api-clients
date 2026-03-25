@@ -1,4 +1,4 @@
-# # EsportsV1DataMatchGameType
+# EsportsV1DataMatchGameType
 
 ## Properties
 

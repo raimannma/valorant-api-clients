@@ -9,7 +9,7 @@ import 'package:henrikdev_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** |  | 
-**details** | [**Object**](.md) |  | [optional] 
+**details** | **Object** |  | [optional] 
 **message** | **String** |  | 
 **status** | **int** |  | 
 

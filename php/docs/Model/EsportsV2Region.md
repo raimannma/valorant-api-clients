@@ -1,4 +1,4 @@
-# # EsportsV2Region
+# EsportsV2Region
 
 ## Properties
 

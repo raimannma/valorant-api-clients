@@ -1,4 +1,4 @@
-# # EsportsV2MatchGamePlayerStats
+# EsportsV2MatchGamePlayerStats
 
 ## Properties
 

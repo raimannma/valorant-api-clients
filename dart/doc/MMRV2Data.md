@@ -8,7 +8,7 @@ import 'package:henrikdev_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bySeason** | [**Object**](.md) |  | 
+**bySeason** | **Object** |  | 
 **currentData** | [**MMRV2CurrentData**](MMRV2CurrentData.md) |  | 
 **highestRank** | [**MMRV2HighestRank**](MMRV2HighestRank.md) |  | 
 **name** | **String** |  | 

@@ -1,4 +1,4 @@
-# # AccountV1Response
+# AccountV1Response
 
 ## Properties
 

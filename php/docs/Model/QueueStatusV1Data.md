@@ -1,4 +1,4 @@
-# # QueueStatusV1Data
+# QueueStatusV1Data
 
 ## Properties
 

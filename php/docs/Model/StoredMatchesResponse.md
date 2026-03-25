@@ -1,4 +1,4 @@
-# # StoredMatchesResponse
+# StoredMatchesResponse
 
 ## Properties
 

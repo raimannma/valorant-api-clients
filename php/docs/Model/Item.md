@@ -1,4 +1,4 @@
-# # Item
+# Item
 
 ## Properties
 

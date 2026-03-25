@@ -1,4 +1,4 @@
-# # Bundle
+# Bundle
 
 ## Properties
 

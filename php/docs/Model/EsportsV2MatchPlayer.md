@@ -1,4 +1,4 @@
-# # EsportsV2MatchPlayer
+# EsportsV2MatchPlayer
 
 ## Properties
 

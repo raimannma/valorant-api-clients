@@ -1,4 +1,4 @@
-# # RawV1ErrorData
+# RawV1ErrorData
 
 ## Properties
 

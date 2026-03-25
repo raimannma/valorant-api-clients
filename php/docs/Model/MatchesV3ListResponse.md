@@ -1,4 +1,4 @@
-# # MatchesV3ListResponse
+# MatchesV3ListResponse
 
 ## Properties
 

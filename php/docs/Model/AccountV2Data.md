@@ -1,4 +1,4 @@
-# # AccountV2Data
+# AccountV2Data
 
 ## Properties
 

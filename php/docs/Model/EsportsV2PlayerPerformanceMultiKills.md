@@ -1,4 +1,4 @@
-# # EsportsV2PlayerPerformanceMultiKills
+# EsportsV2PlayerPerformanceMultiKills
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # EsportsV1DataMatchTeamsRecord
+# EsportsV1DataMatchTeamsRecord
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # EsportsV1DataTournament
+# EsportsV1DataTournament
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # EsportsV2EventStatus
+# EsportsV2EventStatus
 
 ## Properties
 

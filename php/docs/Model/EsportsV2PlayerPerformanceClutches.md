@@ -1,4 +1,4 @@
-# # EsportsV2PlayerPerformanceClutches
+# EsportsV2PlayerPerformanceClutches
 
 ## Properties
 

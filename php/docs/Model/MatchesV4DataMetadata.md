@@ -1,4 +1,4 @@
-# # MatchesV4DataMetadata
+# MatchesV4DataMetadata
 
 ## Properties
 

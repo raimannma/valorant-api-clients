@@ -1,4 +1,4 @@
-# # StoreFeaturedV1
+# StoreFeaturedV1
 
 ## Properties
 

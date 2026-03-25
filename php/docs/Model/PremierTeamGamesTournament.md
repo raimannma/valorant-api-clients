@@ -1,4 +1,4 @@
-# # PremierTeamGamesTournament
+# PremierTeamGamesTournament
 
 ## Properties
 

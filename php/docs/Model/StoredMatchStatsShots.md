@@ -1,4 +1,4 @@
-# # StoredMatchStatsShots
+# StoredMatchStatsShots
 
 ## Properties
 

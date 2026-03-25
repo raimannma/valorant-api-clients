@@ -1,4 +1,4 @@
-# # EsportsV2TeamTransaction
+# EsportsV2TeamTransaction
 
 ## Properties
 

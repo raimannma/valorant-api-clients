@@ -1,4 +1,4 @@
-# # EsportsV2EventsQuery
+# EsportsV2EventsQuery
 
 ## Properties
 

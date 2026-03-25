@@ -1,4 +1,4 @@
-# # MatchesV2Response
+# MatchesV2Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # EsportsV2Date
+# EsportsV2Date
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # PremierTeamMember
+# PremierTeamMember
 
 ## Properties
 

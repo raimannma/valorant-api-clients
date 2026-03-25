@@ -1,4 +1,4 @@
-# # EsportsV2EventResponse
+# EsportsV2EventResponse
 
 ## Properties
 

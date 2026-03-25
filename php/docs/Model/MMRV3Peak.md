@@ -1,4 +1,4 @@
-# # MMRV3Peak
+# MMRV3Peak
 
 ## Properties
 

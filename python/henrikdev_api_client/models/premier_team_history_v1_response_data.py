@@ -23,6 +23,7 @@ from henrikdev_api_client.models.premier_team_games_league_string import Premier
 from henrikdev_api_client.models.premier_team_games_tournament import PremierTeamGamesTournament
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class PremierTeamHistoryV1ResponseData(BaseModel):
     """
@@ -33,7 +34,8 @@ class PremierTeamHistoryV1ResponseData(BaseModel):
     __properties: ClassVar[List[str]] = ["league_matches", "tournament_matches"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -45,8 +47,7 @@ class PremierTeamHistoryV1ResponseData(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -1,4 +1,4 @@
-# # LeaderboardV3Data
+# LeaderboardV3Data
 
 ## Properties
 

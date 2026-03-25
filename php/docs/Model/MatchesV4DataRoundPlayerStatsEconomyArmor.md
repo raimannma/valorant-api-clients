@@ -1,4 +1,4 @@
-# # MatchesV4DataRoundPlayerStatsEconomyArmor
+# MatchesV4DataRoundPlayerStatsEconomyArmor
 
 ## Properties
 

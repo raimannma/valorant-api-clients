@@ -1,4 +1,4 @@
-# # MMRHistoryV1Data
+# MMRHistoryV1Data
 
 ## Properties
 

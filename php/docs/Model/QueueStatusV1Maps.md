@@ -1,4 +1,4 @@
-# # QueueStatusV1Maps
+# QueueStatusV1Maps
 
 ## Properties
 

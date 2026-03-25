@@ -1,4 +1,4 @@
-# # EsportsV2PlayerPerformancePlayer
+# EsportsV2PlayerPerformancePlayer
 
 ## Properties
 

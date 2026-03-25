@@ -1,4 +1,4 @@
-# # MatchesV2DataRoundPlayerLocationsOnEvent
+# MatchesV2DataRoundPlayerLocationsOnEvent
 
 ## Properties
 

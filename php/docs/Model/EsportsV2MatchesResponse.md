@@ -1,4 +1,4 @@
-# # EsportsV2MatchesResponse
+# EsportsV2MatchesResponse
 
 ## Properties
 

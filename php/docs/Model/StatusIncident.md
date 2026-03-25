@@ -1,4 +1,4 @@
-# # StatusIncident
+# StatusIncident
 
 ## Properties
 

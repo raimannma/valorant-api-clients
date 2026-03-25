@@ -1,4 +1,4 @@
-# # VersionV1Response
+# VersionV1Response
 
 ## Properties
 

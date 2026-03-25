@@ -1,4 +1,4 @@
-# # MMRV1Response
+# MMRV1Response
 
 ## Properties
 

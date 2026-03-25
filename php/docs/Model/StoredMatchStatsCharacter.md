@@ -1,4 +1,4 @@
-# # StoredMatchStatsCharacter
+# StoredMatchStatsCharacter
 
 ## Properties
 

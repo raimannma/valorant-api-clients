@@ -29,6 +29,7 @@ from henrikdev_api_client.models.esports_v2_match_stream import EsportsV2MatchSt
 from henrikdev_api_client.models.esports_v2_team_past_matches import EsportsV2TeamPastMatches
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class EsportsV2Match(BaseModel):
     """
@@ -46,7 +47,8 @@ class EsportsV2Match(BaseModel):
     __properties: ClassVar[List[str]] = ["economy", "games", "head_to_head", "metadata", "past_matches", "performance", "streams", "teams", "vods"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -58,8 +60,7 @@ class EsportsV2Match(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

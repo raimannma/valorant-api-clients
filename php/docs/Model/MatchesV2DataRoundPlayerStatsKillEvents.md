@@ -1,4 +1,4 @@
-# # MatchesV2DataRoundPlayerStatsKillEvents
+# MatchesV2DataRoundPlayerStatsKillEvents
 
 ## Properties
 

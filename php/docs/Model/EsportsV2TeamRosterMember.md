@@ -1,4 +1,4 @@
-# # EsportsV2TeamRosterMember
+# EsportsV2TeamRosterMember
 
 ## Properties
 

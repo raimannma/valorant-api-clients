@@ -1,4 +1,4 @@
-# # MatchesV4DataPlayerStatsDamage
+# MatchesV4DataPlayerStatsDamage
 
 ## Properties
 

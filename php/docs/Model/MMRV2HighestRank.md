@@ -1,4 +1,4 @@
-# # MMRV2HighestRank
+# MMRV2HighestRank
 
 ## Properties
 

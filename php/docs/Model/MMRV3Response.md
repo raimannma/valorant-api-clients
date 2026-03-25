@@ -1,4 +1,4 @@
-# # MMRV3Response
+# MMRV3Response
 
 ## Properties
 

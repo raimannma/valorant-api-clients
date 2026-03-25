@@ -1,4 +1,4 @@
-# # EsportsV2HeadToHeadScore
+# EsportsV2HeadToHeadScore
 
 ## Properties
 

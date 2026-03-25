@@ -1,4 +1,4 @@
-# # MatchesV4DataTeamPremierRosterCustomization
+# MatchesV4DataTeamPremierRosterCustomization
 
 ## Properties
 

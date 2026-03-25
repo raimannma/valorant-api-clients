@@ -1,4 +1,4 @@
-# # StoredMatchMeta
+# StoredMatchMeta
 
 ## Properties
 

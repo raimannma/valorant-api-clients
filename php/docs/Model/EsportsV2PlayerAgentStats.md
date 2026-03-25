@@ -1,4 +1,4 @@
-# # EsportsV2PlayerAgentStats
+# EsportsV2PlayerAgentStats
 
 ## Properties
 

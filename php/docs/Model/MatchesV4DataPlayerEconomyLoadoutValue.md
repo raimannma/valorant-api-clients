@@ -1,4 +1,4 @@
-# # MatchesV4DataPlayerEconomyLoadoutValue
+# MatchesV4DataPlayerEconomyLoadoutValue
 
 ## Properties
 

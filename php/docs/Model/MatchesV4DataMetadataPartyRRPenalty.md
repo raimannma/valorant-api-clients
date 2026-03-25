@@ -1,4 +1,4 @@
-# # MatchesV4DataMetadataPartyRRPenalty
+# MatchesV4DataMetadataPartyRRPenalty
 
 ## Properties
 

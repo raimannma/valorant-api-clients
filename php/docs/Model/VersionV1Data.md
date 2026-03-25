@@ -1,4 +1,4 @@
-# # VersionV1Data
+# VersionV1Data
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # AccountV1DataCard
+# AccountV1DataCard
 
 ## Properties
 

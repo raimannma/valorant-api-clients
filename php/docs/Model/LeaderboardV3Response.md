@@ -1,4 +1,4 @@
-# # LeaderboardV3Response
+# LeaderboardV3Response
 
 ## Properties
 

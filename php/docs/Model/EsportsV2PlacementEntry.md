@@ -1,4 +1,4 @@
-# # EsportsV2PlacementEntry
+# EsportsV2PlacementEntry
 
 ## Properties
 

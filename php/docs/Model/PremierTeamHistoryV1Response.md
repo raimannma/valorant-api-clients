@@ -1,4 +1,4 @@
-# # PremierTeamHistoryV1Response
+# PremierTeamHistoryV1Response
 
 ## Properties
 

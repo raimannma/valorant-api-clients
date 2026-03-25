@@ -1,4 +1,4 @@
-# # EsportsV2KillMatrixEntry
+# EsportsV2KillMatrixEntry
 
 ## Properties
 

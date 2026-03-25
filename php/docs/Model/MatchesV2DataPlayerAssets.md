@@ -1,4 +1,4 @@
-# # MatchesV2DataPlayerAssets
+# MatchesV2DataPlayerAssets
 
 ## Properties
 

@@ -23,6 +23,7 @@ from henrikdev_api_client.models.mmrv3_leaderboard_placement import MMRV3Leaderb
 from henrikdev_api_client.models.tier_id_name_combo import TierIdNameCombo
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class MMRV3Current(BaseModel):
     """
@@ -38,7 +39,8 @@ class MMRV3Current(BaseModel):
     __properties: ClassVar[List[str]] = ["elo", "games_needed_for_rating", "last_change", "leaderboard_placement", "rank_protection_shields", "rr", "tier"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -50,8 +52,7 @@ class MMRV3Current(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

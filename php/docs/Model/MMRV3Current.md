@@ -1,4 +1,4 @@
-# # MMRV3Current
+# MMRV3Current
 
 ## Properties
 

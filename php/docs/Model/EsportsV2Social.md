@@ -1,4 +1,4 @@
-# # EsportsV2Social
+# EsportsV2Social
 
 ## Properties
 

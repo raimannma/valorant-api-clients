@@ -1,4 +1,4 @@
-# # WebsiteV1Response
+# WebsiteV1Response
 
 ## Properties
 

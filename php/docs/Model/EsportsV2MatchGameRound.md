@@ -1,4 +1,4 @@
-# # EsportsV2MatchGameRound
+# EsportsV2MatchGameRound
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # EsportsV2MatchEvent
+# EsportsV2MatchEvent
 
 ## Properties
 

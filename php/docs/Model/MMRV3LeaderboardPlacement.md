@@ -1,4 +1,4 @@
-# # MMRV3LeaderboardPlacement
+# MMRV3LeaderboardPlacement
 
 ## Properties
 

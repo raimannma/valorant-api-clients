@@ -1,4 +1,4 @@
-# # MMRV2Data
+# MMRV2Data
 
 ## Properties
 

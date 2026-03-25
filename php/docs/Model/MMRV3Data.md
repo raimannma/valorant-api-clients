@@ -1,4 +1,4 @@
-# # MMRV3Data
+# MMRV3Data
 
 ## Properties
 

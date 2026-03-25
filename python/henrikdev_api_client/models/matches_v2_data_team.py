@@ -23,6 +23,7 @@ from typing_extensions import Annotated
 from henrikdev_api_client.models.matches_v2_data_team_roster import MatchesV2DataTeamRoster
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class MatchesV2DataTeam(BaseModel):
     """
@@ -35,7 +36,8 @@ class MatchesV2DataTeam(BaseModel):
     __properties: ClassVar[List[str]] = ["has_won", "roster", "rounds_lost", "rounds_won"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class MatchesV2DataTeam(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

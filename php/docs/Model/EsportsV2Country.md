@@ -1,4 +1,4 @@
-# # EsportsV2Country
+# EsportsV2Country
 
 ## Properties
 

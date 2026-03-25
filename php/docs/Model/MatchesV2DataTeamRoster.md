@@ -1,4 +1,4 @@
-# # MatchesV2DataTeamRoster
+# MatchesV2DataTeamRoster
 
 ## Properties
 
