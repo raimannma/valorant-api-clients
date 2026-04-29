@@ -1784,7 +1784,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'eventId' is not null or undefined
             assertParamExists('esportsEventV2', 'eventId', eventId)
             const localVarPath = `/valorant/v2/esports/vlr/events/{event_id}/matches`
-                .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)));
+                .replace('{event_id}', encodeURIComponent(String(eventId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1861,7 +1861,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'matchId' is not null or undefined
             assertParamExists('esportsMatchV2', 'matchId', matchId)
             const localVarPath = `/valorant/v2/esports/vlr/matches/{match_id}`
-                .replace(`{${"match_id"}}`, encodeURIComponent(String(matchId)));
+                .replace('{match_id}', encodeURIComponent(String(matchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1895,7 +1895,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'player' is not null or undefined
             assertParamExists('esportsPlayerMatchesV2', 'player', player)
             const localVarPath = `/valorant/v2/esports/vlr/players/{player}/matches`
-                .replace(`{${"player"}}`, encodeURIComponent(String(player)));
+                .replace('{player}', encodeURIComponent(String(player)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1933,7 +1933,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'player' is not null or undefined
             assertParamExists('esportsPlayerV2', 'player', player)
             const localVarPath = `/valorant/v2/esports/vlr/players/{player_id}`
-                .replace(`{${"player"}}`, encodeURIComponent(String(player)));
+                .replace('{player}', encodeURIComponent(String(player)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2010,7 +2010,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'teamId' is not null or undefined
             assertParamExists('esportsTeamMatchesV2', 'teamId', teamId)
             const localVarPath = `/valorant/v2/esports/vlr/teams/{team_id}/matches`
-                .replace(`{${"team_id"}}`, encodeURIComponent(String(teamId)));
+                .replace('{team_id}', encodeURIComponent(String(teamId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2047,7 +2047,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'teamId' is not null or undefined
             assertParamExists('esportsTeamTransactionsV2', 'teamId', teamId)
             const localVarPath = `/valorant/v2/esports/vlr/teams/{team_id}/transactions`
-                .replace(`{${"team_id"}}`, encodeURIComponent(String(teamId)));
+                .replace('{team_id}', encodeURIComponent(String(teamId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2080,7 +2080,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'teamId' is not null or undefined
             assertParamExists('esportsTeamV2', 'teamId', teamId)
             const localVarPath = `/valorant/v2/esports/vlr/teams/{team_id}`
-                .replace(`{${"team_id"}}`, encodeURIComponent(String(teamId)));
+                .replace('{team_id}', encodeURIComponent(String(teamId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2114,7 +2114,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getAccountByIdV1', 'puuid', puuid)
             const localVarPath = `/valorant/v1/by-puuid/account/{puuid}`
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2152,7 +2152,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getAccountByIdV2', 'puuid', puuid)
             const localVarPath = `/valorant/v2/by-puuid/account/{puuid}`
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2193,8 +2193,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getAccountV1', 'tag', tag)
             const localVarPath = `/valorant/v1/account/{name}/{tag}`
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2235,8 +2235,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getAccountV2', 'tag', tag)
             const localVarPath = `/valorant/v2/account/{name}/{tag}`
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2313,8 +2313,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getMatchesV3ById', 'puuid', puuid)
             const localVarPath = `/valorant/v3/by-puuid/matches/{affinity}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2368,9 +2368,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getMatchesV3ByName', 'tag', tag)
             const localVarPath = `/valorant/v3/matches/{affinity}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2425,9 +2425,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getMatchesV4ById', 'puuid', puuid)
             const localVarPath = `/valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2489,10 +2489,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getMatchesV4ByName', 'tag', tag)
             const localVarPath = `/valorant/v4/matches/{affinity}/{platform}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2544,8 +2544,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getMmrHistoryById', 'puuid', puuid)
             const localVarPath = `/valorant/v1/by-puuid/mmr-history/{affinity}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2584,9 +2584,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getMmrHistoryByName', 'tag', tag)
             const localVarPath = `/valorant/v1/mmr-history/{affinity}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2625,9 +2625,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getMmrHistoryV2ById', 'puuid', puuid)
             const localVarPath = `/valorant/v2/by-puuid/mmr-history/{affinity}/{platform}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2669,10 +2669,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getMmrHistoryV2ByName', 'tag', tag)
             const localVarPath = `/valorant/v2/mmr-history/{affinity}/{platform}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2708,8 +2708,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getMmrV1ById', 'puuid', puuid)
             const localVarPath = `/valorant/v1/by-puuid/mmr/{affinity}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2748,9 +2748,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getMmrV1ByName', 'tag', tag)
             const localVarPath = `/valorant/v1/mmr/{affinity}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2786,8 +2786,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getMmrV2ById', 'puuid', puuid)
             const localVarPath = `/valorant/v2/by-puuid/mmr/{affinity}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2826,9 +2826,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getMmrV2ByName', 'tag', tag)
             const localVarPath = `/valorant/v2/mmr/{affinity}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2867,9 +2867,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('getMmrV3ById', 'puuid', puuid)
             const localVarPath = `/valorant/v3/by-puuid/mmr/{affinity}/{platform}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2911,10 +2911,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('getMmrV3ByName', 'tag', tag)
             const localVarPath = `/valorant/v3/mmr/{affinity}/{platform}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2950,7 +2950,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('leaderboardV1', 'affinity', affinity)
             const localVarPath = `/valorant/v1/leaderboard/{affinity}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2999,7 +2999,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('leaderboardV2', 'affinity', affinity)
             const localVarPath = `/valorant/v2/leaderboard/{affinity}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3056,8 +3056,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'platform' is not null or undefined
             assertParamExists('leaderboardV3', 'platform', platform)
             const localVarPath = `/valorant/v3/leaderboard/{affinity}/{platform}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3110,7 +3110,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'matchId' is not null or undefined
             assertParamExists('matchV2', 'matchId', matchId)
             const localVarPath = `/valorant/v2/match/{match_id}`
-                .replace(`{${"match_id"}}`, encodeURIComponent(String(matchId)));
+                .replace('{match_id}', encodeURIComponent(String(matchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3146,8 +3146,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'matchId' is not null or undefined
             assertParamExists('matchV4', 'matchId', matchId)
             const localVarPath = `/valorant/v4/match/{affinity}/{match_id}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"match_id"}}`, encodeURIComponent(String(matchId)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{match_id}', encodeURIComponent(String(matchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3180,7 +3180,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'id' is not null or undefined
             assertParamExists('premierById', 'id', id)
             const localVarPath = `/valorant/v1/premier/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3213,7 +3213,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'id' is not null or undefined
             assertParamExists('premierByIdHistory', 'id', id)
             const localVarPath = `/valorant/v1/premier/{id}/history`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3249,8 +3249,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('premierByName', 'tag', tag)
             const localVarPath = `/valorant/v1/premier/{name}/{tag}`
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3286,8 +3286,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('premierByNameHistory', 'tag', tag)
             const localVarPath = `/valorant/v1/premier/{name}/{tag}/history`
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3322,7 +3322,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('premierLeaderboard', 'affinity', affinity)
             const localVarPath = `/valorant/v1/premier/leaderboard/{affinity}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3407,7 +3407,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('queueStatus', 'affinity', affinity)
             const localVarPath = `/valorant/v1/queue-status/{affinity}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3474,7 +3474,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('status', 'affinity', affinity)
             const localVarPath = `/valorant/v1/status/{affinity}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3507,7 +3507,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'version' is not null or undefined
             assertParamExists('storeFeatured', 'version', version)
             const localVarPath = `/valorant/{version}/store-featured`
-                .replace(`{${"version"}}`, encodeURIComponent(String(version)));
+                .replace('{version}', encodeURIComponent(String(version)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3540,7 +3540,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'version' is not null or undefined
             assertParamExists('storeOffers', 'version', version)
             const localVarPath = `/valorant/{version}/store-offers`
-                .replace(`{${"version"}}`, encodeURIComponent(String(version)));
+                .replace('{version}', encodeURIComponent(String(version)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3582,9 +3582,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('storedMatches', 'tag', tag)
             const localVarPath = `/valorant/v1/stored-matches/{affinity}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3635,8 +3635,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('storedMatchesById', 'puuid', puuid)
             const localVarPath = `/valorant/v1/by-puuid/stored-matches/{affinity}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3688,9 +3688,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('storedMmrHistory', 'tag', tag)
             const localVarPath = `/valorant/v1/stored-mmr-history/{affinity}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3731,8 +3731,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('storedMmrHistoryById', 'puuid', puuid)
             const localVarPath = `/valorant/v1/by-puuid/stored-mmr-history/{affinity}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3779,10 +3779,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'tag' is not null or undefined
             assertParamExists('storedMmrHistoryV2', 'tag', tag)
             const localVarPath = `/valorant/v2/stored-mmr-history/{affinity}/{platform}/{name}/{tag}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"name"}}`, encodeURIComponent(String(name)))
-                .replace(`{${"tag"}}`, encodeURIComponent(String(tag)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3826,9 +3826,9 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'puuid' is not null or undefined
             assertParamExists('storedMmrHistoryV2ById', 'puuid', puuid)
             const localVarPath = `/valorant/v2/by-puuid/stored-mmr-history/{affinity}/{platform}/{puuid}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)))
-                .replace(`{${"platform"}}`, encodeURIComponent(String(platform)))
-                .replace(`{${"puuid"}}`, encodeURIComponent(String(puuid)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3865,7 +3865,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('version', 'affinity', affinity)
             const localVarPath = `/valorant/v1/version/{affinity}`
-                .replace(`{${"affinity"}}`, encodeURIComponent(String(affinity)));
+                .replace('{affinity}', encodeURIComponent(String(affinity)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3899,7 +3899,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'countryCode' is not null or undefined
             assertParamExists('website', 'countryCode', countryCode)
             const localVarPath = `/valorant/v1/website/{country_code}`
-                .replace(`{${"country_code"}}`, encodeURIComponent(String(countryCode)));
+                .replace('{country_code}', encodeURIComponent(String(countryCode)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3939,8 +3939,8 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'countryCode' is not null or undefined
             assertParamExists('websiteById', 'countryCode', countryCode)
             const localVarPath = `/valorant/v1/website/{country_code}/{db_id}`
-                .replace(`{${"db_id"}}`, encodeURIComponent(String(dbId)))
-                .replace(`{${"country_code"}}`, encodeURIComponent(String(countryCode)));
+                .replace('{db_id}', encodeURIComponent(String(dbId)))
+                .replace('{country_code}', encodeURIComponent(String(countryCode)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
