@@ -2937,6 +2937,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * 
      * @param id Team UUID
+     * @param season Premier season id (optional) (optional)
      * @return PremierTeamV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -2946,8 +2947,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierById(id: kotlin.String) : PremierTeamV1Response {
-        val localVarResponse = premierByIdWithHttpInfo(id = id)
+    fun premierById(id: kotlin.String, season: kotlin.String? = null) : PremierTeamV1Response {
+        val localVarResponse = premierByIdWithHttpInfo(id = id, season = season)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV1Response
@@ -2969,14 +2970,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * 
      * @param id Team UUID
+     * @param season Premier season id (optional) (optional)
      * @return ApiResponse<PremierTeamV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierByIdWithHttpInfo(id: kotlin.String) : ApiResponse<PremierTeamV1Response?> {
-        val localVariableConfig = premierByIdRequestConfig(id = id)
+    fun premierByIdWithHttpInfo(id: kotlin.String, season: kotlin.String?) : ApiResponse<PremierTeamV1Response?> {
+        val localVariableConfig = premierByIdRequestConfig(id = id, season = season)
 
         return request<Unit, PremierTeamV1Response>(
             localVariableConfig
@@ -2987,11 +2989,17 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * To obtain the request config of the operation premierById
      *
      * @param id Team UUID
+     * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierByIdRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
+    fun premierByIdRequestConfig(id: kotlin.String, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (season != null) {
+                    put("season", listOf(season.toString()))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
@@ -3010,6 +3018,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * 
      * @param id Team UUID
+     * @param season Premier season id (optional) (optional)
      * @return PremierTeamV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3019,8 +3028,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierByIdHistory(id: kotlin.String) : PremierTeamV1Response {
-        val localVarResponse = premierByIdHistoryWithHttpInfo(id = id)
+    fun premierByIdHistory(id: kotlin.String, season: kotlin.String? = null) : PremierTeamV1Response {
+        val localVarResponse = premierByIdHistoryWithHttpInfo(id = id, season = season)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV1Response
@@ -3042,14 +3051,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * 
      * @param id Team UUID
+     * @param season Premier season id (optional) (optional)
      * @return ApiResponse<PremierTeamV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierByIdHistoryWithHttpInfo(id: kotlin.String) : ApiResponse<PremierTeamV1Response?> {
-        val localVariableConfig = premierByIdHistoryRequestConfig(id = id)
+    fun premierByIdHistoryWithHttpInfo(id: kotlin.String, season: kotlin.String?) : ApiResponse<PremierTeamV1Response?> {
+        val localVariableConfig = premierByIdHistoryRequestConfig(id = id, season = season)
 
         return request<Unit, PremierTeamV1Response>(
             localVariableConfig
@@ -3060,11 +3070,17 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * To obtain the request config of the operation premierByIdHistory
      *
      * @param id Team UUID
+     * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierByIdHistoryRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
+    fun premierByIdHistoryRequestConfig(id: kotlin.String, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (season != null) {
+                    put("season", listOf(season.toString()))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
@@ -3084,6 +3100,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param name Team name
      * @param tag Team tag
+     * @param season Premier season id (optional) (optional)
      * @return PremierTeamV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3093,8 +3110,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierByName(name: kotlin.String, tag: kotlin.String) : PremierTeamV1Response {
-        val localVarResponse = premierByNameWithHttpInfo(name = name, tag = tag)
+    fun premierByName(name: kotlin.String, tag: kotlin.String, season: kotlin.String? = null) : PremierTeamV1Response {
+        val localVarResponse = premierByNameWithHttpInfo(name = name, tag = tag, season = season)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV1Response
@@ -3117,14 +3134,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param name Team name
      * @param tag Team tag
+     * @param season Premier season id (optional) (optional)
      * @return ApiResponse<PremierTeamV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierByNameWithHttpInfo(name: kotlin.String, tag: kotlin.String) : ApiResponse<PremierTeamV1Response?> {
-        val localVariableConfig = premierByNameRequestConfig(name = name, tag = tag)
+    fun premierByNameWithHttpInfo(name: kotlin.String, tag: kotlin.String, season: kotlin.String?) : ApiResponse<PremierTeamV1Response?> {
+        val localVariableConfig = premierByNameRequestConfig(name = name, tag = tag, season = season)
 
         return request<Unit, PremierTeamV1Response>(
             localVariableConfig
@@ -3136,11 +3154,17 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      *
      * @param name Team name
      * @param tag Team tag
+     * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierByNameRequestConfig(name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun premierByNameRequestConfig(name: kotlin.String, tag: kotlin.String, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (season != null) {
+                    put("season", listOf(season.toString()))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
@@ -3160,6 +3184,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param name Team name
      * @param tag Team tag
+     * @param season Premier season id (optional) (optional)
      * @return PremierTeamHistoryV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3169,8 +3194,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierByNameHistory(name: kotlin.String, tag: kotlin.String) : PremierTeamHistoryV1Response {
-        val localVarResponse = premierByNameHistoryWithHttpInfo(name = name, tag = tag)
+    fun premierByNameHistory(name: kotlin.String, tag: kotlin.String, season: kotlin.String? = null) : PremierTeamHistoryV1Response {
+        val localVarResponse = premierByNameHistoryWithHttpInfo(name = name, tag = tag, season = season)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamHistoryV1Response
@@ -3193,14 +3218,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param name Team name
      * @param tag Team tag
+     * @param season Premier season id (optional) (optional)
      * @return ApiResponse<PremierTeamHistoryV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierByNameHistoryWithHttpInfo(name: kotlin.String, tag: kotlin.String) : ApiResponse<PremierTeamHistoryV1Response?> {
-        val localVariableConfig = premierByNameHistoryRequestConfig(name = name, tag = tag)
+    fun premierByNameHistoryWithHttpInfo(name: kotlin.String, tag: kotlin.String, season: kotlin.String?) : ApiResponse<PremierTeamHistoryV1Response?> {
+        val localVariableConfig = premierByNameHistoryRequestConfig(name = name, tag = tag, season = season)
 
         return request<Unit, PremierTeamHistoryV1Response>(
             localVariableConfig
@@ -3212,11 +3238,17 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      *
      * @param name Team name
      * @param tag Team tag
+     * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierByNameHistoryRequestConfig(name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun premierByNameHistoryRequestConfig(name: kotlin.String, tag: kotlin.String, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (season != null) {
+                    put("season", listOf(season.toString()))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
@@ -3237,6 +3269,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param affinity Region/affinity (e.g., na, eu, ap, kr)
      * @param conference Conference filter (optional) (optional)
      * @param division Division filter (optional) (optional)
+     * @param season Premier season id (optional) (optional)
      * @return PremierSearchResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3246,8 +3279,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierLeaderboard(affinity: kotlin.String, conference: kotlin.String? = null, division: kotlin.String? = null) : PremierSearchResponse {
-        val localVarResponse = premierLeaderboardWithHttpInfo(affinity = affinity, conference = conference, division = division)
+    fun premierLeaderboard(affinity: kotlin.String, conference: kotlin.String? = null, division: kotlin.String? = null, season: kotlin.String? = null) : PremierSearchResponse {
+        val localVarResponse = premierLeaderboardWithHttpInfo(affinity = affinity, conference = conference, division = division, season = season)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierSearchResponse
@@ -3271,14 +3304,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param affinity Region/affinity (e.g., na, eu, ap, kr)
      * @param conference Conference filter (optional) (optional)
      * @param division Division filter (optional) (optional)
+     * @param season Premier season id (optional) (optional)
      * @return ApiResponse<PremierSearchResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierLeaderboardWithHttpInfo(affinity: kotlin.String, conference: kotlin.String?, division: kotlin.String?) : ApiResponse<PremierSearchResponse?> {
-        val localVariableConfig = premierLeaderboardRequestConfig(affinity = affinity, conference = conference, division = division)
+    fun premierLeaderboardWithHttpInfo(affinity: kotlin.String, conference: kotlin.String?, division: kotlin.String?, season: kotlin.String?) : ApiResponse<PremierSearchResponse?> {
+        val localVariableConfig = premierLeaderboardRequestConfig(affinity = affinity, conference = conference, division = division, season = season)
 
         return request<Unit, PremierSearchResponse>(
             localVariableConfig
@@ -3291,9 +3325,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param affinity Region/affinity (e.g., na, eu, ap, kr)
      * @param conference Conference filter (optional) (optional)
      * @param division Division filter (optional) (optional)
+     * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierLeaderboardRequestConfig(affinity: kotlin.String, conference: kotlin.String?, division: kotlin.String?) : RequestConfig<Unit> {
+    fun premierLeaderboardRequestConfig(affinity: kotlin.String, conference: kotlin.String?, division: kotlin.String?, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -3302,6 +3337,9 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
                 }
                 if (division != null) {
                     put("division", listOf(division.toString()))
+                }
+                if (season != null) {
+                    put("season", listOf(season.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3324,6 +3362,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param name Team name to search for (optional) (optional)
      * @param tag Team tag to search for (optional) (optional)
      * @param id Team UUID to search for (optional) (optional)
+     * @param season Premier season id (optional) (optional)
      * @return PremierSearchResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3333,8 +3372,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierSearch(name: kotlin.String? = null, tag: kotlin.String? = null, id: kotlin.String? = null) : PremierSearchResponse {
-        val localVarResponse = premierSearchWithHttpInfo(name = name, tag = tag, id = id)
+    fun premierSearch(name: kotlin.String? = null, tag: kotlin.String? = null, id: kotlin.String? = null, season: kotlin.String? = null) : PremierSearchResponse {
+        val localVarResponse = premierSearchWithHttpInfo(name = name, tag = tag, id = id, season = season)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierSearchResponse
@@ -3358,14 +3397,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param name Team name to search for (optional) (optional)
      * @param tag Team tag to search for (optional) (optional)
      * @param id Team UUID to search for (optional) (optional)
+     * @param season Premier season id (optional) (optional)
      * @return ApiResponse<PremierSearchResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierSearchWithHttpInfo(name: kotlin.String?, tag: kotlin.String?, id: kotlin.String?) : ApiResponse<PremierSearchResponse?> {
-        val localVariableConfig = premierSearchRequestConfig(name = name, tag = tag, id = id)
+    fun premierSearchWithHttpInfo(name: kotlin.String?, tag: kotlin.String?, id: kotlin.String?, season: kotlin.String?) : ApiResponse<PremierSearchResponse?> {
+        val localVariableConfig = premierSearchRequestConfig(name = name, tag = tag, id = id, season = season)
 
         return request<Unit, PremierSearchResponse>(
             localVariableConfig
@@ -3378,9 +3418,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param name Team name to search for (optional) (optional)
      * @param tag Team tag to search for (optional) (optional)
      * @param id Team UUID to search for (optional) (optional)
+     * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierSearchRequestConfig(name: kotlin.String?, tag: kotlin.String?, id: kotlin.String?) : RequestConfig<Unit> {
+    fun premierSearchRequestConfig(name: kotlin.String?, tag: kotlin.String?, id: kotlin.String?, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -3392,6 +3433,9 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
                 }
                 if (id != null) {
                     put("id", listOf(id.toString()))
+                }
+                if (season != null) {
+                    put("season", listOf(season.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

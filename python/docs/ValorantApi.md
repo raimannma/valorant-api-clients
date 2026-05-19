@@ -2430,7 +2430,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_by_id**
-> PremierTeamV1Response premier_by_id(id)
+> PremierTeamV1Response premier_by_id(id, season=season)
 
 ### Example
 
@@ -2453,9 +2453,10 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     id = 'id_example' # str | Team UUID
+    season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
-        api_response = api_instance.premier_by_id(id)
+        api_response = api_instance.premier_by_id(id, season=season)
         print("The response of ValorantApi->premier_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -2470,6 +2471,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Team UUID | 
+ **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -2496,7 +2498,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_by_id_history**
-> PremierTeamV1Response premier_by_id_history(id)
+> PremierTeamV1Response premier_by_id_history(id, season=season)
 
 ### Example
 
@@ -2519,9 +2521,10 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     id = 'id_example' # str | Team UUID
+    season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
-        api_response = api_instance.premier_by_id_history(id)
+        api_response = api_instance.premier_by_id_history(id, season=season)
         print("The response of ValorantApi->premier_by_id_history:\n")
         pprint(api_response)
     except Exception as e:
@@ -2536,6 +2539,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Team UUID | 
+ **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -2562,7 +2566,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_by_name**
-> PremierTeamV1Response premier_by_name(name, tag)
+> PremierTeamV1Response premier_by_name(name, tag, season=season)
 
 ### Example
 
@@ -2586,9 +2590,10 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Team name
     tag = 'tag_example' # str | Team tag
+    season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
-        api_response = api_instance.premier_by_name(name, tag)
+        api_response = api_instance.premier_by_name(name, tag, season=season)
         print("The response of ValorantApi->premier_by_name:\n")
         pprint(api_response)
     except Exception as e:
@@ -2604,6 +2609,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Team name | 
  **tag** | **str**| Team tag | 
+ **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -2630,7 +2636,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_by_name_history**
-> PremierTeamHistoryV1Response premier_by_name_history(name, tag)
+> PremierTeamHistoryV1Response premier_by_name_history(name, tag, season=season)
 
 ### Example
 
@@ -2654,9 +2660,10 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Team name
     tag = 'tag_example' # str | Team tag
+    season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
-        api_response = api_instance.premier_by_name_history(name, tag)
+        api_response = api_instance.premier_by_name_history(name, tag, season=season)
         print("The response of ValorantApi->premier_by_name_history:\n")
         pprint(api_response)
     except Exception as e:
@@ -2672,6 +2679,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Team name | 
  **tag** | **str**| Team tag | 
+ **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -2696,7 +2704,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_leaderboard**
-> PremierSearchResponse premier_leaderboard(affinity, conference=conference, division=division)
+> PremierSearchResponse premier_leaderboard(affinity, conference=conference, division=division, season=season)
 
 ### Example
 
@@ -2721,9 +2729,10 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
     conference = 'conference_example' # str | Conference filter (optional) (optional)
     division = 'division_example' # str | Division filter (optional) (optional)
+    season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
-        api_response = api_instance.premier_leaderboard(affinity, conference=conference, division=division)
+        api_response = api_instance.premier_leaderboard(affinity, conference=conference, division=division, season=season)
         print("The response of ValorantApi->premier_leaderboard:\n")
         pprint(api_response)
     except Exception as e:
@@ -2740,6 +2749,7 @@ Name | Type | Description  | Notes
  **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
  **conference** | **str**| Conference filter (optional) | [optional] 
  **division** | **str**| Division filter (optional) | [optional] 
+ **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -2766,7 +2776,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_search**
-> PremierSearchResponse premier_search(name=name, tag=tag, id=id)
+> PremierSearchResponse premier_search(name=name, tag=tag, id=id, season=season)
 
 ### Example
 
@@ -2791,9 +2801,10 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | Team name to search for (optional) (optional)
     tag = 'tag_example' # str | Team tag to search for (optional) (optional)
     id = 'id_example' # str | Team UUID to search for (optional) (optional)
+    season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
-        api_response = api_instance.premier_search(name=name, tag=tag, id=id)
+        api_response = api_instance.premier_search(name=name, tag=tag, id=id, season=season)
         print("The response of ValorantApi->premier_search:\n")
         pprint(api_response)
     except Exception as e:
@@ -2810,6 +2821,7 @@ Name | Type | Description  | Notes
  **name** | **str**| Team name to search for (optional) | [optional] 
  **tag** | **str**| Team tag to search for (optional) | [optional] 
  **id** | **str**| Team UUID to search for (optional) | [optional] 
+ **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
 

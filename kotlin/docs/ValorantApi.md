@@ -1691,7 +1691,7 @@ No authorization required
 
 <a id="premierById"></a>
 # **premierById**
-> PremierTeamV1Response premierById(id)
+> PremierTeamV1Response premierById(id, season)
 
 
 
@@ -1703,8 +1703,9 @@ No authorization required
 
 val apiInstance = ValorantApi()
 val id : kotlin.String = id_example // kotlin.String | Team UUID
+val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierTeamV1Response = apiInstance.premierById(id)
+    val result : PremierTeamV1Response = apiInstance.premierById(id, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierById")
@@ -1716,9 +1717,10 @@ try {
 ```
 
 ### Parameters
+| **id** | **kotlin.String**| Team UUID | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Team UUID | |
+| **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -1735,7 +1737,7 @@ No authorization required
 
 <a id="premierByIdHistory"></a>
 # **premierByIdHistory**
-> PremierTeamV1Response premierByIdHistory(id)
+> PremierTeamV1Response premierByIdHistory(id, season)
 
 
 
@@ -1747,8 +1749,9 @@ No authorization required
 
 val apiInstance = ValorantApi()
 val id : kotlin.String = id_example // kotlin.String | Team UUID
+val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierTeamV1Response = apiInstance.premierByIdHistory(id)
+    val result : PremierTeamV1Response = apiInstance.premierByIdHistory(id, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierByIdHistory")
@@ -1760,9 +1763,10 @@ try {
 ```
 
 ### Parameters
+| **id** | **kotlin.String**| Team UUID | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Team UUID | |
+| **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -1779,7 +1783,7 @@ No authorization required
 
 <a id="premierByName"></a>
 # **premierByName**
-> PremierTeamV1Response premierByName(name, tag)
+> PremierTeamV1Response premierByName(name, tag, season)
 
 
 
@@ -1792,8 +1796,9 @@ No authorization required
 val apiInstance = ValorantApi()
 val name : kotlin.String = name_example // kotlin.String | Team name
 val tag : kotlin.String = tag_example // kotlin.String | Team tag
+val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierTeamV1Response = apiInstance.premierByName(name, tag)
+    val result : PremierTeamV1Response = apiInstance.premierByName(name, tag, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierByName")
@@ -1806,9 +1811,10 @@ try {
 
 ### Parameters
 | **name** | **kotlin.String**| Team name | |
+| **tag** | **kotlin.String**| Team tag | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tag** | **kotlin.String**| Team tag | |
+| **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -1825,7 +1831,7 @@ No authorization required
 
 <a id="premierByNameHistory"></a>
 # **premierByNameHistory**
-> PremierTeamHistoryV1Response premierByNameHistory(name, tag)
+> PremierTeamHistoryV1Response premierByNameHistory(name, tag, season)
 
 
 
@@ -1838,8 +1844,9 @@ No authorization required
 val apiInstance = ValorantApi()
 val name : kotlin.String = name_example // kotlin.String | Team name
 val tag : kotlin.String = tag_example // kotlin.String | Team tag
+val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierTeamHistoryV1Response = apiInstance.premierByNameHistory(name, tag)
+    val result : PremierTeamHistoryV1Response = apiInstance.premierByNameHistory(name, tag, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierByNameHistory")
@@ -1852,9 +1859,10 @@ try {
 
 ### Parameters
 | **name** | **kotlin.String**| Team name | |
+| **tag** | **kotlin.String**| Team tag | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tag** | **kotlin.String**| Team tag | |
+| **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -1871,7 +1879,7 @@ No authorization required
 
 <a id="premierLeaderboard"></a>
 # **premierLeaderboard**
-> PremierSearchResponse premierLeaderboard(affinity, conference, division)
+> PremierSearchResponse premierLeaderboard(affinity, conference, division, season)
 
 
 
@@ -1885,8 +1893,9 @@ val apiInstance = ValorantApi()
 val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
 val conference : kotlin.String = conference_example // kotlin.String | Conference filter (optional)
 val division : kotlin.String = division_example // kotlin.String | Division filter (optional)
+val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, conference, division)
+    val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, conference, division, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierLeaderboard")
@@ -1900,9 +1909,10 @@ try {
 ### Parameters
 | **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
 | **conference** | **kotlin.String**| Conference filter (optional) | [optional] |
+| **division** | **kotlin.String**| Division filter (optional) | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **division** | **kotlin.String**| Division filter (optional) | [optional] |
+| **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -1919,7 +1929,7 @@ No authorization required
 
 <a id="premierSearch"></a>
 # **premierSearch**
-> PremierSearchResponse premierSearch(name, tag, id)
+> PremierSearchResponse premierSearch(name, tag, id, season)
 
 
 
@@ -1933,8 +1943,9 @@ val apiInstance = ValorantApi()
 val name : kotlin.String = name_example // kotlin.String | Team name to search for (optional)
 val tag : kotlin.String = tag_example // kotlin.String | Team tag to search for (optional)
 val id : kotlin.String = id_example // kotlin.String | Team UUID to search for (optional)
+val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id)
+    val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierSearch")
@@ -1948,9 +1959,10 @@ try {
 ### Parameters
 | **name** | **kotlin.String**| Team name to search for (optional) | [optional] |
 | **tag** | **kotlin.String**| Team tag to search for (optional) | [optional] |
+| **id** | **kotlin.String**| Team UUID to search for (optional) | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Team UUID to search for (optional) | [optional] |
+| **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
 

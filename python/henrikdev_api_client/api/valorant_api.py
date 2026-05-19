@@ -10186,6 +10186,7 @@ class ValorantApi:
     def premier_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Team UUID")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10204,6 +10205,8 @@ class ValorantApi:
 
         :param id: Team UUID (required)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10228,6 +10231,7 @@ class ValorantApi:
 
         _param = self._premier_by_id_serialize(
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10255,6 +10259,7 @@ class ValorantApi:
     def premier_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Team UUID")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10273,6 +10278,8 @@ class ValorantApi:
 
         :param id: Team UUID (required)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10297,6 +10304,7 @@ class ValorantApi:
 
         _param = self._premier_by_id_serialize(
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10324,6 +10332,7 @@ class ValorantApi:
     def premier_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Team UUID")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10342,6 +10351,8 @@ class ValorantApi:
 
         :param id: Team UUID (required)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10366,6 +10377,7 @@ class ValorantApi:
 
         _param = self._premier_by_id_serialize(
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10388,6 +10400,7 @@ class ValorantApi:
     def _premier_by_id_serialize(
         self,
         id,
+        season,
         _request_auth,
         _content_type,
         _headers,
@@ -10412,6 +10425,10 @@ class ValorantApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -10452,6 +10469,7 @@ class ValorantApi:
     def premier_by_id_history(
         self,
         id: Annotated[StrictStr, Field(description="Team UUID")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10470,6 +10488,8 @@ class ValorantApi:
 
         :param id: Team UUID (required)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10494,6 +10514,7 @@ class ValorantApi:
 
         _param = self._premier_by_id_history_serialize(
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10521,6 +10542,7 @@ class ValorantApi:
     def premier_by_id_history_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Team UUID")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10539,6 +10561,8 @@ class ValorantApi:
 
         :param id: Team UUID (required)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10563,6 +10587,7 @@ class ValorantApi:
 
         _param = self._premier_by_id_history_serialize(
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10590,6 +10615,7 @@ class ValorantApi:
     def premier_by_id_history_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Team UUID")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10608,6 +10634,8 @@ class ValorantApi:
 
         :param id: Team UUID (required)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10632,6 +10660,7 @@ class ValorantApi:
 
         _param = self._premier_by_id_history_serialize(
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10654,6 +10683,7 @@ class ValorantApi:
     def _premier_by_id_history_serialize(
         self,
         id,
+        season,
         _request_auth,
         _content_type,
         _headers,
@@ -10678,6 +10708,10 @@ class ValorantApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -10719,6 +10753,7 @@ class ValorantApi:
         self,
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10739,6 +10774,8 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag (required)
         :type tag: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10764,6 +10801,7 @@ class ValorantApi:
         _param = self._premier_by_name_serialize(
             name=name,
             tag=tag,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10792,6 +10830,7 @@ class ValorantApi:
         self,
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10812,6 +10851,8 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag (required)
         :type tag: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10837,6 +10878,7 @@ class ValorantApi:
         _param = self._premier_by_name_serialize(
             name=name,
             tag=tag,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10865,6 +10907,7 @@ class ValorantApi:
         self,
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10885,6 +10928,8 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag (required)
         :type tag: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10910,6 +10955,7 @@ class ValorantApi:
         _param = self._premier_by_name_serialize(
             name=name,
             tag=tag,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10933,6 +10979,7 @@ class ValorantApi:
         self,
         name,
         tag,
+        season,
         _request_auth,
         _content_type,
         _headers,
@@ -10959,6 +11006,10 @@ class ValorantApi:
         if tag is not None:
             _path_params['tag'] = tag
         # process the query parameters
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -11000,6 +11051,7 @@ class ValorantApi:
         self,
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11020,6 +11072,8 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag (required)
         :type tag: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11045,6 +11099,7 @@ class ValorantApi:
         _param = self._premier_by_name_history_serialize(
             name=name,
             tag=tag,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11071,6 +11126,7 @@ class ValorantApi:
         self,
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11091,6 +11147,8 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag (required)
         :type tag: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11116,6 +11174,7 @@ class ValorantApi:
         _param = self._premier_by_name_history_serialize(
             name=name,
             tag=tag,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11142,6 +11201,7 @@ class ValorantApi:
         self,
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11162,6 +11222,8 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag (required)
         :type tag: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11187,6 +11249,7 @@ class ValorantApi:
         _param = self._premier_by_name_history_serialize(
             name=name,
             tag=tag,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11208,6 +11271,7 @@ class ValorantApi:
         self,
         name,
         tag,
+        season,
         _request_auth,
         _content_type,
         _headers,
@@ -11234,6 +11298,10 @@ class ValorantApi:
         if tag is not None:
             _path_params['tag'] = tag
         # process the query parameters
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -11276,6 +11344,7 @@ class ValorantApi:
         affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
         conference: Annotated[Optional[StrictStr], Field(description="Conference filter (optional)")] = None,
         division: Annotated[Optional[StrictStr], Field(description="Division filter (optional)")] = None,
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11298,6 +11367,8 @@ class ValorantApi:
         :type conference: str
         :param division: Division filter (optional)
         :type division: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11324,6 +11395,7 @@ class ValorantApi:
             affinity=affinity,
             conference=conference,
             division=division,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11353,6 +11425,7 @@ class ValorantApi:
         affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
         conference: Annotated[Optional[StrictStr], Field(description="Conference filter (optional)")] = None,
         division: Annotated[Optional[StrictStr], Field(description="Division filter (optional)")] = None,
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11375,6 +11448,8 @@ class ValorantApi:
         :type conference: str
         :param division: Division filter (optional)
         :type division: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11401,6 +11476,7 @@ class ValorantApi:
             affinity=affinity,
             conference=conference,
             division=division,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11430,6 +11506,7 @@ class ValorantApi:
         affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
         conference: Annotated[Optional[StrictStr], Field(description="Conference filter (optional)")] = None,
         division: Annotated[Optional[StrictStr], Field(description="Division filter (optional)")] = None,
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11452,6 +11529,8 @@ class ValorantApi:
         :type conference: str
         :param division: Division filter (optional)
         :type division: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11478,6 +11557,7 @@ class ValorantApi:
             affinity=affinity,
             conference=conference,
             division=division,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11502,6 +11582,7 @@ class ValorantApi:
         affinity,
         conference,
         division,
+        season,
         _request_auth,
         _content_type,
         _headers,
@@ -11533,6 +11614,10 @@ class ValorantApi:
         if division is not None:
             
             _query_params.append(('division', division))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
             
         # process the header parameters
         # process the form parameters
@@ -11576,6 +11661,7 @@ class ValorantApi:
         name: Annotated[Optional[StrictStr], Field(description="Team name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Team tag to search for (optional)")] = None,
         id: Annotated[Optional[StrictStr], Field(description="Team UUID to search for (optional)")] = None,
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11598,6 +11684,8 @@ class ValorantApi:
         :type tag: str
         :param id: Team UUID to search for (optional)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11624,6 +11712,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11653,6 +11742,7 @@ class ValorantApi:
         name: Annotated[Optional[StrictStr], Field(description="Team name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Team tag to search for (optional)")] = None,
         id: Annotated[Optional[StrictStr], Field(description="Team UUID to search for (optional)")] = None,
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11675,6 +11765,8 @@ class ValorantApi:
         :type tag: str
         :param id: Team UUID to search for (optional)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11701,6 +11793,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11730,6 +11823,7 @@ class ValorantApi:
         name: Annotated[Optional[StrictStr], Field(description="Team name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Team tag to search for (optional)")] = None,
         id: Annotated[Optional[StrictStr], Field(description="Team UUID to search for (optional)")] = None,
+        season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11752,6 +11846,8 @@ class ValorantApi:
         :type tag: str
         :param id: Team UUID to search for (optional)
         :type id: str
+        :param season: Premier season id (optional)
+        :type season: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11778,6 +11874,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             id=id,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11802,6 +11899,7 @@ class ValorantApi:
         name,
         tag,
         id,
+        season,
         _request_auth,
         _content_type,
         _headers,
@@ -11835,6 +11933,10 @@ class ValorantApi:
         if id is not None:
             
             _query_params.append(('id', id))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
             
         # process the header parameters
         # process the form parameters

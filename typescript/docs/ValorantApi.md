@@ -2069,9 +2069,11 @@ const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
 
 let id: string; //Team UUID (default to undefined)
+let season: string; //Premier season id (optional) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.premierById(
-    id
+    id,
+    season
 );
 ```
 
@@ -2080,6 +2082,7 @@ const { status, data } = await apiInstance.premierById(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | Team UUID | defaults to undefined|
+| **season** | [**string**] | Premier season id (optional) | (optional) defaults to undefined|
 
 
 ### Return type
@@ -2122,9 +2125,11 @@ const configuration = new Configuration();
 const apiInstance = new ValorantApi(configuration);
 
 let id: string; //Team UUID (default to undefined)
+let season: string; //Premier season id (optional) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.premierByIdHistory(
-    id
+    id,
+    season
 );
 ```
 
@@ -2133,6 +2138,7 @@ const { status, data } = await apiInstance.premierByIdHistory(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | Team UUID | defaults to undefined|
+| **season** | [**string**] | Premier season id (optional) | (optional) defaults to undefined|
 
 
 ### Return type
@@ -2176,10 +2182,12 @@ const apiInstance = new ValorantApi(configuration);
 
 let name: string; //Team name (default to undefined)
 let tag: string; //Team tag (default to undefined)
+let season: string; //Premier season id (optional) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.premierByName(
     name,
-    tag
+    tag,
+    season
 );
 ```
 
@@ -2189,6 +2197,7 @@ const { status, data } = await apiInstance.premierByName(
 |------------- | ------------- | ------------- | -------------|
 | **name** | [**string**] | Team name | defaults to undefined|
 | **tag** | [**string**] | Team tag | defaults to undefined|
+| **season** | [**string**] | Premier season id (optional) | (optional) defaults to undefined|
 
 
 ### Return type
@@ -2232,10 +2241,12 @@ const apiInstance = new ValorantApi(configuration);
 
 let name: string; //Team name (default to undefined)
 let tag: string; //Team tag (default to undefined)
+let season: string; //Premier season id (optional) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.premierByNameHistory(
     name,
-    tag
+    tag,
+    season
 );
 ```
 
@@ -2245,6 +2256,7 @@ const { status, data } = await apiInstance.premierByNameHistory(
 |------------- | ------------- | ------------- | -------------|
 | **name** | [**string**] | Team name | defaults to undefined|
 | **tag** | [**string**] | Team tag | defaults to undefined|
+| **season** | [**string**] | Premier season id (optional) | (optional) defaults to undefined|
 
 
 ### Return type
@@ -2287,11 +2299,13 @@ const apiInstance = new ValorantApi(configuration);
 let affinity: string; //Region/affinity (e.g., na, eu, ap, kr) (default to undefined)
 let conference: string; //Conference filter (optional) (optional) (default to undefined)
 let division: string; //Division filter (optional) (optional) (default to undefined)
+let season: string; //Premier season id (optional) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.premierLeaderboard(
     affinity,
     conference,
-    division
+    division,
+    season
 );
 ```
 
@@ -2302,6 +2316,7 @@ const { status, data } = await apiInstance.premierLeaderboard(
 | **affinity** | [**string**] | Region/affinity (e.g., na, eu, ap, kr) | defaults to undefined|
 | **conference** | [**string**] | Conference filter (optional) | (optional) defaults to undefined|
 | **division** | [**string**] | Division filter (optional) | (optional) defaults to undefined|
+| **season** | [**string**] | Premier season id (optional) | (optional) defaults to undefined|
 
 
 ### Return type
@@ -2346,11 +2361,13 @@ const apiInstance = new ValorantApi(configuration);
 let name: string; //Team name to search for (optional) (optional) (default to undefined)
 let tag: string; //Team tag to search for (optional) (optional) (default to undefined)
 let id: string; //Team UUID to search for (optional) (optional) (default to undefined)
+let season: string; //Premier season id (optional) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.premierSearch(
     name,
     tag,
-    id
+    id,
+    season
 );
 ```
 
@@ -2361,6 +2378,7 @@ const { status, data } = await apiInstance.premierSearch(
 | **name** | [**string**] | Team name to search for (optional) | (optional) defaults to undefined|
 | **tag** | [**string**] | Team tag to search for (optional) | (optional) defaults to undefined|
 | **id** | [**string**] | Team UUID to search for (optional) | (optional) defaults to undefined|
+| **season** | [**string**] | Premier season id (optional) | (optional) defaults to undefined|
 
 
 ### Return type

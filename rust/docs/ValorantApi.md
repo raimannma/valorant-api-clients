@@ -1082,7 +1082,7 @@ No authorization required
 
 ## premier_by_id
 
-> models::PremierTeamV1Response premier_by_id(id)
+> models::PremierTeamV1Response premier_by_id(id, season)
 
 
 ### Parameters
@@ -1091,6 +1091,7 @@ No authorization required
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | Team UUID | [required] |
+**season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
 
@@ -1110,7 +1111,7 @@ No authorization required
 
 ## premier_by_id_history
 
-> models::PremierTeamV1Response premier_by_id_history(id)
+> models::PremierTeamV1Response premier_by_id_history(id, season)
 
 
 ### Parameters
@@ -1119,6 +1120,7 @@ No authorization required
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | Team UUID | [required] |
+**season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
 
@@ -1138,7 +1140,7 @@ No authorization required
 
 ## premier_by_name
 
-> models::PremierTeamV1Response premier_by_name(name, tag)
+> models::PremierTeamV1Response premier_by_name(name, tag, season)
 
 
 ### Parameters
@@ -1148,6 +1150,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **name** | **String** | Team name | [required] |
 **tag** | **String** | Team tag | [required] |
+**season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
 
@@ -1167,7 +1170,7 @@ No authorization required
 
 ## premier_by_name_history
 
-> models::PremierTeamHistoryV1Response premier_by_name_history(name, tag)
+> models::PremierTeamHistoryV1Response premier_by_name_history(name, tag, season)
 
 
 ### Parameters
@@ -1177,6 +1180,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **name** | **String** | Team name | [required] |
 **tag** | **String** | Team tag | [required] |
+**season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
 
@@ -1196,7 +1200,7 @@ No authorization required
 
 ## premier_leaderboard
 
-> models::PremierSearchResponse premier_leaderboard(affinity, conference, division)
+> models::PremierSearchResponse premier_leaderboard(affinity, conference, division, season)
 
 
 ### Parameters
@@ -1207,6 +1211,7 @@ Name | Type | Description  | Required | Notes
 **affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
 **conference** | Option<**String**> | Conference filter (optional) |  |
 **division** | Option<**String**> | Division filter (optional) |  |
+**season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
 
@@ -1226,7 +1231,7 @@ No authorization required
 
 ## premier_search
 
-> models::PremierSearchResponse premier_search(name, tag, id)
+> models::PremierSearchResponse premier_search(name, tag, id, season)
 
 
 ### Parameters
@@ -1237,6 +1242,7 @@ Name | Type | Description  | Required | Notes
 **name** | Option<**String**> | Team name to search for (optional) |  |
 **tag** | Option<**String**> | Team tag to search for (optional) |  |
 **id** | Option<**String**> | Team UUID to search for (optional) |  |
+**season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
 

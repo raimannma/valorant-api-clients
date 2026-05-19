@@ -187,32 +187,32 @@ void main() {
       // TODO
     });
 
-    //Future<PremierTeamV1Response> premierById(String id) async
+    //Future<PremierTeamV1Response> premierById(String id, { String season }) async
     test('test premierById', () async {
       // TODO
     });
 
-    //Future<PremierTeamV1Response> premierByIdHistory(String id) async
+    //Future<PremierTeamV1Response> premierByIdHistory(String id, { String season }) async
     test('test premierByIdHistory', () async {
       // TODO
     });
 
-    //Future<PremierTeamV1Response> premierByName(String name, String tag) async
+    //Future<PremierTeamV1Response> premierByName(String name, String tag, { String season }) async
     test('test premierByName', () async {
       // TODO
     });
 
-    //Future<PremierTeamHistoryV1Response> premierByNameHistory(String name, String tag) async
+    //Future<PremierTeamHistoryV1Response> premierByNameHistory(String name, String tag, { String season }) async
     test('test premierByNameHistory', () async {
       // TODO
     });
 
-    //Future<PremierSearchResponse> premierLeaderboard(String affinity, { String conference, String division }) async
+    //Future<PremierSearchResponse> premierLeaderboard(String affinity, { String conference, String division, String season }) async
     test('test premierLeaderboard', () async {
       // TODO
     });
 
-    //Future<PremierSearchResponse> premierSearch({ String name, String tag, String id }) async
+    //Future<PremierSearchResponse> premierSearch({ String name, String tag, String id, String season }) async
     test('test premierSearch', () async {
       // TODO
     });

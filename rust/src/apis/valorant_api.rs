@@ -375,14 +375,18 @@ pub struct MatchV4Params {
 #[derive(Clone, Debug)]
 pub struct PremierByIdParams {
     /// Team UUID
-    pub id: String
+    pub id: String,
+    /// Premier season id (optional)
+    pub season: Option<String>
 }
 
 /// struct for passing parameters to the method [`premier_by_id_history`]
 #[derive(Clone, Debug)]
 pub struct PremierByIdHistoryParams {
     /// Team UUID
-    pub id: String
+    pub id: String,
+    /// Premier season id (optional)
+    pub season: Option<String>
 }
 
 /// struct for passing parameters to the method [`premier_by_name`]
@@ -391,7 +395,9 @@ pub struct PremierByNameParams {
     /// Team name
     pub name: String,
     /// Team tag
-    pub tag: String
+    pub tag: String,
+    /// Premier season id (optional)
+    pub season: Option<String>
 }
 
 /// struct for passing parameters to the method [`premier_by_name_history`]
@@ -400,7 +406,9 @@ pub struct PremierByNameHistoryParams {
     /// Team name
     pub name: String,
     /// Team tag
-    pub tag: String
+    pub tag: String,
+    /// Premier season id (optional)
+    pub season: Option<String>
 }
 
 /// struct for passing parameters to the method [`premier_leaderboard`]
@@ -411,7 +419,9 @@ pub struct PremierLeaderboardParams {
     /// Conference filter (optional)
     pub conference: Option<String>,
     /// Division filter (optional)
-    pub division: Option<String>
+    pub division: Option<String>,
+    /// Premier season id (optional)
+    pub season: Option<String>
 }
 
 /// struct for passing parameters to the method [`premier_search`]
@@ -422,7 +432,9 @@ pub struct PremierSearchParams {
     /// Team tag to search for (optional)
     pub tag: Option<String>,
     /// Team UUID to search for (optional)
-    pub id: Option<String>
+    pub id: Option<String>,
+    /// Premier season id (optional)
+    pub season: Option<String>
 }
 
 /// struct for passing parameters to the method [`queue_status`]
@@ -2369,6 +2381,9 @@ pub async fn premier_by_id(configuration: &configuration::Configuration, params:
     let uri_str = format!("{}/valorant/v1/premier/{id}", configuration.base_path, id=crate::apis::urlencode(params.id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = params.season {
+        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -2403,6 +2418,9 @@ pub async fn premier_by_id_history(configuration: &configuration::Configuration,
     let uri_str = format!("{}/valorant/v1/premier/{id}/history", configuration.base_path, id=crate::apis::urlencode(params.id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = params.season {
+        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -2437,6 +2455,9 @@ pub async fn premier_by_name(configuration: &configuration::Configuration, param
     let uri_str = format!("{}/valorant/v1/premier/{name}/{tag}", configuration.base_path, name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = params.season {
+        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -2471,6 +2492,9 @@ pub async fn premier_by_name_history(configuration: &configuration::Configuratio
     let uri_str = format!("{}/valorant/v1/premier/{name}/{tag}/history", configuration.base_path, name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = params.season {
+        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -2510,6 +2534,9 @@ pub async fn premier_leaderboard(configuration: &configuration::Configuration, p
     }
     if let Some(ref param_value) = params.division {
         req_builder = req_builder.query(&[("division", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.season {
+        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -2553,6 +2580,9 @@ pub async fn premier_search(configuration: &configuration::Configuration, params
     }
     if let Some(ref param_value) = params.id {
         req_builder = req_builder.query(&[("id", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.season {
+        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

@@ -2034,7 +2034,7 @@ No authorization required
 ## `premierById()`
 
 ```php
-premierById($id): \OpenAPI\Client\Model\PremierTeamV1Response
+premierById($id, $season): \OpenAPI\Client\Model\PremierTeamV1Response
 ```
 
 
@@ -2053,9 +2053,10 @@ $apiInstance = new OpenAPI\Client\Api\ValorantApi(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | Team UUID
+$season = 'season_example'; // string | Premier season id (optional)
 
 try {
-    $result = $apiInstance->premierById($id);
+    $result = $apiInstance->premierById($id, $season);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ValorantApi->premierById: ', $e->getMessage(), PHP_EOL;
@@ -2067,6 +2068,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Team UUID | |
+| **season** | **string**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -2088,7 +2090,7 @@ No authorization required
 ## `premierByIdHistory()`
 
 ```php
-premierByIdHistory($id): \OpenAPI\Client\Model\PremierTeamV1Response
+premierByIdHistory($id, $season): \OpenAPI\Client\Model\PremierTeamV1Response
 ```
 
 
@@ -2107,9 +2109,10 @@ $apiInstance = new OpenAPI\Client\Api\ValorantApi(
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | Team UUID
+$season = 'season_example'; // string | Premier season id (optional)
 
 try {
-    $result = $apiInstance->premierByIdHistory($id);
+    $result = $apiInstance->premierByIdHistory($id, $season);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ValorantApi->premierByIdHistory: ', $e->getMessage(), PHP_EOL;
@@ -2121,6 +2124,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Team UUID | |
+| **season** | **string**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -2142,7 +2146,7 @@ No authorization required
 ## `premierByName()`
 
 ```php
-premierByName($name, $tag): \OpenAPI\Client\Model\PremierTeamV1Response
+premierByName($name, $tag, $season): \OpenAPI\Client\Model\PremierTeamV1Response
 ```
 
 
@@ -2162,9 +2166,10 @@ $apiInstance = new OpenAPI\Client\Api\ValorantApi(
 );
 $name = 'name_example'; // string | Team name
 $tag = 'tag_example'; // string | Team tag
+$season = 'season_example'; // string | Premier season id (optional)
 
 try {
-    $result = $apiInstance->premierByName($name, $tag);
+    $result = $apiInstance->premierByName($name, $tag, $season);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ValorantApi->premierByName: ', $e->getMessage(), PHP_EOL;
@@ -2177,6 +2182,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **name** | **string**| Team name | |
 | **tag** | **string**| Team tag | |
+| **season** | **string**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -2198,7 +2204,7 @@ No authorization required
 ## `premierByNameHistory()`
 
 ```php
-premierByNameHistory($name, $tag): \OpenAPI\Client\Model\PremierTeamHistoryV1Response
+premierByNameHistory($name, $tag, $season): \OpenAPI\Client\Model\PremierTeamHistoryV1Response
 ```
 
 
@@ -2218,9 +2224,10 @@ $apiInstance = new OpenAPI\Client\Api\ValorantApi(
 );
 $name = 'name_example'; // string | Team name
 $tag = 'tag_example'; // string | Team tag
+$season = 'season_example'; // string | Premier season id (optional)
 
 try {
-    $result = $apiInstance->premierByNameHistory($name, $tag);
+    $result = $apiInstance->premierByNameHistory($name, $tag, $season);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ValorantApi->premierByNameHistory: ', $e->getMessage(), PHP_EOL;
@@ -2233,6 +2240,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **name** | **string**| Team name | |
 | **tag** | **string**| Team tag | |
+| **season** | **string**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -2254,7 +2262,7 @@ No authorization required
 ## `premierLeaderboard()`
 
 ```php
-premierLeaderboard($affinity, $conference, $division): \OpenAPI\Client\Model\PremierSearchResponse
+premierLeaderboard($affinity, $conference, $division, $season): \OpenAPI\Client\Model\PremierSearchResponse
 ```
 
 
@@ -2275,9 +2283,10 @@ $apiInstance = new OpenAPI\Client\Api\ValorantApi(
 $affinity = 'affinity_example'; // string | Region/affinity (e.g., na, eu, ap, kr)
 $conference = 'conference_example'; // string | Conference filter (optional)
 $division = 'division_example'; // string | Division filter (optional)
+$season = 'season_example'; // string | Premier season id (optional)
 
 try {
-    $result = $apiInstance->premierLeaderboard($affinity, $conference, $division);
+    $result = $apiInstance->premierLeaderboard($affinity, $conference, $division, $season);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ValorantApi->premierLeaderboard: ', $e->getMessage(), PHP_EOL;
@@ -2291,6 +2300,7 @@ try {
 | **affinity** | **string**| Region/affinity (e.g., na, eu, ap, kr) | |
 | **conference** | **string**| Conference filter (optional) | [optional] |
 | **division** | **string**| Division filter (optional) | [optional] |
+| **season** | **string**| Premier season id (optional) | [optional] |
 
 ### Return type
 
@@ -2312,7 +2322,7 @@ No authorization required
 ## `premierSearch()`
 
 ```php
-premierSearch($name, $tag, $id): \OpenAPI\Client\Model\PremierSearchResponse
+premierSearch($name, $tag, $id, $season): \OpenAPI\Client\Model\PremierSearchResponse
 ```
 
 
@@ -2333,9 +2343,10 @@ $apiInstance = new OpenAPI\Client\Api\ValorantApi(
 $name = 'name_example'; // string | Team name to search for (optional)
 $tag = 'tag_example'; // string | Team tag to search for (optional)
 $id = 'id_example'; // string | Team UUID to search for (optional)
+$season = 'season_example'; // string | Premier season id (optional)
 
 try {
-    $result = $apiInstance->premierSearch($name, $tag, $id);
+    $result = $apiInstance->premierSearch($name, $tag, $id, $season);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ValorantApi->premierSearch: ', $e->getMessage(), PHP_EOL;
@@ -2349,6 +2360,7 @@ try {
 | **name** | **string**| Team name to search for (optional) | [optional] |
 | **tag** | **string**| Team tag to search for (optional) | [optional] |
 | **id** | **string**| Team UUID to search for (optional) | [optional] |
+| **season** | **string**| Premier season id (optional) | [optional] |
 
 ### Return type
 

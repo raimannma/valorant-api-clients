@@ -4960,6 +4960,13 @@ type ApiPremierByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
 	id string
+	season *string
+}
+
+// Premier season id (optional)
+func (r ApiPremierByIdRequest) Season(season string) ApiPremierByIdRequest {
+	r.season = &season
+	return r
 }
 
 func (r ApiPremierByIdRequest) Execute() (*PremierTeamV1Response, *http.Response, error) {
@@ -5003,6 +5010,9 @@ func (a *ValorantAPIService) PremierByIdExecute(r ApiPremierByIdRequest) (*Premi
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.season != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -5093,6 +5103,13 @@ type ApiPremierByIdHistoryRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
 	id string
+	season *string
+}
+
+// Premier season id (optional)
+func (r ApiPremierByIdHistoryRequest) Season(season string) ApiPremierByIdHistoryRequest {
+	r.season = &season
+	return r
 }
 
 func (r ApiPremierByIdHistoryRequest) Execute() (*PremierTeamV1Response, *http.Response, error) {
@@ -5136,6 +5153,9 @@ func (a *ValorantAPIService) PremierByIdHistoryExecute(r ApiPremierByIdHistoryRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.season != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -5227,6 +5247,13 @@ type ApiPremierByNameRequest struct {
 	ApiService *ValorantAPIService
 	name string
 	tag string
+	season *string
+}
+
+// Premier season id (optional)
+func (r ApiPremierByNameRequest) Season(season string) ApiPremierByNameRequest {
+	r.season = &season
+	return r
 }
 
 func (r ApiPremierByNameRequest) Execute() (*PremierTeamV1Response, *http.Response, error) {
@@ -5273,6 +5300,9 @@ func (a *ValorantAPIService) PremierByNameExecute(r ApiPremierByNameRequest) (*P
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.season != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -5364,6 +5394,13 @@ type ApiPremierByNameHistoryRequest struct {
 	ApiService *ValorantAPIService
 	name string
 	tag string
+	season *string
+}
+
+// Premier season id (optional)
+func (r ApiPremierByNameHistoryRequest) Season(season string) ApiPremierByNameHistoryRequest {
+	r.season = &season
+	return r
 }
 
 func (r ApiPremierByNameHistoryRequest) Execute() (*PremierTeamHistoryV1Response, *http.Response, error) {
@@ -5410,6 +5447,9 @@ func (a *ValorantAPIService) PremierByNameHistoryExecute(r ApiPremierByNameHisto
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.season != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -5470,6 +5510,7 @@ type ApiPremierLeaderboardRequest struct {
 	affinity string
 	conference *string
 	division *string
+	season *string
 }
 
 // Conference filter (optional)
@@ -5481,6 +5522,12 @@ func (r ApiPremierLeaderboardRequest) Conference(conference string) ApiPremierLe
 // Division filter (optional)
 func (r ApiPremierLeaderboardRequest) Division(division string) ApiPremierLeaderboardRequest {
 	r.division = &division
+	return r
+}
+
+// Premier season id (optional)
+func (r ApiPremierLeaderboardRequest) Season(season string) ApiPremierLeaderboardRequest {
+	r.season = &season
 	return r
 }
 
@@ -5530,6 +5577,9 @@ func (a *ValorantAPIService) PremierLeaderboardExecute(r ApiPremierLeaderboardRe
 	}
 	if r.division != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "division", r.division, "form", "")
+	}
+	if r.season != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5623,6 +5673,7 @@ type ApiPremierSearchRequest struct {
 	name *string
 	tag *string
 	id *string
+	season *string
 }
 
 // Team name to search for (optional)
@@ -5640,6 +5691,12 @@ func (r ApiPremierSearchRequest) Tag(tag string) ApiPremierSearchRequest {
 // Team UUID to search for (optional)
 func (r ApiPremierSearchRequest) Id(id string) ApiPremierSearchRequest {
 	r.id = &id
+	return r
+}
+
+// Premier season id (optional)
+func (r ApiPremierSearchRequest) Season(season string) ApiPremierSearchRequest {
+	r.season = &season
 	return r
 }
 
@@ -5689,6 +5746,9 @@ func (a *ValorantAPIService) PremierSearchExecute(r ApiPremierSearchRequest) (*P
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.season != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

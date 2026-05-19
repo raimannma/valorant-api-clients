@@ -1593,7 +1593,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierById**
-> PremierTeamV1Response premierById(id)
+> PremierTeamV1Response premierById(id, season)
 
 
 
@@ -1603,9 +1603,10 @@ import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final id = id_example; // String | Team UUID
+final season = season_example; // String | Premier season id (optional)
 
 try {
-    final result = api_instance.premierById(id);
+    final result = api_instance.premierById(id, season);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierById: $e\n');
@@ -1617,6 +1618,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Team UUID | 
+ **season** | **String**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -1634,7 +1636,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierByIdHistory**
-> PremierTeamV1Response premierByIdHistory(id)
+> PremierTeamV1Response premierByIdHistory(id, season)
 
 
 
@@ -1644,9 +1646,10 @@ import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final id = id_example; // String | Team UUID
+final season = season_example; // String | Premier season id (optional)
 
 try {
-    final result = api_instance.premierByIdHistory(id);
+    final result = api_instance.premierByIdHistory(id, season);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierByIdHistory: $e\n');
@@ -1658,6 +1661,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Team UUID | 
+ **season** | **String**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -1675,7 +1679,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierByName**
-> PremierTeamV1Response premierByName(name, tag)
+> PremierTeamV1Response premierByName(name, tag, season)
 
 
 
@@ -1686,9 +1690,10 @@ import 'package:henrikdev_api_client/api.dart';
 final api_instance = ValorantApi();
 final name = name_example; // String | Team name
 final tag = tag_example; // String | Team tag
+final season = season_example; // String | Premier season id (optional)
 
 try {
-    final result = api_instance.premierByName(name, tag);
+    final result = api_instance.premierByName(name, tag, season);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierByName: $e\n');
@@ -1701,6 +1706,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Team name | 
  **tag** | **String**| Team tag | 
+ **season** | **String**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -1718,7 +1724,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierByNameHistory**
-> PremierTeamHistoryV1Response premierByNameHistory(name, tag)
+> PremierTeamHistoryV1Response premierByNameHistory(name, tag, season)
 
 
 
@@ -1729,9 +1735,10 @@ import 'package:henrikdev_api_client/api.dart';
 final api_instance = ValorantApi();
 final name = name_example; // String | Team name
 final tag = tag_example; // String | Team tag
+final season = season_example; // String | Premier season id (optional)
 
 try {
-    final result = api_instance.premierByNameHistory(name, tag);
+    final result = api_instance.premierByNameHistory(name, tag, season);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierByNameHistory: $e\n');
@@ -1744,6 +1751,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Team name | 
  **tag** | **String**| Team tag | 
+ **season** | **String**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -1761,7 +1769,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierLeaderboard**
-> PremierSearchResponse premierLeaderboard(affinity, conference, division)
+> PremierSearchResponse premierLeaderboard(affinity, conference, division, season)
 
 
 
@@ -1773,9 +1781,10 @@ final api_instance = ValorantApi();
 final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
 final conference = conference_example; // String | Conference filter (optional)
 final division = division_example; // String | Division filter (optional)
+final season = season_example; // String | Premier season id (optional)
 
 try {
-    final result = api_instance.premierLeaderboard(affinity, conference, division);
+    final result = api_instance.premierLeaderboard(affinity, conference, division, season);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierLeaderboard: $e\n');
@@ -1789,6 +1798,7 @@ Name | Type | Description  | Notes
  **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
  **conference** | **String**| Conference filter (optional) | [optional] 
  **division** | **String**| Division filter (optional) | [optional] 
+ **season** | **String**| Premier season id (optional) | [optional] 
 
 ### Return type
 
@@ -1806,7 +1816,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierSearch**
-> PremierSearchResponse premierSearch(name, tag, id)
+> PremierSearchResponse premierSearch(name, tag, id, season)
 
 
 
@@ -1818,9 +1828,10 @@ final api_instance = ValorantApi();
 final name = name_example; // String | Team name to search for (optional)
 final tag = tag_example; // String | Team tag to search for (optional)
 final id = id_example; // String | Team UUID to search for (optional)
+final season = season_example; // String | Premier season id (optional)
 
 try {
-    final result = api_instance.premierSearch(name, tag, id);
+    final result = api_instance.premierSearch(name, tag, id, season);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierSearch: $e\n');
@@ -1834,6 +1845,7 @@ Name | Type | Description  | Notes
  **name** | **String**| Team name to search for (optional) | [optional] 
  **tag** | **String**| Team tag to search for (optional) | [optional] 
  **id** | **String**| Team UUID to search for (optional) | [optional] 
+ **season** | **String**| Premier season id (optional) | [optional] 
 
 ### Return type
 

@@ -1431,6 +1431,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Premier season id (optional)
+        explode: true
+        in: query
+        name: season
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1486,6 +1494,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Premier season id (optional)
+        explode: true
+        in: query
+        name: season
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1533,6 +1549,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Premier season id (optional)
+        explode: true
+        in: query
+        name: season
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1572,6 +1596,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Premier season id (optional)
+        explode: true
+        in: query
+        name: season
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1619,6 +1651,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Premier season id (optional)
+        explode: true
+        in: query
+        name: season
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1642,6 +1682,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Premier season id (optional)
+        explode: true
+        in: query
+        name: season
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:

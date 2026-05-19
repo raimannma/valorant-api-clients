@@ -2522,7 +2522,7 @@ No authorization required
 
 ## PremierById
 
-> PremierTeamV1Response PremierById(ctx, id).Execute()
+> PremierTeamV1Response PremierById(ctx, id).Season(season).Execute()
 
 
 
@@ -2540,10 +2540,11 @@ import (
 
 func main() {
 	id := "id_example" // string | Team UUID
+	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierById(context.Background(), id).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierById(context.Background(), id).Season(season).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2569,6 +2570,7 @@ Other parameters are passed through a pointer to a apiPremierByIdRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **season** | **string** | Premier season id (optional) | 
 
 ### Return type
 
@@ -2590,7 +2592,7 @@ No authorization required
 
 ## PremierByIdHistory
 
-> PremierTeamV1Response PremierByIdHistory(ctx, id).Execute()
+> PremierTeamV1Response PremierByIdHistory(ctx, id).Season(season).Execute()
 
 
 
@@ -2608,10 +2610,11 @@ import (
 
 func main() {
 	id := "id_example" // string | Team UUID
+	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierByIdHistory(context.Background(), id).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierByIdHistory(context.Background(), id).Season(season).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByIdHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2637,6 +2640,7 @@ Other parameters are passed through a pointer to a apiPremierByIdHistoryRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **season** | **string** | Premier season id (optional) | 
 
 ### Return type
 
@@ -2658,7 +2662,7 @@ No authorization required
 
 ## PremierByName
 
-> PremierTeamV1Response PremierByName(ctx, name, tag).Execute()
+> PremierTeamV1Response PremierByName(ctx, name, tag).Season(season).Execute()
 
 
 
@@ -2677,10 +2681,11 @@ import (
 func main() {
 	name := "name_example" // string | Team name
 	tag := "tag_example" // string | Team tag
+	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierByName(context.Background(), name, tag).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierByName(context.Background(), name, tag).Season(season).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByName``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2708,6 +2713,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **season** | **string** | Premier season id (optional) | 
 
 ### Return type
 
@@ -2729,7 +2735,7 @@ No authorization required
 
 ## PremierByNameHistory
 
-> PremierTeamHistoryV1Response PremierByNameHistory(ctx, name, tag).Execute()
+> PremierTeamHistoryV1Response PremierByNameHistory(ctx, name, tag).Season(season).Execute()
 
 
 
@@ -2748,10 +2754,11 @@ import (
 func main() {
 	name := "name_example" // string | Team name
 	tag := "tag_example" // string | Team tag
+	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierByNameHistory(context.Background(), name, tag).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierByNameHistory(context.Background(), name, tag).Season(season).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByNameHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2779,6 +2786,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **season** | **string** | Premier season id (optional) | 
 
 ### Return type
 
@@ -2800,7 +2808,7 @@ No authorization required
 
 ## PremierLeaderboard
 
-> PremierSearchResponse PremierLeaderboard(ctx, affinity).Conference(conference).Division(division).Execute()
+> PremierSearchResponse PremierLeaderboard(ctx, affinity).Conference(conference).Division(division).Season(season).Execute()
 
 
 
@@ -2820,10 +2828,11 @@ func main() {
 	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
 	conference := "conference_example" // string | Conference filter (optional) (optional)
 	division := "division_example" // string | Division filter (optional) (optional)
+	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierLeaderboard(context.Background(), affinity).Conference(conference).Division(division).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierLeaderboard(context.Background(), affinity).Conference(conference).Division(division).Season(season).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierLeaderboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2851,6 +2860,7 @@ Name | Type | Description  | Notes
 
  **conference** | **string** | Conference filter (optional) | 
  **division** | **string** | Division filter (optional) | 
+ **season** | **string** | Premier season id (optional) | 
 
 ### Return type
 
@@ -2872,7 +2882,7 @@ No authorization required
 
 ## PremierSearch
 
-> PremierSearchResponse PremierSearch(ctx).Name(name).Tag(tag).Id(id).Execute()
+> PremierSearchResponse PremierSearch(ctx).Name(name).Tag(tag).Id(id).Season(season).Execute()
 
 
 
@@ -2892,10 +2902,11 @@ func main() {
 	name := "name_example" // string | Team name to search for (optional) (optional)
 	tag := "tag_example" // string | Team tag to search for (optional) (optional)
 	id := "id_example" // string | Team UUID to search for (optional) (optional)
+	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierSearch(context.Background()).Name(name).Tag(tag).Id(id).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierSearch(context.Background()).Name(name).Tag(tag).Id(id).Season(season).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierSearch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2919,6 +2930,7 @@ Name | Type | Description  | Notes
  **name** | **string** | Team name to search for (optional) | 
  **tag** | **string** | Team tag to search for (optional) | 
  **id** | **string** | Team UUID to search for (optional) | 
+ **season** | **string** | Premier season id (optional) | 
 
 ### Return type
 

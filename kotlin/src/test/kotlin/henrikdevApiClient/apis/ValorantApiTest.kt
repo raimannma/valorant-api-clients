@@ -418,7 +418,8 @@ class ValorantApiTest : ShouldSpec() {
         should("test premierById") {
             // uncomment below to test premierById
             //val id : kotlin.String = id_example // kotlin.String | Team UUID
-            //val result : PremierTeamV1Response = apiInstance.premierById(id)
+            //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
+            //val result : PremierTeamV1Response = apiInstance.premierById(id, season)
             //result shouldBe ("TODO")
         }
 
@@ -426,7 +427,8 @@ class ValorantApiTest : ShouldSpec() {
         should("test premierByIdHistory") {
             // uncomment below to test premierByIdHistory
             //val id : kotlin.String = id_example // kotlin.String | Team UUID
-            //val result : PremierTeamV1Response = apiInstance.premierByIdHistory(id)
+            //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
+            //val result : PremierTeamV1Response = apiInstance.premierByIdHistory(id, season)
             //result shouldBe ("TODO")
         }
 
@@ -435,7 +437,8 @@ class ValorantApiTest : ShouldSpec() {
             // uncomment below to test premierByName
             //val name : kotlin.String = name_example // kotlin.String | Team name
             //val tag : kotlin.String = tag_example // kotlin.String | Team tag
-            //val result : PremierTeamV1Response = apiInstance.premierByName(name, tag)
+            //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
+            //val result : PremierTeamV1Response = apiInstance.premierByName(name, tag, season)
             //result shouldBe ("TODO")
         }
 
@@ -444,7 +447,8 @@ class ValorantApiTest : ShouldSpec() {
             // uncomment below to test premierByNameHistory
             //val name : kotlin.String = name_example // kotlin.String | Team name
             //val tag : kotlin.String = tag_example // kotlin.String | Team tag
-            //val result : PremierTeamHistoryV1Response = apiInstance.premierByNameHistory(name, tag)
+            //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
+            //val result : PremierTeamHistoryV1Response = apiInstance.premierByNameHistory(name, tag, season)
             //result shouldBe ("TODO")
         }
 
@@ -454,7 +458,8 @@ class ValorantApiTest : ShouldSpec() {
             //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
             //val conference : kotlin.String = conference_example // kotlin.String | Conference filter (optional)
             //val division : kotlin.String = division_example // kotlin.String | Division filter (optional)
-            //val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, conference, division)
+            //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
+            //val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, conference, division, season)
             //result shouldBe ("TODO")
         }
 
@@ -464,7 +469,8 @@ class ValorantApiTest : ShouldSpec() {
             //val name : kotlin.String = name_example // kotlin.String | Team name to search for (optional)
             //val tag : kotlin.String = tag_example // kotlin.String | Team tag to search for (optional)
             //val id : kotlin.String = id_example // kotlin.String | Team UUID to search for (optional)
-            //val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id)
+            //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
+            //val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id, season)
             //result shouldBe ("TODO")
         }
 

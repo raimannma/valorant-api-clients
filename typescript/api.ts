@@ -3173,10 +3173,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} id Team UUID
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierById: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierById: async (id: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('premierById', 'id', id)
             const localVarPath = `/valorant/v1/premier/{id}`
@@ -3192,6 +3193,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (season !== undefined) {
+                localVarQueryParameter['season'] = season;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3206,10 +3211,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} id Team UUID
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierByIdHistory: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierByIdHistory: async (id: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('premierByIdHistory', 'id', id)
             const localVarPath = `/valorant/v1/premier/{id}/history`
@@ -3224,6 +3230,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (season !== undefined) {
+                localVarQueryParameter['season'] = season;
+            }
 
             localVarHeaderParameter['Accept'] = 'application/json';
 
@@ -3240,10 +3250,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @param {string} name Team name
          * @param {string} tag Team tag
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierByName: async (name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierByName: async (name: string, tag: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('premierByName', 'name', name)
             // verify required parameter 'tag' is not null or undefined
@@ -3262,6 +3273,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (season !== undefined) {
+                localVarQueryParameter['season'] = season;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3277,10 +3292,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @param {string} name Team name
          * @param {string} tag Team tag
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierByNameHistory: async (name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierByNameHistory: async (name: string, tag: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('premierByNameHistory', 'name', name)
             // verify required parameter 'tag' is not null or undefined
@@ -3299,6 +3315,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (season !== undefined) {
+                localVarQueryParameter['season'] = season;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3315,10 +3335,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
          * @param {string} [conference] Conference filter (optional)
          * @param {string} [division] Division filter (optional)
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierLeaderboard: async (affinity: string, conference?: string, division?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierLeaderboard: async (affinity: string, conference?: string, division?: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('premierLeaderboard', 'affinity', affinity)
             const localVarPath = `/valorant/v1/premier/leaderboard/{affinity}`
@@ -3342,6 +3363,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['division'] = division;
             }
 
+            if (season !== undefined) {
+                localVarQueryParameter['season'] = season;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3358,10 +3383,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} [name] Team name to search for (optional)
          * @param {string} [tag] Team tag to search for (optional)
          * @param {string} [id] Team UUID to search for (optional)
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierSearch: async (name?: string, tag?: string, id?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierSearch: async (name?: string, tag?: string, id?: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/valorant/v1/premier/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3384,6 +3410,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
 
             if (id !== undefined) {
                 localVarQueryParameter['id'] = id;
+            }
+
+            if (season !== undefined) {
+                localVarQueryParameter['season'] = season;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -4450,11 +4480,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id Team UUID
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierById(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierById(id, options);
+        async premierById(id: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierById(id, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4462,11 +4493,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id Team UUID
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierByIdHistory(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByIdHistory(id, options);
+        async premierByIdHistory(id: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByIdHistory(id, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByIdHistory']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4475,11 +4507,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} name Team name
          * @param {string} tag Team tag
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierByName(name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByName(name, tag, options);
+        async premierByName(name: string, tag: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByName(name, tag, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByName']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4488,11 +4521,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} name Team name
          * @param {string} tag Team tag
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierByNameHistory(name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamHistoryV1Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByNameHistory(name, tag, options);
+        async premierByNameHistory(name: string, tag: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamHistoryV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByNameHistory(name, tag, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByNameHistory']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4502,11 +4536,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
          * @param {string} [conference] Conference filter (optional)
          * @param {string} [division] Division filter (optional)
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierLeaderboard(affinity: string, conference?: string, division?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierLeaderboard(affinity, conference, division, options);
+        async premierLeaderboard(affinity: string, conference?: string, division?: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierLeaderboard(affinity, conference, division, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierLeaderboard']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4516,11 +4551,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * @param {string} [name] Team name to search for (optional)
          * @param {string} [tag] Team tag to search for (optional)
          * @param {string} [id] Team UUID to search for (optional)
+         * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierSearch(name?: string, tag?: string, id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierSearch(name, tag, id, options);
+        async premierSearch(name?: string, tag?: string, id?: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierSearch(name, tag, id, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierSearch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5038,7 +5074,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         premierById(requestParameters: ValorantApiPremierByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV1Response> {
-            return localVarFp.premierById(requestParameters.id, options).then((request) => request(axios, basePath));
+            return localVarFp.premierById(requestParameters.id, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5047,7 +5083,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         premierByIdHistory(requestParameters: ValorantApiPremierByIdHistoryRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV1Response> {
-            return localVarFp.premierByIdHistory(requestParameters.id, options).then((request) => request(axios, basePath));
+            return localVarFp.premierByIdHistory(requestParameters.id, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5056,7 +5092,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         premierByName(requestParameters: ValorantApiPremierByNameRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV1Response> {
-            return localVarFp.premierByName(requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+            return localVarFp.premierByName(requestParameters.name, requestParameters.tag, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5065,7 +5101,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         premierByNameHistory(requestParameters: ValorantApiPremierByNameHistoryRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamHistoryV1Response> {
-            return localVarFp.premierByNameHistory(requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+            return localVarFp.premierByNameHistory(requestParameters.name, requestParameters.tag, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5074,7 +5110,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         premierLeaderboard(requestParameters: ValorantApiPremierLeaderboardRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierSearchResponse> {
-            return localVarFp.premierLeaderboard(requestParameters.affinity, requestParameters.conference, requestParameters.division, options).then((request) => request(axios, basePath));
+            return localVarFp.premierLeaderboard(requestParameters.affinity, requestParameters.conference, requestParameters.division, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5083,7 +5119,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         premierSearch(requestParameters: ValorantApiPremierSearchRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PremierSearchResponse> {
-            return localVarFp.premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, options).then((request) => request(axios, basePath));
+            return localVarFp.premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5852,6 +5888,11 @@ export interface ValorantApiPremierByIdRequest {
      * Team UUID
      */
     readonly id: string
+
+    /**
+     * Premier season id (optional)
+     */
+    readonly season?: string
 }
 
 /**
@@ -5862,6 +5903,11 @@ export interface ValorantApiPremierByIdHistoryRequest {
      * Team UUID
      */
     readonly id: string
+
+    /**
+     * Premier season id (optional)
+     */
+    readonly season?: string
 }
 
 /**
@@ -5877,6 +5923,11 @@ export interface ValorantApiPremierByNameRequest {
      * Team tag
      */
     readonly tag: string
+
+    /**
+     * Premier season id (optional)
+     */
+    readonly season?: string
 }
 
 /**
@@ -5892,6 +5943,11 @@ export interface ValorantApiPremierByNameHistoryRequest {
      * Team tag
      */
     readonly tag: string
+
+    /**
+     * Premier season id (optional)
+     */
+    readonly season?: string
 }
 
 /**
@@ -5912,6 +5968,11 @@ export interface ValorantApiPremierLeaderboardRequest {
      * Division filter (optional)
      */
     readonly division?: string
+
+    /**
+     * Premier season id (optional)
+     */
+    readonly season?: string
 }
 
 /**
@@ -5932,6 +5993,11 @@ export interface ValorantApiPremierSearchRequest {
      * Team UUID to search for (optional)
      */
     readonly id?: string
+
+    /**
+     * Premier season id (optional)
+     */
+    readonly season?: string
 }
 
 /**
@@ -6537,7 +6603,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public premierById(requestParameters: ValorantApiPremierByIdRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierById(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierById(requestParameters.id, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6547,7 +6613,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public premierByIdHistory(requestParameters: ValorantApiPremierByIdHistoryRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierByIdHistory(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierByIdHistory(requestParameters.id, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6557,7 +6623,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public premierByName(requestParameters: ValorantApiPremierByNameRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierByName(requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierByName(requestParameters.name, requestParameters.tag, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6567,7 +6633,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public premierByNameHistory(requestParameters: ValorantApiPremierByNameHistoryRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierByNameHistory(requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierByNameHistory(requestParameters.name, requestParameters.tag, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6577,7 +6643,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public premierLeaderboard(requestParameters: ValorantApiPremierLeaderboardRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierLeaderboard(requestParameters.affinity, requestParameters.conference, requestParameters.division, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierLeaderboard(requestParameters.affinity, requestParameters.conference, requestParameters.division, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6587,7 +6653,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public premierSearch(requestParameters: ValorantApiPremierSearchRequest = {}, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
