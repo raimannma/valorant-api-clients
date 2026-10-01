@@ -14,6 +14,8 @@ All URIs are relative to *https://api.henrikdev.xyz*
 |[**esportsTeamMatchesV2**](#esportsteammatchesv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2)|
 |[**esportsTeamTransactionsV2**](#esportsteamtransactionsv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2)|
 |[**esportsTeamV2**](#esportsteamv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2)|
+|[**getAccoladesById**](#getaccoladesbyid) | **GET** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1)|
+|[**getAccoladesByName**](#getaccoladesbyname) | **GET** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1)|
 |[**getAccountByIdV1**](#getaccountbyidv1) | **GET** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1)|
 |[**getAccountByIdV2**](#getaccountbyidv2) | **GET** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2)|
 |[**getAccountV1**](#getaccountv1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1)|
@@ -594,6 +596,127 @@ const { status, data } = await apiInstance.esportsTeamV2(
 |-------------|-------------|------------------|
 |**200** | Esports team profile retrieved successfully |  -  |
 |**400** | Bad Request |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAccoladesById**
+> AccoladesV1Response getAccoladesById()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let affinity: string; //Region/affinity (e.g., na, eu, ap, kr) (default to undefined)
+let platform: string; //Platform (pc, console) (default to undefined)
+let puuid: string; //Player UUID (default to undefined)
+
+const { status, data } = await apiInstance.getAccoladesById(
+    affinity,
+    platform,
+    puuid
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **affinity** | [**string**] | Region/affinity (e.g., na, eu, ap, kr) | defaults to undefined|
+| **platform** | [**string**] | Platform (pc, console) | defaults to undefined|
+| **puuid** | [**string**] | Player UUID | defaults to undefined|
+
+
+### Return type
+
+**AccoladesV1Response**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Accolades retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**404** | Account not found |  -  |
+|**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAccoladesByName**
+> AccoladesV1Response getAccoladesByName()
+
+
+### Example
+
+```typescript
+import {
+    ValorantApi,
+    Configuration
+} from 'henrikdev_api_client';
+
+const configuration = new Configuration();
+const apiInstance = new ValorantApi(configuration);
+
+let affinity: string; //Region/affinity (e.g., na, eu, ap, kr) (default to undefined)
+let platform: string; //Platform (pc, console) (default to undefined)
+let name: string; //Riot ID name (default to undefined)
+let tag: string; //Riot ID tag (default to undefined)
+
+const { status, data } = await apiInstance.getAccoladesByName(
+    affinity,
+    platform,
+    name,
+    tag
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **affinity** | [**string**] | Region/affinity (e.g., na, eu, ap, kr) | defaults to undefined|
+| **platform** | [**string**] | Platform (pc, console) | defaults to undefined|
+| **name** | [**string**] | Riot ID name | defaults to undefined|
+| **tag** | [**string**] | Riot ID tag | defaults to undefined|
+
+
+### Return type
+
+**AccoladesV1Response**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Accolades retrieved successfully |  -  |
+|**400** | Bad Request |  -  |
+|**404** | Account not found |  -  |
 |**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

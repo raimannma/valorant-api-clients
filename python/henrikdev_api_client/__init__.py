@@ -30,6 +30,17 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "APIError",
+    "AccoladeKind",
+    "AccoladesV1Account",
+    "AccoladesV1Data",
+    "AccoladesV1Match",
+    "AccoladesV1MatchMetric",
+    "AccoladesV1Player",
+    "AccoladesV1Response",
+    "AccoladesV1Season",
+    "AccoladesV1SeasonId",
+    "AccoladesV1Summary",
+    "AccoladesV1SummaryMetric",
     "AccountV1Data",
     "AccountV1DataCard",
     "AccountV1Response",
@@ -315,6 +326,17 @@ from henrikdev_api_client.exceptions import ApiException as ApiException
 
 # import models into sdk package
 from henrikdev_api_client.models.api_error import APIError as APIError
+from henrikdev_api_client.models.accolade_kind import AccoladeKind as AccoladeKind
+from henrikdev_api_client.models.accolades_v1_account import AccoladesV1Account as AccoladesV1Account
+from henrikdev_api_client.models.accolades_v1_data import AccoladesV1Data as AccoladesV1Data
+from henrikdev_api_client.models.accolades_v1_match import AccoladesV1Match as AccoladesV1Match
+from henrikdev_api_client.models.accolades_v1_match_metric import AccoladesV1MatchMetric as AccoladesV1MatchMetric
+from henrikdev_api_client.models.accolades_v1_player import AccoladesV1Player as AccoladesV1Player
+from henrikdev_api_client.models.accolades_v1_response import AccoladesV1Response as AccoladesV1Response
+from henrikdev_api_client.models.accolades_v1_season import AccoladesV1Season as AccoladesV1Season
+from henrikdev_api_client.models.accolades_v1_season_id import AccoladesV1SeasonId as AccoladesV1SeasonId
+from henrikdev_api_client.models.accolades_v1_summary import AccoladesV1Summary as AccoladesV1Summary
+from henrikdev_api_client.models.accolades_v1_summary_metric import AccoladesV1SummaryMetric as AccoladesV1SummaryMetric
 from henrikdev_api_client.models.account_v1_data import AccountV1Data as AccountV1Data
 from henrikdev_api_client.models.account_v1_data_card import AccountV1DataCard as AccountV1DataCard
 from henrikdev_api_client.models.account_v1_response import AccountV1Response as AccountV1Response

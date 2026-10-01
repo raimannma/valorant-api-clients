@@ -81,6 +81,30 @@ pub struct EsportsTeamV2Params {
     pub team_id: u32
 }
 
+/// struct for passing parameters to the method [`get_accolades_by_id`]
+#[derive(Clone, Debug)]
+pub struct GetAccoladesByIdParams {
+    /// Region/affinity (e.g., na, eu, ap, kr)
+    pub affinity: String,
+    /// Platform (pc, console)
+    pub platform: String,
+    /// Player UUID
+    pub puuid: String
+}
+
+/// struct for passing parameters to the method [`get_accolades_by_name`]
+#[derive(Clone, Debug)]
+pub struct GetAccoladesByNameParams {
+    /// Region/affinity (e.g., na, eu, ap, kr)
+    pub affinity: String,
+    /// Platform (pc, console)
+    pub platform: String,
+    /// Riot ID name
+    pub name: String,
+    /// Riot ID tag
+    pub tag: String
+}
+
 /// struct for passing parameters to the method [`get_account_by_id_v1`]
 #[derive(Clone, Debug)]
 pub struct GetAccountByIdV1Params {
@@ -672,6 +696,26 @@ pub enum EsportsTeamTransactionsV2Error {
 #[serde(untagged)]
 pub enum EsportsTeamV2Error {
     Status400(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_accolades_by_id`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetAccoladesByIdError {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_accolades_by_name`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetAccoladesByNameError {
+    Status400(models::SendError),
+    Status404(models::SendError),
     Status500(models::SendError),
     UnknownValue(serde_json::Value),
 }
@@ -1628,6 +1672,106 @@ pub async fn esports_team_v2(configuration: &configuration::Configuration, param
     } else {
         let content = resp.text().await?;
         let entity: Option<EsportsTeamV2Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+pub async fn get_accolades_by_id(configuration: &configuration::Configuration, params: GetAccoladesByIdParams) -> Result<models::AccoladesV1Response, Error<GetAccoladesByIdError>> {
+
+    let uri_str = format!("{}/valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), puuid=crate::apis::urlencode(params.puuid));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AccoladesV1Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AccoladesV1Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetAccoladesByIdError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+pub async fn get_accolades_by_name(configuration: &configuration::Configuration, params: GetAccoladesByNameParams) -> Result<models::AccoladesV1Response, Error<GetAccoladesByNameError>> {
+
+    let uri_str = format!("{}/valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AccoladesV1Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AccoladesV1Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetAccoladesByNameError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

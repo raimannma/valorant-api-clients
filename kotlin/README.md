@@ -59,6 +59,8 @@ All URIs are relative to *https://api.henrikdev.xyz*
 | *ValorantApi* | [**esportsTeamMatchesV2**](docs/ValorantApi.md#esportsteammatchesv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2) |
 | *ValorantApi* | [**esportsTeamTransactionsV2**](docs/ValorantApi.md#esportsteamtransactionsv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2) |
 | *ValorantApi* | [**esportsTeamV2**](docs/ValorantApi.md#esportsteamv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2) |
+| *ValorantApi* | [**getAccoladesById**](docs/ValorantApi.md#getaccoladesbyid) | **GET** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1) |
+| *ValorantApi* | [**getAccoladesByName**](docs/ValorantApi.md#getaccoladesbyname) | **GET** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1) |
 | *ValorantApi* | [**getAccountByIdV1**](docs/ValorantApi.md#getaccountbyidv1) | **GET** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1) |
 | *ValorantApi* | [**getAccountByIdV2**](docs/ValorantApi.md#getaccountbyidv2) | **GET** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2) |
 | *ValorantApi* | [**getAccountV1**](docs/ValorantApi.md#getaccountv1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1) |
@@ -109,6 +111,17 @@ All URIs are relative to *https://api.henrikdev.xyz*
 ## Documentation for Models
 
  - [henrikdevApiClient.models.APIError](docs/APIError.md)
+ - [henrikdevApiClient.models.AccoladeKind](docs/AccoladeKind.md)
+ - [henrikdevApiClient.models.AccoladesV1Account](docs/AccoladesV1Account.md)
+ - [henrikdevApiClient.models.AccoladesV1Data](docs/AccoladesV1Data.md)
+ - [henrikdevApiClient.models.AccoladesV1Match](docs/AccoladesV1Match.md)
+ - [henrikdevApiClient.models.AccoladesV1MatchMetric](docs/AccoladesV1MatchMetric.md)
+ - [henrikdevApiClient.models.AccoladesV1Player](docs/AccoladesV1Player.md)
+ - [henrikdevApiClient.models.AccoladesV1Response](docs/AccoladesV1Response.md)
+ - [henrikdevApiClient.models.AccoladesV1Season](docs/AccoladesV1Season.md)
+ - [henrikdevApiClient.models.AccoladesV1SeasonId](docs/AccoladesV1SeasonId.md)
+ - [henrikdevApiClient.models.AccoladesV1Summary](docs/AccoladesV1Summary.md)
+ - [henrikdevApiClient.models.AccoladesV1SummaryMetric](docs/AccoladesV1SummaryMetric.md)
  - [henrikdevApiClient.models.AccountV1Data](docs/AccountV1Data.md)
  - [henrikdevApiClient.models.AccountV1DataCard](docs/AccountV1DataCard.md)
  - [henrikdevApiClient.models.AccountV1Response](docs/AccountV1Response.md)

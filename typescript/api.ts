@@ -29,6 +29,79 @@ export interface APIError {
     'message': string;
     'status': number;
 }
+/**
+ * Known Goldstar IDs documented at https://valdocs.prometheuz.me/endpoint/goldstars. New IDs remain available via `GoldstarDefinition::id` even if not listed here.
+ */
+
+export const AccoladeKind = {
+    Kills: 'kills',
+    FirstBlood: 'first_blood',
+    DamagePerRound: 'damage_per_round',
+    Clutches: 'clutches',
+    Aces: 'aces',
+    Trades: 'trades',
+    HeadshotPercentage: 'headshot_percentage',
+    Distinction: 'distinction',
+    Assists: 'assists',
+    TopFrag: 'top_frag',
+    Plants: 'plants',
+    Mvp: 'mvp',
+} as const;
+
+export type AccoladeKind = typeof AccoladeKind[keyof typeof AccoladeKind];
+
+
+export interface AccoladesV1Account {
+    'name': string;
+    'puuid': string;
+    'tag': string;
+}
+export interface AccoladesV1Data {
+    'account': AccoladesV1Account;
+    'matches': Array<AccoladesV1Match>;
+    'summary'?: AccoladesV1Summary | null;
+}
+export interface AccoladesV1Match {
+    'match_id'?: string | null;
+    'players': Array<AccoladesV1Player>;
+    'started_at'?: string | null;
+}
+export interface AccoladesV1MatchMetric {
+    'id': string;
+    'is_act_record': boolean;
+    'type'?: AccoladeKind | null;
+    'value': number;
+}
+
+
+export interface AccoladesV1Player {
+    'accolades': Array<AccoladesV1MatchMetric>;
+    'puuid': string;
+}
+export interface AccoladesV1Response {
+    'data': AccoladesV1Data;
+    'status': number;
+}
+export interface AccoladesV1Season {
+    'accolades': Array<AccoladesV1SummaryMetric>;
+    'season': AccoladesV1SeasonId;
+}
+export interface AccoladesV1SeasonId {
+    'id': string;
+    'short'?: string | null;
+}
+export interface AccoladesV1Summary {
+    'all_time': Array<AccoladesV1SummaryMetric>;
+    'seasons': Array<AccoladesV1Season>;
+}
+export interface AccoladesV1SummaryMetric {
+    'best_value': number;
+    'count': number;
+    'id': string;
+    'type'?: AccoladeKind | null;
+}
+
+
 export interface AccountV1Data {
     'account_level': number;
     'card': AccountV1DataCard;
@@ -2579,6 +2652,106 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary Get player accolades by PUUID (v1)
+         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {string} platform Platform (pc, console)
+         * @param {string} puuid Player UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAccoladesById: async (affinity: string, platform: string, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('getAccoladesById', 'affinity', affinity)
+            // verify required parameter 'platform' is not null or undefined
+            assertParamExists('getAccoladesById', 'platform', platform)
+            // verify required parameter 'puuid' is not null or undefined
+            assertParamExists('getAccoladesById', 'puuid', puuid)
+            const localVarPath = `/valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get player accolades by name (v1)
+         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {string} platform Platform (pc, console)
+         * @param {string} name Riot ID name
+         * @param {string} tag Riot ID tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAccoladesByName: async (affinity: string, platform: string, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('getAccoladesByName', 'affinity', affinity)
+            // verify required parameter 'platform' is not null or undefined
+            assertParamExists('getAccoladesByName', 'platform', platform)
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('getAccoladesByName', 'name', name)
+            // verify required parameter 'tag' is not null or undefined
+            assertParamExists('getAccoladesByName', 'tag', tag)
+            const localVarPath = `/valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get account by PUUID (v1)
          * @param {string} puuid Player UUID
          * @param {boolean} [force] Bypass cache and refresh (optional)
@@ -4932,6 +5105,37 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get player accolades by PUUID (v1)
+         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {string} platform Platform (pc, console)
+         * @param {string} puuid Player UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAccoladesById(affinity: string, platform: string, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccoladesV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAccoladesById(affinity, platform, puuid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.getAccoladesById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get player accolades by name (v1)
+         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {string} platform Platform (pc, console)
+         * @param {string} name Riot ID name
+         * @param {string} tag Riot ID tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAccoladesByName(affinity: string, platform: string, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccoladesV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAccoladesByName(affinity, platform, name, tag, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.getAccoladesByName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Get account by PUUID (v1)
          * @param {string} puuid Player UUID
          * @param {boolean} [force] Bypass cache and refresh (optional)
@@ -5711,6 +5915,26 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary Get player accolades by PUUID (v1)
+         * @param {ValorantApiGetAccoladesByIdRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAccoladesById(requestParameters: ValorantApiGetAccoladesByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<AccoladesV1Response> {
+            return localVarFp.getAccoladesById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get player accolades by name (v1)
+         * @param {ValorantApiGetAccoladesByNameRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAccoladesByName(requestParameters: ValorantApiGetAccoladesByNameRequest, options?: RawAxiosRequestConfig): AxiosPromise<AccoladesV1Response> {
+            return localVarFp.getAccoladesByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Get account by PUUID (v1)
          * @param {ValorantApiGetAccountByIdV1Request} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -6235,6 +6459,51 @@ export interface ValorantApiEsportsTeamTransactionsV2Request {
  */
 export interface ValorantApiEsportsTeamV2Request {
     readonly teamId: number
+}
+
+/**
+ * Request parameters for getAccoladesById operation in ValorantApi.
+ */
+export interface ValorantApiGetAccoladesByIdRequest {
+    /**
+     * Region/affinity (e.g., na, eu, ap, kr)
+     */
+    readonly affinity: string
+
+    /**
+     * Platform (pc, console)
+     */
+    readonly platform: string
+
+    /**
+     * Player UUID
+     */
+    readonly puuid: string
+}
+
+/**
+ * Request parameters for getAccoladesByName operation in ValorantApi.
+ */
+export interface ValorantApiGetAccoladesByNameRequest {
+    /**
+     * Region/affinity (e.g., na, eu, ap, kr)
+     */
+    readonly affinity: string
+
+    /**
+     * Platform (pc, console)
+     */
+    readonly platform: string
+
+    /**
+     * Riot ID name
+     */
+    readonly name: string
+
+    /**
+     * Riot ID tag
+     */
+    readonly tag: string
 }
 
 /**
@@ -7276,6 +7545,28 @@ export class ValorantApi extends BaseAPI {
      */
     public esportsTeamV2(requestParameters: ValorantApiEsportsTeamV2Request, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).esportsTeamV2(requestParameters.teamId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get player accolades by PUUID (v1)
+     * @param {ValorantApiGetAccoladesByIdRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getAccoladesById(requestParameters: ValorantApiGetAccoladesByIdRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).getAccoladesById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get player accolades by name (v1)
+     * @param {ValorantApiGetAccoladesByNameRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getAccoladesByName(requestParameters: ValorantApiGetAccoladesByNameRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).getAccoladesByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -224,6 +224,126 @@ paths:
       summary: Get account by PUUID (v2)
       tags:
       - valorant
+  /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}:
+    get:
+      operationId: get_accolades_by_name
+      parameters:
+      - description: "Region/affinity (e.g., na, eu, ap, kr)"
+        explode: false
+        in: path
+        name: affinity
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Platform (pc, console)"
+        explode: false
+        in: path
+        name: platform
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Riot ID name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Riot ID tag
+        explode: false
+        in: path
+        name: tag
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccoladesV1Response"
+          description: Accolades retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendError"
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendError"
+          description: Account not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendError"
+          description: Internal Server Error
+      summary: Get player accolades by name (v1)
+      tags:
+      - valorant
+  /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}:
+    get:
+      operationId: get_accolades_by_id
+      parameters:
+      - description: "Region/affinity (e.g., na, eu, ap, kr)"
+        explode: false
+        in: path
+        name: affinity
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Platform (pc, console)"
+        explode: false
+        in: path
+        name: platform
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Player UUID
+        explode: false
+        in: path
+        name: puuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccoladesV1Response"
+          description: Accolades retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendError"
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendError"
+          description: Account not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendError"
+          description: Internal Server Error
+      summary: Get player accolades by PUUID (v1)
+      tags:
+      - valorant
   /valorant/v1/mmr/{affinity}/{name}/{tag}:
     get:
       operationId: get_mmr_v1_by_name
@@ -3154,6 +3274,314 @@ components:
       - code
       - message
       - status
+    AccoladeKind:
+      description: |-
+        Known Goldstar IDs documented at https://valdocs.prometheuz.me/endpoint/goldstars.
+        New IDs remain available via `GoldstarDefinition::id` even if not listed here.
+      enum:
+      - kills
+      - first_blood
+      - damage_per_round
+      - clutches
+      - aces
+      - trades
+      - headshot_percentage
+      - distinction
+      - assists
+      - top_frag
+      - plants
+      - mvp
+      type: string
+    AccoladesV1Account:
+      example:
+        name: name
+        puuid: puuid
+        tag: tag
+      properties:
+        name:
+          type: string
+        puuid:
+          type: string
+        tag:
+          type: string
+      required:
+      - name
+      - puuid
+      - tag
+    AccoladesV1Data:
+      example:
+        account:
+          name: name
+          puuid: puuid
+          tag: tag
+        matches:
+        - match_id: match_id
+          players:
+          - accolades:
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            puuid: puuid
+          - accolades:
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            puuid: puuid
+          started_at: started_at
+        - match_id: match_id
+          players:
+          - accolades:
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            puuid: puuid
+          - accolades:
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            - id: id
+              is_act_record: true
+              type: ""
+              value: 0.8008281904610115
+            puuid: puuid
+          started_at: started_at
+        summary: ""
+      properties:
+        account:
+          $ref: "#/components/schemas/AccoladesV1Account"
+        matches:
+          items:
+            $ref: "#/components/schemas/AccoladesV1Match"
+          type: array
+          default: null
+        summary:
+          allOf:
+          - $ref: "#/components/schemas/AccoladesV1Summary"
+          nullable: true
+      required:
+      - account
+      - matches
+    AccoladesV1Match:
+      example:
+        match_id: match_id
+        players:
+        - accolades:
+          - id: id
+            is_act_record: true
+            type: ""
+            value: 0.8008281904610115
+          - id: id
+            is_act_record: true
+            type: ""
+            value: 0.8008281904610115
+          puuid: puuid
+        - accolades:
+          - id: id
+            is_act_record: true
+            type: ""
+            value: 0.8008281904610115
+          - id: id
+            is_act_record: true
+            type: ""
+            value: 0.8008281904610115
+          puuid: puuid
+        started_at: started_at
+      properties:
+        match_id:
+          nullable: true
+          type: string
+        players:
+          items:
+            $ref: "#/components/schemas/AccoladesV1Player"
+          type: array
+          default: null
+        started_at:
+          nullable: true
+          type: string
+      required:
+      - players
+    AccoladesV1MatchMetric:
+      example:
+        id: id
+        is_act_record: true
+        type: ""
+        value: 0.8008281904610115
+      properties:
+        id:
+          type: string
+        is_act_record:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/AccoladeKind"
+          nullable: true
+        value:
+          format: double
+          type: number
+      required:
+      - id
+      - is_act_record
+      - value
+    AccoladesV1Player:
+      example:
+        accolades:
+        - id: id
+          is_act_record: true
+          type: ""
+          value: 0.8008281904610115
+        - id: id
+          is_act_record: true
+          type: ""
+          value: 0.8008281904610115
+        puuid: puuid
+      properties:
+        accolades:
+          items:
+            $ref: "#/components/schemas/AccoladesV1MatchMetric"
+          type: array
+          default: null
+        puuid:
+          type: string
+      required:
+      - accolades
+      - puuid
+    AccoladesV1Response:
+      example:
+        data:
+          account:
+            name: name
+            puuid: puuid
+            tag: tag
+          matches:
+          - match_id: match_id
+            players:
+            - accolades:
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              puuid: puuid
+            - accolades:
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              puuid: puuid
+            started_at: started_at
+          - match_id: match_id
+            players:
+            - accolades:
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              puuid: puuid
+            - accolades:
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              - id: id
+                is_act_record: true
+                type: ""
+                value: 0.8008281904610115
+              puuid: puuid
+            started_at: started_at
+          summary: ""
+        status: 0
+      properties:
+        data:
+          $ref: "#/components/schemas/AccoladesV1Data"
+        status:
+          format: int32
+          minimum: 0
+          type: integer
+      required:
+      - data
+      - status
+    AccoladesV1Season:
+      properties:
+        accolades:
+          items:
+            $ref: "#/components/schemas/AccoladesV1SummaryMetric"
+          type: array
+          default: null
+        season:
+          $ref: "#/components/schemas/AccoladesV1SeasonId"
+      required:
+      - accolades
+      - season
+    AccoladesV1SeasonId:
+      properties:
+        id:
+          type: string
+        short:
+          nullable: true
+          type: string
+      required:
+      - id
+    AccoladesV1Summary:
+      properties:
+        all_time:
+          items:
+            $ref: "#/components/schemas/AccoladesV1SummaryMetric"
+          type: array
+          default: null
+        seasons:
+          items:
+            $ref: "#/components/schemas/AccoladesV1Season"
+          type: array
+          default: null
+      required:
+      - all_time
+      - seasons
+    AccoladesV1SummaryMetric:
+      properties:
+        best_value:
+          format: double
+          type: number
+        count:
+          format: int32
+          minimum: 0
+          type: integer
+        id:
+          type: string
+        type:
+          allOf:
+          - $ref: "#/components/schemas/AccoladeKind"
+          nullable: true
+      required:
+      - best_value
+      - count
+      - id
     AccountV1Data:
       example:
         account_level: 0

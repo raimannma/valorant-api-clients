@@ -36,7 +36,7 @@ class TestMMRV3Response(unittest.TestCase):
         if include_optional:
             return MMRV3Response(
                 data = henrikdev_api_client.models.mmrv3_data.MMRV3Data(
-                    account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
+                    account = henrikdev_api_client.models.accolades_v1_account.AccoladesV1Account(
                         name = '', 
                         puuid = '', 
                         tag = '', ), 
@@ -73,7 +73,7 @@ class TestMMRV3Response(unittest.TestCase):
         else:
             return MMRV3Response(
                 data = henrikdev_api_client.models.mmrv3_data.MMRV3Data(
-                    account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
+                    account = henrikdev_api_client.models.accolades_v1_account.AccoladesV1Account(
                         name = '', 
                         puuid = '', 
                         tag = '', ), 

@@ -87,6 +87,20 @@ void main() {
       // TODO
     });
 
+    // Get player accolades by PUUID (v1)
+    //
+    //Future<AccoladesV1Response> getAccoladesById(String affinity, String platform, String puuid) async
+    test('test getAccoladesById', () async {
+      // TODO
+    });
+
+    // Get player accolades by name (v1)
+    //
+    //Future<AccoladesV1Response> getAccoladesByName(String affinity, String platform, String name, String tag) async
+    test('test getAccoladesByName', () async {
+      // TODO
+    });
+
     // Get account by PUUID (v1)
     //
     //Future<AccountV1Response> getAccountByIdV1(String puuid, { bool force }) async

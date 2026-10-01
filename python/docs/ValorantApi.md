@@ -14,6 +14,8 @@ Method | HTTP request | Description
 [**esports_team_matches_v2**](ValorantApi.md#esports_team_matches_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2)
 [**esports_team_transactions_v2**](ValorantApi.md#esports_team_transactions_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2)
 [**esports_team_v2**](ValorantApi.md#esports_team_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2)
+[**get_accolades_by_id**](ValorantApi.md#get_accolades_by_id) | **GET** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1)
+[**get_accolades_by_name**](ValorantApi.md#get_accolades_by_name) | **GET** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1)
 [**get_account_by_id_v1**](ValorantApi.md#get_account_by_id_v1) | **GET** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1)
 [**get_account_by_id_v2**](ValorantApi.md#get_account_by_id_v2) | **GET** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2)
 [**get_account_v1**](ValorantApi.md#get_account_v1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1)
@@ -929,6 +931,190 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Esports team profile retrieved successfully |  -  |
 **400** | Bad Request |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_accolades_by_id**
+> AccoladesV1Response get_accolades_by_id(affinity, platform, puuid)
+
+Get player accolades by PUUID (v1)
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.accolades_v1_response import AccoladesV1Response
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    platform = 'platform_example' # str | Platform (pc, console)
+    puuid = 'puuid_example' # str | Player UUID
+
+    try:
+        # Get player accolades by PUUID (v1)
+        api_response = api_instance.get_accolades_by_id(affinity, platform, puuid)
+        print("The response of ValorantApi->get_accolades_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->get_accolades_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **platform** | **str**| Platform (pc, console) | 
+ **puuid** | **str**| Player UUID | 
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Accolades retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**404** | Account not found |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_accolades_by_name**
+> AccoladesV1Response get_accolades_by_name(affinity, platform, name, tag)
+
+Get player accolades by name (v1)
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.accolades_v1_response import AccoladesV1Response
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    platform = 'platform_example' # str | Platform (pc, console)
+    name = 'name_example' # str | Riot ID name
+    tag = 'tag_example' # str | Riot ID tag
+
+    try:
+        # Get player accolades by name (v1)
+        api_response = api_instance.get_accolades_by_name(affinity, platform, name, tag)
+        print("The response of ValorantApi->get_accolades_by_name:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->get_accolades_by_name: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **platform** | **str**| Platform (pc, console) | 
+ **name** | **str**| Riot ID name | 
+ **tag** | **str**| Riot ID tag | 
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Accolades retrieved successfully |  -  |
+**400** | Bad Request |  -  |
+**404** | Account not found |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

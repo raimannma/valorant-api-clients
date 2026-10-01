@@ -27,6 +27,7 @@ import java.io.IOException
 import okhttp3.Call
 import okhttp3.HttpUrl
 
+import henrikdevApiClient.models.AccoladesV1Response
 import henrikdevApiClient.models.AccountV1Response
 import henrikdevApiClient.models.AccountV2Response
 import henrikdevApiClient.models.ContentV1Response
@@ -873,6 +874,167 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/valorant/v2/esports/vlr/teams/{team_id}".replace("{"+"team_id"+"}", encodeURIComponent(teamId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}
+     * Get player accolades by PUUID (v1)
+     * 
+     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param platform Platform (pc, console)
+     * @param puuid Player UUID
+     * @return AccoladesV1Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getAccoladesById(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : AccoladesV1Response {
+        val localVarResponse = getAccoladesByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AccoladesV1Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}
+     * Get player accolades by PUUID (v1)
+     * 
+     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param platform Platform (pc, console)
+     * @param puuid Player UUID
+     * @return ApiResponse<AccoladesV1Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getAccoladesByIdWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : ApiResponse<AccoladesV1Response?> {
+        val localVariableConfig = getAccoladesByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid)
+
+        return request<Unit, AccoladesV1Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getAccoladesById
+     *
+     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param platform Platform (pc, console)
+     * @param puuid Player UUID
+     * @return RequestConfig
+     */
+    fun getAccoladesByIdRequestConfig(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"platform"+"}", encodeURIComponent(platform.toString())).replace("{"+"puuid"+"}", encodeURIComponent(puuid.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}
+     * Get player accolades by name (v1)
+     * 
+     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param platform Platform (pc, console)
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @return AccoladesV1Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getAccoladesByName(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : AccoladesV1Response {
+        val localVarResponse = getAccoladesByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AccoladesV1Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}
+     * Get player accolades by name (v1)
+     * 
+     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param platform Platform (pc, console)
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @return ApiResponse<AccoladesV1Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getAccoladesByNameWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : ApiResponse<AccoladesV1Response?> {
+        val localVariableConfig = getAccoladesByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag)
+
+        return request<Unit, AccoladesV1Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getAccoladesByName
+     *
+     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param platform Platform (pc, console)
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @return RequestConfig
+     */
+    fun getAccoladesByNameRequestConfig(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"platform"+"}", encodeURIComponent(platform.toString())).replace("{"+"name"+"}", encodeURIComponent(name.toString())).replace("{"+"tag"+"}", encodeURIComponent(tag.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

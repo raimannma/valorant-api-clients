@@ -155,6 +155,39 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ValorantAPIService GetAccoladesById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity string
+		var platform string
+		var puuid string
+
+		resp, httpRes, err := apiClient.ValorantAPI.GetAccoladesById(context.Background(), affinity, platform, puuid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService GetAccoladesByName", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity string
+		var platform string
+		var name string
+		var tag string
+
+		resp, httpRes, err := apiClient.ValorantAPI.GetAccoladesByName(context.Background(), affinity, platform, name, tag).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ValorantAPIService GetAccountByIdV1", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

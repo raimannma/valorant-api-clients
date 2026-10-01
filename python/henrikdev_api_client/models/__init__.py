@@ -14,6 +14,17 @@
 
 # import models into model package
 from henrikdev_api_client.models.api_error import APIError
+from henrikdev_api_client.models.accolade_kind import AccoladeKind
+from henrikdev_api_client.models.accolades_v1_account import AccoladesV1Account
+from henrikdev_api_client.models.accolades_v1_data import AccoladesV1Data
+from henrikdev_api_client.models.accolades_v1_match import AccoladesV1Match
+from henrikdev_api_client.models.accolades_v1_match_metric import AccoladesV1MatchMetric
+from henrikdev_api_client.models.accolades_v1_player import AccoladesV1Player
+from henrikdev_api_client.models.accolades_v1_response import AccoladesV1Response
+from henrikdev_api_client.models.accolades_v1_season import AccoladesV1Season
+from henrikdev_api_client.models.accolades_v1_season_id import AccoladesV1SeasonId
+from henrikdev_api_client.models.accolades_v1_summary import AccoladesV1Summary
+from henrikdev_api_client.models.accolades_v1_summary_metric import AccoladesV1SummaryMetric
 from henrikdev_api_client.models.account_v1_data import AccountV1Data
 from henrikdev_api_client.models.account_v1_data_card import AccountV1DataCard
 from henrikdev_api_client.models.account_v1_response import AccountV1Response

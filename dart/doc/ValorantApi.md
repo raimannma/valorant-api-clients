@@ -19,6 +19,8 @@ Method | HTTP request | Description
 [**esportsTeamMatchesV2**](ValorantApi.md#esportsteammatchesv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2)
 [**esportsTeamTransactionsV2**](ValorantApi.md#esportsteamtransactionsv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2)
 [**esportsTeamV2**](ValorantApi.md#esportsteamv2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2)
+[**getAccoladesById**](ValorantApi.md#getaccoladesbyid) | **GET** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1)
+[**getAccoladesByName**](ValorantApi.md#getaccoladesbyname) | **GET** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1)
 [**getAccountByIdV1**](ValorantApi.md#getaccountbyidv1) | **GET** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1)
 [**getAccountByIdV2**](ValorantApi.md#getaccountbyidv2) | **GET** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2)
 [**getAccountV1**](ValorantApi.md#getaccountv1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1)
@@ -554,6 +556,114 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAccoladesById**
+> AccoladesV1Response getAccoladesById(affinity, platform, puuid)
+
+Get player accolades by PUUID (v1)
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final platform = platform_example; // String | Platform (pc, console)
+final puuid = puuid_example; // String | Player UUID
+
+try {
+    final result = api_instance.getAccoladesById(affinity, platform, puuid);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->getAccoladesById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **platform** | **String**| Platform (pc, console) | 
+ **puuid** | **String**| Player UUID | 
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAccoladesByName**
+> AccoladesV1Response getAccoladesByName(affinity, platform, name, tag)
+
+Get player accolades by name (v1)
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final platform = platform_example; // String | Platform (pc, console)
+final name = name_example; // String | Riot ID name
+final tag = tag_example; // String | Riot ID tag
+
+try {
+    final result = api_instance.getAccoladesByName(affinity, platform, name, tag);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->getAccoladesByName: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **platform** | **String**| Platform (pc, console) | 
+ **name** | **String**| Riot ID name | 
+ **tag** | **String**| Riot ID tag | 
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
 
 ### Authorization
 

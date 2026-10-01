@@ -35,7 +35,7 @@ class TestMMRHistoryV2Data(unittest.TestCase):
         model = MMRHistoryV2Data()
         if include_optional:
             return MMRHistoryV2Data(
-                account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
+                account = henrikdev_api_client.models.accolades_v1_account.AccoladesV1Account(
                     name = '', 
                     puuid = '', 
                     tag = '', ),
@@ -61,7 +61,7 @@ class TestMMRHistoryV2Data(unittest.TestCase):
             )
         else:
             return MMRHistoryV2Data(
-                account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
+                account = henrikdev_api_client.models.accolades_v1_account.AccoladesV1Account(
                     name = '', 
                     puuid = '', 
                     tag = '', ),

@@ -16,6 +16,8 @@ All URIs are relative to https://api.henrikdev.xyz, except if the operation defi
 | [**esportsTeamMatchesV2()**](ValorantApi.md#esportsTeamMatchesV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2) |
 | [**esportsTeamTransactionsV2()**](ValorantApi.md#esportsTeamTransactionsV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2) |
 | [**esportsTeamV2()**](ValorantApi.md#esportsTeamV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2) |
+| [**getAccoladesById()**](ValorantApi.md#getAccoladesById) | **GET** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1) |
+| [**getAccoladesByName()**](ValorantApi.md#getAccoladesByName) | **GET** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1) |
 | [**getAccountByIdV1()**](ValorantApi.md#getAccountByIdV1) | **GET** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1) |
 | [**getAccountByIdV2()**](ValorantApi.md#getAccountByIdV2) | **GET** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2) |
 | [**getAccountV1()**](ValorantApi.md#getAccountV1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1) |
@@ -709,6 +711,146 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\EsportsV2TeamResponse**](../Model/EsportsV2TeamResponse.md)
+
+### Authorization
+
+[api_key_query](../../README.md#api_key_query), [api_key_header](../../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAccoladesById()`
+
+```php
+getAccoladesById($affinity, $platform, $puuid): \OpenAPI\Client\Model\AccoladesV1Response
+```
+
+Get player accolades by PUUID (v1)
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: api_key_query
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('api_key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_key', 'Bearer');
+
+// Configure API key authorization: api_key_header
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$affinity = 'affinity_example'; // string | Region/affinity (e.g., na, eu, ap, kr)
+$platform = 'platform_example'; // string | Platform (pc, console)
+$puuid = 'puuid_example'; // string | Player UUID
+
+try {
+    $result = $apiInstance->getAccoladesById($affinity, $platform, $puuid);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->getAccoladesById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | **string**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **platform** | **string**| Platform (pc, console) | |
+| **puuid** | **string**| Player UUID | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AccoladesV1Response**](../Model/AccoladesV1Response.md)
+
+### Authorization
+
+[api_key_query](../../README.md#api_key_query), [api_key_header](../../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAccoladesByName()`
+
+```php
+getAccoladesByName($affinity, $platform, $name, $tag): \OpenAPI\Client\Model\AccoladesV1Response
+```
+
+Get player accolades by name (v1)
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: api_key_query
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('api_key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_key', 'Bearer');
+
+// Configure API key authorization: api_key_header
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ValorantApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$affinity = 'affinity_example'; // string | Region/affinity (e.g., na, eu, ap, kr)
+$platform = 'platform_example'; // string | Platform (pc, console)
+$name = 'name_example'; // string | Riot ID name
+$tag = 'tag_example'; // string | Riot ID tag
+
+try {
+    $result = $apiInstance->getAccoladesByName($affinity, $platform, $name, $tag);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ValorantApi->getAccoladesByName: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | **string**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **platform** | **string**| Platform (pc, console) | |
+| **name** | **string**| Riot ID name | |
+| **tag** | **string**| Riot ID tag | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\AccoladesV1Response**](../Model/AccoladesV1Response.md)
 
 ### Authorization
 

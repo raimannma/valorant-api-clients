@@ -192,6 +192,30 @@ class ValorantApiTest extends TestCase
     }
 
     /**
+     * Test case for getAccoladesById
+     *
+     * Get player accolades by PUUID (v1).
+     *
+     */
+    public function testGetAccoladesById()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAccoladesByName
+     *
+     * Get player accolades by name (v1).
+     *
+     */
+    public function testGetAccoladesByName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getAccountByIdV1
      *
      * Get account by PUUID (v1).

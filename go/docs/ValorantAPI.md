@@ -14,6 +14,8 @@ Method | HTTP request | Description
 [**EsportsTeamMatchesV2**](ValorantAPI.md#EsportsTeamMatchesV2) | **Get** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2)
 [**EsportsTeamTransactionsV2**](ValorantAPI.md#EsportsTeamTransactionsV2) | **Get** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2)
 [**EsportsTeamV2**](ValorantAPI.md#EsportsTeamV2) | **Get** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2)
+[**GetAccoladesById**](ValorantAPI.md#GetAccoladesById) | **Get** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1)
+[**GetAccoladesByName**](ValorantAPI.md#GetAccoladesByName) | **Get** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1)
 [**GetAccountByIdV1**](ValorantAPI.md#GetAccountByIdV1) | **Get** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1)
 [**GetAccountByIdV2**](ValorantAPI.md#GetAccountByIdV2) | **Get** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2)
 [**GetAccountV1**](ValorantAPI.md#GetAccountV1) | **Get** /valorant/v1/account/{name}/{tag} | Get account (v1)
@@ -724,6 +726,157 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAccoladesById
+
+> AccoladesV1Response GetAccoladesById(ctx, affinity, platform, puuid).Execute()
+
+Get player accolades by PUUID (v1)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	platform := "platform_example" // string | Platform (pc, console)
+	puuid := "puuid_example" // string | Player UUID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.GetAccoladesById(context.Background(), affinity, platform, puuid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetAccoladesById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAccoladesById`: AccoladesV1Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.GetAccoladesById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**platform** | **string** | Platform (pc, console) | 
+**puuid** | **string** | Player UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAccoladesByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAccoladesByName
+
+> AccoladesV1Response GetAccoladesByName(ctx, affinity, platform, name, tag).Execute()
+
+Get player accolades by name (v1)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	platform := "platform_example" // string | Platform (pc, console)
+	name := "name_example" // string | Riot ID name
+	tag := "tag_example" // string | Riot ID tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.GetAccoladesByName(context.Background(), affinity, platform, name, tag).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetAccoladesByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAccoladesByName`: AccoladesV1Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.GetAccoladesByName`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**platform** | **string** | Platform (pc, console) | 
+**name** | **string** | Riot ID name | 
+**tag** | **string** | Riot ID tag | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAccoladesByNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
 
 ### Authorization
 

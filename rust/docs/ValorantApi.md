@@ -14,6 +14,8 @@ Method | HTTP request | Description
 [**esports_team_matches_v2**](ValorantApi.md#esports_team_matches_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2)
 [**esports_team_transactions_v2**](ValorantApi.md#esports_team_transactions_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2)
 [**esports_team_v2**](ValorantApi.md#esports_team_v2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2)
+[**get_accolades_by_id**](ValorantApi.md#get_accolades_by_id) | **GET** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1)
+[**get_accolades_by_name**](ValorantApi.md#get_accolades_by_name) | **GET** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1)
 [**get_account_by_id_v1**](ValorantApi.md#get_account_by_id_v1) | **GET** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1)
 [**get_account_by_id_v2**](ValorantApi.md#get_account_by_id_v2) | **GET** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2)
 [**get_account_v1**](ValorantApi.md#get_account_v1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1)
@@ -334,6 +336,67 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_accolades_by_id
+
+> models::AccoladesV1Response get_accolades_by_id(affinity, platform, puuid)
+Get player accolades by PUUID (v1)
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**platform** | **String** | Platform (pc, console) | [required] |
+**puuid** | **String** | Player UUID | [required] |
+
+### Return type
+
+[**models::AccoladesV1Response**](AccoladesV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_accolades_by_name
+
+> models::AccoladesV1Response get_accolades_by_name(affinity, platform, name, tag)
+Get player accolades by name (v1)
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**platform** | **String** | Platform (pc, console) | [required] |
+**name** | **String** | Riot ID name | [required] |
+**tag** | **String** | Riot ID tag | [required] |
+
+### Return type
+
+[**models::AccoladesV1Response**](AccoladesV1Response.md)
 
 ### Authorization
 

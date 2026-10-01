@@ -7,6 +7,17 @@ base.ts
 common.ts
 configuration.ts
 docs/APIError.md
+docs/AccoladeKind.md
+docs/AccoladesV1Account.md
+docs/AccoladesV1Data.md
+docs/AccoladesV1Match.md
+docs/AccoladesV1MatchMetric.md
+docs/AccoladesV1Player.md
+docs/AccoladesV1Response.md
+docs/AccoladesV1Season.md
+docs/AccoladesV1SeasonId.md
+docs/AccoladesV1Summary.md
+docs/AccoladesV1SummaryMetric.md
 docs/AccountV1Data.md
 docs/AccountV1DataCard.md
 docs/AccountV1Response.md

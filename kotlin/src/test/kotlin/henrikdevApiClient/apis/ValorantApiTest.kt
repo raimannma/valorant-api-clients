@@ -27,6 +27,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import henrikdevApiClient.apis.ValorantApi
+import henrikdevApiClient.models.AccoladesV1Response
 import henrikdevApiClient.models.AccountV1Response
 import henrikdevApiClient.models.AccountV2Response
 import henrikdevApiClient.models.ContentV1Response
@@ -158,6 +159,27 @@ class ValorantApiTest : ShouldSpec() {
             // uncomment below to test esportsTeamV2
             //val teamId : kotlin.Int = 56 // kotlin.Int | 
             //val result : EsportsV2TeamResponse = apiInstance.esportsTeamV2(teamId)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getAccoladesById
+        should("test getAccoladesById") {
+            // uncomment below to test getAccoladesById
+            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+            //val result : AccoladesV1Response = apiInstance.getAccoladesById(affinity, platform, puuid)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getAccoladesByName
+        should("test getAccoladesByName") {
+            // uncomment below to test getAccoladesByName
+            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val name : kotlin.String = name_example // kotlin.String | Riot ID name
+            //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
+            //val result : AccoladesV1Response = apiInstance.getAccoladesByName(affinity, platform, name, tag)
             //result shouldBe ("TODO")
         }
 

@@ -96,6 +96,20 @@ class TestValorantApi(unittest.TestCase):
         """
         pass
 
+    def test_get_accolades_by_id(self) -> None:
+        """Test case for get_accolades_by_id
+
+        Get player accolades by PUUID (v1)
+        """
+        pass
+
+    def test_get_accolades_by_name(self) -> None:
+        """Test case for get_accolades_by_name
+
+        Get player accolades by name (v1)
+        """
+        pass
+
     def test_get_account_by_id_v1(self) -> None:
         """Test case for get_account_by_id_v1
 

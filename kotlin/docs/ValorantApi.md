@@ -14,6 +14,8 @@ All URIs are relative to *https://api.henrikdev.xyz*
 | [**esportsTeamMatchesV2**](ValorantApi.md#esportsTeamMatchesV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/matches | Get VLR team matches (v2) |
 | [**esportsTeamTransactionsV2**](ValorantApi.md#esportsTeamTransactionsV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id}/transactions | Get VLR team transactions (v2) |
 | [**esportsTeamV2**](ValorantApi.md#esportsTeamV2) | **GET** /valorant/v2/esports/vlr/teams/{team_id} | Get VLR team (v2) |
+| [**getAccoladesById**](ValorantApi.md#getAccoladesById) | **GET** /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid} | Get player accolades by PUUID (v1) |
+| [**getAccoladesByName**](ValorantApi.md#getAccoladesByName) | **GET** /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag} | Get player accolades by name (v1) |
 | [**getAccountByIdV1**](ValorantApi.md#getAccountByIdV1) | **GET** /valorant/v1/by-puuid/account/{puuid} | Get account by PUUID (v1) |
 | [**getAccountByIdV2**](ValorantApi.md#getAccountByIdV2) | **GET** /valorant/v2/by-puuid/account/{puuid} | Get account by PUUID (v2) |
 | [**getAccountV1**](ValorantApi.md#getAccountV1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1) |
@@ -555,6 +557,116 @@ try {
 ### Return type
 
 [**EsportsV2TeamResponse**](EsportsV2TeamResponse.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getAccoladesById"></a>
+# **getAccoladesById**
+> AccoladesV1Response getAccoladesById(affinity, platform, puuid)
+
+Get player accolades by PUUID (v1)
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+try {
+    val result : AccoladesV1Response = apiInstance.getAccoladesById(affinity, platform, puuid)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#getAccoladesById")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#getAccoladesById")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **puuid** | **kotlin.String**| Player UUID | |
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getAccoladesByName"></a>
+# **getAccoladesByName**
+> AccoladesV1Response getAccoladesByName(affinity, platform, name, tag)
+
+Get player accolades by name (v1)
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val name : kotlin.String = name_example // kotlin.String | Riot ID name
+val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
+try {
+    val result : AccoladesV1Response = apiInstance.getAccoladesByName(affinity, platform, name, tag)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#getAccoladesByName")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#getAccoladesByName")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **name** | **kotlin.String**| Riot ID name | |
+| **tag** | **kotlin.String**| Riot ID tag | |
+
+### Return type
+
+[**AccoladesV1Response**](AccoladesV1Response.md)
 
 ### Authorization
 
