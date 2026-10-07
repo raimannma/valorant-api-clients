@@ -16,11 +16,13 @@ void main() {
   // final instance = MatchesV4DataPlayerEconomyLoadoutValue();
 
   group('test MatchesV4DataPlayerEconomyLoadoutValue', () {
+    // Loadout value in credits per round played by this player; zero when rounds played is zero.
     // double average
     test('to test the property `average`', () async {
       // TODO
     });
 
+    // Sum of loadout values in credits across reported player rounds.
     // int overall
     test('to test the property `overall`', () async {
       // TODO

@@ -21,8 +21,18 @@ void main() {
       // TODO
     });
 
+    // int gamesNeededForLeaderboard
+    test('to test the property `gamesNeededForLeaderboard`', () async {
+      // TODO
+    });
+
     // int gamesNeededForRating
     test('to test the property `gamesNeededForRating`', () async {
+      // TODO
+    });
+
+    // bool isAtRankProtectedTier
+    test('to test the property `isAtRankProtectedTier`', () async {
       // TODO
     });
 
@@ -38,6 +48,11 @@ void main() {
 
     // int rankProtectionShields
     test('to test the property `rankProtectionShields`', () async {
+      // TODO
+    });
+
+    // String rankProtectionStatus
+    test('to test the property `rankProtectionStatus`', () async {
       // TODO
     });
 

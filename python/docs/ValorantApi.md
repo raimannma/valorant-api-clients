@@ -21,6 +21,10 @@ Method | HTTP request | Description
 [**get_account_v1**](ValorantApi.md#get_account_v1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1)
 [**get_account_v2**](ValorantApi.md#get_account_v2) | **GET** /valorant/v2/account/{name}/{tag} | Get account (v2)
 [**get_content_v1**](ValorantApi.md#get_content_v1) | **GET** /valorant/v1/content | Get content (v1)
+[**get_mastery_agent_by_id**](ValorantApi.md#get_mastery_agent_by_id) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id} | Get agent mastery by PUUID (v1)
+[**get_mastery_agent_by_name**](ValorantApi.md#get_mastery_agent_by_name) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id} | Get agent mastery by name (v1)
+[**get_mastery_by_id**](ValorantApi.md#get_mastery_by_id) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid} | Get all agent mastery by PUUID (v1)
+[**get_mastery_by_name**](ValorantApi.md#get_mastery_by_name) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag} | Get all agent mastery by name (v1)
 [**get_matches_v3_by_id**](ValorantApi.md#get_matches_v3_by_id) | **GET** /valorant/v3/by-puuid/matches/{affinity}/{puuid} | Get matches by PUUID (v3)
 [**get_matches_v3_by_name**](ValorantApi.md#get_matches_v3_by_name) | **GET** /valorant/v3/matches/{affinity}/{name}/{tag} | Get matches by name (v3)
 [**get_matches_v4_by_id**](ValorantApi.md#get_matches_v4_by_id) | **GET** /valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid} | Get matches by PUUID (v4)
@@ -42,8 +46,12 @@ Method | HTTP request | Description
 [**match_v4**](ValorantApi.md#match_v4) | **GET** /valorant/v4/match/{affinity}/{match_id} | Get match details (v4)
 [**premier_by_id**](ValorantApi.md#premier_by_id) | **GET** /valorant/v1/premier/{id} | Get Premier team by ID (v1)
 [**premier_by_id_history**](ValorantApi.md#premier_by_id_history) | **GET** /valorant/v1/premier/{id}/history | Get Premier team history by ID (v1)
+[**premier_by_id_v2**](ValorantApi.md#premier_by_id_v2) | **GET** /valorant/v2/premier/teams/{affinity}/{id} | Get live Premier team by ID (v2)
 [**premier_by_name**](ValorantApi.md#premier_by_name) | **GET** /valorant/v1/premier/{name}/{tag} | Get Premier team by name (v1)
 [**premier_by_name_history**](ValorantApi.md#premier_by_name_history) | **GET** /valorant/v1/premier/{name}/{tag}/history | Get Premier team history by name (v1)
+[**premier_by_name_v2**](ValorantApi.md#premier_by_name_v2) | **GET** /valorant/v2/premier/teams/{affinity}/{name}/{tag} | Get live Premier team by team name (v2)
+[**premier_by_player_name**](ValorantApi.md#premier_by_player_name) | **GET** /valorant/v2/premier/players/{affinity}/{name}/{tag} | Get live Premier team by player Riot ID (v2)
+[**premier_by_puuid**](ValorantApi.md#premier_by_puuid) | **GET** /valorant/v2/premier/players/{affinity}/{puuid} | Get live Premier team by player PUUID (v2)
 [**premier_leaderboard**](ValorantApi.md#premier_leaderboard) | **GET** /valorant/v1/premier/leaderboard/{affinity} | Get Premier leaderboard (v1)
 [**premier_search**](ValorantApi.md#premier_search) | **GET** /valorant/v1/premier/search | Search Premier teams (v1)
 [**queue_status**](ValorantApi.md#queue_status) | **GET** /valorant/v1/queue-status/{affinity} | Get queue status (v1)
@@ -63,7 +71,7 @@ Method | HTTP request | Description
 
 
 # **crosshair**
-> crosshair(id=id)
+> crosshair(id)
 
 Generate crosshair image (v1)
 
@@ -104,11 +112,11 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    id = 'id_example' # str | Crosshair code (optional)
+    id = 'id_example' # str | Required crosshair code
 
     try:
         # Generate crosshair image (v1)
-        api_instance.crosshair(id=id)
+        api_instance.crosshair(id)
     except Exception as e:
         print("Exception when calling ValorantApi->crosshair: %s\n" % e)
 ```
@@ -120,7 +128,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Crosshair code | [optional] 
+ **id** | **str**| Required crosshair code | 
 
 ### Return type
 
@@ -141,6 +149,9 @@ void (empty response body)
 |-------------|-------------|------------------|
 **200** | Crosshair image generated successfully |  -  |
 **400** | Bad Request |  -  |
+**401** | Upstream unauthorized |  -  |
+**403** | Upstream forbidden |  -  |
+**404** | Upstream crosshair not found |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -278,7 +289,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     region = henrikdev_api_client.EsportsV2Region() # EsportsV2Region |  (optional)
     type = henrikdev_api_client.EsportsV2EventType() # EsportsV2EventType |  (optional)
-    page = 56 # int |  (optional)
+    page = 1 # int |  (optional) (default to 1)
 
     try:
         # Get VLR esports events (v2)
@@ -298,7 +309,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **region** | [**EsportsV2Region**](.md)|  | [optional] 
  **type** | [**EsportsV2EventType**](.md)|  | [optional] 
- **page** | **int**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
 
 ### Return type
 
@@ -453,7 +464,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     player = 56 # int | 
-    page = 56 # int |  (optional)
+    page = 1 # int |  (optional) (default to 1)
 
     try:
         # Get VLR player matches (v2)
@@ -472,7 +483,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **player** | **int**|  | 
- **page** | **int**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
 
 ### Return type
 
@@ -719,7 +730,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     team_id = 56 # int | 
-    page = 56 # int |  (optional)
+    page = 1 # int |  (optional) (default to 1)
 
     try:
         # Get VLR team matches (v2)
@@ -738,7 +749,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **int**|  | 
- **page** | **int**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
 
 ### Return type
 
@@ -948,6 +959,8 @@ Get player accolades by PUUID (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.accolades_v1_response import AccoladesV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -978,9 +991,9 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
-    puuid = 'puuid_example' # str | Player UUID
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
+    puuid = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Player UUID
 
     try:
         # Get player accolades by PUUID (v1)
@@ -998,9 +1011,9 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
- **puuid** | **str**| Player UUID | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **puuid** | **UUID**| Player UUID | 
 
 ### Return type
 
@@ -1039,6 +1052,8 @@ Get player accolades by name (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.accolades_v1_response import AccoladesV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -1069,8 +1084,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
 
@@ -1090,8 +1105,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
 
@@ -1492,6 +1507,7 @@ Get content (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.content_v1_response import ContentV1Response
+from henrikdev_api_client.models.valorant_content_locale import ValorantContentLocale
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -1522,7 +1538,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    locale = 'locale_example' # str | Locale code (e.g., en-US, de-DE) - optional (optional)
+    locale = henrikdev_api_client.ValorantContentLocale() # ValorantContentLocale | Content locale; case-insensitive. Omission selects en-US. (optional)
 
     try:
         # Get content (v1)
@@ -1540,7 +1556,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **locale** | **str**| Locale code (e.g., en-US, de-DE) - optional | [optional] 
+ **locale** | [**ValorantContentLocale**](.md)| Content locale; case-insensitive. Omission selects en-US. | [optional] 
 
 ### Return type
 
@@ -1566,10 +1582,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_matches_v3_by_id**
-> MatchesV3ListResponse get_matches_v3_by_id(affinity, puuid, mode=mode, map=map, size=size)
+# **get_mastery_agent_by_id**
+> AgentMasteryV1DetailResponse get_mastery_agent_by_id(affinity, platform, puuid, agent_id)
 
-Get matches by PUUID (v3)
+Get agent mastery by PUUID (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
 
 ### Example
 
@@ -1578,7 +1596,9 @@ Get matches by PUUID (v3)
 
 ```python
 import henrikdev_api_client
-from henrikdev_api_client.models.matches_v3_list_response import MatchesV3ListResponse
+from henrikdev_api_client.models.agent_mastery_v1_detail_response import AgentMasteryV1DetailResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -1609,15 +1629,401 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
-    mode = 'mode_example' # str | Game mode filter (optional) (optional)
-    map = 'map_example' # str | Map filter (optional) (optional)
-    size = 56 # int | Number of results (optional) (optional)
+    agent_id = 'agent_id_example' # str | Agent UUID
+
+    try:
+        # Get agent mastery by PUUID (v1)
+        api_response = api_instance.get_mastery_agent_by_id(affinity, platform, puuid, agent_id)
+        print("The response of ValorantApi->get_mastery_agent_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->get_mastery_agent_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **puuid** | **str**| Player UUID | 
+ **agent_id** | **str**| Agent UUID | 
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Mastery retrieved successfully |  -  |
+**400** | Invalid region, platform, UUID or unknown agent |  -  |
+**404** | Account or agent mastery not found |  -  |
+**500** | Unable to fetch or parse mastery |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_mastery_agent_by_name**
+> AgentMasteryV1DetailResponse get_mastery_agent_by_name(affinity, platform, name, tag, agent_id)
+
+Get agent mastery by name (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.agent_mastery_v1_detail_response import AgentMasteryV1DetailResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
+    name = 'name_example' # str | Riot ID name
+    tag = 'tag_example' # str | Riot ID tag
+    agent_id = 'agent_id_example' # str | Agent UUID
+
+    try:
+        # Get agent mastery by name (v1)
+        api_response = api_instance.get_mastery_agent_by_name(affinity, platform, name, tag, agent_id)
+        print("The response of ValorantApi->get_mastery_agent_by_name:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->get_mastery_agent_by_name: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **name** | **str**| Riot ID name | 
+ **tag** | **str**| Riot ID tag | 
+ **agent_id** | **str**| Agent UUID | 
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Mastery retrieved successfully |  -  |
+**400** | Invalid region, platform, UUID or unknown agent |  -  |
+**404** | Account or agent mastery not found |  -  |
+**500** | Unable to fetch or parse mastery |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_mastery_by_id**
+> AgentMasteryV1Response get_mastery_by_id(affinity, platform, puuid)
+
+Get all agent mastery by PUUID (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.agent_mastery_v1_response import AgentMasteryV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
+    puuid = 'puuid_example' # str | Player UUID
+
+    try:
+        # Get all agent mastery by PUUID (v1)
+        api_response = api_instance.get_mastery_by_id(affinity, platform, puuid)
+        print("The response of ValorantApi->get_mastery_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->get_mastery_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **puuid** | **str**| Player UUID | 
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Mastery retrieved successfully |  -  |
+**400** | Invalid region, platform or UUID |  -  |
+**404** | Account not found |  -  |
+**500** | Unable to fetch or parse mastery |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_mastery_by_name**
+> AgentMasteryV1Response get_mastery_by_name(affinity, platform, name, tag)
+
+Get all agent mastery by name (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.agent_mastery_v1_response import AgentMasteryV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
+    name = 'name_example' # str | Riot ID name
+    tag = 'tag_example' # str | Riot ID tag
+
+    try:
+        # Get all agent mastery by name (v1)
+        api_response = api_instance.get_mastery_by_name(affinity, platform, name, tag)
+        print("The response of ValorantApi->get_mastery_by_name:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->get_mastery_by_name: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **name** | **str**| Riot ID name | 
+ **tag** | **str**| Riot ID tag | 
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Mastery retrieved successfully |  -  |
+**400** | Invalid region, platform or UUID |  -  |
+**404** | Account not found |  -  |
+**500** | Unable to fetch or parse mastery |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_matches_v3_by_id**
+> MatchesV3ListResponse get_matches_v3_by_id(affinity, puuid, mode=mode, queue=queue, map=map, size=size)
+
+Get matches by PUUID (v3)
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.matches_v3_list_response import MatchesV3ListResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    puuid = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Player UUID
+    mode = 'mode_example' # str | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+    queue = 'queue_example' # str | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+    map = 'map_example' # str | Map display name, matched case-insensitively. (optional)
+    size = 5 # int | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
 
     try:
         # Get matches by PUUID (v3)
-        api_response = api_instance.get_matches_v3_by_id(affinity, puuid, mode=mode, map=map, size=size)
+        api_response = api_instance.get_matches_v3_by_id(affinity, puuid, mode=mode, queue=queue, map=map, size=size)
         print("The response of ValorantApi->get_matches_v3_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -1631,11 +2037,12 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **puuid** | **str**| Player UUID | 
- **mode** | **str**| Game mode filter (optional) | [optional] 
- **map** | **str**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **puuid** | **UUID**| Player UUID | 
+ **mode** | **str**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **str**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **str**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
 
 ### Return type
 
@@ -1662,7 +2069,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_matches_v3_by_name**
-> MatchesV3ListResponse get_matches_v3_by_name(affinity, name, tag, mode=mode, map=map, size=size)
+> MatchesV3ListResponse get_matches_v3_by_name(affinity, name, tag, mode=mode, queue=queue, map=map, size=size)
 
 Get matches by name (v3)
 
@@ -1673,8 +2080,8 @@ Get matches by name (v3)
 
 ```python
 import henrikdev_api_client
-from henrikdev_api_client.models.match_mode import MatchMode
 from henrikdev_api_client.models.matches_v3_list_response import MatchesV3ListResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -1705,16 +2112,17 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
-    mode = henrikdev_api_client.MatchMode() # MatchMode | Game mode filter (optional) (optional)
-    map = 'map_example' # str | Map filter (optional) (optional)
-    size = 56 # int | Number of results (optional) (optional)
+    mode = 'mode_example' # str | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+    queue = 'queue_example' # str | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+    map = 'map_example' # str | Map display name, matched case-insensitively. (optional)
+    size = 5 # int | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
 
     try:
         # Get matches by name (v3)
-        api_response = api_instance.get_matches_v3_by_name(affinity, name, tag, mode=mode, map=map, size=size)
+        api_response = api_instance.get_matches_v3_by_name(affinity, name, tag, mode=mode, queue=queue, map=map, size=size)
         print("The response of ValorantApi->get_matches_v3_by_name:\n")
         pprint(api_response)
     except Exception as e:
@@ -1728,12 +2136,13 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
- **mode** | [**MatchMode**](.md)| Game mode filter (optional) | [optional] 
- **map** | **str**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **mode** | **str**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **str**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **str**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
 
 ### Return type
 
@@ -1760,7 +2169,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_matches_v4_by_id**
-> MatchesV4HistoryResponse get_matches_v4_by_id(affinity, platform, puuid, mode=mode, map=map, size=size, start=start)
+> MatchesV4HistoryResponse get_matches_v4_by_id(affinity, platform, puuid, mode=mode, queue=queue, map=map, size=size, start=start)
 
 Get matches by PUUID (v4)
 
@@ -1772,6 +2181,8 @@ Get matches by PUUID (v4)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.matches_v4_history_response import MatchesV4HistoryResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -1802,17 +2213,18 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
-    puuid = 'puuid_example' # str | Player UUID
-    mode = 'mode_example' # str | Game mode filter (optional) (optional)
-    map = 'map_example' # str | Map filter (optional) (optional)
-    size = 56 # int | Number of results (optional) (optional)
-    start = 56 # int | Start index for pagination (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
+    puuid = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Player UUID
+    mode = 'mode_example' # str | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+    queue = 'queue_example' # str | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+    map = 'map_example' # str | Map display name, matched case-insensitively. (optional)
+    size = 5 # int | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
+    start = 0 # int | Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional) (default to 0)
 
     try:
         # Get matches by PUUID (v4)
-        api_response = api_instance.get_matches_v4_by_id(affinity, platform, puuid, mode=mode, map=map, size=size, start=start)
+        api_response = api_instance.get_matches_v4_by_id(affinity, platform, puuid, mode=mode, queue=queue, map=map, size=size, start=start)
         print("The response of ValorantApi->get_matches_v4_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -1826,13 +2238,14 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
- **puuid** | **str**| Player UUID | 
- **mode** | **str**| Game mode filter (optional) | [optional] 
- **map** | **str**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
- **start** | **int**| Start index for pagination (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **puuid** | **UUID**| Player UUID | 
+ **mode** | **str**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **str**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **str**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
+ **start** | **int**| Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [optional] [default to 0]
 
 ### Return type
 
@@ -1859,7 +2272,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_matches_v4_by_name**
-> MatchesV4HistoryResponse get_matches_v4_by_name(affinity, platform, name, tag, mode=mode, map=map, size=size, start=start)
+> MatchesV4HistoryResponse get_matches_v4_by_name(affinity, platform, name, tag, mode=mode, queue=queue, map=map, size=size, start=start)
 
 Get matches by name (v4)
 
@@ -1871,6 +2284,8 @@ Get matches by name (v4)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.matches_v4_history_response import MatchesV4HistoryResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -1901,18 +2316,19 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
-    mode = 'mode_example' # str | Game mode filter (optional) (optional)
-    map = 'map_example' # str | Map filter (optional) (optional)
-    size = 56 # int | Number of results (optional) (optional)
-    start = 56 # int | Start index for pagination (optional) (optional)
+    mode = 'mode_example' # str | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+    queue = 'queue_example' # str | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+    map = 'map_example' # str | Map display name, matched case-insensitively. (optional)
+    size = 5 # int | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
+    start = 0 # int | Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional) (default to 0)
 
     try:
         # Get matches by name (v4)
-        api_response = api_instance.get_matches_v4_by_name(affinity, platform, name, tag, mode=mode, map=map, size=size, start=start)
+        api_response = api_instance.get_matches_v4_by_name(affinity, platform, name, tag, mode=mode, queue=queue, map=map, size=size, start=start)
         print("The response of ValorantApi->get_matches_v4_by_name:\n")
         pprint(api_response)
     except Exception as e:
@@ -1926,14 +2342,15 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
- **mode** | **str**| Game mode filter (optional) | [optional] 
- **map** | **str**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
- **start** | **int**| Start index for pagination (optional) | [optional] 
+ **mode** | **str**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **str**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **str**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
+ **start** | **int**| Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [optional] [default to 0]
 
 ### Return type
 
@@ -1972,6 +2389,7 @@ Get MMR history by PUUID (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmr_history_v1_response import MMRHistoryV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2002,7 +2420,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
 
     try:
@@ -2021,7 +2439,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **str**| Player UUID | 
 
 ### Return type
@@ -2061,6 +2479,7 @@ Get MMR history by name (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmr_history_v1_response import MMRHistoryV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2091,7 +2510,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
 
@@ -2111,7 +2530,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
 
@@ -2152,6 +2571,8 @@ Get MMR history by PUUID (v2)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmr_history_v2_response import MMRHistoryV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2182,8 +2603,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
 
     try:
@@ -2202,8 +2623,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **str**| Player UUID | 
 
 ### Return type
@@ -2243,6 +2664,8 @@ Get MMR history by name (v2)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmr_history_v2_response import MMRHistoryV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2273,8 +2696,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
 
@@ -2294,8 +2717,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
 
@@ -2336,6 +2759,7 @@ Get MMR by PUUID (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmrv1_response import MMRV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2366,7 +2790,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
 
     try:
@@ -2385,7 +2809,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **str**| Player UUID | 
 
 ### Return type
@@ -2425,6 +2849,7 @@ Get MMR by name (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmrv1_response import MMRV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2455,7 +2880,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
 
@@ -2475,7 +2900,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
 
@@ -2516,6 +2941,7 @@ Get MMR by PUUID (v2)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmrv2_response import MMRV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2546,7 +2972,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
 
     try:
@@ -2565,7 +2991,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **str**| Player UUID | 
 
 ### Return type
@@ -2605,6 +3031,7 @@ Get MMR by name (v2)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmrv2_response import MMRV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2635,7 +3062,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
 
@@ -2655,7 +3082,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
 
@@ -2696,6 +3123,8 @@ Get MMR by PUUID (v3)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmrv3_response import MMRV3Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2726,8 +3155,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
 
     try:
@@ -2746,8 +3175,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **str**| Player UUID | 
 
 ### Return type
@@ -2787,6 +3216,8 @@ Get MMR by name (v3)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.mmrv3_response import MMRV3Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2817,8 +3248,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
 
@@ -2838,8 +3269,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
 
@@ -2868,7 +3299,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leaderboard_v1**
-> object leaderboard_v1(affinity, season=season, name=name, tag=tag)
+> LeaderboardV1Response leaderboard_v1(affinity, season=season, name=name, tag=tag, puuid=puuid)
 
 Get leaderboard (v1)
 
@@ -2879,6 +3310,8 @@ Get leaderboard (v1)
 
 ```python
 import henrikdev_api_client
+from henrikdev_api_client.models.leaderboard_v1_response import LeaderboardV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -2909,14 +3342,15 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    season = 'season_example' # str | Season ID (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    season = 'season_example' # str | Short season ID, such as e9a1; omission selects the current season (optional)
     name = 'name_example' # str | Player name to search for (optional) (optional)
     tag = 'tag_example' # str | Player tag to search for (optional) (optional)
+    puuid = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Player UUID to search for (optional)
 
     try:
         # Get leaderboard (v1)
-        api_response = api_instance.leaderboard_v1(affinity, season=season, name=name, tag=tag)
+        api_response = api_instance.leaderboard_v1(affinity, season=season, name=name, tag=tag, puuid=puuid)
         print("The response of ValorantApi->leaderboard_v1:\n")
         pprint(api_response)
     except Exception as e:
@@ -2930,14 +3364,15 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **season** | **str**| Season ID (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **season** | **str**| Short season ID, such as e9a1; omission selects the current season | [optional] 
  **name** | **str**| Player name to search for (optional) | [optional] 
  **tag** | **str**| Player tag to search for (optional) | [optional] 
+ **puuid** | **UUID**| Player UUID to search for | [optional] 
 
 ### Return type
 
-**object**
+[**LeaderboardV1Response**](LeaderboardV1Response.md)
 
 ### Authorization
 
@@ -2952,7 +3387,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Leaderboard retrieved successfully |  -  |
+**200** | Leaderboard player array retrieved successfully |  -  |
 **400** | Bad Request |  -  |
 **404** | Leaderboard not found |  -  |
 **500** | Internal Server Error |  -  |
@@ -2960,7 +3395,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leaderboard_v2**
-> LeaderboardV2Response leaderboard_v2(affinity, season=season, name=name, tag=tag, puuid=puuid)
+> ValorantLeaderboardV2Response leaderboard_v2(affinity, season=season, name=name, tag=tag, puuid=puuid)
 
 Get leaderboard (v2)
 
@@ -2971,7 +3406,8 @@ Get leaderboard (v2)
 
 ```python
 import henrikdev_api_client
-from henrikdev_api_client.models.leaderboard_v2_response import LeaderboardV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_leaderboard_v2_response import ValorantLeaderboardV2Response
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3002,8 +3438,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    season = 'season_example' # str | Season ID (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    season = 'season_example' # str | Short season ID, such as e9a1; omission selects the current season (optional)
     name = 'name_example' # str | Player name to search for (optional) (optional)
     tag = 'tag_example' # str | Player tag to search for (optional) (optional)
     puuid = 'puuid_example' # str | Player UUID to search for (optional) (optional)
@@ -3024,15 +3460,15 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **season** | **str**| Season ID (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **season** | **str**| Short season ID, such as e9a1; omission selects the current season | [optional] 
  **name** | **str**| Player name to search for (optional) | [optional] 
  **tag** | **str**| Player tag to search for (optional) | [optional] 
  **puuid** | **str**| Player UUID to search for (optional) | [optional] 
 
 ### Return type
 
-[**LeaderboardV2Response**](LeaderboardV2Response.md)
+[**ValorantLeaderboardV2Response**](ValorantLeaderboardV2Response.md)
 
 ### Authorization
 
@@ -3047,7 +3483,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Leaderboard retrieved successfully |  -  |
+**200** | Unfiltered leaderboard metadata or a filtered status/data player array |  -  |
 **400** | Bad Request |  -  |
 **404** | Leaderboard not found |  -  |
 **500** | Internal Server Error |  -  |
@@ -3055,7 +3491,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leaderboard_v3**
-> LeaderboardV3Response leaderboard_v3(affinity, platform, season=season, size=size, page=page, name=name, tag=tag)
+> LeaderboardV3Response leaderboard_v3(affinity, platform, page=page, size=size, season_short=season_short, season_id=season_id, name=name, tag=tag, puuid=puuid)
 
 Get leaderboard (v3)
 
@@ -3067,6 +3503,8 @@ Get leaderboard (v3)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.leaderboard_v3_response import LeaderboardV3Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3097,17 +3535,19 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
-    season = 'season_example' # str | Season ID (optional) (optional)
-    size = 56 # int | Number of results per page (optional) (optional)
-    page = 56 # int | Page number (optional) (optional)
-    name = 'name_example' # str | Player name to search for (optional) (optional)
-    tag = 'tag_example' # str | Player tag to search for (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
+    page = 1 # int | Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. (optional) (default to 1)
+    size = 1000 # int | Positive integer result count; only ASCII decimal digits are accepted. (optional) (default to 1000)
+    season_short = 'season_short_example' # str | Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. (optional)
+    season_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Season UUID; mutually exclusive with season_short. (optional)
+    name = 'name_example' # str | Player name to search for. (optional)
+    tag = 'tag_example' # str | Player tag to search for. (optional)
+    puuid = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Player UUID to search for. (optional)
 
     try:
         # Get leaderboard (v3)
-        api_response = api_instance.leaderboard_v3(affinity, platform, season=season, size=size, page=page, name=name, tag=tag)
+        api_response = api_instance.leaderboard_v3(affinity, platform, page=page, size=size, season_short=season_short, season_id=season_id, name=name, tag=tag, puuid=puuid)
         print("The response of ValorantApi->leaderboard_v3:\n")
         pprint(api_response)
     except Exception as e:
@@ -3121,13 +3561,15 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
- **season** | **str**| Season ID (optional) | [optional] 
- **size** | **int**| Number of results per page (optional) | [optional] 
- **page** | **int**| Page number (optional) | [optional] 
- **name** | **str**| Player name to search for (optional) | [optional] 
- **tag** | **str**| Player tag to search for (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **page** | **int**| Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. | [optional] [default to 1]
+ **size** | **int**| Positive integer result count; only ASCII decimal digits are accepted. | [optional] [default to 1000]
+ **season_short** | **str**| Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. | [optional] 
+ **season_id** | **UUID**| Season UUID; mutually exclusive with season_short. | [optional] 
+ **name** | **str**| Player name to search for. | [optional] 
+ **tag** | **str**| Player tag to search for. | [optional] 
+ **puuid** | **UUID**| Player UUID to search for. | [optional] 
 
 ### Return type
 
@@ -3196,7 +3638,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    match_id = 'match_id_example' # str | Match UUID
+    match_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Match UUID
 
     try:
         # Get match details (v2)
@@ -3214,7 +3656,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **match_id** | **str**| Match UUID | 
+ **match_id** | **UUID**| Match UUID | 
 
 ### Return type
 
@@ -3253,6 +3695,7 @@ Get match details (v4)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.matches_v4_response import MatchesV4Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3283,8 +3726,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    match_id = 'match_id_example' # str | Match UUID
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    match_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Match UUID
 
     try:
         # Get match details (v4)
@@ -3302,8 +3745,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **match_id** | **str**| Match UUID | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **match_id** | **UUID**| Match UUID | 
 
 ### Return type
 
@@ -3342,6 +3785,7 @@ Get Premier team by ID (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3372,9 +3816,9 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    id = 'id_example' # str | Team UUID
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Team UUID
     season = 'season_example' # str | Premier season id (optional) (optional)
-    affinity = 'affinity_example' # str | Region/affinity for fallback resolution (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
 
     try:
         # Get Premier team by ID (v1)
@@ -3392,9 +3836,9 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Team UUID | 
+ **id** | **UUID**| Team UUID | 
  **season** | **str**| Premier season id (optional) | [optional] 
- **affinity** | **str**| Region/affinity for fallback resolution (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | [optional] 
 
 ### Return type
 
@@ -3421,7 +3865,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_by_id_history**
-> PremierTeamV1Response premier_by_id_history(id, season=season)
+> PremierTeamHistoryV1Response premier_by_id_history(id, season=season)
 
 Get Premier team history by ID (v1)
 
@@ -3432,7 +3876,7 @@ Get Premier team history by ID (v1)
 
 ```python
 import henrikdev_api_client
-from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.models.premier_team_history_v1_response import PremierTeamHistoryV1Response
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3463,7 +3907,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    id = 'id_example' # str | Team UUID
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Team UUID
     season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
@@ -3482,12 +3926,12 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Team UUID | 
+ **id** | **UUID**| Team UUID | 
  **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
 
-[**PremierTeamV1Response**](PremierTeamV1Response.md)
+[**PremierTeamHistoryV1Response**](PremierTeamHistoryV1Response.md)
 
 ### Authorization
 
@@ -3509,6 +3953,98 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **premier_by_id_v2**
+> PremierTeamV2Response premier_by_id_v2(affinity, id)
+
+Get live Premier team by ID (v2)
+
+Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_team_v2_response import PremierTeamV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Team UUID
+
+    try:
+        # Get live Premier team by ID (v2)
+        api_response = api_instance.premier_by_id_v2(affinity, id)
+        print("The response of ValorantApi->premier_by_id_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->premier_by_id_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **id** | **UUID**| Team UUID | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Premier team retrieved successfully |  -  |
+**400** | Invalid region or UUID |  -  |
+**404** | Team not found |  -  |
+**500** | Failed to fetch or parse Riot data |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **premier_by_name**
 > PremierTeamV1Response premier_by_name(name, tag, season=season, affinity=affinity)
 
@@ -3522,6 +4058,7 @@ Get Premier team by name (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3555,7 +4092,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | Team name
     tag = 'tag_example' # str | Team tag
     season = 'season_example' # str | Premier season id (optional) (optional)
-    affinity = 'affinity_example' # str | Region/affinity for fallback resolution (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
 
     try:
         # Get Premier team by name (v1)
@@ -3576,7 +4113,7 @@ Name | Type | Description  | Notes
  **name** | **str**| Team name | 
  **tag** | **str**| Team tag | 
  **season** | **str**| Premier season id (optional) | [optional] 
- **affinity** | **str**| Region/affinity for fallback resolution (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | [optional] 
 
 ### Return type
 
@@ -3688,14 +4225,18 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Premier team history retrieved successfully |  -  |
-**400** | Client error |  -  |
+**400** | Bad Request |  -  |
+**404** | Team not found |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **premier_leaderboard**
-> PremierSearchResponse premier_leaderboard(affinity, conference=conference, division=division, season=season)
+# **premier_by_name_v2**
+> PremierTeamV2Response premier_by_name_v2(affinity, name, tag)
 
-Get Premier leaderboard (v1)
+Get live Premier team by team name (v2)
+
+Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
 
 ### Example
 
@@ -3704,7 +4245,8 @@ Get Premier leaderboard (v1)
 
 ```python
 import henrikdev_api_client
-from henrikdev_api_client.models.premier_search_response import PremierSearchResponse
+from henrikdev_api_client.models.premier_team_v2_response import PremierTeamV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3735,14 +4277,293 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    conference = 'conference_example' # str | Conference filter (optional) (optional)
-    division = 'division_example' # str | Division filter (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    name = 'name_example' # str | Premier team name
+    tag = 'tag_example' # str | Premier team tag
+
+    try:
+        # Get live Premier team by team name (v2)
+        api_response = api_instance.premier_by_name_v2(affinity, name, tag)
+        print("The response of ValorantApi->premier_by_name_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->premier_by_name_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **name** | **str**| Premier team name | 
+ **tag** | **str**| Premier team tag | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Premier team retrieved successfully |  -  |
+**400** | Invalid region or empty name/tag |  -  |
+**404** | No matching team found |  -  |
+**409** | Multiple teams match; use team ID lookup |  -  |
+**500** | Failed to resolve the team or fetch Riot data |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **premier_by_player_name**
+> PremierTeamV2Response premier_by_player_name(affinity, name, tag)
+
+Get live Premier team by player Riot ID (v2)
+
+Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_team_v2_response import PremierTeamV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    name = 'name_example' # str | Player Riot ID name
+    tag = 'tag_example' # str | Player Riot ID tag
+
+    try:
+        # Get live Premier team by player Riot ID (v2)
+        api_response = api_instance.premier_by_player_name(affinity, name, tag)
+        print("The response of ValorantApi->premier_by_player_name:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->premier_by_player_name: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **name** | **str**| Player Riot ID name | 
+ **tag** | **str**| Player Riot ID tag | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Player&#39;s Premier team retrieved successfully |  -  |
+**400** | Invalid region or empty name/tag |  -  |
+**404** | Player not found or has no Premier team |  -  |
+**500** | Failed to resolve the player or fetch Riot data |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **premier_by_puuid**
+> PremierTeamV2Response premier_by_puuid(affinity, puuid)
+
+Get live Premier team by player PUUID (v2)
+
+Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_team_v2_response import PremierTeamV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    puuid = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Player UUID
+
+    try:
+        # Get live Premier team by player PUUID (v2)
+        api_response = api_instance.premier_by_puuid(affinity, puuid)
+        print("The response of ValorantApi->premier_by_puuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ValorantApi->premier_by_puuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **puuid** | **UUID**| Player UUID | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Player&#39;s Premier team retrieved successfully |  -  |
+**400** | Invalid region or UUID |  -  |
+**404** | Player has no Premier team |  -  |
+**500** | Failed to fetch or parse Riot data |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **premier_leaderboard**
+> PremierSearchResponse premier_leaderboard(affinity, season=season)
+
+Get Premier leaderboard (v1)
+
+Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+
+### Example
+
+* Api Key Authentication (api_key_query):
+* Api Key Authentication (api_key_header):
+
+```python
+import henrikdev_api_client
+from henrikdev_api_client.models.premier_search_response import PremierSearchResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.henrikdev.xyz
+# See configuration.py for a list of all supported configuration parameters.
+configuration = henrikdev_api_client.Configuration(
+    host = "https://api.henrikdev.xyz"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: api_key_query
+configuration.api_key['api_key_query'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_query'] = 'Bearer'
+
+# Configure API key authorization: api_key_header
+configuration.api_key['api_key_header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key_header'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with henrikdev_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = henrikdev_api_client.ValorantApi(api_client)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
     season = 'season_example' # str | Premier season id (optional) (optional)
 
     try:
         # Get Premier leaderboard (v1)
-        api_response = api_instance.premier_leaderboard(affinity, conference=conference, division=division, season=season)
+        api_response = api_instance.premier_leaderboard(affinity, season=season)
         print("The response of ValorantApi->premier_leaderboard:\n")
         pprint(api_response)
     except Exception as e:
@@ -3756,9 +4577,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **conference** | **str**| Conference filter (optional) | [optional] 
- **division** | **str**| Division filter (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; validation is case-insensitive; use lowercase for persisted team matching | 
  **season** | **str**| Premier season id (optional) | [optional] 
 
 ### Return type
@@ -3786,7 +4605,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premier_search**
-> PremierSearchResponse premier_search(name=name, tag=tag, id=id, season=season)
+> PremierSearchResponse premier_search(name=name, tag=tag, id=id, season=season, conference=conference, division=division)
 
 Search Premier teams (v1)
 
@@ -3830,12 +4649,14 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     name = 'name_example' # str | Team name to search for (optional) (optional)
     tag = 'tag_example' # str | Team tag to search for (optional) (optional)
-    id = 'id_example' # str | Team UUID to search for (optional) (optional)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Team UUID to search for; cannot be combined with name or tag (optional)
     season = 'season_example' # str | Premier season id (optional) (optional)
+    conference = 'conference_example' # str | Current upstream Premier conference key; case-insensitive; not a fixed enum (optional)
+    division = 56 # int | Division filter; integer from 1 through 21 (optional)
 
     try:
         # Search Premier teams (v1)
-        api_response = api_instance.premier_search(name=name, tag=tag, id=id, season=season)
+        api_response = api_instance.premier_search(name=name, tag=tag, id=id, season=season, conference=conference, division=division)
         print("The response of ValorantApi->premier_search:\n")
         pprint(api_response)
     except Exception as e:
@@ -3851,8 +4672,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Team name to search for (optional) | [optional] 
  **tag** | **str**| Team tag to search for (optional) | [optional] 
- **id** | **str**| Team UUID to search for (optional) | [optional] 
+ **id** | **UUID**| Team UUID to search for; cannot be combined with name or tag | [optional] 
  **season** | **str**| Premier season id (optional) | [optional] 
+ **conference** | **str**| Current upstream Premier conference key; case-insensitive; not a fixed enum | [optional] 
+ **division** | **int**| Division filter; integer from 1 through 21 | [optional] 
 
 ### Return type
 
@@ -3891,6 +4714,7 @@ Get queue status (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.queue_status_v1 import QueueStatusV1
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -3921,7 +4745,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
 
     try:
         # Get queue status (v1)
@@ -3939,7 +4763,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
 
 ### Return type
 
@@ -3969,6 +4793,8 @@ Name | Type | Description  | Notes
 > RawV1Response raw(raw_v1_payload)
 
 Get raw Riot API data (v1)
+
+Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 
 ### Example
 
@@ -4066,6 +4892,7 @@ Get status (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.status_v1 import StatusV1
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4096,7 +4923,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
 
     try:
         # Get status (v1)
@@ -4114,7 +4941,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
 
 ### Return type
 
@@ -4141,7 +4968,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **store_featured**
-> StoreFeaturedV1 store_featured(version)
+> ValorantStoreFeaturedResponse store_featured(version)
 
 Get featured store items
 
@@ -4152,7 +4979,8 @@ Get featured store items
 
 ```python
 import henrikdev_api_client
-from henrikdev_api_client.models.store_featured_v1 import StoreFeaturedV1
+from henrikdev_api_client.models.valorant_store_featured_response import ValorantStoreFeaturedResponse
+from henrikdev_api_client.models.valorant_store_version import ValorantStoreVersion
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4183,7 +5011,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    version = 'version_example' # str | API version (v1, v2)
+    version = henrikdev_api_client.ValorantStoreVersion() # ValorantStoreVersion | Response version; v1 returns an object envelope and v2 returns an array envelope
 
     try:
         # Get featured store items
@@ -4201,11 +5029,11 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **version** | **str**| API version (v1, v2) | 
+ **version** | [**ValorantStoreVersion**](.md)| Response version; v1 returns an object envelope and v2 returns an array envelope | 
 
 ### Return type
 
-[**StoreFeaturedV1**](StoreFeaturedV1.md)
+[**ValorantStoreFeaturedResponse**](ValorantStoreFeaturedResponse.md)
 
 ### Authorization
 
@@ -4220,7 +5048,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Store featured items retrieved successfully |  -  |
+**200** | Featured store envelope selected by version |  -  |
 **400** | Bad Request |  -  |
 **404** | Store data not found |  -  |
 **500** | Internal Server Error |  -  |
@@ -4228,9 +5056,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **store_offers**
-> StoreOffersV1Response store_offers(version)
+> store_offers(version)
 
 Get store offers
+
+Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
 
 ### Example
 
@@ -4239,7 +5069,7 @@ Get store offers
 
 ```python
 import henrikdev_api_client
-from henrikdev_api_client.models.store_offers_v1_response import StoreOffersV1Response
+from henrikdev_api_client.models.valorant_store_version import ValorantStoreVersion
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4270,13 +5100,11 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    version = 'version_example' # str | API version (v1, v2)
+    version = henrikdev_api_client.ValorantStoreVersion() # ValorantStoreVersion | Legacy API version
 
     try:
         # Get store offers
-        api_response = api_instance.store_offers(version)
-        print("The response of ValorantApi->store_offers:\n")
-        pprint(api_response)
+        api_instance.store_offers(version)
     except Exception as e:
         print("Exception when calling ValorantApi->store_offers: %s\n" % e)
 ```
@@ -4288,11 +5116,11 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **version** | **str**| API version (v1, v2) | 
+ **version** | [**ValorantStoreVersion**](.md)| Legacy API version | 
 
 ### Return type
 
-[**StoreOffersV1Response**](StoreOffersV1Response.md)
+void (empty response body)
 
 ### Authorization
 
@@ -4307,15 +5135,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Store offers retrieved successfully |  -  |
-**400** | Bad Request |  -  |
-**404** | Store data not found |  -  |
-**500** | Internal Server Error |  -  |
+**404** | Riot implementation removed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stored_matches**
-> StoredMatchesResponse stored_matches(affinity, name, tag, mode=mode, map=map, size=size)
+> StoredMatchesResponse stored_matches(affinity, name, tag, mode=mode, queue=queue, map=map, size=size, page=page)
 
 Get stored matches by name (v1)
 
@@ -4327,6 +5152,7 @@ Get stored matches by name (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.stored_matches_response import StoredMatchesResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4357,16 +5183,18 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
-    mode = 'mode_example' # str | Game mode filter (optional) (optional)
-    map = 'map_example' # str | Map filter (optional) (optional)
-    size = 56 # int | Number of results (optional) (optional)
+    mode = 'mode_example' # str | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+    queue = 'queue_example' # str | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+    map = 'map_example' # str | Map display name, matched case-insensitively. (optional)
+    size = 56 # int | Positive integer result count. Omit for unlimited results. (optional)
+    page = 1 # int | One-based page. Supplying page requires size. (optional) (default to 1)
 
     try:
         # Get stored matches by name (v1)
-        api_response = api_instance.stored_matches(affinity, name, tag, mode=mode, map=map, size=size)
+        api_response = api_instance.stored_matches(affinity, name, tag, mode=mode, queue=queue, map=map, size=size, page=page)
         print("The response of ValorantApi->stored_matches:\n")
         pprint(api_response)
     except Exception as e:
@@ -4380,12 +5208,14 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
- **mode** | **str**| Game mode filter (optional) | [optional] 
- **map** | **str**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **mode** | **str**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **str**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **str**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -4412,7 +5242,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stored_matches_by_id**
-> StoredMatchesResponse stored_matches_by_id(affinity, puuid, mode=mode, map=map, size=size)
+> StoredMatchesResponse stored_matches_by_id(affinity, puuid, mode=mode, queue=queue, map=map, size=size, page=page)
 
 Get stored matches by PUUID (v1)
 
@@ -4424,6 +5254,7 @@ Get stored matches by PUUID (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.stored_matches_response import StoredMatchesResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4454,15 +5285,17 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    puuid = 'puuid_example' # str | Player UUID
-    mode = 'mode_example' # str | Game mode filter (optional) (optional)
-    map = 'map_example' # str | Map filter (optional) (optional)
-    size = 56 # int | Number of results (optional) (optional)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    puuid = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Player UUID
+    mode = 'mode_example' # str | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+    queue = 'queue_example' # str | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+    map = 'map_example' # str | Map display name, matched case-insensitively. (optional)
+    size = 56 # int | Positive integer result count. Omit for unlimited results. (optional)
+    page = 1 # int | One-based page. Supplying page requires size. (optional) (default to 1)
 
     try:
         # Get stored matches by PUUID (v1)
-        api_response = api_instance.stored_matches_by_id(affinity, puuid, mode=mode, map=map, size=size)
+        api_response = api_instance.stored_matches_by_id(affinity, puuid, mode=mode, queue=queue, map=map, size=size, page=page)
         print("The response of ValorantApi->stored_matches_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -4476,11 +5309,13 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **puuid** | **str**| Player UUID | 
- **mode** | **str**| Game mode filter (optional) | [optional] 
- **map** | **str**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **puuid** | **UUID**| Player UUID | 
+ **mode** | **str**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **str**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **str**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -4507,7 +5342,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stored_mmr_history**
-> StoredMMRResponse stored_mmr_history(affinity, name, tag, size=size)
+> StoredMMRResponse stored_mmr_history(affinity, name, tag, size=size, page=page)
 
 Get stored MMR history by name (v1)
 
@@ -4519,6 +5354,7 @@ Get stored MMR history by name (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.stored_mmr_response import StoredMMRResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4549,14 +5385,15 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
-    size = 56 # int | Number of results (optional) (optional)
+    size = 56 # int | Positive integer result count. Omit for unlimited results. (optional)
+    page = 1 # int | One-based page. Supplying page requires size. (optional) (default to 1)
 
     try:
         # Get stored MMR history by name (v1)
-        api_response = api_instance.stored_mmr_history(affinity, name, tag, size=size)
+        api_response = api_instance.stored_mmr_history(affinity, name, tag, size=size, page=page)
         print("The response of ValorantApi->stored_mmr_history:\n")
         pprint(api_response)
     except Exception as e:
@@ -4570,10 +5407,11 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -4600,7 +5438,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stored_mmr_history_by_id**
-> StoredMMRResponse stored_mmr_history_by_id(affinity, puuid, size=size)
+> StoredMMRResponse stored_mmr_history_by_id(affinity, puuid, size=size, page=page)
 
 Get stored MMR history by PUUID (v1)
 
@@ -4612,6 +5450,7 @@ Get stored MMR history by PUUID (v1)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.stored_mmr_response import StoredMMRResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4642,13 +5481,14 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
-    size = 56 # int | Number of results (optional) (optional)
+    size = 56 # int | Positive integer result count. Omit for unlimited results. (optional)
+    page = 1 # int | One-based page. Supplying page requires size. (optional) (default to 1)
 
     try:
         # Get stored MMR history by PUUID (v1)
-        api_response = api_instance.stored_mmr_history_by_id(affinity, puuid, size=size)
+        api_response = api_instance.stored_mmr_history_by_id(affinity, puuid, size=size, page=page)
         print("The response of ValorantApi->stored_mmr_history_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -4662,9 +5502,10 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **str**| Player UUID | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -4691,7 +5532,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stored_mmr_history_v2**
-> StoredMMRV2Response stored_mmr_history_v2(affinity, platform, name, tag, size=size)
+> StoredMMRV2Response stored_mmr_history_v2(affinity, platform, name, tag, size=size, page=page)
 
 Get stored MMR history by name (v2)
 
@@ -4703,6 +5544,8 @@ Get stored MMR history by name (v2)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.stored_mmrv2_response import StoredMMRV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4733,15 +5576,16 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     name = 'name_example' # str | Riot ID name
     tag = 'tag_example' # str | Riot ID tag
-    size = 56 # int | Number of results (optional) (optional)
+    size = 56 # int | Positive integer result count. Omit for unlimited results. (optional)
+    page = 1 # int | One-based page. Supplying page requires size. (optional) (default to 1)
 
     try:
         # Get stored MMR history by name (v2)
-        api_response = api_instance.stored_mmr_history_v2(affinity, platform, name, tag, size=size)
+        api_response = api_instance.stored_mmr_history_v2(affinity, platform, name, tag, size=size, page=page)
         print("The response of ValorantApi->stored_mmr_history_v2:\n")
         pprint(api_response)
     except Exception as e:
@@ -4755,11 +5599,12 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **str**| Riot ID name | 
  **tag** | **str**| Riot ID tag | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -4786,7 +5631,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stored_mmr_history_v2_by_id**
-> StoredMMRV2Response stored_mmr_history_v2_by_id(affinity, platform, puuid, size=size)
+> StoredMMRV2Response stored_mmr_history_v2_by_id(affinity, platform, puuid, size=size, page=page)
 
 Get stored MMR history by PUUID (v2)
 
@@ -4798,6 +5643,8 @@ Get stored MMR history by PUUID (v2)
 ```python
 import henrikdev_api_client
 from henrikdev_api_client.models.stored_mmrv2_response import StoredMMRV2Response
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -4828,14 +5675,15 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
-    platform = 'platform_example' # str | Platform (pc, console)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
+    platform = henrikdev_api_client.ValorantPlatform() # ValorantPlatform | Platform; case-insensitive
     puuid = 'puuid_example' # str | Player UUID
-    size = 56 # int | Number of results (optional) (optional)
+    size = 56 # int | Positive integer result count. Omit for unlimited results. (optional)
+    page = 1 # int | One-based page. Supplying page requires size. (optional) (default to 1)
 
     try:
         # Get stored MMR history by PUUID (v2)
-        api_response = api_instance.stored_mmr_history_v2_by_id(affinity, platform, puuid, size=size)
+        api_response = api_instance.stored_mmr_history_v2_by_id(affinity, platform, puuid, size=size, page=page)
         print("The response of ValorantApi->stored_mmr_history_v2_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -4849,10 +5697,11 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **str**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **str**| Player UUID | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -4890,6 +5739,7 @@ Get game version (v1)
 
 ```python
 import henrikdev_api_client
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
 from henrikdev_api_client.models.version_v1_response import VersionV1Response
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
@@ -4921,7 +5771,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    affinity = 'affinity_example' # str | Region/affinity (e.g., na, eu, ap, kr)
+    affinity = henrikdev_api_client.ValorantAffinity() # ValorantAffinity | Region/affinity; case-insensitive
 
     try:
         # Get game version (v1)
@@ -4939,7 +5789,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **str**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
 
 ### Return type
 
@@ -4977,6 +5827,8 @@ Get website content (v1)
 
 ```python
 import henrikdev_api_client
+from henrikdev_api_client.models.valorant_website_category import ValorantWebsiteCategory
+from henrikdev_api_client.models.valorant_website_locale import ValorantWebsiteLocale
 from henrikdev_api_client.models.website_v1_response import WebsiteV1Response
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
@@ -5008,8 +5860,8 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
-    country_code = 'country_code_example' # str | Country code (e.g., en-us, de-de)
-    category = 'category_example' # str | Category filter (optional) (optional)
+    country_code = henrikdev_api_client.ValorantWebsiteLocale() # ValorantWebsiteLocale | Website locale; case-insensitive
+    category = henrikdev_api_client.ValorantWebsiteCategory() # ValorantWebsiteCategory | Category filter; case-sensitive (optional)
 
     try:
         # Get website content (v1)
@@ -5027,8 +5879,8 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **country_code** | **str**| Country code (e.g., en-us, de-de) | 
- **category** | **str**| Category filter (optional) | [optional] 
+ **country_code** | [**ValorantWebsiteLocale**](.md)| Website locale; case-insensitive | 
+ **category** | [**ValorantWebsiteCategory**](.md)| Category filter; case-sensitive | [optional] 
 
 ### Return type
 
@@ -5058,6 +5910,8 @@ Name | Type | Description  | Notes
 > WebsiteByIdV1Response website_by_id(db_id, country_code)
 
 Get website entry by ID (v1)
+
+Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
 
 ### Example
 
@@ -5098,7 +5952,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.ValorantApi(api_client)
     db_id = 'db_id_example' # str | Database ID of the website entry
-    country_code = 'country_code_example' # str | Country code (e.g., en-us, de-de)
+    country_code = 'country_code_example' # str | Ignored locale segment; any string is accepted
 
     try:
         # Get website entry by ID (v1)
@@ -5117,7 +5971,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **db_id** | **str**| Database ID of the website entry | 
- **country_code** | **str**| Country code (e.g., en-us, de-de) | 
+ **country_code** | **str**| Ignored locale segment; any string is accepted | 
 
 ### Return type
 

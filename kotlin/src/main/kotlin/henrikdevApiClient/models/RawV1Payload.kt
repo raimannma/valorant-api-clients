@@ -24,12 +24,15 @@
 package henrikdevApiClient.models
 
 import henrikdevApiClient.models.RawV1PayloadValues
+import henrikdevApiClient.models.RawV1ResourceType
+import henrikdevApiClient.models.ValorantAffinity
+import henrikdevApiClient.models.ValorantPlatform
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
  *
  * @param region 
  * @param type 
@@ -42,16 +45,16 @@ import com.squareup.moshi.JsonClass
 data class RawV1Payload (
 
     @Json(name = "region")
-    val region: kotlin.String,
+    val region: ValorantAffinity,
 
     @Json(name = "type")
-    val type: kotlin.String,
+    val type: RawV1ResourceType,
 
     @Json(name = "value")
     val `value`: RawV1PayloadValues,
 
     @Json(name = "platform")
-    val platform: kotlin.String? = null,
+    val platform: ValorantPlatform? = null,
 
     @Json(name = "queries")
     val queries: kotlin.String? = null

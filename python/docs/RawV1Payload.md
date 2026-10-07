@@ -1,14 +1,15 @@
 # RawV1Payload
 
+Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**platform** | **str** |  | [optional] 
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) |  | [optional] 
 **queries** | **str** |  | [optional] 
-**region** | **str** |  | 
-**type** | **str** |  | 
+**region** | [**ValorantAffinity**](ValorantAffinity.md) |  | 
+**type** | [**RawV1ResourceType**](RawV1ResourceType.md) |  | 
 **value** | [**RawV1PayloadValues**](RawV1PayloadValues.md) |  | 
 
 ## Example

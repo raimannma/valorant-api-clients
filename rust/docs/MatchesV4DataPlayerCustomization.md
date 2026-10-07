@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bloomline** | Option<[**models::MatchesV4DataPlayerBloomline**](MatchesV4DataPlayerBloomline.md)> |  | [optional]
 **card** | **String** |  | 
 **preferred_level_border** | Option<**String**> |  | [optional]
 **title** | **String** |  | 

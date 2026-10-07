@@ -28,6 +28,8 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 
 import henrikdevApiClient.models.PremiumWebhookDeleteResponse
+import henrikdevApiClient.models.PremiumWebhookGetResponse
+import henrikdevApiClient.models.PremiumWebhookUpdateResponse
 import henrikdevApiClient.models.PremiumWebhookUserAddRequest
 import henrikdevApiClient.models.PremiumWebhookUserMutationResponse
 import henrikdevApiClient.models.PremiumWebhookUserUpdateRequest
@@ -135,7 +137,7 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * DELETE /public/v1/premium/webhook/users/{id}
      * Delete premium webhook user
      * 
-     * @param id Tracked user id
+     * @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
      * @return PremiumWebhookDeleteResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -167,7 +169,7 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * DELETE /public/v1/premium/webhook/users/{id}
      * Delete premium webhook user
      * 
-     * @param id Tracked user id
+     * @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
      * @return ApiResponse<PremiumWebhookDeleteResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -185,7 +187,7 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation deleteWebhookUser
      *
-     * @param id Tracked user id
+     * @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
      * @return RequestConfig
      */
     fun deleteWebhookUserRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
@@ -208,19 +210,20 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /public/v1/premium/webhook
      * Get premium webhook settings
      * 
-     * @return void
+     * @return PremiumWebhookGetResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
+    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getWebhookSettings() : Unit {
+    fun getWebhookSettings() : PremiumWebhookGetResponse {
         val localVarResponse = getWebhookSettingsWithHttpInfo()
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PremiumWebhookGetResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -238,15 +241,16 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /public/v1/premium/webhook
      * Get premium webhook settings
      * 
-     * @return ApiResponse<Unit?>
+     * @return ApiResponse<PremiumWebhookGetResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
+    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getWebhookSettingsWithHttpInfo() : ApiResponse<Unit?> {
+    fun getWebhookSettingsWithHttpInfo() : ApiResponse<PremiumWebhookGetResponse?> {
         val localVariableConfig = getWebhookSettingsRequestConfig()
 
-        return request<Unit, Unit>(
+        return request<Unit, PremiumWebhookGetResponse>(
             localVariableConfig
         )
     }
@@ -276,21 +280,22 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * PUT /public/v1/premium/webhook/users/{id}
      * Update premium webhook user
      * 
-     * @param id Tracked user id
+     * @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
      * @param premiumWebhookUserUpdateRequest 
-     * @return void
+     * @return PremiumWebhookUpdateResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
+    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun updateWebhookUser(id: kotlin.String, premiumWebhookUserUpdateRequest: PremiumWebhookUserUpdateRequest) : Unit {
+    fun updateWebhookUser(id: kotlin.String, premiumWebhookUserUpdateRequest: PremiumWebhookUserUpdateRequest) : PremiumWebhookUpdateResponse {
         val localVarResponse = updateWebhookUserWithHttpInfo(id = id, premiumWebhookUserUpdateRequest = premiumWebhookUserUpdateRequest)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PremiumWebhookUpdateResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -308,17 +313,18 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * PUT /public/v1/premium/webhook/users/{id}
      * Update premium webhook user
      * 
-     * @param id Tracked user id
+     * @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
      * @param premiumWebhookUserUpdateRequest 
-     * @return ApiResponse<Unit?>
+     * @return ApiResponse<PremiumWebhookUpdateResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
+    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun updateWebhookUserWithHttpInfo(id: kotlin.String, premiumWebhookUserUpdateRequest: PremiumWebhookUserUpdateRequest) : ApiResponse<Unit?> {
+    fun updateWebhookUserWithHttpInfo(id: kotlin.String, premiumWebhookUserUpdateRequest: PremiumWebhookUserUpdateRequest) : ApiResponse<PremiumWebhookUpdateResponse?> {
         val localVariableConfig = updateWebhookUserRequestConfig(id = id, premiumWebhookUserUpdateRequest = premiumWebhookUserUpdateRequest)
 
-        return request<PremiumWebhookUserUpdateRequest, Unit>(
+        return request<PremiumWebhookUserUpdateRequest, PremiumWebhookUpdateResponse>(
             localVariableConfig
         )
     }
@@ -326,7 +332,7 @@ open class PremiumApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation updateWebhookUser
      *
-     * @param id Tracked user id
+     * @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
      * @param premiumWebhookUserUpdateRequest 
      * @return RequestConfig
      */

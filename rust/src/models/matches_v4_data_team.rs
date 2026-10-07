@@ -11,24 +11,38 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// MatchesV4DataTeam : Join teams by the opaque team_id; team_number is an upstream number, not an array index.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MatchesV4DataTeam {
+    #[serde(rename = "health", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub health: Option<Option<Box<models::MatchesV4DataTeamHealth>>>,
+    #[serde(rename = "mvp", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub mvp: Option<Option<Box<models::MatchesV4DataRoundPlayer>>>,
+    #[serde(rename = "placement", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub placement: Option<Option<u32>>,
     #[serde(rename = "premier_roster", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub premier_roster: Option<Option<Box<models::MatchesV4DataTeamPremierRoster>>>,
     #[serde(rename = "rounds")]
     pub rounds: Box<models::MatchesV4DataTeamRounds>,
     #[serde(rename = "team_id")]
     pub team_id: String,
+    #[serde(rename = "team_number", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub team_number: Option<Option<u32>>,
     #[serde(rename = "won")]
     pub won: bool,
 }
 
 impl MatchesV4DataTeam {
+    /// Join teams by the opaque team_id; team_number is an upstream number, not an array index.
     pub fn new(rounds: models::MatchesV4DataTeamRounds, team_id: String, won: bool) -> MatchesV4DataTeam {
         MatchesV4DataTeam {
+            health: None,
+            mvp: None,
+            placement: None,
             premier_roster: None,
             rounds: Box::new(rounds),
             team_id,
+            team_number: None,
             won,
         }
     }

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**page** | Option<**u32**> |  | [optional]
+**page** | Option<**u32**> |  | [optional][default to 1]
 **region** | Option<[**models::EsportsV2Region**](EsportsV2Region.md)> |  | [optional]
 **r#type** | Option<[**models::EsportsV2EventType**](EsportsV2EventType.md)> |  | [optional]
 

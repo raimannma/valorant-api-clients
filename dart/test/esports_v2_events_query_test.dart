@@ -16,7 +16,7 @@ void main() {
   // final instance = EsportsV2EventsQuery();
 
   group('test EsportsV2EventsQuery', () {
-    // int page
+    // int page (default value: 1)
     test('to test the property `page`', () async {
       // TODO
     });

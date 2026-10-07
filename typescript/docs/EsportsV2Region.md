@@ -1,5 +1,6 @@
 # EsportsV2Region
 
+VLR esports region filter. Values are case-sensitive; omission selects all regions.
 
 ## Enum
 

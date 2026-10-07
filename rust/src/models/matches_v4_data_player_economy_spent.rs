@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MatchesV4DataPlayerEconomySpent {
+    /// Credits spent per round played by this player; zero when rounds played is zero.
     #[serde(rename = "average")]
     pub average: f32,
+    /// Total credits spent across reported player rounds.
     #[serde(rename = "overall")]
     pub overall: i32,
 }

@@ -21,14 +21,19 @@ var _ MappedNullable = &MMRV3Seasonal{}
 
 // MMRV3Seasonal struct for MMRV3Seasonal
 type MMRV3Seasonal struct {
+	// Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.
+	ActRank TierIdNameCombo `json:"act_rank"`
 	ActWins []TierIdNameCombo `json:"act_wins"`
 	EndRr int32 `json:"end_rr"`
 	EndTier TierIdNameCombo `json:"end_tier"`
 	Games int32 `json:"games"`
+	GamesNeededForRating int32 `json:"games_needed_for_rating"`
 	LeaderboardPlacement NullableMMRV3LeaderboardPlacement `json:"leaderboard_placement,omitempty"`
+	Prestige map[string]MMRV3SeasonalPrestige `json:"prestige,omitempty"`
 	RankingSchema string `json:"ranking_schema"`
 	Season SeasonIdShortCombo `json:"season"`
 	Wins int32 `json:"wins"`
+	WinsWithPlacements int32 `json:"wins_with_placements"`
 }
 
 type _MMRV3Seasonal MMRV3Seasonal
@@ -37,15 +42,18 @@ type _MMRV3Seasonal MMRV3Seasonal
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMMRV3Seasonal(actWins []TierIdNameCombo, endRr int32, endTier TierIdNameCombo, games int32, rankingSchema string, season SeasonIdShortCombo, wins int32) *MMRV3Seasonal {
+func NewMMRV3Seasonal(actRank TierIdNameCombo, actWins []TierIdNameCombo, endRr int32, endTier TierIdNameCombo, games int32, gamesNeededForRating int32, rankingSchema string, season SeasonIdShortCombo, wins int32, winsWithPlacements int32) *MMRV3Seasonal {
 	this := MMRV3Seasonal{}
+	this.ActRank = actRank
 	this.ActWins = actWins
 	this.EndRr = endRr
 	this.EndTier = endTier
 	this.Games = games
+	this.GamesNeededForRating = gamesNeededForRating
 	this.RankingSchema = rankingSchema
 	this.Season = season
 	this.Wins = wins
+	this.WinsWithPlacements = winsWithPlacements
 	return &this
 }
 
@@ -55,6 +63,30 @@ func NewMMRV3Seasonal(actWins []TierIdNameCombo, endRr int32, endTier TierIdName
 func NewMMRV3SeasonalWithDefaults() *MMRV3Seasonal {
 	this := MMRV3Seasonal{}
 	return &this
+}
+
+// GetActRank returns the ActRank field value
+func (o *MMRV3Seasonal) GetActRank() TierIdNameCombo {
+	if o == nil {
+		var ret TierIdNameCombo
+		return ret
+	}
+
+	return o.ActRank
+}
+
+// GetActRankOk returns a tuple with the ActRank field value
+// and a boolean to check if the value has been set.
+func (o *MMRV3Seasonal) GetActRankOk() (*TierIdNameCombo, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ActRank, true
+}
+
+// SetActRank sets field value
+func (o *MMRV3Seasonal) SetActRank(v TierIdNameCombo) {
+	o.ActRank = v
 }
 
 // GetActWins returns the ActWins field value
@@ -153,6 +185,30 @@ func (o *MMRV3Seasonal) SetGames(v int32) {
 	o.Games = v
 }
 
+// GetGamesNeededForRating returns the GamesNeededForRating field value
+func (o *MMRV3Seasonal) GetGamesNeededForRating() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.GamesNeededForRating
+}
+
+// GetGamesNeededForRatingOk returns a tuple with the GamesNeededForRating field value
+// and a boolean to check if the value has been set.
+func (o *MMRV3Seasonal) GetGamesNeededForRatingOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GamesNeededForRating, true
+}
+
+// SetGamesNeededForRating sets field value
+func (o *MMRV3Seasonal) SetGamesNeededForRating(v int32) {
+	o.GamesNeededForRating = v
+}
+
 // GetLeaderboardPlacement returns the LeaderboardPlacement field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MMRV3Seasonal) GetLeaderboardPlacement() MMRV3LeaderboardPlacement {
 	if o == nil || IsNil(o.LeaderboardPlacement.Get()) {
@@ -193,6 +249,39 @@ func (o *MMRV3Seasonal) SetLeaderboardPlacementNil() {
 // UnsetLeaderboardPlacement ensures that no value is present for LeaderboardPlacement, not even an explicit nil
 func (o *MMRV3Seasonal) UnsetLeaderboardPlacement() {
 	o.LeaderboardPlacement.Unset()
+}
+
+// GetPrestige returns the Prestige field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MMRV3Seasonal) GetPrestige() map[string]MMRV3SeasonalPrestige {
+	if o == nil {
+		var ret map[string]MMRV3SeasonalPrestige
+		return ret
+	}
+	return o.Prestige
+}
+
+// GetPrestigeOk returns a tuple with the Prestige field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MMRV3Seasonal) GetPrestigeOk() (map[string]MMRV3SeasonalPrestige, bool) {
+	if o == nil || IsNil(o.Prestige) {
+		return map[string]MMRV3SeasonalPrestige{}, false
+	}
+	return o.Prestige, true
+}
+
+// HasPrestige returns a boolean if a field has been set.
+func (o *MMRV3Seasonal) HasPrestige() bool {
+	if o != nil && !IsNil(o.Prestige) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrestige gets a reference to the given map[string]MMRV3SeasonalPrestige and assigns it to the Prestige field.
+func (o *MMRV3Seasonal) SetPrestige(v map[string]MMRV3SeasonalPrestige) {
+	o.Prestige = v
 }
 
 // GetRankingSchema returns the RankingSchema field value
@@ -267,6 +356,30 @@ func (o *MMRV3Seasonal) SetWins(v int32) {
 	o.Wins = v
 }
 
+// GetWinsWithPlacements returns the WinsWithPlacements field value
+func (o *MMRV3Seasonal) GetWinsWithPlacements() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.WinsWithPlacements
+}
+
+// GetWinsWithPlacementsOk returns a tuple with the WinsWithPlacements field value
+// and a boolean to check if the value has been set.
+func (o *MMRV3Seasonal) GetWinsWithPlacementsOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.WinsWithPlacements, true
+}
+
+// SetWinsWithPlacements sets field value
+func (o *MMRV3Seasonal) SetWinsWithPlacements(v int32) {
+	o.WinsWithPlacements = v
+}
+
 func (o MMRV3Seasonal) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -277,16 +390,22 @@ func (o MMRV3Seasonal) MarshalJSON() ([]byte, error) {
 
 func (o MMRV3Seasonal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["act_rank"] = o.ActRank
 	toSerialize["act_wins"] = o.ActWins
 	toSerialize["end_rr"] = o.EndRr
 	toSerialize["end_tier"] = o.EndTier
 	toSerialize["games"] = o.Games
+	toSerialize["games_needed_for_rating"] = o.GamesNeededForRating
 	if o.LeaderboardPlacement.IsSet() {
 		toSerialize["leaderboard_placement"] = o.LeaderboardPlacement.Get()
+	}
+	if o.Prestige != nil {
+		toSerialize["prestige"] = o.Prestige
 	}
 	toSerialize["ranking_schema"] = o.RankingSchema
 	toSerialize["season"] = o.Season
 	toSerialize["wins"] = o.Wins
+	toSerialize["wins_with_placements"] = o.WinsWithPlacements
 	return toSerialize, nil
 }
 
@@ -295,13 +414,16 @@ func (o *MMRV3Seasonal) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"act_rank",
 		"act_wins",
 		"end_rr",
 		"end_tier",
 		"games",
+		"games_needed_for_rating",
 		"ranking_schema",
 		"season",
 		"wins",
+		"wins_with_placements",
 	}
 
 	allProperties := make(map[string]interface{})

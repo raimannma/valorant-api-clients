@@ -17,7 +17,7 @@ import (
 // checks if the PremiumWebhookUserAddRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PremiumWebhookUserAddRequest{}
 
-// PremiumWebhookUserAddRequest struct for PremiumWebhookUserAddRequest
+// PremiumWebhookUserAddRequest Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
 type PremiumWebhookUserAddRequest struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	Events []PremiumWebhookEvent `json:"events,omitempty"`
@@ -32,6 +32,8 @@ type PremiumWebhookUserAddRequest struct {
 // will change when the set of required properties is changed
 func NewPremiumWebhookUserAddRequest() *PremiumWebhookUserAddRequest {
 	this := PremiumWebhookUserAddRequest{}
+	var enabled bool = true
+	this.Enabled = &enabled
 	return &this
 }
 
@@ -40,6 +42,8 @@ func NewPremiumWebhookUserAddRequest() *PremiumWebhookUserAddRequest {
 // but it doesn't guarantee that properties required by API are set
 func NewPremiumWebhookUserAddRequestWithDefaults() *PremiumWebhookUserAddRequest {
 	this := PremiumWebhookUserAddRequest{}
+	var enabled bool = true
+	this.Enabled = &enabled
 	return &this
 }
 

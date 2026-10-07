@@ -24,6 +24,7 @@
 package henrikdevApiClient.models
 
 import henrikdevApiClient.models.MMRV3LeaderboardPlacement
+import henrikdevApiClient.models.MMRV3SeasonalPrestige
 import henrikdevApiClient.models.SeasonIdShortCombo
 import henrikdevApiClient.models.TierIdNameCombo
 
@@ -33,18 +34,26 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
+ * @param actRank Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.
  * @param actWins 
  * @param endRr 
  * @param endTier 
  * @param games 
+ * @param gamesNeededForRating 
  * @param rankingSchema 
  * @param season 
  * @param wins 
+ * @param winsWithPlacements 
  * @param leaderboardPlacement 
+ * @param prestige 
  */
 
 
 data class MMRV3Seasonal (
+
+    /* Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement. */
+    @Json(name = "act_rank")
+    val actRank: TierIdNameCombo,
 
     @Json(name = "act_wins")
     val actWins: kotlin.collections.List<TierIdNameCombo>,
@@ -58,6 +67,9 @@ data class MMRV3Seasonal (
     @Json(name = "games")
     val games: kotlin.Int,
 
+    @Json(name = "games_needed_for_rating")
+    val gamesNeededForRating: kotlin.Int,
+
     @Json(name = "ranking_schema")
     val rankingSchema: kotlin.String,
 
@@ -67,8 +79,14 @@ data class MMRV3Seasonal (
     @Json(name = "wins")
     val wins: kotlin.Int,
 
+    @Json(name = "wins_with_placements")
+    val winsWithPlacements: kotlin.Int,
+
     @Json(name = "leaderboard_placement")
-    val leaderboardPlacement: MMRV3LeaderboardPlacement? = null
+    val leaderboardPlacement: MMRV3LeaderboardPlacement? = null,
+
+    @Json(name = "prestige")
+    val prestige: kotlin.collections.Map<kotlin.String, MMRV3SeasonalPrestige>? = null
 
 ) {
 

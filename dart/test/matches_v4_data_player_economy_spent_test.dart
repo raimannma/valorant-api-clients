@@ -16,11 +16,13 @@ void main() {
   // final instance = MatchesV4DataPlayerEconomySpent();
 
   group('test MatchesV4DataPlayerEconomySpent', () {
+    // Credits spent per round played by this player; zero when rounds played is zero.
     // double average
     test('to test the property `average`', () async {
       // TODO
     });
 
+    // Total credits spent across reported player rounds.
     // int overall
     test('to test the property `overall`', () async {
       // TODO

@@ -18,13 +18,15 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from henrikdev_api_client.models.agent_id_name_combo import AgentIdNameCombo
 from henrikdev_api_client.models.matches_v4_data_player_ability_casts import MatchesV4DataPlayerAbilityCasts
 from henrikdev_api_client.models.matches_v4_data_player_behavior import MatchesV4DataPlayerBehavior
 from henrikdev_api_client.models.matches_v4_data_player_customization import MatchesV4DataPlayerCustomization
+from henrikdev_api_client.models.matches_v4_data_player_drafted_ability_cast import MatchesV4DataPlayerDraftedAbilityCast
 from henrikdev_api_client.models.matches_v4_data_player_economy import MatchesV4DataPlayerEconomy
+from henrikdev_api_client.models.matches_v4_data_player_performance import MatchesV4DataPlayerPerformance
 from henrikdev_api_client.models.matches_v4_data_player_stats import MatchesV4DataPlayerStats
 from henrikdev_api_client.models.tier_id_name_combo import TierIdNameCombo
 from typing import Optional, Set
@@ -33,24 +35,27 @@ from pydantic_core import to_jsonable_python
 
 class MatchesV4DataPlayer(BaseModel):
     """
-    MatchesV4DataPlayer
+    Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
     """ # noqa: E501
     ability_casts: MatchesV4DataPlayerAbilityCasts
     account_level: Annotated[int, Field(strict=True, ge=0)]
     agent: AgentIdNameCombo
     behavior: MatchesV4DataPlayerBehavior
     customization: MatchesV4DataPlayerCustomization
+    drafted_ability_casts: Optional[List[MatchesV4DataPlayerDraftedAbilityCast]] = None
     economy: MatchesV4DataPlayerEconomy
     name: StrictStr
     party_id: StrictStr
+    performance: Optional[MatchesV4DataPlayerPerformance] = None
     platform: StrictStr
     puuid: StrictStr
     session_playtime_in_ms: Annotated[int, Field(strict=True, ge=0)]
     stats: MatchesV4DataPlayerStats
     tag: StrictStr
     team_id: StrictStr
+    team_number: Optional[Annotated[int, Field(strict=True, ge=0)]] = None
     tier: TierIdNameCombo
-    __properties: ClassVar[List[str]] = ["ability_casts", "account_level", "agent", "behavior", "customization", "economy", "name", "party_id", "platform", "puuid", "session_playtime_in_ms", "stats", "tag", "team_id", "tier"]
+    __properties: ClassVar[List[str]] = ["ability_casts", "account_level", "agent", "behavior", "customization", "drafted_ability_casts", "economy", "name", "party_id", "performance", "platform", "puuid", "session_playtime_in_ms", "stats", "tag", "team_id", "team_number", "tier"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -103,15 +108,39 @@ class MatchesV4DataPlayer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of customization
         if self.customization:
             _dict['customization'] = self.customization.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in drafted_ability_casts (list)
+        _items = []
+        if self.drafted_ability_casts:
+            for _item_drafted_ability_casts in self.drafted_ability_casts:
+                _items.append(_item_drafted_ability_casts.to_dict() if _item_drafted_ability_casts is not None else None)
+            _dict['drafted_ability_casts'] = _items
         # override the default output from pydantic by calling `to_dict()` of economy
         if self.economy:
             _dict['economy'] = self.economy.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of performance
+        if self.performance:
+            _dict['performance'] = self.performance.to_dict()
         # override the default output from pydantic by calling `to_dict()` of stats
         if self.stats:
             _dict['stats'] = self.stats.to_dict()
         # override the default output from pydantic by calling `to_dict()` of tier
         if self.tier:
             _dict['tier'] = self.tier.to_dict()
+        # set to None if drafted_ability_casts (nullable) is None
+        # and model_fields_set contains the field
+        if self.drafted_ability_casts is None and "drafted_ability_casts" in self.model_fields_set:
+            _dict['drafted_ability_casts'] = None
+
+        # set to None if performance (nullable) is None
+        # and model_fields_set contains the field
+        if self.performance is None and "performance" in self.model_fields_set:
+            _dict['performance'] = None
+
+        # set to None if team_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.team_number is None and "team_number" in self.model_fields_set:
+            _dict['team_number'] = None
+
         return _dict
 
     @classmethod
@@ -129,15 +158,18 @@ class MatchesV4DataPlayer(BaseModel):
             "agent": AgentIdNameCombo.from_dict(obj["agent"]) if obj.get("agent") is not None else None,
             "behavior": MatchesV4DataPlayerBehavior.from_dict(obj["behavior"]) if obj.get("behavior") is not None else None,
             "customization": MatchesV4DataPlayerCustomization.from_dict(obj["customization"]) if obj.get("customization") is not None else None,
+            "drafted_ability_casts": [MatchesV4DataPlayerDraftedAbilityCast.from_dict(_item) for _item in obj["drafted_ability_casts"]] if obj.get("drafted_ability_casts") is not None else None,
             "economy": MatchesV4DataPlayerEconomy.from_dict(obj["economy"]) if obj.get("economy") is not None else None,
             "name": obj.get("name"),
             "party_id": obj.get("party_id"),
+            "performance": MatchesV4DataPlayerPerformance.from_dict(obj["performance"]) if obj.get("performance") is not None else None,
             "platform": obj.get("platform"),
             "puuid": obj.get("puuid"),
             "session_playtime_in_ms": obj.get("session_playtime_in_ms"),
             "stats": MatchesV4DataPlayerStats.from_dict(obj["stats"]) if obj.get("stats") is not None else None,
             "tag": obj.get("tag"),
             "team_id": obj.get("team_id"),
+            "team_number": obj.get("team_number"),
             "tier": TierIdNameCombo.from_dict(obj["tier"]) if obj.get("tier") is not None else None
         })
         return _obj

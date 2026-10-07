@@ -23,7 +23,10 @@ var _ MappedNullable = &MMRV3Data{}
 type MMRV3Data struct {
 	Account MMRV3Account `json:"account"`
 	Current MMRV3Current `json:"current"`
+	LatestUpdate MMRHistoryV2History `json:"latest_update"`
+	LifetimePrestige map[string]MMRV3LifetimePrestige `json:"lifetime_prestige,omitempty"`
 	Peak NullableMMRV3Peak `json:"peak,omitempty"`
+	RankedState MMRV3RankedState `json:"ranked_state"`
 	Seasonal []MMRV3Seasonal `json:"seasonal"`
 }
 
@@ -33,10 +36,12 @@ type _MMRV3Data MMRV3Data
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMMRV3Data(account MMRV3Account, current MMRV3Current, seasonal []MMRV3Seasonal) *MMRV3Data {
+func NewMMRV3Data(account MMRV3Account, current MMRV3Current, latestUpdate MMRHistoryV2History, rankedState MMRV3RankedState, seasonal []MMRV3Seasonal) *MMRV3Data {
 	this := MMRV3Data{}
 	this.Account = account
 	this.Current = current
+	this.LatestUpdate = latestUpdate
+	this.RankedState = rankedState
 	this.Seasonal = seasonal
 	return &this
 }
@@ -97,6 +102,63 @@ func (o *MMRV3Data) SetCurrent(v MMRV3Current) {
 	o.Current = v
 }
 
+// GetLatestUpdate returns the LatestUpdate field value
+func (o *MMRV3Data) GetLatestUpdate() MMRHistoryV2History {
+	if o == nil {
+		var ret MMRHistoryV2History
+		return ret
+	}
+
+	return o.LatestUpdate
+}
+
+// GetLatestUpdateOk returns a tuple with the LatestUpdate field value
+// and a boolean to check if the value has been set.
+func (o *MMRV3Data) GetLatestUpdateOk() (*MMRHistoryV2History, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LatestUpdate, true
+}
+
+// SetLatestUpdate sets field value
+func (o *MMRV3Data) SetLatestUpdate(v MMRHistoryV2History) {
+	o.LatestUpdate = v
+}
+
+// GetLifetimePrestige returns the LifetimePrestige field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MMRV3Data) GetLifetimePrestige() map[string]MMRV3LifetimePrestige {
+	if o == nil {
+		var ret map[string]MMRV3LifetimePrestige
+		return ret
+	}
+	return o.LifetimePrestige
+}
+
+// GetLifetimePrestigeOk returns a tuple with the LifetimePrestige field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MMRV3Data) GetLifetimePrestigeOk() (map[string]MMRV3LifetimePrestige, bool) {
+	if o == nil || IsNil(o.LifetimePrestige) {
+		return map[string]MMRV3LifetimePrestige{}, false
+	}
+	return o.LifetimePrestige, true
+}
+
+// HasLifetimePrestige returns a boolean if a field has been set.
+func (o *MMRV3Data) HasLifetimePrestige() bool {
+	if o != nil && !IsNil(o.LifetimePrestige) {
+		return true
+	}
+
+	return false
+}
+
+// SetLifetimePrestige gets a reference to the given map[string]MMRV3LifetimePrestige and assigns it to the LifetimePrestige field.
+func (o *MMRV3Data) SetLifetimePrestige(v map[string]MMRV3LifetimePrestige) {
+	o.LifetimePrestige = v
+}
+
 // GetPeak returns the Peak field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MMRV3Data) GetPeak() MMRV3Peak {
 	if o == nil || IsNil(o.Peak.Get()) {
@@ -139,6 +201,30 @@ func (o *MMRV3Data) UnsetPeak() {
 	o.Peak.Unset()
 }
 
+// GetRankedState returns the RankedState field value
+func (o *MMRV3Data) GetRankedState() MMRV3RankedState {
+	if o == nil {
+		var ret MMRV3RankedState
+		return ret
+	}
+
+	return o.RankedState
+}
+
+// GetRankedStateOk returns a tuple with the RankedState field value
+// and a boolean to check if the value has been set.
+func (o *MMRV3Data) GetRankedStateOk() (*MMRV3RankedState, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RankedState, true
+}
+
+// SetRankedState sets field value
+func (o *MMRV3Data) SetRankedState(v MMRV3RankedState) {
+	o.RankedState = v
+}
+
 // GetSeasonal returns the Seasonal field value
 func (o *MMRV3Data) GetSeasonal() []MMRV3Seasonal {
 	if o == nil {
@@ -175,9 +261,14 @@ func (o MMRV3Data) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["account"] = o.Account
 	toSerialize["current"] = o.Current
+	toSerialize["latest_update"] = o.LatestUpdate
+	if o.LifetimePrestige != nil {
+		toSerialize["lifetime_prestige"] = o.LifetimePrestige
+	}
 	if o.Peak.IsSet() {
 		toSerialize["peak"] = o.Peak.Get()
 	}
+	toSerialize["ranked_state"] = o.RankedState
 	toSerialize["seasonal"] = o.Seasonal
 	return toSerialize, nil
 }
@@ -189,6 +280,8 @@ func (o *MMRV3Data) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"account",
 		"current",
+		"latest_update",
+		"ranked_state",
 		"seasonal",
 	}
 

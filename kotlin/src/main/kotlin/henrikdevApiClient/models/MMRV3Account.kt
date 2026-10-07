@@ -42,7 +42,7 @@ data class MMRV3Account (
     val name: kotlin.String,
 
     @Json(name = "puuid")
-    val puuid: kotlin.String,
+    val puuid: java.util.UUID,
 
     @Json(name = "tag")
     val tag: kotlin.String

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from henrikdev_api_client.models.matches_v4_data_player_bloomline import MatchesV4DataPlayerBloomline
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,10 +28,11 @@ class MatchesV4DataPlayerCustomization(BaseModel):
     """
     MatchesV4DataPlayerCustomization
     """ # noqa: E501
+    bloomline: Optional[MatchesV4DataPlayerBloomline] = None
     card: StrictStr
     preferred_level_border: Optional[StrictStr] = None
     title: StrictStr
-    __properties: ClassVar[List[str]] = ["card", "preferred_level_border", "title"]
+    __properties: ClassVar[List[str]] = ["bloomline", "card", "preferred_level_border", "title"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +73,14 @@ class MatchesV4DataPlayerCustomization(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of bloomline
+        if self.bloomline:
+            _dict['bloomline'] = self.bloomline.to_dict()
+        # set to None if bloomline (nullable) is None
+        # and model_fields_set contains the field
+        if self.bloomline is None and "bloomline" in self.model_fields_set:
+            _dict['bloomline'] = None
+
         # set to None if preferred_level_border (nullable) is None
         # and model_fields_set contains the field
         if self.preferred_level_border is None and "preferred_level_border" in self.model_fields_set:
@@ -88,6 +98,7 @@ class MatchesV4DataPlayerCustomization(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "bloomline": MatchesV4DataPlayerBloomline.from_dict(obj["bloomline"]) if obj.get("bloomline") is not None else None,
             "card": obj.get("card"),
             "preferred_level_border": obj.get("preferred_level_border"),
             "title": obj.get("title")

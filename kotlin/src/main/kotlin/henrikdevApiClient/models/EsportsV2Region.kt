@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * VLR esports region filter. Values are case-sensitive; omission selects all regions.
  *
  * Values: north_america,europe,brazil,asia_pacific,korea,japan,latin_america,oceania,mena,gc,collegiate
  */

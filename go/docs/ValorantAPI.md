@@ -21,6 +21,10 @@ Method | HTTP request | Description
 [**GetAccountV1**](ValorantAPI.md#GetAccountV1) | **Get** /valorant/v1/account/{name}/{tag} | Get account (v1)
 [**GetAccountV2**](ValorantAPI.md#GetAccountV2) | **Get** /valorant/v2/account/{name}/{tag} | Get account (v2)
 [**GetContentV1**](ValorantAPI.md#GetContentV1) | **Get** /valorant/v1/content | Get content (v1)
+[**GetMasteryAgentById**](ValorantAPI.md#GetMasteryAgentById) | **Get** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id} | Get agent mastery by PUUID (v1)
+[**GetMasteryAgentByName**](ValorantAPI.md#GetMasteryAgentByName) | **Get** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id} | Get agent mastery by name (v1)
+[**GetMasteryById**](ValorantAPI.md#GetMasteryById) | **Get** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid} | Get all agent mastery by PUUID (v1)
+[**GetMasteryByName**](ValorantAPI.md#GetMasteryByName) | **Get** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag} | Get all agent mastery by name (v1)
 [**GetMatchesV3ById**](ValorantAPI.md#GetMatchesV3ById) | **Get** /valorant/v3/by-puuid/matches/{affinity}/{puuid} | Get matches by PUUID (v3)
 [**GetMatchesV3ByName**](ValorantAPI.md#GetMatchesV3ByName) | **Get** /valorant/v3/matches/{affinity}/{name}/{tag} | Get matches by name (v3)
 [**GetMatchesV4ById**](ValorantAPI.md#GetMatchesV4ById) | **Get** /valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid} | Get matches by PUUID (v4)
@@ -42,8 +46,12 @@ Method | HTTP request | Description
 [**MatchV4**](ValorantAPI.md#MatchV4) | **Get** /valorant/v4/match/{affinity}/{match_id} | Get match details (v4)
 [**PremierById**](ValorantAPI.md#PremierById) | **Get** /valorant/v1/premier/{id} | Get Premier team by ID (v1)
 [**PremierByIdHistory**](ValorantAPI.md#PremierByIdHistory) | **Get** /valorant/v1/premier/{id}/history | Get Premier team history by ID (v1)
+[**PremierByIdV2**](ValorantAPI.md#PremierByIdV2) | **Get** /valorant/v2/premier/teams/{affinity}/{id} | Get live Premier team by ID (v2)
 [**PremierByName**](ValorantAPI.md#PremierByName) | **Get** /valorant/v1/premier/{name}/{tag} | Get Premier team by name (v1)
 [**PremierByNameHistory**](ValorantAPI.md#PremierByNameHistory) | **Get** /valorant/v1/premier/{name}/{tag}/history | Get Premier team history by name (v1)
+[**PremierByNameV2**](ValorantAPI.md#PremierByNameV2) | **Get** /valorant/v2/premier/teams/{affinity}/{name}/{tag} | Get live Premier team by team name (v2)
+[**PremierByPlayerName**](ValorantAPI.md#PremierByPlayerName) | **Get** /valorant/v2/premier/players/{affinity}/{name}/{tag} | Get live Premier team by player Riot ID (v2)
+[**PremierByPuuid**](ValorantAPI.md#PremierByPuuid) | **Get** /valorant/v2/premier/players/{affinity}/{puuid} | Get live Premier team by player PUUID (v2)
 [**PremierLeaderboard**](ValorantAPI.md#PremierLeaderboard) | **Get** /valorant/v1/premier/leaderboard/{affinity} | Get Premier leaderboard (v1)
 [**PremierSearch**](ValorantAPI.md#PremierSearch) | **Get** /valorant/v1/premier/search | Search Premier teams (v1)
 [**QueueStatus**](ValorantAPI.md#QueueStatus) | **Get** /valorant/v1/queue-status/{affinity} | Get queue status (v1)
@@ -82,7 +90,7 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | Crosshair code (optional)
+	id := "id_example" // string | Required crosshair code
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -105,7 +113,7 @@ Other parameters are passed through a pointer to a apiCrosshairRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Crosshair code | 
+ **id** | **string** | Required crosshair code | 
 
 ### Return type
 
@@ -214,7 +222,7 @@ import (
 func main() {
 	region := openapiclient.EsportsV2Region("north_america") // EsportsV2Region |  (optional)
 	type_ := openapiclient.EsportsV2EventType("completed") // EsportsV2EventType |  (optional)
-	page := int32(56) // int32 |  (optional)
+	page := int32(56) // int32 |  (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -241,7 +249,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **region** | [**EsportsV2Region**](EsportsV2Region.md) |  | 
  **type_** | [**EsportsV2EventType**](EsportsV2EventType.md) |  | 
- **page** | **int32** |  | 
+ **page** | **int32** |  | [default to 1]
 
 ### Return type
 
@@ -349,7 +357,7 @@ import (
 
 func main() {
 	player := int32(56) // int32 | 
-	page := int32(56) // int32 |  (optional)
+	page := int32(56) // int32 |  (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -379,7 +387,7 @@ Other parameters are passed through a pointer to a apiEsportsPlayerMatchesV2Requ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **int32** |  | 
+ **page** | **int32** |  | [default to 1]
 
 ### Return type
 
@@ -555,7 +563,7 @@ import (
 
 func main() {
 	teamId := int32(56) // int32 | 
-	page := int32(56) // int32 |  (optional)
+	page := int32(56) // int32 |  (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -585,7 +593,7 @@ Other parameters are passed through a pointer to a apiEsportsTeamMatchesV2Reques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **int32** |  | 
+ **page** | **int32** |  | [default to 1]
 
 ### Return type
 
@@ -760,9 +768,9 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
-	puuid := "puuid_example" // string | Player UUID
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
+	puuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Player UUID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -782,8 +790,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -834,8 +842,8 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
 
@@ -857,8 +865,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -1197,7 +1205,7 @@ import (
 )
 
 func main() {
-	locale := "locale_example" // string | Locale code (e.g., en-US, de-DE) - optional (optional)
+	locale := openapiclient.ValorantContentLocale("ar-AE") // ValorantContentLocale | Content locale; case-insensitive. Omission selects en-US. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1222,7 +1230,7 @@ Other parameters are passed through a pointer to a apiGetContentV1Request struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **locale** | **string** | Locale code (e.g., en-US, de-DE) - optional | 
+ **locale** | [**ValorantContentLocale**](ValorantContentLocale.md) | Content locale; case-insensitive. Omission selects en-US. | 
 
 ### Return type
 
@@ -1242,9 +1250,325 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetMasteryAgentById
+
+> AgentMasteryV1DetailResponse GetMasteryAgentById(ctx, affinity, platform, puuid, agentId).Execute()
+
+Get agent mastery by PUUID (v1)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
+	puuid := "puuid_example" // string | Player UUID
+	agentId := "agentId_example" // string | Agent UUID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.GetMasteryAgentById(context.Background(), affinity, platform, puuid, agentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMasteryAgentById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMasteryAgentById`: AgentMasteryV1DetailResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.GetMasteryAgentById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
+**puuid** | **string** | Player UUID | 
+**agentId** | **string** | Agent UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMasteryAgentByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMasteryAgentByName
+
+> AgentMasteryV1DetailResponse GetMasteryAgentByName(ctx, affinity, platform, name, tag, agentId).Execute()
+
+Get agent mastery by name (v1)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
+	name := "name_example" // string | Riot ID name
+	tag := "tag_example" // string | Riot ID tag
+	agentId := "agentId_example" // string | Agent UUID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.GetMasteryAgentByName(context.Background(), affinity, platform, name, tag, agentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMasteryAgentByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMasteryAgentByName`: AgentMasteryV1DetailResponse
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.GetMasteryAgentByName`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
+**name** | **string** | Riot ID name | 
+**tag** | **string** | Riot ID tag | 
+**agentId** | **string** | Agent UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMasteryAgentByNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMasteryById
+
+> AgentMasteryV1Response GetMasteryById(ctx, affinity, platform, puuid).Execute()
+
+Get all agent mastery by PUUID (v1)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
+	puuid := "puuid_example" // string | Player UUID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.GetMasteryById(context.Background(), affinity, platform, puuid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMasteryById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMasteryById`: AgentMasteryV1Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.GetMasteryById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
+**puuid** | **string** | Player UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMasteryByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMasteryByName
+
+> AgentMasteryV1Response GetMasteryByName(ctx, affinity, platform, name, tag).Execute()
+
+Get all agent mastery by name (v1)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
+	name := "name_example" // string | Riot ID name
+	tag := "tag_example" // string | Riot ID tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.GetMasteryByName(context.Background(), affinity, platform, name, tag).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMasteryByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMasteryByName`: AgentMasteryV1Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.GetMasteryByName`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
+**name** | **string** | Riot ID name | 
+**tag** | **string** | Riot ID tag | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMasteryByNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetMatchesV3ById
 
-> MatchesV3ListResponse GetMatchesV3ById(ctx, affinity, puuid).Mode(mode).Map_(map_).Size(size).Execute()
+> MatchesV3ListResponse GetMatchesV3ById(ctx, affinity, puuid).Mode(mode).Queue(queue).Map_(map_).Size(size).Execute()
 
 Get matches by PUUID (v3)
 
@@ -1261,15 +1585,16 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	puuid := "puuid_example" // string | Player UUID
-	mode := "mode_example" // string | Game mode filter (optional) (optional)
-	map_ := "map__example" // string | Map filter (optional) (optional)
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	puuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Player UUID
+	mode := "mode_example" // string | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+	queue := "queue_example" // string | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+	map_ := "map__example" // string | Map display name, matched case-insensitively. (optional)
+	size := int32(56) // int32 | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.GetMatchesV3ById(context.Background(), affinity, puuid).Mode(mode).Map_(map_).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.GetMatchesV3ById(context.Background(), affinity, puuid).Mode(mode).Queue(queue).Map_(map_).Size(size).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMatchesV3ById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1285,7 +1610,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -1297,9 +1622,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **mode** | **string** | Game mode filter (optional) | 
- **map_** | **string** | Map filter (optional) | 
- **size** | **int32** | Number of results (optional) | 
+ **mode** | **string** | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | 
+ **queue** | **string** | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | 
+ **map_** | **string** | Map display name, matched case-insensitively. | 
+ **size** | **int32** | Positive integer result count; values above 10 are capped at 10. | [default to 5]
 
 ### Return type
 
@@ -1321,7 +1647,7 @@ Name | Type | Description  | Notes
 
 ## GetMatchesV3ByName
 
-> MatchesV3ListResponse GetMatchesV3ByName(ctx, affinity, name, tag).Mode(mode).Map_(map_).Size(size).Execute()
+> MatchesV3ListResponse GetMatchesV3ByName(ctx, affinity, name, tag).Mode(mode).Queue(queue).Map_(map_).Size(size).Execute()
 
 Get matches by name (v3)
 
@@ -1338,16 +1664,17 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
-	mode := openapiclient.MatchMode("Competitive") // MatchMode | Game mode filter (optional) (optional)
-	map_ := "map__example" // string | Map filter (optional) (optional)
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	mode := "mode_example" // string | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+	queue := "queue_example" // string | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+	map_ := "map__example" // string | Map display name, matched case-insensitively. (optional)
+	size := int32(56) // int32 | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.GetMatchesV3ByName(context.Background(), affinity, name, tag).Mode(mode).Map_(map_).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.GetMatchesV3ByName(context.Background(), affinity, name, tag).Mode(mode).Queue(queue).Map_(map_).Size(size).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMatchesV3ByName``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1363,7 +1690,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -1377,9 +1704,10 @@ Name | Type | Description  | Notes
 
 
 
- **mode** | [**MatchMode**](MatchMode.md) | Game mode filter (optional) | 
- **map_** | **string** | Map filter (optional) | 
- **size** | **int32** | Number of results (optional) | 
+ **mode** | **string** | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | 
+ **queue** | **string** | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | 
+ **map_** | **string** | Map display name, matched case-insensitively. | 
+ **size** | **int32** | Positive integer result count; values above 10 are capped at 10. | [default to 5]
 
 ### Return type
 
@@ -1401,7 +1729,7 @@ Name | Type | Description  | Notes
 
 ## GetMatchesV4ById
 
-> MatchesV4HistoryResponse GetMatchesV4ById(ctx, affinity, platform, puuid).Mode(mode).Map_(map_).Size(size).Start(start).Execute()
+> MatchesV4HistoryResponse GetMatchesV4ById(ctx, affinity, platform, puuid).Mode(mode).Queue(queue).Map_(map_).Size(size).Start(start).Execute()
 
 Get matches by PUUID (v4)
 
@@ -1418,17 +1746,18 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
-	puuid := "puuid_example" // string | Player UUID
-	mode := "mode_example" // string | Game mode filter (optional) (optional)
-	map_ := "map__example" // string | Map filter (optional) (optional)
-	size := int32(56) // int32 | Number of results (optional) (optional)
-	start := int32(56) // int32 | Start index for pagination (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
+	puuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Player UUID
+	mode := "mode_example" // string | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+	queue := "queue_example" // string | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+	map_ := "map__example" // string | Map display name, matched case-insensitively. (optional)
+	size := int32(56) // int32 | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
+	start := int32(56) // int32 | Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional) (default to 0)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.GetMatchesV4ById(context.Background(), affinity, platform, puuid).Mode(mode).Map_(map_).Size(size).Start(start).Execute()
+	resp, r, err := apiClient.ValorantAPI.GetMatchesV4ById(context.Background(), affinity, platform, puuid).Mode(mode).Queue(queue).Map_(map_).Size(size).Start(start).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMatchesV4ById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1444,8 +1773,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -1458,10 +1787,11 @@ Name | Type | Description  | Notes
 
 
 
- **mode** | **string** | Game mode filter (optional) | 
- **map_** | **string** | Map filter (optional) | 
- **size** | **int32** | Number of results (optional) | 
- **start** | **int32** | Start index for pagination (optional) | 
+ **mode** | **string** | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | 
+ **queue** | **string** | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | 
+ **map_** | **string** | Map display name, matched case-insensitively. | 
+ **size** | **int32** | Positive integer result count; values above 10 are capped at 10. | [default to 5]
+ **start** | **int32** | Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [default to 0]
 
 ### Return type
 
@@ -1483,7 +1813,7 @@ Name | Type | Description  | Notes
 
 ## GetMatchesV4ByName
 
-> MatchesV4HistoryResponse GetMatchesV4ByName(ctx, affinity, platform, name, tag).Mode(mode).Map_(map_).Size(size).Start(start).Execute()
+> MatchesV4HistoryResponse GetMatchesV4ByName(ctx, affinity, platform, name, tag).Mode(mode).Queue(queue).Map_(map_).Size(size).Start(start).Execute()
 
 Get matches by name (v4)
 
@@ -1500,18 +1830,19 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
-	mode := "mode_example" // string | Game mode filter (optional) (optional)
-	map_ := "map__example" // string | Map filter (optional) (optional)
-	size := int32(56) // int32 | Number of results (optional) (optional)
-	start := int32(56) // int32 | Start index for pagination (optional) (optional)
+	mode := "mode_example" // string | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+	queue := "queue_example" // string | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+	map_ := "map__example" // string | Map display name, matched case-insensitively. (optional)
+	size := int32(56) // int32 | Positive integer result count; values above 10 are capped at 10. (optional) (default to 5)
+	start := int32(56) // int32 | Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional) (default to 0)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.GetMatchesV4ByName(context.Background(), affinity, platform, name, tag).Mode(mode).Map_(map_).Size(size).Start(start).Execute()
+	resp, r, err := apiClient.ValorantAPI.GetMatchesV4ByName(context.Background(), affinity, platform, name, tag).Mode(mode).Queue(queue).Map_(map_).Size(size).Start(start).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.GetMatchesV4ByName``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1527,8 +1858,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -1543,10 +1874,11 @@ Name | Type | Description  | Notes
 
 
 
- **mode** | **string** | Game mode filter (optional) | 
- **map_** | **string** | Map filter (optional) | 
- **size** | **int32** | Number of results (optional) | 
- **start** | **int32** | Start index for pagination (optional) | 
+ **mode** | **string** | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | 
+ **queue** | **string** | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | 
+ **map_** | **string** | Map display name, matched case-insensitively. | 
+ **size** | **int32** | Positive integer result count; values above 10 are capped at 10. | [default to 5]
+ **start** | **int32** | Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [default to 0]
 
 ### Return type
 
@@ -1585,7 +1917,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	puuid := "puuid_example" // string | Player UUID
 
 	configuration := openapiclient.NewConfiguration()
@@ -1606,7 +1938,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -1656,7 +1988,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
 
@@ -1678,7 +2010,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -1730,8 +2062,8 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	puuid := "puuid_example" // string | Player UUID
 
 	configuration := openapiclient.NewConfiguration()
@@ -1752,8 +2084,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -1804,8 +2136,8 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
 
@@ -1827,8 +2159,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -1881,7 +2213,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	puuid := "puuid_example" // string | Player UUID
 
 	configuration := openapiclient.NewConfiguration()
@@ -1902,7 +2234,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -1952,7 +2284,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
 
@@ -1974,7 +2306,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -2026,7 +2358,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	puuid := "puuid_example" // string | Player UUID
 
 	configuration := openapiclient.NewConfiguration()
@@ -2047,7 +2379,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -2097,7 +2429,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
 
@@ -2119,7 +2451,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -2171,8 +2503,8 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	puuid := "puuid_example" // string | Player UUID
 
 	configuration := openapiclient.NewConfiguration()
@@ -2193,8 +2525,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -2245,8 +2577,8 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
 
@@ -2268,8 +2600,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -2305,7 +2637,7 @@ Name | Type | Description  | Notes
 
 ## LeaderboardV1
 
-> interface{} LeaderboardV1(ctx, affinity).Season(season).Name(name).Tag(tag).Execute()
+> LeaderboardV1Response LeaderboardV1(ctx, affinity).Season(season).Name(name).Tag(tag).Puuid(puuid).Execute()
 
 Get leaderboard (v1)
 
@@ -2322,19 +2654,20 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	season := "season_example" // string | Season ID (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	season := "season_example" // string | Short season ID, such as e9a1; omission selects the current season (optional)
 	name := "name_example" // string | Player name to search for (optional) (optional)
 	tag := "tag_example" // string | Player tag to search for (optional) (optional)
+	puuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Player UUID to search for (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.LeaderboardV1(context.Background(), affinity).Season(season).Name(name).Tag(tag).Execute()
+	resp, r, err := apiClient.ValorantAPI.LeaderboardV1(context.Background(), affinity).Season(season).Name(name).Tag(tag).Puuid(puuid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.LeaderboardV1``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `LeaderboardV1`: interface{}
+	// response from `LeaderboardV1`: LeaderboardV1Response
 	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.LeaderboardV1`: %v\n", resp)
 }
 ```
@@ -2345,7 +2678,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 
 ### Other Parameters
 
@@ -2355,13 +2688,14 @@ Other parameters are passed through a pointer to a apiLeaderboardV1Request struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **season** | **string** | Season ID (optional) | 
+ **season** | **string** | Short season ID, such as e9a1; omission selects the current season | 
  **name** | **string** | Player name to search for (optional) | 
  **tag** | **string** | Player tag to search for (optional) | 
+ **puuid** | **string** | Player UUID to search for | 
 
 ### Return type
 
-**interface{}**
+[**LeaderboardV1Response**](LeaderboardV1Response.md)
 
 ### Authorization
 
@@ -2379,7 +2713,7 @@ Name | Type | Description  | Notes
 
 ## LeaderboardV2
 
-> LeaderboardV2Response LeaderboardV2(ctx, affinity).Season(season).Name(name).Tag(tag).Puuid(puuid).Execute()
+> ValorantLeaderboardV2Response LeaderboardV2(ctx, affinity).Season(season).Name(name).Tag(tag).Puuid(puuid).Execute()
 
 Get leaderboard (v2)
 
@@ -2396,8 +2730,8 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	season := "season_example" // string | Season ID (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	season := "season_example" // string | Short season ID, such as e9a1; omission selects the current season (optional)
 	name := "name_example" // string | Player name to search for (optional) (optional)
 	tag := "tag_example" // string | Player tag to search for (optional) (optional)
 	puuid := "puuid_example" // string | Player UUID to search for (optional) (optional)
@@ -2409,7 +2743,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.LeaderboardV2``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `LeaderboardV2`: LeaderboardV2Response
+	// response from `LeaderboardV2`: ValorantLeaderboardV2Response
 	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.LeaderboardV2`: %v\n", resp)
 }
 ```
@@ -2420,7 +2754,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 
 ### Other Parameters
 
@@ -2430,14 +2764,14 @@ Other parameters are passed through a pointer to a apiLeaderboardV2Request struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **season** | **string** | Season ID (optional) | 
+ **season** | **string** | Short season ID, such as e9a1; omission selects the current season | 
  **name** | **string** | Player name to search for (optional) | 
  **tag** | **string** | Player tag to search for (optional) | 
  **puuid** | **string** | Player UUID to search for (optional) | 
 
 ### Return type
 
-[**LeaderboardV2Response**](LeaderboardV2Response.md)
+[**ValorantLeaderboardV2Response**](ValorantLeaderboardV2Response.md)
 
 ### Authorization
 
@@ -2455,7 +2789,7 @@ Name | Type | Description  | Notes
 
 ## LeaderboardV3
 
-> LeaderboardV3Response LeaderboardV3(ctx, affinity, platform).Season(season).Size(size).Page(page).Name(name).Tag(tag).Execute()
+> LeaderboardV3Response LeaderboardV3(ctx, affinity, platform).Page(page).Size(size).SeasonShort(seasonShort).SeasonId(seasonId).Name(name).Tag(tag).Puuid(puuid).Execute()
 
 Get leaderboard (v3)
 
@@ -2472,17 +2806,19 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
-	season := "season_example" // string | Season ID (optional) (optional)
-	size := int32(56) // int32 | Number of results per page (optional) (optional)
-	page := int32(56) // int32 | Page number (optional) (optional)
-	name := "name_example" // string | Player name to search for (optional) (optional)
-	tag := "tag_example" // string | Player tag to search for (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
+	page := int32(56) // int32 | Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. (optional) (default to 1)
+	size := int32(56) // int32 | Positive integer result count; only ASCII decimal digits are accepted. (optional) (default to 1000)
+	seasonShort := "seasonShort_example" // string | Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. (optional)
+	seasonId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Season UUID; mutually exclusive with season_short. (optional)
+	name := "name_example" // string | Player name to search for. (optional)
+	tag := "tag_example" // string | Player tag to search for. (optional)
+	puuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Player UUID to search for. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.LeaderboardV3(context.Background(), affinity, platform).Season(season).Size(size).Page(page).Name(name).Tag(tag).Execute()
+	resp, r, err := apiClient.ValorantAPI.LeaderboardV3(context.Background(), affinity, platform).Page(page).Size(size).SeasonShort(seasonShort).SeasonId(seasonId).Name(name).Tag(tag).Puuid(puuid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.LeaderboardV3``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2498,8 +2834,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 
 ### Other Parameters
 
@@ -2510,11 +2846,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **season** | **string** | Season ID (optional) | 
- **size** | **int32** | Number of results per page (optional) | 
- **page** | **int32** | Page number (optional) | 
- **name** | **string** | Player name to search for (optional) | 
- **tag** | **string** | Player tag to search for (optional) | 
+ **page** | **int32** | Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. | [default to 1]
+ **size** | **int32** | Positive integer result count; only ASCII decimal digits are accepted. | [default to 1000]
+ **seasonShort** | **string** | Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. | 
+ **seasonId** | **string** | Season UUID; mutually exclusive with season_short. | 
+ **name** | **string** | Player name to search for. | 
+ **tag** | **string** | Player tag to search for. | 
+ **puuid** | **string** | Player UUID to search for. | 
 
 ### Return type
 
@@ -2553,7 +2891,7 @@ import (
 )
 
 func main() {
-	matchId := "matchId_example" // string | Match UUID
+	matchId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Match UUID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2621,8 +2959,8 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	matchId := "matchId_example" // string | Match UUID
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	matchId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Match UUID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2642,7 +2980,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **matchId** | **string** | Match UUID | 
 
 ### Other Parameters
@@ -2692,9 +3030,9 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | Team UUID
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Team UUID
 	season := "season_example" // string | Premier season id (optional) (optional)
-	affinity := "affinity_example" // string | Region/affinity for fallback resolution (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2725,7 +3063,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **season** | **string** | Premier season id (optional) | 
- **affinity** | **string** | Region/affinity for fallback resolution (optional) | 
+ **affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | 
 
 ### Return type
 
@@ -2747,7 +3085,7 @@ Name | Type | Description  | Notes
 
 ## PremierByIdHistory
 
-> PremierTeamV1Response PremierByIdHistory(ctx, id).Season(season).Execute()
+> PremierTeamHistoryV1Response PremierByIdHistory(ctx, id).Season(season).Execute()
 
 Get Premier team history by ID (v1)
 
@@ -2764,7 +3102,7 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | Team UUID
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Team UUID
 	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -2774,7 +3112,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByIdHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PremierByIdHistory`: PremierTeamV1Response
+	// response from `PremierByIdHistory`: PremierTeamHistoryV1Response
 	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.PremierByIdHistory`: %v\n", resp)
 }
 ```
@@ -2799,7 +3137,80 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PremierTeamV1Response**](PremierTeamV1Response.md)
+[**PremierTeamHistoryV1Response**](PremierTeamHistoryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PremierByIdV2
+
+> PremierTeamV2Response PremierByIdV2(ctx, affinity, id).Execute()
+
+Get live Premier team by ID (v2)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Team UUID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.PremierByIdV2(context.Background(), affinity, id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByIdV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PremierByIdV2`: PremierTeamV2Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.PremierByIdV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**id** | **string** | Team UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPremierByIdV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
 
 ### Authorization
 
@@ -2837,7 +3248,7 @@ func main() {
 	name := "name_example" // string | Team name
 	tag := "tag_example" // string | Team tag
 	season := "season_example" // string | Premier season id (optional) (optional)
-	affinity := "affinity_example" // string | Region/affinity for fallback resolution (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2870,7 +3281,7 @@ Name | Type | Description  | Notes
 
 
  **season** | **string** | Premier season id (optional) | 
- **affinity** | **string** | Region/affinity for fallback resolution (optional) | 
+ **affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | 
 
 ### Return type
 
@@ -2963,11 +3374,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PremierLeaderboard
+## PremierByNameV2
 
-> PremierSearchResponse PremierLeaderboard(ctx, affinity).Conference(conference).Division(division).Season(season).Execute()
+> PremierTeamV2Response PremierByNameV2(ctx, affinity, name, tag).Execute()
 
-Get Premier leaderboard (v1)
+Get live Premier team by team name (v2)
+
+
 
 ### Example
 
@@ -2982,14 +3395,237 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	conference := "conference_example" // string | Conference filter (optional) (optional)
-	division := "division_example" // string | Division filter (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	name := "name_example" // string | Premier team name
+	tag := "tag_example" // string | Premier team tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.PremierByNameV2(context.Background(), affinity, name, tag).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByNameV2``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PremierByNameV2`: PremierTeamV2Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.PremierByNameV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**name** | **string** | Premier team name | 
+**tag** | **string** | Premier team tag | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPremierByNameV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PremierByPlayerName
+
+> PremierTeamV2Response PremierByPlayerName(ctx, affinity, name, tag).Execute()
+
+Get live Premier team by player Riot ID (v2)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	name := "name_example" // string | Player Riot ID name
+	tag := "tag_example" // string | Player Riot ID tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.PremierByPlayerName(context.Background(), affinity, name, tag).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByPlayerName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PremierByPlayerName`: PremierTeamV2Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.PremierByPlayerName`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**name** | **string** | Player Riot ID name | 
+**tag** | **string** | Player Riot ID tag | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPremierByPlayerNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PremierByPuuid
+
+> PremierTeamV2Response PremierByPuuid(ctx, affinity, puuid).Execute()
+
+Get live Premier team by player PUUID (v2)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	puuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Player UUID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ValorantAPI.PremierByPuuid(context.Background(), affinity, puuid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierByPuuid``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PremierByPuuid`: PremierTeamV2Response
+	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.PremierByPuuid`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**puuid** | **string** | Player UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPremierByPuuidRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PremierLeaderboard
+
+> PremierSearchResponse PremierLeaderboard(ctx, affinity).Season(season).Execute()
+
+Get Premier leaderboard (v1)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/raimannma/valorant-api-clients"
+)
+
+func main() {
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
 	season := "season_example" // string | Premier season id (optional) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierLeaderboard(context.Background(), affinity).Conference(conference).Division(division).Season(season).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierLeaderboard(context.Background(), affinity).Season(season).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierLeaderboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3005,7 +3641,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; validation is case-insensitive; use lowercase for persisted team matching | 
 
 ### Other Parameters
 
@@ -3015,8 +3651,6 @@ Other parameters are passed through a pointer to a apiPremierLeaderboardRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **conference** | **string** | Conference filter (optional) | 
- **division** | **string** | Division filter (optional) | 
  **season** | **string** | Premier season id (optional) | 
 
 ### Return type
@@ -3039,7 +3673,7 @@ Name | Type | Description  | Notes
 
 ## PremierSearch
 
-> PremierSearchResponse PremierSearch(ctx).Name(name).Tag(tag).Id(id).Season(season).Execute()
+> PremierSearchResponse PremierSearch(ctx).Name(name).Tag(tag).Id(id).Season(season).Conference(conference).Division(division).Execute()
 
 Search Premier teams (v1)
 
@@ -3058,12 +3692,14 @@ import (
 func main() {
 	name := "name_example" // string | Team name to search for (optional) (optional)
 	tag := "tag_example" // string | Team tag to search for (optional) (optional)
-	id := "id_example" // string | Team UUID to search for (optional) (optional)
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Team UUID to search for; cannot be combined with name or tag (optional)
 	season := "season_example" // string | Premier season id (optional) (optional)
+	conference := "conference_example" // string | Current upstream Premier conference key; case-insensitive; not a fixed enum (optional)
+	division := int32(56) // int32 | Division filter; integer from 1 through 21 (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.PremierSearch(context.Background()).Name(name).Tag(tag).Id(id).Season(season).Execute()
+	resp, r, err := apiClient.ValorantAPI.PremierSearch(context.Background()).Name(name).Tag(tag).Id(id).Season(season).Conference(conference).Division(division).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.PremierSearch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3086,8 +3722,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | Team name to search for (optional) | 
  **tag** | **string** | Team tag to search for (optional) | 
- **id** | **string** | Team UUID to search for (optional) | 
+ **id** | **string** | Team UUID to search for; cannot be combined with name or tag | 
  **season** | **string** | Premier season id (optional) | 
+ **conference** | **string** | Current upstream Premier conference key; case-insensitive; not a fixed enum | 
+ **division** | **int32** | Division filter; integer from 1 through 21 | 
 
 ### Return type
 
@@ -3126,7 +3764,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3146,7 +3784,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 
 ### Other Parameters
 
@@ -3181,6 +3819,8 @@ Name | Type | Description  | Notes
 
 Get raw Riot API data (v1)
 
+
+
 ### Example
 
 ```go
@@ -3194,7 +3834,7 @@ import (
 )
 
 func main() {
-	rawV1Payload := *openapiclient.NewRawV1Payload("Region_example", "Type_example", openapiclient.RawV1PayloadValues{ArrayOfString: new([]string)}) // RawV1Payload | 
+	rawV1Payload := *openapiclient.NewRawV1Payload(openapiclient.ValorantAffinity("na"), openapiclient.RawV1ResourceType("matchdetails"), openapiclient.RawV1PayloadValues{ArrayOfString: new([]string)}) // RawV1Payload | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3258,7 +3898,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3278,7 +3918,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 
 ### Other Parameters
 
@@ -3309,7 +3949,7 @@ Name | Type | Description  | Notes
 
 ## StoreFeatured
 
-> StoreFeaturedV1 StoreFeatured(ctx, version).Execute()
+> ValorantStoreFeaturedResponse StoreFeatured(ctx, version).Execute()
 
 Get featured store items
 
@@ -3326,7 +3966,7 @@ import (
 )
 
 func main() {
-	version := "version_example" // string | API version (v1, v2)
+	version := openapiclient.ValorantStoreVersion("v1") // ValorantStoreVersion | Response version; v1 returns an object envelope and v2 returns an array envelope
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3335,7 +3975,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoreFeatured``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StoreFeatured`: StoreFeaturedV1
+	// response from `StoreFeatured`: ValorantStoreFeaturedResponse
 	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.StoreFeatured`: %v\n", resp)
 }
 ```
@@ -3346,7 +3986,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**version** | **string** | API version (v1, v2) | 
+**version** | [**ValorantStoreVersion**](.md) | Response version; v1 returns an object envelope and v2 returns an array envelope | 
 
 ### Other Parameters
 
@@ -3359,7 +3999,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StoreFeaturedV1**](StoreFeaturedV1.md)
+[**ValorantStoreFeaturedResponse**](ValorantStoreFeaturedResponse.md)
 
 ### Authorization
 
@@ -3377,9 +4017,11 @@ Name | Type | Description  | Notes
 
 ## StoreOffers
 
-> StoreOffersV1Response StoreOffers(ctx, version).Execute()
+> StoreOffers(ctx, version).Execute()
 
 Get store offers
+
+
 
 ### Example
 
@@ -3394,17 +4036,15 @@ import (
 )
 
 func main() {
-	version := "version_example" // string | API version (v1, v2)
+	version := openapiclient.ValorantStoreVersion("v1") // ValorantStoreVersion | Legacy API version
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.StoreOffers(context.Background(), version).Execute()
+	r, err := apiClient.ValorantAPI.StoreOffers(context.Background(), version).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoreOffers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StoreOffers`: StoreOffersV1Response
-	fmt.Fprintf(os.Stdout, "Response from `ValorantAPI.StoreOffers`: %v\n", resp)
 }
 ```
 
@@ -3414,7 +4054,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**version** | **string** | API version (v1, v2) | 
+**version** | [**ValorantStoreVersion**](.md) | Legacy API version | 
 
 ### Other Parameters
 
@@ -3427,7 +4067,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StoreOffersV1Response**](StoreOffersV1Response.md)
+ (empty response body)
 
 ### Authorization
 
@@ -3445,7 +4085,7 @@ Name | Type | Description  | Notes
 
 ## StoredMatches
 
-> StoredMatchesResponse StoredMatches(ctx, affinity, name, tag).Mode(mode).Map_(map_).Size(size).Execute()
+> StoredMatchesResponse StoredMatches(ctx, affinity, name, tag).Mode(mode).Queue(queue).Map_(map_).Size(size).Page(page).Execute()
 
 Get stored matches by name (v1)
 
@@ -3462,16 +4102,18 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
-	mode := "mode_example" // string | Game mode filter (optional) (optional)
-	map_ := "map__example" // string | Map filter (optional) (optional)
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	mode := "mode_example" // string | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+	queue := "queue_example" // string | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+	map_ := "map__example" // string | Map display name, matched case-insensitively. (optional)
+	size := int32(56) // int32 | Positive integer result count. Omit for unlimited results. (optional)
+	page := int32(56) // int32 | One-based page. Supplying page requires size. (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.StoredMatches(context.Background(), affinity, name, tag).Mode(mode).Map_(map_).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.StoredMatches(context.Background(), affinity, name, tag).Mode(mode).Queue(queue).Map_(map_).Size(size).Page(page).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoredMatches``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3487,7 +4129,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -3501,9 +4143,11 @@ Name | Type | Description  | Notes
 
 
 
- **mode** | **string** | Game mode filter (optional) | 
- **map_** | **string** | Map filter (optional) | 
- **size** | **int32** | Number of results (optional) | 
+ **mode** | **string** | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | 
+ **queue** | **string** | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | 
+ **map_** | **string** | Map display name, matched case-insensitively. | 
+ **size** | **int32** | Positive integer result count. Omit for unlimited results. | 
+ **page** | **int32** | One-based page. Supplying page requires size. | [default to 1]
 
 ### Return type
 
@@ -3525,7 +4169,7 @@ Name | Type | Description  | Notes
 
 ## StoredMatchesById
 
-> StoredMatchesResponse StoredMatchesById(ctx, affinity, puuid).Mode(mode).Map_(map_).Size(size).Execute()
+> StoredMatchesResponse StoredMatchesById(ctx, affinity, puuid).Mode(mode).Queue(queue).Map_(map_).Size(size).Page(page).Execute()
 
 Get stored matches by PUUID (v1)
 
@@ -3542,15 +4186,17 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	puuid := "puuid_example" // string | Player UUID
-	mode := "mode_example" // string | Game mode filter (optional) (optional)
-	map_ := "map__example" // string | Map filter (optional) (optional)
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	puuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Player UUID
+	mode := "mode_example" // string | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+	queue := "queue_example" // string | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+	map_ := "map__example" // string | Map display name, matched case-insensitively. (optional)
+	size := int32(56) // int32 | Positive integer result count. Omit for unlimited results. (optional)
+	page := int32(56) // int32 | One-based page. Supplying page requires size. (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.StoredMatchesById(context.Background(), affinity, puuid).Mode(mode).Map_(map_).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.StoredMatchesById(context.Background(), affinity, puuid).Mode(mode).Queue(queue).Map_(map_).Size(size).Page(page).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoredMatchesById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3566,7 +4212,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -3578,9 +4224,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **mode** | **string** | Game mode filter (optional) | 
- **map_** | **string** | Map filter (optional) | 
- **size** | **int32** | Number of results (optional) | 
+ **mode** | **string** | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | 
+ **queue** | **string** | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | 
+ **map_** | **string** | Map display name, matched case-insensitively. | 
+ **size** | **int32** | Positive integer result count. Omit for unlimited results. | 
+ **page** | **int32** | One-based page. Supplying page requires size. | [default to 1]
 
 ### Return type
 
@@ -3602,7 +4250,7 @@ Name | Type | Description  | Notes
 
 ## StoredMmrHistory
 
-> StoredMMRResponse StoredMmrHistory(ctx, affinity, name, tag).Size(size).Execute()
+> StoredMMRResponse StoredMmrHistory(ctx, affinity, name, tag).Size(size).Page(page).Execute()
 
 Get stored MMR history by name (v1)
 
@@ -3619,14 +4267,15 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	size := int32(56) // int32 | Positive integer result count. Omit for unlimited results. (optional)
+	page := int32(56) // int32 | One-based page. Supplying page requires size. (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.StoredMmrHistory(context.Background(), affinity, name, tag).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.StoredMmrHistory(context.Background(), affinity, name, tag).Size(size).Page(page).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoredMmrHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3642,7 +4291,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -3656,7 +4305,8 @@ Name | Type | Description  | Notes
 
 
 
- **size** | **int32** | Number of results (optional) | 
+ **size** | **int32** | Positive integer result count. Omit for unlimited results. | 
+ **page** | **int32** | One-based page. Supplying page requires size. | [default to 1]
 
 ### Return type
 
@@ -3678,7 +4328,7 @@ Name | Type | Description  | Notes
 
 ## StoredMmrHistoryById
 
-> StoredMMRResponse StoredMmrHistoryById(ctx, affinity, puuid).Size(size).Execute()
+> StoredMMRResponse StoredMmrHistoryById(ctx, affinity, puuid).Size(size).Page(page).Execute()
 
 Get stored MMR history by PUUID (v1)
 
@@ -3695,13 +4345,14 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 	puuid := "puuid_example" // string | Player UUID
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	size := int32(56) // int32 | Positive integer result count. Omit for unlimited results. (optional)
+	page := int32(56) // int32 | One-based page. Supplying page requires size. (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.StoredMmrHistoryById(context.Background(), affinity, puuid).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.StoredMmrHistoryById(context.Background(), affinity, puuid).Size(size).Page(page).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoredMmrHistoryById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3717,7 +4368,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -3729,7 +4380,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **size** | **int32** | Number of results (optional) | 
+ **size** | **int32** | Positive integer result count. Omit for unlimited results. | 
+ **page** | **int32** | One-based page. Supplying page requires size. | [default to 1]
 
 ### Return type
 
@@ -3751,7 +4403,7 @@ Name | Type | Description  | Notes
 
 ## StoredMmrHistoryV2
 
-> StoredMMRV2Response StoredMmrHistoryV2(ctx, affinity, platform, name, tag).Size(size).Execute()
+> StoredMMRV2Response StoredMmrHistoryV2(ctx, affinity, platform, name, tag).Size(size).Page(page).Execute()
 
 Get stored MMR history by name (v2)
 
@@ -3768,15 +4420,16 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	name := "name_example" // string | Riot ID name
 	tag := "tag_example" // string | Riot ID tag
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	size := int32(56) // int32 | Positive integer result count. Omit for unlimited results. (optional)
+	page := int32(56) // int32 | One-based page. Supplying page requires size. (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.StoredMmrHistoryV2(context.Background(), affinity, platform, name, tag).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.StoredMmrHistoryV2(context.Background(), affinity, platform, name, tag).Size(size).Page(page).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoredMmrHistoryV2``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3792,8 +4445,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **name** | **string** | Riot ID name | 
 **tag** | **string** | Riot ID tag | 
 
@@ -3808,7 +4461,8 @@ Name | Type | Description  | Notes
 
 
 
- **size** | **int32** | Number of results (optional) | 
+ **size** | **int32** | Positive integer result count. Omit for unlimited results. | 
+ **page** | **int32** | One-based page. Supplying page requires size. | [default to 1]
 
 ### Return type
 
@@ -3830,7 +4484,7 @@ Name | Type | Description  | Notes
 
 ## StoredMmrHistoryV2ById
 
-> StoredMMRV2Response StoredMmrHistoryV2ById(ctx, affinity, platform, puuid).Size(size).Execute()
+> StoredMMRV2Response StoredMmrHistoryV2ById(ctx, affinity, platform, puuid).Size(size).Page(page).Execute()
 
 Get stored MMR history by PUUID (v2)
 
@@ -3847,14 +4501,15 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
-	platform := "platform_example" // string | Platform (pc, console)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
+	platform := openapiclient.ValorantPlatform("pc") // ValorantPlatform | Platform; case-insensitive
 	puuid := "puuid_example" // string | Player UUID
-	size := int32(56) // int32 | Number of results (optional) (optional)
+	size := int32(56) // int32 | Positive integer result count. Omit for unlimited results. (optional)
+	page := int32(56) // int32 | One-based page. Supplying page requires size. (optional) (default to 1)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ValorantAPI.StoredMmrHistoryV2ById(context.Background(), affinity, platform, puuid).Size(size).Execute()
+	resp, r, err := apiClient.ValorantAPI.StoredMmrHistoryV2ById(context.Background(), affinity, platform, puuid).Size(size).Page(page).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ValorantAPI.StoredMmrHistoryV2ById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3870,8 +4525,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
-**platform** | **string** | Platform (pc, console) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
+**platform** | [**ValorantPlatform**](.md) | Platform; case-insensitive | 
 **puuid** | **string** | Player UUID | 
 
 ### Other Parameters
@@ -3884,7 +4539,8 @@ Name | Type | Description  | Notes
 
 
 
- **size** | **int32** | Number of results (optional) | 
+ **size** | **int32** | Positive integer result count. Omit for unlimited results. | 
+ **page** | **int32** | One-based page. Supplying page requires size. | [default to 1]
 
 ### Return type
 
@@ -3923,7 +4579,7 @@ import (
 )
 
 func main() {
-	affinity := "affinity_example" // string | Region/affinity (e.g., na, eu, ap, kr)
+	affinity := openapiclient.ValorantAffinity("na") // ValorantAffinity | Region/affinity; case-insensitive
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3943,7 +4599,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**affinity** | **string** | Region/affinity (e.g., na, eu, ap, kr) | 
+**affinity** | [**ValorantAffinity**](.md) | Region/affinity; case-insensitive | 
 
 ### Other Parameters
 
@@ -3991,8 +4647,8 @@ import (
 )
 
 func main() {
-	countryCode := "countryCode_example" // string | Country code (e.g., en-us, de-de)
-	category := "category_example" // string | Category filter (optional) (optional)
+	countryCode := openapiclient.ValorantWebsiteLocale("en-us") // ValorantWebsiteLocale | Website locale; case-insensitive
+	category := openapiclient.ValorantWebsiteCategory("game_updates") // ValorantWebsiteCategory | Category filter; case-sensitive (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4012,7 +4668,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**countryCode** | **string** | Country code (e.g., en-us, de-de) | 
+**countryCode** | [**ValorantWebsiteLocale**](.md) | Website locale; case-insensitive | 
 
 ### Other Parameters
 
@@ -4022,7 +4678,7 @@ Other parameters are passed through a pointer to a apiWebsiteRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **category** | **string** | Category filter (optional) | 
+ **category** | [**ValorantWebsiteCategory**](ValorantWebsiteCategory.md) | Category filter; case-sensitive | 
 
 ### Return type
 
@@ -4048,6 +4704,8 @@ Name | Type | Description  | Notes
 
 Get website entry by ID (v1)
 
+
+
 ### Example
 
 ```go
@@ -4062,7 +4720,7 @@ import (
 
 func main() {
 	dbId := "dbId_example" // string | Database ID of the website entry
-	countryCode := "countryCode_example" // string | Country code (e.g., en-us, de-de)
+	countryCode := "countryCode_example" // string | Ignored locale segment; any string is accepted
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4083,7 +4741,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **dbId** | **string** | Database ID of the website entry | 
-**countryCode** | **string** | Country code (e.g., en-us, de-de) | 
+**countryCode** | **string** | Ignored locale segment; any string is accepted | 
 
 ### Other Parameters
 

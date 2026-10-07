@@ -1,20 +1,32 @@
 # MMRHistoryV2History
 
+Competitive update. Optional upstream fields are null when unavailable; tiers retain original IDs with season-aware names, and ELO is calculated from the original ID.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_date** | **str** |  | 
+**afk_penalty** | **int** |  | [optional] 
+**competitive_movement** | **str** |  | [optional] 
+**var_date** | **datetime** |  | 
 **elo** | **int** |  | 
+**is_placement_match** | **bool** |  | [optional] 
 **last_change** | **int** |  | 
 **map** | [**MapIdNameCombo**](MapIdNameCombo.md) |  | 
-**match_id** | **str** |  | 
+**match_id** | **UUID** |  | 
+**match_length** | **int** | Match duration in milliseconds; null when unavailable. | [optional] 
+**new_map_incentive_rr_forgiven** | **int** |  | [optional] 
+**queue_id** | **str** |  | [optional] 
 **refunded_rr** | **int** |  | 
 **rr** | **int** |  | 
+**rr_before_update** | **int** |  | [optional] 
+**rr_penalty** | **float** |  | [optional] 
+**rr_performance_bonus** | **int** |  | [optional] 
 **season** | [**SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 
 **tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
+**tier_before_update** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | [optional] 
 **was_derank_protected** | **bool** |  | 
+**was_derank_protection_replenished** | **bool** |  | [optional] 
 
 ## Example
 

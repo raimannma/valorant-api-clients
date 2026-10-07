@@ -19,11 +19,15 @@ import (
 // checks if the MatchesV4DataTeam type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MatchesV4DataTeam{}
 
-// MatchesV4DataTeam struct for MatchesV4DataTeam
+// MatchesV4DataTeam Join teams by the opaque team_id; team_number is an upstream number, not an array index.
 type MatchesV4DataTeam struct {
+	Health NullableMatchesV4DataTeamHealth `json:"health,omitempty"`
+	Mvp NullableMatchesV4DataRoundPlayer `json:"mvp,omitempty"`
+	Placement NullableInt32 `json:"placement,omitempty"`
 	PremierRoster NullableMatchesV4DataTeamPremierRoster `json:"premier_roster,omitempty"`
 	Rounds MatchesV4DataTeamRounds `json:"rounds"`
 	TeamId string `json:"team_id"`
+	TeamNumber NullableInt32 `json:"team_number,omitempty"`
 	Won bool `json:"won"`
 }
 
@@ -47,6 +51,132 @@ func NewMatchesV4DataTeam(rounds MatchesV4DataTeamRounds, teamId string, won boo
 func NewMatchesV4DataTeamWithDefaults() *MatchesV4DataTeam {
 	this := MatchesV4DataTeam{}
 	return &this
+}
+
+// GetHealth returns the Health field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataTeam) GetHealth() MatchesV4DataTeamHealth {
+	if o == nil || IsNil(o.Health.Get()) {
+		var ret MatchesV4DataTeamHealth
+		return ret
+	}
+	return *o.Health.Get()
+}
+
+// GetHealthOk returns a tuple with the Health field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataTeam) GetHealthOk() (*MatchesV4DataTeamHealth, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Health.Get(), o.Health.IsSet()
+}
+
+// HasHealth returns a boolean if a field has been set.
+func (o *MatchesV4DataTeam) HasHealth() bool {
+	if o != nil && o.Health.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHealth gets a reference to the given NullableMatchesV4DataTeamHealth and assigns it to the Health field.
+func (o *MatchesV4DataTeam) SetHealth(v MatchesV4DataTeamHealth) {
+	o.Health.Set(&v)
+}
+// SetHealthNil sets the value for Health to be an explicit nil
+func (o *MatchesV4DataTeam) SetHealthNil() {
+	o.Health.Set(nil)
+}
+
+// UnsetHealth ensures that no value is present for Health, not even an explicit nil
+func (o *MatchesV4DataTeam) UnsetHealth() {
+	o.Health.Unset()
+}
+
+// GetMvp returns the Mvp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataTeam) GetMvp() MatchesV4DataRoundPlayer {
+	if o == nil || IsNil(o.Mvp.Get()) {
+		var ret MatchesV4DataRoundPlayer
+		return ret
+	}
+	return *o.Mvp.Get()
+}
+
+// GetMvpOk returns a tuple with the Mvp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataTeam) GetMvpOk() (*MatchesV4DataRoundPlayer, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Mvp.Get(), o.Mvp.IsSet()
+}
+
+// HasMvp returns a boolean if a field has been set.
+func (o *MatchesV4DataTeam) HasMvp() bool {
+	if o != nil && o.Mvp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMvp gets a reference to the given NullableMatchesV4DataRoundPlayer and assigns it to the Mvp field.
+func (o *MatchesV4DataTeam) SetMvp(v MatchesV4DataRoundPlayer) {
+	o.Mvp.Set(&v)
+}
+// SetMvpNil sets the value for Mvp to be an explicit nil
+func (o *MatchesV4DataTeam) SetMvpNil() {
+	o.Mvp.Set(nil)
+}
+
+// UnsetMvp ensures that no value is present for Mvp, not even an explicit nil
+func (o *MatchesV4DataTeam) UnsetMvp() {
+	o.Mvp.Unset()
+}
+
+// GetPlacement returns the Placement field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataTeam) GetPlacement() int32 {
+	if o == nil || IsNil(o.Placement.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.Placement.Get()
+}
+
+// GetPlacementOk returns a tuple with the Placement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataTeam) GetPlacementOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Placement.Get(), o.Placement.IsSet()
+}
+
+// HasPlacement returns a boolean if a field has been set.
+func (o *MatchesV4DataTeam) HasPlacement() bool {
+	if o != nil && o.Placement.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlacement gets a reference to the given NullableInt32 and assigns it to the Placement field.
+func (o *MatchesV4DataTeam) SetPlacement(v int32) {
+	o.Placement.Set(&v)
+}
+// SetPlacementNil sets the value for Placement to be an explicit nil
+func (o *MatchesV4DataTeam) SetPlacementNil() {
+	o.Placement.Set(nil)
+}
+
+// UnsetPlacement ensures that no value is present for Placement, not even an explicit nil
+func (o *MatchesV4DataTeam) UnsetPlacement() {
+	o.Placement.Unset()
 }
 
 // GetPremierRoster returns the PremierRoster field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -139,6 +269,48 @@ func (o *MatchesV4DataTeam) SetTeamId(v string) {
 	o.TeamId = v
 }
 
+// GetTeamNumber returns the TeamNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataTeam) GetTeamNumber() int32 {
+	if o == nil || IsNil(o.TeamNumber.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.TeamNumber.Get()
+}
+
+// GetTeamNumberOk returns a tuple with the TeamNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataTeam) GetTeamNumberOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TeamNumber.Get(), o.TeamNumber.IsSet()
+}
+
+// HasTeamNumber returns a boolean if a field has been set.
+func (o *MatchesV4DataTeam) HasTeamNumber() bool {
+	if o != nil && o.TeamNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTeamNumber gets a reference to the given NullableInt32 and assigns it to the TeamNumber field.
+func (o *MatchesV4DataTeam) SetTeamNumber(v int32) {
+	o.TeamNumber.Set(&v)
+}
+// SetTeamNumberNil sets the value for TeamNumber to be an explicit nil
+func (o *MatchesV4DataTeam) SetTeamNumberNil() {
+	o.TeamNumber.Set(nil)
+}
+
+// UnsetTeamNumber ensures that no value is present for TeamNumber, not even an explicit nil
+func (o *MatchesV4DataTeam) UnsetTeamNumber() {
+	o.TeamNumber.Unset()
+}
+
 // GetWon returns the Won field value
 func (o *MatchesV4DataTeam) GetWon() bool {
 	if o == nil {
@@ -173,11 +345,23 @@ func (o MatchesV4DataTeam) MarshalJSON() ([]byte, error) {
 
 func (o MatchesV4DataTeam) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Health.IsSet() {
+		toSerialize["health"] = o.Health.Get()
+	}
+	if o.Mvp.IsSet() {
+		toSerialize["mvp"] = o.Mvp.Get()
+	}
+	if o.Placement.IsSet() {
+		toSerialize["placement"] = o.Placement.Get()
+	}
 	if o.PremierRoster.IsSet() {
 		toSerialize["premier_roster"] = o.PremierRoster.Get()
 	}
 	toSerialize["rounds"] = o.Rounds
 	toSerialize["team_id"] = o.TeamId
+	if o.TeamNumber.IsSet() {
+		toSerialize["team_number"] = o.TeamNumber.Get()
+	}
 	toSerialize["won"] = o.Won
 	return toSerialize, nil
 }

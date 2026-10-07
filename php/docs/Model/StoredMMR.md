@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | **string** |  |
+**date** | **\DateTime** |  |
 **elo** | **int** |  |
 **last_mmr_change** | **int** |  |
 **map** | [**\OpenAPI\Client\Model\StoredMMRMap**](StoredMMRMap.md) |  |

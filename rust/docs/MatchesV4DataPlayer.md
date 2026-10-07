@@ -9,15 +9,18 @@ Name | Type | Description | Notes
 **agent** | [**models::AgentIdNameCombo**](AgentIdNameCombo.md) |  | 
 **behavior** | [**models::MatchesV4DataPlayerBehavior**](MatchesV4DataPlayerBehavior.md) |  | 
 **customization** | [**models::MatchesV4DataPlayerCustomization**](MatchesV4DataPlayerCustomization.md) |  | 
+**drafted_ability_casts** | Option<[**Vec<models::MatchesV4DataPlayerDraftedAbilityCast>**](MatchesV4DataPlayerDraftedAbilityCast.md)> |  | [optional]
 **economy** | [**models::MatchesV4DataPlayerEconomy**](MatchesV4DataPlayerEconomy.md) |  | 
 **name** | **String** |  | 
 **party_id** | **String** |  | 
+**performance** | Option<[**models::MatchesV4DataPlayerPerformance**](MatchesV4DataPlayerPerformance.md)> |  | [optional]
 **platform** | **String** |  | 
 **puuid** | **String** |  | 
 **session_playtime_in_ms** | **u32** |  | 
 **stats** | [**models::MatchesV4DataPlayerStats**](MatchesV4DataPlayerStats.md) |  | 
 **tag** | **String** |  | 
 **team_id** | **String** |  | 
+**team_number** | Option<**u32**> |  | [optional]
 **tier** | [**models::TierIdNameCombo**](TierIdNameCombo.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -27,7 +27,9 @@ import henrikdevApiClient.models.AgentIdNameCombo
 import henrikdevApiClient.models.MatchesV4DataPlayerAbilityCasts
 import henrikdevApiClient.models.MatchesV4DataPlayerBehavior
 import henrikdevApiClient.models.MatchesV4DataPlayerCustomization
+import henrikdevApiClient.models.MatchesV4DataPlayerDraftedAbilityCast
 import henrikdevApiClient.models.MatchesV4DataPlayerEconomy
+import henrikdevApiClient.models.MatchesV4DataPlayerPerformance
 import henrikdevApiClient.models.MatchesV4DataPlayerStats
 import henrikdevApiClient.models.TierIdNameCombo
 
@@ -35,7 +37,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
  *
  * @param abilityCasts 
  * @param accountLevel 
@@ -52,6 +54,9 @@ import com.squareup.moshi.JsonClass
  * @param tag 
  * @param teamId 
  * @param tier 
+ * @param draftedAbilityCasts 
+ * @param performance 
+ * @param teamNumber 
  */
 
 
@@ -100,7 +105,16 @@ data class MatchesV4DataPlayer (
     val teamId: kotlin.String,
 
     @Json(name = "tier")
-    val tier: TierIdNameCombo
+    val tier: TierIdNameCombo,
+
+    @Json(name = "drafted_ability_casts")
+    val draftedAbilityCasts: kotlin.collections.List<MatchesV4DataPlayerDraftedAbilityCast>? = null,
+
+    @Json(name = "performance")
+    val performance: MatchesV4DataPlayerPerformance? = null,
+
+    @Json(name = "team_number")
+    val teamNumber: kotlin.Int? = null
 
 ) {
 

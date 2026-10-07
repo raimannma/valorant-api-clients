@@ -27,6 +27,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import henrikdevApiClient.models.MatchesV4DataPlayerCustomization
+import henrikdevApiClient.models.MatchesV4DataPlayerBloomline
 
 class MatchesV4DataPlayerCustomizationTest : ShouldSpec() {
     init {
@@ -43,6 +44,12 @@ class MatchesV4DataPlayerCustomizationTest : ShouldSpec() {
         should("test title") {
             // uncomment below to test the property
             //modelInstance.title shouldBe ("TODO")
+        }
+
+        // to test the property `bloomline`
+        should("test bloomline") {
+            // uncomment below to test the property
+            //modelInstance.bloomline shouldBe ("TODO")
         }
 
         // to test the property `preferredLevelBorder`

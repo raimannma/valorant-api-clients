@@ -12,6 +12,7 @@ package henrikdevapiclient
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -19,18 +20,30 @@ import (
 // checks if the StoredMMRV2 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &StoredMMRV2{}
 
-// StoredMMRV2 struct for StoredMMRV2
+// StoredMMRV2 Stored competitive update. Optional enrichment fields are null for older records; tier IDs and ELO preserve the original ranking schema.
 type StoredMMRV2 struct {
-	Date string `json:"date"`
+	AfkPenalty NullableInt32 `json:"afk_penalty,omitempty"`
+	CompetitiveMovement NullableString `json:"competitive_movement,omitempty"`
+	Date time.Time `json:"date"`
 	Elo int32 `json:"elo"`
+	IsPlacementMatch NullableBool `json:"is_placement_match,omitempty"`
 	LastChange int32 `json:"last_change"`
 	Map MapIdNameCombo `json:"map"`
 	MatchId string `json:"match_id"`
+	// Match duration in milliseconds; null when unavailable.
+	MatchLength NullableInt64 `json:"match_length,omitempty"`
+	NewMapIncentiveRrForgiven NullableInt32 `json:"new_map_incentive_rr_forgiven,omitempty"`
+	QueueId NullableString `json:"queue_id,omitempty"`
 	RefundedRr int32 `json:"refunded_rr"`
 	Rr int32 `json:"rr"`
+	RrBeforeUpdate NullableInt32 `json:"rr_before_update,omitempty"`
+	RrPenalty NullableFloat64 `json:"rr_penalty,omitempty"`
+	RrPerformanceBonus NullableInt32 `json:"rr_performance_bonus,omitempty"`
 	Season SeasonIdShortCombo `json:"season"`
 	Tier TierIdNameCombo `json:"tier"`
+	TierBeforeUpdate NullableTierIdNameCombo `json:"tier_before_update,omitempty"`
 	WasDerankProtected bool `json:"was_derank_protected"`
+	WasDerankProtectionReplenished NullableBool `json:"was_derank_protection_replenished,omitempty"`
 }
 
 type _StoredMMRV2 StoredMMRV2
@@ -39,7 +52,7 @@ type _StoredMMRV2 StoredMMRV2
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStoredMMRV2(date string, elo int32, lastChange int32, map_ MapIdNameCombo, matchId string, refundedRr int32, rr int32, season SeasonIdShortCombo, tier TierIdNameCombo, wasDerankProtected bool) *StoredMMRV2 {
+func NewStoredMMRV2(date time.Time, elo int32, lastChange int32, map_ MapIdNameCombo, matchId string, refundedRr int32, rr int32, season SeasonIdShortCombo, tier TierIdNameCombo, wasDerankProtected bool) *StoredMMRV2 {
 	this := StoredMMRV2{}
 	this.Date = date
 	this.Elo = elo
@@ -62,10 +75,94 @@ func NewStoredMMRV2WithDefaults() *StoredMMRV2 {
 	return &this
 }
 
-// GetDate returns the Date field value
-func (o *StoredMMRV2) GetDate() string {
+// GetAfkPenalty returns the AfkPenalty field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetAfkPenalty() int32 {
+	if o == nil || IsNil(o.AfkPenalty.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.AfkPenalty.Get()
+}
+
+// GetAfkPenaltyOk returns a tuple with the AfkPenalty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetAfkPenaltyOk() (*int32, bool) {
 	if o == nil {
+		return nil, false
+	}
+	return o.AfkPenalty.Get(), o.AfkPenalty.IsSet()
+}
+
+// HasAfkPenalty returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasAfkPenalty() bool {
+	if o != nil && o.AfkPenalty.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAfkPenalty gets a reference to the given NullableInt32 and assigns it to the AfkPenalty field.
+func (o *StoredMMRV2) SetAfkPenalty(v int32) {
+	o.AfkPenalty.Set(&v)
+}
+// SetAfkPenaltyNil sets the value for AfkPenalty to be an explicit nil
+func (o *StoredMMRV2) SetAfkPenaltyNil() {
+	o.AfkPenalty.Set(nil)
+}
+
+// UnsetAfkPenalty ensures that no value is present for AfkPenalty, not even an explicit nil
+func (o *StoredMMRV2) UnsetAfkPenalty() {
+	o.AfkPenalty.Unset()
+}
+
+// GetCompetitiveMovement returns the CompetitiveMovement field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetCompetitiveMovement() string {
+	if o == nil || IsNil(o.CompetitiveMovement.Get()) {
 		var ret string
+		return ret
+	}
+	return *o.CompetitiveMovement.Get()
+}
+
+// GetCompetitiveMovementOk returns a tuple with the CompetitiveMovement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetCompetitiveMovementOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CompetitiveMovement.Get(), o.CompetitiveMovement.IsSet()
+}
+
+// HasCompetitiveMovement returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasCompetitiveMovement() bool {
+	if o != nil && o.CompetitiveMovement.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCompetitiveMovement gets a reference to the given NullableString and assigns it to the CompetitiveMovement field.
+func (o *StoredMMRV2) SetCompetitiveMovement(v string) {
+	o.CompetitiveMovement.Set(&v)
+}
+// SetCompetitiveMovementNil sets the value for CompetitiveMovement to be an explicit nil
+func (o *StoredMMRV2) SetCompetitiveMovementNil() {
+	o.CompetitiveMovement.Set(nil)
+}
+
+// UnsetCompetitiveMovement ensures that no value is present for CompetitiveMovement, not even an explicit nil
+func (o *StoredMMRV2) UnsetCompetitiveMovement() {
+	o.CompetitiveMovement.Unset()
+}
+
+// GetDate returns the Date field value
+func (o *StoredMMRV2) GetDate() time.Time {
+	if o == nil {
+		var ret time.Time
 		return ret
 	}
 
@@ -74,7 +171,7 @@ func (o *StoredMMRV2) GetDate() string {
 
 // GetDateOk returns a tuple with the Date field value
 // and a boolean to check if the value has been set.
-func (o *StoredMMRV2) GetDateOk() (*string, bool) {
+func (o *StoredMMRV2) GetDateOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +179,7 @@ func (o *StoredMMRV2) GetDateOk() (*string, bool) {
 }
 
 // SetDate sets field value
-func (o *StoredMMRV2) SetDate(v string) {
+func (o *StoredMMRV2) SetDate(v time.Time) {
 	o.Date = v
 }
 
@@ -108,6 +205,48 @@ func (o *StoredMMRV2) GetEloOk() (*int32, bool) {
 // SetElo sets field value
 func (o *StoredMMRV2) SetElo(v int32) {
 	o.Elo = v
+}
+
+// GetIsPlacementMatch returns the IsPlacementMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetIsPlacementMatch() bool {
+	if o == nil || IsNil(o.IsPlacementMatch.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.IsPlacementMatch.Get()
+}
+
+// GetIsPlacementMatchOk returns a tuple with the IsPlacementMatch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetIsPlacementMatchOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IsPlacementMatch.Get(), o.IsPlacementMatch.IsSet()
+}
+
+// HasIsPlacementMatch returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasIsPlacementMatch() bool {
+	if o != nil && o.IsPlacementMatch.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPlacementMatch gets a reference to the given NullableBool and assigns it to the IsPlacementMatch field.
+func (o *StoredMMRV2) SetIsPlacementMatch(v bool) {
+	o.IsPlacementMatch.Set(&v)
+}
+// SetIsPlacementMatchNil sets the value for IsPlacementMatch to be an explicit nil
+func (o *StoredMMRV2) SetIsPlacementMatchNil() {
+	o.IsPlacementMatch.Set(nil)
+}
+
+// UnsetIsPlacementMatch ensures that no value is present for IsPlacementMatch, not even an explicit nil
+func (o *StoredMMRV2) UnsetIsPlacementMatch() {
+	o.IsPlacementMatch.Unset()
 }
 
 // GetLastChange returns the LastChange field value
@@ -182,6 +321,132 @@ func (o *StoredMMRV2) SetMatchId(v string) {
 	o.MatchId = v
 }
 
+// GetMatchLength returns the MatchLength field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetMatchLength() int64 {
+	if o == nil || IsNil(o.MatchLength.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MatchLength.Get()
+}
+
+// GetMatchLengthOk returns a tuple with the MatchLength field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetMatchLengthOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MatchLength.Get(), o.MatchLength.IsSet()
+}
+
+// HasMatchLength returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasMatchLength() bool {
+	if o != nil && o.MatchLength.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchLength gets a reference to the given NullableInt64 and assigns it to the MatchLength field.
+func (o *StoredMMRV2) SetMatchLength(v int64) {
+	o.MatchLength.Set(&v)
+}
+// SetMatchLengthNil sets the value for MatchLength to be an explicit nil
+func (o *StoredMMRV2) SetMatchLengthNil() {
+	o.MatchLength.Set(nil)
+}
+
+// UnsetMatchLength ensures that no value is present for MatchLength, not even an explicit nil
+func (o *StoredMMRV2) UnsetMatchLength() {
+	o.MatchLength.Unset()
+}
+
+// GetNewMapIncentiveRrForgiven returns the NewMapIncentiveRrForgiven field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetNewMapIncentiveRrForgiven() int32 {
+	if o == nil || IsNil(o.NewMapIncentiveRrForgiven.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.NewMapIncentiveRrForgiven.Get()
+}
+
+// GetNewMapIncentiveRrForgivenOk returns a tuple with the NewMapIncentiveRrForgiven field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetNewMapIncentiveRrForgivenOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NewMapIncentiveRrForgiven.Get(), o.NewMapIncentiveRrForgiven.IsSet()
+}
+
+// HasNewMapIncentiveRrForgiven returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasNewMapIncentiveRrForgiven() bool {
+	if o != nil && o.NewMapIncentiveRrForgiven.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNewMapIncentiveRrForgiven gets a reference to the given NullableInt32 and assigns it to the NewMapIncentiveRrForgiven field.
+func (o *StoredMMRV2) SetNewMapIncentiveRrForgiven(v int32) {
+	o.NewMapIncentiveRrForgiven.Set(&v)
+}
+// SetNewMapIncentiveRrForgivenNil sets the value for NewMapIncentiveRrForgiven to be an explicit nil
+func (o *StoredMMRV2) SetNewMapIncentiveRrForgivenNil() {
+	o.NewMapIncentiveRrForgiven.Set(nil)
+}
+
+// UnsetNewMapIncentiveRrForgiven ensures that no value is present for NewMapIncentiveRrForgiven, not even an explicit nil
+func (o *StoredMMRV2) UnsetNewMapIncentiveRrForgiven() {
+	o.NewMapIncentiveRrForgiven.Unset()
+}
+
+// GetQueueId returns the QueueId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetQueueId() string {
+	if o == nil || IsNil(o.QueueId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.QueueId.Get()
+}
+
+// GetQueueIdOk returns a tuple with the QueueId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetQueueIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.QueueId.Get(), o.QueueId.IsSet()
+}
+
+// HasQueueId returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasQueueId() bool {
+	if o != nil && o.QueueId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQueueId gets a reference to the given NullableString and assigns it to the QueueId field.
+func (o *StoredMMRV2) SetQueueId(v string) {
+	o.QueueId.Set(&v)
+}
+// SetQueueIdNil sets the value for QueueId to be an explicit nil
+func (o *StoredMMRV2) SetQueueIdNil() {
+	o.QueueId.Set(nil)
+}
+
+// UnsetQueueId ensures that no value is present for QueueId, not even an explicit nil
+func (o *StoredMMRV2) UnsetQueueId() {
+	o.QueueId.Unset()
+}
+
 // GetRefundedRr returns the RefundedRr field value
 func (o *StoredMMRV2) GetRefundedRr() int32 {
 	if o == nil {
@@ -228,6 +493,132 @@ func (o *StoredMMRV2) GetRrOk() (*int32, bool) {
 // SetRr sets field value
 func (o *StoredMMRV2) SetRr(v int32) {
 	o.Rr = v
+}
+
+// GetRrBeforeUpdate returns the RrBeforeUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetRrBeforeUpdate() int32 {
+	if o == nil || IsNil(o.RrBeforeUpdate.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.RrBeforeUpdate.Get()
+}
+
+// GetRrBeforeUpdateOk returns a tuple with the RrBeforeUpdate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetRrBeforeUpdateOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RrBeforeUpdate.Get(), o.RrBeforeUpdate.IsSet()
+}
+
+// HasRrBeforeUpdate returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasRrBeforeUpdate() bool {
+	if o != nil && o.RrBeforeUpdate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRrBeforeUpdate gets a reference to the given NullableInt32 and assigns it to the RrBeforeUpdate field.
+func (o *StoredMMRV2) SetRrBeforeUpdate(v int32) {
+	o.RrBeforeUpdate.Set(&v)
+}
+// SetRrBeforeUpdateNil sets the value for RrBeforeUpdate to be an explicit nil
+func (o *StoredMMRV2) SetRrBeforeUpdateNil() {
+	o.RrBeforeUpdate.Set(nil)
+}
+
+// UnsetRrBeforeUpdate ensures that no value is present for RrBeforeUpdate, not even an explicit nil
+func (o *StoredMMRV2) UnsetRrBeforeUpdate() {
+	o.RrBeforeUpdate.Unset()
+}
+
+// GetRrPenalty returns the RrPenalty field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetRrPenalty() float64 {
+	if o == nil || IsNil(o.RrPenalty.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.RrPenalty.Get()
+}
+
+// GetRrPenaltyOk returns a tuple with the RrPenalty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetRrPenaltyOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RrPenalty.Get(), o.RrPenalty.IsSet()
+}
+
+// HasRrPenalty returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasRrPenalty() bool {
+	if o != nil && o.RrPenalty.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRrPenalty gets a reference to the given NullableFloat64 and assigns it to the RrPenalty field.
+func (o *StoredMMRV2) SetRrPenalty(v float64) {
+	o.RrPenalty.Set(&v)
+}
+// SetRrPenaltyNil sets the value for RrPenalty to be an explicit nil
+func (o *StoredMMRV2) SetRrPenaltyNil() {
+	o.RrPenalty.Set(nil)
+}
+
+// UnsetRrPenalty ensures that no value is present for RrPenalty, not even an explicit nil
+func (o *StoredMMRV2) UnsetRrPenalty() {
+	o.RrPenalty.Unset()
+}
+
+// GetRrPerformanceBonus returns the RrPerformanceBonus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetRrPerformanceBonus() int32 {
+	if o == nil || IsNil(o.RrPerformanceBonus.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.RrPerformanceBonus.Get()
+}
+
+// GetRrPerformanceBonusOk returns a tuple with the RrPerformanceBonus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetRrPerformanceBonusOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RrPerformanceBonus.Get(), o.RrPerformanceBonus.IsSet()
+}
+
+// HasRrPerformanceBonus returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasRrPerformanceBonus() bool {
+	if o != nil && o.RrPerformanceBonus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRrPerformanceBonus gets a reference to the given NullableInt32 and assigns it to the RrPerformanceBonus field.
+func (o *StoredMMRV2) SetRrPerformanceBonus(v int32) {
+	o.RrPerformanceBonus.Set(&v)
+}
+// SetRrPerformanceBonusNil sets the value for RrPerformanceBonus to be an explicit nil
+func (o *StoredMMRV2) SetRrPerformanceBonusNil() {
+	o.RrPerformanceBonus.Set(nil)
+}
+
+// UnsetRrPerformanceBonus ensures that no value is present for RrPerformanceBonus, not even an explicit nil
+func (o *StoredMMRV2) UnsetRrPerformanceBonus() {
+	o.RrPerformanceBonus.Unset()
 }
 
 // GetSeason returns the Season field value
@@ -278,6 +669,48 @@ func (o *StoredMMRV2) SetTier(v TierIdNameCombo) {
 	o.Tier = v
 }
 
+// GetTierBeforeUpdate returns the TierBeforeUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetTierBeforeUpdate() TierIdNameCombo {
+	if o == nil || IsNil(o.TierBeforeUpdate.Get()) {
+		var ret TierIdNameCombo
+		return ret
+	}
+	return *o.TierBeforeUpdate.Get()
+}
+
+// GetTierBeforeUpdateOk returns a tuple with the TierBeforeUpdate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetTierBeforeUpdateOk() (*TierIdNameCombo, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TierBeforeUpdate.Get(), o.TierBeforeUpdate.IsSet()
+}
+
+// HasTierBeforeUpdate returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasTierBeforeUpdate() bool {
+	if o != nil && o.TierBeforeUpdate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTierBeforeUpdate gets a reference to the given NullableTierIdNameCombo and assigns it to the TierBeforeUpdate field.
+func (o *StoredMMRV2) SetTierBeforeUpdate(v TierIdNameCombo) {
+	o.TierBeforeUpdate.Set(&v)
+}
+// SetTierBeforeUpdateNil sets the value for TierBeforeUpdate to be an explicit nil
+func (o *StoredMMRV2) SetTierBeforeUpdateNil() {
+	o.TierBeforeUpdate.Set(nil)
+}
+
+// UnsetTierBeforeUpdate ensures that no value is present for TierBeforeUpdate, not even an explicit nil
+func (o *StoredMMRV2) UnsetTierBeforeUpdate() {
+	o.TierBeforeUpdate.Unset()
+}
+
 // GetWasDerankProtected returns the WasDerankProtected field value
 func (o *StoredMMRV2) GetWasDerankProtected() bool {
 	if o == nil {
@@ -302,6 +735,48 @@ func (o *StoredMMRV2) SetWasDerankProtected(v bool) {
 	o.WasDerankProtected = v
 }
 
+// GetWasDerankProtectionReplenished returns the WasDerankProtectionReplenished field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StoredMMRV2) GetWasDerankProtectionReplenished() bool {
+	if o == nil || IsNil(o.WasDerankProtectionReplenished.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.WasDerankProtectionReplenished.Get()
+}
+
+// GetWasDerankProtectionReplenishedOk returns a tuple with the WasDerankProtectionReplenished field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StoredMMRV2) GetWasDerankProtectionReplenishedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WasDerankProtectionReplenished.Get(), o.WasDerankProtectionReplenished.IsSet()
+}
+
+// HasWasDerankProtectionReplenished returns a boolean if a field has been set.
+func (o *StoredMMRV2) HasWasDerankProtectionReplenished() bool {
+	if o != nil && o.WasDerankProtectionReplenished.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWasDerankProtectionReplenished gets a reference to the given NullableBool and assigns it to the WasDerankProtectionReplenished field.
+func (o *StoredMMRV2) SetWasDerankProtectionReplenished(v bool) {
+	o.WasDerankProtectionReplenished.Set(&v)
+}
+// SetWasDerankProtectionReplenishedNil sets the value for WasDerankProtectionReplenished to be an explicit nil
+func (o *StoredMMRV2) SetWasDerankProtectionReplenishedNil() {
+	o.WasDerankProtectionReplenished.Set(nil)
+}
+
+// UnsetWasDerankProtectionReplenished ensures that no value is present for WasDerankProtectionReplenished, not even an explicit nil
+func (o *StoredMMRV2) UnsetWasDerankProtectionReplenished() {
+	o.WasDerankProtectionReplenished.Unset()
+}
+
 func (o StoredMMRV2) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -312,16 +787,49 @@ func (o StoredMMRV2) MarshalJSON() ([]byte, error) {
 
 func (o StoredMMRV2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AfkPenalty.IsSet() {
+		toSerialize["afk_penalty"] = o.AfkPenalty.Get()
+	}
+	if o.CompetitiveMovement.IsSet() {
+		toSerialize["competitive_movement"] = o.CompetitiveMovement.Get()
+	}
 	toSerialize["date"] = o.Date
 	toSerialize["elo"] = o.Elo
+	if o.IsPlacementMatch.IsSet() {
+		toSerialize["is_placement_match"] = o.IsPlacementMatch.Get()
+	}
 	toSerialize["last_change"] = o.LastChange
 	toSerialize["map"] = o.Map
 	toSerialize["match_id"] = o.MatchId
+	if o.MatchLength.IsSet() {
+		toSerialize["match_length"] = o.MatchLength.Get()
+	}
+	if o.NewMapIncentiveRrForgiven.IsSet() {
+		toSerialize["new_map_incentive_rr_forgiven"] = o.NewMapIncentiveRrForgiven.Get()
+	}
+	if o.QueueId.IsSet() {
+		toSerialize["queue_id"] = o.QueueId.Get()
+	}
 	toSerialize["refunded_rr"] = o.RefundedRr
 	toSerialize["rr"] = o.Rr
+	if o.RrBeforeUpdate.IsSet() {
+		toSerialize["rr_before_update"] = o.RrBeforeUpdate.Get()
+	}
+	if o.RrPenalty.IsSet() {
+		toSerialize["rr_penalty"] = o.RrPenalty.Get()
+	}
+	if o.RrPerformanceBonus.IsSet() {
+		toSerialize["rr_performance_bonus"] = o.RrPerformanceBonus.Get()
+	}
 	toSerialize["season"] = o.Season
 	toSerialize["tier"] = o.Tier
+	if o.TierBeforeUpdate.IsSet() {
+		toSerialize["tier_before_update"] = o.TierBeforeUpdate.Get()
+	}
 	toSerialize["was_derank_protected"] = o.WasDerankProtected
+	if o.WasDerankProtectionReplenished.IsSet() {
+		toSerialize["was_derank_protection_replenished"] = o.WasDerankProtectionReplenished.Get()
+	}
 	return toSerialize, nil
 }
 

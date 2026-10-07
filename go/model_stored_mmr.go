@@ -12,6 +12,7 @@ package henrikdevapiclient
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -21,7 +22,7 @@ var _ MappedNullable = &StoredMMR{}
 
 // StoredMMR struct for StoredMMR
 type StoredMMR struct {
-	Date string `json:"date"`
+	Date time.Time `json:"date"`
 	Elo int32 `json:"elo"`
 	LastMmrChange int32 `json:"last_mmr_change"`
 	Map StoredMMRMap `json:"map"`
@@ -37,7 +38,7 @@ type _StoredMMR StoredMMR
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStoredMMR(date string, elo int32, lastMmrChange int32, map_ StoredMMRMap, matchId string, rankingInTier int32, season StoredMMRSeason, tier StoredMMRTier) *StoredMMR {
+func NewStoredMMR(date time.Time, elo int32, lastMmrChange int32, map_ StoredMMRMap, matchId string, rankingInTier int32, season StoredMMRSeason, tier StoredMMRTier) *StoredMMR {
 	this := StoredMMR{}
 	this.Date = date
 	this.Elo = elo
@@ -59,9 +60,9 @@ func NewStoredMMRWithDefaults() *StoredMMR {
 }
 
 // GetDate returns the Date field value
-func (o *StoredMMR) GetDate() string {
+func (o *StoredMMR) GetDate() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -70,7 +71,7 @@ func (o *StoredMMR) GetDate() string {
 
 // GetDateOk returns a tuple with the Date field value
 // and a boolean to check if the value has been set.
-func (o *StoredMMR) GetDateOk() (*string, bool) {
+func (o *StoredMMR) GetDateOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,7 +79,7 @@ func (o *StoredMMR) GetDateOk() (*string, bool) {
 }
 
 // SetDate sets field value
-func (o *StoredMMR) SetDate(v string) {
+func (o *StoredMMR) SetDate(v time.Time) {
 	o.Date = v
 }
 

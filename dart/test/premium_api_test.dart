@@ -33,14 +33,14 @@ void main() {
 
     // Get premium webhook settings
     //
-    //Future getWebhookSettings() async
+    //Future<PremiumWebhookGetResponse> getWebhookSettings() async
     test('test getWebhookSettings', () async {
       // TODO
     });
 
     // Update premium webhook user
     //
-    //Future updateWebhookUser(String id, PremiumWebhookUserUpdateRequest premiumWebhookUserUpdateRequest) async
+    //Future<PremiumWebhookUpdateResponse> updateWebhookUser(String id, PremiumWebhookUserUpdateRequest premiumWebhookUserUpdateRequest) async
     test('test updateWebhookUser', () async {
       // TODO
     });

@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **enabled** | **bool** |  | 
 **events** | [**Vec<models::PremiumWebhookEvent>**](PremiumWebhookEvent.md) |  | 
 **id** | **String** |  | 
-**last_checked_at** | Option<**i64**> |  | [optional]
-**last_match** | Option<**String**> |  | [optional]
-**last_mmr** | Option<**i32**> |  | [optional]
-**puuid** | **String** |  | 
+**last_checked_at** | Option<**i64**> |  | 
+**last_match** | Option<**String**> |  | 
+**last_mmr** | Option<**i32**> |  | 
+**puuid** | **uuid::Uuid** |  | 
 **region** | **String** |  | 
 **updated_at** | **i64** |  | 
 

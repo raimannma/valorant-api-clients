@@ -30,6 +30,7 @@ import henrikdevApiClient.models.MatchesV4DataMetadata
 import henrikdevApiClient.models.MapIdNameCombo
 import henrikdevApiClient.models.MatchesV4DataMetadataPartyRRPenalty
 import henrikdevApiClient.models.MatchesV4DataMetadataQueue
+import henrikdevApiClient.models.MatchesV4DataRoundPlayer
 import henrikdevApiClient.models.SeasonIdShortCombo
 
 class MatchesV4DataMetadataTest : ShouldSpec() {
@@ -37,7 +38,7 @@ class MatchesV4DataMetadataTest : ShouldSpec() {
         // uncomment below to create an instance of MatchesV4DataMetadata
         //val modelInstance = MatchesV4DataMetadata()
 
-        // to test the property `gameLengthInMs`
+        // to test the property `gameLengthInMs` - Match duration in milliseconds.
         should("test gameLengthInMs") {
             // uncomment below to test the property
             //modelInstance.gameLengthInMs shouldBe ("TODO")
@@ -101,6 +102,12 @@ class MatchesV4DataMetadataTest : ShouldSpec() {
         should("test cluster") {
             // uncomment below to test the property
             //modelInstance.cluster shouldBe ("TODO")
+        }
+
+        // to test the property `mvp`
+        should("test mvp") {
+            // uncomment below to test the property
+            //modelInstance.mvp shouldBe ("TODO")
         }
 
         // to test the property `premier`

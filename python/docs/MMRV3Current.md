@@ -6,10 +6,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **elo** | **int** |  | 
+**games_needed_for_leaderboard** | **int** |  | 
 **games_needed_for_rating** | **int** |  | 
+**is_at_rank_protected_tier** | **bool** |  | [optional] 
 **last_change** | **int** |  | 
 **leaderboard_placement** | [**MMRV3LeaderboardPlacement**](MMRV3LeaderboardPlacement.md) |  | [optional] 
 **rank_protection_shields** | **int** |  | 
+**rank_protection_status** | **str** |  | [optional] 
 **rr** | **int** |  | 
 **tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
 

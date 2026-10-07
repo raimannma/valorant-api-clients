@@ -36,12 +36,15 @@ class TestMMRV3Current(unittest.TestCase):
         if include_optional:
             return MMRV3Current(
                 elo = 56,
+                games_needed_for_leaderboard = 56,
                 games_needed_for_rating = 56,
+                is_at_rank_protected_tier = True,
                 last_change = 56,
                 leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                     rank = 0, 
-                    updated_at = '', ),
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 rank_protection_shields = 56,
+                rank_protection_status = '',
                 rr = 56,
                 tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                     id = 56, 
@@ -50,6 +53,7 @@ class TestMMRV3Current(unittest.TestCase):
         else:
             return MMRV3Current(
                 elo = 56,
+                games_needed_for_leaderboard = 56,
                 games_needed_for_rating = 56,
                 last_change = 56,
                 rank_protection_shields = 56,

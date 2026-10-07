@@ -43,6 +43,11 @@ class TestMatchesV4DataMetadata(unittest.TestCase):
                     id = '', 
                     name = '', ),
                 match_id = '',
+                mvp = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    name = '', 
+                    puuid = '', 
+                    tag = '', 
+                    team = '', ),
                 party_rr_penaltys = [
                     henrikdev_api_client.models.matches_v4_data_metadata_party_rr_penalty.MatchesV4DataMetadataPartyRRPenalty(
                         party_id = '', 
@@ -58,7 +63,7 @@ class TestMatchesV4DataMetadata(unittest.TestCase):
                 season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
-                started_at = ''
+                started_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return MatchesV4DataMetadata(
@@ -82,7 +87,7 @@ class TestMatchesV4DataMetadata(unittest.TestCase):
                 season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
-                started_at = '',
+                started_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

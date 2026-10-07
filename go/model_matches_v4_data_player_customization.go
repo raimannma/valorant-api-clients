@@ -21,6 +21,7 @@ var _ MappedNullable = &MatchesV4DataPlayerCustomization{}
 
 // MatchesV4DataPlayerCustomization struct for MatchesV4DataPlayerCustomization
 type MatchesV4DataPlayerCustomization struct {
+	Bloomline NullableMatchesV4DataPlayerBloomline `json:"bloomline,omitempty"`
 	Card string `json:"card"`
 	PreferredLevelBorder NullableString `json:"preferred_level_border,omitempty"`
 	Title string `json:"title"`
@@ -45,6 +46,48 @@ func NewMatchesV4DataPlayerCustomization(card string, title string) *MatchesV4Da
 func NewMatchesV4DataPlayerCustomizationWithDefaults() *MatchesV4DataPlayerCustomization {
 	this := MatchesV4DataPlayerCustomization{}
 	return &this
+}
+
+// GetBloomline returns the Bloomline field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataPlayerCustomization) GetBloomline() MatchesV4DataPlayerBloomline {
+	if o == nil || IsNil(o.Bloomline.Get()) {
+		var ret MatchesV4DataPlayerBloomline
+		return ret
+	}
+	return *o.Bloomline.Get()
+}
+
+// GetBloomlineOk returns a tuple with the Bloomline field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataPlayerCustomization) GetBloomlineOk() (*MatchesV4DataPlayerBloomline, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Bloomline.Get(), o.Bloomline.IsSet()
+}
+
+// HasBloomline returns a boolean if a field has been set.
+func (o *MatchesV4DataPlayerCustomization) HasBloomline() bool {
+	if o != nil && o.Bloomline.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBloomline gets a reference to the given NullableMatchesV4DataPlayerBloomline and assigns it to the Bloomline field.
+func (o *MatchesV4DataPlayerCustomization) SetBloomline(v MatchesV4DataPlayerBloomline) {
+	o.Bloomline.Set(&v)
+}
+// SetBloomlineNil sets the value for Bloomline to be an explicit nil
+func (o *MatchesV4DataPlayerCustomization) SetBloomlineNil() {
+	o.Bloomline.Set(nil)
+}
+
+// UnsetBloomline ensures that no value is present for Bloomline, not even an explicit nil
+func (o *MatchesV4DataPlayerCustomization) UnsetBloomline() {
+	o.Bloomline.Unset()
 }
 
 // GetCard returns the Card field value
@@ -147,6 +190,9 @@ func (o MatchesV4DataPlayerCustomization) MarshalJSON() ([]byte, error) {
 
 func (o MatchesV4DataPlayerCustomization) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Bloomline.IsSet() {
+		toSerialize["bloomline"] = o.Bloomline.Get()
+	}
 	toSerialize["card"] = o.Card
 	if o.PreferredLevelBorder.IsSet() {
 		toSerialize["preferred_level_border"] = o.PreferredLevelBorder.Get()

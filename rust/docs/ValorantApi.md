@@ -21,6 +21,10 @@ Method | HTTP request | Description
 [**get_account_v1**](ValorantApi.md#get_account_v1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1)
 [**get_account_v2**](ValorantApi.md#get_account_v2) | **GET** /valorant/v2/account/{name}/{tag} | Get account (v2)
 [**get_content_v1**](ValorantApi.md#get_content_v1) | **GET** /valorant/v1/content | Get content (v1)
+[**get_mastery_agent_by_id**](ValorantApi.md#get_mastery_agent_by_id) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id} | Get agent mastery by PUUID (v1)
+[**get_mastery_agent_by_name**](ValorantApi.md#get_mastery_agent_by_name) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id} | Get agent mastery by name (v1)
+[**get_mastery_by_id**](ValorantApi.md#get_mastery_by_id) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid} | Get all agent mastery by PUUID (v1)
+[**get_mastery_by_name**](ValorantApi.md#get_mastery_by_name) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag} | Get all agent mastery by name (v1)
 [**get_matches_v3_by_id**](ValorantApi.md#get_matches_v3_by_id) | **GET** /valorant/v3/by-puuid/matches/{affinity}/{puuid} | Get matches by PUUID (v3)
 [**get_matches_v3_by_name**](ValorantApi.md#get_matches_v3_by_name) | **GET** /valorant/v3/matches/{affinity}/{name}/{tag} | Get matches by name (v3)
 [**get_matches_v4_by_id**](ValorantApi.md#get_matches_v4_by_id) | **GET** /valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid} | Get matches by PUUID (v4)
@@ -42,8 +46,12 @@ Method | HTTP request | Description
 [**match_v4**](ValorantApi.md#match_v4) | **GET** /valorant/v4/match/{affinity}/{match_id} | Get match details (v4)
 [**premier_by_id**](ValorantApi.md#premier_by_id) | **GET** /valorant/v1/premier/{id} | Get Premier team by ID (v1)
 [**premier_by_id_history**](ValorantApi.md#premier_by_id_history) | **GET** /valorant/v1/premier/{id}/history | Get Premier team history by ID (v1)
+[**premier_by_id_v2**](ValorantApi.md#premier_by_id_v2) | **GET** /valorant/v2/premier/teams/{affinity}/{id} | Get live Premier team by ID (v2)
 [**premier_by_name**](ValorantApi.md#premier_by_name) | **GET** /valorant/v1/premier/{name}/{tag} | Get Premier team by name (v1)
 [**premier_by_name_history**](ValorantApi.md#premier_by_name_history) | **GET** /valorant/v1/premier/{name}/{tag}/history | Get Premier team history by name (v1)
+[**premier_by_name_v2**](ValorantApi.md#premier_by_name_v2) | **GET** /valorant/v2/premier/teams/{affinity}/{name}/{tag} | Get live Premier team by team name (v2)
+[**premier_by_player_name**](ValorantApi.md#premier_by_player_name) | **GET** /valorant/v2/premier/players/{affinity}/{name}/{tag} | Get live Premier team by player Riot ID (v2)
+[**premier_by_puuid**](ValorantApi.md#premier_by_puuid) | **GET** /valorant/v2/premier/players/{affinity}/{puuid} | Get live Premier team by player PUUID (v2)
 [**premier_leaderboard**](ValorantApi.md#premier_leaderboard) | **GET** /valorant/v1/premier/leaderboard/{affinity} | Get Premier leaderboard (v1)
 [**premier_search**](ValorantApi.md#premier_search) | **GET** /valorant/v1/premier/search | Search Premier teams (v1)
 [**queue_status**](ValorantApi.md#queue_status) | **GET** /valorant/v1/queue-status/{affinity} | Get queue status (v1)
@@ -73,7 +81,7 @@ Generate crosshair image (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | Option<**String**> | Crosshair code |  |
+**id** | **String** | Required crosshair code | [required] |
 
 ### Return type
 
@@ -131,7 +139,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **region** | Option<[**EsportsV2Region**](EsportsV2Region.md)> |  |  |
 **r#type** | Option<[**EsportsV2EventType**](EsportsV2EventType.md)> |  |  |
-**page** | Option<**u32**> |  |  |
+**page** | Option<**u32**> |  |  |[default to 1]
 
 ### Return type
 
@@ -188,7 +196,7 @@ Get VLR player matches (v2)
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **player** | **u32** |  | [required] |
-**page** | Option<**u32**> |  |  |
+**page** | Option<**u32**> |  |  |[default to 1]
 
 ### Return type
 
@@ -275,7 +283,7 @@ Get VLR team matches (v2)
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **team_id** | **u32** |  | [required] |
-**page** | Option<**u32**> |  |  |
+**page** | Option<**u32**> |  |  |[default to 1]
 
 ### Return type
 
@@ -359,9 +367,9 @@ Get player accolades by PUUID (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
-**puuid** | **String** | Player UUID | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
+**puuid** | **uuid::Uuid** | Player UUID | [required] |
 
 ### Return type
 
@@ -389,8 +397,8 @@ Get player accolades by name (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
 
@@ -538,7 +546,7 @@ Get content (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**locale** | Option<**String**> | Locale code (e.g., en-US, de-DE) - optional |  |
+**locale** | Option<[**ValorantContentLocale**](ValorantContentLocale.md)> | Content locale; case-insensitive. Omission selects en-US. |  |
 
 ### Return type
 
@@ -556,9 +564,141 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_mastery_agent_by_id
+
+> models::AgentMasteryV1DetailResponse get_mastery_agent_by_id(affinity, platform, puuid, agent_id)
+Get agent mastery by PUUID (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
+**puuid** | **String** | Player UUID | [required] |
+**agent_id** | **String** | Agent UUID | [required] |
+
+### Return type
+
+[**models::AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_mastery_agent_by_name
+
+> models::AgentMasteryV1DetailResponse get_mastery_agent_by_name(affinity, platform, name, tag, agent_id)
+Get agent mastery by name (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
+**name** | **String** | Riot ID name | [required] |
+**tag** | **String** | Riot ID tag | [required] |
+**agent_id** | **String** | Agent UUID | [required] |
+
+### Return type
+
+[**models::AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_mastery_by_id
+
+> models::AgentMasteryV1Response get_mastery_by_id(affinity, platform, puuid)
+Get all agent mastery by PUUID (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
+**puuid** | **String** | Player UUID | [required] |
+
+### Return type
+
+[**models::AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_mastery_by_name
+
+> models::AgentMasteryV1Response get_mastery_by_name(affinity, platform, name, tag)
+Get all agent mastery by name (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
+**name** | **String** | Riot ID name | [required] |
+**tag** | **String** | Riot ID tag | [required] |
+
+### Return type
+
+[**models::AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_matches_v3_by_id
 
-> models::MatchesV3ListResponse get_matches_v3_by_id(affinity, puuid, mode, map, size)
+> models::MatchesV3ListResponse get_matches_v3_by_id(affinity, puuid, mode, queue, map, size)
 Get matches by PUUID (v3)
 
 ### Parameters
@@ -566,11 +706,12 @@ Get matches by PUUID (v3)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**puuid** | **String** | Player UUID | [required] |
-**mode** | Option<**String**> | Game mode filter (optional) |  |
-**map** | Option<**String**> | Map filter (optional) |  |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**puuid** | **uuid::Uuid** | Player UUID | [required] |
+**mode** | Option<**String**> | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. |  |
+**queue** | Option<**String**> | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. |  |
+**map** | Option<**String**> | Map display name, matched case-insensitively. |  |
+**size** | Option<**u32**> | Positive integer result count; values above 10 are capped at 10. |  |[default to 5]
 
 ### Return type
 
@@ -590,7 +731,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_matches_v3_by_name
 
-> models::MatchesV3ListResponse get_matches_v3_by_name(affinity, name, tag, mode, map, size)
+> models::MatchesV3ListResponse get_matches_v3_by_name(affinity, name, tag, mode, queue, map, size)
 Get matches by name (v3)
 
 ### Parameters
@@ -598,12 +739,13 @@ Get matches by name (v3)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
-**mode** | Option<[**MatchMode**](MatchMode.md)> | Game mode filter (optional) |  |
-**map** | Option<**String**> | Map filter (optional) |  |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**mode** | Option<**String**> | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. |  |
+**queue** | Option<**String**> | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. |  |
+**map** | Option<**String**> | Map display name, matched case-insensitively. |  |
+**size** | Option<**u32**> | Positive integer result count; values above 10 are capped at 10. |  |[default to 5]
 
 ### Return type
 
@@ -623,7 +765,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_matches_v4_by_id
 
-> models::MatchesV4HistoryResponse get_matches_v4_by_id(affinity, platform, puuid, mode, map, size, start)
+> models::MatchesV4HistoryResponse get_matches_v4_by_id(affinity, platform, puuid, mode, queue, map, size, start)
 Get matches by PUUID (v4)
 
 ### Parameters
@@ -631,13 +773,14 @@ Get matches by PUUID (v4)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
-**puuid** | **String** | Player UUID | [required] |
-**mode** | Option<**String**> | Game mode filter (optional) |  |
-**map** | Option<**String**> | Map filter (optional) |  |
-**size** | Option<**i32**> | Number of results (optional) |  |
-**start** | Option<**i32**> | Start index for pagination (optional) |  |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
+**puuid** | **uuid::Uuid** | Player UUID | [required] |
+**mode** | Option<**String**> | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. |  |
+**queue** | Option<**String**> | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. |  |
+**map** | Option<**String**> | Map display name, matched case-insensitively. |  |
+**size** | Option<**u32**> | Positive integer result count; values above 10 are capped at 10. |  |[default to 5]
+**start** | Option<**u32**> | Zero-based offset; start plus capped size must fit a signed 32-bit integer. |  |[default to 0]
 
 ### Return type
 
@@ -657,7 +800,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_matches_v4_by_name
 
-> models::MatchesV4HistoryResponse get_matches_v4_by_name(affinity, platform, name, tag, mode, map, size, start)
+> models::MatchesV4HistoryResponse get_matches_v4_by_name(affinity, platform, name, tag, mode, queue, map, size, start)
 Get matches by name (v4)
 
 ### Parameters
@@ -665,14 +808,15 @@ Get matches by name (v4)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
-**mode** | Option<**String**> | Game mode filter (optional) |  |
-**map** | Option<**String**> | Map filter (optional) |  |
-**size** | Option<**i32**> | Number of results (optional) |  |
-**start** | Option<**i32**> | Start index for pagination (optional) |  |
+**mode** | Option<**String**> | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. |  |
+**queue** | Option<**String**> | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. |  |
+**map** | Option<**String**> | Map display name, matched case-insensitively. |  |
+**size** | Option<**u32**> | Positive integer result count; values above 10 are capped at 10. |  |[default to 5]
+**start** | Option<**u32**> | Zero-based offset; start plus capped size must fit a signed 32-bit integer. |  |[default to 0]
 
 ### Return type
 
@@ -700,7 +844,7 @@ Get MMR history by PUUID (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **puuid** | **String** | Player UUID | [required] |
 
 ### Return type
@@ -729,7 +873,7 @@ Get MMR history by name (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
 
@@ -759,8 +903,8 @@ Get MMR history by PUUID (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **puuid** | **String** | Player UUID | [required] |
 
 ### Return type
@@ -789,8 +933,8 @@ Get MMR history by name (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
 
@@ -820,7 +964,7 @@ Get MMR by PUUID (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **puuid** | **String** | Player UUID | [required] |
 
 ### Return type
@@ -849,7 +993,7 @@ Get MMR by name (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
 
@@ -879,7 +1023,7 @@ Get MMR by PUUID (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **puuid** | **String** | Player UUID | [required] |
 
 ### Return type
@@ -908,7 +1052,7 @@ Get MMR by name (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
 
@@ -938,8 +1082,8 @@ Get MMR by PUUID (v3)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **puuid** | **String** | Player UUID | [required] |
 
 ### Return type
@@ -968,8 +1112,8 @@ Get MMR by name (v3)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
 
@@ -991,7 +1135,7 @@ Name | Type | Description  | Required | Notes
 
 ## leaderboard_v1
 
-> serde_json::Value leaderboard_v1(affinity, season, name, tag)
+> models::LeaderboardV1Response leaderboard_v1(affinity, season, name, tag, puuid)
 Get leaderboard (v1)
 
 ### Parameters
@@ -999,14 +1143,15 @@ Get leaderboard (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**season** | Option<**String**> | Season ID (optional) |  |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**season** | Option<**String**> | Short season ID, such as e9a1; omission selects the current season |  |
 **name** | Option<**String**> | Player name to search for (optional) |  |
 **tag** | Option<**String**> | Player tag to search for (optional) |  |
+**puuid** | Option<**uuid::Uuid**> | Player UUID to search for |  |
 
 ### Return type
 
-[**serde_json::Value**](serde_json::Value.md)
+[**models::LeaderboardV1Response**](LeaderboardV1Response.md)
 
 ### Authorization
 
@@ -1022,7 +1167,7 @@ Name | Type | Description  | Required | Notes
 
 ## leaderboard_v2
 
-> models::LeaderboardV2Response leaderboard_v2(affinity, season, name, tag, puuid)
+> models::ValorantLeaderboardV2Response leaderboard_v2(affinity, season, name, tag, puuid)
 Get leaderboard (v2)
 
 ### Parameters
@@ -1030,15 +1175,15 @@ Get leaderboard (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**season** | Option<**String**> | Season ID (optional) |  |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**season** | Option<**String**> | Short season ID, such as e9a1; omission selects the current season |  |
 **name** | Option<**String**> | Player name to search for (optional) |  |
 **tag** | Option<**String**> | Player tag to search for (optional) |  |
 **puuid** | Option<**String**> | Player UUID to search for (optional) |  |
 
 ### Return type
 
-[**models::LeaderboardV2Response**](LeaderboardV2Response.md)
+[**models::ValorantLeaderboardV2Response**](ValorantLeaderboardV2Response.md)
 
 ### Authorization
 
@@ -1054,7 +1199,7 @@ Name | Type | Description  | Required | Notes
 
 ## leaderboard_v3
 
-> models::LeaderboardV3Response leaderboard_v3(affinity, platform, season, size, page, name, tag)
+> models::LeaderboardV3Response leaderboard_v3(affinity, platform, page, size, season_short, season_id, name, tag, puuid)
 Get leaderboard (v3)
 
 ### Parameters
@@ -1062,13 +1207,15 @@ Get leaderboard (v3)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
-**season** | Option<**String**> | Season ID (optional) |  |
-**size** | Option<**i32**> | Number of results per page (optional) |  |
-**page** | Option<**i32**> | Page number (optional) |  |
-**name** | Option<**String**> | Player name to search for (optional) |  |
-**tag** | Option<**String**> | Player tag to search for (optional) |  |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
+**page** | Option<**u32**> | Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. |  |[default to 1]
+**size** | Option<**u32**> | Positive integer result count; only ASCII decimal digits are accepted. |  |[default to 1000]
+**season_short** | Option<**String**> | Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. |  |
+**season_id** | Option<**uuid::Uuid**> | Season UUID; mutually exclusive with season_short. |  |
+**name** | Option<**String**> | Player name to search for. |  |
+**tag** | Option<**String**> | Player tag to search for. |  |
+**puuid** | Option<**uuid::Uuid**> | Player UUID to search for. |  |
 
 ### Return type
 
@@ -1096,7 +1243,7 @@ Get match details (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**match_id** | **String** | Match UUID | [required] |
+**match_id** | **uuid::Uuid** | Match UUID | [required] |
 
 ### Return type
 
@@ -1124,8 +1271,8 @@ Get match details (v4)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**match_id** | **String** | Match UUID | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**match_id** | **uuid::Uuid** | Match UUID | [required] |
 
 ### Return type
 
@@ -1153,9 +1300,9 @@ Get Premier team by ID (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | Team UUID | [required] |
+**id** | **uuid::Uuid** | Team UUID | [required] |
 **season** | Option<**String**> | Premier season id (optional) |  |
-**affinity** | Option<**String**> | Region/affinity for fallback resolution (optional) |  |
+**affinity** | Option<[**ValorantAffinity**](ValorantAffinity.md)> | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching |  |
 
 ### Return type
 
@@ -1175,7 +1322,7 @@ Name | Type | Description  | Required | Notes
 
 ## premier_by_id_history
 
-> models::PremierTeamV1Response premier_by_id_history(id, season)
+> models::PremierTeamHistoryV1Response premier_by_id_history(id, season)
 Get Premier team history by ID (v1)
 
 ### Parameters
@@ -1183,12 +1330,43 @@ Get Premier team history by ID (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | Team UUID | [required] |
+**id** | **uuid::Uuid** | Team UUID | [required] |
 **season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
 
-[**models::PremierTeamV1Response**](PremierTeamV1Response.md)
+[**models::PremierTeamHistoryV1Response**](PremierTeamHistoryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## premier_by_id_v2
+
+> models::PremierTeamV2Response premier_by_id_v2(affinity, id)
+Get live Premier team by ID (v2)
+
+Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**id** | **uuid::Uuid** | Team UUID | [required] |
+
+### Return type
+
+[**models::PremierTeamV2Response**](PremierTeamV2Response.md)
 
 ### Authorization
 
@@ -1215,7 +1393,7 @@ Name | Type | Description  | Required | Notes
 **name** | **String** | Team name | [required] |
 **tag** | **String** | Team tag | [required] |
 **season** | Option<**String**> | Premier season id (optional) |  |
-**affinity** | Option<**String**> | Region/affinity for fallback resolution (optional) |  |
+**affinity** | Option<[**ValorantAffinity**](ValorantAffinity.md)> | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching |  |
 
 ### Return type
 
@@ -1263,19 +1441,114 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## premier_leaderboard
+## premier_by_name_v2
 
-> models::PremierSearchResponse premier_leaderboard(affinity, conference, division, season)
-Get Premier leaderboard (v1)
+> models::PremierTeamV2Response premier_by_name_v2(affinity, name, tag)
+Get live Premier team by team name (v2)
+
+Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**conference** | Option<**String**> | Conference filter (optional) |  |
-**division** | Option<**String**> | Division filter (optional) |  |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**name** | **String** | Premier team name | [required] |
+**tag** | **String** | Premier team tag | [required] |
+
+### Return type
+
+[**models::PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## premier_by_player_name
+
+> models::PremierTeamV2Response premier_by_player_name(affinity, name, tag)
+Get live Premier team by player Riot ID (v2)
+
+Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**name** | **String** | Player Riot ID name | [required] |
+**tag** | **String** | Player Riot ID tag | [required] |
+
+### Return type
+
+[**models::PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## premier_by_puuid
+
+> models::PremierTeamV2Response premier_by_puuid(affinity, puuid)
+Get live Premier team by player PUUID (v2)
+
+Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**puuid** | **uuid::Uuid** | Player UUID | [required] |
+
+### Return type
+
+[**models::PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## premier_leaderboard
+
+> models::PremierSearchResponse premier_leaderboard(affinity, season)
+Get Premier leaderboard (v1)
+
+Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; validation is case-insensitive; use lowercase for persisted team matching | [required] |
 **season** | Option<**String**> | Premier season id (optional) |  |
 
 ### Return type
@@ -1296,7 +1569,7 @@ Name | Type | Description  | Required | Notes
 
 ## premier_search
 
-> models::PremierSearchResponse premier_search(name, tag, id, season)
+> models::PremierSearchResponse premier_search(name, tag, id, season, conference, division)
 Search Premier teams (v1)
 
 ### Parameters
@@ -1306,8 +1579,10 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **name** | Option<**String**> | Team name to search for (optional) |  |
 **tag** | Option<**String**> | Team tag to search for (optional) |  |
-**id** | Option<**String**> | Team UUID to search for (optional) |  |
+**id** | Option<**uuid::Uuid**> | Team UUID to search for; cannot be combined with name or tag |  |
 **season** | Option<**String**> | Premier season id (optional) |  |
+**conference** | Option<**String**> | Current upstream Premier conference key; case-insensitive; not a fixed enum |  |
+**division** | Option<**i32**> | Division filter; integer from 1 through 21 |  |
 
 ### Return type
 
@@ -1335,7 +1610,7 @@ Get queue status (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 
 ### Return type
 
@@ -1357,6 +1632,8 @@ Name | Type | Description  | Required | Notes
 
 > models::RawV1Response raw(raw_v1_payload)
 Get raw Riot API data (v1)
+
+Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 
 ### Parameters
 
@@ -1391,7 +1668,7 @@ Get status (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 
 ### Return type
 
@@ -1411,7 +1688,7 @@ Name | Type | Description  | Required | Notes
 
 ## store_featured
 
-> models::StoreFeaturedV1 store_featured(version)
+> models::ValorantStoreFeaturedResponse store_featured(version)
 Get featured store items
 
 ### Parameters
@@ -1419,11 +1696,11 @@ Get featured store items
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**version** | **String** | API version (v1, v2) | [required] |
+**version** | [**ValorantStoreVersion**](ValorantStoreVersion.md) | Response version; v1 returns an object envelope and v2 returns an array envelope | [required] |
 
 ### Return type
 
-[**models::StoreFeaturedV1**](StoreFeaturedV1.md)
+[**models::ValorantStoreFeaturedResponse**](ValorantStoreFeaturedResponse.md)
 
 ### Authorization
 
@@ -1439,19 +1716,21 @@ Name | Type | Description  | Required | Notes
 
 ## store_offers
 
-> models::StoreOffersV1Response store_offers(version)
+> store_offers(version)
 Get store offers
+
+Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**version** | **String** | API version (v1, v2) | [required] |
+**version** | [**ValorantStoreVersion**](ValorantStoreVersion.md) | Legacy API version | [required] |
 
 ### Return type
 
-[**models::StoreOffersV1Response**](StoreOffersV1Response.md)
+ (empty response body)
 
 ### Authorization
 
@@ -1467,7 +1746,7 @@ Name | Type | Description  | Required | Notes
 
 ## stored_matches
 
-> models::StoredMatchesResponse stored_matches(affinity, name, tag, mode, map, size)
+> models::StoredMatchesResponse stored_matches(affinity, name, tag, mode, queue, map, size, page)
 Get stored matches by name (v1)
 
 ### Parameters
@@ -1475,12 +1754,14 @@ Get stored matches by name (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
-**mode** | Option<**String**> | Game mode filter (optional) |  |
-**map** | Option<**String**> | Map filter (optional) |  |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**mode** | Option<**String**> | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. |  |
+**queue** | Option<**String**> | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. |  |
+**map** | Option<**String**> | Map display name, matched case-insensitively. |  |
+**size** | Option<**u32**> | Positive integer result count. Omit for unlimited results. |  |
+**page** | Option<**u32**> | One-based page. Supplying page requires size. |  |[default to 1]
 
 ### Return type
 
@@ -1500,7 +1781,7 @@ Name | Type | Description  | Required | Notes
 
 ## stored_matches_by_id
 
-> models::StoredMatchesResponse stored_matches_by_id(affinity, puuid, mode, map, size)
+> models::StoredMatchesResponse stored_matches_by_id(affinity, puuid, mode, queue, map, size, page)
 Get stored matches by PUUID (v1)
 
 ### Parameters
@@ -1508,11 +1789,13 @@ Get stored matches by PUUID (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**puuid** | **String** | Player UUID | [required] |
-**mode** | Option<**String**> | Game mode filter (optional) |  |
-**map** | Option<**String**> | Map filter (optional) |  |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**puuid** | **uuid::Uuid** | Player UUID | [required] |
+**mode** | Option<**String**> | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. |  |
+**queue** | Option<**String**> | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. |  |
+**map** | Option<**String**> | Map display name, matched case-insensitively. |  |
+**size** | Option<**u32**> | Positive integer result count. Omit for unlimited results. |  |
+**page** | Option<**u32**> | One-based page. Supplying page requires size. |  |[default to 1]
 
 ### Return type
 
@@ -1532,7 +1815,7 @@ Name | Type | Description  | Required | Notes
 
 ## stored_mmr_history
 
-> models::StoredMmrResponse stored_mmr_history(affinity, name, tag, size)
+> models::StoredMmrResponse stored_mmr_history(affinity, name, tag, size, page)
 Get stored MMR history by name (v1)
 
 ### Parameters
@@ -1540,10 +1823,11 @@ Get stored MMR history by name (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**size** | Option<**u32**> | Positive integer result count. Omit for unlimited results. |  |
+**page** | Option<**u32**> | One-based page. Supplying page requires size. |  |[default to 1]
 
 ### Return type
 
@@ -1563,7 +1847,7 @@ Name | Type | Description  | Required | Notes
 
 ## stored_mmr_history_by_id
 
-> models::StoredMmrResponse stored_mmr_history_by_id(affinity, puuid, size)
+> models::StoredMmrResponse stored_mmr_history_by_id(affinity, puuid, size, page)
 Get stored MMR history by PUUID (v1)
 
 ### Parameters
@@ -1571,9 +1855,10 @@ Get stored MMR history by PUUID (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 **puuid** | **String** | Player UUID | [required] |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**size** | Option<**u32**> | Positive integer result count. Omit for unlimited results. |  |
+**page** | Option<**u32**> | One-based page. Supplying page requires size. |  |[default to 1]
 
 ### Return type
 
@@ -1593,7 +1878,7 @@ Name | Type | Description  | Required | Notes
 
 ## stored_mmr_history_v2
 
-> models::StoredMmrv2Response stored_mmr_history_v2(affinity, platform, name, tag, size)
+> models::StoredMmrv2Response stored_mmr_history_v2(affinity, platform, name, tag, size, page)
 Get stored MMR history by name (v2)
 
 ### Parameters
@@ -1601,11 +1886,12 @@ Get stored MMR history by name (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **name** | **String** | Riot ID name | [required] |
 **tag** | **String** | Riot ID tag | [required] |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**size** | Option<**u32**> | Positive integer result count. Omit for unlimited results. |  |
+**page** | Option<**u32**> | One-based page. Supplying page requires size. |  |[default to 1]
 
 ### Return type
 
@@ -1625,7 +1911,7 @@ Name | Type | Description  | Required | Notes
 
 ## stored_mmr_history_v2_by_id
 
-> models::StoredMmrv2Response stored_mmr_history_v2_by_id(affinity, platform, puuid, size)
+> models::StoredMmrv2Response stored_mmr_history_v2_by_id(affinity, platform, puuid, size, page)
 Get stored MMR history by PUUID (v2)
 
 ### Parameters
@@ -1633,10 +1919,11 @@ Get stored MMR history by PUUID (v2)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
-**platform** | **String** | Platform (pc, console) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) | Platform; case-insensitive | [required] |
 **puuid** | **String** | Player UUID | [required] |
-**size** | Option<**i32**> | Number of results (optional) |  |
+**size** | Option<**u32**> | Positive integer result count. Omit for unlimited results. |  |
+**page** | Option<**u32**> | One-based page. Supplying page requires size. |  |[default to 1]
 
 ### Return type
 
@@ -1664,7 +1951,7 @@ Get game version (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**affinity** | **String** | Region/affinity (e.g., na, eu, ap, kr) | [required] |
+**affinity** | [**ValorantAffinity**](ValorantAffinity.md) | Region/affinity; case-insensitive | [required] |
 
 ### Return type
 
@@ -1692,8 +1979,8 @@ Get website content (v1)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**country_code** | **String** | Country code (e.g., en-us, de-de) | [required] |
-**category** | Option<**String**> | Category filter (optional) |  |
+**country_code** | [**ValorantWebsiteLocale**](ValorantWebsiteLocale.md) | Website locale; case-insensitive | [required] |
+**category** | Option<[**ValorantWebsiteCategory**](ValorantWebsiteCategory.md)> | Category filter; case-sensitive |  |
 
 ### Return type
 
@@ -1716,13 +2003,15 @@ Name | Type | Description  | Required | Notes
 > models::WebsiteByIdV1Response website_by_id(db_id, country_code)
 Get website entry by ID (v1)
 
+Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
+
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **db_id** | **String** | Database ID of the website entry | [required] |
-**country_code** | **String** | Country code (e.g., en-us, de-de) | [required] |
+**country_code** | **String** | Ignored locale segment; any string is accepted | [required] |
 
 ### Return type
 

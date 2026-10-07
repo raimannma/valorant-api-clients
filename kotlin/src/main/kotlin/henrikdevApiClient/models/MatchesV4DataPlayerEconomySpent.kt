@@ -30,16 +30,18 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param average 
- * @param overall 
+ * @param average Credits spent per round played by this player; zero when rounds played is zero.
+ * @param overall Total credits spent across reported player rounds.
  */
 
 
 data class MatchesV4DataPlayerEconomySpent (
 
+    /* Credits spent per round played by this player; zero when rounds played is zero. */
     @Json(name = "average")
     val average: kotlin.Float,
 
+    /* Total credits spent across reported player rounds. */
     @Json(name = "overall")
     val overall: kotlin.Int
 

@@ -22,10 +22,13 @@ var _ MappedNullable = &MMRV3Current{}
 // MMRV3Current struct for MMRV3Current
 type MMRV3Current struct {
 	Elo int32 `json:"elo"`
+	GamesNeededForLeaderboard int32 `json:"games_needed_for_leaderboard"`
 	GamesNeededForRating int32 `json:"games_needed_for_rating"`
+	IsAtRankProtectedTier NullableBool `json:"is_at_rank_protected_tier,omitempty"`
 	LastChange int32 `json:"last_change"`
 	LeaderboardPlacement NullableMMRV3LeaderboardPlacement `json:"leaderboard_placement,omitempty"`
 	RankProtectionShields int32 `json:"rank_protection_shields"`
+	RankProtectionStatus NullableString `json:"rank_protection_status,omitempty"`
 	Rr int32 `json:"rr"`
 	Tier TierIdNameCombo `json:"tier"`
 }
@@ -36,9 +39,10 @@ type _MMRV3Current MMRV3Current
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMMRV3Current(elo int32, gamesNeededForRating int32, lastChange int32, rankProtectionShields int32, rr int32, tier TierIdNameCombo) *MMRV3Current {
+func NewMMRV3Current(elo int32, gamesNeededForLeaderboard int32, gamesNeededForRating int32, lastChange int32, rankProtectionShields int32, rr int32, tier TierIdNameCombo) *MMRV3Current {
 	this := MMRV3Current{}
 	this.Elo = elo
+	this.GamesNeededForLeaderboard = gamesNeededForLeaderboard
 	this.GamesNeededForRating = gamesNeededForRating
 	this.LastChange = lastChange
 	this.RankProtectionShields = rankProtectionShields
@@ -79,6 +83,30 @@ func (o *MMRV3Current) SetElo(v int32) {
 	o.Elo = v
 }
 
+// GetGamesNeededForLeaderboard returns the GamesNeededForLeaderboard field value
+func (o *MMRV3Current) GetGamesNeededForLeaderboard() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.GamesNeededForLeaderboard
+}
+
+// GetGamesNeededForLeaderboardOk returns a tuple with the GamesNeededForLeaderboard field value
+// and a boolean to check if the value has been set.
+func (o *MMRV3Current) GetGamesNeededForLeaderboardOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GamesNeededForLeaderboard, true
+}
+
+// SetGamesNeededForLeaderboard sets field value
+func (o *MMRV3Current) SetGamesNeededForLeaderboard(v int32) {
+	o.GamesNeededForLeaderboard = v
+}
+
 // GetGamesNeededForRating returns the GamesNeededForRating field value
 func (o *MMRV3Current) GetGamesNeededForRating() int32 {
 	if o == nil {
@@ -101,6 +129,48 @@ func (o *MMRV3Current) GetGamesNeededForRatingOk() (*int32, bool) {
 // SetGamesNeededForRating sets field value
 func (o *MMRV3Current) SetGamesNeededForRating(v int32) {
 	o.GamesNeededForRating = v
+}
+
+// GetIsAtRankProtectedTier returns the IsAtRankProtectedTier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MMRV3Current) GetIsAtRankProtectedTier() bool {
+	if o == nil || IsNil(o.IsAtRankProtectedTier.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.IsAtRankProtectedTier.Get()
+}
+
+// GetIsAtRankProtectedTierOk returns a tuple with the IsAtRankProtectedTier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MMRV3Current) GetIsAtRankProtectedTierOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IsAtRankProtectedTier.Get(), o.IsAtRankProtectedTier.IsSet()
+}
+
+// HasIsAtRankProtectedTier returns a boolean if a field has been set.
+func (o *MMRV3Current) HasIsAtRankProtectedTier() bool {
+	if o != nil && o.IsAtRankProtectedTier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAtRankProtectedTier gets a reference to the given NullableBool and assigns it to the IsAtRankProtectedTier field.
+func (o *MMRV3Current) SetIsAtRankProtectedTier(v bool) {
+	o.IsAtRankProtectedTier.Set(&v)
+}
+// SetIsAtRankProtectedTierNil sets the value for IsAtRankProtectedTier to be an explicit nil
+func (o *MMRV3Current) SetIsAtRankProtectedTierNil() {
+	o.IsAtRankProtectedTier.Set(nil)
+}
+
+// UnsetIsAtRankProtectedTier ensures that no value is present for IsAtRankProtectedTier, not even an explicit nil
+func (o *MMRV3Current) UnsetIsAtRankProtectedTier() {
+	o.IsAtRankProtectedTier.Unset()
 }
 
 // GetLastChange returns the LastChange field value
@@ -193,6 +263,48 @@ func (o *MMRV3Current) SetRankProtectionShields(v int32) {
 	o.RankProtectionShields = v
 }
 
+// GetRankProtectionStatus returns the RankProtectionStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MMRV3Current) GetRankProtectionStatus() string {
+	if o == nil || IsNil(o.RankProtectionStatus.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RankProtectionStatus.Get()
+}
+
+// GetRankProtectionStatusOk returns a tuple with the RankProtectionStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MMRV3Current) GetRankProtectionStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RankProtectionStatus.Get(), o.RankProtectionStatus.IsSet()
+}
+
+// HasRankProtectionStatus returns a boolean if a field has been set.
+func (o *MMRV3Current) HasRankProtectionStatus() bool {
+	if o != nil && o.RankProtectionStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRankProtectionStatus gets a reference to the given NullableString and assigns it to the RankProtectionStatus field.
+func (o *MMRV3Current) SetRankProtectionStatus(v string) {
+	o.RankProtectionStatus.Set(&v)
+}
+// SetRankProtectionStatusNil sets the value for RankProtectionStatus to be an explicit nil
+func (o *MMRV3Current) SetRankProtectionStatusNil() {
+	o.RankProtectionStatus.Set(nil)
+}
+
+// UnsetRankProtectionStatus ensures that no value is present for RankProtectionStatus, not even an explicit nil
+func (o *MMRV3Current) UnsetRankProtectionStatus() {
+	o.RankProtectionStatus.Unset()
+}
+
 // GetRr returns the Rr field value
 func (o *MMRV3Current) GetRr() int32 {
 	if o == nil {
@@ -252,12 +364,19 @@ func (o MMRV3Current) MarshalJSON() ([]byte, error) {
 func (o MMRV3Current) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["elo"] = o.Elo
+	toSerialize["games_needed_for_leaderboard"] = o.GamesNeededForLeaderboard
 	toSerialize["games_needed_for_rating"] = o.GamesNeededForRating
+	if o.IsAtRankProtectedTier.IsSet() {
+		toSerialize["is_at_rank_protected_tier"] = o.IsAtRankProtectedTier.Get()
+	}
 	toSerialize["last_change"] = o.LastChange
 	if o.LeaderboardPlacement.IsSet() {
 		toSerialize["leaderboard_placement"] = o.LeaderboardPlacement.Get()
 	}
 	toSerialize["rank_protection_shields"] = o.RankProtectionShields
+	if o.RankProtectionStatus.IsSet() {
+		toSerialize["rank_protection_status"] = o.RankProtectionStatus.Get()
+	}
 	toSerialize["rr"] = o.Rr
 	toSerialize["tier"] = o.Tier
 	return toSerialize, nil
@@ -269,6 +388,7 @@ func (o *MMRV3Current) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"elo",
+		"games_needed_for_leaderboard",
 		"games_needed_for_rating",
 		"last_change",
 		"rank_protection_shields",

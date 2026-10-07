@@ -5,14 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**act_rank** | [**TierIdNameCombo**](TierIdNameCombo.md) | Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement. | 
 **act_wins** | [**List[TierIdNameCombo]**](TierIdNameCombo.md) |  | 
 **end_rr** | **int** |  | 
 **end_tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
 **games** | **int** |  | 
+**games_needed_for_rating** | **int** |  | 
 **leaderboard_placement** | [**MMRV3LeaderboardPlacement**](MMRV3LeaderboardPlacement.md) |  | [optional] 
+**prestige** | [**Dict[str, MMRV3SeasonalPrestige]**](MMRV3SeasonalPrestige.md) |  | [optional] 
 **ranking_schema** | **str** |  | 
 **season** | [**SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 
 **wins** | **int** |  | 
+**wins_with_placements** | **int** |  | 
 
 ## Example
 

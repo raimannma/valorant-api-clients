@@ -21,7 +21,9 @@ var _ MappedNullable = &MatchesV4DataPlayerEconomyLoadoutValue{}
 
 // MatchesV4DataPlayerEconomyLoadoutValue struct for MatchesV4DataPlayerEconomyLoadoutValue
 type MatchesV4DataPlayerEconomyLoadoutValue struct {
+	// Loadout value in credits per round played by this player; zero when rounds played is zero.
 	Average float32 `json:"average"`
+	// Sum of loadout values in credits across reported player rounds.
 	Overall int32 `json:"overall"`
 }
 

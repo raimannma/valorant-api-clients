@@ -25,6 +25,7 @@ package henrikdevApiClient.models
 
 import henrikdevApiClient.models.MatchesV4DataRoundDefuse
 import henrikdevApiClient.models.MatchesV4DataRoundPlant
+import henrikdevApiClient.models.MatchesV4DataRoundPlayer
 import henrikdevApiClient.models.MatchesV4DataRoundPlayerStats
 
 import com.squareup.moshi.Json
@@ -38,8 +39,12 @@ import com.squareup.moshi.JsonClass
  * @param result 
  * @param stats 
  * @param winningTeam 
+ * @param ceremonyPlayer 
+ * @param ceremonyTeam 
  * @param defuse 
+ * @param firstBlood 
  * @param plant 
+ * @param winningTeamRole 
  */
 
 
@@ -60,11 +65,23 @@ data class MatchesV4DataRound (
     @Json(name = "winning_team")
     val winningTeam: kotlin.String,
 
+    @Json(name = "ceremony_player")
+    val ceremonyPlayer: MatchesV4DataRoundPlayer? = null,
+
+    @Json(name = "ceremony_team")
+    val ceremonyTeam: kotlin.String? = null,
+
     @Json(name = "defuse")
     val defuse: MatchesV4DataRoundDefuse? = null,
 
+    @Json(name = "first_blood")
+    val firstBlood: MatchesV4DataRoundPlayer? = null,
+
     @Json(name = "plant")
-    val plant: MatchesV4DataRoundPlant? = null
+    val plant: MatchesV4DataRoundPlant? = null,
+
+    @Json(name = "winning_team_role")
+    val winningTeamRole: kotlin.String? = null
 
 ) {
 

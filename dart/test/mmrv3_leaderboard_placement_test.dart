@@ -21,7 +21,7 @@ void main() {
       // TODO
     });
 
-    // String updatedAt
+    // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
       // TODO
     });

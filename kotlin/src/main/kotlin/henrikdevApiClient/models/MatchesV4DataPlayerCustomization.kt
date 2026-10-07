@@ -23,6 +23,7 @@
 
 package henrikdevApiClient.models
 
+import henrikdevApiClient.models.MatchesV4DataPlayerBloomline
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -32,6 +33,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param card 
  * @param title 
+ * @param bloomline 
  * @param preferredLevelBorder 
  */
 
@@ -43,6 +45,9 @@ data class MatchesV4DataPlayerCustomization (
 
     @Json(name = "title")
     val title: kotlin.String,
+
+    @Json(name = "bloomline")
+    val bloomline: MatchesV4DataPlayerBloomline? = null,
 
     @Json(name = "preferred_level_border")
     val preferredLevelBorder: kotlin.String? = null

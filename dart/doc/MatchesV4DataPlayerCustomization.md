@@ -8,6 +8,7 @@ import 'package:henrikdev_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bloomline** | [**MatchesV4DataPlayerBloomline**](MatchesV4DataPlayerBloomline.md) |  | [optional] 
 **card** | **String** |  | 
 **preferredLevelBorder** | **String** |  | [optional] 
 **title** | **String** |  | 

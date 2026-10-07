@@ -94,7 +94,7 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | Tracked user id
+	id := "id_example" // string | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -114,7 +114,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Tracked user id | 
+**id** | **string** | Tracked user MongoDB ObjectId: 24 hexadecimal characters | 
 
 ### Other Parameters
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookSettings
 
-> GetWebhookSettings(ctx).Execute()
+> PremiumWebhookGetResponse GetWebhookSettings(ctx).Execute()
 
 Get premium webhook settings
 
@@ -165,11 +165,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PremiumAPI.GetWebhookSettings(context.Background()).Execute()
+	resp, r, err := apiClient.PremiumAPI.GetWebhookSettings(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PremiumAPI.GetWebhookSettings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `GetWebhookSettings`: PremiumWebhookGetResponse
+	fmt.Fprintf(os.Stdout, "Response from `PremiumAPI.GetWebhookSettings`: %v\n", resp)
 }
 ```
 
@@ -184,7 +186,7 @@ Other parameters are passed through a pointer to a apiGetWebhookSettingsRequest 
 
 ### Return type
 
- (empty response body)
+[**PremiumWebhookGetResponse**](PremiumWebhookGetResponse.md)
 
 ### Authorization
 
@@ -202,7 +204,7 @@ Other parameters are passed through a pointer to a apiGetWebhookSettingsRequest 
 
 ## UpdateWebhookUser
 
-> UpdateWebhookUser(ctx, id).PremiumWebhookUserUpdateRequest(premiumWebhookUserUpdateRequest).Execute()
+> PremiumWebhookUpdateResponse UpdateWebhookUser(ctx, id).PremiumWebhookUserUpdateRequest(premiumWebhookUserUpdateRequest).Execute()
 
 Update premium webhook user
 
@@ -219,16 +221,18 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | Tracked user id
+	id := "id_example" // string | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 	premiumWebhookUserUpdateRequest := *openapiclient.NewPremiumWebhookUserUpdateRequest() // PremiumWebhookUserUpdateRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PremiumAPI.UpdateWebhookUser(context.Background(), id).PremiumWebhookUserUpdateRequest(premiumWebhookUserUpdateRequest).Execute()
+	resp, r, err := apiClient.PremiumAPI.UpdateWebhookUser(context.Background(), id).PremiumWebhookUserUpdateRequest(premiumWebhookUserUpdateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PremiumAPI.UpdateWebhookUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `UpdateWebhookUser`: PremiumWebhookUpdateResponse
+	fmt.Fprintf(os.Stdout, "Response from `PremiumAPI.UpdateWebhookUser`: %v\n", resp)
 }
 ```
 
@@ -238,7 +242,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Tracked user id | 
+**id** | **string** | Tracked user MongoDB ObjectId: 24 hexadecimal characters | 
 
 ### Other Parameters
 
@@ -252,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**PremiumWebhookUpdateResponse**](PremiumWebhookUpdateResponse.md)
 
 ### Authorization
 

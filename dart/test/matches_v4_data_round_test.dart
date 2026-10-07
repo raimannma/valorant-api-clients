@@ -21,8 +21,23 @@ void main() {
       // TODO
     });
 
+    // MatchesV4DataRoundPlayer ceremonyPlayer
+    test('to test the property `ceremonyPlayer`', () async {
+      // TODO
+    });
+
+    // String ceremonyTeam
+    test('to test the property `ceremonyTeam`', () async {
+      // TODO
+    });
+
     // MatchesV4DataRoundDefuse defuse
     test('to test the property `defuse`', () async {
+      // TODO
+    });
+
+    // MatchesV4DataRoundPlayer firstBlood
+    test('to test the property `firstBlood`', () async {
       // TODO
     });
 
@@ -48,6 +63,11 @@ void main() {
 
     // String winningTeam
     test('to test the property `winningTeam`', () async {
+      // TODO
+    });
+
+    // String winningTeamRole
+    test('to test the property `winningTeamRole`', () async {
       // TODO
     });
 

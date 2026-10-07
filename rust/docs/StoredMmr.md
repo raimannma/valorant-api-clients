@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | **String** |  | 
+**date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **elo** | **i32** |  | 
 **last_mmr_change** | **i32** |  | 
 **map** | [**models::StoredMmrMap**](StoredMMRMap.md) |  | 
-**match_id** | **String** |  | 
+**match_id** | **uuid::Uuid** |  | 
 **ranking_in_tier** | **u32** |  | 
 **season** | [**models::StoredMmrSeason**](StoredMMRSeason.md) |  | 
 **tier** | [**models::StoredMmrTier**](StoredMMRTier.md) |  | 

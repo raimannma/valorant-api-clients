@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// EsportsV2Region the model 'EsportsV2Region'
+// EsportsV2Region VLR esports region filter. Values are case-sensitive; omission selects all regions.
 type EsportsV2Region string
 
 // List of EsportsV2Region

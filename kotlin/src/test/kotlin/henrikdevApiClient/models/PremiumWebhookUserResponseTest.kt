@@ -58,24 +58,6 @@ class PremiumWebhookUserResponseTest : ShouldSpec() {
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `puuid`
-        should("test puuid") {
-            // uncomment below to test the property
-            //modelInstance.puuid shouldBe ("TODO")
-        }
-
-        // to test the property `region`
-        should("test region") {
-            // uncomment below to test the property
-            //modelInstance.region shouldBe ("TODO")
-        }
-
-        // to test the property `updatedAt`
-        should("test updatedAt") {
-            // uncomment below to test the property
-            //modelInstance.updatedAt shouldBe ("TODO")
-        }
-
         // to test the property `lastCheckedAt`
         should("test lastCheckedAt") {
             // uncomment below to test the property
@@ -92,6 +74,24 @@ class PremiumWebhookUserResponseTest : ShouldSpec() {
         should("test lastMmr") {
             // uncomment below to test the property
             //modelInstance.lastMmr shouldBe ("TODO")
+        }
+
+        // to test the property `puuid`
+        should("test puuid") {
+            // uncomment below to test the property
+            //modelInstance.puuid shouldBe ("TODO")
+        }
+
+        // to test the property `region`
+        should("test region") {
+            // uncomment below to test the property
+            //modelInstance.region shouldBe ("TODO")
+        }
+
+        // to test the property `updatedAt`
+        should("test updatedAt") {
+            // uncomment below to test the property
+            //modelInstance.updatedAt shouldBe ("TODO")
         }
 
     }

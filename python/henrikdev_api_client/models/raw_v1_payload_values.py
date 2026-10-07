@@ -17,22 +17,23 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
+from uuid import UUID
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-RAWV1PAYLOADVALUES_ONE_OF_SCHEMAS = ["List[str]", "str"]
+RAWV1PAYLOADVALUES_ONE_OF_SCHEMAS = ["List[str]", "UUID"]
 
 class RawV1PayloadValues(BaseModel):
     """
-    RawV1PayloadValues
+    A UUID string or a nonempty UUID array. Matchdetails fetches every array entry; all other resource types use only the first entry.
     """
-    # data type: str
-    oneof_schema_1_validator: Optional[StrictStr] = None
+    # data type: UUID
+    oneof_schema_1_validator: Optional[UUID] = None
     # data type: List[str]
     oneof_schema_2_validator: Optional[List[StrictStr]] = None
-    actual_instance: Optional[Union[List[str], str]] = None
-    one_of_schemas: Set[str] = { "List[str]", "str" }
+    actual_instance: Optional[Union[List[str], UUID]] = None
+    one_of_schemas: Set[str] = { "List[str]", "UUID" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -55,7 +56,7 @@ class RawV1PayloadValues(BaseModel):
         instance = RawV1PayloadValues.model_construct()
         error_messages = []
         match = 0
-        # validate data type: str
+        # validate data type: UUID
         try:
             instance.oneof_schema_1_validator = v
             match += 1
@@ -69,10 +70,10 @@ class RawV1PayloadValues(BaseModel):
             error_messages.append(str(e))
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in RawV1PayloadValues with oneOf schemas: List[str], str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in RawV1PayloadValues with oneOf schemas: List[str], UUID. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in RawV1PayloadValues with oneOf schemas: List[str], str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in RawV1PayloadValues with oneOf schemas: List[str], UUID. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -87,7 +88,7 @@ class RawV1PayloadValues(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into str
+        # deserialize data into UUID
         try:
             # validation
             instance.oneof_schema_1_validator = json.loads(json_str)
@@ -108,10 +109,10 @@ class RawV1PayloadValues(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into RawV1PayloadValues with oneOf schemas: List[str], str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into RawV1PayloadValues with oneOf schemas: List[str], UUID. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into RawV1PayloadValues with oneOf schemas: List[str], str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into RawV1PayloadValues with oneOf schemas: List[str], UUID. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -125,7 +126,7 @@ class RawV1PayloadValues(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], List[str], str]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], List[str], UUID]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

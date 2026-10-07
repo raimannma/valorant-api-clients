@@ -33,12 +33,15 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param elo 
+ * @param gamesNeededForLeaderboard 
  * @param gamesNeededForRating 
  * @param lastChange 
  * @param rankProtectionShields 
  * @param rr 
  * @param tier 
+ * @param isAtRankProtectedTier 
  * @param leaderboardPlacement 
+ * @param rankProtectionStatus 
  */
 
 
@@ -46,6 +49,9 @@ data class MMRV3Current (
 
     @Json(name = "elo")
     val elo: kotlin.Int,
+
+    @Json(name = "games_needed_for_leaderboard")
+    val gamesNeededForLeaderboard: kotlin.Int,
 
     @Json(name = "games_needed_for_rating")
     val gamesNeededForRating: kotlin.Int,
@@ -62,8 +68,14 @@ data class MMRV3Current (
     @Json(name = "tier")
     val tier: TierIdNameCombo,
 
+    @Json(name = "is_at_rank_protected_tier")
+    val isAtRankProtectedTier: kotlin.Boolean? = null,
+
     @Json(name = "leaderboard_placement")
-    val leaderboardPlacement: MMRV3LeaderboardPlacement? = null
+    val leaderboardPlacement: MMRV3LeaderboardPlacement? = null,
+
+    @Json(name = "rank_protection_status")
+    val rankProtectionStatus: kotlin.String? = null
 
 ) {
 

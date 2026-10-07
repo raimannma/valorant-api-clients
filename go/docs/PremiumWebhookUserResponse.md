@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **Enabled** | **bool** |  | 
 **Events** | [**[]PremiumWebhookEvent**](PremiumWebhookEvent.md) |  | 
 **Id** | **string** |  | 
-**LastCheckedAt** | Pointer to **NullableInt64** |  | [optional] 
-**LastMatch** | Pointer to **NullableString** |  | [optional] 
-**LastMmr** | Pointer to **NullableInt32** |  | [optional] 
+**LastCheckedAt** | **NullableInt64** |  | 
+**LastMatch** | **NullableString** |  | 
+**LastMmr** | **NullableInt32** |  | 
 **Puuid** | **string** |  | 
 **Region** | **string** |  | 
 **UpdatedAt** | **int64** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewPremiumWebhookUserResponse
 
-`func NewPremiumWebhookUserResponse(createdAt int64, enabled bool, events []PremiumWebhookEvent, id string, puuid string, region string, updatedAt int64, ) *PremiumWebhookUserResponse`
+`func NewPremiumWebhookUserResponse(createdAt int64, enabled bool, events []PremiumWebhookEvent, id string, lastCheckedAt NullableInt64, lastMatch NullableString, lastMmr NullableInt32, puuid string, region string, updatedAt int64, ) *PremiumWebhookUserResponse`
 
 NewPremiumWebhookUserResponse instantiates a new PremiumWebhookUserResponse object
 This constructor will assign default values to properties that have it defined,
@@ -133,11 +133,6 @@ and a boolean to check if the value has been set.
 
 SetLastCheckedAt sets LastCheckedAt field to given value.
 
-### HasLastCheckedAt
-
-`func (o *PremiumWebhookUserResponse) HasLastCheckedAt() bool`
-
-HasLastCheckedAt returns a boolean if a field has been set.
 
 ### SetLastCheckedAtNil
 
@@ -168,11 +163,6 @@ and a boolean to check if the value has been set.
 
 SetLastMatch sets LastMatch field to given value.
 
-### HasLastMatch
-
-`func (o *PremiumWebhookUserResponse) HasLastMatch() bool`
-
-HasLastMatch returns a boolean if a field has been set.
 
 ### SetLastMatchNil
 
@@ -203,11 +193,6 @@ and a boolean to check if the value has been set.
 
 SetLastMmr sets LastMmr field to given value.
 
-### HasLastMmr
-
-`func (o *PremiumWebhookUserResponse) HasLastMmr() bool`
-
-HasLastMmr returns a boolean if a field has been set.
 
 ### SetLastMmrNil
 

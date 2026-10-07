@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Average** | **float32** |  | 
-**Overall** | **int32** |  | 
+**Average** | **float32** | Loadout value in credits per round played by this player; zero when rounds played is zero. | 
+**Overall** | **int32** | Sum of loadout values in credits across reported player rounds. | 
 
 ## Methods
 

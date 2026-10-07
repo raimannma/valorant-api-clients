@@ -11,7 +11,8 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+/// EsportsV2Region : VLR esports region filter. Values are case-sensitive; omission selects all regions.
+/// VLR esports region filter. Values are case-sensitive; omission selects all regions.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum EsportsV2Region {
     #[serde(rename = "north_america")]

@@ -17,8 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from uuid import UUID
 from henrikdev_api_client.models.premium_webhook_event import PremiumWebhookEvent
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,19 +28,26 @@ from pydantic_core import to_jsonable_python
 
 class PremiumWebhookUserResponse(BaseModel):
     """
-    PremiumWebhookUserResponse
+    Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
     """ # noqa: E501
     created_at: StrictInt
     enabled: StrictBool
     events: List[PremiumWebhookEvent]
-    id: StrictStr
-    last_checked_at: Optional[StrictInt] = None
-    last_match: Optional[StrictStr] = None
-    last_mmr: Optional[StrictInt] = None
-    puuid: StrictStr
+    id: Annotated[str, Field(strict=True)]
+    last_checked_at: Optional[StrictInt]
+    last_match: Optional[StrictStr]
+    last_mmr: Optional[StrictInt]
+    puuid: UUID
     region: StrictStr
     updated_at: StrictInt
     __properties: ClassVar[List[str]] = ["created_at", "enabled", "events", "id", "last_checked_at", "last_match", "last_mmr", "puuid", "region", "updated_at"]
+
+    @field_validator('id', mode="before")
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if isinstance(value, str) and not re.match(r"^[0-9a-fA-F]{24}$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-fA-F]{24}$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

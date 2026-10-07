@@ -11,7 +11,8 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+/// EsportsV2PlayerTimespan : VLR player agent-statistics timespan. Values are case-sensitive; omission selects 90d.
+/// VLR player agent-statistics timespan. Values are case-sensitive; omission selects 90d.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum EsportsV2PlayerTimespan {
     #[serde(rename = "30d")]

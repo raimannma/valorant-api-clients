@@ -6,11 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cluster** | **string** |  | [optional] [default to undefined]
-**game_length_in_ms** | **number** |  | [default to undefined]
+**game_length_in_ms** | **number** | Match duration in milliseconds. | [default to undefined]
 **game_version** | **string** |  | [default to undefined]
 **is_completed** | **boolean** |  | [default to undefined]
 **map** | [**MapIdNameCombo**](MapIdNameCombo.md) |  | [default to undefined]
 **match_id** | **string** |  | [default to undefined]
+**mvp** | [**MatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] [default to undefined]
 **party_rr_penaltys** | [**Array&lt;MatchesV4DataMetadataPartyRRPenalty&gt;**](MatchesV4DataMetadataPartyRRPenalty.md) |  | [default to undefined]
 **platform** | **string** |  | [default to undefined]
 **premier** | **any** |  | [optional] [default to undefined]
@@ -31,6 +32,7 @@ const instance: MatchesV4DataMetadata = {
     is_completed,
     map,
     match_id,
+    mvp,
     party_rr_penaltys,
     platform,
     premier,

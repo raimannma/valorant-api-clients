@@ -15,9 +15,11 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field, field_validator
 from typing_extensions import Annotated
 from henrikdev_api_client.models.premium_webhook_delete_response import PremiumWebhookDeleteResponse
+from henrikdev_api_client.models.premium_webhook_get_response import PremiumWebhookGetResponse
+from henrikdev_api_client.models.premium_webhook_update_response import PremiumWebhookUpdateResponse
 from henrikdev_api_client.models.premium_webhook_user_add_request import PremiumWebhookUserAddRequest
 from henrikdev_api_client.models.premium_webhook_user_mutation_response import PremiumWebhookUserMutationResponse
 from henrikdev_api_client.models.premium_webhook_user_update_request import PremiumWebhookUserUpdateRequest
@@ -327,7 +329,7 @@ class PremiumApi:
     @validate_call
     def delete_webhook_user(
         self,
-        id: Annotated[StrictStr, Field(description="Tracked user id")],
+        id: Annotated[str, Field(strict=True, description="Tracked user MongoDB ObjectId: 24 hexadecimal characters")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -344,7 +346,7 @@ class PremiumApi:
         """Delete premium webhook user
 
 
-        :param id: Tracked user id (required)
+        :param id: Tracked user MongoDB ObjectId: 24 hexadecimal characters (required)
         :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -397,7 +399,7 @@ class PremiumApi:
     @validate_call
     def delete_webhook_user_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Tracked user id")],
+        id: Annotated[str, Field(strict=True, description="Tracked user MongoDB ObjectId: 24 hexadecimal characters")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -414,7 +416,7 @@ class PremiumApi:
         """Delete premium webhook user
 
 
-        :param id: Tracked user id (required)
+        :param id: Tracked user MongoDB ObjectId: 24 hexadecimal characters (required)
         :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -467,7 +469,7 @@ class PremiumApi:
     @validate_call
     def delete_webhook_user_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Tracked user id")],
+        id: Annotated[str, Field(strict=True, description="Tracked user MongoDB ObjectId: 24 hexadecimal characters")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -484,7 +486,7 @@ class PremiumApi:
         """Delete premium webhook user
 
 
-        :param id: Tracked user id (required)
+        :param id: Tracked user MongoDB ObjectId: 24 hexadecimal characters (required)
         :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -610,7 +612,7 @@ class PremiumApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> PremiumWebhookGetResponse:
         """Get premium webhook settings
 
 
@@ -644,7 +646,7 @@ class PremiumApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            '200': "PremiumWebhookGetResponse",
             '401': "SendError",
             '500': "SendError",
         }
@@ -674,7 +676,7 @@ class PremiumApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
+    ) -> ApiResponse[PremiumWebhookGetResponse]:
         """Get premium webhook settings
 
 
@@ -708,7 +710,7 @@ class PremiumApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            '200': "PremiumWebhookGetResponse",
             '401': "SendError",
             '500': "SendError",
         }
@@ -772,7 +774,7 @@ class PremiumApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            '200': "PremiumWebhookGetResponse",
             '401': "SendError",
             '500': "SendError",
         }
@@ -848,7 +850,7 @@ class PremiumApi:
     @validate_call
     def update_webhook_user(
         self,
-        id: Annotated[StrictStr, Field(description="Tracked user id")],
+        id: Annotated[str, Field(strict=True, description="Tracked user MongoDB ObjectId: 24 hexadecimal characters")],
         premium_webhook_user_update_request: PremiumWebhookUserUpdateRequest,
         _request_timeout: Union[
             None,
@@ -862,11 +864,11 @@ class PremiumApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> PremiumWebhookUpdateResponse:
         """Update premium webhook user
 
 
-        :param id: Tracked user id (required)
+        :param id: Tracked user MongoDB ObjectId: 24 hexadecimal characters (required)
         :type id: str
         :param premium_webhook_user_update_request: (required)
         :type premium_webhook_user_update_request: PremiumWebhookUserUpdateRequest
@@ -902,7 +904,7 @@ class PremiumApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            '200': "PremiumWebhookUpdateResponse",
             '400': "SendError",
             '401': "SendError",
             '404': "SendError",
@@ -922,7 +924,7 @@ class PremiumApi:
     @validate_call
     def update_webhook_user_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Tracked user id")],
+        id: Annotated[str, Field(strict=True, description="Tracked user MongoDB ObjectId: 24 hexadecimal characters")],
         premium_webhook_user_update_request: PremiumWebhookUserUpdateRequest,
         _request_timeout: Union[
             None,
@@ -936,11 +938,11 @@ class PremiumApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
+    ) -> ApiResponse[PremiumWebhookUpdateResponse]:
         """Update premium webhook user
 
 
-        :param id: Tracked user id (required)
+        :param id: Tracked user MongoDB ObjectId: 24 hexadecimal characters (required)
         :type id: str
         :param premium_webhook_user_update_request: (required)
         :type premium_webhook_user_update_request: PremiumWebhookUserUpdateRequest
@@ -976,7 +978,7 @@ class PremiumApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            '200': "PremiumWebhookUpdateResponse",
             '400': "SendError",
             '401': "SendError",
             '404': "SendError",
@@ -996,7 +998,7 @@ class PremiumApi:
     @validate_call
     def update_webhook_user_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Tracked user id")],
+        id: Annotated[str, Field(strict=True, description="Tracked user MongoDB ObjectId: 24 hexadecimal characters")],
         premium_webhook_user_update_request: PremiumWebhookUserUpdateRequest,
         _request_timeout: Union[
             None,
@@ -1014,7 +1016,7 @@ class PremiumApi:
         """Update premium webhook user
 
 
-        :param id: Tracked user id (required)
+        :param id: Tracked user MongoDB ObjectId: 24 hexadecimal characters (required)
         :type id: str
         :param premium_webhook_user_update_request: (required)
         :type premium_webhook_user_update_request: PremiumWebhookUserUpdateRequest
@@ -1050,7 +1052,7 @@ class PremiumApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            '200': "PremiumWebhookUpdateResponse",
             '400': "SendError",
             '401': "SendError",
             '404': "SendError",

@@ -16,11 +16,14 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
-from typing import Any, Optional
+from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from henrikdev_api_client.models.accolades_v1_response import AccoladesV1Response
 from henrikdev_api_client.models.account_v1_response import AccountV1Response
 from henrikdev_api_client.models.account_v2_response import AccountV2Response
+from henrikdev_api_client.models.agent_mastery_v1_detail_response import AgentMasteryV1DetailResponse
+from henrikdev_api_client.models.agent_mastery_v1_response import AgentMasteryV1Response
 from henrikdev_api_client.models.content_v1_response import ContentV1Response
 from henrikdev_api_client.models.esports_v1_response import EsportsV1Response
 from henrikdev_api_client.models.esports_v2_event_response import EsportsV2EventResponse
@@ -34,14 +37,13 @@ from henrikdev_api_client.models.esports_v2_region import EsportsV2Region
 from henrikdev_api_client.models.esports_v2_team_match_list_response import EsportsV2TeamMatchListResponse
 from henrikdev_api_client.models.esports_v2_team_response import EsportsV2TeamResponse
 from henrikdev_api_client.models.esports_v2_team_transactions_response import EsportsV2TeamTransactionsResponse
-from henrikdev_api_client.models.leaderboard_v2_response import LeaderboardV2Response
+from henrikdev_api_client.models.leaderboard_v1_response import LeaderboardV1Response
 from henrikdev_api_client.models.leaderboard_v3_response import LeaderboardV3Response
 from henrikdev_api_client.models.mmr_history_v1_response import MMRHistoryV1Response
 from henrikdev_api_client.models.mmr_history_v2_response import MMRHistoryV2Response
 from henrikdev_api_client.models.mmrv1_response import MMRV1Response
 from henrikdev_api_client.models.mmrv2_response import MMRV2Response
 from henrikdev_api_client.models.mmrv3_response import MMRV3Response
-from henrikdev_api_client.models.match_mode import MatchMode
 from henrikdev_api_client.models.matches_v2_response import MatchesV2Response
 from henrikdev_api_client.models.matches_v3_list_response import MatchesV3ListResponse
 from henrikdev_api_client.models.matches_v4_history_response import MatchesV4HistoryResponse
@@ -49,15 +51,22 @@ from henrikdev_api_client.models.matches_v4_response import MatchesV4Response
 from henrikdev_api_client.models.premier_search_response import PremierSearchResponse
 from henrikdev_api_client.models.premier_team_history_v1_response import PremierTeamHistoryV1Response
 from henrikdev_api_client.models.premier_team_v1_response import PremierTeamV1Response
+from henrikdev_api_client.models.premier_team_v2_response import PremierTeamV2Response
 from henrikdev_api_client.models.queue_status_v1 import QueueStatusV1
 from henrikdev_api_client.models.raw_v1_payload import RawV1Payload
 from henrikdev_api_client.models.raw_v1_response import RawV1Response
 from henrikdev_api_client.models.status_v1 import StatusV1
-from henrikdev_api_client.models.store_featured_v1 import StoreFeaturedV1
-from henrikdev_api_client.models.store_offers_v1_response import StoreOffersV1Response
 from henrikdev_api_client.models.stored_mmr_response import StoredMMRResponse
 from henrikdev_api_client.models.stored_mmrv2_response import StoredMMRV2Response
 from henrikdev_api_client.models.stored_matches_response import StoredMatchesResponse
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_content_locale import ValorantContentLocale
+from henrikdev_api_client.models.valorant_leaderboard_v2_response import ValorantLeaderboardV2Response
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
+from henrikdev_api_client.models.valorant_store_featured_response import ValorantStoreFeaturedResponse
+from henrikdev_api_client.models.valorant_store_version import ValorantStoreVersion
+from henrikdev_api_client.models.valorant_website_category import ValorantWebsiteCategory
+from henrikdev_api_client.models.valorant_website_locale import ValorantWebsiteLocale
 from henrikdev_api_client.models.version_v1_response import VersionV1Response
 from henrikdev_api_client.models.website_by_id_v1_response import WebsiteByIdV1Response
 from henrikdev_api_client.models.website_v1_response import WebsiteV1Response
@@ -83,7 +92,7 @@ class ValorantApi:
     @validate_call
     def crosshair(
         self,
-        id: Annotated[Optional[StrictStr], Field(description="Crosshair code")] = None,
+        id: Annotated[StrictStr, Field(description="Required crosshair code")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -100,7 +109,7 @@ class ValorantApi:
         """Generate crosshair image (v1)
 
 
-        :param id: Crosshair code
+        :param id: Required crosshair code (required)
         :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -135,6 +144,9 @@ class ValorantApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': None,
             '400': "SendError",
+            '401': "SendError",
+            '403': "SendError",
+            '404': "SendError",
             '500': "SendError",
         }
         response_data = self.api_client.call_api(
@@ -151,7 +163,7 @@ class ValorantApi:
     @validate_call
     def crosshair_with_http_info(
         self,
-        id: Annotated[Optional[StrictStr], Field(description="Crosshair code")] = None,
+        id: Annotated[StrictStr, Field(description="Required crosshair code")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -168,7 +180,7 @@ class ValorantApi:
         """Generate crosshair image (v1)
 
 
-        :param id: Crosshair code
+        :param id: Required crosshair code (required)
         :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -203,6 +215,9 @@ class ValorantApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': None,
             '400': "SendError",
+            '401': "SendError",
+            '403': "SendError",
+            '404': "SendError",
             '500': "SendError",
         }
         response_data = self.api_client.call_api(
@@ -219,7 +234,7 @@ class ValorantApi:
     @validate_call
     def crosshair_without_preload_content(
         self,
-        id: Annotated[Optional[StrictStr], Field(description="Crosshair code")] = None,
+        id: Annotated[StrictStr, Field(description="Required crosshair code")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -236,7 +251,7 @@ class ValorantApi:
         """Generate crosshair image (v1)
 
 
-        :param id: Crosshair code
+        :param id: Required crosshair code (required)
         :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -271,6 +286,9 @@ class ValorantApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': None,
             '400': "SendError",
+            '401': "SendError",
+            '403': "SendError",
+            '404': "SendError",
             '500': "SendError",
         }
         response_data = self.api_client.call_api(
@@ -2845,9 +2863,9 @@ class ValorantApi:
     @validate_call
     def get_accolades_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2864,12 +2882,12 @@ class ValorantApi:
         """Get player accolades by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
-        :type puuid: str
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2922,9 +2940,9 @@ class ValorantApi:
     @validate_call
     def get_accolades_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2941,12 +2959,12 @@ class ValorantApi:
         """Get player accolades by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
-        :type puuid: str
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2999,9 +3017,9 @@ class ValorantApi:
     @validate_call
     def get_accolades_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3018,12 +3036,12 @@ class ValorantApi:
         """Get player accolades by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
-        :type puuid: str
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3096,9 +3114,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
@@ -3143,8 +3161,8 @@ class ValorantApi:
     @validate_call
     def get_accolades_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -3163,10 +3181,10 @@ class ValorantApi:
         """Get player accolades by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -3224,8 +3242,8 @@ class ValorantApi:
     @validate_call
     def get_accolades_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -3244,10 +3262,10 @@ class ValorantApi:
         """Get player accolades by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -3305,8 +3323,8 @@ class ValorantApi:
     @validate_call
     def get_accolades_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -3325,10 +3343,10 @@ class ValorantApi:
         """Get player accolades by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -3407,9 +3425,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -4626,7 +4644,7 @@ class ValorantApi:
     @validate_call
     def get_content_v1(
         self,
-        locale: Annotated[Optional[StrictStr], Field(description="Locale code (e.g., en-US, de-DE) - optional")] = None,
+        locale: Annotated[Optional[ValorantContentLocale], Field(description="Content locale; case-insensitive. Omission selects en-US.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4643,8 +4661,8 @@ class ValorantApi:
         """Get content (v1)
 
 
-        :param locale: Locale code (e.g., en-US, de-DE) - optional
-        :type locale: str
+        :param locale: Content locale; case-insensitive. Omission selects en-US.
+        :type locale: ValorantContentLocale
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4695,7 +4713,7 @@ class ValorantApi:
     @validate_call
     def get_content_v1_with_http_info(
         self,
-        locale: Annotated[Optional[StrictStr], Field(description="Locale code (e.g., en-US, de-DE) - optional")] = None,
+        locale: Annotated[Optional[ValorantContentLocale], Field(description="Content locale; case-insensitive. Omission selects en-US.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4712,8 +4730,8 @@ class ValorantApi:
         """Get content (v1)
 
 
-        :param locale: Locale code (e.g., en-US, de-DE) - optional
-        :type locale: str
+        :param locale: Content locale; case-insensitive. Omission selects en-US.
+        :type locale: ValorantContentLocale
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4764,7 +4782,7 @@ class ValorantApi:
     @validate_call
     def get_content_v1_without_preload_content(
         self,
-        locale: Annotated[Optional[StrictStr], Field(description="Locale code (e.g., en-US, de-DE) - optional")] = None,
+        locale: Annotated[Optional[ValorantContentLocale], Field(description="Content locale; case-insensitive. Omission selects en-US.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4781,8 +4799,8 @@ class ValorantApi:
         """Get content (v1)
 
 
-        :param locale: Locale code (e.g., en-US, de-DE) - optional
-        :type locale: str
+        :param locale: Content locale; case-insensitive. Omission selects en-US.
+        :type locale: ValorantContentLocale
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4853,7 +4871,7 @@ class ValorantApi:
         # process the query parameters
         if locale is not None:
             
-            _query_params.append(('locale', locale))
+            _query_params.append(('locale', locale.value))
             
         # process the header parameters
         # process the form parameters
@@ -4894,13 +4912,1278 @@ class ValorantApi:
 
 
     @validate_call
+    def get_mastery_agent_by_id(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        agent_id: Annotated[StrictStr, Field(description="Agent UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentMasteryV1DetailResponse:
+        """Get agent mastery by PUUID (v1)
+
+        Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param puuid: Player UUID (required)
+        :type puuid: str
+        :param agent_id: Agent UUID (required)
+        :type agent_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_agent_by_id_serialize(
+            affinity=affinity,
+            platform=platform,
+            puuid=puuid,
+            agent_id=agent_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1DetailResponse",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_mastery_agent_by_id_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        agent_id: Annotated[StrictStr, Field(description="Agent UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentMasteryV1DetailResponse]:
+        """Get agent mastery by PUUID (v1)
+
+        Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param puuid: Player UUID (required)
+        :type puuid: str
+        :param agent_id: Agent UUID (required)
+        :type agent_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_agent_by_id_serialize(
+            affinity=affinity,
+            platform=platform,
+            puuid=puuid,
+            agent_id=agent_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1DetailResponse",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_mastery_agent_by_id_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        agent_id: Annotated[StrictStr, Field(description="Agent UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get agent mastery by PUUID (v1)
+
+        Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param puuid: Player UUID (required)
+        :type puuid: str
+        :param agent_id: Agent UUID (required)
+        :type agent_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_agent_by_id_serialize(
+            affinity=affinity,
+            platform=platform,
+            puuid=puuid,
+            agent_id=agent_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1DetailResponse",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_mastery_agent_by_id_serialize(
+        self,
+        affinity,
+        platform,
+        puuid,
+        agent_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if platform is not None:
+            _path_params['platform'] = platform.value
+        if puuid is not None:
+            _path_params['puuid'] = puuid
+        if agent_id is not None:
+            _path_params['agent_id'] = agent_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_mastery_agent_by_name(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Riot ID tag")],
+        agent_id: Annotated[StrictStr, Field(description="Agent UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentMasteryV1DetailResponse:
+        """Get agent mastery by name (v1)
+
+        Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param name: Riot ID name (required)
+        :type name: str
+        :param tag: Riot ID tag (required)
+        :type tag: str
+        :param agent_id: Agent UUID (required)
+        :type agent_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_agent_by_name_serialize(
+            affinity=affinity,
+            platform=platform,
+            name=name,
+            tag=tag,
+            agent_id=agent_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1DetailResponse",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_mastery_agent_by_name_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Riot ID tag")],
+        agent_id: Annotated[StrictStr, Field(description="Agent UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentMasteryV1DetailResponse]:
+        """Get agent mastery by name (v1)
+
+        Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param name: Riot ID name (required)
+        :type name: str
+        :param tag: Riot ID tag (required)
+        :type tag: str
+        :param agent_id: Agent UUID (required)
+        :type agent_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_agent_by_name_serialize(
+            affinity=affinity,
+            platform=platform,
+            name=name,
+            tag=tag,
+            agent_id=agent_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1DetailResponse",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_mastery_agent_by_name_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Riot ID tag")],
+        agent_id: Annotated[StrictStr, Field(description="Agent UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get agent mastery by name (v1)
+
+        Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param name: Riot ID name (required)
+        :type name: str
+        :param tag: Riot ID tag (required)
+        :type tag: str
+        :param agent_id: Agent UUID (required)
+        :type agent_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_agent_by_name_serialize(
+            affinity=affinity,
+            platform=platform,
+            name=name,
+            tag=tag,
+            agent_id=agent_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1DetailResponse",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_mastery_agent_by_name_serialize(
+        self,
+        affinity,
+        platform,
+        name,
+        tag,
+        agent_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if platform is not None:
+            _path_params['platform'] = platform.value
+        if name is not None:
+            _path_params['name'] = name
+        if tag is not None:
+            _path_params['tag'] = tag
+        if agent_id is not None:
+            _path_params['agent_id'] = agent_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_mastery_by_id(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentMasteryV1Response:
+        """Get all agent mastery by PUUID (v1)
+
+        Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param puuid: Player UUID (required)
+        :type puuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_by_id_serialize(
+            affinity=affinity,
+            platform=platform,
+            puuid=puuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_mastery_by_id_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentMasteryV1Response]:
+        """Get all agent mastery by PUUID (v1)
+
+        Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param puuid: Player UUID (required)
+        :type puuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_by_id_serialize(
+            affinity=affinity,
+            platform=platform,
+            puuid=puuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_mastery_by_id_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[StrictStr, Field(description="Player UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get all agent mastery by PUUID (v1)
+
+        Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param puuid: Player UUID (required)
+        :type puuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_by_id_serialize(
+            affinity=affinity,
+            platform=platform,
+            puuid=puuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_mastery_by_id_serialize(
+        self,
+        affinity,
+        platform,
+        puuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if platform is not None:
+            _path_params['platform'] = platform.value
+        if puuid is not None:
+            _path_params['puuid'] = puuid
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_mastery_by_name(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Riot ID tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentMasteryV1Response:
+        """Get all agent mastery by name (v1)
+
+        Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param name: Riot ID name (required)
+        :type name: str
+        :param tag: Riot ID tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_by_name_serialize(
+            affinity=affinity,
+            platform=platform,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_mastery_by_name_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Riot ID tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentMasteryV1Response]:
+        """Get all agent mastery by name (v1)
+
+        Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param name: Riot ID name (required)
+        :type name: str
+        :param tag: Riot ID tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_by_name_serialize(
+            affinity=affinity,
+            platform=platform,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_mastery_by_name_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Riot ID tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get all agent mastery by name (v1)
+
+        Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param name: Riot ID name (required)
+        :type name: str
+        :param tag: Riot ID tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_mastery_by_name_serialize(
+            affinity=affinity,
+            platform=platform,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentMasteryV1Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_mastery_by_name_serialize(
+        self,
+        affinity,
+        platform,
+        name,
+        tag,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if platform is not None:
+            _path_params['platform'] = platform.value
+        if name is not None:
+            _path_params['name'] = name
+        if tag is not None:
+            _path_params['tag'] = tag
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_matches_v3_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4917,15 +6200,17 @@ class ValorantApi:
         """Get matches by PUUID (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4953,6 +6238,7 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             _request_auth=_request_auth,
@@ -4981,11 +6267,12 @@ class ValorantApi:
     @validate_call
     def get_matches_v3_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5002,15 +6289,17 @@ class ValorantApi:
         """Get matches by PUUID (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5038,6 +6327,7 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             _request_auth=_request_auth,
@@ -5066,11 +6356,12 @@ class ValorantApi:
     @validate_call
     def get_matches_v3_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5087,15 +6378,17 @@ class ValorantApi:
         """Get matches by PUUID (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5123,6 +6416,7 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             _request_auth=_request_auth,
@@ -5149,6 +6443,7 @@ class ValorantApi:
         affinity,
         puuid,
         mode,
+        queue,
         map,
         size,
         _request_auth,
@@ -5173,13 +6468,17 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
         if mode is not None:
             
             _query_params.append(('mode', mode))
+            
+        if queue is not None:
+            
+            _query_params.append(('queue', queue))
             
         if map is not None:
             
@@ -5230,12 +6529,13 @@ class ValorantApi:
     @validate_call
     def get_matches_v3_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[MatchMode], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5252,17 +6552,19 @@ class ValorantApi:
         """Get matches by name (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
-        :type mode: MatchMode
-        :param map: Map filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+        :type mode: str
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5291,6 +6593,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             _request_auth=_request_auth,
@@ -5319,12 +6622,13 @@ class ValorantApi:
     @validate_call
     def get_matches_v3_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[MatchMode], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5341,17 +6645,19 @@ class ValorantApi:
         """Get matches by name (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
-        :type mode: MatchMode
-        :param map: Map filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+        :type mode: str
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5380,6 +6686,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             _request_auth=_request_auth,
@@ -5408,12 +6715,13 @@ class ValorantApi:
     @validate_call
     def get_matches_v3_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[MatchMode], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5430,17 +6738,19 @@ class ValorantApi:
         """Get matches by name (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
-        :type mode: MatchMode
-        :param map: Map filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+        :type mode: str
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5469,6 +6779,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             _request_auth=_request_auth,
@@ -5496,6 +6807,7 @@ class ValorantApi:
         name,
         tag,
         mode,
+        queue,
         map,
         size,
         _request_auth,
@@ -5520,7 +6832,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -5528,7 +6840,11 @@ class ValorantApi:
         # process the query parameters
         if mode is not None:
             
-            _query_params.append(('mode', mode.value))
+            _query_params.append(('mode', mode))
+            
+        if queue is not None:
+            
+            _query_params.append(('queue', queue))
             
         if map is not None:
             
@@ -5579,13 +6895,14 @@ class ValorantApi:
     @validate_call
     def get_matches_v4_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
-        start: Annotated[Optional[StrictInt], Field(description="Start index for pagination (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
+        start: Annotated[Optional[Annotated[int, Field(le=2147483646, strict=True, ge=0)]], Field(description="Zero-based offset; start plus capped size must fit a signed 32-bit integer.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5602,19 +6919,21 @@ class ValorantApi:
         """Get matches by PUUID (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
-        :param start: Start index for pagination (optional)
+        :param start: Zero-based offset; start plus capped size must fit a signed 32-bit integer.
         :type start: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5643,6 +6962,7 @@ class ValorantApi:
             platform=platform,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             start=start,
@@ -5672,13 +6992,14 @@ class ValorantApi:
     @validate_call
     def get_matches_v4_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
-        start: Annotated[Optional[StrictInt], Field(description="Start index for pagination (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
+        start: Annotated[Optional[Annotated[int, Field(le=2147483646, strict=True, ge=0)]], Field(description="Zero-based offset; start plus capped size must fit a signed 32-bit integer.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5695,19 +7016,21 @@ class ValorantApi:
         """Get matches by PUUID (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
-        :param start: Start index for pagination (optional)
+        :param start: Zero-based offset; start plus capped size must fit a signed 32-bit integer.
         :type start: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5736,6 +7059,7 @@ class ValorantApi:
             platform=platform,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             start=start,
@@ -5765,13 +7089,14 @@ class ValorantApi:
     @validate_call
     def get_matches_v4_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
-        start: Annotated[Optional[StrictInt], Field(description="Start index for pagination (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
+        start: Annotated[Optional[Annotated[int, Field(le=2147483646, strict=True, ge=0)]], Field(description="Zero-based offset; start plus capped size must fit a signed 32-bit integer.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5788,19 +7113,21 @@ class ValorantApi:
         """Get matches by PUUID (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
-        :param start: Start index for pagination (optional)
+        :param start: Zero-based offset; start plus capped size must fit a signed 32-bit integer.
         :type start: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5829,6 +7156,7 @@ class ValorantApi:
             platform=platform,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             start=start,
@@ -5857,6 +7185,7 @@ class ValorantApi:
         platform,
         puuid,
         mode,
+        queue,
         map,
         size,
         start,
@@ -5882,15 +7211,19 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
         if mode is not None:
             
             _query_params.append(('mode', mode))
+            
+        if queue is not None:
+            
+            _query_params.append(('queue', queue))
             
         if map is not None:
             
@@ -5945,14 +7278,15 @@ class ValorantApi:
     @validate_call
     def get_matches_v4_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
-        start: Annotated[Optional[StrictInt], Field(description="Start index for pagination (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
+        start: Annotated[Optional[Annotated[int, Field(le=2147483646, strict=True, ge=0)]], Field(description="Zero-based offset; start plus capped size must fit a signed 32-bit integer.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5969,21 +7303,23 @@ class ValorantApi:
         """Get matches by name (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
-        :param start: Start index for pagination (optional)
+        :param start: Zero-based offset; start plus capped size must fit a signed 32-bit integer.
         :type start: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6013,6 +7349,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             start=start,
@@ -6042,14 +7379,15 @@ class ValorantApi:
     @validate_call
     def get_matches_v4_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
-        start: Annotated[Optional[StrictInt], Field(description="Start index for pagination (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
+        start: Annotated[Optional[Annotated[int, Field(le=2147483646, strict=True, ge=0)]], Field(description="Zero-based offset; start plus capped size must fit a signed 32-bit integer.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6066,21 +7404,23 @@ class ValorantApi:
         """Get matches by name (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
-        :param start: Start index for pagination (optional)
+        :param start: Zero-based offset; start plus capped size must fit a signed 32-bit integer.
         :type start: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6110,6 +7450,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             start=start,
@@ -6139,14 +7480,15 @@ class ValorantApi:
     @validate_call
     def get_matches_v4_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
-        start: Annotated[Optional[StrictInt], Field(description="Start index for pagination (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; values above 10 are capped at 10.")] = None,
+        start: Annotated[Optional[Annotated[int, Field(le=2147483646, strict=True, ge=0)]], Field(description="Zero-based offset; start plus capped size must fit a signed 32-bit integer.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6163,21 +7505,23 @@ class ValorantApi:
         """Get matches by name (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count; values above 10 are capped at 10.
         :type size: int
-        :param start: Start index for pagination (optional)
+        :param start: Zero-based offset; start plus capped size must fit a signed 32-bit integer.
         :type start: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6207,6 +7551,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
             start=start,
@@ -6236,6 +7581,7 @@ class ValorantApi:
         name,
         tag,
         mode,
+        queue,
         map,
         size,
         start,
@@ -6261,9 +7607,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -6272,6 +7618,10 @@ class ValorantApi:
         if mode is not None:
             
             _query_params.append(('mode', mode))
+            
+        if queue is not None:
+            
+            _query_params.append(('queue', queue))
             
         if map is not None:
             
@@ -6326,7 +7676,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -6344,8 +7694,8 @@ class ValorantApi:
         """Get MMR history by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6399,7 +7749,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -6417,8 +7767,8 @@ class ValorantApi:
         """Get MMR history by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6472,7 +7822,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -6490,8 +7840,8 @@ class ValorantApi:
         """Get MMR history by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6564,7 +7914,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
@@ -6609,7 +7959,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -6628,8 +7978,8 @@ class ValorantApi:
         """Get MMR history by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -6686,7 +8036,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -6705,8 +8055,8 @@ class ValorantApi:
         """Get MMR history by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -6763,7 +8113,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -6782,8 +8132,8 @@ class ValorantApi:
         """Get MMR history by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -6860,7 +8210,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -6907,8 +8257,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_v2_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -6926,10 +8276,10 @@ class ValorantApi:
         """Get MMR history by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6984,8 +8334,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_v2_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -7003,10 +8353,10 @@ class ValorantApi:
         """Get MMR history by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -7061,8 +8411,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_v2_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -7080,10 +8430,10 @@ class ValorantApi:
         """Get MMR history by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -7158,9 +8508,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
@@ -7205,8 +8555,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_v2_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -7225,10 +8575,10 @@ class ValorantApi:
         """Get MMR history by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -7286,8 +8636,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_v2_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -7306,10 +8656,10 @@ class ValorantApi:
         """Get MMR history by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -7367,8 +8717,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_history_v2_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -7387,10 +8737,10 @@ class ValorantApi:
         """Get MMR history by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -7469,9 +8819,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -7518,7 +8868,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v1_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -7536,8 +8886,8 @@ class ValorantApi:
         """Get MMR by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -7591,7 +8941,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v1_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -7609,8 +8959,8 @@ class ValorantApi:
         """Get MMR by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -7664,7 +9014,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v1_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -7682,8 +9032,8 @@ class ValorantApi:
         """Get MMR by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -7756,7 +9106,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
@@ -7801,7 +9151,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v1_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -7820,8 +9170,8 @@ class ValorantApi:
         """Get MMR by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -7878,7 +9228,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v1_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -7897,8 +9247,8 @@ class ValorantApi:
         """Get MMR by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -7955,7 +9305,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v1_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -7974,8 +9324,8 @@ class ValorantApi:
         """Get MMR by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -8052,7 +9402,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -8099,7 +9449,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v2_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -8117,8 +9467,8 @@ class ValorantApi:
         """Get MMR by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -8172,7 +9522,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v2_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -8190,8 +9540,8 @@ class ValorantApi:
         """Get MMR by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -8245,7 +9595,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v2_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -8263,8 +9613,8 @@ class ValorantApi:
         """Get MMR by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -8337,7 +9687,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
@@ -8382,7 +9732,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v2_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -8401,8 +9751,8 @@ class ValorantApi:
         """Get MMR by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -8459,7 +9809,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v2_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -8478,8 +9828,8 @@ class ValorantApi:
         """Get MMR by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -8536,7 +9886,7 @@ class ValorantApi:
     @validate_call
     def get_mmr_v2_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -8555,8 +9905,8 @@ class ValorantApi:
         """Get MMR by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -8633,7 +9983,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -8680,8 +10030,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_v3_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -8699,10 +10049,10 @@ class ValorantApi:
         """Get MMR by PUUID (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -8757,8 +10107,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_v3_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -8776,10 +10126,10 @@ class ValorantApi:
         """Get MMR by PUUID (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -8834,8 +10184,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_v3_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
         _request_timeout: Union[
             None,
@@ -8853,10 +10203,10 @@ class ValorantApi:
         """Get MMR by PUUID (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
         :param _request_timeout: timeout setting for this request. If one
@@ -8931,9 +10281,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
@@ -8978,8 +10328,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_v3_by_name(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -8998,10 +10348,10 @@ class ValorantApi:
         """Get MMR by name (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -9059,8 +10409,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_v3_by_name_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -9079,10 +10429,10 @@ class ValorantApi:
         """Get MMR by name (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -9140,8 +10490,8 @@ class ValorantApi:
     @validate_call
     def get_mmr_v3_by_name_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
         _request_timeout: Union[
@@ -9160,10 +10510,10 @@ class ValorantApi:
         """Get MMR by name (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
@@ -9242,9 +10592,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -9291,10 +10641,11 @@ class ValorantApi:
     @validate_call
     def leaderboard_v1(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        season: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; omission selects the current season")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
+        puuid: Annotated[Optional[UUID], Field(description="Player UUID to search for")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9307,18 +10658,20 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> LeaderboardV1Response:
         """Get leaderboard (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param season: Season ID (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param season: Short season ID, such as e9a1; omission selects the current season
         :type season: str
         :param name: Player name to search for (optional)
         :type name: str
         :param tag: Player tag to search for (optional)
         :type tag: str
+        :param puuid: Player UUID to search for
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9346,6 +10699,7 @@ class ValorantApi:
             season=season,
             name=name,
             tag=tag,
+            puuid=puuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9353,7 +10707,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "LeaderboardV1Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -9372,10 +10726,11 @@ class ValorantApi:
     @validate_call
     def leaderboard_v1_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        season: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; omission selects the current season")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
+        puuid: Annotated[Optional[UUID], Field(description="Player UUID to search for")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9388,18 +10743,20 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[LeaderboardV1Response]:
         """Get leaderboard (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param season: Season ID (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param season: Short season ID, such as e9a1; omission selects the current season
         :type season: str
         :param name: Player name to search for (optional)
         :type name: str
         :param tag: Player tag to search for (optional)
         :type tag: str
+        :param puuid: Player UUID to search for
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9427,6 +10784,7 @@ class ValorantApi:
             season=season,
             name=name,
             tag=tag,
+            puuid=puuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9434,7 +10792,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "LeaderboardV1Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -9453,10 +10811,11 @@ class ValorantApi:
     @validate_call
     def leaderboard_v1_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        season: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; omission selects the current season")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
+        puuid: Annotated[Optional[UUID], Field(description="Player UUID to search for")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9473,14 +10832,16 @@ class ValorantApi:
         """Get leaderboard (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param season: Season ID (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param season: Short season ID, such as e9a1; omission selects the current season
         :type season: str
         :param name: Player name to search for (optional)
         :type name: str
         :param tag: Player tag to search for (optional)
         :type tag: str
+        :param puuid: Player UUID to search for
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9508,6 +10869,7 @@ class ValorantApi:
             season=season,
             name=name,
             tag=tag,
+            puuid=puuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9515,7 +10877,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "LeaderboardV1Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -9533,6 +10895,7 @@ class ValorantApi:
         season,
         name,
         tag,
+        puuid,
         _request_auth,
         _content_type,
         _headers,
@@ -9555,7 +10918,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         # process the query parameters
         if season is not None:
             
@@ -9568,6 +10931,10 @@ class ValorantApi:
         if tag is not None:
             
             _query_params.append(('tag', tag))
+            
+        if puuid is not None:
+            
+            _query_params.append(('puuid', puuid))
             
         # process the header parameters
         # process the form parameters
@@ -9610,8 +10977,8 @@ class ValorantApi:
     @validate_call
     def leaderboard_v2(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        season: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; omission selects the current season")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
         puuid: Annotated[Optional[StrictStr], Field(description="Player UUID to search for (optional)")] = None,
@@ -9627,13 +10994,13 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> LeaderboardV2Response:
+    ) -> ValorantLeaderboardV2Response:
         """Get leaderboard (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param season: Season ID (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param season: Short season ID, such as e9a1; omission selects the current season
         :type season: str
         :param name: Player name to search for (optional)
         :type name: str
@@ -9676,7 +11043,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaderboardV2Response",
+            '200': "ValorantLeaderboardV2Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -9695,8 +11062,8 @@ class ValorantApi:
     @validate_call
     def leaderboard_v2_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        season: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; omission selects the current season")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
         puuid: Annotated[Optional[StrictStr], Field(description="Player UUID to search for (optional)")] = None,
@@ -9712,13 +11079,13 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[LeaderboardV2Response]:
+    ) -> ApiResponse[ValorantLeaderboardV2Response]:
         """Get leaderboard (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param season: Season ID (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param season: Short season ID, such as e9a1; omission selects the current season
         :type season: str
         :param name: Player name to search for (optional)
         :type name: str
@@ -9761,7 +11128,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaderboardV2Response",
+            '200': "ValorantLeaderboardV2Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -9780,8 +11147,8 @@ class ValorantApi:
     @validate_call
     def leaderboard_v2_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        season: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; omission selects the current season")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
         puuid: Annotated[Optional[StrictStr], Field(description="Player UUID to search for (optional)")] = None,
@@ -9801,9 +11168,9 @@ class ValorantApi:
         """Get leaderboard (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param season: Season ID (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param season: Short season ID, such as e9a1; omission selects the current season
         :type season: str
         :param name: Player name to search for (optional)
         :type name: str
@@ -9846,7 +11213,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaderboardV2Response",
+            '200': "ValorantLeaderboardV2Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -9887,7 +11254,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         # process the query parameters
         if season is not None:
             
@@ -9946,13 +11313,15 @@ class ValorantApi:
     @validate_call
     def leaderboard_v3(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results per page (optional)")] = None,
-        page: Annotated[Optional[StrictInt], Field(description="Page number (optional)")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
-        tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; only ASCII decimal digits are accepted.")] = None,
+        season_short: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.")] = None,
+        season_id: Annotated[Optional[UUID], Field(description="Season UUID; mutually exclusive with season_short.")] = None,
+        name: Annotated[Optional[StrictStr], Field(description="Player name to search for.")] = None,
+        tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for.")] = None,
+        puuid: Annotated[Optional[UUID], Field(description="Player UUID to search for.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9969,20 +11338,24 @@ class ValorantApi:
         """Get leaderboard (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
-        :param season: Season ID (optional)
-        :type season: str
-        :param size: Number of results per page (optional)
-        :type size: int
-        :param page: Page number (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param page: Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
         :type page: int
-        :param name: Player name to search for (optional)
+        :param size: Positive integer result count; only ASCII decimal digits are accepted.
+        :type size: int
+        :param season_short: Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+        :type season_short: str
+        :param season_id: Season UUID; mutually exclusive with season_short.
+        :type season_id: UUID
+        :param name: Player name to search for.
         :type name: str
-        :param tag: Player tag to search for (optional)
+        :param tag: Player tag to search for.
         :type tag: str
+        :param puuid: Player UUID to search for.
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10008,11 +11381,13 @@ class ValorantApi:
         _param = self._leaderboard_v3_serialize(
             affinity=affinity,
             platform=platform,
-            season=season,
-            size=size,
             page=page,
+            size=size,
+            season_short=season_short,
+            season_id=season_id,
             name=name,
             tag=tag,
+            puuid=puuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10039,13 +11414,15 @@ class ValorantApi:
     @validate_call
     def leaderboard_v3_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results per page (optional)")] = None,
-        page: Annotated[Optional[StrictInt], Field(description="Page number (optional)")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
-        tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; only ASCII decimal digits are accepted.")] = None,
+        season_short: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.")] = None,
+        season_id: Annotated[Optional[UUID], Field(description="Season UUID; mutually exclusive with season_short.")] = None,
+        name: Annotated[Optional[StrictStr], Field(description="Player name to search for.")] = None,
+        tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for.")] = None,
+        puuid: Annotated[Optional[UUID], Field(description="Player UUID to search for.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10062,20 +11439,24 @@ class ValorantApi:
         """Get leaderboard (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
-        :param season: Season ID (optional)
-        :type season: str
-        :param size: Number of results per page (optional)
-        :type size: int
-        :param page: Page number (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param page: Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
         :type page: int
-        :param name: Player name to search for (optional)
+        :param size: Positive integer result count; only ASCII decimal digits are accepted.
+        :type size: int
+        :param season_short: Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+        :type season_short: str
+        :param season_id: Season UUID; mutually exclusive with season_short.
+        :type season_id: UUID
+        :param name: Player name to search for.
         :type name: str
-        :param tag: Player tag to search for (optional)
+        :param tag: Player tag to search for.
         :type tag: str
+        :param puuid: Player UUID to search for.
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10101,11 +11482,13 @@ class ValorantApi:
         _param = self._leaderboard_v3_serialize(
             affinity=affinity,
             platform=platform,
-            season=season,
-            size=size,
             page=page,
+            size=size,
+            season_short=season_short,
+            season_id=season_id,
             name=name,
             tag=tag,
+            puuid=puuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10132,13 +11515,15 @@ class ValorantApi:
     @validate_call
     def leaderboard_v3_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
-        season: Annotated[Optional[StrictStr], Field(description="Season ID (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results per page (optional)")] = None,
-        page: Annotated[Optional[StrictInt], Field(description="Page number (optional)")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Player name to search for (optional)")] = None,
-        tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count; only ASCII decimal digits are accepted.")] = None,
+        season_short: Annotated[Optional[StrictStr], Field(description="Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.")] = None,
+        season_id: Annotated[Optional[UUID], Field(description="Season UUID; mutually exclusive with season_short.")] = None,
+        name: Annotated[Optional[StrictStr], Field(description="Player name to search for.")] = None,
+        tag: Annotated[Optional[StrictStr], Field(description="Player tag to search for.")] = None,
+        puuid: Annotated[Optional[UUID], Field(description="Player UUID to search for.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10155,20 +11540,24 @@ class ValorantApi:
         """Get leaderboard (v3)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
-        :param season: Season ID (optional)
-        :type season: str
-        :param size: Number of results per page (optional)
-        :type size: int
-        :param page: Page number (optional)
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
+        :param page: Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
         :type page: int
-        :param name: Player name to search for (optional)
+        :param size: Positive integer result count; only ASCII decimal digits are accepted.
+        :type size: int
+        :param season_short: Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+        :type season_short: str
+        :param season_id: Season UUID; mutually exclusive with season_short.
+        :type season_id: UUID
+        :param name: Player name to search for.
         :type name: str
-        :param tag: Player tag to search for (optional)
+        :param tag: Player tag to search for.
         :type tag: str
+        :param puuid: Player UUID to search for.
+        :type puuid: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10194,11 +11583,13 @@ class ValorantApi:
         _param = self._leaderboard_v3_serialize(
             affinity=affinity,
             platform=platform,
-            season=season,
-            size=size,
             page=page,
+            size=size,
+            season_short=season_short,
+            season_id=season_id,
             name=name,
             tag=tag,
+            puuid=puuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10222,11 +11613,13 @@ class ValorantApi:
         self,
         affinity,
         platform,
-        season,
-        size,
         page,
+        size,
+        season_short,
+        season_id,
         name,
         tag,
+        puuid,
         _request_auth,
         _content_type,
         _headers,
@@ -10249,21 +11642,25 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         # process the query parameters
-        if season is not None:
+        if page is not None:
             
-            _query_params.append(('season', season))
+            _query_params.append(('page', page))
             
         if size is not None:
             
             _query_params.append(('size', size))
             
-        if page is not None:
+        if season_short is not None:
             
-            _query_params.append(('page', page))
+            _query_params.append(('season_short', season_short))
+            
+        if season_id is not None:
+            
+            _query_params.append(('season_id', season_id))
             
         if name is not None:
             
@@ -10272,6 +11669,10 @@ class ValorantApi:
         if tag is not None:
             
             _query_params.append(('tag', tag))
+            
+        if puuid is not None:
+            
+            _query_params.append(('puuid', puuid))
             
         # process the header parameters
         # process the form parameters
@@ -10314,7 +11715,7 @@ class ValorantApi:
     @validate_call
     def match_v2(
         self,
-        match_id: Annotated[StrictStr, Field(description="Match UUID")],
+        match_id: Annotated[UUID, Field(description="Match UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10332,7 +11733,7 @@ class ValorantApi:
 
 
         :param match_id: Match UUID (required)
-        :type match_id: str
+        :type match_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10383,7 +11784,7 @@ class ValorantApi:
     @validate_call
     def match_v2_with_http_info(
         self,
-        match_id: Annotated[StrictStr, Field(description="Match UUID")],
+        match_id: Annotated[UUID, Field(description="Match UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10401,7 +11802,7 @@ class ValorantApi:
 
 
         :param match_id: Match UUID (required)
-        :type match_id: str
+        :type match_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10452,7 +11853,7 @@ class ValorantApi:
     @validate_call
     def match_v2_without_preload_content(
         self,
-        match_id: Annotated[StrictStr, Field(description="Match UUID")],
+        match_id: Annotated[UUID, Field(description="Match UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10470,7 +11871,7 @@ class ValorantApi:
 
 
         :param match_id: Match UUID (required)
-        :type match_id: str
+        :type match_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10582,8 +11983,8 @@ class ValorantApi:
     @validate_call
     def match_v4(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        match_id: Annotated[StrictStr, Field(description="Match UUID")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        match_id: Annotated[UUID, Field(description="Match UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10600,10 +12001,10 @@ class ValorantApi:
         """Get match details (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param match_id: Match UUID (required)
-        :type match_id: str
+        :type match_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10655,8 +12056,8 @@ class ValorantApi:
     @validate_call
     def match_v4_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        match_id: Annotated[StrictStr, Field(description="Match UUID")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        match_id: Annotated[UUID, Field(description="Match UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10673,10 +12074,10 @@ class ValorantApi:
         """Get match details (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param match_id: Match UUID (required)
-        :type match_id: str
+        :type match_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10728,8 +12129,8 @@ class ValorantApi:
     @validate_call
     def match_v4_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        match_id: Annotated[StrictStr, Field(description="Match UUID")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        match_id: Annotated[UUID, Field(description="Match UUID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10746,10 +12147,10 @@ class ValorantApi:
         """Get match details (v4)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param match_id: Match UUID (required)
-        :type match_id: str
+        :type match_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10820,7 +12221,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if match_id is not None:
             _path_params['match_id'] = match_id
         # process the query parameters
@@ -10865,9 +12266,9 @@ class ValorantApi:
     @validate_call
     def premier_by_id(
         self,
-        id: Annotated[StrictStr, Field(description="Team UUID")],
+        id: Annotated[UUID, Field(description="Team UUID")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
-        affinity: Annotated[Optional[StrictStr], Field(description="Region/affinity for fallback resolution (optional)")] = None,
+        affinity: Annotated[Optional[ValorantAffinity], Field(description="Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10885,11 +12286,11 @@ class ValorantApi:
 
 
         :param id: Team UUID (required)
-        :type id: str
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
-        :param affinity: Region/affinity for fallback resolution (optional)
-        :type affinity: str
+        :param affinity: Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10942,9 +12343,9 @@ class ValorantApi:
     @validate_call
     def premier_by_id_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Team UUID")],
+        id: Annotated[UUID, Field(description="Team UUID")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
-        affinity: Annotated[Optional[StrictStr], Field(description="Region/affinity for fallback resolution (optional)")] = None,
+        affinity: Annotated[Optional[ValorantAffinity], Field(description="Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10962,11 +12363,11 @@ class ValorantApi:
 
 
         :param id: Team UUID (required)
-        :type id: str
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
-        :param affinity: Region/affinity for fallback resolution (optional)
-        :type affinity: str
+        :param affinity: Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11019,9 +12420,9 @@ class ValorantApi:
     @validate_call
     def premier_by_id_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Team UUID")],
+        id: Annotated[UUID, Field(description="Team UUID")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
-        affinity: Annotated[Optional[StrictStr], Field(description="Region/affinity for fallback resolution (optional)")] = None,
+        affinity: Annotated[Optional[ValorantAffinity], Field(description="Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11039,11 +12440,11 @@ class ValorantApi:
 
 
         :param id: Team UUID (required)
-        :type id: str
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
-        :param affinity: Region/affinity for fallback resolution (optional)
-        :type affinity: str
+        :param affinity: Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11124,7 +12525,7 @@ class ValorantApi:
             
         if affinity is not None:
             
-            _query_params.append(('affinity', affinity))
+            _query_params.append(('affinity', affinity.value))
             
         # process the header parameters
         # process the form parameters
@@ -11167,7 +12568,7 @@ class ValorantApi:
     @validate_call
     def premier_by_id_history(
         self,
-        id: Annotated[StrictStr, Field(description="Team UUID")],
+        id: Annotated[UUID, Field(description="Team UUID")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
@@ -11181,12 +12582,12 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PremierTeamV1Response:
+    ) -> PremierTeamHistoryV1Response:
         """Get Premier team history by ID (v1)
 
 
         :param id: Team UUID (required)
-        :type id: str
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
         :param _request_timeout: timeout setting for this request. If one
@@ -11221,7 +12622,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PremierTeamV1Response",
+            '200': "PremierTeamHistoryV1Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -11240,7 +12641,7 @@ class ValorantApi:
     @validate_call
     def premier_by_id_history_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Team UUID")],
+        id: Annotated[UUID, Field(description="Team UUID")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
@@ -11254,12 +12655,12 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PremierTeamV1Response]:
+    ) -> ApiResponse[PremierTeamHistoryV1Response]:
         """Get Premier team history by ID (v1)
 
 
         :param id: Team UUID (required)
-        :type id: str
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
         :param _request_timeout: timeout setting for this request. If one
@@ -11294,7 +12695,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PremierTeamV1Response",
+            '200': "PremierTeamHistoryV1Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -11313,7 +12714,7 @@ class ValorantApi:
     @validate_call
     def premier_by_id_history_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Team UUID")],
+        id: Annotated[UUID, Field(description="Team UUID")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
@@ -11332,7 +12733,7 @@ class ValorantApi:
 
 
         :param id: Team UUID (required)
-        :type id: str
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
         :param _request_timeout: timeout setting for this request. If one
@@ -11367,7 +12768,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PremierTeamV1Response",
+            '200': "PremierTeamHistoryV1Response",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -11450,12 +12851,298 @@ class ValorantApi:
 
 
     @validate_call
+    def premier_by_id_v2(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        id: Annotated[UUID, Field(description="Team UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PremierTeamV2Response:
+        """Get live Premier team by ID (v2)
+
+        Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param id: Team UUID (required)
+        :type id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_id_v2_serialize(
+            affinity=affinity,
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def premier_by_id_v2_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        id: Annotated[UUID, Field(description="Team UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PremierTeamV2Response]:
+        """Get live Premier team by ID (v2)
+
+        Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param id: Team UUID (required)
+        :type id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_id_v2_serialize(
+            affinity=affinity,
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def premier_by_id_v2_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        id: Annotated[UUID, Field(description="Team UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get live Premier team by ID (v2)
+
+        Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param id: Team UUID (required)
+        :type id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_id_v2_serialize(
+            affinity=affinity,
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _premier_by_id_v2_serialize(
+        self,
+        affinity,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v2/premier/teams/{affinity}/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def premier_by_name(
         self,
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
-        affinity: Annotated[Optional[StrictStr], Field(description="Region/affinity for fallback resolution (optional)")] = None,
+        affinity: Annotated[Optional[ValorantAffinity], Field(description="Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11478,8 +13165,8 @@ class ValorantApi:
         :type tag: str
         :param season: Premier season id (optional)
         :type season: str
-        :param affinity: Region/affinity for fallback resolution (optional)
-        :type affinity: str
+        :param affinity: Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11537,7 +13224,7 @@ class ValorantApi:
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
-        affinity: Annotated[Optional[StrictStr], Field(description="Region/affinity for fallback resolution (optional)")] = None,
+        affinity: Annotated[Optional[ValorantAffinity], Field(description="Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11560,8 +13247,8 @@ class ValorantApi:
         :type tag: str
         :param season: Premier season id (optional)
         :type season: str
-        :param affinity: Region/affinity for fallback resolution (optional)
-        :type affinity: str
+        :param affinity: Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11619,7 +13306,7 @@ class ValorantApi:
         name: Annotated[StrictStr, Field(description="Team name")],
         tag: Annotated[StrictStr, Field(description="Team tag")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
-        affinity: Annotated[Optional[StrictStr], Field(description="Region/affinity for fallback resolution (optional)")] = None,
+        affinity: Annotated[Optional[ValorantAffinity], Field(description="Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11642,8 +13329,8 @@ class ValorantApi:
         :type tag: str
         :param season: Premier season id (optional)
         :type season: str
-        :param affinity: Region/affinity for fallback resolution (optional)
-        :type affinity: str
+        :param affinity: Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11729,7 +13416,7 @@ class ValorantApi:
             
         if affinity is not None:
             
-            _query_params.append(('affinity', affinity))
+            _query_params.append(('affinity', affinity.value))
             
         # process the header parameters
         # process the form parameters
@@ -11831,7 +13518,9 @@ class ValorantApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PremierTeamHistoryV1Response",
-            '400': None,
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -11906,7 +13595,9 @@ class ValorantApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PremierTeamHistoryV1Response",
-            '400': None,
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -11981,7 +13672,9 @@ class ValorantApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PremierTeamHistoryV1Response",
-            '400': None,
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -12064,11 +13757,900 @@ class ValorantApi:
 
 
     @validate_call
+    def premier_by_name_v2(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Premier team name")],
+        tag: Annotated[StrictStr, Field(description="Premier team tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PremierTeamV2Response:
+        """Get live Premier team by team name (v2)
+
+        Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param name: Premier team name (required)
+        :type name: str
+        :param tag: Premier team tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_name_v2_serialize(
+            affinity=affinity,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '409': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def premier_by_name_v2_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Premier team name")],
+        tag: Annotated[StrictStr, Field(description="Premier team tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PremierTeamV2Response]:
+        """Get live Premier team by team name (v2)
+
+        Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param name: Premier team name (required)
+        :type name: str
+        :param tag: Premier team tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_name_v2_serialize(
+            affinity=affinity,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '409': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def premier_by_name_v2_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Premier team name")],
+        tag: Annotated[StrictStr, Field(description="Premier team tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get live Premier team by team name (v2)
+
+        Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param name: Premier team name (required)
+        :type name: str
+        :param tag: Premier team tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_name_v2_serialize(
+            affinity=affinity,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '409': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _premier_by_name_v2_serialize(
+        self,
+        affinity,
+        name,
+        tag,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if name is not None:
+            _path_params['name'] = name
+        if tag is not None:
+            _path_params['tag'] = tag
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v2/premier/teams/{affinity}/{name}/{tag}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def premier_by_player_name(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Player Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Player Riot ID tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PremierTeamV2Response:
+        """Get live Premier team by player Riot ID (v2)
+
+        Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param name: Player Riot ID name (required)
+        :type name: str
+        :param tag: Player Riot ID tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_player_name_serialize(
+            affinity=affinity,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def premier_by_player_name_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Player Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Player Riot ID tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PremierTeamV2Response]:
+        """Get live Premier team by player Riot ID (v2)
+
+        Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param name: Player Riot ID name (required)
+        :type name: str
+        :param tag: Player Riot ID tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_player_name_serialize(
+            affinity=affinity,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def premier_by_player_name_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        name: Annotated[StrictStr, Field(description="Player Riot ID name")],
+        tag: Annotated[StrictStr, Field(description="Player Riot ID tag")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get live Premier team by player Riot ID (v2)
+
+        Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param name: Player Riot ID name (required)
+        :type name: str
+        :param tag: Player Riot ID tag (required)
+        :type tag: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_player_name_serialize(
+            affinity=affinity,
+            name=name,
+            tag=tag,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _premier_by_player_name_serialize(
+        self,
+        affinity,
+        name,
+        tag,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if name is not None:
+            _path_params['name'] = name
+        if tag is not None:
+            _path_params['tag'] = tag
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v2/premier/players/{affinity}/{name}/{tag}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def premier_by_puuid(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PremierTeamV2Response:
+        """Get live Premier team by player PUUID (v2)
+
+        Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param puuid: Player UUID (required)
+        :type puuid: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_puuid_serialize(
+            affinity=affinity,
+            puuid=puuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def premier_by_puuid_with_http_info(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PremierTeamV2Response]:
+        """Get live Premier team by player PUUID (v2)
+
+        Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param puuid: Player UUID (required)
+        :type puuid: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_puuid_serialize(
+            affinity=affinity,
+            puuid=puuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def premier_by_puuid_without_preload_content(
+        self,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get live Premier team by player PUUID (v2)
+
+        Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param puuid: Player UUID (required)
+        :type puuid: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._premier_by_puuid_serialize(
+            affinity=affinity,
+            puuid=puuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PremierTeamV2Response",
+            '400': "SendError",
+            '404': "SendError",
+            '500': "SendError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _premier_by_puuid_serialize(
+        self,
+        affinity,
+        puuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if affinity is not None:
+            _path_params['affinity'] = affinity.value
+        if puuid is not None:
+            _path_params['puuid'] = puuid
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'api_key_query', 
+            'api_key_header'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/valorant/v2/premier/players/{affinity}/{puuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def premier_leaderboard(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        conference: Annotated[Optional[StrictStr], Field(description="Conference filter (optional)")] = None,
-        division: Annotated[Optional[StrictStr], Field(description="Division filter (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; validation is case-insensitive; use lowercase for persisted team matching")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
@@ -12085,13 +14667,10 @@ class ValorantApi:
     ) -> PremierSearchResponse:
         """Get Premier leaderboard (v1)
 
+        Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param conference: Conference filter (optional)
-        :type conference: str
-        :param division: Division filter (optional)
-        :type division: str
+        :param affinity: Region/affinity; validation is case-insensitive; use lowercase for persisted team matching (required)
+        :type affinity: ValorantAffinity
         :param season: Premier season id (optional)
         :type season: str
         :param _request_timeout: timeout setting for this request. If one
@@ -12118,8 +14697,6 @@ class ValorantApi:
 
         _param = self._premier_leaderboard_serialize(
             affinity=affinity,
-            conference=conference,
-            division=division,
             season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -12147,9 +14724,7 @@ class ValorantApi:
     @validate_call
     def premier_leaderboard_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        conference: Annotated[Optional[StrictStr], Field(description="Conference filter (optional)")] = None,
-        division: Annotated[Optional[StrictStr], Field(description="Division filter (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; validation is case-insensitive; use lowercase for persisted team matching")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
@@ -12166,13 +14741,10 @@ class ValorantApi:
     ) -> ApiResponse[PremierSearchResponse]:
         """Get Premier leaderboard (v1)
 
+        Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param conference: Conference filter (optional)
-        :type conference: str
-        :param division: Division filter (optional)
-        :type division: str
+        :param affinity: Region/affinity; validation is case-insensitive; use lowercase for persisted team matching (required)
+        :type affinity: ValorantAffinity
         :param season: Premier season id (optional)
         :type season: str
         :param _request_timeout: timeout setting for this request. If one
@@ -12199,8 +14771,6 @@ class ValorantApi:
 
         _param = self._premier_leaderboard_serialize(
             affinity=affinity,
-            conference=conference,
-            division=division,
             season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -12228,9 +14798,7 @@ class ValorantApi:
     @validate_call
     def premier_leaderboard_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        conference: Annotated[Optional[StrictStr], Field(description="Conference filter (optional)")] = None,
-        division: Annotated[Optional[StrictStr], Field(description="Division filter (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; validation is case-insensitive; use lowercase for persisted team matching")],
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
         _request_timeout: Union[
             None,
@@ -12247,13 +14815,10 @@ class ValorantApi:
     ) -> RESTResponseType:
         """Get Premier leaderboard (v1)
 
+        Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param conference: Conference filter (optional)
-        :type conference: str
-        :param division: Division filter (optional)
-        :type division: str
+        :param affinity: Region/affinity; validation is case-insensitive; use lowercase for persisted team matching (required)
+        :type affinity: ValorantAffinity
         :param season: Premier season id (optional)
         :type season: str
         :param _request_timeout: timeout setting for this request. If one
@@ -12280,8 +14845,6 @@ class ValorantApi:
 
         _param = self._premier_leaderboard_serialize(
             affinity=affinity,
-            conference=conference,
-            division=division,
             season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -12305,8 +14868,6 @@ class ValorantApi:
     def _premier_leaderboard_serialize(
         self,
         affinity,
-        conference,
-        division,
         season,
         _request_auth,
         _content_type,
@@ -12330,16 +14891,8 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         # process the query parameters
-        if conference is not None:
-            
-            _query_params.append(('conference', conference))
-            
-        if division is not None:
-            
-            _query_params.append(('division', division))
-            
         if season is not None:
             
             _query_params.append(('season', season))
@@ -12387,8 +14940,10 @@ class ValorantApi:
         self,
         name: Annotated[Optional[StrictStr], Field(description="Team name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Team tag to search for (optional)")] = None,
-        id: Annotated[Optional[StrictStr], Field(description="Team UUID to search for (optional)")] = None,
+        id: Annotated[Optional[UUID], Field(description="Team UUID to search for; cannot be combined with name or tag")] = None,
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
+        conference: Annotated[Optional[StrictStr], Field(description="Current upstream Premier conference key; case-insensitive; not a fixed enum")] = None,
+        division: Annotated[Optional[StrictInt], Field(description="Division filter; integer from 1 through 21")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12409,10 +14964,14 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag to search for (optional)
         :type tag: str
-        :param id: Team UUID to search for (optional)
-        :type id: str
+        :param id: Team UUID to search for; cannot be combined with name or tag
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
+        :param conference: Current upstream Premier conference key; case-insensitive; not a fixed enum
+        :type conference: str
+        :param division: Division filter; integer from 1 through 21
+        :type division: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12440,6 +14999,8 @@ class ValorantApi:
             tag=tag,
             id=id,
             season=season,
+            conference=conference,
+            division=division,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12468,8 +15029,10 @@ class ValorantApi:
         self,
         name: Annotated[Optional[StrictStr], Field(description="Team name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Team tag to search for (optional)")] = None,
-        id: Annotated[Optional[StrictStr], Field(description="Team UUID to search for (optional)")] = None,
+        id: Annotated[Optional[UUID], Field(description="Team UUID to search for; cannot be combined with name or tag")] = None,
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
+        conference: Annotated[Optional[StrictStr], Field(description="Current upstream Premier conference key; case-insensitive; not a fixed enum")] = None,
+        division: Annotated[Optional[StrictInt], Field(description="Division filter; integer from 1 through 21")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12490,10 +15053,14 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag to search for (optional)
         :type tag: str
-        :param id: Team UUID to search for (optional)
-        :type id: str
+        :param id: Team UUID to search for; cannot be combined with name or tag
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
+        :param conference: Current upstream Premier conference key; case-insensitive; not a fixed enum
+        :type conference: str
+        :param division: Division filter; integer from 1 through 21
+        :type division: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12521,6 +15088,8 @@ class ValorantApi:
             tag=tag,
             id=id,
             season=season,
+            conference=conference,
+            division=division,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12549,8 +15118,10 @@ class ValorantApi:
         self,
         name: Annotated[Optional[StrictStr], Field(description="Team name to search for (optional)")] = None,
         tag: Annotated[Optional[StrictStr], Field(description="Team tag to search for (optional)")] = None,
-        id: Annotated[Optional[StrictStr], Field(description="Team UUID to search for (optional)")] = None,
+        id: Annotated[Optional[UUID], Field(description="Team UUID to search for; cannot be combined with name or tag")] = None,
         season: Annotated[Optional[StrictStr], Field(description="Premier season id (optional)")] = None,
+        conference: Annotated[Optional[StrictStr], Field(description="Current upstream Premier conference key; case-insensitive; not a fixed enum")] = None,
+        division: Annotated[Optional[StrictInt], Field(description="Division filter; integer from 1 through 21")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12571,10 +15142,14 @@ class ValorantApi:
         :type name: str
         :param tag: Team tag to search for (optional)
         :type tag: str
-        :param id: Team UUID to search for (optional)
-        :type id: str
+        :param id: Team UUID to search for; cannot be combined with name or tag
+        :type id: UUID
         :param season: Premier season id (optional)
         :type season: str
+        :param conference: Current upstream Premier conference key; case-insensitive; not a fixed enum
+        :type conference: str
+        :param division: Division filter; integer from 1 through 21
+        :type division: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12602,6 +15177,8 @@ class ValorantApi:
             tag=tag,
             id=id,
             season=season,
+            conference=conference,
+            division=division,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12627,6 +15204,8 @@ class ValorantApi:
         tag,
         id,
         season,
+        conference,
+        division,
         _request_auth,
         _content_type,
         _headers,
@@ -12664,6 +15243,14 @@ class ValorantApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if conference is not None:
+            
+            _query_params.append(('conference', conference))
+            
+        if division is not None:
+            
+            _query_params.append(('division', division))
             
         # process the header parameters
         # process the form parameters
@@ -12706,7 +15293,7 @@ class ValorantApi:
     @validate_call
     def queue_status(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12723,8 +15310,8 @@ class ValorantApi:
         """Get queue status (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12775,7 +15362,7 @@ class ValorantApi:
     @validate_call
     def queue_status_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12792,8 +15379,8 @@ class ValorantApi:
         """Get queue status (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12844,7 +15431,7 @@ class ValorantApi:
     @validate_call
     def queue_status_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12861,8 +15448,8 @@ class ValorantApi:
         """Get queue status (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12931,7 +15518,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -12990,6 +15577,7 @@ class ValorantApi:
     ) -> RawV1Response:
         """Get raw Riot API data (v1)
 
+        Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 
         :param raw_v1_payload: (required)
         :type raw_v1_payload: RawV1Payload
@@ -13059,6 +15647,7 @@ class ValorantApi:
     ) -> ApiResponse[RawV1Response]:
         """Get raw Riot API data (v1)
 
+        Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 
         :param raw_v1_payload: (required)
         :type raw_v1_payload: RawV1Payload
@@ -13128,6 +15717,7 @@ class ValorantApi:
     ) -> RESTResponseType:
         """Get raw Riot API data (v1)
 
+        Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 
         :param raw_v1_payload: (required)
         :type raw_v1_payload: RawV1Payload
@@ -13255,7 +15845,7 @@ class ValorantApi:
     @validate_call
     def status(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13272,8 +15862,8 @@ class ValorantApi:
         """Get status (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13324,7 +15914,7 @@ class ValorantApi:
     @validate_call
     def status_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13341,8 +15931,8 @@ class ValorantApi:
         """Get status (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13393,7 +15983,7 @@ class ValorantApi:
     @validate_call
     def status_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13410,8 +16000,8 @@ class ValorantApi:
         """Get status (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13480,7 +16070,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -13523,7 +16113,7 @@ class ValorantApi:
     @validate_call
     def store_featured(
         self,
-        version: Annotated[StrictStr, Field(description="API version (v1, v2)")],
+        version: Annotated[ValorantStoreVersion, Field(description="Response version; v1 returns an object envelope and v2 returns an array envelope")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13536,12 +16126,12 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StoreFeaturedV1:
+    ) -> ValorantStoreFeaturedResponse:
         """Get featured store items
 
 
-        :param version: API version (v1, v2) (required)
-        :type version: str
+        :param version: Response version; v1 returns an object envelope and v2 returns an array envelope (required)
+        :type version: ValorantStoreVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13573,7 +16163,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StoreFeaturedV1",
+            '200': "ValorantStoreFeaturedResponse",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -13592,7 +16182,7 @@ class ValorantApi:
     @validate_call
     def store_featured_with_http_info(
         self,
-        version: Annotated[StrictStr, Field(description="API version (v1, v2)")],
+        version: Annotated[ValorantStoreVersion, Field(description="Response version; v1 returns an object envelope and v2 returns an array envelope")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13605,12 +16195,12 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StoreFeaturedV1]:
+    ) -> ApiResponse[ValorantStoreFeaturedResponse]:
         """Get featured store items
 
 
-        :param version: API version (v1, v2) (required)
-        :type version: str
+        :param version: Response version; v1 returns an object envelope and v2 returns an array envelope (required)
+        :type version: ValorantStoreVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13642,7 +16232,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StoreFeaturedV1",
+            '200': "ValorantStoreFeaturedResponse",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -13661,7 +16251,7 @@ class ValorantApi:
     @validate_call
     def store_featured_without_preload_content(
         self,
-        version: Annotated[StrictStr, Field(description="API version (v1, v2)")],
+        version: Annotated[ValorantStoreVersion, Field(description="Response version; v1 returns an object envelope and v2 returns an array envelope")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13678,8 +16268,8 @@ class ValorantApi:
         """Get featured store items
 
 
-        :param version: API version (v1, v2) (required)
-        :type version: str
+        :param version: Response version; v1 returns an object envelope and v2 returns an array envelope (required)
+        :type version: ValorantStoreVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13711,7 +16301,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StoreFeaturedV1",
+            '200': "ValorantStoreFeaturedResponse",
             '400': "SendError",
             '404': "SendError",
             '500': "SendError",
@@ -13748,7 +16338,7 @@ class ValorantApi:
 
         # process the path parameters
         if version is not None:
-            _path_params['version'] = version
+            _path_params['version'] = version.value
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -13791,7 +16381,7 @@ class ValorantApi:
     @validate_call
     def store_offers(
         self,
-        version: Annotated[StrictStr, Field(description="API version (v1, v2)")],
+        version: Annotated[ValorantStoreVersion, Field(description="Legacy API version")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13804,12 +16394,13 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StoreOffersV1Response:
+    ) -> None:
         """Get store offers
 
+        Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
 
-        :param version: API version (v1, v2) (required)
-        :type version: str
+        :param version: Legacy API version (required)
+        :type version: ValorantStoreVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13841,10 +16432,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StoreOffersV1Response",
-            '400': "SendError",
             '404': "SendError",
-            '500': "SendError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13860,7 +16448,7 @@ class ValorantApi:
     @validate_call
     def store_offers_with_http_info(
         self,
-        version: Annotated[StrictStr, Field(description="API version (v1, v2)")],
+        version: Annotated[ValorantStoreVersion, Field(description="Legacy API version")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13873,12 +16461,13 @@ class ValorantApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StoreOffersV1Response]:
+    ) -> ApiResponse[None]:
         """Get store offers
 
+        Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
 
-        :param version: API version (v1, v2) (required)
-        :type version: str
+        :param version: Legacy API version (required)
+        :type version: ValorantStoreVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13910,10 +16499,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StoreOffersV1Response",
-            '400': "SendError",
             '404': "SendError",
-            '500': "SendError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13929,7 +16515,7 @@ class ValorantApi:
     @validate_call
     def store_offers_without_preload_content(
         self,
-        version: Annotated[StrictStr, Field(description="API version (v1, v2)")],
+        version: Annotated[ValorantStoreVersion, Field(description="Legacy API version")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13945,9 +16531,10 @@ class ValorantApi:
     ) -> RESTResponseType:
         """Get store offers
 
+        Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
 
-        :param version: API version (v1, v2) (required)
-        :type version: str
+        :param version: Legacy API version (required)
+        :type version: ValorantStoreVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13979,10 +16566,7 @@ class ValorantApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StoreOffersV1Response",
-            '400': "SendError",
             '404': "SendError",
-            '500': "SendError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -14016,7 +16600,7 @@ class ValorantApi:
 
         # process the path parameters
         if version is not None:
-            _path_params['version'] = version
+            _path_params['version'] = version.value
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -14059,12 +16643,14 @@ class ValorantApi:
     @validate_call
     def stored_matches(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14081,18 +16667,22 @@ class ValorantApi:
         """Get stored matches by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14120,8 +16710,10 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14148,12 +16740,14 @@ class ValorantApi:
     @validate_call
     def stored_matches_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14170,18 +16764,22 @@ class ValorantApi:
         """Get stored matches by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14209,8 +16807,10 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14237,12 +16837,14 @@ class ValorantApi:
     @validate_call
     def stored_matches_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14259,18 +16861,22 @@ class ValorantApi:
         """Get stored matches by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param mode: Game mode filter (optional)
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14298,8 +16904,10 @@ class ValorantApi:
             name=name,
             tag=tag,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14325,8 +16933,10 @@ class ValorantApi:
         name,
         tag,
         mode,
+        queue,
         map,
         size,
+        page,
         _request_auth,
         _content_type,
         _headers,
@@ -14349,7 +16959,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -14359,6 +16969,10 @@ class ValorantApi:
             
             _query_params.append(('mode', mode))
             
+        if queue is not None:
+            
+            _query_params.append(('queue', queue))
+            
         if map is not None:
             
             _query_params.append(('map', map))
@@ -14366,6 +16980,10 @@ class ValorantApi:
         if size is not None:
             
             _query_params.append(('size', size))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
             
         # process the header parameters
         # process the form parameters
@@ -14408,11 +17026,13 @@ class ValorantApi:
     @validate_call
     def stored_matches_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14429,16 +17049,20 @@ class ValorantApi:
         """Get stored matches by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14465,8 +17089,10 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14493,11 +17119,13 @@ class ValorantApi:
     @validate_call
     def stored_matches_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14514,16 +17142,20 @@ class ValorantApi:
         """Get stored matches by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14550,8 +17182,10 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14578,11 +17212,13 @@ class ValorantApi:
     @validate_call
     def stored_matches_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        mode: Annotated[Optional[StrictStr], Field(description="Game mode filter (optional)")] = None,
-        map: Annotated[Optional[StrictStr], Field(description="Map filter (optional)")] = None,
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        puuid: Annotated[UUID, Field(description="Player UUID")],
+        mode: Annotated[Optional[StrictStr], Field(description="Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.")] = None,
+        queue: Annotated[Optional[StrictStr], Field(description="Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.")] = None,
+        map: Annotated[Optional[StrictStr], Field(description="Map display name, matched case-insensitively.")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14599,16 +17235,20 @@ class ValorantApi:
         """Get stored matches by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
-        :type puuid: str
-        :param mode: Game mode filter (optional)
+        :type puuid: UUID
+        :param mode: Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
         :type mode: str
-        :param map: Map filter (optional)
+        :param queue: Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+        :type queue: str
+        :param map: Map display name, matched case-insensitively.
         :type map: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14635,8 +17275,10 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             mode=mode,
+            queue=queue,
             map=map,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14661,8 +17303,10 @@ class ValorantApi:
         affinity,
         puuid,
         mode,
+        queue,
         map,
         size,
+        page,
         _request_auth,
         _content_type,
         _headers,
@@ -14685,13 +17329,17 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
         if mode is not None:
             
             _query_params.append(('mode', mode))
+            
+        if queue is not None:
+            
+            _query_params.append(('queue', queue))
             
         if map is not None:
             
@@ -14700,6 +17348,10 @@ class ValorantApi:
         if size is not None:
             
             _query_params.append(('size', size))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
             
         # process the header parameters
         # process the form parameters
@@ -14742,10 +17394,11 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14762,14 +17415,16 @@ class ValorantApi:
         """Get stored MMR history by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14797,6 +17452,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14823,10 +17479,11 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14843,14 +17500,16 @@ class ValorantApi:
         """Get stored MMR history by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14878,6 +17537,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14904,10 +17564,11 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14924,14 +17585,16 @@ class ValorantApi:
         """Get stored MMR history by name (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14959,6 +17622,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14984,6 +17648,7 @@ class ValorantApi:
         name,
         tag,
         size,
+        page,
         _request_auth,
         _content_type,
         _headers,
@@ -15006,7 +17671,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -15015,6 +17680,10 @@ class ValorantApi:
         if size is not None:
             
             _query_params.append(('size', size))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
             
         # process the header parameters
         # process the form parameters
@@ -15057,9 +17726,10 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15076,12 +17746,14 @@ class ValorantApi:
         """Get stored MMR history by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15108,6 +17780,7 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15134,9 +17807,10 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15153,12 +17827,14 @@ class ValorantApi:
         """Get stored MMR history by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15185,6 +17861,7 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15211,9 +17888,10 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15230,12 +17908,14 @@ class ValorantApi:
         """Get stored MMR history by PUUID (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param puuid: Player UUID (required)
         :type puuid: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15262,6 +17942,7 @@ class ValorantApi:
             affinity=affinity,
             puuid=puuid,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15286,6 +17967,7 @@ class ValorantApi:
         affinity,
         puuid,
         size,
+        page,
         _request_auth,
         _content_type,
         _headers,
@@ -15308,13 +17990,17 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
         if size is not None:
             
             _query_params.append(('size', size))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
             
         # process the header parameters
         # process the form parameters
@@ -15357,11 +18043,12 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_v2(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15378,16 +18065,18 @@ class ValorantApi:
         """Get stored MMR history by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15416,6 +18105,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15442,11 +18132,12 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_v2_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15463,16 +18154,18 @@ class ValorantApi:
         """Get stored MMR history by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15501,6 +18194,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15527,11 +18221,12 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_v2_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         name: Annotated[StrictStr, Field(description="Riot ID name")],
         tag: Annotated[StrictStr, Field(description="Riot ID tag")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15548,16 +18243,18 @@ class ValorantApi:
         """Get stored MMR history by name (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param name: Riot ID name (required)
         :type name: str
         :param tag: Riot ID tag (required)
         :type tag: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15586,6 +18283,7 @@ class ValorantApi:
             name=name,
             tag=tag,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15612,6 +18310,7 @@ class ValorantApi:
         name,
         tag,
         size,
+        page,
         _request_auth,
         _content_type,
         _headers,
@@ -15634,9 +18333,9 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if name is not None:
             _path_params['name'] = name
         if tag is not None:
@@ -15645,6 +18344,10 @@ class ValorantApi:
         if size is not None:
             
             _query_params.append(('size', size))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
             
         # process the header parameters
         # process the form parameters
@@ -15687,10 +18390,11 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_v2_by_id(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15707,14 +18411,16 @@ class ValorantApi:
         """Get stored MMR history by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15742,6 +18448,7 @@ class ValorantApi:
             platform=platform,
             puuid=puuid,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15768,10 +18475,11 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_v2_by_id_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15788,14 +18496,16 @@ class ValorantApi:
         """Get stored MMR history by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15823,6 +18533,7 @@ class ValorantApi:
             platform=platform,
             puuid=puuid,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15849,10 +18560,11 @@ class ValorantApi:
     @validate_call
     def stored_mmr_history_v2_by_id_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
-        platform: Annotated[StrictStr, Field(description="Platform (pc, console)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
+        platform: Annotated[ValorantPlatform, Field(description="Platform; case-insensitive")],
         puuid: Annotated[StrictStr, Field(description="Player UUID")],
-        size: Annotated[Optional[StrictInt], Field(description="Number of results (optional)")] = None,
+        size: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="Positive integer result count. Omit for unlimited results.")] = None,
+        page: Annotated[Optional[Annotated[int, Field(le=2147483647, strict=True, ge=1)]], Field(description="One-based page. Supplying page requires size.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15869,14 +18581,16 @@ class ValorantApi:
         """Get stored MMR history by PUUID (v2)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
-        :param platform: Platform (pc, console) (required)
-        :type platform: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
+        :param platform: Platform; case-insensitive (required)
+        :type platform: ValorantPlatform
         :param puuid: Player UUID (required)
         :type puuid: str
-        :param size: Number of results (optional)
+        :param size: Positive integer result count. Omit for unlimited results.
         :type size: int
+        :param page: One-based page. Supplying page requires size.
+        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15904,6 +18618,7 @@ class ValorantApi:
             platform=platform,
             puuid=puuid,
             size=size,
+            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15929,6 +18644,7 @@ class ValorantApi:
         platform,
         puuid,
         size,
+        page,
         _request_auth,
         _content_type,
         _headers,
@@ -15951,15 +18667,19 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         if platform is not None:
-            _path_params['platform'] = platform
+            _path_params['platform'] = platform.value
         if puuid is not None:
             _path_params['puuid'] = puuid
         # process the query parameters
         if size is not None:
             
             _query_params.append(('size', size))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
             
         # process the header parameters
         # process the form parameters
@@ -16002,7 +18722,7 @@ class ValorantApi:
     @validate_call
     def version(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16019,8 +18739,8 @@ class ValorantApi:
         """Get game version (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16071,7 +18791,7 @@ class ValorantApi:
     @validate_call
     def version_with_http_info(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16088,8 +18808,8 @@ class ValorantApi:
         """Get game version (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16140,7 +18860,7 @@ class ValorantApi:
     @validate_call
     def version_without_preload_content(
         self,
-        affinity: Annotated[StrictStr, Field(description="Region/affinity (e.g., na, eu, ap, kr)")],
+        affinity: Annotated[ValorantAffinity, Field(description="Region/affinity; case-insensitive")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16157,8 +18877,8 @@ class ValorantApi:
         """Get game version (v1)
 
 
-        :param affinity: Region/affinity (e.g., na, eu, ap, kr) (required)
-        :type affinity: str
+        :param affinity: Region/affinity; case-insensitive (required)
+        :type affinity: ValorantAffinity
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16227,7 +18947,7 @@ class ValorantApi:
 
         # process the path parameters
         if affinity is not None:
-            _path_params['affinity'] = affinity
+            _path_params['affinity'] = affinity.value
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -16270,8 +18990,8 @@ class ValorantApi:
     @validate_call
     def website(
         self,
-        country_code: Annotated[StrictStr, Field(description="Country code (e.g., en-us, de-de)")],
-        category: Annotated[Optional[StrictStr], Field(description="Category filter (optional)")] = None,
+        country_code: Annotated[ValorantWebsiteLocale, Field(description="Website locale; case-insensitive")],
+        category: Annotated[Optional[ValorantWebsiteCategory], Field(description="Category filter; case-sensitive")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16288,10 +19008,10 @@ class ValorantApi:
         """Get website content (v1)
 
 
-        :param country_code: Country code (e.g., en-us, de-de) (required)
-        :type country_code: str
-        :param category: Category filter (optional)
-        :type category: str
+        :param country_code: Website locale; case-insensitive (required)
+        :type country_code: ValorantWebsiteLocale
+        :param category: Category filter; case-sensitive
+        :type category: ValorantWebsiteCategory
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16343,8 +19063,8 @@ class ValorantApi:
     @validate_call
     def website_with_http_info(
         self,
-        country_code: Annotated[StrictStr, Field(description="Country code (e.g., en-us, de-de)")],
-        category: Annotated[Optional[StrictStr], Field(description="Category filter (optional)")] = None,
+        country_code: Annotated[ValorantWebsiteLocale, Field(description="Website locale; case-insensitive")],
+        category: Annotated[Optional[ValorantWebsiteCategory], Field(description="Category filter; case-sensitive")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16361,10 +19081,10 @@ class ValorantApi:
         """Get website content (v1)
 
 
-        :param country_code: Country code (e.g., en-us, de-de) (required)
-        :type country_code: str
-        :param category: Category filter (optional)
-        :type category: str
+        :param country_code: Website locale; case-insensitive (required)
+        :type country_code: ValorantWebsiteLocale
+        :param category: Category filter; case-sensitive
+        :type category: ValorantWebsiteCategory
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16416,8 +19136,8 @@ class ValorantApi:
     @validate_call
     def website_without_preload_content(
         self,
-        country_code: Annotated[StrictStr, Field(description="Country code (e.g., en-us, de-de)")],
-        category: Annotated[Optional[StrictStr], Field(description="Category filter (optional)")] = None,
+        country_code: Annotated[ValorantWebsiteLocale, Field(description="Website locale; case-insensitive")],
+        category: Annotated[Optional[ValorantWebsiteCategory], Field(description="Category filter; case-sensitive")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16434,10 +19154,10 @@ class ValorantApi:
         """Get website content (v1)
 
 
-        :param country_code: Country code (e.g., en-us, de-de) (required)
-        :type country_code: str
-        :param category: Category filter (optional)
-        :type category: str
+        :param country_code: Website locale; case-insensitive (required)
+        :type country_code: ValorantWebsiteLocale
+        :param category: Category filter; case-sensitive
+        :type category: ValorantWebsiteCategory
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16508,11 +19228,11 @@ class ValorantApi:
 
         # process the path parameters
         if country_code is not None:
-            _path_params['country_code'] = country_code
+            _path_params['country_code'] = country_code.value
         # process the query parameters
         if category is not None:
             
-            _query_params.append(('category', category))
+            _query_params.append(('category', category.value))
             
         # process the header parameters
         # process the form parameters
@@ -16556,7 +19276,7 @@ class ValorantApi:
     def website_by_id(
         self,
         db_id: Annotated[StrictStr, Field(description="Database ID of the website entry")],
-        country_code: Annotated[StrictStr, Field(description="Country code (e.g., en-us, de-de)")],
+        country_code: Annotated[StrictStr, Field(description="Ignored locale segment; any string is accepted")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16572,10 +19292,11 @@ class ValorantApi:
     ) -> WebsiteByIdV1Response:
         """Get website entry by ID (v1)
 
+        Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
 
         :param db_id: Database ID of the website entry (required)
         :type db_id: str
-        :param country_code: Country code (e.g., en-us, de-de) (required)
+        :param country_code: Ignored locale segment; any string is accepted (required)
         :type country_code: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -16629,7 +19350,7 @@ class ValorantApi:
     def website_by_id_with_http_info(
         self,
         db_id: Annotated[StrictStr, Field(description="Database ID of the website entry")],
-        country_code: Annotated[StrictStr, Field(description="Country code (e.g., en-us, de-de)")],
+        country_code: Annotated[StrictStr, Field(description="Ignored locale segment; any string is accepted")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16645,10 +19366,11 @@ class ValorantApi:
     ) -> ApiResponse[WebsiteByIdV1Response]:
         """Get website entry by ID (v1)
 
+        Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
 
         :param db_id: Database ID of the website entry (required)
         :type db_id: str
-        :param country_code: Country code (e.g., en-us, de-de) (required)
+        :param country_code: Ignored locale segment; any string is accepted (required)
         :type country_code: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -16702,7 +19424,7 @@ class ValorantApi:
     def website_by_id_without_preload_content(
         self,
         db_id: Annotated[StrictStr, Field(description="Database ID of the website entry")],
-        country_code: Annotated[StrictStr, Field(description="Country code (e.g., en-us, de-de)")],
+        country_code: Annotated[StrictStr, Field(description="Ignored locale segment; any string is accepted")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16718,10 +19440,11 @@ class ValorantApi:
     ) -> RESTResponseType:
         """Get website entry by ID (v1)
 
+        Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
 
         :param db_id: Database ID of the website entry (required)
         :type db_id: str
-        :param country_code: Country code (e.g., en-us, de-de) (required)
+        :param country_code: Ignored locale segment; any string is accepted (required)
         :type country_code: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

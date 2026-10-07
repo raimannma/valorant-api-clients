@@ -41,6 +41,12 @@ class MMRV3CurrentTest : ShouldSpec() {
             //modelInstance.elo shouldBe ("TODO")
         }
 
+        // to test the property `gamesNeededForLeaderboard`
+        should("test gamesNeededForLeaderboard") {
+            // uncomment below to test the property
+            //modelInstance.gamesNeededForLeaderboard shouldBe ("TODO")
+        }
+
         // to test the property `gamesNeededForRating`
         should("test gamesNeededForRating") {
             // uncomment below to test the property
@@ -71,10 +77,22 @@ class MMRV3CurrentTest : ShouldSpec() {
             //modelInstance.tier shouldBe ("TODO")
         }
 
+        // to test the property `isAtRankProtectedTier`
+        should("test isAtRankProtectedTier") {
+            // uncomment below to test the property
+            //modelInstance.isAtRankProtectedTier shouldBe ("TODO")
+        }
+
         // to test the property `leaderboardPlacement`
         should("test leaderboardPlacement") {
             // uncomment below to test the property
             //modelInstance.leaderboardPlacement shouldBe ("TODO")
+        }
+
+        // to test the property `rankProtectionStatus`
+        should("test rankProtectionStatus") {
+            // uncomment below to test the property
+            //modelInstance.rankProtectionStatus shouldBe ("TODO")
         }
 
     }

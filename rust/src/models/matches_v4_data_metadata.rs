@@ -15,6 +15,7 @@ use serde::{Deserialize, Serialize};
 pub struct MatchesV4DataMetadata {
     #[serde(rename = "cluster", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub cluster: Option<Option<String>>,
+    /// Match duration in milliseconds.
     #[serde(rename = "game_length_in_ms")]
     pub game_length_in_ms: u64,
     #[serde(rename = "game_version")]
@@ -24,7 +25,9 @@ pub struct MatchesV4DataMetadata {
     #[serde(rename = "map")]
     pub map: Box<models::MapIdNameCombo>,
     #[serde(rename = "match_id")]
-    pub match_id: String,
+    pub match_id: uuid::Uuid,
+    #[serde(rename = "mvp", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub mvp: Option<Option<Box<models::MatchesV4DataRoundPlayer>>>,
     #[serde(rename = "party_rr_penaltys")]
     pub party_rr_penaltys: Vec<models::MatchesV4DataMetadataPartyRrPenalty>,
     #[serde(rename = "platform")]
@@ -38,11 +41,11 @@ pub struct MatchesV4DataMetadata {
     #[serde(rename = "season")]
     pub season: Box<models::SeasonIdShortCombo>,
     #[serde(rename = "started_at")]
-    pub started_at: String,
+    pub started_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl MatchesV4DataMetadata {
-    pub fn new(game_length_in_ms: u64, game_version: String, is_completed: bool, map: models::MapIdNameCombo, match_id: String, party_rr_penaltys: Vec<models::MatchesV4DataMetadataPartyRrPenalty>, platform: String, queue: models::MatchesV4DataMetadataQueue, season: models::SeasonIdShortCombo, started_at: String) -> MatchesV4DataMetadata {
+    pub fn new(game_length_in_ms: u64, game_version: String, is_completed: bool, map: models::MapIdNameCombo, match_id: uuid::Uuid, party_rr_penaltys: Vec<models::MatchesV4DataMetadataPartyRrPenalty>, platform: String, queue: models::MatchesV4DataMetadataQueue, season: models::SeasonIdShortCombo, started_at: chrono::DateTime<chrono::FixedOffset>) -> MatchesV4DataMetadata {
         MatchesV4DataMetadata {
             cluster: None,
             game_length_in_ms,
@@ -50,6 +53,7 @@ impl MatchesV4DataMetadata {
             is_completed,
             map: Box::new(map),
             match_id,
+            mvp: None,
             party_rr_penaltys,
             platform,
             premier: None,

@@ -21,6 +21,7 @@ void main() {
       // TODO
     });
 
+    // Match duration in milliseconds.
     // int gameLengthInMs
     test('to test the property `gameLengthInMs`', () async {
       // TODO
@@ -43,6 +44,11 @@ void main() {
 
     // String matchId
     test('to test the property `matchId`', () async {
+      // TODO
+    });
+
+    // MatchesV4DataRoundPlayer mvp
+    test('to test the property `mvp`', () async {
       // TODO
     });
 
@@ -76,7 +82,7 @@ void main() {
       // TODO
     });
 
-    // String startedAt
+    // DateTime startedAt
     test('to test the property `startedAt`', () async {
       // TODO
     });

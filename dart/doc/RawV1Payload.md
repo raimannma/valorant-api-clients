@@ -8,10 +8,10 @@ import 'package:henrikdev_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**platform** | **String** |  | [optional] 
+**platform** | [**ValorantPlatform**](ValorantPlatform.md) |  | [optional] 
 **queries** | **String** |  | [optional] 
-**region** | **String** |  | 
-**type** | **String** |  | 
+**region** | [**ValorantAffinity**](ValorantAffinity.md) |  | 
+**type** | [**RawV1ResourceType**](RawV1ResourceType.md) |  | 
 **value** | [**RawV1PayloadValues**](RawV1PayloadValues.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

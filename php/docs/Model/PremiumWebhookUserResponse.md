@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **enabled** | **bool** |  |
 **events** | [**\OpenAPI\Client\Model\PremiumWebhookEvent[]**](PremiumWebhookEvent.md) |  |
 **id** | **string** |  |
-**last_checked_at** | **int** |  | [optional]
-**last_match** | **string** |  | [optional]
-**last_mmr** | **int** |  | [optional]
+**last_checked_at** | **int** |  |
+**last_match** | **string** |  |
+**last_mmr** | **int** |  |
 **puuid** | **string** |  |
 **region** | **string** |  |
 **updated_at** | **int** |  |

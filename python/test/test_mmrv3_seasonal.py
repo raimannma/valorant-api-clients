@@ -35,6 +35,9 @@ class TestMMRV3Seasonal(unittest.TestCase):
         model = MMRV3Seasonal()
         if include_optional:
             return MMRV3Seasonal(
+                act_rank = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    id = 56, 
+                    name = '', ),
                 act_wins = [
                     henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
@@ -45,32 +48,44 @@ class TestMMRV3Seasonal(unittest.TestCase):
                     id = 56, 
                     name = '', ),
                 games = 56,
+                games_needed_for_rating = 56,
                 leaderboard_placement = henrikdev_api_client.models.mmrv3_leaderboard_placement.MMRV3LeaderboardPlacement(
                     rank = 0, 
-                    updated_at = '', ),
-                ranking_schema = '',
-                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
-                    id = '', 
-                    short = '', ),
-                wins = 56
-            )
-        else:
-            return MMRV3Seasonal(
-                act_wins = [
-                    henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
-                        id = 56, 
-                        name = '', )
-                    ],
-                end_rr = 56,
-                end_tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
-                    id = 56, 
-                    name = '', ),
-                games = 56,
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                prestige = {
+                    'key' : henrikdev_api_client.models.mmrv3_seasonal_prestige.MMRV3SeasonalPrestige(
+                        delta = 56, 
+                        total = 0, )
+                    },
                 ranking_schema = '',
                 season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                     id = '', 
                     short = '', ),
                 wins = 56,
+                wins_with_placements = 56
+            )
+        else:
+            return MMRV3Seasonal(
+                act_rank = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    id = 56, 
+                    name = '', ),
+                act_wins = [
+                    henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        id = 56, 
+                        name = '', )
+                    ],
+                end_rr = 56,
+                end_tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                    id = 56, 
+                    name = '', ),
+                games = 56,
+                games_needed_for_rating = 56,
+                ranking_schema = '',
+                season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
+                    id = '', 
+                    short = '', ),
+                wins = 56,
+                wins_with_placements = 56,
         )
         """
 

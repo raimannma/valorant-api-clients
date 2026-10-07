@@ -35,20 +35,55 @@ class TestMMRV3Data(unittest.TestCase):
         model = MMRV3Data()
         if include_optional:
             return MMRV3Data(
-                account = henrikdev_api_client.models.accolades_v1_account.AccoladesV1Account(
+                account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
                     name = '', 
                     puuid = '', 
                     tag = '', ),
                 current = henrikdev_api_client.models.mmrv3_current.MMRV3Current(
                     elo = 56, 
+                    games_needed_for_leaderboard = 56, 
                     games_needed_for_rating = 56, 
+                    is_at_rank_protected_tier = True, 
                     last_change = 56, 
                     leaderboard_placement = null, 
                     rank_protection_shields = 56, 
+                    rank_protection_status = '', 
                     rr = 56, 
                     tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', ), ),
+                latest_update = henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
+                    afk_penalty = 56, 
+                    competitive_movement = '', 
+                    date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    elo = 56, 
+                    is_placement_match = True, 
+                    last_change = 56, 
+                    map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                        id = '', 
+                        name = '', ), 
+                    match_id = '', 
+                    match_length = 0, 
+                    new_map_incentive_rr_forgiven = 56, 
+                    queue_id = '', 
+                    refunded_rr = 56, 
+                    rr = 56, 
+                    rr_before_update = 56, 
+                    rr_penalty = 1.337, 
+                    rr_performance_bonus = 56, 
+                    season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
+                        id = '', 
+                        short = '', ), 
+                    tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        id = 56, 
+                        name = '', ), 
+                    tier_before_update = null, 
+                    was_derank_protected = True, 
+                    was_derank_protection_replenished = True, ),
+                lifetime_prestige = {
+                    'key' : henrikdev_api_client.models.mmrv3_lifetime_prestige.MMRV3LifetimePrestige(
+                        count = 0, )
+                    },
                 peak = henrikdev_api_client.models.mmrv3_peak.MMRV3Peak(
                     ranking_schema = '', 
                     rr = 56, 
@@ -58,8 +93,12 @@ class TestMMRV3Data(unittest.TestCase):
                     tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', ), ),
+                ranked_state = henrikdev_api_client.models.mmrv3_ranked_state.MMRV3RankedState(
+                    is_act_rank_badge_hidden = True, 
+                    is_leaderboard_anonymized = True, ),
                 seasonal = [
                     henrikdev_api_client.models.mmrv3_seasonal.MMRV3Seasonal(
+                        act_rank = null, 
                         act_wins = [
                             henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
@@ -70,32 +109,74 @@ class TestMMRV3Data(unittest.TestCase):
                             id = 56, 
                             name = '', ), 
                         games = 56, 
+                        games_needed_for_rating = 56, 
                         leaderboard_placement = null, 
+                        prestige = {
+                            'key' : henrikdev_api_client.models.mmrv3_seasonal_prestige.MMRV3SeasonalPrestige(
+                                delta = 56, 
+                                total = 0, )
+                            }, 
                         ranking_schema = '', 
                         season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
-                        wins = 56, )
+                        wins = 56, 
+                        wins_with_placements = 56, )
                     ]
             )
         else:
             return MMRV3Data(
-                account = henrikdev_api_client.models.accolades_v1_account.AccoladesV1Account(
+                account = henrikdev_api_client.models.mmrv3_account.MMRV3Account(
                     name = '', 
                     puuid = '', 
                     tag = '', ),
                 current = henrikdev_api_client.models.mmrv3_current.MMRV3Current(
                     elo = 56, 
+                    games_needed_for_leaderboard = 56, 
                     games_needed_for_rating = 56, 
+                    is_at_rank_protected_tier = True, 
                     last_change = 56, 
                     leaderboard_placement = null, 
                     rank_protection_shields = 56, 
+                    rank_protection_status = '', 
                     rr = 56, 
                     tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                         id = 56, 
                         name = '', ), ),
+                latest_update = henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
+                    afk_penalty = 56, 
+                    competitive_movement = '', 
+                    date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    elo = 56, 
+                    is_placement_match = True, 
+                    last_change = 56, 
+                    map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
+                        id = '', 
+                        name = '', ), 
+                    match_id = '', 
+                    match_length = 0, 
+                    new_map_incentive_rr_forgiven = 56, 
+                    queue_id = '', 
+                    refunded_rr = 56, 
+                    rr = 56, 
+                    rr_before_update = 56, 
+                    rr_penalty = 1.337, 
+                    rr_performance_bonus = 56, 
+                    season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
+                        id = '', 
+                        short = '', ), 
+                    tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
+                        id = 56, 
+                        name = '', ), 
+                    tier_before_update = null, 
+                    was_derank_protected = True, 
+                    was_derank_protection_replenished = True, ),
+                ranked_state = henrikdev_api_client.models.mmrv3_ranked_state.MMRV3RankedState(
+                    is_act_rank_badge_hidden = True, 
+                    is_leaderboard_anonymized = True, ),
                 seasonal = [
                     henrikdev_api_client.models.mmrv3_seasonal.MMRV3Seasonal(
+                        act_rank = null, 
                         act_wins = [
                             henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                                 id = 56, 
@@ -106,12 +187,19 @@ class TestMMRV3Data(unittest.TestCase):
                             id = 56, 
                             name = '', ), 
                         games = 56, 
+                        games_needed_for_rating = 56, 
                         leaderboard_placement = null, 
+                        prestige = {
+                            'key' : henrikdev_api_client.models.mmrv3_seasonal_prestige.MMRV3SeasonalPrestige(
+                                delta = 56, 
+                                total = 0, )
+                            }, 
                         ranking_schema = '', 
                         season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
-                        wins = 56, )
+                        wins = 56, 
+                        wins_with_placements = 56, )
                     ],
         )
         """

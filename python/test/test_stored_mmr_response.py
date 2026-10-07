@@ -37,7 +37,7 @@ class TestStoredMMRResponse(unittest.TestCase):
             return StoredMMRResponse(
                 data = [
                     henrikdev_api_client.models.stored_mmr.StoredMMR(
-                        date = '', 
+                        date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         elo = 56, 
                         last_mmr_change = 56, 
                         map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
@@ -63,7 +63,7 @@ class TestStoredMMRResponse(unittest.TestCase):
             return StoredMMRResponse(
                 data = [
                     henrikdev_api_client.models.stored_mmr.StoredMMR(
-                        date = '', 
+                        date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         elo = 56, 
                         last_mmr_change = 56, 
                         map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(

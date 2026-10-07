@@ -13,6 +13,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Mmrv3Seasonal {
+    /// Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.
+    #[serde(rename = "act_rank")]
+    pub act_rank: Box<models::TierIdNameCombo>,
     #[serde(rename = "act_wins")]
     pub act_wins: Vec<models::TierIdNameCombo>,
     #[serde(rename = "end_rr")]
@@ -21,27 +24,37 @@ pub struct Mmrv3Seasonal {
     pub end_tier: Box<models::TierIdNameCombo>,
     #[serde(rename = "games")]
     pub games: i32,
+    #[serde(rename = "games_needed_for_rating")]
+    pub games_needed_for_rating: i32,
     #[serde(rename = "leaderboard_placement", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub leaderboard_placement: Option<Option<Box<models::Mmrv3LeaderboardPlacement>>>,
+    #[serde(rename = "prestige", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub prestige: Option<Option<std::collections::HashMap<String, models::Mmrv3SeasonalPrestige>>>,
     #[serde(rename = "ranking_schema")]
     pub ranking_schema: String,
     #[serde(rename = "season")]
     pub season: Box<models::SeasonIdShortCombo>,
     #[serde(rename = "wins")]
     pub wins: i32,
+    #[serde(rename = "wins_with_placements")]
+    pub wins_with_placements: i32,
 }
 
 impl Mmrv3Seasonal {
-    pub fn new(act_wins: Vec<models::TierIdNameCombo>, end_rr: i32, end_tier: models::TierIdNameCombo, games: i32, ranking_schema: String, season: models::SeasonIdShortCombo, wins: i32) -> Mmrv3Seasonal {
+    pub fn new(act_rank: models::TierIdNameCombo, act_wins: Vec<models::TierIdNameCombo>, end_rr: i32, end_tier: models::TierIdNameCombo, games: i32, games_needed_for_rating: i32, ranking_schema: String, season: models::SeasonIdShortCombo, wins: i32, wins_with_placements: i32) -> Mmrv3Seasonal {
         Mmrv3Seasonal {
+            act_rank: Box::new(act_rank),
             act_wins,
             end_rr,
             end_tier: Box::new(end_tier),
             games,
+            games_needed_for_rating,
             leaderboard_placement: None,
+            prestige: None,
             ranking_schema,
             season: Box::new(season),
             wins,
+            wins_with_placements,
         }
     }
 }

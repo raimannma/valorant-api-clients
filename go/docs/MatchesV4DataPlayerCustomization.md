@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Bloomline** | Pointer to [**NullableMatchesV4DataPlayerBloomline**](MatchesV4DataPlayerBloomline.md) |  | [optional] 
 **Card** | **string** |  | 
 **PreferredLevelBorder** | Pointer to **NullableString** |  | [optional] 
 **Title** | **string** |  | 
@@ -27,6 +28,41 @@ NewMatchesV4DataPlayerCustomizationWithDefaults instantiates a new MatchesV4Data
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetBloomline
+
+`func (o *MatchesV4DataPlayerCustomization) GetBloomline() MatchesV4DataPlayerBloomline`
+
+GetBloomline returns the Bloomline field if non-nil, zero value otherwise.
+
+### GetBloomlineOk
+
+`func (o *MatchesV4DataPlayerCustomization) GetBloomlineOk() (*MatchesV4DataPlayerBloomline, bool)`
+
+GetBloomlineOk returns a tuple with the Bloomline field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBloomline
+
+`func (o *MatchesV4DataPlayerCustomization) SetBloomline(v MatchesV4DataPlayerBloomline)`
+
+SetBloomline sets Bloomline field to given value.
+
+### HasBloomline
+
+`func (o *MatchesV4DataPlayerCustomization) HasBloomline() bool`
+
+HasBloomline returns a boolean if a field has been set.
+
+### SetBloomlineNil
+
+`func (o *MatchesV4DataPlayerCustomization) SetBloomlineNil(b bool)`
+
+ SetBloomlineNil sets the value for Bloomline to be an explicit nil
+
+### UnsetBloomline
+`func (o *MatchesV4DataPlayerCustomization) UnsetBloomline()`
+
+UnsetBloomline ensures that no value is present for Bloomline, not even an explicit nil
 ### GetCard
 
 `func (o *MatchesV4DataPlayerCustomization) GetCard() string`

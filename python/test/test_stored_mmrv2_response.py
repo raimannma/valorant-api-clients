@@ -36,23 +36,34 @@ class TestStoredMMRV2Response(unittest.TestCase):
         if include_optional:
             return StoredMMRV2Response(
                 data = [
-                    henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
-                        date = '', 
+                    henrikdev_api_client.models.stored_mmrv2.StoredMMRV2(
+                        afk_penalty = 56, 
+                        competitive_movement = '', 
+                        date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         elo = 56, 
+                        is_placement_match = True, 
                         last_change = 56, 
                         map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                             id = '', 
                             name = '', ), 
                         match_id = '', 
+                        match_length = 0, 
+                        new_map_incentive_rr_forgiven = 56, 
+                        queue_id = '', 
                         refunded_rr = 56, 
                         rr = 56, 
+                        rr_before_update = 56, 
+                        rr_penalty = 1.337, 
+                        rr_performance_bonus = 56, 
                         season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
                         tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), 
-                        was_derank_protected = True, )
+                        tier_before_update = null, 
+                        was_derank_protected = True, 
+                        was_derank_protection_replenished = True, )
                     ],
                 results = henrikdev_api_client.models.pagination.Pagination(
                     after = 56, 
@@ -64,23 +75,34 @@ class TestStoredMMRV2Response(unittest.TestCase):
         else:
             return StoredMMRV2Response(
                 data = [
-                    henrikdev_api_client.models.mmr_history_v2_history.MMRHistoryV2History(
-                        date = '', 
+                    henrikdev_api_client.models.stored_mmrv2.StoredMMRV2(
+                        afk_penalty = 56, 
+                        competitive_movement = '', 
+                        date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         elo = 56, 
+                        is_placement_match = True, 
                         last_change = 56, 
                         map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
                             id = '', 
                             name = '', ), 
                         match_id = '', 
+                        match_length = 0, 
+                        new_map_incentive_rr_forgiven = 56, 
+                        queue_id = '', 
                         refunded_rr = 56, 
                         rr = 56, 
+                        rr_before_update = 56, 
+                        rr_penalty = 1.337, 
+                        rr_performance_bonus = 56, 
                         season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                             id = '', 
                             short = '', ), 
                         tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), 
-                        was_derank_protected = True, )
+                        tier_before_update = null, 
+                        was_derank_protected = True, 
+                        was_derank_protection_replenished = True, )
                     ],
                 results = henrikdev_api_client.models.pagination.Pagination(
                     after = 56, 

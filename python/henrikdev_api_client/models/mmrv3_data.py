@@ -19,9 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from henrikdev_api_client.models.mmr_history_v2_history import MMRHistoryV2History
 from henrikdev_api_client.models.mmrv3_account import MMRV3Account
 from henrikdev_api_client.models.mmrv3_current import MMRV3Current
+from henrikdev_api_client.models.mmrv3_lifetime_prestige import MMRV3LifetimePrestige
 from henrikdev_api_client.models.mmrv3_peak import MMRV3Peak
+from henrikdev_api_client.models.mmrv3_ranked_state import MMRV3RankedState
 from henrikdev_api_client.models.mmrv3_seasonal import MMRV3Seasonal
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,9 +36,12 @@ class MMRV3Data(BaseModel):
     """ # noqa: E501
     account: MMRV3Account
     current: MMRV3Current
+    latest_update: MMRHistoryV2History
+    lifetime_prestige: Optional[Dict[str, MMRV3LifetimePrestige]] = None
     peak: Optional[MMRV3Peak] = None
+    ranked_state: MMRV3RankedState
     seasonal: List[MMRV3Seasonal]
-    __properties: ClassVar[List[str]] = ["account", "current", "peak", "seasonal"]
+    __properties: ClassVar[List[str]] = ["account", "current", "latest_update", "lifetime_prestige", "peak", "ranked_state", "seasonal"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,15 +88,32 @@ class MMRV3Data(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of current
         if self.current:
             _dict['current'] = self.current.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of latest_update
+        if self.latest_update:
+            _dict['latest_update'] = self.latest_update.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each value in lifetime_prestige (dict)
+        _field_dict = {}
+        if self.lifetime_prestige:
+            for _key_lifetime_prestige in self.lifetime_prestige:
+                _field_dict[_key_lifetime_prestige] = self.lifetime_prestige[_key_lifetime_prestige].to_dict() if self.lifetime_prestige[_key_lifetime_prestige] is not None else None
+            _dict['lifetime_prestige'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of peak
         if self.peak:
             _dict['peak'] = self.peak.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ranked_state
+        if self.ranked_state:
+            _dict['ranked_state'] = self.ranked_state.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in seasonal (list)
         _items = []
         if self.seasonal:
             for _item_seasonal in self.seasonal:
                 _items.append(_item_seasonal.to_dict() if _item_seasonal is not None else None)
             _dict['seasonal'] = _items
+        # set to None if lifetime_prestige (nullable) is None
+        # and model_fields_set contains the field
+        if self.lifetime_prestige is None and "lifetime_prestige" in self.model_fields_set:
+            _dict['lifetime_prestige'] = None
+
         # set to None if peak (nullable) is None
         # and model_fields_set contains the field
         if self.peak is None and "peak" in self.model_fields_set:
@@ -110,7 +133,15 @@ class MMRV3Data(BaseModel):
         _obj = cls.model_validate({
             "account": MMRV3Account.from_dict(obj["account"]) if obj.get("account") is not None else None,
             "current": MMRV3Current.from_dict(obj["current"]) if obj.get("current") is not None else None,
+            "latest_update": MMRHistoryV2History.from_dict(obj["latest_update"]) if obj.get("latest_update") is not None else None,
+            "lifetime_prestige": dict(
+                (_k, MMRV3LifetimePrestige.from_dict(_v))
+                for _k, _v in obj["lifetime_prestige"].items()
+            )
+            if obj.get("lifetime_prestige") is not None
+            else None,
             "peak": MMRV3Peak.from_dict(obj["peak"]) if obj.get("peak") is not None else None,
+            "ranked_state": MMRV3RankedState.from_dict(obj["ranked_state"]) if obj.get("ranked_state") is not None else None,
             "seasonal": [MMRV3Seasonal.from_dict(_item) for _item in obj["seasonal"]] if obj.get("seasonal") is not None else None
         })
         return _obj

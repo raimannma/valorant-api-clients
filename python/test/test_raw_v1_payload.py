@@ -35,16 +35,16 @@ class TestRawV1Payload(unittest.TestCase):
         model = RawV1Payload()
         if include_optional:
             return RawV1Payload(
-                platform = '',
+                platform = 'pc',
                 queries = '',
-                region = '',
-                type = '',
+                region = 'na',
+                type = 'matchdetails',
                 value = None
             )
         else:
             return RawV1Payload(
-                region = '',
-                type = '',
+                region = 'na',
+                type = 'matchdetails',
                 value = None,
         )
         """

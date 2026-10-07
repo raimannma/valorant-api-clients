@@ -1,5 +1,6 @@
 # EsportsV2PlayerTimespan
 
+VLR player agent-statistics timespan. Values are case-sensitive; omission selects 90d.
 
 ## Enum
 

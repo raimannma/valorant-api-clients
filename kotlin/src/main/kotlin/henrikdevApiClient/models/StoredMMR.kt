@@ -47,7 +47,7 @@ import com.squareup.moshi.JsonClass
 data class StoredMMR (
 
     @Json(name = "date")
-    val date: kotlin.String,
+    val date: java.time.OffsetDateTime,
 
     @Json(name = "elo")
     val elo: kotlin.Int,
@@ -59,7 +59,7 @@ data class StoredMMR (
     val map: StoredMMRMap,
 
     @Json(name = "match_id")
-    val matchId: kotlin.String,
+    val matchId: java.util.UUID,
 
     @Json(name = "ranking_in_tier")
     val rankingInTier: kotlin.Int,

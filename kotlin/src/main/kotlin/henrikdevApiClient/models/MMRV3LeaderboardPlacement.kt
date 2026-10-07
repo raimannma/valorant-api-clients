@@ -41,7 +41,7 @@ data class MMRV3LeaderboardPlacement (
     val rank: kotlin.Int,
 
     @Json(name = "updated_at")
-    val updatedAt: kotlin.String
+    val updatedAt: java.time.OffsetDateTime
 
 ) {
 

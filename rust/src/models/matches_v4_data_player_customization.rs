@@ -13,6 +13,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MatchesV4DataPlayerCustomization {
+    #[serde(rename = "bloomline", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub bloomline: Option<Option<Box<models::MatchesV4DataPlayerBloomline>>>,
     #[serde(rename = "card")]
     pub card: String,
     #[serde(rename = "preferred_level_border", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
@@ -24,6 +26,7 @@ pub struct MatchesV4DataPlayerCustomization {
 impl MatchesV4DataPlayerCustomization {
     pub fn new(card: String, title: String) -> MatchesV4DataPlayerCustomization {
         MatchesV4DataPlayerCustomization {
+            bloomline: None,
             card,
             preferred_level_border: None,
             title,

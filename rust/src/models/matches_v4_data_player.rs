@@ -11,6 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// MatchesV4DataPlayer : Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MatchesV4DataPlayer {
     #[serde(rename = "ability_casts")]
@@ -23,12 +24,16 @@ pub struct MatchesV4DataPlayer {
     pub behavior: Box<models::MatchesV4DataPlayerBehavior>,
     #[serde(rename = "customization")]
     pub customization: Box<models::MatchesV4DataPlayerCustomization>,
+    #[serde(rename = "drafted_ability_casts", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub drafted_ability_casts: Option<Option<Vec<models::MatchesV4DataPlayerDraftedAbilityCast>>>,
     #[serde(rename = "economy")]
     pub economy: Box<models::MatchesV4DataPlayerEconomy>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "party_id")]
     pub party_id: String,
+    #[serde(rename = "performance", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub performance: Option<Option<Box<models::MatchesV4DataPlayerPerformance>>>,
     #[serde(rename = "platform")]
     pub platform: String,
     #[serde(rename = "puuid")]
@@ -41,11 +46,14 @@ pub struct MatchesV4DataPlayer {
     pub tag: String,
     #[serde(rename = "team_id")]
     pub team_id: String,
+    #[serde(rename = "team_number", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub team_number: Option<Option<u32>>,
     #[serde(rename = "tier")]
     pub tier: Box<models::TierIdNameCombo>,
 }
 
 impl MatchesV4DataPlayer {
+    /// Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
     pub fn new(ability_casts: models::MatchesV4DataPlayerAbilityCasts, account_level: u32, agent: models::AgentIdNameCombo, behavior: models::MatchesV4DataPlayerBehavior, customization: models::MatchesV4DataPlayerCustomization, economy: models::MatchesV4DataPlayerEconomy, name: String, party_id: String, platform: String, puuid: String, session_playtime_in_ms: u32, stats: models::MatchesV4DataPlayerStats, tag: String, team_id: String, tier: models::TierIdNameCombo) -> MatchesV4DataPlayer {
         MatchesV4DataPlayer {
             ability_casts: Box::new(ability_casts),
@@ -53,15 +61,18 @@ impl MatchesV4DataPlayer {
             agent: Box::new(agent),
             behavior: Box::new(behavior),
             customization: Box::new(customization),
+            drafted_ability_casts: None,
             economy: Box::new(economy),
             name,
             party_id,
+            performance: None,
             platform,
             puuid,
             session_playtime_in_ms,
             stats: Box::new(stats),
             tag,
             team_id,
+            team_number: None,
             tier: Box::new(tier),
         }
     }

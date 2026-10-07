@@ -112,7 +112,9 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                     defused_by = null, 
                                     player_locations_on_defuse = [
                                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
-                                            location = , 
+                                            location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                x = 56, 
+                                                y = 56, ), 
                                             player_display_name = '', 
                                             player_puuid = '', 
                                             player_team = '', 
@@ -125,7 +127,14 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                     plant_time_in_round = 0, 
                                     planted_by = null, 
                                     player_locations_on_plant = [
-                                        
+                                        henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                                            location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                x = 56, 
+                                                y = 56, ), 
+                                            player_display_name = '', 
+                                            player_puuid = '', 
+                                            player_team = '', 
+                                            view_radians = 1.337, )
                                         ], ), 
                                 player_stats = [
                                     henrikdev_api_client.models.matches_v2_data_round_player_stats.MatchesV2DataRoundPlayerStats(
@@ -170,7 +179,9 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                                         assistant_puuid = '', 
                                                         assistant_team = '', )
                                                     ], 
-                                                damage_weapon_assets = , 
+                                                damage_weapon_assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
+                                                    display_icon = '', 
+                                                    killfeed_icon = '', ), 
                                                 damage_weapon_id = '', 
                                                 damage_weapon_name = '', 
                                                 kill_time_in_match = 0, 
@@ -179,10 +190,19 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                                 killer_puuid = '', 
                                                 killer_team = '', 
                                                 player_locations_on_kill = [
-                                                    
+                                                    henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                                                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                            x = 56, 
+                                                            y = 56, ), 
+                                                        player_display_name = '', 
+                                                        player_puuid = '', 
+                                                        player_team = '', 
+                                                        view_radians = 1.337, )
                                                     ], 
                                                 secondary_fire_mode = True, 
-                                                victim_death_location = , 
+                                                victim_death_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                    x = 56, 
+                                                    y = 56, ), 
                                                 victim_display_name = '', 
                                                 victim_puuid = '', 
                                                 victim_team = '', )
@@ -282,7 +302,9 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                     defused_by = null, 
                                     player_locations_on_defuse = [
                                         henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
-                                            location = , 
+                                            location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                x = 56, 
+                                                y = 56, ), 
                                             player_display_name = '', 
                                             player_puuid = '', 
                                             player_team = '', 
@@ -295,7 +317,14 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                     plant_time_in_round = 0, 
                                     planted_by = null, 
                                     player_locations_on_plant = [
-                                        
+                                        henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                                            location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                x = 56, 
+                                                y = 56, ), 
+                                            player_display_name = '', 
+                                            player_puuid = '', 
+                                            player_team = '', 
+                                            view_radians = 1.337, )
                                         ], ), 
                                 player_stats = [
                                     henrikdev_api_client.models.matches_v2_data_round_player_stats.MatchesV2DataRoundPlayerStats(
@@ -340,7 +369,9 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                                         assistant_puuid = '', 
                                                         assistant_team = '', )
                                                     ], 
-                                                damage_weapon_assets = , 
+                                                damage_weapon_assets = henrikdev_api_client.models.matches_v2_data_round_player_stats_kill_events_assets.MatchesV2DataRoundPlayerStatsKillEventsAssets(
+                                                    display_icon = '', 
+                                                    killfeed_icon = '', ), 
                                                 damage_weapon_id = '', 
                                                 damage_weapon_name = '', 
                                                 kill_time_in_match = 0, 
@@ -349,10 +380,19 @@ class TestMatchesV3ListResponse(unittest.TestCase):
                                                 killer_puuid = '', 
                                                 killer_team = '', 
                                                 player_locations_on_kill = [
-                                                    
+                                                    henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                                                        location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                            x = 56, 
+                                                            y = 56, ), 
+                                                        player_display_name = '', 
+                                                        player_puuid = '', 
+                                                        player_team = '', 
+                                                        view_radians = 1.337, )
                                                     ], 
                                                 secondary_fire_mode = True, 
-                                                victim_death_location = , 
+                                                victim_death_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                    x = 56, 
+                                                    y = 56, ), 
                                                 victim_display_name = '', 
                                                 victim_puuid = '', 
                                                 victim_team = '', )

@@ -1,5 +1,6 @@
 # MatchesV4DataPlayer
 
+Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
 
 ## Properties
 
@@ -10,15 +11,18 @@ Name | Type | Description | Notes
 **agent** | [**AgentIdNameCombo**](AgentIdNameCombo.md) |  | 
 **behavior** | [**MatchesV4DataPlayerBehavior**](MatchesV4DataPlayerBehavior.md) |  | 
 **customization** | [**MatchesV4DataPlayerCustomization**](MatchesV4DataPlayerCustomization.md) |  | 
+**drafted_ability_casts** | [**List[MatchesV4DataPlayerDraftedAbilityCast]**](MatchesV4DataPlayerDraftedAbilityCast.md) |  | [optional] 
 **economy** | [**MatchesV4DataPlayerEconomy**](MatchesV4DataPlayerEconomy.md) |  | 
 **name** | **str** |  | 
 **party_id** | **str** |  | 
+**performance** | [**MatchesV4DataPlayerPerformance**](MatchesV4DataPlayerPerformance.md) |  | [optional] 
 **platform** | **str** |  | 
 **puuid** | **str** |  | 
 **session_playtime_in_ms** | **int** |  | 
 **stats** | [**MatchesV4DataPlayerStats**](MatchesV4DataPlayerStats.md) |  | 
 **tag** | **str** |  | 
 **team_id** | **str** |  | 
+**team_number** | **int** |  | [optional] 
 **tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
 
 ## Example

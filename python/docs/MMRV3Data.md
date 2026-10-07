@@ -7,7 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account** | [**MMRV3Account**](MMRV3Account.md) |  | 
 **current** | [**MMRV3Current**](MMRV3Current.md) |  | 
+**latest_update** | [**MMRHistoryV2History**](MMRHistoryV2History.md) |  | 
+**lifetime_prestige** | [**Dict[str, MMRV3LifetimePrestige]**](MMRV3LifetimePrestige.md) |  | [optional] 
 **peak** | [**MMRV3Peak**](MMRV3Peak.md) |  | [optional] 
+**ranked_state** | [**MMRV3RankedState**](MMRV3RankedState.md) |  | 
 **seasonal** | [**List[MMRV3Seasonal]**](MMRV3Seasonal.md) |  | 
 
 ## Example

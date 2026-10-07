@@ -31,7 +31,9 @@ import henrikdevApiClient.models.AgentIdNameCombo
 import henrikdevApiClient.models.MatchesV4DataPlayerAbilityCasts
 import henrikdevApiClient.models.MatchesV4DataPlayerBehavior
 import henrikdevApiClient.models.MatchesV4DataPlayerCustomization
+import henrikdevApiClient.models.MatchesV4DataPlayerDraftedAbilityCast
 import henrikdevApiClient.models.MatchesV4DataPlayerEconomy
+import henrikdevApiClient.models.MatchesV4DataPlayerPerformance
 import henrikdevApiClient.models.MatchesV4DataPlayerStats
 import henrikdevApiClient.models.TierIdNameCombo
 
@@ -128,6 +130,24 @@ class MatchesV4DataPlayerTest : ShouldSpec() {
         should("test tier") {
             // uncomment below to test the property
             //modelInstance.tier shouldBe ("TODO")
+        }
+
+        // to test the property `draftedAbilityCasts`
+        should("test draftedAbilityCasts") {
+            // uncomment below to test the property
+            //modelInstance.draftedAbilityCasts shouldBe ("TODO")
+        }
+
+        // to test the property `performance`
+        should("test performance") {
+            // uncomment below to test the property
+            //modelInstance.performance shouldBe ("TODO")
+        }
+
+        // to test the property `teamNumber`
+        should("test teamNumber") {
+            // uncomment below to test the property
+            //modelInstance.teamNumber shouldBe ("TODO")
         }
 
     }

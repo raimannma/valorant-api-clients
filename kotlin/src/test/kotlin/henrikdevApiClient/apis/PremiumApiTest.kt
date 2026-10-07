@@ -28,6 +28,8 @@ import io.kotlintest.specs.ShouldSpec
 
 import henrikdevApiClient.apis.PremiumApi
 import henrikdevApiClient.models.PremiumWebhookDeleteResponse
+import henrikdevApiClient.models.PremiumWebhookGetResponse
+import henrikdevApiClient.models.PremiumWebhookUpdateResponse
 import henrikdevApiClient.models.PremiumWebhookUserAddRequest
 import henrikdevApiClient.models.PremiumWebhookUserMutationResponse
 import henrikdevApiClient.models.PremiumWebhookUserUpdateRequest
@@ -49,7 +51,7 @@ class PremiumApiTest : ShouldSpec() {
         // to test deleteWebhookUser
         should("test deleteWebhookUser") {
             // uncomment below to test deleteWebhookUser
-            //val id : kotlin.String = id_example // kotlin.String | Tracked user id
+            //val id : kotlin.String = id_example // kotlin.String | Tracked user MongoDB ObjectId: 24 hexadecimal characters
             //val result : PremiumWebhookDeleteResponse = apiInstance.deleteWebhookUser(id)
             //result shouldBe ("TODO")
         }
@@ -57,15 +59,17 @@ class PremiumApiTest : ShouldSpec() {
         // to test getWebhookSettings
         should("test getWebhookSettings") {
             // uncomment below to test getWebhookSettings
-            //apiInstance.getWebhookSettings()
+            //val result : PremiumWebhookGetResponse = apiInstance.getWebhookSettings()
+            //result shouldBe ("TODO")
         }
 
         // to test updateWebhookUser
         should("test updateWebhookUser") {
             // uncomment below to test updateWebhookUser
-            //val id : kotlin.String = id_example // kotlin.String | Tracked user id
+            //val id : kotlin.String = id_example // kotlin.String | Tracked user MongoDB ObjectId: 24 hexadecimal characters
             //val premiumWebhookUserUpdateRequest : PremiumWebhookUserUpdateRequest =  // PremiumWebhookUserUpdateRequest | 
-            //apiInstance.updateWebhookUser(id, premiumWebhookUserUpdateRequest)
+            //val result : PremiumWebhookUpdateResponse = apiInstance.updateWebhookUser(id, premiumWebhookUserUpdateRequest)
+            //result shouldBe ("TODO")
         }
 
     }

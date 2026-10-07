@@ -35,7 +35,7 @@ class TestStoredMMR(unittest.TestCase):
         model = StoredMMR()
         if include_optional:
             return StoredMMR(
-                var_date = '',
+                var_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 elo = 56,
                 last_mmr_change = 56,
                 map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(
@@ -52,7 +52,7 @@ class TestStoredMMR(unittest.TestCase):
             )
         else:
             return StoredMMR(
-                var_date = '',
+                var_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 elo = 56,
                 last_mmr_change = 56,
                 map = henrikdev_api_client.models.mmr_history_v1_data_map.MMRHistoryV1DataMap(

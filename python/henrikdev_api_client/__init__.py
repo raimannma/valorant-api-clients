@@ -47,6 +47,20 @@ __all__ = [
     "AccountV2Data",
     "AccountV2Response",
     "AgentIdNameCombo",
+    "AgentMasteryV1Account",
+    "AgentMasteryV1Agent",
+    "AgentMasteryV1Customization",
+    "AgentMasteryV1Data",
+    "AgentMasteryV1DetailData",
+    "AgentMasteryV1DetailResponse",
+    "AgentMasteryV1Flourish",
+    "AgentMasteryV1Module",
+    "AgentMasteryV1Reference",
+    "AgentMasteryV1Response",
+    "AgentMasteryV1Track",
+    "BsonDateTimeResponse",
+    "BsonMillisecondsResponse",
+    "BsonObjectIdResponse",
     "Bundle",
     "BundleItem",
     "ContentItem",
@@ -127,6 +141,7 @@ __all__ = [
     "FeaturedBundle",
     "Item",
     "LeaderboardPVPPlayer",
+    "LeaderboardV1Response",
     "LeaderboardV2Response",
     "LeaderboardV3Data",
     "LeaderboardV3DataPlayer",
@@ -150,9 +165,12 @@ __all__ = [
     "MMRV3Current",
     "MMRV3Data",
     "MMRV3LeaderboardPlacement",
+    "MMRV3LifetimePrestige",
     "MMRV3Peak",
+    "MMRV3RankedState",
     "MMRV3Response",
     "MMRV3Seasonal",
+    "MMRV3SeasonalPrestige",
     "MapIdNameCombo",
     "MatchMode",
     "MatchesV2Data",
@@ -210,10 +228,18 @@ __all__ = [
     "MatchesV4DataPlayerAbilityCasts",
     "MatchesV4DataPlayerBehavior",
     "MatchesV4DataPlayerBehaviorFriendlyFire",
+    "MatchesV4DataPlayerBloomline",
     "MatchesV4DataPlayerCustomization",
+    "MatchesV4DataPlayerDraftedAbility",
+    "MatchesV4DataPlayerDraftedAbilityCast",
     "MatchesV4DataPlayerEconomy",
     "MatchesV4DataPlayerEconomyLoadoutValue",
     "MatchesV4DataPlayerEconomySpent",
+    "MatchesV4DataPlayerPerformance",
+    "MatchesV4DataPlayerPerformanceBreakdown",
+    "MatchesV4DataPlayerPerformanceCombatRatings",
+    "MatchesV4DataPlayerPerformanceRatings",
+    "MatchesV4DataPlayerPerformanceUtilityRatings",
     "MatchesV4DataPlayerStats",
     "MatchesV4DataPlayerStatsDamage",
     "MatchesV4DataRound",
@@ -230,6 +256,7 @@ __all__ = [
     "MatchesV4DataRoundPlayerStatsEconomyWeapon",
     "MatchesV4DataRoundPlayerStatsStats",
     "MatchesV4DataTeam",
+    "MatchesV4DataTeamHealth",
     "MatchesV4DataTeamPremierRoster",
     "MatchesV4DataTeamPremierRosterCustomization",
     "MatchesV4DataTeamRounds",
@@ -248,9 +275,27 @@ __all__ = [
     "PremierTeamV1ResponseDataCustomization",
     "PremierTeamV1ResponseDataPlacement",
     "PremierTeamV1ResponseDataStats",
+    "PremierTeamV2Member",
+    "PremierTeamV2Placement",
+    "PremierTeamV2Response",
+    "PremierTeamV2ResponseData",
+    "PremierTeamV2Role",
+    "PremierTeamV2Rounds",
+    "PremierTeamV2Season",
+    "PremierTeamV2Stats",
+    "PremiumPlanResponse",
+    "PremiumRateLimitResponse",
     "PremiumWebhookDeleteData",
     "PremiumWebhookDeleteResponse",
+    "PremiumWebhookEnrichedUserResponse",
     "PremiumWebhookEvent",
+    "PremiumWebhookGetData",
+    "PremiumWebhookGetResponse",
+    "PremiumWebhookMatchVersion",
+    "PremiumWebhookMmrHistoryVersion",
+    "PremiumWebhookSettingsResponse",
+    "PremiumWebhookUpdateData",
+    "PremiumWebhookUpdateResponse",
     "PremiumWebhookUserAddRequest",
     "PremiumWebhookUserMutationData",
     "PremiumWebhookUserMutationResponse",
@@ -268,6 +313,7 @@ __all__ = [
     "RawV1ErrorData",
     "RawV1Payload",
     "RawV1PayloadValues",
+    "RawV1ResourceType",
     "RawV1Response",
     "RawV1ResponseData",
     "SeasonIdShortCombo",
@@ -278,11 +324,10 @@ __all__ = [
     "StatusV1",
     "StatusV1Data",
     "StoreFeaturedV1",
-    "StoreOffersV1",
-    "StoreOffersV1Offer",
-    "StoreOffersV1Response",
-    "StoreOffersV1Reward",
-    "StoreOffersV1UpgradeCurrency",
+    "StoreFeaturedV1Response",
+    "StoreFeaturedV2",
+    "StoreFeaturedV2Item",
+    "StoreFeaturedV2Response",
     "StoredMMR",
     "StoredMMRMap",
     "StoredMMRResponse",
@@ -301,6 +346,14 @@ __all__ = [
     "StoredMatchTeam",
     "StoredMatchesResponse",
     "TierIdNameCombo",
+    "ValorantAffinity",
+    "ValorantContentLocale",
+    "ValorantLeaderboardV2Response",
+    "ValorantPlatform",
+    "ValorantStoreFeaturedResponse",
+    "ValorantStoreVersion",
+    "ValorantWebsiteCategory",
+    "ValorantWebsiteLocale",
     "VersionV1Data",
     "VersionV1Response",
     "WebsiteByIdV1Data",
@@ -343,6 +396,20 @@ from henrikdev_api_client.models.account_v1_response import AccountV1Response as
 from henrikdev_api_client.models.account_v2_data import AccountV2Data as AccountV2Data
 from henrikdev_api_client.models.account_v2_response import AccountV2Response as AccountV2Response
 from henrikdev_api_client.models.agent_id_name_combo import AgentIdNameCombo as AgentIdNameCombo
+from henrikdev_api_client.models.agent_mastery_v1_account import AgentMasteryV1Account as AgentMasteryV1Account
+from henrikdev_api_client.models.agent_mastery_v1_agent import AgentMasteryV1Agent as AgentMasteryV1Agent
+from henrikdev_api_client.models.agent_mastery_v1_customization import AgentMasteryV1Customization as AgentMasteryV1Customization
+from henrikdev_api_client.models.agent_mastery_v1_data import AgentMasteryV1Data as AgentMasteryV1Data
+from henrikdev_api_client.models.agent_mastery_v1_detail_data import AgentMasteryV1DetailData as AgentMasteryV1DetailData
+from henrikdev_api_client.models.agent_mastery_v1_detail_response import AgentMasteryV1DetailResponse as AgentMasteryV1DetailResponse
+from henrikdev_api_client.models.agent_mastery_v1_flourish import AgentMasteryV1Flourish as AgentMasteryV1Flourish
+from henrikdev_api_client.models.agent_mastery_v1_module import AgentMasteryV1Module as AgentMasteryV1Module
+from henrikdev_api_client.models.agent_mastery_v1_reference import AgentMasteryV1Reference as AgentMasteryV1Reference
+from henrikdev_api_client.models.agent_mastery_v1_response import AgentMasteryV1Response as AgentMasteryV1Response
+from henrikdev_api_client.models.agent_mastery_v1_track import AgentMasteryV1Track as AgentMasteryV1Track
+from henrikdev_api_client.models.bson_date_time_response import BsonDateTimeResponse as BsonDateTimeResponse
+from henrikdev_api_client.models.bson_milliseconds_response import BsonMillisecondsResponse as BsonMillisecondsResponse
+from henrikdev_api_client.models.bson_object_id_response import BsonObjectIdResponse as BsonObjectIdResponse
 from henrikdev_api_client.models.bundle import Bundle as Bundle
 from henrikdev_api_client.models.bundle_item import BundleItem as BundleItem
 from henrikdev_api_client.models.content_item import ContentItem as ContentItem
@@ -423,6 +490,7 @@ from henrikdev_api_client.models.esports_v2_transaction_player import EsportsV2T
 from henrikdev_api_client.models.featured_bundle import FeaturedBundle as FeaturedBundle
 from henrikdev_api_client.models.item import Item as Item
 from henrikdev_api_client.models.leaderboard_pvp_player import LeaderboardPVPPlayer as LeaderboardPVPPlayer
+from henrikdev_api_client.models.leaderboard_v1_response import LeaderboardV1Response as LeaderboardV1Response
 from henrikdev_api_client.models.leaderboard_v2_response import LeaderboardV2Response as LeaderboardV2Response
 from henrikdev_api_client.models.leaderboard_v3_data import LeaderboardV3Data as LeaderboardV3Data
 from henrikdev_api_client.models.leaderboard_v3_data_player import LeaderboardV3DataPlayer as LeaderboardV3DataPlayer
@@ -446,9 +514,12 @@ from henrikdev_api_client.models.mmrv3_account import MMRV3Account as MMRV3Accou
 from henrikdev_api_client.models.mmrv3_current import MMRV3Current as MMRV3Current
 from henrikdev_api_client.models.mmrv3_data import MMRV3Data as MMRV3Data
 from henrikdev_api_client.models.mmrv3_leaderboard_placement import MMRV3LeaderboardPlacement as MMRV3LeaderboardPlacement
+from henrikdev_api_client.models.mmrv3_lifetime_prestige import MMRV3LifetimePrestige as MMRV3LifetimePrestige
 from henrikdev_api_client.models.mmrv3_peak import MMRV3Peak as MMRV3Peak
+from henrikdev_api_client.models.mmrv3_ranked_state import MMRV3RankedState as MMRV3RankedState
 from henrikdev_api_client.models.mmrv3_response import MMRV3Response as MMRV3Response
 from henrikdev_api_client.models.mmrv3_seasonal import MMRV3Seasonal as MMRV3Seasonal
+from henrikdev_api_client.models.mmrv3_seasonal_prestige import MMRV3SeasonalPrestige as MMRV3SeasonalPrestige
 from henrikdev_api_client.models.map_id_name_combo import MapIdNameCombo as MapIdNameCombo
 from henrikdev_api_client.models.match_mode import MatchMode as MatchMode
 from henrikdev_api_client.models.matches_v2_data import MatchesV2Data as MatchesV2Data
@@ -506,10 +577,18 @@ from henrikdev_api_client.models.matches_v4_data_player import MatchesV4DataPlay
 from henrikdev_api_client.models.matches_v4_data_player_ability_casts import MatchesV4DataPlayerAbilityCasts as MatchesV4DataPlayerAbilityCasts
 from henrikdev_api_client.models.matches_v4_data_player_behavior import MatchesV4DataPlayerBehavior as MatchesV4DataPlayerBehavior
 from henrikdev_api_client.models.matches_v4_data_player_behavior_friendly_fire import MatchesV4DataPlayerBehaviorFriendlyFire as MatchesV4DataPlayerBehaviorFriendlyFire
+from henrikdev_api_client.models.matches_v4_data_player_bloomline import MatchesV4DataPlayerBloomline as MatchesV4DataPlayerBloomline
 from henrikdev_api_client.models.matches_v4_data_player_customization import MatchesV4DataPlayerCustomization as MatchesV4DataPlayerCustomization
+from henrikdev_api_client.models.matches_v4_data_player_drafted_ability import MatchesV4DataPlayerDraftedAbility as MatchesV4DataPlayerDraftedAbility
+from henrikdev_api_client.models.matches_v4_data_player_drafted_ability_cast import MatchesV4DataPlayerDraftedAbilityCast as MatchesV4DataPlayerDraftedAbilityCast
 from henrikdev_api_client.models.matches_v4_data_player_economy import MatchesV4DataPlayerEconomy as MatchesV4DataPlayerEconomy
 from henrikdev_api_client.models.matches_v4_data_player_economy_loadout_value import MatchesV4DataPlayerEconomyLoadoutValue as MatchesV4DataPlayerEconomyLoadoutValue
 from henrikdev_api_client.models.matches_v4_data_player_economy_spent import MatchesV4DataPlayerEconomySpent as MatchesV4DataPlayerEconomySpent
+from henrikdev_api_client.models.matches_v4_data_player_performance import MatchesV4DataPlayerPerformance as MatchesV4DataPlayerPerformance
+from henrikdev_api_client.models.matches_v4_data_player_performance_breakdown import MatchesV4DataPlayerPerformanceBreakdown as MatchesV4DataPlayerPerformanceBreakdown
+from henrikdev_api_client.models.matches_v4_data_player_performance_combat_ratings import MatchesV4DataPlayerPerformanceCombatRatings as MatchesV4DataPlayerPerformanceCombatRatings
+from henrikdev_api_client.models.matches_v4_data_player_performance_ratings import MatchesV4DataPlayerPerformanceRatings as MatchesV4DataPlayerPerformanceRatings
+from henrikdev_api_client.models.matches_v4_data_player_performance_utility_ratings import MatchesV4DataPlayerPerformanceUtilityRatings as MatchesV4DataPlayerPerformanceUtilityRatings
 from henrikdev_api_client.models.matches_v4_data_player_stats import MatchesV4DataPlayerStats as MatchesV4DataPlayerStats
 from henrikdev_api_client.models.matches_v4_data_player_stats_damage import MatchesV4DataPlayerStatsDamage as MatchesV4DataPlayerStatsDamage
 from henrikdev_api_client.models.matches_v4_data_round import MatchesV4DataRound as MatchesV4DataRound
@@ -526,6 +605,7 @@ from henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armo
 from henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon import MatchesV4DataRoundPlayerStatsEconomyWeapon as MatchesV4DataRoundPlayerStatsEconomyWeapon
 from henrikdev_api_client.models.matches_v4_data_round_player_stats_stats import MatchesV4DataRoundPlayerStatsStats as MatchesV4DataRoundPlayerStatsStats
 from henrikdev_api_client.models.matches_v4_data_team import MatchesV4DataTeam as MatchesV4DataTeam
+from henrikdev_api_client.models.matches_v4_data_team_health import MatchesV4DataTeamHealth as MatchesV4DataTeamHealth
 from henrikdev_api_client.models.matches_v4_data_team_premier_roster import MatchesV4DataTeamPremierRoster as MatchesV4DataTeamPremierRoster
 from henrikdev_api_client.models.matches_v4_data_team_premier_roster_customization import MatchesV4DataTeamPremierRosterCustomization as MatchesV4DataTeamPremierRosterCustomization
 from henrikdev_api_client.models.matches_v4_data_team_rounds import MatchesV4DataTeamRounds as MatchesV4DataTeamRounds
@@ -544,9 +624,27 @@ from henrikdev_api_client.models.premier_team_v1_response_data import PremierTea
 from henrikdev_api_client.models.premier_team_v1_response_data_customization import PremierTeamV1ResponseDataCustomization as PremierTeamV1ResponseDataCustomization
 from henrikdev_api_client.models.premier_team_v1_response_data_placement import PremierTeamV1ResponseDataPlacement as PremierTeamV1ResponseDataPlacement
 from henrikdev_api_client.models.premier_team_v1_response_data_stats import PremierTeamV1ResponseDataStats as PremierTeamV1ResponseDataStats
+from henrikdev_api_client.models.premier_team_v2_member import PremierTeamV2Member as PremierTeamV2Member
+from henrikdev_api_client.models.premier_team_v2_placement import PremierTeamV2Placement as PremierTeamV2Placement
+from henrikdev_api_client.models.premier_team_v2_response import PremierTeamV2Response as PremierTeamV2Response
+from henrikdev_api_client.models.premier_team_v2_response_data import PremierTeamV2ResponseData as PremierTeamV2ResponseData
+from henrikdev_api_client.models.premier_team_v2_role import PremierTeamV2Role as PremierTeamV2Role
+from henrikdev_api_client.models.premier_team_v2_rounds import PremierTeamV2Rounds as PremierTeamV2Rounds
+from henrikdev_api_client.models.premier_team_v2_season import PremierTeamV2Season as PremierTeamV2Season
+from henrikdev_api_client.models.premier_team_v2_stats import PremierTeamV2Stats as PremierTeamV2Stats
+from henrikdev_api_client.models.premium_plan_response import PremiumPlanResponse as PremiumPlanResponse
+from henrikdev_api_client.models.premium_rate_limit_response import PremiumRateLimitResponse as PremiumRateLimitResponse
 from henrikdev_api_client.models.premium_webhook_delete_data import PremiumWebhookDeleteData as PremiumWebhookDeleteData
 from henrikdev_api_client.models.premium_webhook_delete_response import PremiumWebhookDeleteResponse as PremiumWebhookDeleteResponse
+from henrikdev_api_client.models.premium_webhook_enriched_user_response import PremiumWebhookEnrichedUserResponse as PremiumWebhookEnrichedUserResponse
 from henrikdev_api_client.models.premium_webhook_event import PremiumWebhookEvent as PremiumWebhookEvent
+from henrikdev_api_client.models.premium_webhook_get_data import PremiumWebhookGetData as PremiumWebhookGetData
+from henrikdev_api_client.models.premium_webhook_get_response import PremiumWebhookGetResponse as PremiumWebhookGetResponse
+from henrikdev_api_client.models.premium_webhook_match_version import PremiumWebhookMatchVersion as PremiumWebhookMatchVersion
+from henrikdev_api_client.models.premium_webhook_mmr_history_version import PremiumWebhookMmrHistoryVersion as PremiumWebhookMmrHistoryVersion
+from henrikdev_api_client.models.premium_webhook_settings_response import PremiumWebhookSettingsResponse as PremiumWebhookSettingsResponse
+from henrikdev_api_client.models.premium_webhook_update_data import PremiumWebhookUpdateData as PremiumWebhookUpdateData
+from henrikdev_api_client.models.premium_webhook_update_response import PremiumWebhookUpdateResponse as PremiumWebhookUpdateResponse
 from henrikdev_api_client.models.premium_webhook_user_add_request import PremiumWebhookUserAddRequest as PremiumWebhookUserAddRequest
 from henrikdev_api_client.models.premium_webhook_user_mutation_data import PremiumWebhookUserMutationData as PremiumWebhookUserMutationData
 from henrikdev_api_client.models.premium_webhook_user_mutation_response import PremiumWebhookUserMutationResponse as PremiumWebhookUserMutationResponse
@@ -564,6 +662,7 @@ from henrikdev_api_client.models.queue_status_v1_skill_disparity import QueueSta
 from henrikdev_api_client.models.raw_v1_error_data import RawV1ErrorData as RawV1ErrorData
 from henrikdev_api_client.models.raw_v1_payload import RawV1Payload as RawV1Payload
 from henrikdev_api_client.models.raw_v1_payload_values import RawV1PayloadValues as RawV1PayloadValues
+from henrikdev_api_client.models.raw_v1_resource_type import RawV1ResourceType as RawV1ResourceType
 from henrikdev_api_client.models.raw_v1_response import RawV1Response as RawV1Response
 from henrikdev_api_client.models.raw_v1_response_data import RawV1ResponseData as RawV1ResponseData
 from henrikdev_api_client.models.season_id_short_combo import SeasonIdShortCombo as SeasonIdShortCombo
@@ -574,11 +673,10 @@ from henrikdev_api_client.models.status_incident_update import StatusIncidentUpd
 from henrikdev_api_client.models.status_v1 import StatusV1 as StatusV1
 from henrikdev_api_client.models.status_v1_data import StatusV1Data as StatusV1Data
 from henrikdev_api_client.models.store_featured_v1 import StoreFeaturedV1 as StoreFeaturedV1
-from henrikdev_api_client.models.store_offers_v1 import StoreOffersV1 as StoreOffersV1
-from henrikdev_api_client.models.store_offers_v1_offer import StoreOffersV1Offer as StoreOffersV1Offer
-from henrikdev_api_client.models.store_offers_v1_response import StoreOffersV1Response as StoreOffersV1Response
-from henrikdev_api_client.models.store_offers_v1_reward import StoreOffersV1Reward as StoreOffersV1Reward
-from henrikdev_api_client.models.store_offers_v1_upgrade_currency import StoreOffersV1UpgradeCurrency as StoreOffersV1UpgradeCurrency
+from henrikdev_api_client.models.store_featured_v1_response import StoreFeaturedV1Response as StoreFeaturedV1Response
+from henrikdev_api_client.models.store_featured_v2 import StoreFeaturedV2 as StoreFeaturedV2
+from henrikdev_api_client.models.store_featured_v2_item import StoreFeaturedV2Item as StoreFeaturedV2Item
+from henrikdev_api_client.models.store_featured_v2_response import StoreFeaturedV2Response as StoreFeaturedV2Response
 from henrikdev_api_client.models.stored_mmr import StoredMMR as StoredMMR
 from henrikdev_api_client.models.stored_mmr_map import StoredMMRMap as StoredMMRMap
 from henrikdev_api_client.models.stored_mmr_response import StoredMMRResponse as StoredMMRResponse
@@ -597,6 +695,14 @@ from henrikdev_api_client.models.stored_match_stats_shots import StoredMatchStat
 from henrikdev_api_client.models.stored_match_team import StoredMatchTeam as StoredMatchTeam
 from henrikdev_api_client.models.stored_matches_response import StoredMatchesResponse as StoredMatchesResponse
 from henrikdev_api_client.models.tier_id_name_combo import TierIdNameCombo as TierIdNameCombo
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity as ValorantAffinity
+from henrikdev_api_client.models.valorant_content_locale import ValorantContentLocale as ValorantContentLocale
+from henrikdev_api_client.models.valorant_leaderboard_v2_response import ValorantLeaderboardV2Response as ValorantLeaderboardV2Response
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform as ValorantPlatform
+from henrikdev_api_client.models.valorant_store_featured_response import ValorantStoreFeaturedResponse as ValorantStoreFeaturedResponse
+from henrikdev_api_client.models.valorant_store_version import ValorantStoreVersion as ValorantStoreVersion
+from henrikdev_api_client.models.valorant_website_category import ValorantWebsiteCategory as ValorantWebsiteCategory
+from henrikdev_api_client.models.valorant_website_locale import ValorantWebsiteLocale as ValorantWebsiteLocale
 from henrikdev_api_client.models.version_v1_data import VersionV1Data as VersionV1Data
 from henrikdev_api_client.models.version_v1_response import VersionV1Response as VersionV1Response
 from henrikdev_api_client.models.website_by_id_v1_data import WebsiteByIdV1Data as WebsiteByIdV1Data

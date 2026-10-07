@@ -8,7 +8,7 @@ import 'package:henrikdev_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | **String** |  | 
+**date** | [**DateTime**](DateTime.md) |  | 
 **elo** | **int** |  | 
 **lastMmrChange** | **int** |  | 
 **map** | [**StoredMMRMap**](StoredMMRMap.md) |  | 

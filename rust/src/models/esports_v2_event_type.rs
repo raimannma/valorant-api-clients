@@ -11,7 +11,8 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+/// EsportsV2EventType : VLR event type. Values are case-sensitive; omission selects upcoming events.
+/// VLR event type. Values are case-sensitive; omission selects upcoming events.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum EsportsV2EventType {
     #[serde(rename = "completed")]

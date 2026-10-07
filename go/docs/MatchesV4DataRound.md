@@ -5,12 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ceremony** | **string** |  | 
+**CeremonyPlayer** | Pointer to [**NullableMatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] 
+**CeremonyTeam** | Pointer to **NullableString** |  | [optional] 
 **Defuse** | Pointer to [**NullableMatchesV4DataRoundDefuse**](MatchesV4DataRoundDefuse.md) |  | [optional] 
+**FirstBlood** | Pointer to [**NullableMatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] 
 **Id** | **int32** |  | 
 **Plant** | Pointer to [**NullableMatchesV4DataRoundPlant**](MatchesV4DataRoundPlant.md) |  | [optional] 
 **Result** | **string** |  | 
 **Stats** | [**[]MatchesV4DataRoundPlayerStats**](MatchesV4DataRoundPlayerStats.md) |  | 
 **WinningTeam** | **string** |  | 
+**WinningTeamRole** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -51,6 +55,76 @@ and a boolean to check if the value has been set.
 SetCeremony sets Ceremony field to given value.
 
 
+### GetCeremonyPlayer
+
+`func (o *MatchesV4DataRound) GetCeremonyPlayer() MatchesV4DataRoundPlayer`
+
+GetCeremonyPlayer returns the CeremonyPlayer field if non-nil, zero value otherwise.
+
+### GetCeremonyPlayerOk
+
+`func (o *MatchesV4DataRound) GetCeremonyPlayerOk() (*MatchesV4DataRoundPlayer, bool)`
+
+GetCeremonyPlayerOk returns a tuple with the CeremonyPlayer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCeremonyPlayer
+
+`func (o *MatchesV4DataRound) SetCeremonyPlayer(v MatchesV4DataRoundPlayer)`
+
+SetCeremonyPlayer sets CeremonyPlayer field to given value.
+
+### HasCeremonyPlayer
+
+`func (o *MatchesV4DataRound) HasCeremonyPlayer() bool`
+
+HasCeremonyPlayer returns a boolean if a field has been set.
+
+### SetCeremonyPlayerNil
+
+`func (o *MatchesV4DataRound) SetCeremonyPlayerNil(b bool)`
+
+ SetCeremonyPlayerNil sets the value for CeremonyPlayer to be an explicit nil
+
+### UnsetCeremonyPlayer
+`func (o *MatchesV4DataRound) UnsetCeremonyPlayer()`
+
+UnsetCeremonyPlayer ensures that no value is present for CeremonyPlayer, not even an explicit nil
+### GetCeremonyTeam
+
+`func (o *MatchesV4DataRound) GetCeremonyTeam() string`
+
+GetCeremonyTeam returns the CeremonyTeam field if non-nil, zero value otherwise.
+
+### GetCeremonyTeamOk
+
+`func (o *MatchesV4DataRound) GetCeremonyTeamOk() (*string, bool)`
+
+GetCeremonyTeamOk returns a tuple with the CeremonyTeam field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCeremonyTeam
+
+`func (o *MatchesV4DataRound) SetCeremonyTeam(v string)`
+
+SetCeremonyTeam sets CeremonyTeam field to given value.
+
+### HasCeremonyTeam
+
+`func (o *MatchesV4DataRound) HasCeremonyTeam() bool`
+
+HasCeremonyTeam returns a boolean if a field has been set.
+
+### SetCeremonyTeamNil
+
+`func (o *MatchesV4DataRound) SetCeremonyTeamNil(b bool)`
+
+ SetCeremonyTeamNil sets the value for CeremonyTeam to be an explicit nil
+
+### UnsetCeremonyTeam
+`func (o *MatchesV4DataRound) UnsetCeremonyTeam()`
+
+UnsetCeremonyTeam ensures that no value is present for CeremonyTeam, not even an explicit nil
 ### GetDefuse
 
 `func (o *MatchesV4DataRound) GetDefuse() MatchesV4DataRoundDefuse`
@@ -86,6 +160,41 @@ HasDefuse returns a boolean if a field has been set.
 `func (o *MatchesV4DataRound) UnsetDefuse()`
 
 UnsetDefuse ensures that no value is present for Defuse, not even an explicit nil
+### GetFirstBlood
+
+`func (o *MatchesV4DataRound) GetFirstBlood() MatchesV4DataRoundPlayer`
+
+GetFirstBlood returns the FirstBlood field if non-nil, zero value otherwise.
+
+### GetFirstBloodOk
+
+`func (o *MatchesV4DataRound) GetFirstBloodOk() (*MatchesV4DataRoundPlayer, bool)`
+
+GetFirstBloodOk returns a tuple with the FirstBlood field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirstBlood
+
+`func (o *MatchesV4DataRound) SetFirstBlood(v MatchesV4DataRoundPlayer)`
+
+SetFirstBlood sets FirstBlood field to given value.
+
+### HasFirstBlood
+
+`func (o *MatchesV4DataRound) HasFirstBlood() bool`
+
+HasFirstBlood returns a boolean if a field has been set.
+
+### SetFirstBloodNil
+
+`func (o *MatchesV4DataRound) SetFirstBloodNil(b bool)`
+
+ SetFirstBloodNil sets the value for FirstBlood to be an explicit nil
+
+### UnsetFirstBlood
+`func (o *MatchesV4DataRound) UnsetFirstBlood()`
+
+UnsetFirstBlood ensures that no value is present for FirstBlood, not even an explicit nil
 ### GetId
 
 `func (o *MatchesV4DataRound) GetId() int32`
@@ -201,6 +310,41 @@ and a boolean to check if the value has been set.
 SetWinningTeam sets WinningTeam field to given value.
 
 
+### GetWinningTeamRole
+
+`func (o *MatchesV4DataRound) GetWinningTeamRole() string`
+
+GetWinningTeamRole returns the WinningTeamRole field if non-nil, zero value otherwise.
+
+### GetWinningTeamRoleOk
+
+`func (o *MatchesV4DataRound) GetWinningTeamRoleOk() (*string, bool)`
+
+GetWinningTeamRoleOk returns a tuple with the WinningTeamRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWinningTeamRole
+
+`func (o *MatchesV4DataRound) SetWinningTeamRole(v string)`
+
+SetWinningTeamRole sets WinningTeamRole field to given value.
+
+### HasWinningTeamRole
+
+`func (o *MatchesV4DataRound) HasWinningTeamRole() bool`
+
+HasWinningTeamRole returns a boolean if a field has been set.
+
+### SetWinningTeamRoleNil
+
+`func (o *MatchesV4DataRound) SetWinningTeamRoleNil(b bool)`
+
+ SetWinningTeamRoleNil sets the value for WinningTeamRole to be an explicit nil
+
+### UnsetWinningTeamRole
+`func (o *MatchesV4DataRound) UnsetWinningTeamRole()`
+
+UnsetWinningTeamRole ensures that no value is present for WinningTeamRole, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

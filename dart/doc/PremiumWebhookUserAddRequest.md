@@ -8,7 +8,7 @@ import 'package:henrikdev_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enabled** | **bool** |  | [optional] 
+**enabled** | **bool** |  | [optional] [default to true]
 **events** | [**List<PremiumWebhookEvent>**](PremiumWebhookEvent.md) |  | [optional] [default to const []]
 **name** | **String** |  | [optional] 
 **puuid** | **String** |  | [optional] 

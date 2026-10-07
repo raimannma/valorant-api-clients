@@ -30,7 +30,7 @@ class EsportsV2EventsQuery(BaseModel):
     """
     EsportsV2EventsQuery
     """ # noqa: E501
-    page: Optional[Annotated[int, Field(strict=True, ge=0)]] = None
+    page: Optional[Annotated[int, Field(strict=True, ge=0)]] = 1
     region: Optional[EsportsV2Region] = None
     type: Optional[EsportsV2EventType] = None
     __properties: ClassVar[List[str]] = ["page", "region", "type"]
@@ -101,7 +101,7 @@ class EsportsV2EventsQuery(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "page": obj.get("page"),
+            "page": obj.get("page") if "page" in obj else 1,
             "region": obj.get("region"),
             "type": obj.get("type")
         })

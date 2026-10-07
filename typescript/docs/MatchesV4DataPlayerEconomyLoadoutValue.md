@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**average** | **number** |  | [default to undefined]
-**overall** | **number** |  | [default to undefined]
+**average** | **number** | Loadout value in credits per round played by this player; zero when rounds played is zero. | [default to undefined]
+**overall** | **number** | Sum of loadout values in credits across reported player rounds. | [default to undefined]
 
 ## Example
 

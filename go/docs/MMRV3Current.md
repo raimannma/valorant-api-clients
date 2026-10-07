@@ -5,10 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Elo** | **int32** |  | 
+**GamesNeededForLeaderboard** | **int32** |  | 
 **GamesNeededForRating** | **int32** |  | 
+**IsAtRankProtectedTier** | Pointer to **NullableBool** |  | [optional] 
 **LastChange** | **int32** |  | 
 **LeaderboardPlacement** | Pointer to [**NullableMMRV3LeaderboardPlacement**](MMRV3LeaderboardPlacement.md) |  | [optional] 
 **RankProtectionShields** | **int32** |  | 
+**RankProtectionStatus** | Pointer to **NullableString** |  | [optional] 
 **Rr** | **int32** |  | 
 **Tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
 
@@ -16,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewMMRV3Current
 
-`func NewMMRV3Current(elo int32, gamesNeededForRating int32, lastChange int32, rankProtectionShields int32, rr int32, tier TierIdNameCombo, ) *MMRV3Current`
+`func NewMMRV3Current(elo int32, gamesNeededForLeaderboard int32, gamesNeededForRating int32, lastChange int32, rankProtectionShields int32, rr int32, tier TierIdNameCombo, ) *MMRV3Current`
 
 NewMMRV3Current instantiates a new MMRV3Current object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +54,26 @@ and a boolean to check if the value has been set.
 SetElo sets Elo field to given value.
 
 
+### GetGamesNeededForLeaderboard
+
+`func (o *MMRV3Current) GetGamesNeededForLeaderboard() int32`
+
+GetGamesNeededForLeaderboard returns the GamesNeededForLeaderboard field if non-nil, zero value otherwise.
+
+### GetGamesNeededForLeaderboardOk
+
+`func (o *MMRV3Current) GetGamesNeededForLeaderboardOk() (*int32, bool)`
+
+GetGamesNeededForLeaderboardOk returns a tuple with the GamesNeededForLeaderboard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGamesNeededForLeaderboard
+
+`func (o *MMRV3Current) SetGamesNeededForLeaderboard(v int32)`
+
+SetGamesNeededForLeaderboard sets GamesNeededForLeaderboard field to given value.
+
+
 ### GetGamesNeededForRating
 
 `func (o *MMRV3Current) GetGamesNeededForRating() int32`
@@ -71,6 +94,41 @@ and a boolean to check if the value has been set.
 SetGamesNeededForRating sets GamesNeededForRating field to given value.
 
 
+### GetIsAtRankProtectedTier
+
+`func (o *MMRV3Current) GetIsAtRankProtectedTier() bool`
+
+GetIsAtRankProtectedTier returns the IsAtRankProtectedTier field if non-nil, zero value otherwise.
+
+### GetIsAtRankProtectedTierOk
+
+`func (o *MMRV3Current) GetIsAtRankProtectedTierOk() (*bool, bool)`
+
+GetIsAtRankProtectedTierOk returns a tuple with the IsAtRankProtectedTier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsAtRankProtectedTier
+
+`func (o *MMRV3Current) SetIsAtRankProtectedTier(v bool)`
+
+SetIsAtRankProtectedTier sets IsAtRankProtectedTier field to given value.
+
+### HasIsAtRankProtectedTier
+
+`func (o *MMRV3Current) HasIsAtRankProtectedTier() bool`
+
+HasIsAtRankProtectedTier returns a boolean if a field has been set.
+
+### SetIsAtRankProtectedTierNil
+
+`func (o *MMRV3Current) SetIsAtRankProtectedTierNil(b bool)`
+
+ SetIsAtRankProtectedTierNil sets the value for IsAtRankProtectedTier to be an explicit nil
+
+### UnsetIsAtRankProtectedTier
+`func (o *MMRV3Current) UnsetIsAtRankProtectedTier()`
+
+UnsetIsAtRankProtectedTier ensures that no value is present for IsAtRankProtectedTier, not even an explicit nil
 ### GetLastChange
 
 `func (o *MMRV3Current) GetLastChange() int32`
@@ -146,6 +204,41 @@ and a boolean to check if the value has been set.
 SetRankProtectionShields sets RankProtectionShields field to given value.
 
 
+### GetRankProtectionStatus
+
+`func (o *MMRV3Current) GetRankProtectionStatus() string`
+
+GetRankProtectionStatus returns the RankProtectionStatus field if non-nil, zero value otherwise.
+
+### GetRankProtectionStatusOk
+
+`func (o *MMRV3Current) GetRankProtectionStatusOk() (*string, bool)`
+
+GetRankProtectionStatusOk returns a tuple with the RankProtectionStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRankProtectionStatus
+
+`func (o *MMRV3Current) SetRankProtectionStatus(v string)`
+
+SetRankProtectionStatus sets RankProtectionStatus field to given value.
+
+### HasRankProtectionStatus
+
+`func (o *MMRV3Current) HasRankProtectionStatus() bool`
+
+HasRankProtectionStatus returns a boolean if a field has been set.
+
+### SetRankProtectionStatusNil
+
+`func (o *MMRV3Current) SetRankProtectionStatusNil(b bool)`
+
+ SetRankProtectionStatusNil sets the value for RankProtectionStatus to be an explicit nil
+
+### UnsetRankProtectionStatus
+`func (o *MMRV3Current) UnsetRankProtectionStatus()`
+
+UnsetRankProtectionStatus ensures that no value is present for RankProtectionStatus, not even an explicit nil
 ### GetRr
 
 `func (o *MMRV3Current) GetRr() int32`

@@ -28,6 +28,9 @@ import io.kotlintest.specs.ShouldSpec
 
 import henrikdevApiClient.models.RawV1Payload
 import henrikdevApiClient.models.RawV1PayloadValues
+import henrikdevApiClient.models.RawV1ResourceType
+import henrikdevApiClient.models.ValorantAffinity
+import henrikdevApiClient.models.ValorantPlatform
 
 class RawV1PayloadTest : ShouldSpec() {
     init {

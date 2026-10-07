@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A UUID string or a nonempty UUID array. Matchdetails fetches every array entry; all other resource types use only the first entry.
  *
  */
 

@@ -20,18 +20,21 @@ import json
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from henrikdev_api_client.models.raw_v1_payload_values import RawV1PayloadValues
+from henrikdev_api_client.models.raw_v1_resource_type import RawV1ResourceType
+from henrikdev_api_client.models.valorant_affinity import ValorantAffinity
+from henrikdev_api_client.models.valorant_platform import ValorantPlatform
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
 class RawV1Payload(BaseModel):
     """
-    RawV1Payload
+    Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
     """ # noqa: E501
-    platform: Optional[StrictStr] = None
+    platform: Optional[ValorantPlatform] = None
     queries: Optional[StrictStr] = None
-    region: StrictStr
-    type: StrictStr
+    region: ValorantAffinity
+    type: RawV1ResourceType
     value: RawV1PayloadValues
     __properties: ClassVar[List[str]] = ["platform", "queries", "region", "type", "value"]
 

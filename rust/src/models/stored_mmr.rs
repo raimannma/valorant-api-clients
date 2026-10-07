@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StoredMmr {
     #[serde(rename = "date")]
-    pub date: String,
+    pub date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "elo")]
     pub elo: i32,
     #[serde(rename = "last_mmr_change")]
@@ -22,7 +22,7 @@ pub struct StoredMmr {
     #[serde(rename = "map")]
     pub map: Box<models::StoredMmrMap>,
     #[serde(rename = "match_id")]
-    pub match_id: String,
+    pub match_id: uuid::Uuid,
     #[serde(rename = "ranking_in_tier")]
     pub ranking_in_tier: u32,
     #[serde(rename = "season")]
@@ -32,7 +32,7 @@ pub struct StoredMmr {
 }
 
 impl StoredMmr {
-    pub fn new(date: String, elo: i32, last_mmr_change: i32, map: models::StoredMmrMap, match_id: String, ranking_in_tier: u32, season: models::StoredMmrSeason, tier: models::StoredMmrTier) -> StoredMmr {
+    pub fn new(date: chrono::DateTime<chrono::FixedOffset>, elo: i32, last_mmr_change: i32, map: models::StoredMmrMap, match_id: uuid::Uuid, ranking_in_tier: u32, season: models::StoredMmrSeason, tier: models::StoredMmrTier) -> StoredMmr {
         StoredMmr {
             date,
             elo,

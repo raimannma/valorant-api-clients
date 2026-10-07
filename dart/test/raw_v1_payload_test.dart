@@ -16,7 +16,7 @@ void main() {
   // final instance = RawV1Payload();
 
   group('test RawV1Payload', () {
-    // String platform
+    // ValorantPlatform platform
     test('to test the property `platform`', () async {
       // TODO
     });
@@ -26,12 +26,12 @@ void main() {
       // TODO
     });
 
-    // String region
+    // ValorantAffinity region
     test('to test the property `region`', () async {
       // TODO
     });
 
-    // String type
+    // RawV1ResourceType type
     test('to test the property `type`', () async {
       // TODO
     });

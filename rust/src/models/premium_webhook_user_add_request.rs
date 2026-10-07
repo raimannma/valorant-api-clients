@@ -11,6 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// PremiumWebhookUserAddRequest : Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PremiumWebhookUserAddRequest {
     #[serde(rename = "enabled", skip_serializing_if = "Option::is_none")]
@@ -20,12 +21,13 @@ pub struct PremiumWebhookUserAddRequest {
     #[serde(rename = "name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub name: Option<Option<String>>,
     #[serde(rename = "puuid", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub puuid: Option<Option<String>>,
+    pub puuid: Option<Option<uuid::Uuid>>,
     #[serde(rename = "tag", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub tag: Option<Option<String>>,
 }
 
 impl PremiumWebhookUserAddRequest {
+    /// Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
     pub fn new() -> PremiumWebhookUserAddRequest {
         PremiumWebhookUserAddRequest {
             enabled: None,

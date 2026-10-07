@@ -159,8 +159,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetAccoladesById(context.Background(), affinity, platform, puuid).Execute()
@@ -175,8 +175,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var name string
 		var tag string
 
@@ -258,11 +258,79 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ValorantAPIService GetMasteryAgentById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
+		var puuid string
+		var agentId string
+
+		resp, httpRes, err := apiClient.ValorantAPI.GetMasteryAgentById(context.Background(), affinity, platform, puuid, agentId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService GetMasteryAgentByName", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
+		var name string
+		var tag string
+		var agentId string
+
+		resp, httpRes, err := apiClient.ValorantAPI.GetMasteryAgentByName(context.Background(), affinity, platform, name, tag, agentId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService GetMasteryById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
+		var puuid string
+
+		resp, httpRes, err := apiClient.ValorantAPI.GetMasteryById(context.Background(), affinity, platform, puuid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService GetMasteryByName", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
+		var name string
+		var tag string
+
+		resp, httpRes, err := apiClient.ValorantAPI.GetMasteryByName(context.Background(), affinity, platform, name, tag).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ValorantAPIService GetMatchesV3ById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetMatchesV3ById(context.Background(), affinity, puuid).Execute()
@@ -277,7 +345,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var name string
 		var tag string
 
@@ -293,8 +361,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetMatchesV4ById(context.Background(), affinity, platform, puuid).Execute()
@@ -309,8 +377,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var name string
 		var tag string
 
@@ -326,7 +394,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetMmrHistoryById(context.Background(), affinity, puuid).Execute()
@@ -341,7 +409,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var name string
 		var tag string
 
@@ -357,8 +425,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetMmrHistoryV2ById(context.Background(), affinity, platform, puuid).Execute()
@@ -373,8 +441,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var name string
 		var tag string
 
@@ -390,7 +458,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetMmrV1ById(context.Background(), affinity, puuid).Execute()
@@ -405,7 +473,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var name string
 		var tag string
 
@@ -421,7 +489,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetMmrV2ById(context.Background(), affinity, puuid).Execute()
@@ -436,7 +504,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var name string
 		var tag string
 
@@ -452,8 +520,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.GetMmrV3ById(context.Background(), affinity, platform, puuid).Execute()
@@ -468,8 +536,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var name string
 		var tag string
 
@@ -485,7 +553,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 
 		resp, httpRes, err := apiClient.ValorantAPI.LeaderboardV1(context.Background(), affinity).Execute()
 
@@ -499,7 +567,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 
 		resp, httpRes, err := apiClient.ValorantAPI.LeaderboardV2(context.Background(), affinity).Execute()
 
@@ -513,8 +581,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 
 		resp, httpRes, err := apiClient.ValorantAPI.LeaderboardV3(context.Background(), affinity, platform).Execute()
 
@@ -542,7 +610,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var matchId string
 
 		resp, httpRes, err := apiClient.ValorantAPI.MatchV4(context.Background(), affinity, matchId).Execute()
@@ -581,6 +649,21 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ValorantAPIService PremierByIdV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var id string
+
+		resp, httpRes, err := apiClient.ValorantAPI.PremierByIdV2(context.Background(), affinity, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ValorantAPIService PremierByName", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -611,11 +694,58 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ValorantAPIService PremierByNameV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var name string
+		var tag string
+
+		resp, httpRes, err := apiClient.ValorantAPI.PremierByNameV2(context.Background(), affinity, name, tag).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService PremierByPlayerName", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var name string
+		var tag string
+
+		resp, httpRes, err := apiClient.ValorantAPI.PremierByPlayerName(context.Background(), affinity, name, tag).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ValorantAPIService PremierByPuuid", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var affinity openapiclient.ValorantAffinity
+		var puuid string
+
+		resp, httpRes, err := apiClient.ValorantAPI.PremierByPuuid(context.Background(), affinity, puuid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ValorantAPIService PremierLeaderboard", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 
 		resp, httpRes, err := apiClient.ValorantAPI.PremierLeaderboard(context.Background(), affinity).Execute()
 
@@ -641,7 +771,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 
 		resp, httpRes, err := apiClient.ValorantAPI.QueueStatus(context.Background(), affinity).Execute()
 
@@ -667,7 +797,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 
 		resp, httpRes, err := apiClient.ValorantAPI.Status(context.Background(), affinity).Execute()
 
@@ -681,7 +811,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var version string
+		var version openapiclient.ValorantStoreVersion
 
 		resp, httpRes, err := apiClient.ValorantAPI.StoreFeatured(context.Background(), version).Execute()
 
@@ -695,12 +825,11 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var version string
+		var version openapiclient.ValorantStoreVersion
 
-		resp, httpRes, err := apiClient.ValorantAPI.StoreOffers(context.Background(), version).Execute()
+		httpRes, err := apiClient.ValorantAPI.StoreOffers(context.Background(), version).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -709,7 +838,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var name string
 		var tag string
 
@@ -725,7 +854,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.StoredMatchesById(context.Background(), affinity, puuid).Execute()
@@ -740,7 +869,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var name string
 		var tag string
 
@@ -756,7 +885,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.StoredMmrHistoryById(context.Background(), affinity, puuid).Execute()
@@ -771,8 +900,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var name string
 		var tag string
 
@@ -788,8 +917,8 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
-		var platform string
+		var affinity openapiclient.ValorantAffinity
+		var platform openapiclient.ValorantPlatform
 		var puuid string
 
 		resp, httpRes, err := apiClient.ValorantAPI.StoredMmrHistoryV2ById(context.Background(), affinity, platform, puuid).Execute()
@@ -804,7 +933,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var affinity string
+		var affinity openapiclient.ValorantAffinity
 
 		resp, httpRes, err := apiClient.ValorantAPI.Version(context.Background(), affinity).Execute()
 
@@ -818,7 +947,7 @@ func Test_henrikdevapiclient_ValorantAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var countryCode string
+		var countryCode openapiclient.ValorantWebsiteLocale
 
 		resp, httpRes, err := apiClient.ValorantAPI.Website(context.Background(), countryCode).Execute()
 

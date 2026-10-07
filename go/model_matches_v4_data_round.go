@@ -22,12 +22,16 @@ var _ MappedNullable = &MatchesV4DataRound{}
 // MatchesV4DataRound struct for MatchesV4DataRound
 type MatchesV4DataRound struct {
 	Ceremony string `json:"ceremony"`
+	CeremonyPlayer NullableMatchesV4DataRoundPlayer `json:"ceremony_player,omitempty"`
+	CeremonyTeam NullableString `json:"ceremony_team,omitempty"`
 	Defuse NullableMatchesV4DataRoundDefuse `json:"defuse,omitempty"`
+	FirstBlood NullableMatchesV4DataRoundPlayer `json:"first_blood,omitempty"`
 	Id int32 `json:"id"`
 	Plant NullableMatchesV4DataRoundPlant `json:"plant,omitempty"`
 	Result string `json:"result"`
 	Stats []MatchesV4DataRoundPlayerStats `json:"stats"`
 	WinningTeam string `json:"winning_team"`
+	WinningTeamRole NullableString `json:"winning_team_role,omitempty"`
 }
 
 type _MatchesV4DataRound MatchesV4DataRound
@@ -78,6 +82,90 @@ func (o *MatchesV4DataRound) SetCeremony(v string) {
 	o.Ceremony = v
 }
 
+// GetCeremonyPlayer returns the CeremonyPlayer field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataRound) GetCeremonyPlayer() MatchesV4DataRoundPlayer {
+	if o == nil || IsNil(o.CeremonyPlayer.Get()) {
+		var ret MatchesV4DataRoundPlayer
+		return ret
+	}
+	return *o.CeremonyPlayer.Get()
+}
+
+// GetCeremonyPlayerOk returns a tuple with the CeremonyPlayer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataRound) GetCeremonyPlayerOk() (*MatchesV4DataRoundPlayer, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CeremonyPlayer.Get(), o.CeremonyPlayer.IsSet()
+}
+
+// HasCeremonyPlayer returns a boolean if a field has been set.
+func (o *MatchesV4DataRound) HasCeremonyPlayer() bool {
+	if o != nil && o.CeremonyPlayer.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCeremonyPlayer gets a reference to the given NullableMatchesV4DataRoundPlayer and assigns it to the CeremonyPlayer field.
+func (o *MatchesV4DataRound) SetCeremonyPlayer(v MatchesV4DataRoundPlayer) {
+	o.CeremonyPlayer.Set(&v)
+}
+// SetCeremonyPlayerNil sets the value for CeremonyPlayer to be an explicit nil
+func (o *MatchesV4DataRound) SetCeremonyPlayerNil() {
+	o.CeremonyPlayer.Set(nil)
+}
+
+// UnsetCeremonyPlayer ensures that no value is present for CeremonyPlayer, not even an explicit nil
+func (o *MatchesV4DataRound) UnsetCeremonyPlayer() {
+	o.CeremonyPlayer.Unset()
+}
+
+// GetCeremonyTeam returns the CeremonyTeam field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataRound) GetCeremonyTeam() string {
+	if o == nil || IsNil(o.CeremonyTeam.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CeremonyTeam.Get()
+}
+
+// GetCeremonyTeamOk returns a tuple with the CeremonyTeam field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataRound) GetCeremonyTeamOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CeremonyTeam.Get(), o.CeremonyTeam.IsSet()
+}
+
+// HasCeremonyTeam returns a boolean if a field has been set.
+func (o *MatchesV4DataRound) HasCeremonyTeam() bool {
+	if o != nil && o.CeremonyTeam.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCeremonyTeam gets a reference to the given NullableString and assigns it to the CeremonyTeam field.
+func (o *MatchesV4DataRound) SetCeremonyTeam(v string) {
+	o.CeremonyTeam.Set(&v)
+}
+// SetCeremonyTeamNil sets the value for CeremonyTeam to be an explicit nil
+func (o *MatchesV4DataRound) SetCeremonyTeamNil() {
+	o.CeremonyTeam.Set(nil)
+}
+
+// UnsetCeremonyTeam ensures that no value is present for CeremonyTeam, not even an explicit nil
+func (o *MatchesV4DataRound) UnsetCeremonyTeam() {
+	o.CeremonyTeam.Unset()
+}
+
 // GetDefuse returns the Defuse field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MatchesV4DataRound) GetDefuse() MatchesV4DataRoundDefuse {
 	if o == nil || IsNil(o.Defuse.Get()) {
@@ -118,6 +206,48 @@ func (o *MatchesV4DataRound) SetDefuseNil() {
 // UnsetDefuse ensures that no value is present for Defuse, not even an explicit nil
 func (o *MatchesV4DataRound) UnsetDefuse() {
 	o.Defuse.Unset()
+}
+
+// GetFirstBlood returns the FirstBlood field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataRound) GetFirstBlood() MatchesV4DataRoundPlayer {
+	if o == nil || IsNil(o.FirstBlood.Get()) {
+		var ret MatchesV4DataRoundPlayer
+		return ret
+	}
+	return *o.FirstBlood.Get()
+}
+
+// GetFirstBloodOk returns a tuple with the FirstBlood field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataRound) GetFirstBloodOk() (*MatchesV4DataRoundPlayer, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FirstBlood.Get(), o.FirstBlood.IsSet()
+}
+
+// HasFirstBlood returns a boolean if a field has been set.
+func (o *MatchesV4DataRound) HasFirstBlood() bool {
+	if o != nil && o.FirstBlood.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstBlood gets a reference to the given NullableMatchesV4DataRoundPlayer and assigns it to the FirstBlood field.
+func (o *MatchesV4DataRound) SetFirstBlood(v MatchesV4DataRoundPlayer) {
+	o.FirstBlood.Set(&v)
+}
+// SetFirstBloodNil sets the value for FirstBlood to be an explicit nil
+func (o *MatchesV4DataRound) SetFirstBloodNil() {
+	o.FirstBlood.Set(nil)
+}
+
+// UnsetFirstBlood ensures that no value is present for FirstBlood, not even an explicit nil
+func (o *MatchesV4DataRound) UnsetFirstBlood() {
+	o.FirstBlood.Unset()
 }
 
 // GetId returns the Id field value
@@ -258,6 +388,48 @@ func (o *MatchesV4DataRound) SetWinningTeam(v string) {
 	o.WinningTeam = v
 }
 
+// GetWinningTeamRole returns the WinningTeamRole field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataRound) GetWinningTeamRole() string {
+	if o == nil || IsNil(o.WinningTeamRole.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.WinningTeamRole.Get()
+}
+
+// GetWinningTeamRoleOk returns a tuple with the WinningTeamRole field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataRound) GetWinningTeamRoleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WinningTeamRole.Get(), o.WinningTeamRole.IsSet()
+}
+
+// HasWinningTeamRole returns a boolean if a field has been set.
+func (o *MatchesV4DataRound) HasWinningTeamRole() bool {
+	if o != nil && o.WinningTeamRole.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWinningTeamRole gets a reference to the given NullableString and assigns it to the WinningTeamRole field.
+func (o *MatchesV4DataRound) SetWinningTeamRole(v string) {
+	o.WinningTeamRole.Set(&v)
+}
+// SetWinningTeamRoleNil sets the value for WinningTeamRole to be an explicit nil
+func (o *MatchesV4DataRound) SetWinningTeamRoleNil() {
+	o.WinningTeamRole.Set(nil)
+}
+
+// UnsetWinningTeamRole ensures that no value is present for WinningTeamRole, not even an explicit nil
+func (o *MatchesV4DataRound) UnsetWinningTeamRole() {
+	o.WinningTeamRole.Unset()
+}
+
 func (o MatchesV4DataRound) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -269,8 +441,17 @@ func (o MatchesV4DataRound) MarshalJSON() ([]byte, error) {
 func (o MatchesV4DataRound) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ceremony"] = o.Ceremony
+	if o.CeremonyPlayer.IsSet() {
+		toSerialize["ceremony_player"] = o.CeremonyPlayer.Get()
+	}
+	if o.CeremonyTeam.IsSet() {
+		toSerialize["ceremony_team"] = o.CeremonyTeam.Get()
+	}
 	if o.Defuse.IsSet() {
 		toSerialize["defuse"] = o.Defuse.Get()
+	}
+	if o.FirstBlood.IsSet() {
+		toSerialize["first_blood"] = o.FirstBlood.Get()
 	}
 	toSerialize["id"] = o.Id
 	if o.Plant.IsSet() {
@@ -279,6 +460,9 @@ func (o MatchesV4DataRound) ToMap() (map[string]interface{}, error) {
 	toSerialize["result"] = o.Result
 	toSerialize["stats"] = o.Stats
 	toSerialize["winning_team"] = o.WinningTeam
+	if o.WinningTeamRole.IsSet() {
+		toSerialize["winning_team_role"] = o.WinningTeamRole.Get()
+	}
 	return toSerialize, nil
 }
 

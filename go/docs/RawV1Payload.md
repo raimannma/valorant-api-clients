@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Platform** | Pointer to **NullableString** |  | [optional] 
+**Platform** | Pointer to [**NullableValorantPlatform**](ValorantPlatform.md) |  | [optional] 
 **Queries** | Pointer to **NullableString** |  | [optional] 
-**Region** | **string** |  | 
-**Type** | **string** |  | 
+**Region** | [**ValorantAffinity**](ValorantAffinity.md) |  | 
+**Type** | [**RawV1ResourceType**](RawV1ResourceType.md) |  | 
 **Value** | [**RawV1PayloadValues**](RawV1PayloadValues.md) |  | 
 
 ## Methods
 
 ### NewRawV1Payload
 
-`func NewRawV1Payload(region string, type_ string, value RawV1PayloadValues, ) *RawV1Payload`
+`func NewRawV1Payload(region ValorantAffinity, type_ RawV1ResourceType, value RawV1PayloadValues, ) *RawV1Payload`
 
 NewRawV1Payload instantiates a new RawV1Payload object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPlatform
 
-`func (o *RawV1Payload) GetPlatform() string`
+`func (o *RawV1Payload) GetPlatform() ValorantPlatform`
 
 GetPlatform returns the Platform field if non-nil, zero value otherwise.
 
 ### GetPlatformOk
 
-`func (o *RawV1Payload) GetPlatformOk() (*string, bool)`
+`func (o *RawV1Payload) GetPlatformOk() (*ValorantPlatform, bool)`
 
 GetPlatformOk returns a tuple with the Platform field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlatform
 
-`func (o *RawV1Payload) SetPlatform(v string)`
+`func (o *RawV1Payload) SetPlatform(v ValorantPlatform)`
 
 SetPlatform sets Platform field to given value.
 
@@ -101,40 +101,40 @@ HasQueries returns a boolean if a field has been set.
 UnsetQueries ensures that no value is present for Queries, not even an explicit nil
 ### GetRegion
 
-`func (o *RawV1Payload) GetRegion() string`
+`func (o *RawV1Payload) GetRegion() ValorantAffinity`
 
 GetRegion returns the Region field if non-nil, zero value otherwise.
 
 ### GetRegionOk
 
-`func (o *RawV1Payload) GetRegionOk() (*string, bool)`
+`func (o *RawV1Payload) GetRegionOk() (*ValorantAffinity, bool)`
 
 GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRegion
 
-`func (o *RawV1Payload) SetRegion(v string)`
+`func (o *RawV1Payload) SetRegion(v ValorantAffinity)`
 
 SetRegion sets Region field to given value.
 
 
 ### GetType
 
-`func (o *RawV1Payload) GetType() string`
+`func (o *RawV1Payload) GetType() RawV1ResourceType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RawV1Payload) GetTypeOk() (*string, bool)`
+`func (o *RawV1Payload) GetTypeOk() (*RawV1ResourceType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RawV1Payload) SetType(v string)`
+`func (o *RawV1Payload) SetType(v RawV1ResourceType)`
 
 SetType sets Type field to given value.
 

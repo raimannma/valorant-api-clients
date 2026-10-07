@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 **enabled** | **bool** |  | 
 **events** | [**List<PremiumWebhookEvent>**](PremiumWebhookEvent.md) |  | [default to const []]
 **id** | **String** |  | 
-**lastCheckedAt** | **int** |  | [optional] 
-**lastMatch** | **String** |  | [optional] 
-**lastMmr** | **int** |  | [optional] 
+**lastCheckedAt** | **int** |  | 
+**lastMatch** | **String** |  | 
+**lastMmr** | **int** |  | 
 **puuid** | **String** |  | 
 **region** | **String** |  | 
 **updatedAt** | **int** |  | 

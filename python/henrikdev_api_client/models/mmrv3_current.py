@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from henrikdev_api_client.models.mmrv3_leaderboard_placement import MMRV3LeaderboardPlacement
 from henrikdev_api_client.models.tier_id_name_combo import TierIdNameCombo
@@ -30,13 +30,16 @@ class MMRV3Current(BaseModel):
     MMRV3Current
     """ # noqa: E501
     elo: StrictInt
+    games_needed_for_leaderboard: StrictInt
     games_needed_for_rating: StrictInt
+    is_at_rank_protected_tier: Optional[StrictBool] = None
     last_change: StrictInt
     leaderboard_placement: Optional[MMRV3LeaderboardPlacement] = None
     rank_protection_shields: StrictInt
+    rank_protection_status: Optional[StrictStr] = None
     rr: StrictInt
     tier: TierIdNameCombo
-    __properties: ClassVar[List[str]] = ["elo", "games_needed_for_rating", "last_change", "leaderboard_placement", "rank_protection_shields", "rr", "tier"]
+    __properties: ClassVar[List[str]] = ["elo", "games_needed_for_leaderboard", "games_needed_for_rating", "is_at_rank_protected_tier", "last_change", "leaderboard_placement", "rank_protection_shields", "rank_protection_status", "rr", "tier"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,10 +86,20 @@ class MMRV3Current(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tier
         if self.tier:
             _dict['tier'] = self.tier.to_dict()
+        # set to None if is_at_rank_protected_tier (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_at_rank_protected_tier is None and "is_at_rank_protected_tier" in self.model_fields_set:
+            _dict['is_at_rank_protected_tier'] = None
+
         # set to None if leaderboard_placement (nullable) is None
         # and model_fields_set contains the field
         if self.leaderboard_placement is None and "leaderboard_placement" in self.model_fields_set:
             _dict['leaderboard_placement'] = None
+
+        # set to None if rank_protection_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.rank_protection_status is None and "rank_protection_status" in self.model_fields_set:
+            _dict['rank_protection_status'] = None
 
         return _dict
 
@@ -101,10 +114,13 @@ class MMRV3Current(BaseModel):
 
         _obj = cls.model_validate({
             "elo": obj.get("elo"),
+            "games_needed_for_leaderboard": obj.get("games_needed_for_leaderboard"),
             "games_needed_for_rating": obj.get("games_needed_for_rating"),
+            "is_at_rank_protected_tier": obj.get("is_at_rank_protected_tier"),
             "last_change": obj.get("last_change"),
             "leaderboard_placement": MMRV3LeaderboardPlacement.from_dict(obj["leaderboard_placement"]) if obj.get("leaderboard_placement") is not None else None,
             "rank_protection_shields": obj.get("rank_protection_shields"),
+            "rank_protection_status": obj.get("rank_protection_status"),
             "rr": obj.get("rr"),
             "tier": TierIdNameCombo.from_dict(obj["tier"]) if obj.get("tier") is not None else None
         })

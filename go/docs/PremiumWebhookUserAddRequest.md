@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** |  | [optional] 
+**Enabled** | Pointer to **bool** |  | [optional] [default to true]
 **Events** | Pointer to [**[]PremiumWebhookEvent**](PremiumWebhookEvent.md) |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Puuid** | Pointer to **NullableString** |  | [optional] 

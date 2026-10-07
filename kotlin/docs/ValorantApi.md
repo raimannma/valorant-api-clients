@@ -21,6 +21,10 @@ All URIs are relative to *https://api.henrikdev.xyz*
 | [**getAccountV1**](ValorantApi.md#getAccountV1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1) |
 | [**getAccountV2**](ValorantApi.md#getAccountV2) | **GET** /valorant/v2/account/{name}/{tag} | Get account (v2) |
 | [**getContentV1**](ValorantApi.md#getContentV1) | **GET** /valorant/v1/content | Get content (v1) |
+| [**getMasteryAgentById**](ValorantApi.md#getMasteryAgentById) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id} | Get agent mastery by PUUID (v1) |
+| [**getMasteryAgentByName**](ValorantApi.md#getMasteryAgentByName) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id} | Get agent mastery by name (v1) |
+| [**getMasteryById**](ValorantApi.md#getMasteryById) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid} | Get all agent mastery by PUUID (v1) |
+| [**getMasteryByName**](ValorantApi.md#getMasteryByName) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag} | Get all agent mastery by name (v1) |
 | [**getMatchesV3ById**](ValorantApi.md#getMatchesV3ById) | **GET** /valorant/v3/by-puuid/matches/{affinity}/{puuid} | Get matches by PUUID (v3) |
 | [**getMatchesV3ByName**](ValorantApi.md#getMatchesV3ByName) | **GET** /valorant/v3/matches/{affinity}/{name}/{tag} | Get matches by name (v3) |
 | [**getMatchesV4ById**](ValorantApi.md#getMatchesV4ById) | **GET** /valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid} | Get matches by PUUID (v4) |
@@ -42,8 +46,12 @@ All URIs are relative to *https://api.henrikdev.xyz*
 | [**matchV4**](ValorantApi.md#matchV4) | **GET** /valorant/v4/match/{affinity}/{match_id} | Get match details (v4) |
 | [**premierById**](ValorantApi.md#premierById) | **GET** /valorant/v1/premier/{id} | Get Premier team by ID (v1) |
 | [**premierByIdHistory**](ValorantApi.md#premierByIdHistory) | **GET** /valorant/v1/premier/{id}/history | Get Premier team history by ID (v1) |
+| [**premierByIdV2**](ValorantApi.md#premierByIdV2) | **GET** /valorant/v2/premier/teams/{affinity}/{id} | Get live Premier team by ID (v2) |
 | [**premierByName**](ValorantApi.md#premierByName) | **GET** /valorant/v1/premier/{name}/{tag} | Get Premier team by name (v1) |
 | [**premierByNameHistory**](ValorantApi.md#premierByNameHistory) | **GET** /valorant/v1/premier/{name}/{tag}/history | Get Premier team history by name (v1) |
+| [**premierByNameV2**](ValorantApi.md#premierByNameV2) | **GET** /valorant/v2/premier/teams/{affinity}/{name}/{tag} | Get live Premier team by team name (v2) |
+| [**premierByPlayerName**](ValorantApi.md#premierByPlayerName) | **GET** /valorant/v2/premier/players/{affinity}/{name}/{tag} | Get live Premier team by player Riot ID (v2) |
+| [**premierByPuuid**](ValorantApi.md#premierByPuuid) | **GET** /valorant/v2/premier/players/{affinity}/{puuid} | Get live Premier team by player PUUID (v2) |
 | [**premierLeaderboard**](ValorantApi.md#premierLeaderboard) | **GET** /valorant/v1/premier/leaderboard/{affinity} | Get Premier leaderboard (v1) |
 | [**premierSearch**](ValorantApi.md#premierSearch) | **GET** /valorant/v1/premier/search | Search Premier teams (v1) |
 | [**queueStatus**](ValorantApi.md#queueStatus) | **GET** /valorant/v1/queue-status/{affinity} | Get queue status (v1) |
@@ -75,7 +83,7 @@ Generate crosshair image (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val id : kotlin.String = id_example // kotlin.String | Crosshair code
+val id : kotlin.String = id_example // kotlin.String | Required crosshair code
 try {
     apiInstance.crosshair(id)
 } catch (e: ClientException) {
@@ -90,7 +98,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Crosshair code | [optional] |
+| **id** | **kotlin.String**| Required crosshair code | |
 
 ### Return type
 
@@ -194,7 +202,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **region** | [**EsportsV2Region**](.md)|  | [optional] [enum: north_america, europe, brazil, asia_pacific, korea, japan, latin_america, oceania, mena, gc, collegiate] |
 | **type** | [**EsportsV2EventType**](.md)|  | [optional] [enum: completed, upcoming] |
-| **page** | **kotlin.Int**|  | [optional] |
+| **page** | **kotlin.Int**|  | [optional] [default to 1] |
 
 ### Return type
 
@@ -296,7 +304,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **player** | **kotlin.Int**|  | |
-| **page** | **kotlin.Int**|  | [optional] |
+| **page** | **kotlin.Int**|  | [optional] [default to 1] |
 
 ### Return type
 
@@ -452,7 +460,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **teamId** | **kotlin.Int**|  | |
-| **page** | **kotlin.Int**|  | [optional] |
+| **page** | **kotlin.Int**|  | [optional] [default to 1] |
 
 ### Return type
 
@@ -586,9 +594,9 @@ Get player accolades by PUUID (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
-val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
 try {
     val result : AccoladesV1Response = apiInstance.getAccoladesById(affinity, platform, puuid)
     println(result)
@@ -604,9 +612,9 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
-| **puuid** | **kotlin.String**| Player UUID | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
+| **puuid** | **java.util.UUID**| Player UUID | |
 
 ### Return type
 
@@ -640,8 +648,8 @@ Get player accolades by name (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
 try {
@@ -659,8 +667,8 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
 
@@ -908,7 +916,7 @@ Get content (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val locale : kotlin.String = locale_example // kotlin.String | Locale code (e.g., en-US, de-DE) - optional
+val locale : ValorantContentLocale =  // ValorantContentLocale | Content locale; case-insensitive. Omission selects en-US.
 try {
     val result : ContentV1Response = apiInstance.getContentV1(locale)
     println(result)
@@ -924,7 +932,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **locale** | **kotlin.String**| Locale code (e.g., en-US, de-DE) - optional | [optional] |
+| **locale** | [**ValorantContentLocale**](.md)| Content locale; case-insensitive. Omission selects en-US. | [optional] [enum: ar-AE, de-DE, en-GB, en-US, es-ES, es-MX, fr-FR, id-ID, it-IT, ja-JP, ko-KR, pl-PL, pt-BR, ru-RU, th-TH, tr-TR, vi-VN, zh-CN, zh-TW] |
 
 ### Return type
 
@@ -945,9 +953,241 @@ Configure api_key_header:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a id="getMasteryAgentById"></a>
+# **getMasteryAgentById**
+> AgentMasteryV1DetailResponse getMasteryAgentById(affinity, platform, puuid, agentId)
+
+Get agent mastery by PUUID (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+val agentId : kotlin.String = agentId_example // kotlin.String | Agent UUID
+try {
+    val result : AgentMasteryV1DetailResponse = apiInstance.getMasteryAgentById(affinity, platform, puuid, agentId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#getMasteryAgentById")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#getMasteryAgentById")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
+| **puuid** | **kotlin.String**| Player UUID | |
+| **agentId** | **kotlin.String**| Agent UUID | |
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getMasteryAgentByName"></a>
+# **getMasteryAgentByName**
+> AgentMasteryV1DetailResponse getMasteryAgentByName(affinity, platform, name, tag, agentId)
+
+Get agent mastery by name (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+val name : kotlin.String = name_example // kotlin.String | Riot ID name
+val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
+val agentId : kotlin.String = agentId_example // kotlin.String | Agent UUID
+try {
+    val result : AgentMasteryV1DetailResponse = apiInstance.getMasteryAgentByName(affinity, platform, name, tag, agentId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#getMasteryAgentByName")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#getMasteryAgentByName")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
+| **name** | **kotlin.String**| Riot ID name | |
+| **tag** | **kotlin.String**| Riot ID tag | |
+| **agentId** | **kotlin.String**| Agent UUID | |
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getMasteryById"></a>
+# **getMasteryById**
+> AgentMasteryV1Response getMasteryById(affinity, platform, puuid)
+
+Get all agent mastery by PUUID (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+try {
+    val result : AgentMasteryV1Response = apiInstance.getMasteryById(affinity, platform, puuid)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#getMasteryById")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#getMasteryById")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
+| **puuid** | **kotlin.String**| Player UUID | |
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getMasteryByName"></a>
+# **getMasteryByName**
+> AgentMasteryV1Response getMasteryByName(affinity, platform, name, tag)
+
+Get all agent mastery by name (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+val name : kotlin.String = name_example // kotlin.String | Riot ID name
+val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
+try {
+    val result : AgentMasteryV1Response = apiInstance.getMasteryByName(affinity, platform, name, tag)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#getMasteryByName")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#getMasteryByName")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
+| **name** | **kotlin.String**| Riot ID name | |
+| **tag** | **kotlin.String**| Riot ID tag | |
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a id="getMatchesV3ById"></a>
 # **getMatchesV3ById**
-> MatchesV3ListResponse getMatchesV3ById(affinity, puuid, mode, map, size)
+> MatchesV3ListResponse getMatchesV3ById(affinity, puuid, mode, queue, map, size)
 
 Get matches by PUUID (v3)
 
@@ -958,13 +1198,14 @@ Get matches by PUUID (v3)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
 try {
-    val result : MatchesV3ListResponse = apiInstance.getMatchesV3ById(affinity, puuid, mode, map, size)
+    val result : MatchesV3ListResponse = apiInstance.getMatchesV3ById(affinity, puuid, mode, queue, map, size)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#getMatchesV3ById")
@@ -978,11 +1219,12 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **puuid** | **kotlin.String**| Player UUID | |
-| **mode** | **kotlin.String**| Game mode filter (optional) | [optional] |
-| **map** | **kotlin.String**| Map filter (optional) | [optional] |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **puuid** | **java.util.UUID**| Player UUID | |
+| **mode** | **kotlin.String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] |
+| **queue** | **kotlin.String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] |
+| **map** | **kotlin.String**| Map display name, matched case-insensitively. | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5] |
 
 ### Return type
 
@@ -1005,7 +1247,7 @@ Configure api_key_header:
 
 <a id="getMatchesV3ByName"></a>
 # **getMatchesV3ByName**
-> MatchesV3ListResponse getMatchesV3ByName(affinity, name, tag, mode, map, size)
+> MatchesV3ListResponse getMatchesV3ByName(affinity, name, tag, mode, queue, map, size)
 
 Get matches by name (v3)
 
@@ -1016,14 +1258,15 @@ Get matches by name (v3)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-val mode : MatchMode =  // MatchMode | Game mode filter (optional)
-val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
 try {
-    val result : MatchesV3ListResponse = apiInstance.getMatchesV3ByName(affinity, name, tag, mode, map, size)
+    val result : MatchesV3ListResponse = apiInstance.getMatchesV3ByName(affinity, name, tag, mode, queue, map, size)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#getMatchesV3ByName")
@@ -1037,12 +1280,13 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
-| **mode** | [**MatchMode**](.md)| Game mode filter (optional) | [optional] [enum: Competitive, Unrated, Custom, Practice, Unknown] |
-| **map** | **kotlin.String**| Map filter (optional) | [optional] |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **mode** | **kotlin.String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] |
+| **queue** | **kotlin.String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] |
+| **map** | **kotlin.String**| Map display name, matched case-insensitively. | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5] |
 
 ### Return type
 
@@ -1065,7 +1309,7 @@ Configure api_key_header:
 
 <a id="getMatchesV4ById"></a>
 # **getMatchesV4ById**
-> MatchesV4HistoryResponse getMatchesV4ById(affinity, platform, puuid, mode, map, size, start)
+> MatchesV4HistoryResponse getMatchesV4ById(affinity, platform, puuid, mode, queue, map, size, start)
 
 Get matches by PUUID (v4)
 
@@ -1076,15 +1320,16 @@ Get matches by PUUID (v4)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
-val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-val start : kotlin.Int = 56 // kotlin.Int | Start index for pagination (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
+val start : kotlin.Int = 56 // kotlin.Int | Zero-based offset; start plus capped size must fit a signed 32-bit integer.
 try {
-    val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ById(affinity, platform, puuid, mode, map, size, start)
+    val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ById(affinity, platform, puuid, mode, queue, map, size, start)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#getMatchesV4ById")
@@ -1098,13 +1343,14 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
-| **puuid** | **kotlin.String**| Player UUID | |
-| **mode** | **kotlin.String**| Game mode filter (optional) | [optional] |
-| **map** | **kotlin.String**| Map filter (optional) | [optional] |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
-| **start** | **kotlin.Int**| Start index for pagination (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
+| **puuid** | **java.util.UUID**| Player UUID | |
+| **mode** | **kotlin.String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] |
+| **queue** | **kotlin.String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] |
+| **map** | **kotlin.String**| Map display name, matched case-insensitively. | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5] |
+| **start** | **kotlin.Int**| Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [optional] [default to 0] |
 
 ### Return type
 
@@ -1127,7 +1373,7 @@ Configure api_key_header:
 
 <a id="getMatchesV4ByName"></a>
 # **getMatchesV4ByName**
-> MatchesV4HistoryResponse getMatchesV4ByName(affinity, platform, name, tag, mode, map, size, start)
+> MatchesV4HistoryResponse getMatchesV4ByName(affinity, platform, name, tag, mode, queue, map, size, start)
 
 Get matches by name (v4)
 
@@ -1138,16 +1384,17 @@ Get matches by name (v4)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-val start : kotlin.Int = 56 // kotlin.Int | Start index for pagination (optional)
+val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
+val start : kotlin.Int = 56 // kotlin.Int | Zero-based offset; start plus capped size must fit a signed 32-bit integer.
 try {
-    val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ByName(affinity, platform, name, tag, mode, map, size, start)
+    val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ByName(affinity, platform, name, tag, mode, queue, map, size, start)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#getMatchesV4ByName")
@@ -1161,14 +1408,15 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
-| **mode** | **kotlin.String**| Game mode filter (optional) | [optional] |
-| **map** | **kotlin.String**| Map filter (optional) | [optional] |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
-| **start** | **kotlin.Int**| Start index for pagination (optional) | [optional] |
+| **mode** | **kotlin.String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] |
+| **queue** | **kotlin.String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] |
+| **map** | **kotlin.String**| Map display name, matched case-insensitively. | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5] |
+| **start** | **kotlin.Int**| Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [optional] [default to 0] |
 
 ### Return type
 
@@ -1202,7 +1450,7 @@ Get MMR history by PUUID (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
 try {
     val result : MMRHistoryV1Response = apiInstance.getMmrHistoryById(affinity, puuid)
@@ -1219,7 +1467,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **puuid** | **kotlin.String**| Player UUID | |
 
 ### Return type
@@ -1254,7 +1502,7 @@ Get MMR history by name (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
 try {
@@ -1272,7 +1520,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
 
@@ -1308,8 +1556,8 @@ Get MMR history by PUUID (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
 try {
     val result : MMRHistoryV2Response = apiInstance.getMmrHistoryV2ById(affinity, platform, puuid)
@@ -1326,8 +1574,8 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **puuid** | **kotlin.String**| Player UUID | |
 
 ### Return type
@@ -1362,8 +1610,8 @@ Get MMR history by name (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
 try {
@@ -1381,8 +1629,8 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
 
@@ -1418,7 +1666,7 @@ Get MMR by PUUID (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
 try {
     val result : MMRV1Response = apiInstance.getMmrV1ById(affinity, puuid)
@@ -1435,7 +1683,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **puuid** | **kotlin.String**| Player UUID | |
 
 ### Return type
@@ -1470,7 +1718,7 @@ Get MMR by name (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
 try {
@@ -1488,7 +1736,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
 
@@ -1524,7 +1772,7 @@ Get MMR by PUUID (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
 try {
     val result : MMRV2Response = apiInstance.getMmrV2ById(affinity, puuid)
@@ -1541,7 +1789,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **puuid** | **kotlin.String**| Player UUID | |
 
 ### Return type
@@ -1576,7 +1824,7 @@ Get MMR by name (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
 try {
@@ -1594,7 +1842,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
 
@@ -1630,8 +1878,8 @@ Get MMR by PUUID (v3)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
 try {
     val result : MMRV3Response = apiInstance.getMmrV3ById(affinity, platform, puuid)
@@ -1648,8 +1896,8 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **puuid** | **kotlin.String**| Player UUID | |
 
 ### Return type
@@ -1684,8 +1932,8 @@ Get MMR by name (v3)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
 try {
@@ -1703,8 +1951,8 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
 
@@ -1729,7 +1977,7 @@ Configure api_key_header:
 
 <a id="leaderboardV1"></a>
 # **leaderboardV1**
-> kotlin.Any leaderboardV1(affinity, season, name, tag)
+> LeaderboardV1Response leaderboardV1(affinity, season, name, tag, puuid)
 
 Get leaderboard (v1)
 
@@ -1740,12 +1988,13 @@ Get leaderboard (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val season : kotlin.String = season_example // kotlin.String | Season ID (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val season : kotlin.String = season_example // kotlin.String | Short season ID, such as e9a1; omission selects the current season
 val name : kotlin.String = name_example // kotlin.String | Player name to search for (optional)
 val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for (optional)
+val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID to search for
 try {
-    val result : kotlin.Any = apiInstance.leaderboardV1(affinity, season, name, tag)
+    val result : LeaderboardV1Response = apiInstance.leaderboardV1(affinity, season, name, tag, puuid)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#leaderboardV1")
@@ -1759,14 +2008,15 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **season** | **kotlin.String**| Season ID (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **season** | **kotlin.String**| Short season ID, such as e9a1; omission selects the current season | [optional] |
 | **name** | **kotlin.String**| Player name to search for (optional) | [optional] |
 | **tag** | **kotlin.String**| Player tag to search for (optional) | [optional] |
+| **puuid** | **java.util.UUID**| Player UUID to search for | [optional] |
 
 ### Return type
 
-[**kotlin.Any**](kotlin.Any.md)
+[**LeaderboardV1Response**](LeaderboardV1Response.md)
 
 ### Authorization
 
@@ -1785,7 +2035,7 @@ Configure api_key_header:
 
 <a id="leaderboardV2"></a>
 # **leaderboardV2**
-> LeaderboardV2Response leaderboardV2(affinity, season, name, tag, puuid)
+> ValorantLeaderboardV2Response leaderboardV2(affinity, season, name, tag, puuid)
 
 Get leaderboard (v2)
 
@@ -1796,13 +2046,13 @@ Get leaderboard (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val season : kotlin.String = season_example // kotlin.String | Season ID (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val season : kotlin.String = season_example // kotlin.String | Short season ID, such as e9a1; omission selects the current season
 val name : kotlin.String = name_example // kotlin.String | Player name to search for (optional)
 val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for (optional)
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID to search for (optional)
 try {
-    val result : LeaderboardV2Response = apiInstance.leaderboardV2(affinity, season, name, tag, puuid)
+    val result : ValorantLeaderboardV2Response = apiInstance.leaderboardV2(affinity, season, name, tag, puuid)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#leaderboardV2")
@@ -1816,15 +2066,15 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **season** | **kotlin.String**| Season ID (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **season** | **kotlin.String**| Short season ID, such as e9a1; omission selects the current season | [optional] |
 | **name** | **kotlin.String**| Player name to search for (optional) | [optional] |
 | **tag** | **kotlin.String**| Player tag to search for (optional) | [optional] |
 | **puuid** | **kotlin.String**| Player UUID to search for (optional) | [optional] |
 
 ### Return type
 
-[**LeaderboardV2Response**](LeaderboardV2Response.md)
+[**ValorantLeaderboardV2Response**](ValorantLeaderboardV2Response.md)
 
 ### Authorization
 
@@ -1843,7 +2093,7 @@ Configure api_key_header:
 
 <a id="leaderboardV3"></a>
 # **leaderboardV3**
-> LeaderboardV3Response leaderboardV3(affinity, platform, season, size, page, name, tag)
+> LeaderboardV3Response leaderboardV3(affinity, platform, page, size, seasonShort, seasonId, name, tag, puuid)
 
 Get leaderboard (v3)
 
@@ -1854,15 +2104,17 @@ Get leaderboard (v3)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
-val season : kotlin.String = season_example // kotlin.String | Season ID (optional)
-val size : kotlin.Int = 56 // kotlin.Int | Number of results per page (optional)
-val page : kotlin.Int = 56 // kotlin.Int | Page number (optional)
-val name : kotlin.String = name_example // kotlin.String | Player name to search for (optional)
-val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+val page : kotlin.Int = 56 // kotlin.Int | Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; only ASCII decimal digits are accepted.
+val seasonShort : kotlin.String = seasonShort_example // kotlin.String | Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+val seasonId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Season UUID; mutually exclusive with season_short.
+val name : kotlin.String = name_example // kotlin.String | Player name to search for.
+val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for.
+val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID to search for.
 try {
-    val result : LeaderboardV3Response = apiInstance.leaderboardV3(affinity, platform, season, size, page, name, tag)
+    val result : LeaderboardV3Response = apiInstance.leaderboardV3(affinity, platform, page, size, seasonShort, seasonId, name, tag, puuid)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#leaderboardV3")
@@ -1876,13 +2128,15 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
-| **season** | **kotlin.String**| Season ID (optional) | [optional] |
-| **size** | **kotlin.Int**| Number of results per page (optional) | [optional] |
-| **page** | **kotlin.Int**| Page number (optional) | [optional] |
-| **name** | **kotlin.String**| Player name to search for (optional) | [optional] |
-| **tag** | **kotlin.String**| Player tag to search for (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
+| **page** | **kotlin.Int**| Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. | [optional] [default to 1] |
+| **size** | **kotlin.Int**| Positive integer result count; only ASCII decimal digits are accepted. | [optional] [default to 1000] |
+| **seasonShort** | **kotlin.String**| Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. | [optional] |
+| **seasonId** | **java.util.UUID**| Season UUID; mutually exclusive with season_short. | [optional] |
+| **name** | **kotlin.String**| Player name to search for. | [optional] |
+| **tag** | **kotlin.String**| Player tag to search for. | [optional] |
+| **puuid** | **java.util.UUID**| Player UUID to search for. | [optional] |
 
 ### Return type
 
@@ -1916,7 +2170,7 @@ Get match details (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val matchId : kotlin.String = matchId_example // kotlin.String | Match UUID
+val matchId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Match UUID
 try {
     val result : MatchesV2Response = apiInstance.matchV2(matchId)
     println(result)
@@ -1932,7 +2186,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **matchId** | **kotlin.String**| Match UUID | |
+| **matchId** | **java.util.UUID**| Match UUID | |
 
 ### Return type
 
@@ -1966,8 +2220,8 @@ Get match details (v4)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val matchId : kotlin.String = matchId_example // kotlin.String | Match UUID
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val matchId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Match UUID
 try {
     val result : MatchesV4Response = apiInstance.matchV4(affinity, matchId)
     println(result)
@@ -1983,8 +2237,8 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **matchId** | **kotlin.String**| Match UUID | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **matchId** | **java.util.UUID**| Match UUID | |
 
 ### Return type
 
@@ -2018,9 +2272,9 @@ Get Premier team by ID (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val id : kotlin.String = id_example // kotlin.String | Team UUID
+val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID
 val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity for fallback resolution (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
 try {
     val result : PremierTeamV1Response = apiInstance.premierById(id, season, affinity)
     println(result)
@@ -2036,9 +2290,9 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Team UUID | |
+| **id** | **java.util.UUID**| Team UUID | |
 | **season** | **kotlin.String**| Premier season id (optional) | [optional] |
-| **affinity** | **kotlin.String**| Region/affinity for fallback resolution (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | [optional] [enum: na, eu, ap, kr, br, latam] |
 
 ### Return type
 
@@ -2061,7 +2315,7 @@ Configure api_key_header:
 
 <a id="premierByIdHistory"></a>
 # **premierByIdHistory**
-> PremierTeamV1Response premierByIdHistory(id, season)
+> PremierTeamHistoryV1Response premierByIdHistory(id, season)
 
 Get Premier team history by ID (v1)
 
@@ -2072,10 +2326,10 @@ Get Premier team history by ID (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val id : kotlin.String = id_example // kotlin.String | Team UUID
+val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID
 val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierTeamV1Response = apiInstance.premierByIdHistory(id, season)
+    val result : PremierTeamHistoryV1Response = apiInstance.premierByIdHistory(id, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierByIdHistory")
@@ -2089,12 +2343,66 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Team UUID | |
+| **id** | **java.util.UUID**| Team UUID | |
 | **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
 
-[**PremierTeamV1Response**](PremierTeamV1Response.md)
+[**PremierTeamHistoryV1Response**](PremierTeamHistoryV1Response.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="premierByIdV2"></a>
+# **premierByIdV2**
+> PremierTeamV2Response premierByIdV2(affinity, id)
+
+Get live Premier team by ID (v2)
+
+Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID
+try {
+    val result : PremierTeamV2Response = apiInstance.premierByIdV2(affinity, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#premierByIdV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#premierByIdV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **id** | **java.util.UUID**| Team UUID | |
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
 
 ### Authorization
 
@@ -2127,7 +2435,7 @@ val apiInstance = ValorantApi()
 val name : kotlin.String = name_example // kotlin.String | Team name
 val tag : kotlin.String = tag_example // kotlin.String | Team tag
 val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity for fallback resolution (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
 try {
     val result : PremierTeamV1Response = apiInstance.premierByName(name, tag, season, affinity)
     println(result)
@@ -2146,7 +2454,7 @@ try {
 | **name** | **kotlin.String**| Team name | |
 | **tag** | **kotlin.String**| Team tag | |
 | **season** | **kotlin.String**| Premier season id (optional) | [optional] |
-| **affinity** | **kotlin.String**| Region/affinity for fallback resolution (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | [optional] [enum: na, eu, ap, kr, br, latam] |
 
 ### Return type
 
@@ -2221,11 +2529,13 @@ Configure api_key_header:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a id="premierLeaderboard"></a>
-# **premierLeaderboard**
-> PremierSearchResponse premierLeaderboard(affinity, conference, division, season)
+<a id="premierByNameV2"></a>
+# **premierByNameV2**
+> PremierTeamV2Response premierByNameV2(affinity, name, tag)
 
-Get Premier leaderboard (v1)
+Get live Premier team by team name (v2)
+
+Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
 
 ### Example
 ```kotlin
@@ -2234,12 +2544,176 @@ Get Premier leaderboard (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val conference : kotlin.String = conference_example // kotlin.String | Conference filter (optional)
-val division : kotlin.String = division_example // kotlin.String | Division filter (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val name : kotlin.String = name_example // kotlin.String | Premier team name
+val tag : kotlin.String = tag_example // kotlin.String | Premier team tag
+try {
+    val result : PremierTeamV2Response = apiInstance.premierByNameV2(affinity, name, tag)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#premierByNameV2")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#premierByNameV2")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **name** | **kotlin.String**| Premier team name | |
+| **tag** | **kotlin.String**| Premier team tag | |
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="premierByPlayerName"></a>
+# **premierByPlayerName**
+> PremierTeamV2Response premierByPlayerName(affinity, name, tag)
+
+Get live Premier team by player Riot ID (v2)
+
+Resolves the player&#39;s Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val name : kotlin.String = name_example // kotlin.String | Player Riot ID name
+val tag : kotlin.String = tag_example // kotlin.String | Player Riot ID tag
+try {
+    val result : PremierTeamV2Response = apiInstance.premierByPlayerName(affinity, name, tag)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#premierByPlayerName")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#premierByPlayerName")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **name** | **kotlin.String**| Player Riot ID name | |
+| **tag** | **kotlin.String**| Player Riot ID tag | |
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="premierByPuuid"></a>
+# **premierByPuuid**
+> PremierTeamV2Response premierByPuuid(affinity, puuid)
+
+Get live Premier team by player PUUID (v2)
+
+Fetches the player&#39;s current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+try {
+    val result : PremierTeamV2Response = apiInstance.premierByPuuid(affinity, puuid)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling ValorantApi#premierByPuuid")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling ValorantApi#premierByPuuid")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **puuid** | **java.util.UUID**| Player UUID | |
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+
+Configure api_key_query:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
+Configure api_key_header:
+    ApiClient.apiKey["Authorization"] = ""
+    ApiClient.apiKeyPrefix["Authorization"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="premierLeaderboard"></a>
+# **premierLeaderboard**
+> PremierSearchResponse premierLeaderboard(affinity, season)
+
+Get Premier leaderboard (v1)
+
+Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+
+### Example
+```kotlin
+// Import classes:
+//import henrikdevApiClient.infrastructure.*
+//import henrikdevApiClient.models.*
+
+val apiInstance = ValorantApi()
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
 val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
 try {
-    val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, conference, division, season)
+    val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, season)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierLeaderboard")
@@ -2253,9 +2727,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **conference** | **kotlin.String**| Conference filter (optional) | [optional] |
-| **division** | **kotlin.String**| Division filter (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; validation is case-insensitive; use lowercase for persisted team matching | [enum: na, eu, ap, kr, br, latam] |
 | **season** | **kotlin.String**| Premier season id (optional) | [optional] |
 
 ### Return type
@@ -2279,7 +2751,7 @@ Configure api_key_header:
 
 <a id="premierSearch"></a>
 # **premierSearch**
-> PremierSearchResponse premierSearch(name, tag, id, season)
+> PremierSearchResponse premierSearch(name, tag, id, season, conference, division)
 
 Search Premier teams (v1)
 
@@ -2292,10 +2764,12 @@ Search Premier teams (v1)
 val apiInstance = ValorantApi()
 val name : kotlin.String = name_example // kotlin.String | Team name to search for (optional)
 val tag : kotlin.String = tag_example // kotlin.String | Team tag to search for (optional)
-val id : kotlin.String = id_example // kotlin.String | Team UUID to search for (optional)
+val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID to search for; cannot be combined with name or tag
 val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
+val conference : kotlin.String = conference_example // kotlin.String | Current upstream Premier conference key; case-insensitive; not a fixed enum
+val division : kotlin.Int = 56 // kotlin.Int | Division filter; integer from 1 through 21
 try {
-    val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id, season)
+    val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id, season, conference, division)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#premierSearch")
@@ -2311,8 +2785,10 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **name** | **kotlin.String**| Team name to search for (optional) | [optional] |
 | **tag** | **kotlin.String**| Team tag to search for (optional) | [optional] |
-| **id** | **kotlin.String**| Team UUID to search for (optional) | [optional] |
+| **id** | **java.util.UUID**| Team UUID to search for; cannot be combined with name or tag | [optional] |
 | **season** | **kotlin.String**| Premier season id (optional) | [optional] |
+| **conference** | **kotlin.String**| Current upstream Premier conference key; case-insensitive; not a fixed enum | [optional] |
+| **division** | **kotlin.Int**| Division filter; integer from 1 through 21 | [optional] |
 
 ### Return type
 
@@ -2346,7 +2822,7 @@ Get queue status (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 try {
     val result : QueueStatusV1 = apiInstance.queueStatus(affinity)
     println(result)
@@ -2362,7 +2838,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 
 ### Return type
 
@@ -2388,6 +2864,8 @@ Configure api_key_header:
 > RawV1Response raw(rawV1Payload)
 
 Get raw Riot API data (v1)
+
+Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 
 ### Example
 ```kotlin
@@ -2446,7 +2924,7 @@ Get status (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 try {
     val result : StatusV1 = apiInstance.status(affinity)
     println(result)
@@ -2462,7 +2940,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 
 ### Return type
 
@@ -2485,7 +2963,7 @@ Configure api_key_header:
 
 <a id="storeFeatured"></a>
 # **storeFeatured**
-> StoreFeaturedV1 storeFeatured(version)
+> ValorantStoreFeaturedResponse storeFeatured(version)
 
 Get featured store items
 
@@ -2496,9 +2974,9 @@ Get featured store items
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val version : kotlin.String = version_example // kotlin.String | API version (v1, v2)
+val version : ValorantStoreVersion =  // ValorantStoreVersion | Response version; v1 returns an object envelope and v2 returns an array envelope
 try {
-    val result : StoreFeaturedV1 = apiInstance.storeFeatured(version)
+    val result : ValorantStoreFeaturedResponse = apiInstance.storeFeatured(version)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storeFeatured")
@@ -2512,11 +2990,11 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **version** | **kotlin.String**| API version (v1, v2) | |
+| **version** | [**ValorantStoreVersion**](.md)| Response version; v1 returns an object envelope and v2 returns an array envelope | [enum: v1, v2] |
 
 ### Return type
 
-[**StoreFeaturedV1**](StoreFeaturedV1.md)
+[**ValorantStoreFeaturedResponse**](ValorantStoreFeaturedResponse.md)
 
 ### Authorization
 
@@ -2535,9 +3013,11 @@ Configure api_key_header:
 
 <a id="storeOffers"></a>
 # **storeOffers**
-> StoreOffersV1Response storeOffers(version)
+> storeOffers(version)
 
 Get store offers
+
+Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
 
 ### Example
 ```kotlin
@@ -2546,10 +3026,9 @@ Get store offers
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val version : kotlin.String = version_example // kotlin.String | API version (v1, v2)
+val version : ValorantStoreVersion =  // ValorantStoreVersion | Legacy API version
 try {
-    val result : StoreOffersV1Response = apiInstance.storeOffers(version)
-    println(result)
+    apiInstance.storeOffers(version)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storeOffers")
     e.printStackTrace()
@@ -2562,11 +3041,11 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **version** | **kotlin.String**| API version (v1, v2) | |
+| **version** | [**ValorantStoreVersion**](.md)| Legacy API version | [enum: v1, v2] |
 
 ### Return type
 
-[**StoreOffersV1Response**](StoreOffersV1Response.md)
+null (empty response body)
 
 ### Authorization
 
@@ -2585,7 +3064,7 @@ Configure api_key_header:
 
 <a id="storedMatches"></a>
 # **storedMatches**
-> StoredMatchesResponse storedMatches(affinity, name, tag, mode, map, size)
+> StoredMatchesResponse storedMatches(affinity, name, tag, mode, queue, map, size, page)
 
 Get stored matches by name (v1)
 
@@ -2596,14 +3075,16 @@ Get stored matches by name (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
 try {
-    val result : StoredMatchesResponse = apiInstance.storedMatches(affinity, name, tag, mode, map, size)
+    val result : StoredMatchesResponse = apiInstance.storedMatches(affinity, name, tag, mode, queue, map, size, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storedMatches")
@@ -2617,12 +3098,14 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
-| **mode** | **kotlin.String**| Game mode filter (optional) | [optional] |
-| **map** | **kotlin.String**| Map filter (optional) | [optional] |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **mode** | **kotlin.String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] |
+| **queue** | **kotlin.String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] |
+| **map** | **kotlin.String**| Map display name, matched case-insensitively. | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count. Omit for unlimited results. | [optional] |
+| **page** | **kotlin.Int**| One-based page. Supplying page requires size. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2645,7 +3128,7 @@ Configure api_key_header:
 
 <a id="storedMatchesById"></a>
 # **storedMatchesById**
-> StoredMatchesResponse storedMatchesById(affinity, puuid, mode, map, size)
+> StoredMatchesResponse storedMatchesById(affinity, puuid, mode, queue, map, size, page)
 
 Get stored matches by PUUID (v1)
 
@@ -2656,13 +3139,15 @@ Get stored matches by PUUID (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
 try {
-    val result : StoredMatchesResponse = apiInstance.storedMatchesById(affinity, puuid, mode, map, size)
+    val result : StoredMatchesResponse = apiInstance.storedMatchesById(affinity, puuid, mode, queue, map, size, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storedMatchesById")
@@ -2676,11 +3161,13 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **puuid** | **kotlin.String**| Player UUID | |
-| **mode** | **kotlin.String**| Game mode filter (optional) | [optional] |
-| **map** | **kotlin.String**| Map filter (optional) | [optional] |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **puuid** | **java.util.UUID**| Player UUID | |
+| **mode** | **kotlin.String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] |
+| **queue** | **kotlin.String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] |
+| **map** | **kotlin.String**| Map display name, matched case-insensitively. | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count. Omit for unlimited results. | [optional] |
+| **page** | **kotlin.Int**| One-based page. Supplying page requires size. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2703,7 +3190,7 @@ Configure api_key_header:
 
 <a id="storedMmrHistory"></a>
 # **storedMmrHistory**
-> StoredMMRResponse storedMmrHistory(affinity, name, tag, size)
+> StoredMMRResponse storedMmrHistory(affinity, name, tag, size, page)
 
 Get stored MMR history by name (v1)
 
@@ -2714,12 +3201,13 @@ Get stored MMR history by name (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
 try {
-    val result : StoredMMRResponse = apiInstance.storedMmrHistory(affinity, name, tag, size)
+    val result : StoredMMRResponse = apiInstance.storedMmrHistory(affinity, name, tag, size, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storedMmrHistory")
@@ -2733,10 +3221,11 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count. Omit for unlimited results. | [optional] |
+| **page** | **kotlin.Int**| One-based page. Supplying page requires size. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2759,7 +3248,7 @@ Configure api_key_header:
 
 <a id="storedMmrHistoryById"></a>
 # **storedMmrHistoryById**
-> StoredMMRResponse storedMmrHistoryById(affinity, puuid, size)
+> StoredMMRResponse storedMmrHistoryById(affinity, puuid, size, page)
 
 Get stored MMR history by PUUID (v1)
 
@@ -2770,11 +3259,12 @@ Get stored MMR history by PUUID (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
 try {
-    val result : StoredMMRResponse = apiInstance.storedMmrHistoryById(affinity, puuid, size)
+    val result : StoredMMRResponse = apiInstance.storedMmrHistoryById(affinity, puuid, size, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storedMmrHistoryById")
@@ -2788,9 +3278,10 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 | **puuid** | **kotlin.String**| Player UUID | |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count. Omit for unlimited results. | [optional] |
+| **page** | **kotlin.Int**| One-based page. Supplying page requires size. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2813,7 +3304,7 @@ Configure api_key_header:
 
 <a id="storedMmrHistoryV2"></a>
 # **storedMmrHistoryV2**
-> StoredMMRV2Response storedMmrHistoryV2(affinity, platform, name, tag, size)
+> StoredMMRV2Response storedMmrHistoryV2(affinity, platform, name, tag, size, page)
 
 Get stored MMR history by name (v2)
 
@@ -2824,13 +3315,14 @@ Get stored MMR history by name (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val name : kotlin.String = name_example // kotlin.String | Riot ID name
 val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
 try {
-    val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2(affinity, platform, name, tag, size)
+    val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2(affinity, platform, name, tag, size, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storedMmrHistoryV2")
@@ -2844,11 +3336,12 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **name** | **kotlin.String**| Riot ID name | |
 | **tag** | **kotlin.String**| Riot ID tag | |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count. Omit for unlimited results. | [optional] |
+| **page** | **kotlin.Int**| One-based page. Supplying page requires size. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2871,7 +3364,7 @@ Configure api_key_header:
 
 <a id="storedMmrHistoryV2ById"></a>
 # **storedMmrHistoryV2ById**
-> StoredMMRV2Response storedMmrHistoryV2ById(affinity, platform, puuid, size)
+> StoredMMRV2Response storedMmrHistoryV2ById(affinity, platform, puuid, size, page)
 
 Get stored MMR history by PUUID (v2)
 
@@ -2882,12 +3375,13 @@ Get stored MMR history by PUUID (v2)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
 val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
+val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
 try {
-    val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2ById(affinity, platform, puuid, size)
+    val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2ById(affinity, platform, puuid, size, page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ValorantApi#storedMmrHistoryV2ById")
@@ -2901,10 +3395,11 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
-| **platform** | **kotlin.String**| Platform (pc, console) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
+| **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | [enum: pc, console] |
 | **puuid** | **kotlin.String**| Player UUID | |
-| **size** | **kotlin.Int**| Number of results (optional) | [optional] |
+| **size** | **kotlin.Int**| Positive integer result count. Omit for unlimited results. | [optional] |
+| **page** | **kotlin.Int**| One-based page. Supplying page requires size. | [optional] [default to 1] |
 
 ### Return type
 
@@ -2938,7 +3433,7 @@ Get game version (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
 try {
     val result : VersionV1Response = apiInstance.version(affinity)
     println(result)
@@ -2954,7 +3449,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **affinity** | **kotlin.String**| Region/affinity (e.g., na, eu, ap, kr) | |
+| **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | [enum: na, eu, ap, kr, br, latam] |
 
 ### Return type
 
@@ -2988,8 +3483,8 @@ Get website content (v1)
 //import henrikdevApiClient.models.*
 
 val apiInstance = ValorantApi()
-val countryCode : kotlin.String = countryCode_example // kotlin.String | Country code (e.g., en-us, de-de)
-val category : kotlin.String = category_example // kotlin.String | Category filter (optional)
+val countryCode : ValorantWebsiteLocale =  // ValorantWebsiteLocale | Website locale; case-insensitive
+val category : ValorantWebsiteCategory =  // ValorantWebsiteCategory | Category filter; case-sensitive
 try {
     val result : WebsiteV1Response = apiInstance.website(countryCode, category)
     println(result)
@@ -3005,8 +3500,8 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **countryCode** | **kotlin.String**| Country code (e.g., en-us, de-de) | |
-| **category** | **kotlin.String**| Category filter (optional) | [optional] |
+| **countryCode** | [**ValorantWebsiteLocale**](.md)| Website locale; case-insensitive | [enum: en-us, en-gb, de-de, es-es, fr-fr, it-it, ru-ru, tr-tr, es-mx, ja-jp, ko-kr, pt-br, pl-pl, vi-vn] |
+| **category** | [**ValorantWebsiteCategory**](.md)| Category filter; case-sensitive | [optional] [enum: game_updates, dev, esports, announcements, patch_notes, community] |
 
 ### Return type
 
@@ -3033,6 +3528,8 @@ Configure api_key_header:
 
 Get website entry by ID (v1)
 
+Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
+
 ### Example
 ```kotlin
 // Import classes:
@@ -3041,7 +3538,7 @@ Get website entry by ID (v1)
 
 val apiInstance = ValorantApi()
 val dbId : kotlin.String = dbId_example // kotlin.String | Database ID of the website entry
-val countryCode : kotlin.String = countryCode_example // kotlin.String | Country code (e.g., en-us, de-de)
+val countryCode : kotlin.String = countryCode_example // kotlin.String | Ignored locale segment; any string is accepted
 try {
     val result : WebsiteByIdV1Response = apiInstance.websiteById(dbId, countryCode)
     println(result)
@@ -3058,7 +3555,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **dbId** | **kotlin.String**| Database ID of the website entry | |
-| **countryCode** | **kotlin.String**| Country code (e.g., en-us, de-de) | |
+| **countryCode** | **kotlin.String**| Ignored locale segment; any string is accepted | |
 
 ### Return type
 

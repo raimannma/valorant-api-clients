@@ -1,11 +1,12 @@
 # PremiumWebhookUserAddRequest
 
+Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enabled** | **boolean** |  | [optional] [default to undefined]
+**enabled** | **boolean** |  | [optional] [default to true]
 **events** | [**Array&lt;PremiumWebhookEvent&gt;**](PremiumWebhookEvent.md) |  | [optional] [default to undefined]
 **name** | **string** |  | [optional] [default to undefined]
 **puuid** | **string** |  | [optional] [default to undefined]

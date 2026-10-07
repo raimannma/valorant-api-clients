@@ -62,14 +62,22 @@ class TestMatchesV4Data(unittest.TestCase):
                                 location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                                     x = 56, 
                                     y = 56, ), 
-                                player = , 
+                                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                                    name = '', 
+                                    puuid = '', 
+                                    tag = '', 
+                                    team = '', ), 
                                 view_radians = 1.337, )
                             ], 
                         round = 0, 
                         secondary_fire_mode = True, 
                         time_in_match_in_ms = 0, 
                         time_in_round_in_ms = 0, 
-                        victim = , 
+                        victim = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                            name = '', 
+                            puuid = '', 
+                            tag = '', 
+                            team = '', ), 
                         weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
                             id = '', 
                             name = '', 
@@ -84,6 +92,7 @@ class TestMatchesV4Data(unittest.TestCase):
                         id = '', 
                         name = '', ), 
                     match_id = '', 
+                    mvp = null, 
                     party_rr_penaltys = [
                         henrikdev_api_client.models.matches_v4_data_metadata_party_rr_penalty.MatchesV4DataMetadataPartyRRPenalty(
                             party_id = '', 
@@ -99,7 +108,7 @@ class TestMatchesV4Data(unittest.TestCase):
                     season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                         id = '', 
                         short = '', ), 
-                    started_at = '', ),
+                    started_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 observers = [
                     henrikdev_api_client.models.matches_v4_data_observer.MatchesV4DataObserver(
                         account_level = 0, 
@@ -129,18 +138,30 @@ class TestMatchesV4Data(unittest.TestCase):
                                 outgoing = 1.337, ), 
                             rounds_in_spawn = 1.337, ), 
                         customization = henrikdev_api_client.models.matches_v4_data_player_customization.MatchesV4DataPlayerCustomization(
+                            bloomline = null, 
                             card = '', 
                             preferred_level_border = '', 
                             title = '', ), 
+                        drafted_ability_casts = [
+                            henrikdev_api_client.models.matches_v4_data_player_drafted_ability_cast.MatchesV4DataPlayerDraftedAbilityCast(
+                                ability = henrikdev_api_client.models.matches_v4_data_player_drafted_ability.MatchesV4DataPlayerDraftedAbility(
+                                    id = '', 
+                                    name = '', ), 
+                                branch = '', 
+                                casts = 0, 
+                                level = 0, 
+                                slot = '', )
+                            ], 
                         economy = henrikdev_api_client.models.matches_v4_data_player_economy.MatchesV4DataPlayerEconomy(
-                            loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                            loadout_value = henrikdev_api_client.models.matches_v4_data_player_economy_loadout_value.MatchesV4DataPlayerEconomyLoadoutValue(
                                 average = 1.337, 
                                 overall = 56, ), 
-                            spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                            spent = henrikdev_api_client.models.matches_v4_data_player_economy_spent.MatchesV4DataPlayerEconomySpent(
                                 average = 1.337, 
                                 overall = 56, ), ), 
                         name = '', 
                         party_id = '', 
+                        performance = null, 
                         platform = '', 
                         puuid = '', 
                         session_playtime_in_ms = 0, 
@@ -157,6 +178,7 @@ class TestMatchesV4Data(unittest.TestCase):
                             score = 56, ), 
                         tag = '', 
                         team_id = '', 
+                        team_number = 0, 
                         tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), )
@@ -164,7 +186,10 @@ class TestMatchesV4Data(unittest.TestCase):
                 rounds = [
                     henrikdev_api_client.models.matches_v4_data_round.MatchesV4DataRound(
                         ceremony = '', 
+                        ceremony_player = null, 
+                        ceremony_team = '', 
                         defuse = null, 
+                        first_blood = null, 
                         id = 0, 
                         plant = null, 
                         result = '', 
@@ -207,15 +232,20 @@ class TestMatchesV4Data(unittest.TestCase):
                                 stayed_in_spawn = True, 
                                 was_afk = True, )
                             ], 
-                        winning_team = '', )
+                        winning_team = '', 
+                        winning_team_role = '', )
                     ],
                 teams = [
                     henrikdev_api_client.models.matches_v4_data_team.MatchesV4DataTeam(
+                        health = null, 
+                        mvp = null, 
+                        placement = 0, 
                         premier_roster = null, 
                         rounds = henrikdev_api_client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
                             lost = 0, 
                             won = 0, ), 
                         team_id = '', 
+                        team_number = 0, 
                         won = True, )
                     ]
             )
@@ -248,14 +278,22 @@ class TestMatchesV4Data(unittest.TestCase):
                                 location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                                     x = 56, 
                                     y = 56, ), 
-                                player = , 
+                                player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                                    name = '', 
+                                    puuid = '', 
+                                    tag = '', 
+                                    team = '', ), 
                                 view_radians = 1.337, )
                             ], 
                         round = 0, 
                         secondary_fire_mode = True, 
                         time_in_match_in_ms = 0, 
                         time_in_round_in_ms = 0, 
-                        victim = , 
+                        victim = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                            name = '', 
+                            puuid = '', 
+                            tag = '', 
+                            team = '', ), 
                         weapon = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_weapon.MatchesV4DataRoundPlayerStatsEconomyWeapon(
                             id = '', 
                             name = '', 
@@ -270,6 +308,7 @@ class TestMatchesV4Data(unittest.TestCase):
                         id = '', 
                         name = '', ), 
                     match_id = '', 
+                    mvp = null, 
                     party_rr_penaltys = [
                         henrikdev_api_client.models.matches_v4_data_metadata_party_rr_penalty.MatchesV4DataMetadataPartyRRPenalty(
                             party_id = '', 
@@ -285,7 +324,7 @@ class TestMatchesV4Data(unittest.TestCase):
                     season = henrikdev_api_client.models.season_id_short_combo.SeasonIdShortCombo(
                         id = '', 
                         short = '', ), 
-                    started_at = '', ),
+                    started_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 observers = [
                     henrikdev_api_client.models.matches_v4_data_observer.MatchesV4DataObserver(
                         account_level = 0, 
@@ -315,18 +354,30 @@ class TestMatchesV4Data(unittest.TestCase):
                                 outgoing = 1.337, ), 
                             rounds_in_spawn = 1.337, ), 
                         customization = henrikdev_api_client.models.matches_v4_data_player_customization.MatchesV4DataPlayerCustomization(
+                            bloomline = null, 
                             card = '', 
                             preferred_level_border = '', 
                             title = '', ), 
+                        drafted_ability_casts = [
+                            henrikdev_api_client.models.matches_v4_data_player_drafted_ability_cast.MatchesV4DataPlayerDraftedAbilityCast(
+                                ability = henrikdev_api_client.models.matches_v4_data_player_drafted_ability.MatchesV4DataPlayerDraftedAbility(
+                                    id = '', 
+                                    name = '', ), 
+                                branch = '', 
+                                casts = 0, 
+                                level = 0, 
+                                slot = '', )
+                            ], 
                         economy = henrikdev_api_client.models.matches_v4_data_player_economy.MatchesV4DataPlayerEconomy(
-                            loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                            loadout_value = henrikdev_api_client.models.matches_v4_data_player_economy_loadout_value.MatchesV4DataPlayerEconomyLoadoutValue(
                                 average = 1.337, 
                                 overall = 56, ), 
-                            spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                            spent = henrikdev_api_client.models.matches_v4_data_player_economy_spent.MatchesV4DataPlayerEconomySpent(
                                 average = 1.337, 
                                 overall = 56, ), ), 
                         name = '', 
                         party_id = '', 
+                        performance = null, 
                         platform = '', 
                         puuid = '', 
                         session_playtime_in_ms = 0, 
@@ -343,6 +394,7 @@ class TestMatchesV4Data(unittest.TestCase):
                             score = 56, ), 
                         tag = '', 
                         team_id = '', 
+                        team_number = 0, 
                         tier = henrikdev_api_client.models.leaderboard_v3_data_threshold_tier.LeaderboardV3DataThresholdTier(
                             id = 56, 
                             name = '', ), )
@@ -350,7 +402,10 @@ class TestMatchesV4Data(unittest.TestCase):
                 rounds = [
                     henrikdev_api_client.models.matches_v4_data_round.MatchesV4DataRound(
                         ceremony = '', 
+                        ceremony_player = null, 
+                        ceremony_team = '', 
                         defuse = null, 
+                        first_blood = null, 
                         id = 0, 
                         plant = null, 
                         result = '', 
@@ -393,15 +448,20 @@ class TestMatchesV4Data(unittest.TestCase):
                                 stayed_in_spawn = True, 
                                 was_afk = True, )
                             ], 
-                        winning_team = '', )
+                        winning_team = '', 
+                        winning_team_role = '', )
                     ],
                 teams = [
                     henrikdev_api_client.models.matches_v4_data_team.MatchesV4DataTeam(
+                        health = null, 
+                        mvp = null, 
+                        placement = 0, 
                         premier_roster = null, 
                         rounds = henrikdev_api_client.models.matches_v4_data_team_rounds.MatchesV4DataTeamRounds(
                             lost = 0, 
                             won = 0, ), 
                         team_id = '', 
+                        team_number = 0, 
                         won = True, )
                     ],
         )

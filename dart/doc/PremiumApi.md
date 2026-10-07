@@ -82,7 +82,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = PremiumApi();
-final id = id_example; // String | Tracked user id
+final id = id_example; // String | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 
 try {
     final result = api_instance.deleteWebhookUser(id);
@@ -96,7 +96,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| Tracked user id | 
+ **id** | **String**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | 
 
 ### Return type
 
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getWebhookSettings**
-> getWebhookSettings()
+> PremiumWebhookGetResponse getWebhookSettings()
 
 Get premium webhook settings
 
@@ -133,7 +133,8 @@ import 'package:henrikdev_api_client/api.dart';
 final api_instance = PremiumApi();
 
 try {
-    api_instance.getWebhookSettings();
+    final result = api_instance.getWebhookSettings();
+    print(result);
 } catch (e) {
     print('Exception when calling PremiumApi->getWebhookSettings: $e\n');
 }
@@ -144,7 +145,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**PremiumWebhookGetResponse**](PremiumWebhookGetResponse.md)
 
 ### Authorization
 
@@ -158,7 +159,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateWebhookUser**
-> updateWebhookUser(id, premiumWebhookUserUpdateRequest)
+> PremiumWebhookUpdateResponse updateWebhookUser(id, premiumWebhookUserUpdateRequest)
 
 Update premium webhook user
 
@@ -175,11 +176,12 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = PremiumApi();
-final id = id_example; // String | Tracked user id
+final id = id_example; // String | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 final premiumWebhookUserUpdateRequest = PremiumWebhookUserUpdateRequest(); // PremiumWebhookUserUpdateRequest | 
 
 try {
-    api_instance.updateWebhookUser(id, premiumWebhookUserUpdateRequest);
+    final result = api_instance.updateWebhookUser(id, premiumWebhookUserUpdateRequest);
+    print(result);
 } catch (e) {
     print('Exception when calling PremiumApi->updateWebhookUser: $e\n');
 }
@@ -189,12 +191,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| Tracked user id | 
+ **id** | **String**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | 
  **premiumWebhookUserUpdateRequest** | [**PremiumWebhookUserUpdateRequest**](PremiumWebhookUserUpdateRequest.md)|  | 
 
 ### Return type
 
-void (empty response body)
+[**PremiumWebhookUpdateResponse**](PremiumWebhookUpdateResponse.md)
 
 ### Authorization
 

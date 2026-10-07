@@ -40,7 +40,7 @@ class TestPremiumWebhookUserResponse(unittest.TestCase):
                 events = [
                     'MATCH'
                     ],
-                id = '',
+                id = '62ECB020842930cc01FFCCfe',
                 last_checked_at = 56,
                 last_match = '',
                 last_mmr = 56,
@@ -55,7 +55,10 @@ class TestPremiumWebhookUserResponse(unittest.TestCase):
                 events = [
                     'MATCH'
                     ],
-                id = '',
+                id = '62ECB020842930cc01FFCCfe',
+                last_checked_at = 56,
+                last_match = '',
+                last_mmr = 56,
                 puuid = '',
                 region = '',
                 updated_at = 56,

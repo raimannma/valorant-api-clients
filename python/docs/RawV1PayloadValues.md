@@ -1,5 +1,6 @@
 # RawV1PayloadValues
 
+A UUID string or a nonempty UUID array. Matchdetails fetches every array entry; all other resource types use only the first entry.
 
 ## Properties
 

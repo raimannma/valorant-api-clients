@@ -11,22 +11,24 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// RawV1Payload : Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RawV1Payload {
     #[serde(rename = "platform", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub platform: Option<Option<String>>,
+    pub platform: Option<Option<models::ValorantPlatform>>,
     #[serde(rename = "queries", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub queries: Option<Option<String>>,
     #[serde(rename = "region")]
-    pub region: String,
+    pub region: models::ValorantAffinity,
     #[serde(rename = "type")]
-    pub r#type: String,
+    pub r#type: models::RawV1ResourceType,
     #[serde(rename = "value")]
     pub value: Box<models::RawV1PayloadValues>,
 }
 
 impl RawV1Payload {
-    pub fn new(region: String, r#type: String, value: models::RawV1PayloadValues) -> RawV1Payload {
+    /// Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
+    pub fn new(region: models::ValorantAffinity, r#type: models::RawV1ResourceType, value: models::RawV1PayloadValues) -> RawV1Payload {
         RawV1Payload {
             platform: None,
             queries: None,

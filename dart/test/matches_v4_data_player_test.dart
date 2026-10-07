@@ -41,6 +41,11 @@ void main() {
       // TODO
     });
 
+    // List<MatchesV4DataPlayerDraftedAbilityCast> draftedAbilityCasts (default value: const [])
+    test('to test the property `draftedAbilityCasts`', () async {
+      // TODO
+    });
+
     // MatchesV4DataPlayerEconomy economy
     test('to test the property `economy`', () async {
       // TODO
@@ -53,6 +58,11 @@ void main() {
 
     // String partyId
     test('to test the property `partyId`', () async {
+      // TODO
+    });
+
+    // MatchesV4DataPlayerPerformance performance
+    test('to test the property `performance`', () async {
       // TODO
     });
 
@@ -83,6 +93,11 @@ void main() {
 
     // String teamId
     test('to test the property `teamId`', () async {
+      // TODO
+    });
+
+    // int teamNumber
+    test('to test the property `teamNumber`', () async {
       // TODO
     });
 

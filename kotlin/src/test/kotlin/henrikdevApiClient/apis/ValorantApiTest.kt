@@ -30,6 +30,8 @@ import henrikdevApiClient.apis.ValorantApi
 import henrikdevApiClient.models.AccoladesV1Response
 import henrikdevApiClient.models.AccountV1Response
 import henrikdevApiClient.models.AccountV2Response
+import henrikdevApiClient.models.AgentMasteryV1DetailResponse
+import henrikdevApiClient.models.AgentMasteryV1Response
 import henrikdevApiClient.models.ContentV1Response
 import henrikdevApiClient.models.EsportsV1Response
 import henrikdevApiClient.models.EsportsV2EventResponse
@@ -43,14 +45,13 @@ import henrikdevApiClient.models.EsportsV2Region
 import henrikdevApiClient.models.EsportsV2TeamMatchListResponse
 import henrikdevApiClient.models.EsportsV2TeamResponse
 import henrikdevApiClient.models.EsportsV2TeamTransactionsResponse
-import henrikdevApiClient.models.LeaderboardV2Response
+import henrikdevApiClient.models.LeaderboardV1Response
 import henrikdevApiClient.models.LeaderboardV3Response
 import henrikdevApiClient.models.MMRHistoryV1Response
 import henrikdevApiClient.models.MMRHistoryV2Response
 import henrikdevApiClient.models.MMRV1Response
 import henrikdevApiClient.models.MMRV2Response
 import henrikdevApiClient.models.MMRV3Response
-import henrikdevApiClient.models.MatchMode
 import henrikdevApiClient.models.MatchesV2Response
 import henrikdevApiClient.models.MatchesV3ListResponse
 import henrikdevApiClient.models.MatchesV4HistoryResponse
@@ -58,16 +59,23 @@ import henrikdevApiClient.models.MatchesV4Response
 import henrikdevApiClient.models.PremierSearchResponse
 import henrikdevApiClient.models.PremierTeamHistoryV1Response
 import henrikdevApiClient.models.PremierTeamV1Response
+import henrikdevApiClient.models.PremierTeamV2Response
 import henrikdevApiClient.models.QueueStatusV1
 import henrikdevApiClient.models.RawV1Payload
 import henrikdevApiClient.models.RawV1Response
 import henrikdevApiClient.models.SendError
 import henrikdevApiClient.models.StatusV1
-import henrikdevApiClient.models.StoreFeaturedV1
-import henrikdevApiClient.models.StoreOffersV1Response
 import henrikdevApiClient.models.StoredMMRResponse
 import henrikdevApiClient.models.StoredMMRV2Response
 import henrikdevApiClient.models.StoredMatchesResponse
+import henrikdevApiClient.models.ValorantAffinity
+import henrikdevApiClient.models.ValorantContentLocale
+import henrikdevApiClient.models.ValorantLeaderboardV2Response
+import henrikdevApiClient.models.ValorantPlatform
+import henrikdevApiClient.models.ValorantStoreFeaturedResponse
+import henrikdevApiClient.models.ValorantStoreVersion
+import henrikdevApiClient.models.ValorantWebsiteCategory
+import henrikdevApiClient.models.ValorantWebsiteLocale
 import henrikdevApiClient.models.VersionV1Response
 import henrikdevApiClient.models.WebsiteByIdV1Response
 import henrikdevApiClient.models.WebsiteV1Response
@@ -80,7 +88,7 @@ class ValorantApiTest : ShouldSpec() {
         // to test crosshair
         should("test crosshair") {
             // uncomment below to test crosshair
-            //val id : kotlin.String = id_example // kotlin.String | Crosshair code
+            //val id : kotlin.String = id_example // kotlin.String | Required crosshair code
             //apiInstance.crosshair(id)
         }
 
@@ -165,9 +173,9 @@ class ValorantApiTest : ShouldSpec() {
         // to test getAccoladesById
         should("test getAccoladesById") {
             // uncomment below to test getAccoladesById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
-            //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+            //val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
             //val result : AccoladesV1Response = apiInstance.getAccoladesById(affinity, platform, puuid)
             //result shouldBe ("TODO")
         }
@@ -175,8 +183,8 @@ class ValorantApiTest : ShouldSpec() {
         // to test getAccoladesByName
         should("test getAccoladesByName") {
             // uncomment below to test getAccoladesByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
             //val result : AccoladesV1Response = apiInstance.getAccoladesByName(affinity, platform, name, tag)
@@ -224,69 +232,117 @@ class ValorantApiTest : ShouldSpec() {
         // to test getContentV1
         should("test getContentV1") {
             // uncomment below to test getContentV1
-            //val locale : kotlin.String = locale_example // kotlin.String | Locale code (e.g., en-US, de-DE) - optional
+            //val locale : ValorantContentLocale =  // ValorantContentLocale | Content locale; case-insensitive. Omission selects en-US.
             //val result : ContentV1Response = apiInstance.getContentV1(locale)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getMasteryAgentById
+        should("test getMasteryAgentById") {
+            // uncomment below to test getMasteryAgentById
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+            //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+            //val agentId : kotlin.String = agentId_example // kotlin.String | Agent UUID
+            //val result : AgentMasteryV1DetailResponse = apiInstance.getMasteryAgentById(affinity, platform, puuid, agentId)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getMasteryAgentByName
+        should("test getMasteryAgentByName") {
+            // uncomment below to test getMasteryAgentByName
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+            //val name : kotlin.String = name_example // kotlin.String | Riot ID name
+            //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
+            //val agentId : kotlin.String = agentId_example // kotlin.String | Agent UUID
+            //val result : AgentMasteryV1DetailResponse = apiInstance.getMasteryAgentByName(affinity, platform, name, tag, agentId)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getMasteryById
+        should("test getMasteryById") {
+            // uncomment below to test getMasteryById
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+            //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
+            //val result : AgentMasteryV1Response = apiInstance.getMasteryById(affinity, platform, puuid)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getMasteryByName
+        should("test getMasteryByName") {
+            // uncomment below to test getMasteryByName
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+            //val name : kotlin.String = name_example // kotlin.String | Riot ID name
+            //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
+            //val result : AgentMasteryV1Response = apiInstance.getMasteryByName(affinity, platform, name, tag)
             //result shouldBe ("TODO")
         }
 
         // to test getMatchesV3ById
         should("test getMatchesV3ById") {
             // uncomment below to test getMatchesV3ById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-            //val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-            //val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : MatchesV3ListResponse = apiInstance.getMatchesV3ById(affinity, puuid, mode, map, size)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+            //val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+            //val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+            //val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
+            //val result : MatchesV3ListResponse = apiInstance.getMatchesV3ById(affinity, puuid, mode, queue, map, size)
             //result shouldBe ("TODO")
         }
 
         // to test getMatchesV3ByName
         should("test getMatchesV3ByName") {
             // uncomment below to test getMatchesV3ByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-            //val mode : MatchMode =  // MatchMode | Game mode filter (optional)
-            //val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : MatchesV3ListResponse = apiInstance.getMatchesV3ByName(affinity, name, tag, mode, map, size)
+            //val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+            //val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+            //val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
+            //val result : MatchesV3ListResponse = apiInstance.getMatchesV3ByName(affinity, name, tag, mode, queue, map, size)
             //result shouldBe ("TODO")
         }
 
         // to test getMatchesV4ById
         should("test getMatchesV4ById") {
             // uncomment below to test getMatchesV4ById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
-            //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-            //val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-            //val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val start : kotlin.Int = 56 // kotlin.Int | Start index for pagination (optional)
-            //val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ById(affinity, platform, puuid, mode, map, size, start)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+            //val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+            //val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+            //val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+            //val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
+            //val start : kotlin.Int = 56 // kotlin.Int | Zero-based offset; start plus capped size must fit a signed 32-bit integer.
+            //val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ById(affinity, platform, puuid, mode, queue, map, size, start)
             //result shouldBe ("TODO")
         }
 
         // to test getMatchesV4ByName
         should("test getMatchesV4ByName") {
             // uncomment below to test getMatchesV4ByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-            //val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-            //val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val start : kotlin.Int = 56 // kotlin.Int | Start index for pagination (optional)
-            //val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ByName(affinity, platform, name, tag, mode, map, size, start)
+            //val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+            //val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+            //val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; values above 10 are capped at 10.
+            //val start : kotlin.Int = 56 // kotlin.Int | Zero-based offset; start plus capped size must fit a signed 32-bit integer.
+            //val result : MatchesV4HistoryResponse = apiInstance.getMatchesV4ByName(affinity, platform, name, tag, mode, queue, map, size, start)
             //result shouldBe ("TODO")
         }
 
         // to test getMmrHistoryById
         should("test getMmrHistoryById") {
             // uncomment below to test getMmrHistoryById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
             //val result : MMRHistoryV1Response = apiInstance.getMmrHistoryById(affinity, puuid)
             //result shouldBe ("TODO")
@@ -295,7 +351,7 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrHistoryByName
         should("test getMmrHistoryByName") {
             // uncomment below to test getMmrHistoryByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
             //val result : MMRHistoryV1Response = apiInstance.getMmrHistoryByName(affinity, name, tag)
@@ -305,8 +361,8 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrHistoryV2ById
         should("test getMmrHistoryV2ById") {
             // uncomment below to test getMmrHistoryV2ById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
             //val result : MMRHistoryV2Response = apiInstance.getMmrHistoryV2ById(affinity, platform, puuid)
             //result shouldBe ("TODO")
@@ -315,8 +371,8 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrHistoryV2ByName
         should("test getMmrHistoryV2ByName") {
             // uncomment below to test getMmrHistoryV2ByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
             //val result : MMRHistoryV2Response = apiInstance.getMmrHistoryV2ByName(affinity, platform, name, tag)
@@ -326,7 +382,7 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrV1ById
         should("test getMmrV1ById") {
             // uncomment below to test getMmrV1ById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
             //val result : MMRV1Response = apiInstance.getMmrV1ById(affinity, puuid)
             //result shouldBe ("TODO")
@@ -335,7 +391,7 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrV1ByName
         should("test getMmrV1ByName") {
             // uncomment below to test getMmrV1ByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
             //val result : MMRV1Response = apiInstance.getMmrV1ByName(affinity, name, tag)
@@ -345,7 +401,7 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrV2ById
         should("test getMmrV2ById") {
             // uncomment below to test getMmrV2ById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
             //val result : MMRV2Response = apiInstance.getMmrV2ById(affinity, puuid)
             //result shouldBe ("TODO")
@@ -354,7 +410,7 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrV2ByName
         should("test getMmrV2ByName") {
             // uncomment below to test getMmrV2ByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
             //val result : MMRV2Response = apiInstance.getMmrV2ByName(affinity, name, tag)
@@ -364,8 +420,8 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrV3ById
         should("test getMmrV3ById") {
             // uncomment below to test getMmrV3ById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
             //val result : MMRV3Response = apiInstance.getMmrV3ById(affinity, platform, puuid)
             //result shouldBe ("TODO")
@@ -374,8 +430,8 @@ class ValorantApiTest : ShouldSpec() {
         // to test getMmrV3ByName
         should("test getMmrV3ByName") {
             // uncomment below to test getMmrV3ByName
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
             //val result : MMRV3Response = apiInstance.getMmrV3ByName(affinity, platform, name, tag)
@@ -385,44 +441,47 @@ class ValorantApiTest : ShouldSpec() {
         // to test leaderboardV1
         should("test leaderboardV1") {
             // uncomment below to test leaderboardV1
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val season : kotlin.String = season_example // kotlin.String | Season ID (optional)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val season : kotlin.String = season_example // kotlin.String | Short season ID, such as e9a1; omission selects the current season
             //val name : kotlin.String = name_example // kotlin.String | Player name to search for (optional)
             //val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for (optional)
-            //val result : kotlin.Any = apiInstance.leaderboardV1(affinity, season, name, tag)
+            //val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID to search for
+            //val result : LeaderboardV1Response = apiInstance.leaderboardV1(affinity, season, name, tag, puuid)
             //result shouldBe ("TODO")
         }
 
         // to test leaderboardV2
         should("test leaderboardV2") {
             // uncomment below to test leaderboardV2
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val season : kotlin.String = season_example // kotlin.String | Season ID (optional)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val season : kotlin.String = season_example // kotlin.String | Short season ID, such as e9a1; omission selects the current season
             //val name : kotlin.String = name_example // kotlin.String | Player name to search for (optional)
             //val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for (optional)
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID to search for (optional)
-            //val result : LeaderboardV2Response = apiInstance.leaderboardV2(affinity, season, name, tag, puuid)
+            //val result : ValorantLeaderboardV2Response = apiInstance.leaderboardV2(affinity, season, name, tag, puuid)
             //result shouldBe ("TODO")
         }
 
         // to test leaderboardV3
         should("test leaderboardV3") {
             // uncomment below to test leaderboardV3
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
-            //val season : kotlin.String = season_example // kotlin.String | Season ID (optional)
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results per page (optional)
-            //val page : kotlin.Int = 56 // kotlin.Int | Page number (optional)
-            //val name : kotlin.String = name_example // kotlin.String | Player name to search for (optional)
-            //val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for (optional)
-            //val result : LeaderboardV3Response = apiInstance.leaderboardV3(affinity, platform, season, size, page, name, tag)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
+            //val page : kotlin.Int = 56 // kotlin.Int | Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count; only ASCII decimal digits are accepted.
+            //val seasonShort : kotlin.String = seasonShort_example // kotlin.String | Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+            //val seasonId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Season UUID; mutually exclusive with season_short.
+            //val name : kotlin.String = name_example // kotlin.String | Player name to search for.
+            //val tag : kotlin.String = tag_example // kotlin.String | Player tag to search for.
+            //val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID to search for.
+            //val result : LeaderboardV3Response = apiInstance.leaderboardV3(affinity, platform, page, size, seasonShort, seasonId, name, tag, puuid)
             //result shouldBe ("TODO")
         }
 
         // to test matchV2
         should("test matchV2") {
             // uncomment below to test matchV2
-            //val matchId : kotlin.String = matchId_example // kotlin.String | Match UUID
+            //val matchId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Match UUID
             //val result : MatchesV2Response = apiInstance.matchV2(matchId)
             //result shouldBe ("TODO")
         }
@@ -430,8 +489,8 @@ class ValorantApiTest : ShouldSpec() {
         // to test matchV4
         should("test matchV4") {
             // uncomment below to test matchV4
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val matchId : kotlin.String = matchId_example // kotlin.String | Match UUID
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val matchId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Match UUID
             //val result : MatchesV4Response = apiInstance.matchV4(affinity, matchId)
             //result shouldBe ("TODO")
         }
@@ -439,9 +498,9 @@ class ValorantApiTest : ShouldSpec() {
         // to test premierById
         should("test premierById") {
             // uncomment below to test premierById
-            //val id : kotlin.String = id_example // kotlin.String | Team UUID
+            //val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID
             //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity for fallback resolution (optional)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
             //val result : PremierTeamV1Response = apiInstance.premierById(id, season, affinity)
             //result shouldBe ("TODO")
         }
@@ -449,9 +508,18 @@ class ValorantApiTest : ShouldSpec() {
         // to test premierByIdHistory
         should("test premierByIdHistory") {
             // uncomment below to test premierByIdHistory
-            //val id : kotlin.String = id_example // kotlin.String | Team UUID
+            //val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID
             //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
-            //val result : PremierTeamV1Response = apiInstance.premierByIdHistory(id, season)
+            //val result : PremierTeamHistoryV1Response = apiInstance.premierByIdHistory(id, season)
+            //result shouldBe ("TODO")
+        }
+
+        // to test premierByIdV2
+        should("test premierByIdV2") {
+            // uncomment below to test premierByIdV2
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID
+            //val result : PremierTeamV2Response = apiInstance.premierByIdV2(affinity, id)
             //result shouldBe ("TODO")
         }
 
@@ -461,7 +529,7 @@ class ValorantApiTest : ShouldSpec() {
             //val name : kotlin.String = name_example // kotlin.String | Team name
             //val tag : kotlin.String = tag_example // kotlin.String | Team tag
             //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity for fallback resolution (optional)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
             //val result : PremierTeamV1Response = apiInstance.premierByName(name, tag, season, affinity)
             //result shouldBe ("TODO")
         }
@@ -476,14 +544,41 @@ class ValorantApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
+        // to test premierByNameV2
+        should("test premierByNameV2") {
+            // uncomment below to test premierByNameV2
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val name : kotlin.String = name_example // kotlin.String | Premier team name
+            //val tag : kotlin.String = tag_example // kotlin.String | Premier team tag
+            //val result : PremierTeamV2Response = apiInstance.premierByNameV2(affinity, name, tag)
+            //result shouldBe ("TODO")
+        }
+
+        // to test premierByPlayerName
+        should("test premierByPlayerName") {
+            // uncomment below to test premierByPlayerName
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val name : kotlin.String = name_example // kotlin.String | Player Riot ID name
+            //val tag : kotlin.String = tag_example // kotlin.String | Player Riot ID tag
+            //val result : PremierTeamV2Response = apiInstance.premierByPlayerName(affinity, name, tag)
+            //result shouldBe ("TODO")
+        }
+
+        // to test premierByPuuid
+        should("test premierByPuuid") {
+            // uncomment below to test premierByPuuid
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+            //val result : PremierTeamV2Response = apiInstance.premierByPuuid(affinity, puuid)
+            //result shouldBe ("TODO")
+        }
+
         // to test premierLeaderboard
         should("test premierLeaderboard") {
             // uncomment below to test premierLeaderboard
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val conference : kotlin.String = conference_example // kotlin.String | Conference filter (optional)
-            //val division : kotlin.String = division_example // kotlin.String | Division filter (optional)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
             //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
-            //val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, conference, division, season)
+            //val result : PremierSearchResponse = apiInstance.premierLeaderboard(affinity, season)
             //result shouldBe ("TODO")
         }
 
@@ -492,16 +587,18 @@ class ValorantApiTest : ShouldSpec() {
             // uncomment below to test premierSearch
             //val name : kotlin.String = name_example // kotlin.String | Team name to search for (optional)
             //val tag : kotlin.String = tag_example // kotlin.String | Team tag to search for (optional)
-            //val id : kotlin.String = id_example // kotlin.String | Team UUID to search for (optional)
+            //val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Team UUID to search for; cannot be combined with name or tag
             //val season : kotlin.String = season_example // kotlin.String | Premier season id (optional)
-            //val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id, season)
+            //val conference : kotlin.String = conference_example // kotlin.String | Current upstream Premier conference key; case-insensitive; not a fixed enum
+            //val division : kotlin.Int = 56 // kotlin.Int | Division filter; integer from 1 through 21
+            //val result : PremierSearchResponse = apiInstance.premierSearch(name, tag, id, season, conference, division)
             //result shouldBe ("TODO")
         }
 
         // to test queueStatus
         should("test queueStatus") {
             // uncomment below to test queueStatus
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val result : QueueStatusV1 = apiInstance.queueStatus(affinity)
             //result shouldBe ("TODO")
         }
@@ -517,7 +614,7 @@ class ValorantApiTest : ShouldSpec() {
         // to test status
         should("test status") {
             // uncomment below to test status
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val result : StatusV1 = apiInstance.status(affinity)
             //result shouldBe ("TODO")
         }
@@ -525,92 +622,99 @@ class ValorantApiTest : ShouldSpec() {
         // to test storeFeatured
         should("test storeFeatured") {
             // uncomment below to test storeFeatured
-            //val version : kotlin.String = version_example // kotlin.String | API version (v1, v2)
-            //val result : StoreFeaturedV1 = apiInstance.storeFeatured(version)
+            //val version : ValorantStoreVersion =  // ValorantStoreVersion | Response version; v1 returns an object envelope and v2 returns an array envelope
+            //val result : ValorantStoreFeaturedResponse = apiInstance.storeFeatured(version)
             //result shouldBe ("TODO")
         }
 
         // to test storeOffers
         should("test storeOffers") {
             // uncomment below to test storeOffers
-            //val version : kotlin.String = version_example // kotlin.String | API version (v1, v2)
-            //val result : StoreOffersV1Response = apiInstance.storeOffers(version)
-            //result shouldBe ("TODO")
+            //val version : ValorantStoreVersion =  // ValorantStoreVersion | Legacy API version
+            //apiInstance.storeOffers(version)
         }
 
         // to test storedMatches
         should("test storedMatches") {
             // uncomment below to test storedMatches
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-            //val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-            //val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : StoredMatchesResponse = apiInstance.storedMatches(affinity, name, tag, mode, map, size)
+            //val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+            //val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+            //val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+            //val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
+            //val result : StoredMatchesResponse = apiInstance.storedMatches(affinity, name, tag, mode, queue, map, size, page)
             //result shouldBe ("TODO")
         }
 
         // to test storedMatchesById
         should("test storedMatchesById") {
             // uncomment below to test storedMatchesById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-            //val mode : kotlin.String = mode_example // kotlin.String | Game mode filter (optional)
-            //val map : kotlin.String = map_example // kotlin.String | Map filter (optional)
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : StoredMatchesResponse = apiInstance.storedMatchesById(affinity, puuid, mode, map, size)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val puuid : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | Player UUID
+            //val mode : kotlin.String = mode_example // kotlin.String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+            //val queue : kotlin.String = queue_example // kotlin.String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+            //val map : kotlin.String = map_example // kotlin.String | Map display name, matched case-insensitively.
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+            //val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
+            //val result : StoredMatchesResponse = apiInstance.storedMatchesById(affinity, puuid, mode, queue, map, size, page)
             //result shouldBe ("TODO")
         }
 
         // to test storedMmrHistory
         should("test storedMmrHistory") {
             // uncomment below to test storedMmrHistory
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : StoredMMRResponse = apiInstance.storedMmrHistory(affinity, name, tag, size)
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+            //val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
+            //val result : StoredMMRResponse = apiInstance.storedMmrHistory(affinity, name, tag, size, page)
             //result shouldBe ("TODO")
         }
 
         // to test storedMmrHistoryById
         should("test storedMmrHistoryById") {
             // uncomment below to test storedMmrHistoryById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : StoredMMRResponse = apiInstance.storedMmrHistoryById(affinity, puuid, size)
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+            //val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
+            //val result : StoredMMRResponse = apiInstance.storedMmrHistoryById(affinity, puuid, size, page)
             //result shouldBe ("TODO")
         }
 
         // to test storedMmrHistoryV2
         should("test storedMmrHistoryV2") {
             // uncomment below to test storedMmrHistoryV2
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val name : kotlin.String = name_example // kotlin.String | Riot ID name
             //val tag : kotlin.String = tag_example // kotlin.String | Riot ID tag
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2(affinity, platform, name, tag, size)
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+            //val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
+            //val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2(affinity, platform, name, tag, size, page)
             //result shouldBe ("TODO")
         }
 
         // to test storedMmrHistoryV2ById
         should("test storedMmrHistoryV2ById") {
             // uncomment below to test storedMmrHistoryV2ById
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
-            //val platform : kotlin.String = platform_example // kotlin.String | Platform (pc, console)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
+            //val platform : ValorantPlatform =  // ValorantPlatform | Platform; case-insensitive
             //val puuid : kotlin.String = puuid_example // kotlin.String | Player UUID
-            //val size : kotlin.Int = 56 // kotlin.Int | Number of results (optional)
-            //val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2ById(affinity, platform, puuid, size)
+            //val size : kotlin.Int = 56 // kotlin.Int | Positive integer result count. Omit for unlimited results.
+            //val page : kotlin.Int = 56 // kotlin.Int | One-based page. Supplying page requires size.
+            //val result : StoredMMRV2Response = apiInstance.storedMmrHistoryV2ById(affinity, platform, puuid, size, page)
             //result shouldBe ("TODO")
         }
 
         // to test version
         should("test version") {
             // uncomment below to test version
-            //val affinity : kotlin.String = affinity_example // kotlin.String | Region/affinity (e.g., na, eu, ap, kr)
+            //val affinity : ValorantAffinity =  // ValorantAffinity | Region/affinity; case-insensitive
             //val result : VersionV1Response = apiInstance.version(affinity)
             //result shouldBe ("TODO")
         }
@@ -618,8 +722,8 @@ class ValorantApiTest : ShouldSpec() {
         // to test website
         should("test website") {
             // uncomment below to test website
-            //val countryCode : kotlin.String = countryCode_example // kotlin.String | Country code (e.g., en-us, de-de)
-            //val category : kotlin.String = category_example // kotlin.String | Category filter (optional)
+            //val countryCode : ValorantWebsiteLocale =  // ValorantWebsiteLocale | Website locale; case-insensitive
+            //val category : ValorantWebsiteCategory =  // ValorantWebsiteCategory | Category filter; case-sensitive
             //val result : WebsiteV1Response = apiInstance.website(countryCode, category)
             //result shouldBe ("TODO")
         }
@@ -628,7 +732,7 @@ class ValorantApiTest : ShouldSpec() {
         should("test websiteById") {
             // uncomment below to test websiteById
             //val dbId : kotlin.String = dbId_example // kotlin.String | Database ID of the website entry
-            //val countryCode : kotlin.String = countryCode_example // kotlin.String | Country code (e.g., en-us, de-de)
+            //val countryCode : kotlin.String = countryCode_example // kotlin.String | Ignored locale segment; any string is accepted
             //val result : WebsiteByIdV1Response = apiInstance.websiteById(dbId, countryCode)
             //result shouldBe ("TODO")
         }

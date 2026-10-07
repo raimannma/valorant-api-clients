@@ -6,12 +6,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ceremony** | **str** |  | 
+**ceremony_player** | [**MatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] 
+**ceremony_team** | **str** |  | [optional] 
 **defuse** | [**MatchesV4DataRoundDefuse**](MatchesV4DataRoundDefuse.md) |  | [optional] 
+**first_blood** | [**MatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] 
 **id** | **int** |  | 
 **plant** | [**MatchesV4DataRoundPlant**](MatchesV4DataRoundPlant.md) |  | [optional] 
 **result** | **str** |  | 
 **stats** | [**List[MatchesV4DataRoundPlayerStats]**](MatchesV4DataRoundPlayerStats.md) |  | 
 **winning_team** | **str** |  | 
+**winning_team_role** | **str** |  | [optional] 
 
 ## Example
 

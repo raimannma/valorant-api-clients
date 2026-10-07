@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * VLR player agent-statistics timespan. Values are case-sensitive; omission selects 90d.
  *
  * Values: _30d,_60d,_90d,all
  */

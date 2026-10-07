@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_date** | **str** |  | 
+**var_date** | **datetime** |  | 
 **elo** | **int** |  | 
 **last_mmr_change** | **int** |  | 
 **map** | [**StoredMMRMap**](StoredMMRMap.md) |  | 
-**match_id** | **str** |  | 
+**match_id** | **UUID** |  | 
 **ranking_in_tier** | **int** |  | 
 **season** | [**StoredMMRSeason**](StoredMMRSeason.md) |  | 
 **tier** | [**StoredMMRTier**](StoredMMRTier.md) |  | 

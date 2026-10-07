@@ -17,7 +17,7 @@ import (
 // checks if the PremiumWebhookUserUpdateRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PremiumWebhookUserUpdateRequest{}
 
-// PremiumWebhookUserUpdateRequest struct for PremiumWebhookUserUpdateRequest
+// PremiumWebhookUserUpdateRequest Replaces the tracked user's event filters. At least one event is required; omitted or empty events return HTTP 400. Event names are case-insensitive.
 type PremiumWebhookUserUpdateRequest struct {
 	Events []PremiumWebhookEvent `json:"events,omitempty"`
 }

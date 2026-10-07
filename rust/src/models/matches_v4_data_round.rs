@@ -15,8 +15,14 @@ use serde::{Deserialize, Serialize};
 pub struct MatchesV4DataRound {
     #[serde(rename = "ceremony")]
     pub ceremony: String,
+    #[serde(rename = "ceremony_player", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub ceremony_player: Option<Option<Box<models::MatchesV4DataRoundPlayer>>>,
+    #[serde(rename = "ceremony_team", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub ceremony_team: Option<Option<String>>,
     #[serde(rename = "defuse", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub defuse: Option<Option<Box<models::MatchesV4DataRoundDefuse>>>,
+    #[serde(rename = "first_blood", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub first_blood: Option<Option<Box<models::MatchesV4DataRoundPlayer>>>,
     #[serde(rename = "id")]
     pub id: u32,
     #[serde(rename = "plant", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
@@ -27,18 +33,24 @@ pub struct MatchesV4DataRound {
     pub stats: Vec<models::MatchesV4DataRoundPlayerStats>,
     #[serde(rename = "winning_team")]
     pub winning_team: String,
+    #[serde(rename = "winning_team_role", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub winning_team_role: Option<Option<String>>,
 }
 
 impl MatchesV4DataRound {
     pub fn new(ceremony: String, id: u32, result: String, stats: Vec<models::MatchesV4DataRoundPlayerStats>, winning_team: String) -> MatchesV4DataRound {
         MatchesV4DataRound {
             ceremony,
+            ceremony_player: None,
+            ceremony_team: None,
             defuse: None,
+            first_blood: None,
             id,
             plant: None,
             result,
             stats,
             winning_team,
+            winning_team_role: None,
         }
     }
 }

@@ -142,7 +142,7 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.PremiumApi(api_client)
-    id = 'id_example' # str | Tracked user id
+    id = 'id_example' # str | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 
     try:
         # Delete premium webhook user
@@ -160,7 +160,7 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Tracked user id | 
+ **id** | **str**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | 
 
 ### Return type
 
@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_webhook_settings**
-> get_webhook_settings()
+> PremiumWebhookGetResponse get_webhook_settings()
 
 Get premium webhook settings
 
@@ -199,6 +199,7 @@ Get premium webhook settings
 
 ```python
 import henrikdev_api_client
+from henrikdev_api_client.models.premium_webhook_get_response import PremiumWebhookGetResponse
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
 
@@ -232,7 +233,9 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
     try:
         # Get premium webhook settings
-        api_instance.get_webhook_settings()
+        api_response = api_instance.get_webhook_settings()
+        print("The response of PremiumApi->get_webhook_settings:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling PremiumApi->get_webhook_settings: %s\n" % e)
 ```
@@ -245,7 +248,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**PremiumWebhookGetResponse**](PremiumWebhookGetResponse.md)
 
 ### Authorization
 
@@ -260,14 +263,14 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Premium webhook settings and tracked users retrieved successfully |  -  |
+**200** | Returns settings and plan as objects or null, plus enriched tracked users. IDs and dates retain BSON Extended JSON format. User display_name and display_tag are null when account enrichment is unavailable. |  -  |
 **401** | Unauthorized |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_webhook_user**
-> update_webhook_user(id, premium_webhook_user_update_request)
+> PremiumWebhookUpdateResponse update_webhook_user(id, premium_webhook_user_update_request)
 
 Update premium webhook user
 
@@ -278,6 +281,7 @@ Update premium webhook user
 
 ```python
 import henrikdev_api_client
+from henrikdev_api_client.models.premium_webhook_update_response import PremiumWebhookUpdateResponse
 from henrikdev_api_client.models.premium_webhook_user_update_request import PremiumWebhookUserUpdateRequest
 from henrikdev_api_client.rest import ApiException
 from pprint import pprint
@@ -309,12 +313,14 @@ configuration.api_key['api_key_header'] = os.environ["API_KEY"]
 with henrikdev_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = henrikdev_api_client.PremiumApi(api_client)
-    id = 'id_example' # str | Tracked user id
+    id = 'id_example' # str | Tracked user MongoDB ObjectId: 24 hexadecimal characters
     premium_webhook_user_update_request = henrikdev_api_client.PremiumWebhookUserUpdateRequest() # PremiumWebhookUserUpdateRequest | 
 
     try:
         # Update premium webhook user
-        api_instance.update_webhook_user(id, premium_webhook_user_update_request)
+        api_response = api_instance.update_webhook_user(id, premium_webhook_user_update_request)
+        print("The response of PremiumApi->update_webhook_user:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling PremiumApi->update_webhook_user: %s\n" % e)
 ```
@@ -326,12 +332,12 @@ with henrikdev_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Tracked user id | 
+ **id** | **str**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | 
  **premium_webhook_user_update_request** | [**PremiumWebhookUserUpdateRequest**](PremiumWebhookUserUpdateRequest.md)|  | 
 
 ### Return type
 
-void (empty response body)
+[**PremiumWebhookUpdateResponse**](PremiumWebhookUpdateResponse.md)
 
 ### Authorization
 

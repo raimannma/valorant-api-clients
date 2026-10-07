@@ -26,6 +26,7 @@ package henrikdevApiClient.models
 import henrikdevApiClient.models.MapIdNameCombo
 import henrikdevApiClient.models.MatchesV4DataMetadataPartyRRPenalty
 import henrikdevApiClient.models.MatchesV4DataMetadataQueue
+import henrikdevApiClient.models.MatchesV4DataRoundPlayer
 import henrikdevApiClient.models.SeasonIdShortCombo
 
 import com.squareup.moshi.Json
@@ -34,7 +35,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param gameLengthInMs 
+ * @param gameLengthInMs Match duration in milliseconds.
  * @param gameVersion 
  * @param isCompleted 
  * @param map 
@@ -45,6 +46,7 @@ import com.squareup.moshi.JsonClass
  * @param season 
  * @param startedAt 
  * @param cluster 
+ * @param mvp 
  * @param premier 
  * @param region 
  */
@@ -52,6 +54,7 @@ import com.squareup.moshi.JsonClass
 
 data class MatchesV4DataMetadata (
 
+    /* Match duration in milliseconds. */
     @Json(name = "game_length_in_ms")
     val gameLengthInMs: kotlin.Long,
 
@@ -65,7 +68,7 @@ data class MatchesV4DataMetadata (
     val map: MapIdNameCombo,
 
     @Json(name = "match_id")
-    val matchId: kotlin.String,
+    val matchId: java.util.UUID,
 
     @Json(name = "party_rr_penaltys")
     val partyRrPenaltys: kotlin.collections.List<MatchesV4DataMetadataPartyRRPenalty>,
@@ -80,10 +83,13 @@ data class MatchesV4DataMetadata (
     val season: SeasonIdShortCombo,
 
     @Json(name = "started_at")
-    val startedAt: kotlin.String,
+    val startedAt: java.time.OffsetDateTime,
 
     @Json(name = "cluster")
     val cluster: kotlin.String? = null,
+
+    @Json(name = "mvp")
+    val mvp: MatchesV4DataRoundPlayer? = null,
 
     @Json(name = "premier")
     val premier: kotlin.Any? = null,

@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * VLR event type. Values are case-sensitive; omission selects upcoming events.
  *
  * Values: completed,upcoming
  */

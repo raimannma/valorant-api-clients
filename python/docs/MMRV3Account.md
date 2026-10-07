@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**puuid** | **str** |  | 
+**puuid** | **UUID** |  | 
 **tag** | **str** |  | 
 
 ## Example

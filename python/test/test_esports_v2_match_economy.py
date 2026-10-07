@@ -44,7 +44,9 @@ class TestEsportsV2MatchEconomy(unittest.TestCase):
                             rounds = 0, 
                             won = 0, ), 
                         pistol_won = 0, 
-                        semi_eco = , 
+                        semi_eco = henrikdev_api_client.models.esports_v2_team_economy_round_won.EsportsV2TeamEconomyRoundWon(
+                            rounds = 0, 
+                            won = 0, ), 
                         team_name = '', )
                     ]
             )
@@ -59,7 +61,9 @@ class TestEsportsV2MatchEconomy(unittest.TestCase):
                             rounds = 0, 
                             won = 0, ), 
                         pistol_won = 0, 
-                        semi_eco = , 
+                        semi_eco = henrikdev_api_client.models.esports_v2_team_economy_round_won.EsportsV2TeamEconomyRoundWon(
+                            rounds = 0, 
+                            won = 0, ), 
                         team_name = '', )
                     ],
         )

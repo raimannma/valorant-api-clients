@@ -16,13 +16,28 @@ void main() {
   // final instance = MMRHistoryV2History();
 
   group('test MMRHistoryV2History', () {
-    // String date
+    // int afkPenalty
+    test('to test the property `afkPenalty`', () async {
+      // TODO
+    });
+
+    // String competitiveMovement
+    test('to test the property `competitiveMovement`', () async {
+      // TODO
+    });
+
+    // DateTime date
     test('to test the property `date`', () async {
       // TODO
     });
 
     // int elo
     test('to test the property `elo`', () async {
+      // TODO
+    });
+
+    // bool isPlacementMatch
+    test('to test the property `isPlacementMatch`', () async {
       // TODO
     });
 
@@ -41,6 +56,22 @@ void main() {
       // TODO
     });
 
+    // Match duration in milliseconds; null when unavailable.
+    // int matchLength
+    test('to test the property `matchLength`', () async {
+      // TODO
+    });
+
+    // int newMapIncentiveRrForgiven
+    test('to test the property `newMapIncentiveRrForgiven`', () async {
+      // TODO
+    });
+
+    // String queueId
+    test('to test the property `queueId`', () async {
+      // TODO
+    });
+
     // int refundedRr
     test('to test the property `refundedRr`', () async {
       // TODO
@@ -48,6 +79,21 @@ void main() {
 
     // int rr
     test('to test the property `rr`', () async {
+      // TODO
+    });
+
+    // int rrBeforeUpdate
+    test('to test the property `rrBeforeUpdate`', () async {
+      // TODO
+    });
+
+    // double rrPenalty
+    test('to test the property `rrPenalty`', () async {
+      // TODO
+    });
+
+    // int rrPerformanceBonus
+    test('to test the property `rrPerformanceBonus`', () async {
       // TODO
     });
 
@@ -61,8 +107,18 @@ void main() {
       // TODO
     });
 
+    // TierIdNameCombo tierBeforeUpdate
+    test('to test the property `tierBeforeUpdate`', () async {
+      // TODO
+    });
+
     // bool wasDerankProtected
     test('to test the property `wasDerankProtected`', () async {
+      // TODO
+    });
+
+    // bool wasDerankProtectionReplenished
+    test('to test the property `wasDerankProtectionReplenished`', () async {
       // TODO
     });
 

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bloomline** | [**MatchesV4DataPlayerBloomline**](MatchesV4DataPlayerBloomline.md) |  | [optional] 
 **card** | **str** |  | 
 **preferred_level_border** | **str** |  | [optional] 
 **title** | **str** |  | 

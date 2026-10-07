@@ -16,7 +16,7 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// RawV1PayloadValues - struct for RawV1PayloadValues
+// RawV1PayloadValues - A UUID string or a nonempty UUID array. Matchdetails fetches every array entry; all other resource types use only the first entry.
 type RawV1PayloadValues struct {
 	ArrayOfString *[]string
 	String *string

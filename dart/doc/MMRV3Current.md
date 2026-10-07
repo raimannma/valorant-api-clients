@@ -9,10 +9,13 @@ import 'package:henrikdev_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **elo** | **int** |  | 
+**gamesNeededForLeaderboard** | **int** |  | 
 **gamesNeededForRating** | **int** |  | 
+**isAtRankProtectedTier** | **bool** |  | [optional] 
 **lastChange** | **int** |  | 
 **leaderboardPlacement** | [**MMRV3LeaderboardPlacement**](MMRV3LeaderboardPlacement.md) |  | [optional] 
 **rankProtectionShields** | **int** |  | 
+**rankProtectionStatus** | **String** |  | [optional] 
 **rr** | **int** |  | 
 **tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
 

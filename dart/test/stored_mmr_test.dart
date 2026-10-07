@@ -16,7 +16,7 @@ void main() {
   // final instance = StoredMMR();
 
   group('test StoredMMR', () {
-    // String date
+    // DateTime date
     test('to test the property `date`', () async {
       // TODO
     });

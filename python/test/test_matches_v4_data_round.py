@@ -36,6 +36,12 @@ class TestMatchesV4DataRound(unittest.TestCase):
         if include_optional:
             return MatchesV4DataRound(
                 ceremony = '',
+                ceremony_player = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    name = '', 
+                    puuid = '', 
+                    tag = '', 
+                    team = '', ),
+                ceremony_team = '',
                 defuse = henrikdev_api_client.models.matches_v4_data_round_defuse.MatchesV4DataRoundDefuse(
                     location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
                         x = 56, 
@@ -58,6 +64,11 @@ class TestMatchesV4DataRound(unittest.TestCase):
                             view_radians = 1.337, )
                         ], 
                     round_time_in_ms = 56, ),
+                first_blood = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    name = '', 
+                    puuid = '', 
+                    tag = '', 
+                    team = '', ),
                 id = 0,
                 plant = henrikdev_api_client.models.matches_v4_data_round_plant.MatchesV4DataRoundPlant(
                     location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
@@ -122,7 +133,8 @@ class TestMatchesV4DataRound(unittest.TestCase):
                         stayed_in_spawn = True, 
                         was_afk = True, )
                     ],
-                winning_team = ''
+                winning_team = '',
+                winning_team_role = ''
             )
         else:
             return MatchesV4DataRound(

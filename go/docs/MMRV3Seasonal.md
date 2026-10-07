@@ -4,20 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ActRank** | [**TierIdNameCombo**](TierIdNameCombo.md) | Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement. | 
 **ActWins** | [**[]TierIdNameCombo**](TierIdNameCombo.md) |  | 
 **EndRr** | **int32** |  | 
 **EndTier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
 **Games** | **int32** |  | 
+**GamesNeededForRating** | **int32** |  | 
 **LeaderboardPlacement** | Pointer to [**NullableMMRV3LeaderboardPlacement**](MMRV3LeaderboardPlacement.md) |  | [optional] 
+**Prestige** | Pointer to [**map[string]MMRV3SeasonalPrestige**](MMRV3SeasonalPrestige.md) |  | [optional] 
 **RankingSchema** | **string** |  | 
 **Season** | [**SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 
 **Wins** | **int32** |  | 
+**WinsWithPlacements** | **int32** |  | 
 
 ## Methods
 
 ### NewMMRV3Seasonal
 
-`func NewMMRV3Seasonal(actWins []TierIdNameCombo, endRr int32, endTier TierIdNameCombo, games int32, rankingSchema string, season SeasonIdShortCombo, wins int32, ) *MMRV3Seasonal`
+`func NewMMRV3Seasonal(actRank TierIdNameCombo, actWins []TierIdNameCombo, endRr int32, endTier TierIdNameCombo, games int32, gamesNeededForRating int32, rankingSchema string, season SeasonIdShortCombo, wins int32, winsWithPlacements int32, ) *MMRV3Seasonal`
 
 NewMMRV3Seasonal instantiates a new MMRV3Seasonal object
 This constructor will assign default values to properties that have it defined,
@@ -31,6 +35,26 @@ will change when the set of required properties is changed
 NewMMRV3SeasonalWithDefaults instantiates a new MMRV3Seasonal object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetActRank
+
+`func (o *MMRV3Seasonal) GetActRank() TierIdNameCombo`
+
+GetActRank returns the ActRank field if non-nil, zero value otherwise.
+
+### GetActRankOk
+
+`func (o *MMRV3Seasonal) GetActRankOk() (*TierIdNameCombo, bool)`
+
+GetActRankOk returns a tuple with the ActRank field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActRank
+
+`func (o *MMRV3Seasonal) SetActRank(v TierIdNameCombo)`
+
+SetActRank sets ActRank field to given value.
+
 
 ### GetActWins
 
@@ -112,6 +136,26 @@ and a boolean to check if the value has been set.
 SetGames sets Games field to given value.
 
 
+### GetGamesNeededForRating
+
+`func (o *MMRV3Seasonal) GetGamesNeededForRating() int32`
+
+GetGamesNeededForRating returns the GamesNeededForRating field if non-nil, zero value otherwise.
+
+### GetGamesNeededForRatingOk
+
+`func (o *MMRV3Seasonal) GetGamesNeededForRatingOk() (*int32, bool)`
+
+GetGamesNeededForRatingOk returns a tuple with the GamesNeededForRating field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGamesNeededForRating
+
+`func (o *MMRV3Seasonal) SetGamesNeededForRating(v int32)`
+
+SetGamesNeededForRating sets GamesNeededForRating field to given value.
+
+
 ### GetLeaderboardPlacement
 
 `func (o *MMRV3Seasonal) GetLeaderboardPlacement() MMRV3LeaderboardPlacement`
@@ -147,6 +191,41 @@ HasLeaderboardPlacement returns a boolean if a field has been set.
 `func (o *MMRV3Seasonal) UnsetLeaderboardPlacement()`
 
 UnsetLeaderboardPlacement ensures that no value is present for LeaderboardPlacement, not even an explicit nil
+### GetPrestige
+
+`func (o *MMRV3Seasonal) GetPrestige() map[string]MMRV3SeasonalPrestige`
+
+GetPrestige returns the Prestige field if non-nil, zero value otherwise.
+
+### GetPrestigeOk
+
+`func (o *MMRV3Seasonal) GetPrestigeOk() (*map[string]MMRV3SeasonalPrestige, bool)`
+
+GetPrestigeOk returns a tuple with the Prestige field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrestige
+
+`func (o *MMRV3Seasonal) SetPrestige(v map[string]MMRV3SeasonalPrestige)`
+
+SetPrestige sets Prestige field to given value.
+
+### HasPrestige
+
+`func (o *MMRV3Seasonal) HasPrestige() bool`
+
+HasPrestige returns a boolean if a field has been set.
+
+### SetPrestigeNil
+
+`func (o *MMRV3Seasonal) SetPrestigeNil(b bool)`
+
+ SetPrestigeNil sets the value for Prestige to be an explicit nil
+
+### UnsetPrestige
+`func (o *MMRV3Seasonal) UnsetPrestige()`
+
+UnsetPrestige ensures that no value is present for Prestige, not even an explicit nil
 ### GetRankingSchema
 
 `func (o *MMRV3Seasonal) GetRankingSchema() string`
@@ -205,6 +284,26 @@ and a boolean to check if the value has been set.
 `func (o *MMRV3Seasonal) SetWins(v int32)`
 
 SetWins sets Wins field to given value.
+
+
+### GetWinsWithPlacements
+
+`func (o *MMRV3Seasonal) GetWinsWithPlacements() int32`
+
+GetWinsWithPlacements returns the WinsWithPlacements field if non-nil, zero value otherwise.
+
+### GetWinsWithPlacementsOk
+
+`func (o *MMRV3Seasonal) GetWinsWithPlacementsOk() (*int32, bool)`
+
+GetWinsWithPlacementsOk returns a tuple with the WinsWithPlacements field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWinsWithPlacements
+
+`func (o *MMRV3Seasonal) SetWinsWithPlacements(v int32)`
+
+SetWinsWithPlacements sets WinsWithPlacements field to given value.
 
 
 

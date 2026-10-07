@@ -35,7 +35,7 @@ class TestMatchesV4DataRoundPlayerStatsEconomy(unittest.TestCase):
         model = MatchesV4DataRoundPlayerStatsEconomy()
         if include_optional:
             return MatchesV4DataRoundPlayerStatsEconomy(
-                armor = henrikdev_api_client.models.matches_v4_data_round_player_stats_economy_armor.MatchesV4DataRoundPlayerStatsEconomyArmor(
+                armor = henrikdev_api_client.models.agent_mastery_v1_reference.AgentMasteryV1Reference(
                     id = '', 
                     name = '', ),
                 loadout_value = 56,

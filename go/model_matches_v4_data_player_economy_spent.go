@@ -21,7 +21,9 @@ var _ MappedNullable = &MatchesV4DataPlayerEconomySpent{}
 
 // MatchesV4DataPlayerEconomySpent struct for MatchesV4DataPlayerEconomySpent
 type MatchesV4DataPlayerEconomySpent struct {
+	// Credits spent per round played by this player; zero when rounds played is zero.
 	Average float32 `json:"average"`
+	// Total credits spent across reported player rounds.
 	Overall int32 `json:"overall"`
 }
 

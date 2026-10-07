@@ -28,6 +28,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import henrikdevApiClient.models.MMRV3Seasonal
 import henrikdevApiClient.models.MMRV3LeaderboardPlacement
+import henrikdevApiClient.models.MMRV3SeasonalPrestige
 import henrikdevApiClient.models.SeasonIdShortCombo
 import henrikdevApiClient.models.TierIdNameCombo
 
@@ -35,6 +36,12 @@ class MMRV3SeasonalTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of MMRV3Seasonal
         //val modelInstance = MMRV3Seasonal()
+
+        // to test the property `actRank` - Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.
+        should("test actRank") {
+            // uncomment below to test the property
+            //modelInstance.actRank shouldBe ("TODO")
+        }
 
         // to test the property `actWins`
         should("test actWins") {
@@ -60,6 +67,12 @@ class MMRV3SeasonalTest : ShouldSpec() {
             //modelInstance.games shouldBe ("TODO")
         }
 
+        // to test the property `gamesNeededForRating`
+        should("test gamesNeededForRating") {
+            // uncomment below to test the property
+            //modelInstance.gamesNeededForRating shouldBe ("TODO")
+        }
+
         // to test the property `rankingSchema`
         should("test rankingSchema") {
             // uncomment below to test the property
@@ -78,10 +91,22 @@ class MMRV3SeasonalTest : ShouldSpec() {
             //modelInstance.wins shouldBe ("TODO")
         }
 
+        // to test the property `winsWithPlacements`
+        should("test winsWithPlacements") {
+            // uncomment below to test the property
+            //modelInstance.winsWithPlacements shouldBe ("TODO")
+        }
+
         // to test the property `leaderboardPlacement`
         should("test leaderboardPlacement") {
             // uncomment below to test the property
             //modelInstance.leaderboardPlacement shouldBe ("TODO")
+        }
+
+        // to test the property `prestige`
+        should("test prestige") {
+            // uncomment below to test the property
+            //modelInstance.prestige shouldBe ("TODO")
         }
 
     }

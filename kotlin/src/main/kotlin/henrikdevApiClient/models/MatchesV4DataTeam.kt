@@ -23,6 +23,8 @@
 
 package henrikdevApiClient.models
 
+import henrikdevApiClient.models.MatchesV4DataRoundPlayer
+import henrikdevApiClient.models.MatchesV4DataTeamHealth
 import henrikdevApiClient.models.MatchesV4DataTeamPremierRoster
 import henrikdevApiClient.models.MatchesV4DataTeamRounds
 
@@ -30,12 +32,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Join teams by the opaque team_id; team_number is an upstream number, not an array index.
  *
  * @param rounds 
  * @param teamId 
  * @param won 
+ * @param health 
+ * @param mvp 
+ * @param placement 
  * @param premierRoster 
+ * @param teamNumber 
  */
 
 
@@ -50,8 +56,20 @@ data class MatchesV4DataTeam (
     @Json(name = "won")
     val won: kotlin.Boolean,
 
+    @Json(name = "health")
+    val health: MatchesV4DataTeamHealth? = null,
+
+    @Json(name = "mvp")
+    val mvp: MatchesV4DataRoundPlayer? = null,
+
+    @Json(name = "placement")
+    val placement: kotlin.Int? = null,
+
     @Json(name = "premier_roster")
-    val premierRoster: MatchesV4DataTeamPremierRoster? = null
+    val premierRoster: MatchesV4DataTeamPremierRoster? = null,
+
+    @Json(name = "team_number")
+    val teamNumber: kotlin.Int? = null
 
 ) {
 

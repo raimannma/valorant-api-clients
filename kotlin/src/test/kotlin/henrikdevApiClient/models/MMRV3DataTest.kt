@@ -27,9 +27,12 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import henrikdevApiClient.models.MMRV3Data
+import henrikdevApiClient.models.MMRHistoryV2History
 import henrikdevApiClient.models.MMRV3Account
 import henrikdevApiClient.models.MMRV3Current
+import henrikdevApiClient.models.MMRV3LifetimePrestige
 import henrikdevApiClient.models.MMRV3Peak
+import henrikdevApiClient.models.MMRV3RankedState
 import henrikdevApiClient.models.MMRV3Seasonal
 
 class MMRV3DataTest : ShouldSpec() {
@@ -49,10 +52,28 @@ class MMRV3DataTest : ShouldSpec() {
             //modelInstance.current shouldBe ("TODO")
         }
 
+        // to test the property `latestUpdate`
+        should("test latestUpdate") {
+            // uncomment below to test the property
+            //modelInstance.latestUpdate shouldBe ("TODO")
+        }
+
+        // to test the property `rankedState`
+        should("test rankedState") {
+            // uncomment below to test the property
+            //modelInstance.rankedState shouldBe ("TODO")
+        }
+
         // to test the property `seasonal`
         should("test seasonal") {
             // uncomment below to test the property
             //modelInstance.seasonal shouldBe ("TODO")
+        }
+
+        // to test the property `lifetimePrestige`
+        should("test lifetimePrestige") {
+            // uncomment below to test the property
+            //modelInstance.lifetimePrestige shouldBe ("TODO")
         }
 
         // to test the property `peak`

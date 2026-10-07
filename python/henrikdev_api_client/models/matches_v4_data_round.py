@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from henrikdev_api_client.models.matches_v4_data_round_defuse import MatchesV4DataRoundDefuse
 from henrikdev_api_client.models.matches_v4_data_round_plant import MatchesV4DataRoundPlant
+from henrikdev_api_client.models.matches_v4_data_round_player import MatchesV4DataRoundPlayer
 from henrikdev_api_client.models.matches_v4_data_round_player_stats import MatchesV4DataRoundPlayerStats
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,13 +33,17 @@ class MatchesV4DataRound(BaseModel):
     MatchesV4DataRound
     """ # noqa: E501
     ceremony: StrictStr
+    ceremony_player: Optional[MatchesV4DataRoundPlayer] = None
+    ceremony_team: Optional[StrictStr] = None
     defuse: Optional[MatchesV4DataRoundDefuse] = None
+    first_blood: Optional[MatchesV4DataRoundPlayer] = None
     id: Annotated[int, Field(strict=True, ge=0)]
     plant: Optional[MatchesV4DataRoundPlant] = None
     result: StrictStr
     stats: List[MatchesV4DataRoundPlayerStats]
     winning_team: StrictStr
-    __properties: ClassVar[List[str]] = ["ceremony", "defuse", "id", "plant", "result", "stats", "winning_team"]
+    winning_team_role: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["ceremony", "ceremony_player", "ceremony_team", "defuse", "first_blood", "id", "plant", "result", "stats", "winning_team", "winning_team_role"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,9 +84,15 @@ class MatchesV4DataRound(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of ceremony_player
+        if self.ceremony_player:
+            _dict['ceremony_player'] = self.ceremony_player.to_dict()
         # override the default output from pydantic by calling `to_dict()` of defuse
         if self.defuse:
             _dict['defuse'] = self.defuse.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of first_blood
+        if self.first_blood:
+            _dict['first_blood'] = self.first_blood.to_dict()
         # override the default output from pydantic by calling `to_dict()` of plant
         if self.plant:
             _dict['plant'] = self.plant.to_dict()
@@ -91,15 +102,35 @@ class MatchesV4DataRound(BaseModel):
             for _item_stats in self.stats:
                 _items.append(_item_stats.to_dict() if _item_stats is not None else None)
             _dict['stats'] = _items
+        # set to None if ceremony_player (nullable) is None
+        # and model_fields_set contains the field
+        if self.ceremony_player is None and "ceremony_player" in self.model_fields_set:
+            _dict['ceremony_player'] = None
+
+        # set to None if ceremony_team (nullable) is None
+        # and model_fields_set contains the field
+        if self.ceremony_team is None and "ceremony_team" in self.model_fields_set:
+            _dict['ceremony_team'] = None
+
         # set to None if defuse (nullable) is None
         # and model_fields_set contains the field
         if self.defuse is None and "defuse" in self.model_fields_set:
             _dict['defuse'] = None
 
+        # set to None if first_blood (nullable) is None
+        # and model_fields_set contains the field
+        if self.first_blood is None and "first_blood" in self.model_fields_set:
+            _dict['first_blood'] = None
+
         # set to None if plant (nullable) is None
         # and model_fields_set contains the field
         if self.plant is None and "plant" in self.model_fields_set:
             _dict['plant'] = None
+
+        # set to None if winning_team_role (nullable) is None
+        # and model_fields_set contains the field
+        if self.winning_team_role is None and "winning_team_role" in self.model_fields_set:
+            _dict['winning_team_role'] = None
 
         return _dict
 
@@ -114,12 +145,16 @@ class MatchesV4DataRound(BaseModel):
 
         _obj = cls.model_validate({
             "ceremony": obj.get("ceremony"),
+            "ceremony_player": MatchesV4DataRoundPlayer.from_dict(obj["ceremony_player"]) if obj.get("ceremony_player") is not None else None,
+            "ceremony_team": obj.get("ceremony_team"),
             "defuse": MatchesV4DataRoundDefuse.from_dict(obj["defuse"]) if obj.get("defuse") is not None else None,
+            "first_blood": MatchesV4DataRoundPlayer.from_dict(obj["first_blood"]) if obj.get("first_blood") is not None else None,
             "id": obj.get("id"),
             "plant": MatchesV4DataRoundPlant.from_dict(obj["plant"]) if obj.get("plant") is not None else None,
             "result": obj.get("result"),
             "stats": [MatchesV4DataRoundPlayerStats.from_dict(_item) for _item in obj["stats"]] if obj.get("stats") is not None else None,
-            "winning_team": obj.get("winning_team")
+            "winning_team": obj.get("winning_team"),
+            "winning_team_role": obj.get("winning_team_role")
         })
         return _obj
 

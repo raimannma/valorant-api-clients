@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from henrikdev_api_client.models.premium_webhook_event import PremiumWebhookEvent
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,12 +27,12 @@ from pydantic_core import to_jsonable_python
 
 class PremiumWebhookUserAddRequest(BaseModel):
     """
-    PremiumWebhookUserAddRequest
+    Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
     """ # noqa: E501
-    enabled: Optional[StrictBool] = None
+    enabled: Optional[StrictBool] = True
     events: Optional[List[PremiumWebhookEvent]] = None
     name: Optional[StrictStr] = None
-    puuid: Optional[StrictStr] = None
+    puuid: Optional[UUID] = None
     tag: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["enabled", "events", "name", "puuid", "tag"]
 
@@ -101,7 +102,7 @@ class PremiumWebhookUserAddRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "enabled": obj.get("enabled"),
+            "enabled": obj.get("enabled") if obj.get("enabled") is not None else True,
             "events": obj.get("events"),
             "name": obj.get("name"),
             "puuid": obj.get("puuid"),

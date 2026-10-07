@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**page** | **int** |  | [optional]
+**page** | **int** |  | [optional] [default to 1]
 **region** | [**\OpenAPI\Client\Model\EsportsV2Region**](EsportsV2Region.md) |  | [optional]
 **type** | [**\OpenAPI\Client\Model\EsportsV2EventType**](EsportsV2EventType.md) |  | [optional]
 

@@ -11,6 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// PremiumWebhookUserResponse : Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PremiumWebhookUserResponse {
     #[serde(rename = "created_at")]
@@ -21,14 +22,14 @@ pub struct PremiumWebhookUserResponse {
     pub events: Vec<models::PremiumWebhookEvent>,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "last_checked_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub last_checked_at: Option<Option<i64>>,
-    #[serde(rename = "last_match", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub last_match: Option<Option<String>>,
-    #[serde(rename = "last_mmr", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub last_mmr: Option<Option<i32>>,
+    #[serde(rename = "last_checked_at", deserialize_with = "Option::deserialize")]
+    pub last_checked_at: Option<i64>,
+    #[serde(rename = "last_match", deserialize_with = "Option::deserialize")]
+    pub last_match: Option<String>,
+    #[serde(rename = "last_mmr", deserialize_with = "Option::deserialize")]
+    pub last_mmr: Option<i32>,
     #[serde(rename = "puuid")]
-    pub puuid: String,
+    pub puuid: uuid::Uuid,
     #[serde(rename = "region")]
     pub region: String,
     #[serde(rename = "updated_at")]
@@ -36,15 +37,16 @@ pub struct PremiumWebhookUserResponse {
 }
 
 impl PremiumWebhookUserResponse {
-    pub fn new(created_at: i64, enabled: bool, events: Vec<models::PremiumWebhookEvent>, id: String, puuid: String, region: String, updated_at: i64) -> PremiumWebhookUserResponse {
+    /// Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
+    pub fn new(created_at: i64, enabled: bool, events: Vec<models::PremiumWebhookEvent>, id: String, last_checked_at: Option<i64>, last_match: Option<String>, last_mmr: Option<i32>, puuid: uuid::Uuid, region: String, updated_at: i64) -> PremiumWebhookUserResponse {
         PremiumWebhookUserResponse {
             created_at,
             enabled,
             events,
             id,
-            last_checked_at: None,
-            last_match: None,
-            last_mmr: None,
+            last_checked_at,
+            last_match,
+            last_mmr,
             puuid,
             region,
             updated_at,

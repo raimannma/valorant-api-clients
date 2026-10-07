@@ -80,7 +80,9 @@ class TestStatusV1(unittest.TestCase):
                                 ''
                                 ], 
                             titles = [
-                                
+                                henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
+                                    content = '', 
+                                    locale = '', )
                                 ], 
                             updated_at = '', 
                             updates = [
@@ -93,7 +95,9 @@ class TestStatusV1(unittest.TestCase):
                                         ''
                                         ], 
                                     translations = [
-                                        
+                                        henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
+                                            content = '', 
+                                            locale = '', )
                                         ], 
                                     updated_at = '', )
                                 ], )
@@ -147,7 +151,9 @@ class TestStatusV1(unittest.TestCase):
                                 ''
                                 ], 
                             titles = [
-                                
+                                henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
+                                    content = '', 
+                                    locale = '', )
                                 ], 
                             updated_at = '', 
                             updates = [
@@ -160,7 +166,9 @@ class TestStatusV1(unittest.TestCase):
                                         ''
                                         ], 
                                     translations = [
-                                        
+                                        henrikdev_api_client.models.status_incident_content.StatusIncidentContent(
+                                            content = '', 
+                                            locale = '', )
                                         ], 
                                     updated_at = '', )
                                 ], )

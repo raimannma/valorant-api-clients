@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **rank** | **kotlin.Int** |  |  |
-| **updatedAt** | **kotlin.String** |  |  |
+| **updatedAt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  |
 
 
 

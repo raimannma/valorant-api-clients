@@ -11,6 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// PremiumWebhookUserUpdateRequest : Replaces the tracked user's event filters. At least one event is required; omitted or empty events return HTTP 400. Event names are case-insensitive.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PremiumWebhookUserUpdateRequest {
     #[serde(rename = "events", skip_serializing_if = "Option::is_none")]
@@ -18,6 +19,7 @@ pub struct PremiumWebhookUserUpdateRequest {
 }
 
 impl PremiumWebhookUserUpdateRequest {
+    /// Replaces the tracked user's event filters. At least one event is required; omitted or empty events return HTTP 400. Event names are case-insensitive.
     pub fn new() -> PremiumWebhookUserUpdateRequest {
         PremiumWebhookUserUpdateRequest {
             events: None,

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | **string** |  | 
+**Date** | **time.Time** |  | 
 **Elo** | **int32** |  | 
 **LastMmrChange** | **int32** |  | 
 **Map** | [**StoredMMRMap**](StoredMMRMap.md) |  | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewStoredMMR
 
-`func NewStoredMMR(date string, elo int32, lastMmrChange int32, map_ StoredMMRMap, matchId string, rankingInTier int32, season StoredMMRSeason, tier StoredMMRTier, ) *StoredMMR`
+`func NewStoredMMR(date time.Time, elo int32, lastMmrChange int32, map_ StoredMMRMap, matchId string, rankingInTier int32, season StoredMMRSeason, tier StoredMMRTier, ) *StoredMMR`
 
 NewStoredMMR instantiates a new StoredMMR object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDate
 
-`func (o *StoredMMR) GetDate() string`
+`func (o *StoredMMR) GetDate() time.Time`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *StoredMMR) GetDateOk() (*string, bool)`
+`func (o *StoredMMR) GetDateOk() (*time.Time, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *StoredMMR) SetDate(v string)`
+`func (o *StoredMMR) SetDate(v time.Time)`
 
 SetDate sets Date field to given value.
 

@@ -33,13 +33,13 @@ class MatchesV4DataPlayerEconomyLoadoutValueTest : ShouldSpec() {
         // uncomment below to create an instance of MatchesV4DataPlayerEconomyLoadoutValue
         //val modelInstance = MatchesV4DataPlayerEconomyLoadoutValue()
 
-        // to test the property `average`
+        // to test the property `average` - Loadout value in credits per round played by this player; zero when rounds played is zero.
         should("test average") {
             // uncomment below to test the property
             //modelInstance.average shouldBe ("TODO")
         }
 
-        // to test the property `overall`
+        // to test the property `overall` - Sum of loadout values in credits across reported player rounds.
         should("test overall") {
             // uncomment below to test the property
             //modelInstance.overall shouldBe ("TODO")

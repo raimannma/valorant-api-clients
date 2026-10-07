@@ -30,6 +30,8 @@ import okhttp3.HttpUrl
 import henrikdevApiClient.models.AccoladesV1Response
 import henrikdevApiClient.models.AccountV1Response
 import henrikdevApiClient.models.AccountV2Response
+import henrikdevApiClient.models.AgentMasteryV1DetailResponse
+import henrikdevApiClient.models.AgentMasteryV1Response
 import henrikdevApiClient.models.ContentV1Response
 import henrikdevApiClient.models.EsportsV1Response
 import henrikdevApiClient.models.EsportsV2EventResponse
@@ -43,14 +45,13 @@ import henrikdevApiClient.models.EsportsV2Region
 import henrikdevApiClient.models.EsportsV2TeamMatchListResponse
 import henrikdevApiClient.models.EsportsV2TeamResponse
 import henrikdevApiClient.models.EsportsV2TeamTransactionsResponse
-import henrikdevApiClient.models.LeaderboardV2Response
+import henrikdevApiClient.models.LeaderboardV1Response
 import henrikdevApiClient.models.LeaderboardV3Response
 import henrikdevApiClient.models.MMRHistoryV1Response
 import henrikdevApiClient.models.MMRHistoryV2Response
 import henrikdevApiClient.models.MMRV1Response
 import henrikdevApiClient.models.MMRV2Response
 import henrikdevApiClient.models.MMRV3Response
-import henrikdevApiClient.models.MatchMode
 import henrikdevApiClient.models.MatchesV2Response
 import henrikdevApiClient.models.MatchesV3ListResponse
 import henrikdevApiClient.models.MatchesV4HistoryResponse
@@ -58,16 +59,23 @@ import henrikdevApiClient.models.MatchesV4Response
 import henrikdevApiClient.models.PremierSearchResponse
 import henrikdevApiClient.models.PremierTeamHistoryV1Response
 import henrikdevApiClient.models.PremierTeamV1Response
+import henrikdevApiClient.models.PremierTeamV2Response
 import henrikdevApiClient.models.QueueStatusV1
 import henrikdevApiClient.models.RawV1Payload
 import henrikdevApiClient.models.RawV1Response
 import henrikdevApiClient.models.SendError
 import henrikdevApiClient.models.StatusV1
-import henrikdevApiClient.models.StoreFeaturedV1
-import henrikdevApiClient.models.StoreOffersV1Response
 import henrikdevApiClient.models.StoredMMRResponse
 import henrikdevApiClient.models.StoredMMRV2Response
 import henrikdevApiClient.models.StoredMatchesResponse
+import henrikdevApiClient.models.ValorantAffinity
+import henrikdevApiClient.models.ValorantContentLocale
+import henrikdevApiClient.models.ValorantLeaderboardV2Response
+import henrikdevApiClient.models.ValorantPlatform
+import henrikdevApiClient.models.ValorantStoreFeaturedResponse
+import henrikdevApiClient.models.ValorantStoreVersion
+import henrikdevApiClient.models.ValorantWebsiteCategory
+import henrikdevApiClient.models.ValorantWebsiteLocale
 import henrikdevApiClient.models.VersionV1Response
 import henrikdevApiClient.models.WebsiteByIdV1Response
 import henrikdevApiClient.models.WebsiteV1Response
@@ -100,7 +108,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/crosshair/generate
      * Generate crosshair image (v1)
      * 
-     * @param id Crosshair code (optional)
+     * @param id Required crosshair code
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -109,7 +117,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun crosshair(id: kotlin.String? = null) : Unit {
+    fun crosshair(id: kotlin.String) : Unit {
         val localVarResponse = crosshairWithHttpInfo(id = id)
 
         return when (localVarResponse.responseType) {
@@ -131,13 +139,13 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/crosshair/generate
      * Generate crosshair image (v1)
      * 
-     * @param id Crosshair code (optional)
+     * @param id Required crosshair code
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    fun crosshairWithHttpInfo(id: kotlin.String?) : ApiResponse<Unit?> {
+    fun crosshairWithHttpInfo(id: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = crosshairRequestConfig(id = id)
 
         return request<Unit, Unit>(
@@ -148,16 +156,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation crosshair
      *
-     * @param id Crosshair code (optional)
+     * @param id Required crosshair code
      * @return RequestConfig
      */
-    fun crosshairRequestConfig(id: kotlin.String?) : RequestConfig<Unit> {
+    fun crosshairRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
-                if (id != null) {
-                    put("id", listOf(id.toString()))
-                }
+                put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
@@ -251,7 +257,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param region  (optional)
      * @param type  (optional)
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return EsportsV2EventsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -261,7 +267,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun esportsEventsV2(region: EsportsV2Region? = null, type: EsportsV2EventType? = null, page: kotlin.Int? = null) : EsportsV2EventsResponse {
+    fun esportsEventsV2(region: EsportsV2Region? = null, type: EsportsV2EventType? = null, page: kotlin.Int? = 1) : EsportsV2EventsResponse {
         val localVarResponse = esportsEventsV2WithHttpInfo(region = region, type = type, page = page)
 
         return when (localVarResponse.responseType) {
@@ -285,7 +291,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param region  (optional)
      * @param type  (optional)
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return ApiResponse<EsportsV2EventsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -305,7 +311,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      *
      * @param region  (optional)
      * @param type  (optional)
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return RequestConfig
      */
     fun esportsEventsV2RequestConfig(region: EsportsV2Region?, type: EsportsV2EventType?, page: kotlin.Int?) : RequestConfig<Unit> {
@@ -413,7 +419,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * Get VLR player matches (v2)
      * 
      * @param player 
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return EsportsV2PlayerMatchesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -423,7 +429,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun esportsPlayerMatchesV2(player: kotlin.Int, page: kotlin.Int? = null) : EsportsV2PlayerMatchesResponse {
+    fun esportsPlayerMatchesV2(player: kotlin.Int, page: kotlin.Int? = 1) : EsportsV2PlayerMatchesResponse {
         val localVarResponse = esportsPlayerMatchesV2WithHttpInfo(player = player, page = page)
 
         return when (localVarResponse.responseType) {
@@ -446,7 +452,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * Get VLR player matches (v2)
      * 
      * @param player 
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return ApiResponse<EsportsV2PlayerMatchesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -465,7 +471,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * To obtain the request config of the operation esportsPlayerMatchesV2
      *
      * @param player 
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return RequestConfig
      */
     fun esportsPlayerMatchesV2RequestConfig(player: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
@@ -659,7 +665,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * Get VLR team matches (v2)
      * 
      * @param teamId 
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return EsportsV2TeamMatchListResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -669,7 +675,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun esportsTeamMatchesV2(teamId: kotlin.Int, page: kotlin.Int? = null) : EsportsV2TeamMatchListResponse {
+    fun esportsTeamMatchesV2(teamId: kotlin.Int, page: kotlin.Int? = 1) : EsportsV2TeamMatchListResponse {
         val localVarResponse = esportsTeamMatchesV2WithHttpInfo(teamId = teamId, page = page)
 
         return when (localVarResponse.responseType) {
@@ -692,7 +698,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * Get VLR team matches (v2)
      * 
      * @param teamId 
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return ApiResponse<EsportsV2TeamMatchListResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -711,7 +717,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * To obtain the request config of the operation esportsTeamMatchesV2
      *
      * @param teamId 
-     * @param page  (optional)
+     * @param page  (optional, default to 1)
      * @return RequestConfig
      */
     fun esportsTeamMatchesV2RequestConfig(teamId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
@@ -885,8 +891,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}
      * Get player accolades by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return AccoladesV1Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -897,7 +903,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getAccoladesById(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : AccoladesV1Response {
+    fun getAccoladesById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: java.util.UUID) : AccoladesV1Response {
         val localVarResponse = getAccoladesByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid)
 
         return when (localVarResponse.responseType) {
@@ -919,8 +925,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}
      * Get player accolades by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return ApiResponse<AccoladesV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -928,7 +934,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getAccoladesByIdWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : ApiResponse<AccoladesV1Response?> {
+    fun getAccoladesByIdWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: java.util.UUID) : ApiResponse<AccoladesV1Response?> {
         val localVariableConfig = getAccoladesByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid)
 
         return request<Unit, AccoladesV1Response>(
@@ -939,12 +945,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getAccoladesById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return RequestConfig
      */
-    fun getAccoladesByIdRequestConfig(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : RequestConfig<Unit> {
+    fun getAccoladesByIdRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -964,8 +970,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}
      * Get player accolades by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return AccoladesV1Response
@@ -977,7 +983,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getAccoladesByName(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : AccoladesV1Response {
+    fun getAccoladesByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : AccoladesV1Response {
         val localVarResponse = getAccoladesByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag)
 
         return when (localVarResponse.responseType) {
@@ -999,8 +1005,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}
      * Get player accolades by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return ApiResponse<AccoladesV1Response?>
@@ -1009,7 +1015,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getAccoladesByNameWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : ApiResponse<AccoladesV1Response?> {
+    fun getAccoladesByNameWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : ApiResponse<AccoladesV1Response?> {
         val localVariableConfig = getAccoladesByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag)
 
         return request<Unit, AccoladesV1Response>(
@@ -1020,13 +1026,13 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getAccoladesByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return RequestConfig
      */
-    fun getAccoladesByNameRequestConfig(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun getAccoladesByNameRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -1376,7 +1382,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/content
      * Get content (v1)
      * 
-     * @param locale Locale code (e.g., en-US, de-DE) - optional (optional)
+     * @param locale Content locale; case-insensitive. Omission selects en-US. (optional)
      * @return ContentV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1386,7 +1392,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getContentV1(locale: kotlin.String? = null) : ContentV1Response {
+    fun getContentV1(locale: ValorantContentLocale? = null) : ContentV1Response {
         val localVarResponse = getContentV1WithHttpInfo(locale = locale)
 
         return when (localVarResponse.responseType) {
@@ -1408,14 +1414,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/content
      * Get content (v1)
      * 
-     * @param locale Locale code (e.g., en-US, de-DE) - optional (optional)
+     * @param locale Content locale; case-insensitive. Omission selects en-US. (optional)
      * @return ApiResponse<ContentV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getContentV1WithHttpInfo(locale: kotlin.String?) : ApiResponse<ContentV1Response?> {
+    fun getContentV1WithHttpInfo(locale: ValorantContentLocale?) : ApiResponse<ContentV1Response?> {
         val localVariableConfig = getContentV1RequestConfig(locale = locale)
 
         return request<Unit, ContentV1Response>(
@@ -1426,10 +1432,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getContentV1
      *
-     * @param locale Locale code (e.g., en-US, de-DE) - optional (optional)
+     * @param locale Content locale; case-insensitive. Omission selects en-US. (optional)
      * @return RequestConfig
      */
-    fun getContentV1RequestConfig(locale: kotlin.String?) : RequestConfig<Unit> {
+    fun getContentV1RequestConfig(locale: ValorantContentLocale?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -1451,14 +1457,343 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     }
 
     /**
+     * GET /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id}
+     * Get agent mastery by PUUID (v1)
+     * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param puuid Player UUID
+     * @param agentId Agent UUID
+     * @return AgentMasteryV1DetailResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getMasteryAgentById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String, agentId: kotlin.String) : AgentMasteryV1DetailResponse {
+        val localVarResponse = getMasteryAgentByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid, agentId = agentId)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AgentMasteryV1DetailResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id}
+     * Get agent mastery by PUUID (v1)
+     * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param puuid Player UUID
+     * @param agentId Agent UUID
+     * @return ApiResponse<AgentMasteryV1DetailResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getMasteryAgentByIdWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String, agentId: kotlin.String) : ApiResponse<AgentMasteryV1DetailResponse?> {
+        val localVariableConfig = getMasteryAgentByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid, agentId = agentId)
+
+        return request<Unit, AgentMasteryV1DetailResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getMasteryAgentById
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param puuid Player UUID
+     * @param agentId Agent UUID
+     * @return RequestConfig
+     */
+    fun getMasteryAgentByIdRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String, agentId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"platform"+"}", encodeURIComponent(platform.toString())).replace("{"+"puuid"+"}", encodeURIComponent(puuid.toString())).replace("{"+"agent_id"+"}", encodeURIComponent(agentId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id}
+     * Get agent mastery by name (v1)
+     * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @param agentId Agent UUID
+     * @return AgentMasteryV1DetailResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getMasteryAgentByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, agentId: kotlin.String) : AgentMasteryV1DetailResponse {
+        val localVarResponse = getMasteryAgentByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag, agentId = agentId)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AgentMasteryV1DetailResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id}
+     * Get agent mastery by name (v1)
+     * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @param agentId Agent UUID
+     * @return ApiResponse<AgentMasteryV1DetailResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getMasteryAgentByNameWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, agentId: kotlin.String) : ApiResponse<AgentMasteryV1DetailResponse?> {
+        val localVariableConfig = getMasteryAgentByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag, agentId = agentId)
+
+        return request<Unit, AgentMasteryV1DetailResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getMasteryAgentByName
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @param agentId Agent UUID
+     * @return RequestConfig
+     */
+    fun getMasteryAgentByNameRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, agentId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"platform"+"}", encodeURIComponent(platform.toString())).replace("{"+"name"+"}", encodeURIComponent(name.toString())).replace("{"+"tag"+"}", encodeURIComponent(tag.toString())).replace("{"+"agent_id"+"}", encodeURIComponent(agentId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}
+     * Get all agent mastery by PUUID (v1)
+     * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param puuid Player UUID
+     * @return AgentMasteryV1Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getMasteryById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : AgentMasteryV1Response {
+        val localVarResponse = getMasteryByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AgentMasteryV1Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}
+     * Get all agent mastery by PUUID (v1)
+     * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param puuid Player UUID
+     * @return ApiResponse<AgentMasteryV1Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getMasteryByIdWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : ApiResponse<AgentMasteryV1Response?> {
+        val localVariableConfig = getMasteryByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid)
+
+        return request<Unit, AgentMasteryV1Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getMasteryById
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param puuid Player UUID
+     * @return RequestConfig
+     */
+    fun getMasteryByIdRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"platform"+"}", encodeURIComponent(platform.toString())).replace("{"+"puuid"+"}", encodeURIComponent(puuid.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}
+     * Get all agent mastery by name (v1)
+     * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @return AgentMasteryV1Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getMasteryByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : AgentMasteryV1Response {
+        val localVarResponse = getMasteryByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AgentMasteryV1Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}
+     * Get all agent mastery by name (v1)
+     * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot&#39;s source semantics.
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @return ApiResponse<AgentMasteryV1Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getMasteryByNameWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : ApiResponse<AgentMasteryV1Response?> {
+        val localVariableConfig = getMasteryByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag)
+
+        return request<Unit, AgentMasteryV1Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getMasteryByName
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param name Riot ID name
+     * @param tag Riot ID tag
+     * @return RequestConfig
+     */
+    fun getMasteryByNameRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"platform"+"}", encodeURIComponent(platform.toString())).replace("{"+"name"+"}", encodeURIComponent(name.toString())).replace("{"+"tag"+"}", encodeURIComponent(tag.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /valorant/v3/by-puuid/matches/{affinity}/{puuid}
      * Get matches by PUUID (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
      * @return MatchesV3ListResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1468,8 +1803,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMatchesV3ById(affinity: kotlin.String, puuid: kotlin.String, mode: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = null) : MatchesV3ListResponse {
-        val localVarResponse = getMatchesV3ByIdWithHttpInfo(affinity = affinity, puuid = puuid, mode = mode, map = map, size = size)
+    fun getMatchesV3ById(affinity: ValorantAffinity, puuid: java.util.UUID, mode: kotlin.String? = null, queue: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = 5) : MatchesV3ListResponse {
+        val localVarResponse = getMatchesV3ByIdWithHttpInfo(affinity = affinity, puuid = puuid, mode = mode, queue = queue, map = map, size = size)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MatchesV3ListResponse
@@ -1490,19 +1825,20 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/by-puuid/matches/{affinity}/{puuid}
      * Get matches by PUUID (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
      * @return ApiResponse<MatchesV3ListResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMatchesV3ByIdWithHttpInfo(affinity: kotlin.String, puuid: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : ApiResponse<MatchesV3ListResponse?> {
-        val localVariableConfig = getMatchesV3ByIdRequestConfig(affinity = affinity, puuid = puuid, mode = mode, map = map, size = size)
+    fun getMatchesV3ByIdWithHttpInfo(affinity: ValorantAffinity, puuid: java.util.UUID, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : ApiResponse<MatchesV3ListResponse?> {
+        val localVariableConfig = getMatchesV3ByIdRequestConfig(affinity = affinity, puuid = puuid, mode = mode, queue = queue, map = map, size = size)
 
         return request<Unit, MatchesV3ListResponse>(
             localVariableConfig
@@ -1512,19 +1848,23 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMatchesV3ById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
      * @return RequestConfig
      */
-    fun getMatchesV3ByIdRequestConfig(affinity: kotlin.String, puuid: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun getMatchesV3ByIdRequestConfig(affinity: ValorantAffinity, puuid: java.util.UUID, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (mode != null) {
                     put("mode", listOf(mode.toString()))
+                }
+                if (queue != null) {
+                    put("queue", listOf(queue.toString()))
                 }
                 if (map != null) {
                     put("map", listOf(map.toString()))
@@ -1550,12 +1890,13 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/matches/{affinity}/{name}/{tag}
      * Get matches by name (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
      * @return MatchesV3ListResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1565,8 +1906,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMatchesV3ByName(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: MatchMode? = null, map: kotlin.String? = null, size: kotlin.Int? = null) : MatchesV3ListResponse {
-        val localVarResponse = getMatchesV3ByNameWithHttpInfo(affinity = affinity, name = name, tag = tag, mode = mode, map = map, size = size)
+    fun getMatchesV3ByName(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, mode: kotlin.String? = null, queue: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = 5) : MatchesV3ListResponse {
+        val localVarResponse = getMatchesV3ByNameWithHttpInfo(affinity = affinity, name = name, tag = tag, mode = mode, queue = queue, map = map, size = size)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MatchesV3ListResponse
@@ -1587,20 +1928,21 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/matches/{affinity}/{name}/{tag}
      * Get matches by name (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
      * @return ApiResponse<MatchesV3ListResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMatchesV3ByNameWithHttpInfo(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: MatchMode?, map: kotlin.String?, size: kotlin.Int?) : ApiResponse<MatchesV3ListResponse?> {
-        val localVariableConfig = getMatchesV3ByNameRequestConfig(affinity = affinity, name = name, tag = tag, mode = mode, map = map, size = size)
+    fun getMatchesV3ByNameWithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : ApiResponse<MatchesV3ListResponse?> {
+        val localVariableConfig = getMatchesV3ByNameRequestConfig(affinity = affinity, name = name, tag = tag, mode = mode, queue = queue, map = map, size = size)
 
         return request<Unit, MatchesV3ListResponse>(
             localVariableConfig
@@ -1610,20 +1952,24 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMatchesV3ByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
      * @return RequestConfig
      */
-    fun getMatchesV3ByNameRequestConfig(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: MatchMode?, map: kotlin.String?, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun getMatchesV3ByNameRequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (mode != null) {
                     put("mode", listOf(mode.toString()))
+                }
+                if (queue != null) {
+                    put("queue", listOf(queue.toString()))
                 }
                 if (map != null) {
                     put("map", listOf(map.toString()))
@@ -1649,13 +1995,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid}
      * Get matches by PUUID (v4)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
-     * @param start Start index for pagination (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
+     * @param start Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional, default to 0)
      * @return MatchesV4HistoryResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1665,8 +2012,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMatchesV4ById(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String, mode: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = null, start: kotlin.Int? = null) : MatchesV4HistoryResponse {
-        val localVarResponse = getMatchesV4ByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid, mode = mode, map = map, size = size, start = start)
+    fun getMatchesV4ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: java.util.UUID, mode: kotlin.String? = null, queue: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = 5, start: kotlin.Int? = 0) : MatchesV4HistoryResponse {
+        val localVarResponse = getMatchesV4ByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid, mode = mode, queue = queue, map = map, size = size, start = start)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MatchesV4HistoryResponse
@@ -1687,21 +2034,22 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid}
      * Get matches by PUUID (v4)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
-     * @param start Start index for pagination (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
+     * @param start Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional, default to 0)
      * @return ApiResponse<MatchesV4HistoryResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMatchesV4ByIdWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : ApiResponse<MatchesV4HistoryResponse?> {
-        val localVariableConfig = getMatchesV4ByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid, mode = mode, map = map, size = size, start = start)
+    fun getMatchesV4ByIdWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: java.util.UUID, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : ApiResponse<MatchesV4HistoryResponse?> {
+        val localVariableConfig = getMatchesV4ByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid, mode = mode, queue = queue, map = map, size = size, start = start)
 
         return request<Unit, MatchesV4HistoryResponse>(
             localVariableConfig
@@ -1711,21 +2059,25 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMatchesV4ById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
-     * @param start Start index for pagination (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
+     * @param start Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional, default to 0)
      * @return RequestConfig
      */
-    fun getMatchesV4ByIdRequestConfig(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : RequestConfig<Unit> {
+    fun getMatchesV4ByIdRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: java.util.UUID, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (mode != null) {
                     put("mode", listOf(mode.toString()))
+                }
+                if (queue != null) {
+                    put("queue", listOf(queue.toString()))
                 }
                 if (map != null) {
                     put("map", listOf(map.toString()))
@@ -1754,14 +2106,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v4/matches/{affinity}/{platform}/{name}/{tag}
      * Get matches by name (v4)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
-     * @param start Start index for pagination (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
+     * @param start Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional, default to 0)
      * @return MatchesV4HistoryResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1771,8 +2124,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMatchesV4ByName(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = null, start: kotlin.Int? = null) : MatchesV4HistoryResponse {
-        val localVarResponse = getMatchesV4ByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag, mode = mode, map = map, size = size, start = start)
+    fun getMatchesV4ByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, mode: kotlin.String? = null, queue: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = 5, start: kotlin.Int? = 0) : MatchesV4HistoryResponse {
+        val localVarResponse = getMatchesV4ByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag, mode = mode, queue = queue, map = map, size = size, start = start)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MatchesV4HistoryResponse
@@ -1793,22 +2146,23 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v4/matches/{affinity}/{platform}/{name}/{tag}
      * Get matches by name (v4)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
-     * @param start Start index for pagination (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
+     * @param start Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional, default to 0)
      * @return ApiResponse<MatchesV4HistoryResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMatchesV4ByNameWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : ApiResponse<MatchesV4HistoryResponse?> {
-        val localVariableConfig = getMatchesV4ByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag, mode = mode, map = map, size = size, start = start)
+    fun getMatchesV4ByNameWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : ApiResponse<MatchesV4HistoryResponse?> {
+        val localVariableConfig = getMatchesV4ByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag, mode = mode, queue = queue, map = map, size = size, start = start)
 
         return request<Unit, MatchesV4HistoryResponse>(
             localVariableConfig
@@ -1818,22 +2172,26 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMatchesV4ByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
-     * @param start Start index for pagination (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count; values above 10 are capped at 10. (optional, default to 5)
+     * @param start Zero-based offset; start plus capped size must fit a signed 32-bit integer. (optional, default to 0)
      * @return RequestConfig
      */
-    fun getMatchesV4ByNameRequestConfig(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : RequestConfig<Unit> {
+    fun getMatchesV4ByNameRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, start: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (mode != null) {
                     put("mode", listOf(mode.toString()))
+                }
+                if (queue != null) {
+                    put("queue", listOf(queue.toString()))
                 }
                 if (map != null) {
                     put("map", listOf(map.toString()))
@@ -1862,7 +2220,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/mmr-history/{affinity}/{puuid}
      * Get MMR history by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return MMRHistoryV1Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -1873,7 +2231,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrHistoryById(affinity: kotlin.String, puuid: kotlin.String) : MMRHistoryV1Response {
+    fun getMmrHistoryById(affinity: ValorantAffinity, puuid: kotlin.String) : MMRHistoryV1Response {
         val localVarResponse = getMmrHistoryByIdWithHttpInfo(affinity = affinity, puuid = puuid)
 
         return when (localVarResponse.responseType) {
@@ -1895,7 +2253,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/mmr-history/{affinity}/{puuid}
      * Get MMR history by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return ApiResponse<MMRHistoryV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -1903,7 +2261,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrHistoryByIdWithHttpInfo(affinity: kotlin.String, puuid: kotlin.String) : ApiResponse<MMRHistoryV1Response?> {
+    fun getMmrHistoryByIdWithHttpInfo(affinity: ValorantAffinity, puuid: kotlin.String) : ApiResponse<MMRHistoryV1Response?> {
         val localVariableConfig = getMmrHistoryByIdRequestConfig(affinity = affinity, puuid = puuid)
 
         return request<Unit, MMRHistoryV1Response>(
@@ -1914,11 +2272,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrHistoryById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return RequestConfig
      */
-    fun getMmrHistoryByIdRequestConfig(affinity: kotlin.String, puuid: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrHistoryByIdRequestConfig(affinity: ValorantAffinity, puuid: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -1938,7 +2296,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/mmr-history/{affinity}/{name}/{tag}
      * Get MMR history by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return MMRHistoryV1Response
@@ -1950,7 +2308,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrHistoryByName(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : MMRHistoryV1Response {
+    fun getMmrHistoryByName(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : MMRHistoryV1Response {
         val localVarResponse = getMmrHistoryByNameWithHttpInfo(affinity = affinity, name = name, tag = tag)
 
         return when (localVarResponse.responseType) {
@@ -1972,7 +2330,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/mmr-history/{affinity}/{name}/{tag}
      * Get MMR history by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return ApiResponse<MMRHistoryV1Response?>
@@ -1981,7 +2339,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrHistoryByNameWithHttpInfo(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRHistoryV1Response?> {
+    fun getMmrHistoryByNameWithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRHistoryV1Response?> {
         val localVariableConfig = getMmrHistoryByNameRequestConfig(affinity = affinity, name = name, tag = tag)
 
         return request<Unit, MMRHistoryV1Response>(
@@ -1992,12 +2350,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrHistoryByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return RequestConfig
      */
-    fun getMmrHistoryByNameRequestConfig(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrHistoryByNameRequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2017,8 +2375,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/by-puuid/mmr-history/{affinity}/{platform}/{puuid}
      * Get MMR history by PUUID (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return MMRHistoryV2Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -2029,7 +2387,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrHistoryV2ById(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : MMRHistoryV2Response {
+    fun getMmrHistoryV2ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : MMRHistoryV2Response {
         val localVarResponse = getMmrHistoryV2ByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid)
 
         return when (localVarResponse.responseType) {
@@ -2051,8 +2409,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/by-puuid/mmr-history/{affinity}/{platform}/{puuid}
      * Get MMR history by PUUID (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return ApiResponse<MMRHistoryV2Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -2060,7 +2418,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrHistoryV2ByIdWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : ApiResponse<MMRHistoryV2Response?> {
+    fun getMmrHistoryV2ByIdWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : ApiResponse<MMRHistoryV2Response?> {
         val localVariableConfig = getMmrHistoryV2ByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid)
 
         return request<Unit, MMRHistoryV2Response>(
@@ -2071,12 +2429,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrHistoryV2ById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return RequestConfig
      */
-    fun getMmrHistoryV2ByIdRequestConfig(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrHistoryV2ByIdRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2096,8 +2454,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/mmr-history/{affinity}/{platform}/{name}/{tag}
      * Get MMR history by name (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return MMRHistoryV2Response
@@ -2109,7 +2467,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrHistoryV2ByName(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : MMRHistoryV2Response {
+    fun getMmrHistoryV2ByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : MMRHistoryV2Response {
         val localVarResponse = getMmrHistoryV2ByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag)
 
         return when (localVarResponse.responseType) {
@@ -2131,8 +2489,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/mmr-history/{affinity}/{platform}/{name}/{tag}
      * Get MMR history by name (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return ApiResponse<MMRHistoryV2Response?>
@@ -2141,7 +2499,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrHistoryV2ByNameWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRHistoryV2Response?> {
+    fun getMmrHistoryV2ByNameWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRHistoryV2Response?> {
         val localVariableConfig = getMmrHistoryV2ByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag)
 
         return request<Unit, MMRHistoryV2Response>(
@@ -2152,13 +2510,13 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrHistoryV2ByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return RequestConfig
      */
-    fun getMmrHistoryV2ByNameRequestConfig(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrHistoryV2ByNameRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2178,7 +2536,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/mmr/{affinity}/{puuid}
      * Get MMR by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return MMRV1Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -2189,7 +2547,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrV1ById(affinity: kotlin.String, puuid: kotlin.String) : MMRV1Response {
+    fun getMmrV1ById(affinity: ValorantAffinity, puuid: kotlin.String) : MMRV1Response {
         val localVarResponse = getMmrV1ByIdWithHttpInfo(affinity = affinity, puuid = puuid)
 
         return when (localVarResponse.responseType) {
@@ -2211,7 +2569,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/mmr/{affinity}/{puuid}
      * Get MMR by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return ApiResponse<MMRV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -2219,7 +2577,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrV1ByIdWithHttpInfo(affinity: kotlin.String, puuid: kotlin.String) : ApiResponse<MMRV1Response?> {
+    fun getMmrV1ByIdWithHttpInfo(affinity: ValorantAffinity, puuid: kotlin.String) : ApiResponse<MMRV1Response?> {
         val localVariableConfig = getMmrV1ByIdRequestConfig(affinity = affinity, puuid = puuid)
 
         return request<Unit, MMRV1Response>(
@@ -2230,11 +2588,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrV1ById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return RequestConfig
      */
-    fun getMmrV1ByIdRequestConfig(affinity: kotlin.String, puuid: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrV1ByIdRequestConfig(affinity: ValorantAffinity, puuid: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2254,7 +2612,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/mmr/{affinity}/{name}/{tag}
      * Get MMR by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return MMRV1Response
@@ -2266,7 +2624,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrV1ByName(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : MMRV1Response {
+    fun getMmrV1ByName(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : MMRV1Response {
         val localVarResponse = getMmrV1ByNameWithHttpInfo(affinity = affinity, name = name, tag = tag)
 
         return when (localVarResponse.responseType) {
@@ -2288,7 +2646,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/mmr/{affinity}/{name}/{tag}
      * Get MMR by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return ApiResponse<MMRV1Response?>
@@ -2297,7 +2655,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrV1ByNameWithHttpInfo(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRV1Response?> {
+    fun getMmrV1ByNameWithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRV1Response?> {
         val localVariableConfig = getMmrV1ByNameRequestConfig(affinity = affinity, name = name, tag = tag)
 
         return request<Unit, MMRV1Response>(
@@ -2308,12 +2666,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrV1ByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return RequestConfig
      */
-    fun getMmrV1ByNameRequestConfig(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrV1ByNameRequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2333,7 +2691,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/by-puuid/mmr/{affinity}/{puuid}
      * Get MMR by PUUID (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return MMRV2Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -2344,7 +2702,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrV2ById(affinity: kotlin.String, puuid: kotlin.String) : MMRV2Response {
+    fun getMmrV2ById(affinity: ValorantAffinity, puuid: kotlin.String) : MMRV2Response {
         val localVarResponse = getMmrV2ByIdWithHttpInfo(affinity = affinity, puuid = puuid)
 
         return when (localVarResponse.responseType) {
@@ -2366,7 +2724,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/by-puuid/mmr/{affinity}/{puuid}
      * Get MMR by PUUID (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return ApiResponse<MMRV2Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -2374,7 +2732,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrV2ByIdWithHttpInfo(affinity: kotlin.String, puuid: kotlin.String) : ApiResponse<MMRV2Response?> {
+    fun getMmrV2ByIdWithHttpInfo(affinity: ValorantAffinity, puuid: kotlin.String) : ApiResponse<MMRV2Response?> {
         val localVariableConfig = getMmrV2ByIdRequestConfig(affinity = affinity, puuid = puuid)
 
         return request<Unit, MMRV2Response>(
@@ -2385,11 +2743,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrV2ById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
      * @return RequestConfig
      */
-    fun getMmrV2ByIdRequestConfig(affinity: kotlin.String, puuid: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrV2ByIdRequestConfig(affinity: ValorantAffinity, puuid: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2409,7 +2767,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/mmr/{affinity}/{name}/{tag}
      * Get MMR by name (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return MMRV2Response
@@ -2421,7 +2779,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrV2ByName(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : MMRV2Response {
+    fun getMmrV2ByName(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : MMRV2Response {
         val localVarResponse = getMmrV2ByNameWithHttpInfo(affinity = affinity, name = name, tag = tag)
 
         return when (localVarResponse.responseType) {
@@ -2443,7 +2801,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/mmr/{affinity}/{name}/{tag}
      * Get MMR by name (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return ApiResponse<MMRV2Response?>
@@ -2452,7 +2810,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrV2ByNameWithHttpInfo(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRV2Response?> {
+    fun getMmrV2ByNameWithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRV2Response?> {
         val localVariableConfig = getMmrV2ByNameRequestConfig(affinity = affinity, name = name, tag = tag)
 
         return request<Unit, MMRV2Response>(
@@ -2463,12 +2821,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrV2ByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return RequestConfig
      */
-    fun getMmrV2ByNameRequestConfig(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrV2ByNameRequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2488,8 +2846,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/by-puuid/mmr/{affinity}/{platform}/{puuid}
      * Get MMR by PUUID (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return MMRV3Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -2500,7 +2858,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrV3ById(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : MMRV3Response {
+    fun getMmrV3ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : MMRV3Response {
         val localVarResponse = getMmrV3ByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid)
 
         return when (localVarResponse.responseType) {
@@ -2522,8 +2880,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/by-puuid/mmr/{affinity}/{platform}/{puuid}
      * Get MMR by PUUID (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return ApiResponse<MMRV3Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -2531,7 +2889,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrV3ByIdWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : ApiResponse<MMRV3Response?> {
+    fun getMmrV3ByIdWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : ApiResponse<MMRV3Response?> {
         val localVariableConfig = getMmrV3ByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid)
 
         return request<Unit, MMRV3Response>(
@@ -2542,12 +2900,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrV3ById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
      * @return RequestConfig
      */
-    fun getMmrV3ByIdRequestConfig(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrV3ByIdRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2567,8 +2925,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/mmr/{affinity}/{platform}/{name}/{tag}
      * Get MMR by name (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return MMRV3Response
@@ -2580,7 +2938,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMmrV3ByName(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : MMRV3Response {
+    fun getMmrV3ByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : MMRV3Response {
         val localVarResponse = getMmrV3ByNameWithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag)
 
         return when (localVarResponse.responseType) {
@@ -2602,8 +2960,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/mmr/{affinity}/{platform}/{name}/{tag}
      * Get MMR by name (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return ApiResponse<MMRV3Response?>
@@ -2612,7 +2970,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getMmrV3ByNameWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRV3Response?> {
+    fun getMmrV3ByNameWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : ApiResponse<MMRV3Response?> {
         val localVariableConfig = getMmrV3ByNameRequestConfig(affinity = affinity, platform = platform, name = name, tag = tag)
 
         return request<Unit, MMRV3Response>(
@@ -2623,13 +2981,13 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation getMmrV3ByName
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
      * @return RequestConfig
      */
-    fun getMmrV3ByNameRequestConfig(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+    fun getMmrV3ByNameRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2649,11 +3007,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/leaderboard/{affinity}
      * Get leaderboard (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param season Season ID (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param season Short season ID, such as e9a1; omission selects the current season (optional)
      * @param name Player name to search for (optional) (optional)
      * @param tag Player tag to search for (optional) (optional)
-     * @return kotlin.Any
+     * @param puuid Player UUID to search for (optional)
+     * @return LeaderboardV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -2662,11 +3021,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun leaderboardV1(affinity: kotlin.String, season: kotlin.String? = null, name: kotlin.String? = null, tag: kotlin.String? = null) : kotlin.Any {
-        val localVarResponse = leaderboardV1WithHttpInfo(affinity = affinity, season = season, name = name, tag = tag)
+    fun leaderboardV1(affinity: ValorantAffinity, season: kotlin.String? = null, name: kotlin.String? = null, tag: kotlin.String? = null, puuid: java.util.UUID? = null) : LeaderboardV1Response {
+        val localVarResponse = leaderboardV1WithHttpInfo(affinity = affinity, season = season, name = name, tag = tag, puuid = puuid)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> (localVarResponse as Success<*>).data as LeaderboardV1Response
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -2684,20 +3043,21 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/leaderboard/{affinity}
      * Get leaderboard (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param season Season ID (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param season Short season ID, such as e9a1; omission selects the current season (optional)
      * @param name Player name to search for (optional) (optional)
      * @param tag Player tag to search for (optional) (optional)
-     * @return ApiResponse<kotlin.Any?>
+     * @param puuid Player UUID to search for (optional)
+     * @return ApiResponse<LeaderboardV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun leaderboardV1WithHttpInfo(affinity: kotlin.String, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?) : ApiResponse<kotlin.Any?> {
-        val localVariableConfig = leaderboardV1RequestConfig(affinity = affinity, season = season, name = name, tag = tag)
+    fun leaderboardV1WithHttpInfo(affinity: ValorantAffinity, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?, puuid: java.util.UUID?) : ApiResponse<LeaderboardV1Response?> {
+        val localVariableConfig = leaderboardV1RequestConfig(affinity = affinity, season = season, name = name, tag = tag, puuid = puuid)
 
-        return request<Unit, kotlin.Any>(
+        return request<Unit, LeaderboardV1Response>(
             localVariableConfig
         )
     }
@@ -2705,13 +3065,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation leaderboardV1
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param season Season ID (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param season Short season ID, such as e9a1; omission selects the current season (optional)
      * @param name Player name to search for (optional) (optional)
      * @param tag Player tag to search for (optional) (optional)
+     * @param puuid Player UUID to search for (optional)
      * @return RequestConfig
      */
-    fun leaderboardV1RequestConfig(affinity: kotlin.String, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?) : RequestConfig<Unit> {
+    fun leaderboardV1RequestConfig(affinity: ValorantAffinity, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?, puuid: java.util.UUID?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -2723,6 +3084,9 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
                 }
                 if (tag != null) {
                     put("tag", listOf(tag.toString()))
+                }
+                if (puuid != null) {
+                    put("puuid", listOf(puuid.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2742,12 +3106,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/leaderboard/{affinity}
      * Get leaderboard (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param season Season ID (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param season Short season ID, such as e9a1; omission selects the current season (optional)
      * @param name Player name to search for (optional) (optional)
      * @param tag Player tag to search for (optional) (optional)
      * @param puuid Player UUID to search for (optional) (optional)
-     * @return LeaderboardV2Response
+     * @return ValorantLeaderboardV2Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -2756,11 +3120,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun leaderboardV2(affinity: kotlin.String, season: kotlin.String? = null, name: kotlin.String? = null, tag: kotlin.String? = null, puuid: kotlin.String? = null) : LeaderboardV2Response {
+    fun leaderboardV2(affinity: ValorantAffinity, season: kotlin.String? = null, name: kotlin.String? = null, tag: kotlin.String? = null, puuid: kotlin.String? = null) : ValorantLeaderboardV2Response {
         val localVarResponse = leaderboardV2WithHttpInfo(affinity = affinity, season = season, name = name, tag = tag, puuid = puuid)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as LeaderboardV2Response
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ValorantLeaderboardV2Response
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -2778,21 +3142,21 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/leaderboard/{affinity}
      * Get leaderboard (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param season Season ID (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param season Short season ID, such as e9a1; omission selects the current season (optional)
      * @param name Player name to search for (optional) (optional)
      * @param tag Player tag to search for (optional) (optional)
      * @param puuid Player UUID to search for (optional) (optional)
-     * @return ApiResponse<LeaderboardV2Response?>
+     * @return ApiResponse<ValorantLeaderboardV2Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun leaderboardV2WithHttpInfo(affinity: kotlin.String, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?, puuid: kotlin.String?) : ApiResponse<LeaderboardV2Response?> {
+    fun leaderboardV2WithHttpInfo(affinity: ValorantAffinity, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?, puuid: kotlin.String?) : ApiResponse<ValorantLeaderboardV2Response?> {
         val localVariableConfig = leaderboardV2RequestConfig(affinity = affinity, season = season, name = name, tag = tag, puuid = puuid)
 
-        return request<Unit, LeaderboardV2Response>(
+        return request<Unit, ValorantLeaderboardV2Response>(
             localVariableConfig
         )
     }
@@ -2800,14 +3164,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation leaderboardV2
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param season Season ID (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param season Short season ID, such as e9a1; omission selects the current season (optional)
      * @param name Player name to search for (optional) (optional)
      * @param tag Player tag to search for (optional) (optional)
      * @param puuid Player UUID to search for (optional) (optional)
      * @return RequestConfig
      */
-    fun leaderboardV2RequestConfig(affinity: kotlin.String, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?, puuid: kotlin.String?) : RequestConfig<Unit> {
+    fun leaderboardV2RequestConfig(affinity: ValorantAffinity, season: kotlin.String?, name: kotlin.String?, tag: kotlin.String?, puuid: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -2841,13 +3205,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/leaderboard/{affinity}/{platform}
      * Get leaderboard (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
-     * @param season Season ID (optional) (optional)
-     * @param size Number of results per page (optional) (optional)
-     * @param page Page number (optional) (optional)
-     * @param name Player name to search for (optional) (optional)
-     * @param tag Player tag to search for (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param page Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. (optional, default to 1)
+     * @param size Positive integer result count; only ASCII decimal digits are accepted. (optional, default to 1000)
+     * @param seasonShort Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. (optional)
+     * @param seasonId Season UUID; mutually exclusive with season_short. (optional)
+     * @param name Player name to search for. (optional)
+     * @param tag Player tag to search for. (optional)
+     * @param puuid Player UUID to search for. (optional)
      * @return LeaderboardV3Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -2857,8 +3223,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun leaderboardV3(affinity: kotlin.String, platform: kotlin.String, season: kotlin.String? = null, size: kotlin.Int? = null, page: kotlin.Int? = null, name: kotlin.String? = null, tag: kotlin.String? = null) : LeaderboardV3Response {
-        val localVarResponse = leaderboardV3WithHttpInfo(affinity = affinity, platform = platform, season = season, size = size, page = page, name = name, tag = tag)
+    fun leaderboardV3(affinity: ValorantAffinity, platform: ValorantPlatform, page: kotlin.Int? = 1, size: kotlin.Int? = 1000, seasonShort: kotlin.String? = null, seasonId: java.util.UUID? = null, name: kotlin.String? = null, tag: kotlin.String? = null, puuid: java.util.UUID? = null) : LeaderboardV3Response {
+        val localVarResponse = leaderboardV3WithHttpInfo(affinity = affinity, platform = platform, page = page, size = size, seasonShort = seasonShort, seasonId = seasonId, name = name, tag = tag, puuid = puuid)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LeaderboardV3Response
@@ -2879,21 +3245,23 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v3/leaderboard/{affinity}/{platform}
      * Get leaderboard (v3)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
-     * @param season Season ID (optional) (optional)
-     * @param size Number of results per page (optional) (optional)
-     * @param page Page number (optional) (optional)
-     * @param name Player name to search for (optional) (optional)
-     * @param tag Player tag to search for (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param page Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. (optional, default to 1)
+     * @param size Positive integer result count; only ASCII decimal digits are accepted. (optional, default to 1000)
+     * @param seasonShort Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. (optional)
+     * @param seasonId Season UUID; mutually exclusive with season_short. (optional)
+     * @param name Player name to search for. (optional)
+     * @param tag Player tag to search for. (optional)
+     * @param puuid Player UUID to search for. (optional)
      * @return ApiResponse<LeaderboardV3Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun leaderboardV3WithHttpInfo(affinity: kotlin.String, platform: kotlin.String, season: kotlin.String?, size: kotlin.Int?, page: kotlin.Int?, name: kotlin.String?, tag: kotlin.String?) : ApiResponse<LeaderboardV3Response?> {
-        val localVariableConfig = leaderboardV3RequestConfig(affinity = affinity, platform = platform, season = season, size = size, page = page, name = name, tag = tag)
+    fun leaderboardV3WithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, page: kotlin.Int?, size: kotlin.Int?, seasonShort: kotlin.String?, seasonId: java.util.UUID?, name: kotlin.String?, tag: kotlin.String?, puuid: java.util.UUID?) : ApiResponse<LeaderboardV3Response?> {
+        val localVariableConfig = leaderboardV3RequestConfig(affinity = affinity, platform = platform, page = page, size = size, seasonShort = seasonShort, seasonId = seasonId, name = name, tag = tag, puuid = puuid)
 
         return request<Unit, LeaderboardV3Response>(
             localVariableConfig
@@ -2903,33 +3271,41 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation leaderboardV3
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
-     * @param season Season ID (optional) (optional)
-     * @param size Number of results per page (optional) (optional)
-     * @param page Page number (optional) (optional)
-     * @param name Player name to search for (optional) (optional)
-     * @param tag Player tag to search for (optional) (optional)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
+     * @param page Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. (optional, default to 1)
+     * @param size Positive integer result count; only ASCII decimal digits are accepted. (optional, default to 1000)
+     * @param seasonShort Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. (optional)
+     * @param seasonId Season UUID; mutually exclusive with season_short. (optional)
+     * @param name Player name to search for. (optional)
+     * @param tag Player tag to search for. (optional)
+     * @param puuid Player UUID to search for. (optional)
      * @return RequestConfig
      */
-    fun leaderboardV3RequestConfig(affinity: kotlin.String, platform: kotlin.String, season: kotlin.String?, size: kotlin.Int?, page: kotlin.Int?, name: kotlin.String?, tag: kotlin.String?) : RequestConfig<Unit> {
+    fun leaderboardV3RequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, page: kotlin.Int?, size: kotlin.Int?, seasonShort: kotlin.String?, seasonId: java.util.UUID?, name: kotlin.String?, tag: kotlin.String?, puuid: java.util.UUID?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
-                if (season != null) {
-                    put("season", listOf(season.toString()))
+                if (page != null) {
+                    put("page", listOf(page.toString()))
                 }
                 if (size != null) {
                     put("size", listOf(size.toString()))
                 }
-                if (page != null) {
-                    put("page", listOf(page.toString()))
+                if (seasonShort != null) {
+                    put("season_short", listOf(seasonShort.toString()))
+                }
+                if (seasonId != null) {
+                    put("season_id", listOf(seasonId.toString()))
                 }
                 if (name != null) {
                     put("name", listOf(name.toString()))
                 }
                 if (tag != null) {
                     put("tag", listOf(tag.toString()))
+                }
+                if (puuid != null) {
+                    put("puuid", listOf(puuid.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -2959,7 +3335,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun matchV2(matchId: kotlin.String) : MatchesV2Response {
+    fun matchV2(matchId: java.util.UUID) : MatchesV2Response {
         val localVarResponse = matchV2WithHttpInfo(matchId = matchId)
 
         return when (localVarResponse.responseType) {
@@ -2988,7 +3364,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun matchV2WithHttpInfo(matchId: kotlin.String) : ApiResponse<MatchesV2Response?> {
+    fun matchV2WithHttpInfo(matchId: java.util.UUID) : ApiResponse<MatchesV2Response?> {
         val localVariableConfig = matchV2RequestConfig(matchId = matchId)
 
         return request<Unit, MatchesV2Response>(
@@ -3002,7 +3378,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param matchId Match UUID
      * @return RequestConfig
      */
-    fun matchV2RequestConfig(matchId: kotlin.String) : RequestConfig<Unit> {
+    fun matchV2RequestConfig(matchId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3022,7 +3398,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v4/match/{affinity}/{match_id}
      * Get match details (v4)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param matchId Match UUID
      * @return MatchesV4Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -3033,7 +3409,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun matchV4(affinity: kotlin.String, matchId: kotlin.String) : MatchesV4Response {
+    fun matchV4(affinity: ValorantAffinity, matchId: java.util.UUID) : MatchesV4Response {
         val localVarResponse = matchV4WithHttpInfo(affinity = affinity, matchId = matchId)
 
         return when (localVarResponse.responseType) {
@@ -3055,7 +3431,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v4/match/{affinity}/{match_id}
      * Get match details (v4)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param matchId Match UUID
      * @return ApiResponse<MatchesV4Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -3063,7 +3439,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun matchV4WithHttpInfo(affinity: kotlin.String, matchId: kotlin.String) : ApiResponse<MatchesV4Response?> {
+    fun matchV4WithHttpInfo(affinity: ValorantAffinity, matchId: java.util.UUID) : ApiResponse<MatchesV4Response?> {
         val localVariableConfig = matchV4RequestConfig(affinity = affinity, matchId = matchId)
 
         return request<Unit, MatchesV4Response>(
@@ -3074,11 +3450,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation matchV4
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param matchId Match UUID
      * @return RequestConfig
      */
-    fun matchV4RequestConfig(affinity: kotlin.String, matchId: kotlin.String) : RequestConfig<Unit> {
+    fun matchV4RequestConfig(affinity: ValorantAffinity, matchId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3100,7 +3476,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param id Team UUID
      * @param season Premier season id (optional) (optional)
-     * @param affinity Region/affinity for fallback resolution (optional) (optional)
+     * @param affinity Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
      * @return PremierTeamV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3110,7 +3486,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierById(id: kotlin.String, season: kotlin.String? = null, affinity: kotlin.String? = null) : PremierTeamV1Response {
+    fun premierById(id: java.util.UUID, season: kotlin.String? = null, affinity: ValorantAffinity? = null) : PremierTeamV1Response {
         val localVarResponse = premierByIdWithHttpInfo(id = id, season = season, affinity = affinity)
 
         return when (localVarResponse.responseType) {
@@ -3134,14 +3510,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param id Team UUID
      * @param season Premier season id (optional) (optional)
-     * @param affinity Region/affinity for fallback resolution (optional) (optional)
+     * @param affinity Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
      * @return ApiResponse<PremierTeamV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierByIdWithHttpInfo(id: kotlin.String, season: kotlin.String?, affinity: kotlin.String?) : ApiResponse<PremierTeamV1Response?> {
+    fun premierByIdWithHttpInfo(id: java.util.UUID, season: kotlin.String?, affinity: ValorantAffinity?) : ApiResponse<PremierTeamV1Response?> {
         val localVariableConfig = premierByIdRequestConfig(id = id, season = season, affinity = affinity)
 
         return request<Unit, PremierTeamV1Response>(
@@ -3154,10 +3530,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      *
      * @param id Team UUID
      * @param season Premier season id (optional) (optional)
-     * @param affinity Region/affinity for fallback resolution (optional) (optional)
+     * @param affinity Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
      * @return RequestConfig
      */
-    fun premierByIdRequestConfig(id: kotlin.String, season: kotlin.String?, affinity: kotlin.String?) : RequestConfig<Unit> {
+    fun premierByIdRequestConfig(id: java.util.UUID, season: kotlin.String?, affinity: ValorantAffinity?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -3187,7 +3563,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param id Team UUID
      * @param season Premier season id (optional) (optional)
-     * @return PremierTeamV1Response
+     * @return PremierTeamHistoryV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -3196,11 +3572,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierByIdHistory(id: kotlin.String, season: kotlin.String? = null) : PremierTeamV1Response {
+    fun premierByIdHistory(id: java.util.UUID, season: kotlin.String? = null) : PremierTeamHistoryV1Response {
         val localVarResponse = premierByIdHistoryWithHttpInfo(id = id, season = season)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV1Response
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamHistoryV1Response
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -3220,16 +3596,16 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param id Team UUID
      * @param season Premier season id (optional) (optional)
-     * @return ApiResponse<PremierTeamV1Response?>
+     * @return ApiResponse<PremierTeamHistoryV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierByIdHistoryWithHttpInfo(id: kotlin.String, season: kotlin.String?) : ApiResponse<PremierTeamV1Response?> {
+    fun premierByIdHistoryWithHttpInfo(id: java.util.UUID, season: kotlin.String?) : ApiResponse<PremierTeamHistoryV1Response?> {
         val localVariableConfig = premierByIdHistoryRequestConfig(id = id, season = season)
 
-        return request<Unit, PremierTeamV1Response>(
+        return request<Unit, PremierTeamHistoryV1Response>(
             localVariableConfig
         )
     }
@@ -3241,7 +3617,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierByIdHistoryRequestConfig(id: kotlin.String, season: kotlin.String?) : RequestConfig<Unit> {
+    fun premierByIdHistoryRequestConfig(id: java.util.UUID, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -3263,13 +3639,89 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     }
 
     /**
+     * GET /valorant/v2/premier/teams/{affinity}/{id}
+     * Get live Premier team by ID (v2)
+     * Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+     * @param affinity Region/affinity; case-insensitive
+     * @param id Team UUID
+     * @return PremierTeamV2Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun premierByIdV2(affinity: ValorantAffinity, id: java.util.UUID) : PremierTeamV2Response {
+        val localVarResponse = premierByIdV2WithHttpInfo(affinity = affinity, id = id)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV2Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/premier/teams/{affinity}/{id}
+     * Get live Premier team by ID (v2)
+     * Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+     * @param affinity Region/affinity; case-insensitive
+     * @param id Team UUID
+     * @return ApiResponse<PremierTeamV2Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun premierByIdV2WithHttpInfo(affinity: ValorantAffinity, id: java.util.UUID) : ApiResponse<PremierTeamV2Response?> {
+        val localVariableConfig = premierByIdV2RequestConfig(affinity = affinity, id = id)
+
+        return request<Unit, PremierTeamV2Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation premierByIdV2
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param id Team UUID
+     * @return RequestConfig
+     */
+    fun premierByIdV2RequestConfig(affinity: ValorantAffinity, id: java.util.UUID) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/premier/teams/{affinity}/{id}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"id"+"}", encodeURIComponent(id.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /valorant/v1/premier/{name}/{tag}
      * Get Premier team by name (v1)
      * 
      * @param name Team name
      * @param tag Team tag
      * @param season Premier season id (optional) (optional)
-     * @param affinity Region/affinity for fallback resolution (optional) (optional)
+     * @param affinity Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
      * @return PremierTeamV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3279,7 +3731,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierByName(name: kotlin.String, tag: kotlin.String, season: kotlin.String? = null, affinity: kotlin.String? = null) : PremierTeamV1Response {
+    fun premierByName(name: kotlin.String, tag: kotlin.String, season: kotlin.String? = null, affinity: ValorantAffinity? = null) : PremierTeamV1Response {
         val localVarResponse = premierByNameWithHttpInfo(name = name, tag = tag, season = season, affinity = affinity)
 
         return when (localVarResponse.responseType) {
@@ -3304,14 +3756,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param name Team name
      * @param tag Team tag
      * @param season Premier season id (optional) (optional)
-     * @param affinity Region/affinity for fallback resolution (optional) (optional)
+     * @param affinity Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
      * @return ApiResponse<PremierTeamV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierByNameWithHttpInfo(name: kotlin.String, tag: kotlin.String, season: kotlin.String?, affinity: kotlin.String?) : ApiResponse<PremierTeamV1Response?> {
+    fun premierByNameWithHttpInfo(name: kotlin.String, tag: kotlin.String, season: kotlin.String?, affinity: ValorantAffinity?) : ApiResponse<PremierTeamV1Response?> {
         val localVariableConfig = premierByNameRequestConfig(name = name, tag = tag, season = season, affinity = affinity)
 
         return request<Unit, PremierTeamV1Response>(
@@ -3325,10 +3777,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * @param name Team name
      * @param tag Team tag
      * @param season Premier season id (optional) (optional)
-     * @param affinity Region/affinity for fallback resolution (optional) (optional)
+     * @param affinity Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching (optional)
      * @return RequestConfig
      */
-    fun premierByNameRequestConfig(name: kotlin.String, tag: kotlin.String, season: kotlin.String?, affinity: kotlin.String?) : RequestConfig<Unit> {
+    fun premierByNameRequestConfig(name: kotlin.String, tag: kotlin.String, season: kotlin.String?, affinity: ValorantAffinity?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -3437,12 +3889,244 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     }
 
     /**
+     * GET /valorant/v2/premier/teams/{affinity}/{name}/{tag}
+     * Get live Premier team by team name (v2)
+     * Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+     * @param affinity Region/affinity; case-insensitive
+     * @param name Premier team name
+     * @param tag Premier team tag
+     * @return PremierTeamV2Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun premierByNameV2(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : PremierTeamV2Response {
+        val localVarResponse = premierByNameV2WithHttpInfo(affinity = affinity, name = name, tag = tag)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV2Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/premier/teams/{affinity}/{name}/{tag}
+     * Get live Premier team by team name (v2)
+     * Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+     * @param affinity Region/affinity; case-insensitive
+     * @param name Premier team name
+     * @param tag Premier team tag
+     * @return ApiResponse<PremierTeamV2Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun premierByNameV2WithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : ApiResponse<PremierTeamV2Response?> {
+        val localVariableConfig = premierByNameV2RequestConfig(affinity = affinity, name = name, tag = tag)
+
+        return request<Unit, PremierTeamV2Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation premierByNameV2
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param name Premier team name
+     * @param tag Premier team tag
+     * @return RequestConfig
+     */
+    fun premierByNameV2RequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/premier/teams/{affinity}/{name}/{tag}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"name"+"}", encodeURIComponent(name.toString())).replace("{"+"tag"+"}", encodeURIComponent(tag.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/premier/players/{affinity}/{name}/{tag}
+     * Get live Premier team by player Riot ID (v2)
+     * Resolves the player&#39;s Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+     * @param affinity Region/affinity; case-insensitive
+     * @param name Player Riot ID name
+     * @param tag Player Riot ID tag
+     * @return PremierTeamV2Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun premierByPlayerName(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : PremierTeamV2Response {
+        val localVarResponse = premierByPlayerNameWithHttpInfo(affinity = affinity, name = name, tag = tag)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV2Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/premier/players/{affinity}/{name}/{tag}
+     * Get live Premier team by player Riot ID (v2)
+     * Resolves the player&#39;s Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+     * @param affinity Region/affinity; case-insensitive
+     * @param name Player Riot ID name
+     * @param tag Player Riot ID tag
+     * @return ApiResponse<PremierTeamV2Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun premierByPlayerNameWithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : ApiResponse<PremierTeamV2Response?> {
+        val localVariableConfig = premierByPlayerNameRequestConfig(affinity = affinity, name = name, tag = tag)
+
+        return request<Unit, PremierTeamV2Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation premierByPlayerName
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param name Player Riot ID name
+     * @param tag Player Riot ID tag
+     * @return RequestConfig
+     */
+    fun premierByPlayerNameRequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/premier/players/{affinity}/{name}/{tag}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"name"+"}", encodeURIComponent(name.toString())).replace("{"+"tag"+"}", encodeURIComponent(tag.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /valorant/v2/premier/players/{affinity}/{puuid}
+     * Get live Premier team by player PUUID (v2)
+     * Fetches the player&#39;s current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+     * @param affinity Region/affinity; case-insensitive
+     * @param puuid Player UUID
+     * @return PremierTeamV2Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun premierByPuuid(affinity: ValorantAffinity, puuid: java.util.UUID) : PremierTeamV2Response {
+        val localVarResponse = premierByPuuidWithHttpInfo(affinity = affinity, puuid = puuid)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PremierTeamV2Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /valorant/v2/premier/players/{affinity}/{puuid}
+     * Get live Premier team by player PUUID (v2)
+     * Fetches the player&#39;s current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+     * @param affinity Region/affinity; case-insensitive
+     * @param puuid Player UUID
+     * @return ApiResponse<PremierTeamV2Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun premierByPuuidWithHttpInfo(affinity: ValorantAffinity, puuid: java.util.UUID) : ApiResponse<PremierTeamV2Response?> {
+        val localVariableConfig = premierByPuuidRequestConfig(affinity = affinity, puuid = puuid)
+
+        return request<Unit, PremierTeamV2Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation premierByPuuid
+     *
+     * @param affinity Region/affinity; case-insensitive
+     * @param puuid Player UUID
+     * @return RequestConfig
+     */
+    fun premierByPuuidRequestConfig(affinity: ValorantAffinity, puuid: java.util.UUID) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/valorant/v2/premier/players/{affinity}/{puuid}".replace("{"+"affinity"+"}", encodeURIComponent(affinity.toString())).replace("{"+"puuid"+"}", encodeURIComponent(puuid.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /valorant/v1/premier/leaderboard/{affinity}
      * Get Premier leaderboard (v1)
-     * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param conference Conference filter (optional) (optional)
-     * @param division Division filter (optional) (optional)
+     * Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+     * @param affinity Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
      * @param season Premier season id (optional) (optional)
      * @return PremierSearchResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -3453,8 +4137,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierLeaderboard(affinity: kotlin.String, conference: kotlin.String? = null, division: kotlin.String? = null, season: kotlin.String? = null) : PremierSearchResponse {
-        val localVarResponse = premierLeaderboardWithHttpInfo(affinity = affinity, conference = conference, division = division, season = season)
+    fun premierLeaderboard(affinity: ValorantAffinity, season: kotlin.String? = null) : PremierSearchResponse {
+        val localVarResponse = premierLeaderboardWithHttpInfo(affinity = affinity, season = season)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierSearchResponse
@@ -3474,10 +4158,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * GET /valorant/v1/premier/leaderboard/{affinity}
      * Get Premier leaderboard (v1)
-     * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param conference Conference filter (optional) (optional)
-     * @param division Division filter (optional) (optional)
+     * Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+     * @param affinity Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
      * @param season Premier season id (optional) (optional)
      * @return ApiResponse<PremierSearchResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -3485,8 +4167,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierLeaderboardWithHttpInfo(affinity: kotlin.String, conference: kotlin.String?, division: kotlin.String?, season: kotlin.String?) : ApiResponse<PremierSearchResponse?> {
-        val localVariableConfig = premierLeaderboardRequestConfig(affinity = affinity, conference = conference, division = division, season = season)
+    fun premierLeaderboardWithHttpInfo(affinity: ValorantAffinity, season: kotlin.String?) : ApiResponse<PremierSearchResponse?> {
+        val localVariableConfig = premierLeaderboardRequestConfig(affinity = affinity, season = season)
 
         return request<Unit, PremierSearchResponse>(
             localVariableConfig
@@ -3496,22 +4178,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation premierLeaderboard
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param conference Conference filter (optional) (optional)
-     * @param division Division filter (optional) (optional)
+     * @param affinity Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
      * @param season Premier season id (optional) (optional)
      * @return RequestConfig
      */
-    fun premierLeaderboardRequestConfig(affinity: kotlin.String, conference: kotlin.String?, division: kotlin.String?, season: kotlin.String?) : RequestConfig<Unit> {
+    fun premierLeaderboardRequestConfig(affinity: ValorantAffinity, season: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
-                if (conference != null) {
-                    put("conference", listOf(conference.toString()))
-                }
-                if (division != null) {
-                    put("division", listOf(division.toString()))
-                }
                 if (season != null) {
                     put("season", listOf(season.toString()))
                 }
@@ -3535,8 +4209,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param name Team name to search for (optional) (optional)
      * @param tag Team tag to search for (optional) (optional)
-     * @param id Team UUID to search for (optional) (optional)
+     * @param id Team UUID to search for; cannot be combined with name or tag (optional)
      * @param season Premier season id (optional) (optional)
+     * @param conference Current upstream Premier conference key; case-insensitive; not a fixed enum (optional)
+     * @param division Division filter; integer from 1 through 21 (optional)
      * @return PremierSearchResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3546,8 +4222,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun premierSearch(name: kotlin.String? = null, tag: kotlin.String? = null, id: kotlin.String? = null, season: kotlin.String? = null) : PremierSearchResponse {
-        val localVarResponse = premierSearchWithHttpInfo(name = name, tag = tag, id = id, season = season)
+    fun premierSearch(name: kotlin.String? = null, tag: kotlin.String? = null, id: java.util.UUID? = null, season: kotlin.String? = null, conference: kotlin.String? = null, division: kotlin.Int? = null) : PremierSearchResponse {
+        val localVarResponse = premierSearchWithHttpInfo(name = name, tag = tag, id = id, season = season, conference = conference, division = division)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PremierSearchResponse
@@ -3570,16 +4246,18 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * 
      * @param name Team name to search for (optional) (optional)
      * @param tag Team tag to search for (optional) (optional)
-     * @param id Team UUID to search for (optional) (optional)
+     * @param id Team UUID to search for; cannot be combined with name or tag (optional)
      * @param season Premier season id (optional) (optional)
+     * @param conference Current upstream Premier conference key; case-insensitive; not a fixed enum (optional)
+     * @param division Division filter; integer from 1 through 21 (optional)
      * @return ApiResponse<PremierSearchResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun premierSearchWithHttpInfo(name: kotlin.String?, tag: kotlin.String?, id: kotlin.String?, season: kotlin.String?) : ApiResponse<PremierSearchResponse?> {
-        val localVariableConfig = premierSearchRequestConfig(name = name, tag = tag, id = id, season = season)
+    fun premierSearchWithHttpInfo(name: kotlin.String?, tag: kotlin.String?, id: java.util.UUID?, season: kotlin.String?, conference: kotlin.String?, division: kotlin.Int?) : ApiResponse<PremierSearchResponse?> {
+        val localVariableConfig = premierSearchRequestConfig(name = name, tag = tag, id = id, season = season, conference = conference, division = division)
 
         return request<Unit, PremierSearchResponse>(
             localVariableConfig
@@ -3591,11 +4269,13 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      *
      * @param name Team name to search for (optional) (optional)
      * @param tag Team tag to search for (optional) (optional)
-     * @param id Team UUID to search for (optional) (optional)
+     * @param id Team UUID to search for; cannot be combined with name or tag (optional)
      * @param season Premier season id (optional) (optional)
+     * @param conference Current upstream Premier conference key; case-insensitive; not a fixed enum (optional)
+     * @param division Division filter; integer from 1 through 21 (optional)
      * @return RequestConfig
      */
-    fun premierSearchRequestConfig(name: kotlin.String?, tag: kotlin.String?, id: kotlin.String?, season: kotlin.String?) : RequestConfig<Unit> {
+    fun premierSearchRequestConfig(name: kotlin.String?, tag: kotlin.String?, id: java.util.UUID?, season: kotlin.String?, conference: kotlin.String?, division: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -3610,6 +4290,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
                 }
                 if (season != null) {
                     put("season", listOf(season.toString()))
+                }
+                if (conference != null) {
+                    put("conference", listOf(conference.toString()))
+                }
+                if (division != null) {
+                    put("division", listOf(division.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3629,7 +4315,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/queue-status/{affinity}
      * Get queue status (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return QueueStatusV1
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3639,7 +4325,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun queueStatus(affinity: kotlin.String) : QueueStatusV1 {
+    fun queueStatus(affinity: ValorantAffinity) : QueueStatusV1 {
         val localVarResponse = queueStatusWithHttpInfo(affinity = affinity)
 
         return when (localVarResponse.responseType) {
@@ -3661,14 +4347,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/queue-status/{affinity}
      * Get queue status (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return ApiResponse<QueueStatusV1?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun queueStatusWithHttpInfo(affinity: kotlin.String) : ApiResponse<QueueStatusV1?> {
+    fun queueStatusWithHttpInfo(affinity: ValorantAffinity) : ApiResponse<QueueStatusV1?> {
         val localVariableConfig = queueStatusRequestConfig(affinity = affinity)
 
         return request<Unit, QueueStatusV1>(
@@ -3679,10 +4365,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation queueStatus
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return RequestConfig
      */
-    fun queueStatusRequestConfig(affinity: kotlin.String) : RequestConfig<Unit> {
+    fun queueStatusRequestConfig(affinity: ValorantAffinity) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3701,7 +4387,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * POST /valorant/v1/raw
      * Get raw Riot API data (v1)
-     * 
+     * Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
      * @param rawV1Payload 
      * @return RawV1Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -3733,7 +4419,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * POST /valorant/v1/raw
      * Get raw Riot API data (v1)
-     * 
+     * Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
      * @param rawV1Payload 
      * @return ApiResponse<RawV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -3776,7 +4462,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/status/{affinity}
      * Get status (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return StatusV1
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -3786,7 +4472,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun status(affinity: kotlin.String) : StatusV1 {
+    fun status(affinity: ValorantAffinity) : StatusV1 {
         val localVarResponse = statusWithHttpInfo(affinity = affinity)
 
         return when (localVarResponse.responseType) {
@@ -3808,14 +4494,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/status/{affinity}
      * Get status (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return ApiResponse<StatusV1?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun statusWithHttpInfo(affinity: kotlin.String) : ApiResponse<StatusV1?> {
+    fun statusWithHttpInfo(affinity: ValorantAffinity) : ApiResponse<StatusV1?> {
         val localVariableConfig = statusRequestConfig(affinity = affinity)
 
         return request<Unit, StatusV1>(
@@ -3826,10 +4512,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation status
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return RequestConfig
      */
-    fun statusRequestConfig(affinity: kotlin.String) : RequestConfig<Unit> {
+    fun statusRequestConfig(affinity: ValorantAffinity) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3849,8 +4535,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/{version}/store-featured
      * Get featured store items
      * 
-     * @param version API version (v1, v2)
-     * @return StoreFeaturedV1
+     * @param version Response version; v1 returns an object envelope and v2 returns an array envelope
+     * @return ValorantStoreFeaturedResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -3859,11 +4545,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storeFeatured(version: kotlin.String) : StoreFeaturedV1 {
+    fun storeFeatured(version: ValorantStoreVersion) : ValorantStoreFeaturedResponse {
         val localVarResponse = storeFeaturedWithHttpInfo(version = version)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as StoreFeaturedV1
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ValorantStoreFeaturedResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -3881,17 +4567,17 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/{version}/store-featured
      * Get featured store items
      * 
-     * @param version API version (v1, v2)
-     * @return ApiResponse<StoreFeaturedV1?>
+     * @param version Response version; v1 returns an object envelope and v2 returns an array envelope
+     * @return ApiResponse<ValorantStoreFeaturedResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storeFeaturedWithHttpInfo(version: kotlin.String) : ApiResponse<StoreFeaturedV1?> {
+    fun storeFeaturedWithHttpInfo(version: ValorantStoreVersion) : ApiResponse<ValorantStoreFeaturedResponse?> {
         val localVariableConfig = storeFeaturedRequestConfig(version = version)
 
-        return request<Unit, StoreFeaturedV1>(
+        return request<Unit, ValorantStoreFeaturedResponse>(
             localVariableConfig
         )
     }
@@ -3899,10 +4585,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storeFeatured
      *
-     * @param version API version (v1, v2)
+     * @param version Response version; v1 returns an object envelope and v2 returns an array envelope
      * @return RequestConfig
      */
-    fun storeFeaturedRequestConfig(version: kotlin.String) : RequestConfig<Unit> {
+    fun storeFeaturedRequestConfig(version: ValorantStoreVersion) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3921,22 +4607,21 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * GET /valorant/{version}/store-offers
      * Get store offers
-     * 
-     * @param version API version (v1, v2)
-     * @return StoreOffersV1Response
+     * Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
+     * @param version Legacy API version
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storeOffers(version: kotlin.String) : StoreOffersV1Response {
+    fun storeOffers(version: ValorantStoreVersion) : Unit {
         val localVarResponse = storeOffersWithHttpInfo(version = version)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as StoreOffersV1Response
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -3953,18 +4638,17 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * GET /valorant/{version}/store-offers
      * Get store offers
-     * 
-     * @param version API version (v1, v2)
-     * @return ApiResponse<StoreOffersV1Response?>
+     * Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
+     * @param version Legacy API version
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storeOffersWithHttpInfo(version: kotlin.String) : ApiResponse<StoreOffersV1Response?> {
+    fun storeOffersWithHttpInfo(version: ValorantStoreVersion) : ApiResponse<Unit?> {
         val localVariableConfig = storeOffersRequestConfig(version = version)
 
-        return request<Unit, StoreOffersV1Response>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -3972,10 +4656,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storeOffers
      *
-     * @param version API version (v1, v2)
+     * @param version Legacy API version
      * @return RequestConfig
      */
-    fun storeOffersRequestConfig(version: kotlin.String) : RequestConfig<Unit> {
+    fun storeOffersRequestConfig(version: ValorantStoreVersion) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -3995,12 +4679,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/stored-matches/{affinity}/{name}/{tag}
      * Get stored matches by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return StoredMatchesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4010,8 +4696,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storedMatches(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = null) : StoredMatchesResponse {
-        val localVarResponse = storedMatchesWithHttpInfo(affinity = affinity, name = name, tag = tag, mode = mode, map = map, size = size)
+    fun storedMatches(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, mode: kotlin.String? = null, queue: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = null, page: kotlin.Int? = 1) : StoredMatchesResponse {
+        val localVarResponse = storedMatchesWithHttpInfo(affinity = affinity, name = name, tag = tag, mode = mode, queue = queue, map = map, size = size, page = page)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as StoredMatchesResponse
@@ -4032,20 +4718,22 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/stored-matches/{affinity}/{name}/{tag}
      * Get stored matches by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return ApiResponse<StoredMatchesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storedMatchesWithHttpInfo(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : ApiResponse<StoredMatchesResponse?> {
-        val localVariableConfig = storedMatchesRequestConfig(affinity = affinity, name = name, tag = tag, mode = mode, map = map, size = size)
+    fun storedMatchesWithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, page: kotlin.Int?) : ApiResponse<StoredMatchesResponse?> {
+        val localVariableConfig = storedMatchesRequestConfig(affinity = affinity, name = name, tag = tag, mode = mode, queue = queue, map = map, size = size, page = page)
 
         return request<Unit, StoredMatchesResponse>(
             localVariableConfig
@@ -4055,26 +4743,34 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storedMatches
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return RequestConfig
      */
-    fun storedMatchesRequestConfig(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun storedMatchesRequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, page: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (mode != null) {
                     put("mode", listOf(mode.toString()))
                 }
+                if (queue != null) {
+                    put("queue", listOf(queue.toString()))
+                }
                 if (map != null) {
                     put("map", listOf(map.toString()))
                 }
                 if (size != null) {
                     put("size", listOf(size.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -4094,11 +4790,13 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/stored-matches/{affinity}/{puuid}
      * Get stored matches by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return StoredMatchesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4108,8 +4806,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storedMatchesById(affinity: kotlin.String, puuid: kotlin.String, mode: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = null) : StoredMatchesResponse {
-        val localVarResponse = storedMatchesByIdWithHttpInfo(affinity = affinity, puuid = puuid, mode = mode, map = map, size = size)
+    fun storedMatchesById(affinity: ValorantAffinity, puuid: java.util.UUID, mode: kotlin.String? = null, queue: kotlin.String? = null, map: kotlin.String? = null, size: kotlin.Int? = null, page: kotlin.Int? = 1) : StoredMatchesResponse {
+        val localVarResponse = storedMatchesByIdWithHttpInfo(affinity = affinity, puuid = puuid, mode = mode, queue = queue, map = map, size = size, page = page)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as StoredMatchesResponse
@@ -4130,19 +4828,21 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/stored-matches/{affinity}/{puuid}
      * Get stored matches by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return ApiResponse<StoredMatchesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storedMatchesByIdWithHttpInfo(affinity: kotlin.String, puuid: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : ApiResponse<StoredMatchesResponse?> {
-        val localVariableConfig = storedMatchesByIdRequestConfig(affinity = affinity, puuid = puuid, mode = mode, map = map, size = size)
+    fun storedMatchesByIdWithHttpInfo(affinity: ValorantAffinity, puuid: java.util.UUID, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, page: kotlin.Int?) : ApiResponse<StoredMatchesResponse?> {
+        val localVariableConfig = storedMatchesByIdRequestConfig(affinity = affinity, puuid = puuid, mode = mode, queue = queue, map = map, size = size, page = page)
 
         return request<Unit, StoredMatchesResponse>(
             localVariableConfig
@@ -4152,25 +4852,33 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storedMatchesById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param mode Game mode filter (optional) (optional)
-     * @param map Map filter (optional) (optional)
-     * @param size Number of results (optional) (optional)
+     * @param mode Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. (optional)
+     * @param queue Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. (optional)
+     * @param map Map display name, matched case-insensitively. (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return RequestConfig
      */
-    fun storedMatchesByIdRequestConfig(affinity: kotlin.String, puuid: kotlin.String, mode: kotlin.String?, map: kotlin.String?, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun storedMatchesByIdRequestConfig(affinity: ValorantAffinity, puuid: java.util.UUID, mode: kotlin.String?, queue: kotlin.String?, map: kotlin.String?, size: kotlin.Int?, page: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (mode != null) {
                     put("mode", listOf(mode.toString()))
                 }
+                if (queue != null) {
+                    put("queue", listOf(queue.toString()))
+                }
                 if (map != null) {
                     put("map", listOf(map.toString()))
                 }
                 if (size != null) {
                     put("size", listOf(size.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -4190,10 +4898,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/stored-mmr-history/{affinity}/{name}/{tag}
      * Get stored MMR history by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return StoredMMRResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4203,8 +4912,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storedMmrHistory(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, size: kotlin.Int? = null) : StoredMMRResponse {
-        val localVarResponse = storedMmrHistoryWithHttpInfo(affinity = affinity, name = name, tag = tag, size = size)
+    fun storedMmrHistory(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, size: kotlin.Int? = null, page: kotlin.Int? = 1) : StoredMMRResponse {
+        val localVarResponse = storedMmrHistoryWithHttpInfo(affinity = affinity, name = name, tag = tag, size = size, page = page)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as StoredMMRResponse
@@ -4225,18 +4934,19 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/stored-mmr-history/{affinity}/{name}/{tag}
      * Get stored MMR history by name (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return ApiResponse<StoredMMRResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storedMmrHistoryWithHttpInfo(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?) : ApiResponse<StoredMMRResponse?> {
-        val localVariableConfig = storedMmrHistoryRequestConfig(affinity = affinity, name = name, tag = tag, size = size)
+    fun storedMmrHistoryWithHttpInfo(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : ApiResponse<StoredMMRResponse?> {
+        val localVariableConfig = storedMmrHistoryRequestConfig(affinity = affinity, name = name, tag = tag, size = size, page = page)
 
         return request<Unit, StoredMMRResponse>(
             localVariableConfig
@@ -4246,18 +4956,22 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storedMmrHistory
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return RequestConfig
      */
-    fun storedMmrHistoryRequestConfig(affinity: kotlin.String, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun storedMmrHistoryRequestConfig(affinity: ValorantAffinity, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (size != null) {
                     put("size", listOf(size.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -4277,9 +4991,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/stored-mmr-history/{affinity}/{puuid}
      * Get stored MMR history by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return StoredMMRResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4289,8 +5004,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storedMmrHistoryById(affinity: kotlin.String, puuid: kotlin.String, size: kotlin.Int? = null) : StoredMMRResponse {
-        val localVarResponse = storedMmrHistoryByIdWithHttpInfo(affinity = affinity, puuid = puuid, size = size)
+    fun storedMmrHistoryById(affinity: ValorantAffinity, puuid: kotlin.String, size: kotlin.Int? = null, page: kotlin.Int? = 1) : StoredMMRResponse {
+        val localVarResponse = storedMmrHistoryByIdWithHttpInfo(affinity = affinity, puuid = puuid, size = size, page = page)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as StoredMMRResponse
@@ -4311,17 +5026,18 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/by-puuid/stored-mmr-history/{affinity}/{puuid}
      * Get stored MMR history by PUUID (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return ApiResponse<StoredMMRResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storedMmrHistoryByIdWithHttpInfo(affinity: kotlin.String, puuid: kotlin.String, size: kotlin.Int?) : ApiResponse<StoredMMRResponse?> {
-        val localVariableConfig = storedMmrHistoryByIdRequestConfig(affinity = affinity, puuid = puuid, size = size)
+    fun storedMmrHistoryByIdWithHttpInfo(affinity: ValorantAffinity, puuid: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : ApiResponse<StoredMMRResponse?> {
+        val localVariableConfig = storedMmrHistoryByIdRequestConfig(affinity = affinity, puuid = puuid, size = size, page = page)
 
         return request<Unit, StoredMMRResponse>(
             localVariableConfig
@@ -4331,17 +5047,21 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storedMmrHistoryById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @param puuid Player UUID
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return RequestConfig
      */
-    fun storedMmrHistoryByIdRequestConfig(affinity: kotlin.String, puuid: kotlin.String, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun storedMmrHistoryByIdRequestConfig(affinity: ValorantAffinity, puuid: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (size != null) {
                     put("size", listOf(size.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -4361,11 +5081,12 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/stored-mmr-history/{affinity}/{platform}/{name}/{tag}
      * Get stored MMR history by name (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return StoredMMRV2Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4375,8 +5096,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storedMmrHistoryV2(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String, size: kotlin.Int? = null) : StoredMMRV2Response {
-        val localVarResponse = storedMmrHistoryV2WithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag, size = size)
+    fun storedMmrHistoryV2(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, size: kotlin.Int? = null, page: kotlin.Int? = 1) : StoredMMRV2Response {
+        val localVarResponse = storedMmrHistoryV2WithHttpInfo(affinity = affinity, platform = platform, name = name, tag = tag, size = size, page = page)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as StoredMMRV2Response
@@ -4397,19 +5118,20 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/stored-mmr-history/{affinity}/{platform}/{name}/{tag}
      * Get stored MMR history by name (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return ApiResponse<StoredMMRV2Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storedMmrHistoryV2WithHttpInfo(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?) : ApiResponse<StoredMMRV2Response?> {
-        val localVariableConfig = storedMmrHistoryV2RequestConfig(affinity = affinity, platform = platform, name = name, tag = tag, size = size)
+    fun storedMmrHistoryV2WithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : ApiResponse<StoredMMRV2Response?> {
+        val localVariableConfig = storedMmrHistoryV2RequestConfig(affinity = affinity, platform = platform, name = name, tag = tag, size = size, page = page)
 
         return request<Unit, StoredMMRV2Response>(
             localVariableConfig
@@ -4419,19 +5141,23 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storedMmrHistoryV2
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param name Riot ID name
      * @param tag Riot ID tag
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return RequestConfig
      */
-    fun storedMmrHistoryV2RequestConfig(affinity: kotlin.String, platform: kotlin.String, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun storedMmrHistoryV2RequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, name: kotlin.String, tag: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (size != null) {
                     put("size", listOf(size.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -4451,10 +5177,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/by-puuid/stored-mmr-history/{affinity}/{platform}/{puuid}
      * Get stored MMR history by PUUID (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return StoredMMRV2Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4464,8 +5191,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun storedMmrHistoryV2ById(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String, size: kotlin.Int? = null) : StoredMMRV2Response {
-        val localVarResponse = storedMmrHistoryV2ByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid, size = size)
+    fun storedMmrHistoryV2ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String, size: kotlin.Int? = null, page: kotlin.Int? = 1) : StoredMMRV2Response {
+        val localVarResponse = storedMmrHistoryV2ByIdWithHttpInfo(affinity = affinity, platform = platform, puuid = puuid, size = size, page = page)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as StoredMMRV2Response
@@ -4486,18 +5213,19 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v2/by-puuid/stored-mmr-history/{affinity}/{platform}/{puuid}
      * Get stored MMR history by PUUID (v2)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return ApiResponse<StoredMMRV2Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun storedMmrHistoryV2ByIdWithHttpInfo(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String, size: kotlin.Int?) : ApiResponse<StoredMMRV2Response?> {
-        val localVariableConfig = storedMmrHistoryV2ByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid, size = size)
+    fun storedMmrHistoryV2ByIdWithHttpInfo(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : ApiResponse<StoredMMRV2Response?> {
+        val localVariableConfig = storedMmrHistoryV2ByIdRequestConfig(affinity = affinity, platform = platform, puuid = puuid, size = size, page = page)
 
         return request<Unit, StoredMMRV2Response>(
             localVariableConfig
@@ -4507,18 +5235,22 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation storedMmrHistoryV2ById
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
-     * @param platform Platform (pc, console)
+     * @param affinity Region/affinity; case-insensitive
+     * @param platform Platform; case-insensitive
      * @param puuid Player UUID
-     * @param size Number of results (optional) (optional)
+     * @param size Positive integer result count. Omit for unlimited results. (optional)
+     * @param page One-based page. Supplying page requires size. (optional, default to 1)
      * @return RequestConfig
      */
-    fun storedMmrHistoryV2ByIdRequestConfig(affinity: kotlin.String, platform: kotlin.String, puuid: kotlin.String, size: kotlin.Int?) : RequestConfig<Unit> {
+    fun storedMmrHistoryV2ByIdRequestConfig(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: kotlin.String, size: kotlin.Int?, page: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (size != null) {
                     put("size", listOf(size.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -4538,7 +5270,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/version/{affinity}
      * Get game version (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return VersionV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4548,7 +5280,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun version(affinity: kotlin.String) : VersionV1Response {
+    fun version(affinity: ValorantAffinity) : VersionV1Response {
         val localVarResponse = versionWithHttpInfo(affinity = affinity)
 
         return when (localVarResponse.responseType) {
@@ -4570,14 +5302,14 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/version/{affinity}
      * Get game version (v1)
      * 
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return ApiResponse<VersionV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun versionWithHttpInfo(affinity: kotlin.String) : ApiResponse<VersionV1Response?> {
+    fun versionWithHttpInfo(affinity: ValorantAffinity) : ApiResponse<VersionV1Response?> {
         val localVariableConfig = versionRequestConfig(affinity = affinity)
 
         return request<Unit, VersionV1Response>(
@@ -4588,10 +5320,10 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation version
      *
-     * @param affinity Region/affinity (e.g., na, eu, ap, kr)
+     * @param affinity Region/affinity; case-insensitive
      * @return RequestConfig
      */
-    fun versionRequestConfig(affinity: kotlin.String) : RequestConfig<Unit> {
+    fun versionRequestConfig(affinity: ValorantAffinity) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -4611,8 +5343,8 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/website/{country_code}
      * Get website content (v1)
      * 
-     * @param countryCode Country code (e.g., en-us, de-de)
-     * @param category Category filter (optional) (optional)
+     * @param countryCode Website locale; case-insensitive
+     * @param category Category filter; case-sensitive (optional)
      * @return WebsiteV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4622,7 +5354,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun website(countryCode: kotlin.String, category: kotlin.String? = null) : WebsiteV1Response {
+    fun website(countryCode: ValorantWebsiteLocale, category: ValorantWebsiteCategory? = null) : WebsiteV1Response {
         val localVarResponse = websiteWithHttpInfo(countryCode = countryCode, category = category)
 
         return when (localVarResponse.responseType) {
@@ -4644,15 +5376,15 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * GET /valorant/v1/website/{country_code}
      * Get website content (v1)
      * 
-     * @param countryCode Country code (e.g., en-us, de-de)
-     * @param category Category filter (optional) (optional)
+     * @param countryCode Website locale; case-insensitive
+     * @param category Category filter; case-sensitive (optional)
      * @return ApiResponse<WebsiteV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun websiteWithHttpInfo(countryCode: kotlin.String, category: kotlin.String?) : ApiResponse<WebsiteV1Response?> {
+    fun websiteWithHttpInfo(countryCode: ValorantWebsiteLocale, category: ValorantWebsiteCategory?) : ApiResponse<WebsiteV1Response?> {
         val localVariableConfig = websiteRequestConfig(countryCode = countryCode, category = category)
 
         return request<Unit, WebsiteV1Response>(
@@ -4663,11 +5395,11 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * To obtain the request config of the operation website
      *
-     * @param countryCode Country code (e.g., en-us, de-de)
-     * @param category Category filter (optional) (optional)
+     * @param countryCode Website locale; case-insensitive
+     * @param category Category filter; case-sensitive (optional)
      * @return RequestConfig
      */
-    fun websiteRequestConfig(countryCode: kotlin.String, category: kotlin.String?) : RequestConfig<Unit> {
+    fun websiteRequestConfig(countryCode: ValorantWebsiteLocale, category: ValorantWebsiteCategory?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -4691,9 +5423,9 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * GET /valorant/v1/website/{country_code}/{db_id}
      * Get website entry by ID (v1)
-     * 
+     * Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
      * @param dbId Database ID of the website entry
-     * @param countryCode Country code (e.g., en-us, de-de)
+     * @param countryCode Ignored locale segment; any string is accepted
      * @return WebsiteByIdV1Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4724,9 +5456,9 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
     /**
      * GET /valorant/v1/website/{country_code}/{db_id}
      * Get website entry by ID (v1)
-     * 
+     * Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
      * @param dbId Database ID of the website entry
-     * @param countryCode Country code (e.g., en-us, de-de)
+     * @param countryCode Ignored locale segment; any string is accepted
      * @return ApiResponse<WebsiteByIdV1Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4745,7 +5477,7 @@ open class ValorantApi(basePath: kotlin.String = defaultBasePath, client: Call.F
      * To obtain the request config of the operation websiteById
      *
      * @param dbId Database ID of the website entry
-     * @param countryCode Country code (e.g., en-us, de-de)
+     * @param countryCode Ignored locale segment; any string is accepted
      * @return RequestConfig
      */
     fun websiteByIdRequestConfig(dbId: kotlin.String, countryCode: kotlin.String) : RequestConfig<Unit> {

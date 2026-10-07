@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from henrikdev_api_client.models.stored_mmr_map import StoredMMRMap
 from henrikdev_api_client.models.stored_mmr_season import StoredMMRSeason
 from henrikdev_api_client.models.stored_mmr_tier import StoredMMRTier
@@ -31,11 +33,11 @@ class StoredMMR(BaseModel):
     """
     StoredMMR
     """ # noqa: E501
-    var_date: StrictStr = Field(alias="date")
+    var_date: datetime = Field(alias="date")
     elo: StrictInt
     last_mmr_change: StrictInt
     map: StoredMMRMap
-    match_id: StrictStr
+    match_id: UUID
     ranking_in_tier: Annotated[int, Field(strict=True, ge=0)]
     season: StoredMMRSeason
     tier: StoredMMRTier

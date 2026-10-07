@@ -16,11 +16,11 @@ pub struct Mmrv3LeaderboardPlacement {
     #[serde(rename = "rank")]
     pub rank: u32,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl Mmrv3LeaderboardPlacement {
-    pub fn new(rank: u32, updated_at: String) -> Mmrv3LeaderboardPlacement {
+    pub fn new(rank: u32, updated_at: chrono::DateTime<chrono::FixedOffset>) -> Mmrv3LeaderboardPlacement {
         Mmrv3LeaderboardPlacement {
             rank,
             updated_at,

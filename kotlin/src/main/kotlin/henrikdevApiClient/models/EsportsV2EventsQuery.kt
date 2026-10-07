@@ -41,7 +41,7 @@ import com.squareup.moshi.JsonClass
 data class EsportsV2EventsQuery (
 
     @Json(name = "page")
-    val page: kotlin.Int? = null,
+    val page: kotlin.Int? = 1,
 
     @Json(name = "region")
     val region: EsportsV2Region? = null,

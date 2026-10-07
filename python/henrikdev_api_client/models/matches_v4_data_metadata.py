@@ -17,12 +17,15 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from henrikdev_api_client.models.map_id_name_combo import MapIdNameCombo
 from henrikdev_api_client.models.matches_v4_data_metadata_party_rr_penalty import MatchesV4DataMetadataPartyRRPenalty
 from henrikdev_api_client.models.matches_v4_data_metadata_queue import MatchesV4DataMetadataQueue
+from henrikdev_api_client.models.matches_v4_data_round_player import MatchesV4DataRoundPlayer
 from henrikdev_api_client.models.season_id_short_combo import SeasonIdShortCombo
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,19 +36,20 @@ class MatchesV4DataMetadata(BaseModel):
     MatchesV4DataMetadata
     """ # noqa: E501
     cluster: Optional[StrictStr] = None
-    game_length_in_ms: Annotated[int, Field(strict=True, ge=0)]
+    game_length_in_ms: Annotated[int, Field(strict=True, ge=0)] = Field(description="Match duration in milliseconds.")
     game_version: StrictStr
     is_completed: StrictBool
     map: MapIdNameCombo
-    match_id: StrictStr
+    match_id: UUID
+    mvp: Optional[MatchesV4DataRoundPlayer] = None
     party_rr_penaltys: List[MatchesV4DataMetadataPartyRRPenalty]
     platform: StrictStr
     premier: Optional[Any] = None
     queue: MatchesV4DataMetadataQueue
     region: Optional[StrictStr] = None
     season: SeasonIdShortCombo
-    started_at: StrictStr
-    __properties: ClassVar[List[str]] = ["cluster", "game_length_in_ms", "game_version", "is_completed", "map", "match_id", "party_rr_penaltys", "platform", "premier", "queue", "region", "season", "started_at"]
+    started_at: datetime
+    __properties: ClassVar[List[str]] = ["cluster", "game_length_in_ms", "game_version", "is_completed", "map", "match_id", "mvp", "party_rr_penaltys", "platform", "premier", "queue", "region", "season", "started_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,6 +93,9 @@ class MatchesV4DataMetadata(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of map
         if self.map:
             _dict['map'] = self.map.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mvp
+        if self.mvp:
+            _dict['mvp'] = self.mvp.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in party_rr_penaltys (list)
         _items = []
         if self.party_rr_penaltys:
@@ -105,6 +112,11 @@ class MatchesV4DataMetadata(BaseModel):
         # and model_fields_set contains the field
         if self.cluster is None and "cluster" in self.model_fields_set:
             _dict['cluster'] = None
+
+        # set to None if mvp (nullable) is None
+        # and model_fields_set contains the field
+        if self.mvp is None and "mvp" in self.model_fields_set:
+            _dict['mvp'] = None
 
         # set to None if premier (nullable) is None
         # and model_fields_set contains the field
@@ -134,6 +146,7 @@ class MatchesV4DataMetadata(BaseModel):
             "is_completed": obj.get("is_completed"),
             "map": MapIdNameCombo.from_dict(obj["map"]) if obj.get("map") is not None else None,
             "match_id": obj.get("match_id"),
+            "mvp": MatchesV4DataRoundPlayer.from_dict(obj["mvp"]) if obj.get("mvp") is not None else None,
             "party_rr_penaltys": [MatchesV4DataMetadataPartyRRPenalty.from_dict(_item) for _item in obj["party_rr_penaltys"]] if obj.get("party_rr_penaltys") is not None else None,
             "platform": obj.get("platform"),
             "premier": obj.get("premier"),

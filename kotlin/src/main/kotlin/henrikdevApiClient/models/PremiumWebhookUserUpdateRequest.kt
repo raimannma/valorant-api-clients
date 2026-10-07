@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Replaces the tracked user's event filters. At least one event is required; omitted or empty events return HTTP 400. Event names are case-insensitive.
  *
  * @param events 
  */

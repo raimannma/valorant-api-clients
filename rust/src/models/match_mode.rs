@@ -11,7 +11,8 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+/// MatchMode : Legacy match classification, not the accepted match-history mode query values. Match-history filters use strings resolved against the current upstream queue catalog.
+/// Legacy match classification, not the accepted match-history mode query values. Match-history filters use strings resolved against the current upstream queue catalog.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum MatchMode {
     #[serde(rename = "Competitive")]

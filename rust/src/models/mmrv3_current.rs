@@ -15,14 +15,20 @@ use serde::{Deserialize, Serialize};
 pub struct Mmrv3Current {
     #[serde(rename = "elo")]
     pub elo: i32,
+    #[serde(rename = "games_needed_for_leaderboard")]
+    pub games_needed_for_leaderboard: i32,
     #[serde(rename = "games_needed_for_rating")]
     pub games_needed_for_rating: i32,
+    #[serde(rename = "is_at_rank_protected_tier", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub is_at_rank_protected_tier: Option<Option<bool>>,
     #[serde(rename = "last_change")]
     pub last_change: i32,
     #[serde(rename = "leaderboard_placement", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub leaderboard_placement: Option<Option<Box<models::Mmrv3LeaderboardPlacement>>>,
     #[serde(rename = "rank_protection_shields")]
     pub rank_protection_shields: i32,
+    #[serde(rename = "rank_protection_status", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub rank_protection_status: Option<Option<String>>,
     #[serde(rename = "rr")]
     pub rr: i32,
     #[serde(rename = "tier")]
@@ -30,13 +36,16 @@ pub struct Mmrv3Current {
 }
 
 impl Mmrv3Current {
-    pub fn new(elo: i32, games_needed_for_rating: i32, last_change: i32, rank_protection_shields: i32, rr: i32, tier: models::TierIdNameCombo) -> Mmrv3Current {
+    pub fn new(elo: i32, games_needed_for_leaderboard: i32, games_needed_for_rating: i32, last_change: i32, rank_protection_shields: i32, rr: i32, tier: models::TierIdNameCombo) -> Mmrv3Current {
         Mmrv3Current {
             elo,
+            games_needed_for_leaderboard,
             games_needed_for_rating,
+            is_at_rank_protected_tier: None,
             last_change,
             leaderboard_placement: None,
             rank_protection_shields,
+            rank_protection_status: None,
             rr,
             tier: Box::new(tier),
         }

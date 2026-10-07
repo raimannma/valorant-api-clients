@@ -1,13 +1,18 @@
 # MatchesV4DataTeam
 
+Join teams by the opaque team_id; team_number is an upstream number, not an array index.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**health** | [**MatchesV4DataTeamHealth**](MatchesV4DataTeamHealth.md) |  | [optional] 
+**mvp** | [**MatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] 
+**placement** | **int** |  | [optional] 
 **premier_roster** | [**MatchesV4DataTeamPremierRoster**](MatchesV4DataTeamPremierRoster.md) |  | [optional] 
 **rounds** | [**MatchesV4DataTeamRounds**](MatchesV4DataTeamRounds.md) |  | 
 **team_id** | **str** |  | 
+**team_number** | **int** |  | [optional] 
 **won** | **bool** |  | 
 
 ## Example

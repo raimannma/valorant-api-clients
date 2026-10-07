@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class EsportsV2PlayerTimespan(str, Enum):
     """
-    EsportsV2PlayerTimespan
+    VLR player agent-statistics timespan. Values are case-sensitive; omission selects 90d.
     """
 
     """

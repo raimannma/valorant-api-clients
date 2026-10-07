@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bloomline** | [**MatchesV4DataPlayerBloomline**](MatchesV4DataPlayerBloomline.md) |  | [optional] [default to undefined]
 **card** | **string** |  | [default to undefined]
 **preferred_level_border** | **string** |  | [optional] [default to undefined]
 **title** | **string** |  | [default to undefined]
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 import { MatchesV4DataPlayerCustomization } from 'henrikdev_api_client';
 
 const instance: MatchesV4DataPlayerCustomization = {
+    bloomline,
     card,
     preferred_level_border,
     title,

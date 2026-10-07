@@ -12,6 +12,7 @@ package henrikdevapiclient
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -22,7 +23,7 @@ var _ MappedNullable = &MMRV3LeaderboardPlacement{}
 // MMRV3LeaderboardPlacement struct for MMRV3LeaderboardPlacement
 type MMRV3LeaderboardPlacement struct {
 	Rank int32 `json:"rank"`
-	UpdatedAt string `json:"updated_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type _MMRV3LeaderboardPlacement MMRV3LeaderboardPlacement
@@ -31,7 +32,7 @@ type _MMRV3LeaderboardPlacement MMRV3LeaderboardPlacement
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMMRV3LeaderboardPlacement(rank int32, updatedAt string) *MMRV3LeaderboardPlacement {
+func NewMMRV3LeaderboardPlacement(rank int32, updatedAt time.Time) *MMRV3LeaderboardPlacement {
 	this := MMRV3LeaderboardPlacement{}
 	this.Rank = rank
 	this.UpdatedAt = updatedAt
@@ -71,9 +72,9 @@ func (o *MMRV3LeaderboardPlacement) SetRank(v int32) {
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
-func (o *MMRV3LeaderboardPlacement) GetUpdatedAt() string {
+func (o *MMRV3LeaderboardPlacement) GetUpdatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -82,7 +83,7 @@ func (o *MMRV3LeaderboardPlacement) GetUpdatedAt() string {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *MMRV3LeaderboardPlacement) GetUpdatedAtOk() (*string, bool) {
+func (o *MMRV3LeaderboardPlacement) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,7 +91,7 @@ func (o *MMRV3LeaderboardPlacement) GetUpdatedAtOk() (*string, bool) {
 }
 
 // SetUpdatedAt sets field value
-func (o *MMRV3LeaderboardPlacement) SetUpdatedAt(v string) {
+func (o *MMRV3LeaderboardPlacement) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 

@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from henrikdev_api_client.models.mmrv3_leaderboard_placement import MMRV3LeaderboardPlacement
+from henrikdev_api_client.models.mmrv3_seasonal_prestige import MMRV3SeasonalPrestige
 from henrikdev_api_client.models.season_id_short_combo import SeasonIdShortCombo
 from henrikdev_api_client.models.tier_id_name_combo import TierIdNameCombo
 from typing import Optional, Set
@@ -30,15 +31,19 @@ class MMRV3Seasonal(BaseModel):
     """
     MMRV3Seasonal
     """ # noqa: E501
+    act_rank: TierIdNameCombo = Field(description="Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.")
     act_wins: List[TierIdNameCombo]
     end_rr: StrictInt
     end_tier: TierIdNameCombo
     games: StrictInt
+    games_needed_for_rating: StrictInt
     leaderboard_placement: Optional[MMRV3LeaderboardPlacement] = None
+    prestige: Optional[Dict[str, MMRV3SeasonalPrestige]] = None
     ranking_schema: StrictStr
     season: SeasonIdShortCombo
     wins: StrictInt
-    __properties: ClassVar[List[str]] = ["act_wins", "end_rr", "end_tier", "games", "leaderboard_placement", "ranking_schema", "season", "wins"]
+    wins_with_placements: StrictInt
+    __properties: ClassVar[List[str]] = ["act_rank", "act_wins", "end_rr", "end_tier", "games", "games_needed_for_rating", "leaderboard_placement", "prestige", "ranking_schema", "season", "wins", "wins_with_placements"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +84,9 @@ class MMRV3Seasonal(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of act_rank
+        if self.act_rank:
+            _dict['act_rank'] = self.act_rank.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in act_wins (list)
         _items = []
         if self.act_wins:
@@ -91,6 +99,12 @@ class MMRV3Seasonal(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of leaderboard_placement
         if self.leaderboard_placement:
             _dict['leaderboard_placement'] = self.leaderboard_placement.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each value in prestige (dict)
+        _field_dict = {}
+        if self.prestige:
+            for _key_prestige in self.prestige:
+                _field_dict[_key_prestige] = self.prestige[_key_prestige].to_dict() if self.prestige[_key_prestige] is not None else None
+            _dict['prestige'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of season
         if self.season:
             _dict['season'] = self.season.to_dict()
@@ -98,6 +112,11 @@ class MMRV3Seasonal(BaseModel):
         # and model_fields_set contains the field
         if self.leaderboard_placement is None and "leaderboard_placement" in self.model_fields_set:
             _dict['leaderboard_placement'] = None
+
+        # set to None if prestige (nullable) is None
+        # and model_fields_set contains the field
+        if self.prestige is None and "prestige" in self.model_fields_set:
+            _dict['prestige'] = None
 
         return _dict
 
@@ -111,14 +130,23 @@ class MMRV3Seasonal(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "act_rank": TierIdNameCombo.from_dict(obj["act_rank"]) if obj.get("act_rank") is not None else None,
             "act_wins": [TierIdNameCombo.from_dict(_item) for _item in obj["act_wins"]] if obj.get("act_wins") is not None else None,
             "end_rr": obj.get("end_rr"),
             "end_tier": TierIdNameCombo.from_dict(obj["end_tier"]) if obj.get("end_tier") is not None else None,
             "games": obj.get("games"),
+            "games_needed_for_rating": obj.get("games_needed_for_rating"),
             "leaderboard_placement": MMRV3LeaderboardPlacement.from_dict(obj["leaderboard_placement"]) if obj.get("leaderboard_placement") is not None else None,
+            "prestige": dict(
+                (_k, MMRV3SeasonalPrestige.from_dict(_v))
+                for _k, _v in obj["prestige"].items()
+            )
+            if obj.get("prestige") is not None
+            else None,
             "ranking_schema": obj.get("ranking_schema"),
             "season": SeasonIdShortCombo.from_dict(obj["season"]) if obj.get("season") is not None else None,
-            "wins": obj.get("wins")
+            "wins": obj.get("wins"),
+            "wins_with_placements": obj.get("wins_with_placements")
         })
         return _obj
 

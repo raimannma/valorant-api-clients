@@ -30,6 +30,8 @@ type EsportsV2EventsQuery struct {
 // will change when the set of required properties is changed
 func NewEsportsV2EventsQuery() *EsportsV2EventsQuery {
 	this := EsportsV2EventsQuery{}
+	var page int32 = 1
+	this.Page = *NewNullableInt32(&page)
 	return &this
 }
 
@@ -38,6 +40,8 @@ func NewEsportsV2EventsQuery() *EsportsV2EventsQuery {
 // but it doesn't guarantee that properties required by API are set
 func NewEsportsV2EventsQueryWithDefaults() *EsportsV2EventsQuery {
 	this := EsportsV2EventsQuery{}
+	var page int32 = 1
+	this.Page = *NewNullableInt32(&page)
 	return &this
 }
 

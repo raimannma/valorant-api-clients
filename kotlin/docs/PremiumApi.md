@@ -73,7 +73,7 @@ Delete premium webhook user
 //import henrikdevApiClient.models.*
 
 val apiInstance = PremiumApi()
-val id : kotlin.String = id_example // kotlin.String | Tracked user id
+val id : kotlin.String = id_example // kotlin.String | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 try {
     val result : PremiumWebhookDeleteResponse = apiInstance.deleteWebhookUser(id)
     println(result)
@@ -89,7 +89,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Tracked user id | |
+| **id** | **kotlin.String**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | |
 
 ### Return type
 
@@ -112,7 +112,7 @@ Configure api_key_header:
 
 <a id="getWebhookSettings"></a>
 # **getWebhookSettings**
-> getWebhookSettings()
+> PremiumWebhookGetResponse getWebhookSettings()
 
 Get premium webhook settings
 
@@ -124,7 +124,8 @@ Get premium webhook settings
 
 val apiInstance = PremiumApi()
 try {
-    apiInstance.getWebhookSettings()
+    val result : PremiumWebhookGetResponse = apiInstance.getWebhookSettings()
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling PremiumApi#getWebhookSettings")
     e.printStackTrace()
@@ -139,7 +140,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+[**PremiumWebhookGetResponse**](PremiumWebhookGetResponse.md)
 
 ### Authorization
 
@@ -158,7 +159,7 @@ Configure api_key_header:
 
 <a id="updateWebhookUser"></a>
 # **updateWebhookUser**
-> updateWebhookUser(id, premiumWebhookUserUpdateRequest)
+> PremiumWebhookUpdateResponse updateWebhookUser(id, premiumWebhookUserUpdateRequest)
 
 Update premium webhook user
 
@@ -169,10 +170,11 @@ Update premium webhook user
 //import henrikdevApiClient.models.*
 
 val apiInstance = PremiumApi()
-val id : kotlin.String = id_example // kotlin.String | Tracked user id
+val id : kotlin.String = id_example // kotlin.String | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 val premiumWebhookUserUpdateRequest : PremiumWebhookUserUpdateRequest =  // PremiumWebhookUserUpdateRequest | 
 try {
-    apiInstance.updateWebhookUser(id, premiumWebhookUserUpdateRequest)
+    val result : PremiumWebhookUpdateResponse = apiInstance.updateWebhookUser(id, premiumWebhookUserUpdateRequest)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling PremiumApi#updateWebhookUser")
     e.printStackTrace()
@@ -185,12 +187,12 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**| Tracked user id | |
+| **id** | **kotlin.String**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | |
 | **premiumWebhookUserUpdateRequest** | [**PremiumWebhookUserUpdateRequest**](PremiumWebhookUserUpdateRequest.md)|  | |
 
 ### Return type
 
-null (empty response body)
+[**PremiumWebhookUpdateResponse**](PremiumWebhookUpdateResponse.md)
 
 ### Authorization
 

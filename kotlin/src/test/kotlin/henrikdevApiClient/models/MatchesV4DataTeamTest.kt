@@ -27,6 +27,8 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import henrikdevApiClient.models.MatchesV4DataTeam
+import henrikdevApiClient.models.MatchesV4DataRoundPlayer
+import henrikdevApiClient.models.MatchesV4DataTeamHealth
 import henrikdevApiClient.models.MatchesV4DataTeamPremierRoster
 import henrikdevApiClient.models.MatchesV4DataTeamRounds
 
@@ -53,10 +55,34 @@ class MatchesV4DataTeamTest : ShouldSpec() {
             //modelInstance.won shouldBe ("TODO")
         }
 
+        // to test the property `health`
+        should("test health") {
+            // uncomment below to test the property
+            //modelInstance.health shouldBe ("TODO")
+        }
+
+        // to test the property `mvp`
+        should("test mvp") {
+            // uncomment below to test the property
+            //modelInstance.mvp shouldBe ("TODO")
+        }
+
+        // to test the property `placement`
+        should("test placement") {
+            // uncomment below to test the property
+            //modelInstance.placement shouldBe ("TODO")
+        }
+
         // to test the property `premierRoster`
         should("test premierRoster") {
             // uncomment below to test the property
             //modelInstance.premierRoster shouldBe ("TODO")
+        }
+
+        // to test the property `teamNumber`
+        should("test teamNumber") {
+            // uncomment below to test the property
+            //modelInstance.teamNumber shouldBe ("TODO")
         }
 
     }

@@ -79,7 +79,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new PremiumApi(configuration);
 
-let id: string; //Tracked user id (default to undefined)
+let id: string; //Tracked user MongoDB ObjectId: 24 hexadecimal characters (default to undefined)
 
 const { status, data } = await apiInstance.deleteWebhookUser(
     id
@@ -90,7 +90,7 @@ const { status, data } = await apiInstance.deleteWebhookUser(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **id** | [**string**] | Tracked user id | defaults to undefined|
+| **id** | [**string**] | Tracked user MongoDB ObjectId: 24 hexadecimal characters | defaults to undefined|
 
 
 ### Return type
@@ -119,7 +119,7 @@ const { status, data } = await apiInstance.deleteWebhookUser(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getWebhookSettings**
-> getWebhookSettings()
+> PremiumWebhookGetResponse getWebhookSettings()
 
 
 ### Example
@@ -142,7 +142,7 @@ This endpoint does not have any parameters.
 
 ### Return type
 
-void (empty response body)
+**PremiumWebhookGetResponse**
 
 ### Authorization
 
@@ -157,14 +157,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Premium webhook settings and tracked users retrieved successfully |  -  |
+|**200** | Returns settings and plan as objects or null, plus enriched tracked users. IDs and dates retain BSON Extended JSON format. User display_name and display_tag are null when account enrichment is unavailable. |  -  |
 |**401** | Unauthorized |  -  |
 |**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateWebhookUser**
-> updateWebhookUser(premiumWebhookUserUpdateRequest)
+> PremiumWebhookUpdateResponse updateWebhookUser(premiumWebhookUserUpdateRequest)
 
 
 ### Example
@@ -179,7 +179,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new PremiumApi(configuration);
 
-let id: string; //Tracked user id (default to undefined)
+let id: string; //Tracked user MongoDB ObjectId: 24 hexadecimal characters (default to undefined)
 let premiumWebhookUserUpdateRequest: PremiumWebhookUserUpdateRequest; //
 
 const { status, data } = await apiInstance.updateWebhookUser(
@@ -193,12 +193,12 @@ const { status, data } = await apiInstance.updateWebhookUser(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **premiumWebhookUserUpdateRequest** | **PremiumWebhookUserUpdateRequest**|  | |
-| **id** | [**string**] | Tracked user id | defaults to undefined|
+| **id** | [**string**] | Tracked user MongoDB ObjectId: 24 hexadecimal characters | defaults to undefined|
 
 
 ### Return type
 
-void (empty response body)
+**PremiumWebhookUpdateResponse**
 
 ### Authorization
 

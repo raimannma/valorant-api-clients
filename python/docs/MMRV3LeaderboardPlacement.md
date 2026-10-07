@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rank** | **int** |  | 
-**updated_at** | **str** |  | 
+**updated_at** | **datetime** |  | 
 
 ## Example
 

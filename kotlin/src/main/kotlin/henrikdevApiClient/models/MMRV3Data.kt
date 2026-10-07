@@ -23,9 +23,12 @@
 
 package henrikdevApiClient.models
 
+import henrikdevApiClient.models.MMRHistoryV2History
 import henrikdevApiClient.models.MMRV3Account
 import henrikdevApiClient.models.MMRV3Current
+import henrikdevApiClient.models.MMRV3LifetimePrestige
 import henrikdevApiClient.models.MMRV3Peak
+import henrikdevApiClient.models.MMRV3RankedState
 import henrikdevApiClient.models.MMRV3Seasonal
 
 import com.squareup.moshi.Json
@@ -36,7 +39,10 @@ import com.squareup.moshi.JsonClass
  *
  * @param account 
  * @param current 
+ * @param latestUpdate 
+ * @param rankedState 
  * @param seasonal 
+ * @param lifetimePrestige 
  * @param peak 
  */
 
@@ -49,8 +55,17 @@ data class MMRV3Data (
     @Json(name = "current")
     val current: MMRV3Current,
 
+    @Json(name = "latest_update")
+    val latestUpdate: MMRHistoryV2History,
+
+    @Json(name = "ranked_state")
+    val rankedState: MMRV3RankedState,
+
     @Json(name = "seasonal")
     val seasonal: kotlin.collections.List<MMRV3Seasonal>,
+
+    @Json(name = "lifetime_prestige")
+    val lifetimePrestige: kotlin.collections.Map<kotlin.String, MMRV3LifetimePrestige>? = null,
 
     @Json(name = "peak")
     val peak: MMRV3Peak? = null

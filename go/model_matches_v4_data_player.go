@@ -19,22 +19,25 @@ import (
 // checks if the MatchesV4DataPlayer type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MatchesV4DataPlayer{}
 
-// MatchesV4DataPlayer struct for MatchesV4DataPlayer
+// MatchesV4DataPlayer Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
 type MatchesV4DataPlayer struct {
 	AbilityCasts MatchesV4DataPlayerAbilityCasts `json:"ability_casts"`
 	AccountLevel int32 `json:"account_level"`
 	Agent AgentIdNameCombo `json:"agent"`
 	Behavior MatchesV4DataPlayerBehavior `json:"behavior"`
 	Customization MatchesV4DataPlayerCustomization `json:"customization"`
+	DraftedAbilityCasts []MatchesV4DataPlayerDraftedAbilityCast `json:"drafted_ability_casts,omitempty"`
 	Economy MatchesV4DataPlayerEconomy `json:"economy"`
 	Name string `json:"name"`
 	PartyId string `json:"party_id"`
+	Performance NullableMatchesV4DataPlayerPerformance `json:"performance,omitempty"`
 	Platform string `json:"platform"`
 	Puuid string `json:"puuid"`
 	SessionPlaytimeInMs int32 `json:"session_playtime_in_ms"`
 	Stats MatchesV4DataPlayerStats `json:"stats"`
 	Tag string `json:"tag"`
 	TeamId string `json:"team_id"`
+	TeamNumber NullableInt32 `json:"team_number,omitempty"`
 	Tier TierIdNameCombo `json:"tier"`
 }
 
@@ -192,6 +195,39 @@ func (o *MatchesV4DataPlayer) SetCustomization(v MatchesV4DataPlayerCustomizatio
 	o.Customization = v
 }
 
+// GetDraftedAbilityCasts returns the DraftedAbilityCasts field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataPlayer) GetDraftedAbilityCasts() []MatchesV4DataPlayerDraftedAbilityCast {
+	if o == nil {
+		var ret []MatchesV4DataPlayerDraftedAbilityCast
+		return ret
+	}
+	return o.DraftedAbilityCasts
+}
+
+// GetDraftedAbilityCastsOk returns a tuple with the DraftedAbilityCasts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataPlayer) GetDraftedAbilityCastsOk() ([]MatchesV4DataPlayerDraftedAbilityCast, bool) {
+	if o == nil || IsNil(o.DraftedAbilityCasts) {
+		return nil, false
+	}
+	return o.DraftedAbilityCasts, true
+}
+
+// HasDraftedAbilityCasts returns a boolean if a field has been set.
+func (o *MatchesV4DataPlayer) HasDraftedAbilityCasts() bool {
+	if o != nil && !IsNil(o.DraftedAbilityCasts) {
+		return true
+	}
+
+	return false
+}
+
+// SetDraftedAbilityCasts gets a reference to the given []MatchesV4DataPlayerDraftedAbilityCast and assigns it to the DraftedAbilityCasts field.
+func (o *MatchesV4DataPlayer) SetDraftedAbilityCasts(v []MatchesV4DataPlayerDraftedAbilityCast) {
+	o.DraftedAbilityCasts = v
+}
+
 // GetEconomy returns the Economy field value
 func (o *MatchesV4DataPlayer) GetEconomy() MatchesV4DataPlayerEconomy {
 	if o == nil {
@@ -262,6 +298,48 @@ func (o *MatchesV4DataPlayer) GetPartyIdOk() (*string, bool) {
 // SetPartyId sets field value
 func (o *MatchesV4DataPlayer) SetPartyId(v string) {
 	o.PartyId = v
+}
+
+// GetPerformance returns the Performance field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataPlayer) GetPerformance() MatchesV4DataPlayerPerformance {
+	if o == nil || IsNil(o.Performance.Get()) {
+		var ret MatchesV4DataPlayerPerformance
+		return ret
+	}
+	return *o.Performance.Get()
+}
+
+// GetPerformanceOk returns a tuple with the Performance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataPlayer) GetPerformanceOk() (*MatchesV4DataPlayerPerformance, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Performance.Get(), o.Performance.IsSet()
+}
+
+// HasPerformance returns a boolean if a field has been set.
+func (o *MatchesV4DataPlayer) HasPerformance() bool {
+	if o != nil && o.Performance.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPerformance gets a reference to the given NullableMatchesV4DataPlayerPerformance and assigns it to the Performance field.
+func (o *MatchesV4DataPlayer) SetPerformance(v MatchesV4DataPlayerPerformance) {
+	o.Performance.Set(&v)
+}
+// SetPerformanceNil sets the value for Performance to be an explicit nil
+func (o *MatchesV4DataPlayer) SetPerformanceNil() {
+	o.Performance.Set(nil)
+}
+
+// UnsetPerformance ensures that no value is present for Performance, not even an explicit nil
+func (o *MatchesV4DataPlayer) UnsetPerformance() {
+	o.Performance.Unset()
 }
 
 // GetPlatform returns the Platform field value
@@ -408,6 +486,48 @@ func (o *MatchesV4DataPlayer) SetTeamId(v string) {
 	o.TeamId = v
 }
 
+// GetTeamNumber returns the TeamNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataPlayer) GetTeamNumber() int32 {
+	if o == nil || IsNil(o.TeamNumber.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.TeamNumber.Get()
+}
+
+// GetTeamNumberOk returns a tuple with the TeamNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataPlayer) GetTeamNumberOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TeamNumber.Get(), o.TeamNumber.IsSet()
+}
+
+// HasTeamNumber returns a boolean if a field has been set.
+func (o *MatchesV4DataPlayer) HasTeamNumber() bool {
+	if o != nil && o.TeamNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTeamNumber gets a reference to the given NullableInt32 and assigns it to the TeamNumber field.
+func (o *MatchesV4DataPlayer) SetTeamNumber(v int32) {
+	o.TeamNumber.Set(&v)
+}
+// SetTeamNumberNil sets the value for TeamNumber to be an explicit nil
+func (o *MatchesV4DataPlayer) SetTeamNumberNil() {
+	o.TeamNumber.Set(nil)
+}
+
+// UnsetTeamNumber ensures that no value is present for TeamNumber, not even an explicit nil
+func (o *MatchesV4DataPlayer) UnsetTeamNumber() {
+	o.TeamNumber.Unset()
+}
+
 // GetTier returns the Tier field value
 func (o *MatchesV4DataPlayer) GetTier() TierIdNameCombo {
 	if o == nil {
@@ -447,15 +567,24 @@ func (o MatchesV4DataPlayer) ToMap() (map[string]interface{}, error) {
 	toSerialize["agent"] = o.Agent
 	toSerialize["behavior"] = o.Behavior
 	toSerialize["customization"] = o.Customization
+	if o.DraftedAbilityCasts != nil {
+		toSerialize["drafted_ability_casts"] = o.DraftedAbilityCasts
+	}
 	toSerialize["economy"] = o.Economy
 	toSerialize["name"] = o.Name
 	toSerialize["party_id"] = o.PartyId
+	if o.Performance.IsSet() {
+		toSerialize["performance"] = o.Performance.Get()
+	}
 	toSerialize["platform"] = o.Platform
 	toSerialize["puuid"] = o.Puuid
 	toSerialize["session_playtime_in_ms"] = o.SessionPlaytimeInMs
 	toSerialize["stats"] = o.Stats
 	toSerialize["tag"] = o.Tag
 	toSerialize["team_id"] = o.TeamId
+	if o.TeamNumber.IsSet() {
+		toSerialize["team_number"] = o.TeamNumber.Get()
+	}
 	toSerialize["tier"] = o.Tier
 	return toSerialize, nil
 }

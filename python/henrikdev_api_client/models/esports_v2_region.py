@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class EsportsV2Region(str, Enum):
     """
-    EsportsV2Region
+    VLR esports region filter. Values are case-sensitive; omission selects all regions.
     """
 
     """

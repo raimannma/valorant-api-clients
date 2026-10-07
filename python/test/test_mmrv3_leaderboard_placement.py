@@ -36,12 +36,12 @@ class TestMMRV3LeaderboardPlacement(unittest.TestCase):
         if include_optional:
             return MMRV3LeaderboardPlacement(
                 rank = 0,
-                updated_at = ''
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return MMRV3LeaderboardPlacement(
                 rank = 0,
-                updated_at = '',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

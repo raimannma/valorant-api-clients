@@ -29,18 +29,18 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
  *
  * @param createdAt 
  * @param enabled 
  * @param events 
  * @param id 
- * @param puuid 
- * @param region 
- * @param updatedAt 
  * @param lastCheckedAt 
  * @param lastMatch 
  * @param lastMmr 
+ * @param puuid 
+ * @param region 
+ * @param updatedAt 
  */
 
 
@@ -58,23 +58,23 @@ data class PremiumWebhookUserResponse (
     @Json(name = "id")
     val id: kotlin.String,
 
+    @Json(name = "last_checked_at")
+    val lastCheckedAt: kotlin.Long?,
+
+    @Json(name = "last_match")
+    val lastMatch: kotlin.String?,
+
+    @Json(name = "last_mmr")
+    val lastMmr: kotlin.Int?,
+
     @Json(name = "puuid")
-    val puuid: kotlin.String,
+    val puuid: java.util.UUID,
 
     @Json(name = "region")
     val region: kotlin.String,
 
     @Json(name = "updated_at")
-    val updatedAt: kotlin.Long,
-
-    @Json(name = "last_checked_at")
-    val lastCheckedAt: kotlin.Long? = null,
-
-    @Json(name = "last_match")
-    val lastMatch: kotlin.String? = null,
-
-    @Json(name = "last_mmr")
-    val lastMmr: kotlin.Int? = null
+    val updatedAt: kotlin.Long
 
 ) {
 

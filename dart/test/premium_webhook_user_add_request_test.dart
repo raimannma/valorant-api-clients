@@ -16,7 +16,7 @@ void main() {
   // final instance = PremiumWebhookUserAddRequest();
 
   group('test PremiumWebhookUserAddRequest', () {
-    // bool enabled
+    // bool enabled (default value: true)
     test('to test the property `enabled`', () async {
       // TODO
     });

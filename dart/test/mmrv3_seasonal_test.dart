@@ -16,6 +16,12 @@ void main() {
   // final instance = MMRV3Seasonal();
 
   group('test MMRV3Seasonal', () {
+    // Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.
+    // TierIdNameCombo actRank
+    test('to test the property `actRank`', () async {
+      // TODO
+    });
+
     // List<TierIdNameCombo> actWins (default value: const [])
     test('to test the property `actWins`', () async {
       // TODO
@@ -36,8 +42,18 @@ void main() {
       // TODO
     });
 
+    // int gamesNeededForRating
+    test('to test the property `gamesNeededForRating`', () async {
+      // TODO
+    });
+
     // MMRV3LeaderboardPlacement leaderboardPlacement
     test('to test the property `leaderboardPlacement`', () async {
+      // TODO
+    });
+
+    // Map<String, MMRV3SeasonalPrestige> prestige (default value: const {})
+    test('to test the property `prestige`', () async {
       // TODO
     });
 
@@ -53,6 +69,11 @@ void main() {
 
     // int wins
     test('to test the property `wins`', () async {
+      // TODO
+    });
+
+    // int winsWithPlacements
+    test('to test the property `winsWithPlacements`', () async {
       // TODO
     });
 

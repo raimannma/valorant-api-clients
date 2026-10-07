@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**page** | **number** |  | [optional] [default to undefined]
+**page** | **number** |  | [optional] [default to 1]
 **region** | [**EsportsV2Region**](EsportsV2Region.md) |  | [optional] [default to undefined]
 **type** | [**EsportsV2EventType**](EsportsV2EventType.md) |  | [optional] [default to undefined]
 

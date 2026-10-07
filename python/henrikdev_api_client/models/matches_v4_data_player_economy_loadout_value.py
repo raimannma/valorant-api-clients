@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,8 +27,8 @@ class MatchesV4DataPlayerEconomyLoadoutValue(BaseModel):
     """
     MatchesV4DataPlayerEconomyLoadoutValue
     """ # noqa: E501
-    average: Union[StrictFloat, StrictInt]
-    overall: StrictInt
+    average: Union[StrictFloat, StrictInt] = Field(description="Loadout value in credits per round played by this player; zero when rounds played is zero.")
+    overall: StrictInt = Field(description="Sum of loadout values in credits across reported player rounds.")
     __properties: ClassVar[List[str]] = ["average", "overall"]
 
     model_config = ConfigDict(

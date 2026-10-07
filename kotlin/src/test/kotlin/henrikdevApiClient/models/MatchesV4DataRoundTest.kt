@@ -29,6 +29,7 @@ import io.kotlintest.specs.ShouldSpec
 import henrikdevApiClient.models.MatchesV4DataRound
 import henrikdevApiClient.models.MatchesV4DataRoundDefuse
 import henrikdevApiClient.models.MatchesV4DataRoundPlant
+import henrikdevApiClient.models.MatchesV4DataRoundPlayer
 import henrikdevApiClient.models.MatchesV4DataRoundPlayerStats
 
 class MatchesV4DataRoundTest : ShouldSpec() {
@@ -66,16 +67,40 @@ class MatchesV4DataRoundTest : ShouldSpec() {
             //modelInstance.winningTeam shouldBe ("TODO")
         }
 
+        // to test the property `ceremonyPlayer`
+        should("test ceremonyPlayer") {
+            // uncomment below to test the property
+            //modelInstance.ceremonyPlayer shouldBe ("TODO")
+        }
+
+        // to test the property `ceremonyTeam`
+        should("test ceremonyTeam") {
+            // uncomment below to test the property
+            //modelInstance.ceremonyTeam shouldBe ("TODO")
+        }
+
         // to test the property `defuse`
         should("test defuse") {
             // uncomment below to test the property
             //modelInstance.defuse shouldBe ("TODO")
         }
 
+        // to test the property `firstBlood`
+        should("test firstBlood") {
+            // uncomment below to test the property
+            //modelInstance.firstBlood shouldBe ("TODO")
+        }
+
         // to test the property `plant`
         should("test plant") {
             // uncomment below to test the property
             //modelInstance.plant shouldBe ("TODO")
+        }
+
+        // to test the property `winningTeamRole`
+        should("test winningTeamRole") {
+            // uncomment below to test the property
+            //modelInstance.winningTeamRole shouldBe ("TODO")
         }
 
     }

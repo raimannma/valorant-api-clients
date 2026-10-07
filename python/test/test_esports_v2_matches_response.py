@@ -135,6 +135,7 @@ class TestEsportsV2MatchesResponse(unittest.TestCase):
                             icon = '', 
                             id = 0, 
                             name = '', 
+                            score = 0, 
                             slug = '', 
                             url = '', )
                         ], 
@@ -247,6 +248,7 @@ class TestEsportsV2MatchesResponse(unittest.TestCase):
                             icon = '', 
                             id = 0, 
                             name = '', 
+                            score = 0, 
                             slug = '', 
                             url = '', )
                         ], 

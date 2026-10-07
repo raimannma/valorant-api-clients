@@ -11,43 +11,79 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// StoredMmrv2 : Stored competitive update. Optional enrichment fields are null for older records; tier IDs and ELO preserve the original ranking schema.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StoredMmrv2 {
+    #[serde(rename = "afk_penalty", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub afk_penalty: Option<Option<i32>>,
+    #[serde(rename = "competitive_movement", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub competitive_movement: Option<Option<String>>,
     #[serde(rename = "date")]
-    pub date: String,
+    pub date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "elo")]
     pub elo: i32,
+    #[serde(rename = "is_placement_match", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub is_placement_match: Option<Option<bool>>,
     #[serde(rename = "last_change")]
     pub last_change: i32,
     #[serde(rename = "map")]
     pub map: Box<models::MapIdNameCombo>,
     #[serde(rename = "match_id")]
-    pub match_id: String,
+    pub match_id: uuid::Uuid,
+    /// Match duration in milliseconds; null when unavailable.
+    #[serde(rename = "match_length", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub match_length: Option<Option<u64>>,
+    #[serde(rename = "new_map_incentive_rr_forgiven", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub new_map_incentive_rr_forgiven: Option<Option<i32>>,
+    #[serde(rename = "queue_id", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub queue_id: Option<Option<String>>,
     #[serde(rename = "refunded_rr")]
     pub refunded_rr: i32,
     #[serde(rename = "rr")]
     pub rr: i32,
+    #[serde(rename = "rr_before_update", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub rr_before_update: Option<Option<i32>>,
+    #[serde(rename = "rr_penalty", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub rr_penalty: Option<Option<f64>>,
+    #[serde(rename = "rr_performance_bonus", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub rr_performance_bonus: Option<Option<i32>>,
     #[serde(rename = "season")]
     pub season: Box<models::SeasonIdShortCombo>,
     #[serde(rename = "tier")]
     pub tier: Box<models::TierIdNameCombo>,
+    #[serde(rename = "tier_before_update", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub tier_before_update: Option<Option<Box<models::TierIdNameCombo>>>,
     #[serde(rename = "was_derank_protected")]
     pub was_derank_protected: bool,
+    #[serde(rename = "was_derank_protection_replenished", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub was_derank_protection_replenished: Option<Option<bool>>,
 }
 
 impl StoredMmrv2 {
-    pub fn new(date: String, elo: i32, last_change: i32, map: models::MapIdNameCombo, match_id: String, refunded_rr: i32, rr: i32, season: models::SeasonIdShortCombo, tier: models::TierIdNameCombo, was_derank_protected: bool) -> StoredMmrv2 {
+    /// Stored competitive update. Optional enrichment fields are null for older records; tier IDs and ELO preserve the original ranking schema.
+    pub fn new(date: chrono::DateTime<chrono::FixedOffset>, elo: i32, last_change: i32, map: models::MapIdNameCombo, match_id: uuid::Uuid, refunded_rr: i32, rr: i32, season: models::SeasonIdShortCombo, tier: models::TierIdNameCombo, was_derank_protected: bool) -> StoredMmrv2 {
         StoredMmrv2 {
+            afk_penalty: None,
+            competitive_movement: None,
             date,
             elo,
+            is_placement_match: None,
             last_change,
             map: Box::new(map),
             match_id,
+            match_length: None,
+            new_map_incentive_rr_forgiven: None,
+            queue_id: None,
             refunded_rr,
             rr,
+            rr_before_update: None,
+            rr_penalty: None,
+            rr_performance_bonus: None,
             season: Box::new(season),
             tier: Box::new(tier),
+            tier_before_update: None,
             was_derank_protected,
+            was_derank_protection_replenished: None,
         }
     }
 }

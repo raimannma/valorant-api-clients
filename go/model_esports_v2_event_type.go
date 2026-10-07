@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// EsportsV2EventType the model 'EsportsV2EventType'
+// EsportsV2EventType VLR event type. Values are case-sensitive; omission selects upcoming events.
 type EsportsV2EventType string
 
 // List of EsportsV2EventType

@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from henrikdev_api_client.models.premium_webhook_event import PremiumWebhookEvent
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,9 +27,9 @@ from pydantic_core import to_jsonable_python
 
 class PremiumWebhookUserUpdateRequest(BaseModel):
     """
-    PremiumWebhookUserUpdateRequest
+    Replaces the tracked user's event filters. At least one event is required; omitted or empty events return HTTP 400. Event names are case-insensitive.
     """ # noqa: E501
-    events: Optional[List[PremiumWebhookEvent]] = None
+    events: Optional[Annotated[List[PremiumWebhookEvent], Field(min_length=1)]] = None
     __properties: ClassVar[List[str]] = ["events"]
 
     model_config = ConfigDict(

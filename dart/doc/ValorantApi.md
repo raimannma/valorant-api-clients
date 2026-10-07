@@ -26,6 +26,10 @@ Method | HTTP request | Description
 [**getAccountV1**](ValorantApi.md#getaccountv1) | **GET** /valorant/v1/account/{name}/{tag} | Get account (v1)
 [**getAccountV2**](ValorantApi.md#getaccountv2) | **GET** /valorant/v2/account/{name}/{tag} | Get account (v2)
 [**getContentV1**](ValorantApi.md#getcontentv1) | **GET** /valorant/v1/content | Get content (v1)
+[**getMasteryAgentById**](ValorantApi.md#getmasteryagentbyid) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id} | Get agent mastery by PUUID (v1)
+[**getMasteryAgentByName**](ValorantApi.md#getmasteryagentbyname) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id} | Get agent mastery by name (v1)
+[**getMasteryById**](ValorantApi.md#getmasterybyid) | **GET** /valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid} | Get all agent mastery by PUUID (v1)
+[**getMasteryByName**](ValorantApi.md#getmasterybyname) | **GET** /valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag} | Get all agent mastery by name (v1)
 [**getMatchesV3ById**](ValorantApi.md#getmatchesv3byid) | **GET** /valorant/v3/by-puuid/matches/{affinity}/{puuid} | Get matches by PUUID (v3)
 [**getMatchesV3ByName**](ValorantApi.md#getmatchesv3byname) | **GET** /valorant/v3/matches/{affinity}/{name}/{tag} | Get matches by name (v3)
 [**getMatchesV4ById**](ValorantApi.md#getmatchesv4byid) | **GET** /valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid} | Get matches by PUUID (v4)
@@ -47,8 +51,12 @@ Method | HTTP request | Description
 [**matchV4**](ValorantApi.md#matchv4) | **GET** /valorant/v4/match/{affinity}/{match_id} | Get match details (v4)
 [**premierById**](ValorantApi.md#premierbyid) | **GET** /valorant/v1/premier/{id} | Get Premier team by ID (v1)
 [**premierByIdHistory**](ValorantApi.md#premierbyidhistory) | **GET** /valorant/v1/premier/{id}/history | Get Premier team history by ID (v1)
+[**premierByIdV2**](ValorantApi.md#premierbyidv2) | **GET** /valorant/v2/premier/teams/{affinity}/{id} | Get live Premier team by ID (v2)
 [**premierByName**](ValorantApi.md#premierbyname) | **GET** /valorant/v1/premier/{name}/{tag} | Get Premier team by name (v1)
 [**premierByNameHistory**](ValorantApi.md#premierbynamehistory) | **GET** /valorant/v1/premier/{name}/{tag}/history | Get Premier team history by name (v1)
+[**premierByNameV2**](ValorantApi.md#premierbynamev2) | **GET** /valorant/v2/premier/teams/{affinity}/{name}/{tag} | Get live Premier team by team name (v2)
+[**premierByPlayerName**](ValorantApi.md#premierbyplayername) | **GET** /valorant/v2/premier/players/{affinity}/{name}/{tag} | Get live Premier team by player Riot ID (v2)
+[**premierByPuuid**](ValorantApi.md#premierbypuuid) | **GET** /valorant/v2/premier/players/{affinity}/{puuid} | Get live Premier team by player PUUID (v2)
 [**premierLeaderboard**](ValorantApi.md#premierleaderboard) | **GET** /valorant/v1/premier/leaderboard/{affinity} | Get Premier leaderboard (v1)
 [**premierSearch**](ValorantApi.md#premiersearch) | **GET** /valorant/v1/premier/search | Search Premier teams (v1)
 [**queueStatus**](ValorantApi.md#queuestatus) | **GET** /valorant/v1/queue-status/{affinity} | Get queue status (v1)
@@ -85,7 +93,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final id = id_example; // String | Crosshair code
+final id = id_example; // String | Required crosshair code
 
 try {
     api_instance.crosshair(id);
@@ -98,7 +106,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| Crosshair code | [optional] 
+ **id** | **String**| Required crosshair code | 
 
 ### Return type
 
@@ -200,7 +208,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **region** | [**EsportsV2Region**](.md)|  | [optional] 
  **type** | [**EsportsV2EventType**](.md)|  | [optional] 
- **page** | **int**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
 
 ### Return type
 
@@ -300,7 +308,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **player** | **int**|  | 
- **page** | **int**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
 
 ### Return type
 
@@ -453,7 +461,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **teamId** | **int**|  | 
- **page** | **int**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
 
 ### Return type
 
@@ -586,9 +594,9 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
-final puuid = puuid_example; // String | Player UUID
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
+final puuid = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Player UUID
 
 try {
     final result = api_instance.getAccoladesById(affinity, platform, puuid);
@@ -602,8 +610,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **String**| Player UUID | 
 
 ### Return type
@@ -639,8 +647,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
 
@@ -656,8 +664,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
 
@@ -902,7 +910,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final locale = locale_example; // String | Locale code (e.g., en-US, de-DE) - optional
+final locale = ; // ValorantContentLocale | Content locale; case-insensitive. Omission selects en-US.
 
 try {
     final result = api_instance.getContentV1(locale);
@@ -916,7 +924,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **locale** | **String**| Locale code (e.g., en-US, de-DE) - optional | [optional] 
+ **locale** | [**ValorantContentLocale**](.md)| Content locale; case-insensitive. Omission selects en-US. | [optional] 
 
 ### Return type
 
@@ -933,8 +941,236 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getMasteryAgentById**
+> AgentMasteryV1DetailResponse getMasteryAgentById(affinity, platform, puuid, agentId)
+
+Get agent mastery by PUUID (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
+final puuid = puuid_example; // String | Player UUID
+final agentId = agentId_example; // String | Agent UUID
+
+try {
+    final result = api_instance.getMasteryAgentById(affinity, platform, puuid, agentId);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->getMasteryAgentById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **puuid** | **String**| Player UUID | 
+ **agentId** | **String**| Agent UUID | 
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getMasteryAgentByName**
+> AgentMasteryV1DetailResponse getMasteryAgentByName(affinity, platform, name, tag, agentId)
+
+Get agent mastery by name (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
+final name = name_example; // String | Riot ID name
+final tag = tag_example; // String | Riot ID tag
+final agentId = agentId_example; // String | Agent UUID
+
+try {
+    final result = api_instance.getMasteryAgentByName(affinity, platform, name, tag, agentId);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->getMasteryAgentByName: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **name** | **String**| Riot ID name | 
+ **tag** | **String**| Riot ID tag | 
+ **agentId** | **String**| Agent UUID | 
+
+### Return type
+
+[**AgentMasteryV1DetailResponse**](AgentMasteryV1DetailResponse.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getMasteryById**
+> AgentMasteryV1Response getMasteryById(affinity, platform, puuid)
+
+Get all agent mastery by PUUID (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
+final puuid = puuid_example; // String | Player UUID
+
+try {
+    final result = api_instance.getMasteryById(affinity, platform, puuid);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->getMasteryById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **puuid** | **String**| Player UUID | 
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getMasteryByName**
+> AgentMasteryV1Response getMasteryByName(affinity, platform, name, tag)
+
+Get all agent mastery by name (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
+final name = name_example; // String | Riot ID name
+final tag = tag_example; // String | Riot ID tag
+
+try {
+    final result = api_instance.getMasteryByName(affinity, platform, name, tag);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->getMasteryByName: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **name** | **String**| Riot ID name | 
+ **tag** | **String**| Riot ID tag | 
+
+### Return type
+
+[**AgentMasteryV1Response**](AgentMasteryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getMatchesV3ById**
-> MatchesV3ListResponse getMatchesV3ById(affinity, puuid, mode, map, size)
+> MatchesV3ListResponse getMatchesV3ById(affinity, puuid, mode, queue, map, size)
 
 Get matches by PUUID (v3)
 
@@ -951,14 +1187,15 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final puuid = puuid_example; // String | Player UUID
-final mode = mode_example; // String | Game mode filter (optional)
-final map = map_example; // String | Map filter (optional)
-final size = 56; // int | Number of results (optional)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final puuid = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Player UUID
+final mode = mode_example; // String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+final queue = queue_example; // String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+final map = map_example; // String | Map display name, matched case-insensitively.
+final size = 56; // int | Positive integer result count; values above 10 are capped at 10.
 
 try {
-    final result = api_instance.getMatchesV3ById(affinity, puuid, mode, map, size);
+    final result = api_instance.getMatchesV3ById(affinity, puuid, mode, queue, map, size);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->getMatchesV3ById: $e\n');
@@ -969,11 +1206,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **String**| Player UUID | 
- **mode** | **String**| Game mode filter (optional) | [optional] 
- **map** | **String**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **mode** | **String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **String**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
 
 ### Return type
 
@@ -991,7 +1229,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMatchesV3ByName**
-> MatchesV3ListResponse getMatchesV3ByName(affinity, name, tag, mode, map, size)
+> MatchesV3ListResponse getMatchesV3ByName(affinity, name, tag, mode, queue, map, size)
 
 Get matches by name (v3)
 
@@ -1008,15 +1246,16 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
-final mode = ; // MatchMode | Game mode filter (optional)
-final map = map_example; // String | Map filter (optional)
-final size = 56; // int | Number of results (optional)
+final mode = mode_example; // String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+final queue = queue_example; // String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+final map = map_example; // String | Map display name, matched case-insensitively.
+final size = 56; // int | Positive integer result count; values above 10 are capped at 10.
 
 try {
-    final result = api_instance.getMatchesV3ByName(affinity, name, tag, mode, map, size);
+    final result = api_instance.getMatchesV3ByName(affinity, name, tag, mode, queue, map, size);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->getMatchesV3ByName: $e\n');
@@ -1027,12 +1266,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
- **mode** | [**MatchMode**](.md)| Game mode filter (optional) | [optional] 
- **map** | **String**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **mode** | **String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **String**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
 
 ### Return type
 
@@ -1050,7 +1290,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMatchesV4ById**
-> MatchesV4HistoryResponse getMatchesV4ById(affinity, platform, puuid, mode, map, size, start)
+> MatchesV4HistoryResponse getMatchesV4ById(affinity, platform, puuid, mode, queue, map, size, start)
 
 Get matches by PUUID (v4)
 
@@ -1067,16 +1307,17 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
-final puuid = puuid_example; // String | Player UUID
-final mode = mode_example; // String | Game mode filter (optional)
-final map = map_example; // String | Map filter (optional)
-final size = 56; // int | Number of results (optional)
-final start = 56; // int | Start index for pagination (optional)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
+final puuid = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Player UUID
+final mode = mode_example; // String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+final queue = queue_example; // String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+final map = map_example; // String | Map display name, matched case-insensitively.
+final size = 56; // int | Positive integer result count; values above 10 are capped at 10.
+final start = 56; // int | Zero-based offset; start plus capped size must fit a signed 32-bit integer.
 
 try {
-    final result = api_instance.getMatchesV4ById(affinity, platform, puuid, mode, map, size, start);
+    final result = api_instance.getMatchesV4ById(affinity, platform, puuid, mode, queue, map, size, start);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->getMatchesV4ById: $e\n');
@@ -1087,13 +1328,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **String**| Player UUID | 
- **mode** | **String**| Game mode filter (optional) | [optional] 
- **map** | **String**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
- **start** | **int**| Start index for pagination (optional) | [optional] 
+ **mode** | **String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **String**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
+ **start** | **int**| Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [optional] [default to 0]
 
 ### Return type
 
@@ -1111,7 +1353,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMatchesV4ByName**
-> MatchesV4HistoryResponse getMatchesV4ByName(affinity, platform, name, tag, mode, map, size, start)
+> MatchesV4HistoryResponse getMatchesV4ByName(affinity, platform, name, tag, mode, queue, map, size, start)
 
 Get matches by name (v4)
 
@@ -1128,17 +1370,18 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
-final mode = mode_example; // String | Game mode filter (optional)
-final map = map_example; // String | Map filter (optional)
-final size = 56; // int | Number of results (optional)
-final start = 56; // int | Start index for pagination (optional)
+final mode = mode_example; // String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+final queue = queue_example; // String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+final map = map_example; // String | Map display name, matched case-insensitively.
+final size = 56; // int | Positive integer result count; values above 10 are capped at 10.
+final start = 56; // int | Zero-based offset; start plus capped size must fit a signed 32-bit integer.
 
 try {
-    final result = api_instance.getMatchesV4ByName(affinity, platform, name, tag, mode, map, size, start);
+    final result = api_instance.getMatchesV4ByName(affinity, platform, name, tag, mode, queue, map, size, start);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->getMatchesV4ByName: $e\n');
@@ -1149,14 +1392,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
- **mode** | **String**| Game mode filter (optional) | [optional] 
- **map** | **String**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
- **start** | **int**| Start index for pagination (optional) | [optional] 
+ **mode** | **String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **String**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count; values above 10 are capped at 10. | [optional] [default to 5]
+ **start** | **int**| Zero-based offset; start plus capped size must fit a signed 32-bit integer. | [optional] [default to 0]
 
 ### Return type
 
@@ -1191,7 +1435,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final puuid = puuid_example; // String | Player UUID
 
 try {
@@ -1206,7 +1450,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **String**| Player UUID | 
 
 ### Return type
@@ -1242,7 +1486,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
 
@@ -1258,7 +1502,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
 
@@ -1295,8 +1539,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final puuid = puuid_example; // String | Player UUID
 
 try {
@@ -1311,8 +1555,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **String**| Player UUID | 
 
 ### Return type
@@ -1348,8 +1592,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
 
@@ -1365,8 +1609,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
 
@@ -1403,7 +1647,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final puuid = puuid_example; // String | Player UUID
 
 try {
@@ -1418,7 +1662,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **String**| Player UUID | 
 
 ### Return type
@@ -1454,7 +1698,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
 
@@ -1470,7 +1714,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
 
@@ -1507,7 +1751,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final puuid = puuid_example; // String | Player UUID
 
 try {
@@ -1522,7 +1766,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **String**| Player UUID | 
 
 ### Return type
@@ -1558,7 +1802,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
 
@@ -1574,7 +1818,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
 
@@ -1611,8 +1855,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final puuid = puuid_example; // String | Player UUID
 
 try {
@@ -1627,8 +1871,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **String**| Player UUID | 
 
 ### Return type
@@ -1664,8 +1908,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
 
@@ -1681,8 +1925,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
 
@@ -1702,7 +1946,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leaderboardV1**
-> Object leaderboardV1(affinity, season, name, tag)
+> LeaderboardV1Response leaderboardV1(affinity, season, name, tag, puuid)
 
 Get leaderboard (v1)
 
@@ -1719,13 +1963,14 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final season = season_example; // String | Season ID (optional)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final season = season_example; // String | Short season ID, such as e9a1; omission selects the current season
 final name = name_example; // String | Player name to search for (optional)
 final tag = tag_example; // String | Player tag to search for (optional)
+final puuid = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Player UUID to search for
 
 try {
-    final result = api_instance.leaderboardV1(affinity, season, name, tag);
+    final result = api_instance.leaderboardV1(affinity, season, name, tag, puuid);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->leaderboardV1: $e\n');
@@ -1736,14 +1981,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **season** | **String**| Season ID (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **season** | **String**| Short season ID, such as e9a1; omission selects the current season | [optional] 
  **name** | **String**| Player name to search for (optional) | [optional] 
  **tag** | **String**| Player tag to search for (optional) | [optional] 
+ **puuid** | **String**| Player UUID to search for | [optional] 
 
 ### Return type
 
-**Object**
+[**LeaderboardV1Response**](LeaderboardV1Response.md)
 
 ### Authorization
 
@@ -1757,7 +2003,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leaderboardV2**
-> LeaderboardV2Response leaderboardV2(affinity, season, name, tag, puuid)
+> ValorantLeaderboardV2Response leaderboardV2(affinity, season, name, tag, puuid)
 
 Get leaderboard (v2)
 
@@ -1774,8 +2020,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final season = season_example; // String | Season ID (optional)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final season = season_example; // String | Short season ID, such as e9a1; omission selects the current season
 final name = name_example; // String | Player name to search for (optional)
 final tag = tag_example; // String | Player tag to search for (optional)
 final puuid = puuid_example; // String | Player UUID to search for (optional)
@@ -1792,15 +2038,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **season** | **String**| Season ID (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **season** | **String**| Short season ID, such as e9a1; omission selects the current season | [optional] 
  **name** | **String**| Player name to search for (optional) | [optional] 
  **tag** | **String**| Player tag to search for (optional) | [optional] 
  **puuid** | **String**| Player UUID to search for (optional) | [optional] 
 
 ### Return type
 
-[**LeaderboardV2Response**](LeaderboardV2Response.md)
+[**ValorantLeaderboardV2Response**](ValorantLeaderboardV2Response.md)
 
 ### Authorization
 
@@ -1814,7 +2060,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leaderboardV3**
-> LeaderboardV3Response leaderboardV3(affinity, platform, season, size, page, name, tag)
+> LeaderboardV3Response leaderboardV3(affinity, platform, page, size, seasonShort, seasonId, name, tag, puuid)
 
 Get leaderboard (v3)
 
@@ -1831,16 +2077,18 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
-final season = season_example; // String | Season ID (optional)
-final size = 56; // int | Number of results per page (optional)
-final page = 56; // int | Page number (optional)
-final name = name_example; // String | Player name to search for (optional)
-final tag = tag_example; // String | Player tag to search for (optional)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
+final page = 56; // int | Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
+final size = 56; // int | Positive integer result count; only ASCII decimal digits are accepted.
+final seasonShort = seasonShort_example; // String | Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+final seasonId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Season UUID; mutually exclusive with season_short.
+final name = name_example; // String | Player name to search for.
+final tag = tag_example; // String | Player tag to search for.
+final puuid = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Player UUID to search for.
 
 try {
-    final result = api_instance.leaderboardV3(affinity, platform, season, size, page, name, tag);
+    final result = api_instance.leaderboardV3(affinity, platform, page, size, seasonShort, seasonId, name, tag, puuid);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->leaderboardV3: $e\n');
@@ -1851,13 +2099,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
- **season** | **String**| Season ID (optional) | [optional] 
- **size** | **int**| Number of results per page (optional) | [optional] 
- **page** | **int**| Page number (optional) | [optional] 
- **name** | **String**| Player name to search for (optional) | [optional] 
- **tag** | **String**| Player tag to search for (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
+ **page** | **int**| Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted. | [optional] [default to 1]
+ **size** | **int**| Positive integer result count; only ASCII decimal digits are accepted. | [optional] [default to 1000]
+ **seasonShort** | **String**| Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season. | [optional] 
+ **seasonId** | **String**| Season UUID; mutually exclusive with season_short. | [optional] 
+ **name** | **String**| Player name to search for. | [optional] 
+ **tag** | **String**| Player tag to search for. | [optional] 
+ **puuid** | **String**| Player UUID to search for. | [optional] 
 
 ### Return type
 
@@ -1892,7 +2142,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final matchId = matchId_example; // String | Match UUID
+final matchId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Match UUID
 
 try {
     final result = api_instance.matchV2(matchId);
@@ -1941,8 +2191,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final matchId = matchId_example; // String | Match UUID
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final matchId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Match UUID
 
 try {
     final result = api_instance.matchV4(affinity, matchId);
@@ -1956,7 +2206,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **matchId** | **String**| Match UUID | 
 
 ### Return type
@@ -1992,9 +2242,9 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final id = id_example; // String | Team UUID
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Team UUID
 final season = season_example; // String | Premier season id (optional)
-final affinity = affinity_example; // String | Region/affinity for fallback resolution (optional)
+final affinity = ; // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
 
 try {
     final result = api_instance.premierById(id, season, affinity);
@@ -2010,7 +2260,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Team UUID | 
  **season** | **String**| Premier season id (optional) | [optional] 
- **affinity** | **String**| Region/affinity for fallback resolution (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | [optional] 
 
 ### Return type
 
@@ -2028,7 +2278,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierByIdHistory**
-> PremierTeamV1Response premierByIdHistory(id, season)
+> PremierTeamHistoryV1Response premierByIdHistory(id, season)
 
 Get Premier team history by ID (v1)
 
@@ -2045,7 +2295,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final id = id_example; // String | Team UUID
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Team UUID
 final season = season_example; // String | Premier season id (optional)
 
 try {
@@ -2065,7 +2315,60 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PremierTeamV1Response**](PremierTeamV1Response.md)
+[**PremierTeamHistoryV1Response**](PremierTeamHistoryV1Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **premierByIdV2**
+> PremierTeamV2Response premierByIdV2(affinity, id)
+
+Get live Premier team by ID (v2)
+
+Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Team UUID
+
+try {
+    final result = api_instance.premierByIdV2(affinity, id);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->premierByIdV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **id** | **String**| Team UUID | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
 
 ### Authorization
 
@@ -2099,7 +2402,7 @@ final api_instance = ValorantApi();
 final name = name_example; // String | Team name
 final tag = tag_example; // String | Team tag
 final season = season_example; // String | Premier season id (optional)
-final affinity = affinity_example; // String | Region/affinity for fallback resolution (optional)
+final affinity = ; // ValorantAffinity | Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
 
 try {
     final result = api_instance.premierByName(name, tag, season, affinity);
@@ -2116,7 +2419,7 @@ Name | Type | Description  | Notes
  **name** | **String**| Team name | 
  **tag** | **String**| Team tag | 
  **season** | **String**| Premier season id (optional) | [optional] 
- **affinity** | **String**| Region/affinity for fallback resolution (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching | [optional] 
 
 ### Return type
 
@@ -2186,10 +2489,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **premierLeaderboard**
-> PremierSearchResponse premierLeaderboard(affinity, conference, division, season)
+# **premierByNameV2**
+> PremierTeamV2Response premierByNameV2(affinity, name, tag)
 
-Get Premier leaderboard (v1)
+Get live Premier team by team name (v2)
+
+Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
 
 ### Example
 ```dart
@@ -2204,13 +2509,174 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final conference = conference_example; // String | Conference filter (optional)
-final division = division_example; // String | Division filter (optional)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final name = name_example; // String | Premier team name
+final tag = tag_example; // String | Premier team tag
+
+try {
+    final result = api_instance.premierByNameV2(affinity, name, tag);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->premierByNameV2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **name** | **String**| Premier team name | 
+ **tag** | **String**| Premier team tag | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **premierByPlayerName**
+> PremierTeamV2Response premierByPlayerName(affinity, name, tag)
+
+Get live Premier team by player Riot ID (v2)
+
+Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final name = name_example; // String | Player Riot ID name
+final tag = tag_example; // String | Player Riot ID tag
+
+try {
+    final result = api_instance.premierByPlayerName(affinity, name, tag);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->premierByPlayerName: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **name** | **String**| Player Riot ID name | 
+ **tag** | **String**| Player Riot ID tag | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **premierByPuuid**
+> PremierTeamV2Response premierByPuuid(affinity, puuid)
+
+Get live Premier team by player PUUID (v2)
+
+Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final puuid = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Player UUID
+
+try {
+    final result = api_instance.premierByPuuid(affinity, puuid);
+    print(result);
+} catch (e) {
+    print('Exception when calling ValorantApi->premierByPuuid: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **puuid** | **String**| Player UUID | 
+
+### Return type
+
+[**PremierTeamV2Response**](PremierTeamV2Response.md)
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **premierLeaderboard**
+> PremierSearchResponse premierLeaderboard(affinity, season)
+
+Get Premier leaderboard (v1)
+
+Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+
+### Example
+```dart
+import 'package:henrikdev_api_client/api.dart';
+// TODO Configure API key authorization: api_key_query
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_query').apiKeyPrefix = 'Bearer';
+// TODO Configure API key authorization: api_key_header
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
+
+final api_instance = ValorantApi();
+final affinity = ; // ValorantAffinity | Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
 final season = season_example; // String | Premier season id (optional)
 
 try {
-    final result = api_instance.premierLeaderboard(affinity, conference, division, season);
+    final result = api_instance.premierLeaderboard(affinity, season);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierLeaderboard: $e\n');
@@ -2221,9 +2687,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **conference** | **String**| Conference filter (optional) | [optional] 
- **division** | **String**| Division filter (optional) | [optional] 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; validation is case-insensitive; use lowercase for persisted team matching | 
  **season** | **String**| Premier season id (optional) | [optional] 
 
 ### Return type
@@ -2242,7 +2706,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **premierSearch**
-> PremierSearchResponse premierSearch(name, tag, id, season)
+> PremierSearchResponse premierSearch(name, tag, id, season, conference, division)
 
 Search Premier teams (v1)
 
@@ -2261,11 +2725,13 @@ import 'package:henrikdev_api_client/api.dart';
 final api_instance = ValorantApi();
 final name = name_example; // String | Team name to search for (optional)
 final tag = tag_example; // String | Team tag to search for (optional)
-final id = id_example; // String | Team UUID to search for (optional)
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Team UUID to search for; cannot be combined with name or tag
 final season = season_example; // String | Premier season id (optional)
+final conference = conference_example; // String | Current upstream Premier conference key; case-insensitive; not a fixed enum
+final division = 56; // int | Division filter; integer from 1 through 21
 
 try {
-    final result = api_instance.premierSearch(name, tag, id, season);
+    final result = api_instance.premierSearch(name, tag, id, season, conference, division);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->premierSearch: $e\n');
@@ -2278,8 +2744,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Team name to search for (optional) | [optional] 
  **tag** | **String**| Team tag to search for (optional) | [optional] 
- **id** | **String**| Team UUID to search for (optional) | [optional] 
+ **id** | **String**| Team UUID to search for; cannot be combined with name or tag | [optional] 
  **season** | **String**| Premier season id (optional) | [optional] 
+ **conference** | **String**| Current upstream Premier conference key; case-insensitive; not a fixed enum | [optional] 
+ **division** | **int**| Division filter; integer from 1 through 21 | [optional] 
 
 ### Return type
 
@@ -2314,7 +2782,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 
 try {
     final result = api_instance.queueStatus(affinity);
@@ -2328,7 +2796,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
 
 ### Return type
 
@@ -2349,6 +2817,8 @@ Name | Type | Description  | Notes
 > RawV1Response raw(rawV1Payload)
 
 Get raw Riot API data (v1)
+
+Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 
 ### Example
 ```dart
@@ -2412,7 +2882,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 
 try {
     final result = api_instance.status(affinity);
@@ -2426,7 +2896,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
 
 ### Return type
 
@@ -2444,7 +2914,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storeFeatured**
-> StoreFeaturedV1 storeFeatured(version)
+> ValorantStoreFeaturedResponse storeFeatured(version)
 
 Get featured store items
 
@@ -2461,7 +2931,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final version = version_example; // String | API version (v1, v2)
+final version = ; // ValorantStoreVersion | Response version; v1 returns an object envelope and v2 returns an array envelope
 
 try {
     final result = api_instance.storeFeatured(version);
@@ -2475,11 +2945,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **version** | **String**| API version (v1, v2) | 
+ **version** | [**ValorantStoreVersion**](.md)| Response version; v1 returns an object envelope and v2 returns an array envelope | 
 
 ### Return type
 
-[**StoreFeaturedV1**](StoreFeaturedV1.md)
+[**ValorantStoreFeaturedResponse**](ValorantStoreFeaturedResponse.md)
 
 ### Authorization
 
@@ -2493,9 +2963,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storeOffers**
-> StoreOffersV1Response storeOffers(version)
+> storeOffers(version)
 
 Get store offers
+
+Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
 
 ### Example
 ```dart
@@ -2510,11 +2982,10 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final version = version_example; // String | API version (v1, v2)
+final version = ; // ValorantStoreVersion | Legacy API version
 
 try {
-    final result = api_instance.storeOffers(version);
-    print(result);
+    api_instance.storeOffers(version);
 } catch (e) {
     print('Exception when calling ValorantApi->storeOffers: $e\n');
 }
@@ -2524,11 +2995,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **version** | **String**| API version (v1, v2) | 
+ **version** | [**ValorantStoreVersion**](.md)| Legacy API version | 
 
 ### Return type
 
-[**StoreOffersV1Response**](StoreOffersV1Response.md)
+void (empty response body)
 
 ### Authorization
 
@@ -2542,7 +3013,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storedMatches**
-> StoredMatchesResponse storedMatches(affinity, name, tag, mode, map, size)
+> StoredMatchesResponse storedMatches(affinity, name, tag, mode, queue, map, size, page)
 
 Get stored matches by name (v1)
 
@@ -2559,15 +3030,17 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
-final mode = mode_example; // String | Game mode filter (optional)
-final map = map_example; // String | Map filter (optional)
-final size = 56; // int | Number of results (optional)
+final mode = mode_example; // String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+final queue = queue_example; // String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+final map = map_example; // String | Map display name, matched case-insensitively.
+final size = 56; // int | Positive integer result count. Omit for unlimited results.
+final page = 56; // int | One-based page. Supplying page requires size.
 
 try {
-    final result = api_instance.storedMatches(affinity, name, tag, mode, map, size);
+    final result = api_instance.storedMatches(affinity, name, tag, mode, queue, map, size, page);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->storedMatches: $e\n');
@@ -2578,12 +3051,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
- **mode** | **String**| Game mode filter (optional) | [optional] 
- **map** | **String**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **mode** | **String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **String**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -2601,7 +3076,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storedMatchesById**
-> StoredMatchesResponse storedMatchesById(affinity, puuid, mode, map, size)
+> StoredMatchesResponse storedMatchesById(affinity, puuid, mode, queue, map, size, page)
 
 Get stored matches by PUUID (v1)
 
@@ -2618,14 +3093,16 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final puuid = puuid_example; // String | Player UUID
-final mode = mode_example; // String | Game mode filter (optional)
-final map = map_example; // String | Map filter (optional)
-final size = 56; // int | Number of results (optional)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final puuid = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Player UUID
+final mode = mode_example; // String | Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+final queue = queue_example; // String | Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+final map = map_example; // String | Map display name, matched case-insensitively.
+final size = 56; // int | Positive integer result count. Omit for unlimited results.
+final page = 56; // int | One-based page. Supplying page requires size.
 
 try {
-    final result = api_instance.storedMatchesById(affinity, puuid, mode, map, size);
+    final result = api_instance.storedMatchesById(affinity, puuid, mode, queue, map, size, page);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->storedMatchesById: $e\n');
@@ -2636,11 +3113,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **String**| Player UUID | 
- **mode** | **String**| Game mode filter (optional) | [optional] 
- **map** | **String**| Map filter (optional) | [optional] 
- **size** | **int**| Number of results (optional) | [optional] 
+ **mode** | **String**| Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied. | [optional] 
+ **queue** | **String**| Validated alias of mode; current catalog queue IDs and legacy mode names are accepted. | [optional] 
+ **map** | **String**| Map display name, matched case-insensitively. | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -2658,7 +3137,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storedMmrHistory**
-> StoredMMRResponse storedMmrHistory(affinity, name, tag, size)
+> StoredMMRResponse storedMmrHistory(affinity, name, tag, size, page)
 
 Get stored MMR history by name (v1)
 
@@ -2675,13 +3154,14 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
-final size = 56; // int | Number of results (optional)
+final size = 56; // int | Positive integer result count. Omit for unlimited results.
+final page = 56; // int | One-based page. Supplying page requires size.
 
 try {
-    final result = api_instance.storedMmrHistory(affinity, name, tag, size);
+    final result = api_instance.storedMmrHistory(affinity, name, tag, size, page);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->storedMmrHistory: $e\n');
@@ -2692,10 +3172,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -2713,7 +3194,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storedMmrHistoryById**
-> StoredMMRResponse storedMmrHistoryById(affinity, puuid, size)
+> StoredMMRResponse storedMmrHistoryById(affinity, puuid, size, page)
 
 Get stored MMR history by PUUID (v1)
 
@@ -2730,12 +3211,13 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 final puuid = puuid_example; // String | Player UUID
-final size = 56; // int | Number of results (optional)
+final size = 56; // int | Positive integer result count. Omit for unlimited results.
+final page = 56; // int | One-based page. Supplying page requires size.
 
 try {
-    final result = api_instance.storedMmrHistoryById(affinity, puuid, size);
+    final result = api_instance.storedMmrHistoryById(affinity, puuid, size, page);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->storedMmrHistoryById: $e\n');
@@ -2746,9 +3228,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
  **puuid** | **String**| Player UUID | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -2766,7 +3249,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storedMmrHistoryV2**
-> StoredMMRV2Response storedMmrHistoryV2(affinity, platform, name, tag, size)
+> StoredMMRV2Response storedMmrHistoryV2(affinity, platform, name, tag, size, page)
 
 Get stored MMR history by name (v2)
 
@@ -2783,14 +3266,15 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final name = name_example; // String | Riot ID name
 final tag = tag_example; // String | Riot ID tag
-final size = 56; // int | Number of results (optional)
+final size = 56; // int | Positive integer result count. Omit for unlimited results.
+final page = 56; // int | One-based page. Supplying page requires size.
 
 try {
-    final result = api_instance.storedMmrHistoryV2(affinity, platform, name, tag, size);
+    final result = api_instance.storedMmrHistoryV2(affinity, platform, name, tag, size, page);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->storedMmrHistoryV2: $e\n');
@@ -2801,11 +3285,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **name** | **String**| Riot ID name | 
  **tag** | **String**| Riot ID tag | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -2823,7 +3308,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **storedMmrHistoryV2ById**
-> StoredMMRV2Response storedMmrHistoryV2ById(affinity, platform, puuid, size)
+> StoredMMRV2Response storedMmrHistoryV2ById(affinity, platform, puuid, size, page)
 
 Get stored MMR history by PUUID (v2)
 
@@ -2840,13 +3325,14 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
-final platform = platform_example; // String | Platform (pc, console)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
+final platform = ; // ValorantPlatform | Platform; case-insensitive
 final puuid = puuid_example; // String | Player UUID
-final size = 56; // int | Number of results (optional)
+final size = 56; // int | Positive integer result count. Omit for unlimited results.
+final page = 56; // int | One-based page. Supplying page requires size.
 
 try {
-    final result = api_instance.storedMmrHistoryV2ById(affinity, platform, puuid, size);
+    final result = api_instance.storedMmrHistoryV2ById(affinity, platform, puuid, size, page);
     print(result);
 } catch (e) {
     print('Exception when calling ValorantApi->storedMmrHistoryV2ById: $e\n');
@@ -2857,10 +3343,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
- **platform** | **String**| Platform (pc, console) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
+ **platform** | [**ValorantPlatform**](.md)| Platform; case-insensitive | 
  **puuid** | **String**| Player UUID | 
- **size** | **int**| Number of results (optional) | [optional] 
+ **size** | **int**| Positive integer result count. Omit for unlimited results. | [optional] 
+ **page** | **int**| One-based page. Supplying page requires size. | [optional] [default to 1]
 
 ### Return type
 
@@ -2895,7 +3382,7 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final affinity = affinity_example; // String | Region/affinity (e.g., na, eu, ap, kr)
+final affinity = ; // ValorantAffinity | Region/affinity; case-insensitive
 
 try {
     final result = api_instance.version(affinity);
@@ -2909,7 +3396,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **affinity** | **String**| Region/affinity (e.g., na, eu, ap, kr) | 
+ **affinity** | [**ValorantAffinity**](.md)| Region/affinity; case-insensitive | 
 
 ### Return type
 
@@ -2944,8 +3431,8 @@ import 'package:henrikdev_api_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('api_key_header').apiKeyPrefix = 'Bearer';
 
 final api_instance = ValorantApi();
-final countryCode = countryCode_example; // String | Country code (e.g., en-us, de-de)
-final category = category_example; // String | Category filter (optional)
+final countryCode = ; // ValorantWebsiteLocale | Website locale; case-insensitive
+final category = ; // ValorantWebsiteCategory | Category filter; case-sensitive
 
 try {
     final result = api_instance.website(countryCode, category);
@@ -2959,8 +3446,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **countryCode** | **String**| Country code (e.g., en-us, de-de) | 
- **category** | **String**| Category filter (optional) | [optional] 
+ **countryCode** | [**ValorantWebsiteLocale**](.md)| Website locale; case-insensitive | 
+ **category** | [**ValorantWebsiteCategory**](.md)| Category filter; case-sensitive | [optional] 
 
 ### Return type
 
@@ -2982,6 +3469,8 @@ Name | Type | Description  | Notes
 
 Get website entry by ID (v1)
 
+Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
+
 ### Example
 ```dart
 import 'package:henrikdev_api_client/api.dart';
@@ -2996,7 +3485,7 @@ import 'package:henrikdev_api_client/api.dart';
 
 final api_instance = ValorantApi();
 final dbId = dbId_example; // String | Database ID of the website entry
-final countryCode = countryCode_example; // String | Country code (e.g., en-us, de-de)
+final countryCode = countryCode_example; // String | Ignored locale segment; any string is accepted
 
 try {
     final result = api_instance.websiteById(dbId, countryCode);
@@ -3011,7 +3500,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **dbId** | **String**| Database ID of the website entry | 
- **countryCode** | **String**| Country code (e.g., en-us, de-de) | 
+ **countryCode** | **String**| Ignored locale segment; any string is accepted | 
 
 ### Return type
 

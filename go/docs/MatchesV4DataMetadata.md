@@ -5,24 +5,25 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cluster** | Pointer to **NullableString** |  | [optional] 
-**GameLengthInMs** | **int64** |  | 
+**GameLengthInMs** | **int64** | Match duration in milliseconds. | 
 **GameVersion** | **string** |  | 
 **IsCompleted** | **bool** |  | 
 **Map** | [**MapIdNameCombo**](MapIdNameCombo.md) |  | 
 **MatchId** | **string** |  | 
+**Mvp** | Pointer to [**NullableMatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] 
 **PartyRrPenaltys** | [**[]MatchesV4DataMetadataPartyRRPenalty**](MatchesV4DataMetadataPartyRRPenalty.md) |  | 
 **Platform** | **string** |  | 
 **Premier** | Pointer to **interface{}** |  | [optional] 
 **Queue** | [**MatchesV4DataMetadataQueue**](MatchesV4DataMetadataQueue.md) |  | 
 **Region** | Pointer to **NullableString** |  | [optional] 
 **Season** | [**SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 
-**StartedAt** | **string** |  | 
+**StartedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewMatchesV4DataMetadata
 
-`func NewMatchesV4DataMetadata(gameLengthInMs int64, gameVersion string, isCompleted bool, map_ MapIdNameCombo, matchId string, partyRrPenaltys []MatchesV4DataMetadataPartyRRPenalty, platform string, queue MatchesV4DataMetadataQueue, season SeasonIdShortCombo, startedAt string, ) *MatchesV4DataMetadata`
+`func NewMatchesV4DataMetadata(gameLengthInMs int64, gameVersion string, isCompleted bool, map_ MapIdNameCombo, matchId string, partyRrPenaltys []MatchesV4DataMetadataPartyRRPenalty, platform string, queue MatchesV4DataMetadataQueue, season SeasonIdShortCombo, startedAt time.Time, ) *MatchesV4DataMetadata`
 
 NewMatchesV4DataMetadata instantiates a new MatchesV4DataMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -172,6 +173,41 @@ and a boolean to check if the value has been set.
 SetMatchId sets MatchId field to given value.
 
 
+### GetMvp
+
+`func (o *MatchesV4DataMetadata) GetMvp() MatchesV4DataRoundPlayer`
+
+GetMvp returns the Mvp field if non-nil, zero value otherwise.
+
+### GetMvpOk
+
+`func (o *MatchesV4DataMetadata) GetMvpOk() (*MatchesV4DataRoundPlayer, bool)`
+
+GetMvpOk returns a tuple with the Mvp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMvp
+
+`func (o *MatchesV4DataMetadata) SetMvp(v MatchesV4DataRoundPlayer)`
+
+SetMvp sets Mvp field to given value.
+
+### HasMvp
+
+`func (o *MatchesV4DataMetadata) HasMvp() bool`
+
+HasMvp returns a boolean if a field has been set.
+
+### SetMvpNil
+
+`func (o *MatchesV4DataMetadata) SetMvpNil(b bool)`
+
+ SetMvpNil sets the value for Mvp to be an explicit nil
+
+### UnsetMvp
+`func (o *MatchesV4DataMetadata) UnsetMvp()`
+
+UnsetMvp ensures that no value is present for Mvp, not even an explicit nil
 ### GetPartyRrPenaltys
 
 `func (o *MatchesV4DataMetadata) GetPartyRrPenaltys() []MatchesV4DataMetadataPartyRRPenalty`
@@ -324,20 +360,20 @@ SetSeason sets Season field to given value.
 
 ### GetStartedAt
 
-`func (o *MatchesV4DataMetadata) GetStartedAt() string`
+`func (o *MatchesV4DataMetadata) GetStartedAt() time.Time`
 
 GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
 
 ### GetStartedAtOk
 
-`func (o *MatchesV4DataMetadata) GetStartedAtOk() (*string, bool)`
+`func (o *MatchesV4DataMetadata) GetStartedAtOk() (*time.Time, bool)`
 
 GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartedAt
 
-`func (o *MatchesV4DataMetadata) SetStartedAt(v string)`
+`func (o *MatchesV4DataMetadata) SetStartedAt(v time.Time)`
 
 SetStartedAt sets StartedAt field to given value.
 

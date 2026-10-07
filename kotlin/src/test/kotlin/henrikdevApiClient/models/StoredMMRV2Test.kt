@@ -96,5 +96,71 @@ class StoredMMRV2Test : ShouldSpec() {
             //modelInstance.wasDerankProtected shouldBe ("TODO")
         }
 
+        // to test the property `afkPenalty`
+        should("test afkPenalty") {
+            // uncomment below to test the property
+            //modelInstance.afkPenalty shouldBe ("TODO")
+        }
+
+        // to test the property `competitiveMovement`
+        should("test competitiveMovement") {
+            // uncomment below to test the property
+            //modelInstance.competitiveMovement shouldBe ("TODO")
+        }
+
+        // to test the property `isPlacementMatch`
+        should("test isPlacementMatch") {
+            // uncomment below to test the property
+            //modelInstance.isPlacementMatch shouldBe ("TODO")
+        }
+
+        // to test the property `matchLength` - Match duration in milliseconds; null when unavailable.
+        should("test matchLength") {
+            // uncomment below to test the property
+            //modelInstance.matchLength shouldBe ("TODO")
+        }
+
+        // to test the property `newMapIncentiveRrForgiven`
+        should("test newMapIncentiveRrForgiven") {
+            // uncomment below to test the property
+            //modelInstance.newMapIncentiveRrForgiven shouldBe ("TODO")
+        }
+
+        // to test the property `queueId`
+        should("test queueId") {
+            // uncomment below to test the property
+            //modelInstance.queueId shouldBe ("TODO")
+        }
+
+        // to test the property `rrBeforeUpdate`
+        should("test rrBeforeUpdate") {
+            // uncomment below to test the property
+            //modelInstance.rrBeforeUpdate shouldBe ("TODO")
+        }
+
+        // to test the property `rrPenalty`
+        should("test rrPenalty") {
+            // uncomment below to test the property
+            //modelInstance.rrPenalty shouldBe ("TODO")
+        }
+
+        // to test the property `rrPerformanceBonus`
+        should("test rrPerformanceBonus") {
+            // uncomment below to test the property
+            //modelInstance.rrPerformanceBonus shouldBe ("TODO")
+        }
+
+        // to test the property `tierBeforeUpdate`
+        should("test tierBeforeUpdate") {
+            // uncomment below to test the property
+            //modelInstance.tierBeforeUpdate shouldBe ("TODO")
+        }
+
+        // to test the property `wasDerankProtectionReplenished`
+        should("test wasDerankProtectionReplenished") {
+            // uncomment below to test the property
+            //modelInstance.wasDerankProtectionReplenished shouldBe ("TODO")
+        }
+
     }
 }

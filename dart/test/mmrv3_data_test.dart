@@ -26,8 +26,23 @@ void main() {
       // TODO
     });
 
+    // MMRHistoryV2History latestUpdate
+    test('to test the property `latestUpdate`', () async {
+      // TODO
+    });
+
+    // Map<String, MMRV3LifetimePrestige> lifetimePrestige (default value: const {})
+    test('to test the property `lifetimePrestige`', () async {
+      // TODO
+    });
+
     // MMRV3Peak peak
     test('to test the property `peak`', () async {
+      // TODO
+    });
+
+    // MMRV3RankedState rankedState
+    test('to test the property `rankedState`', () async {
       // TODO
     });
 

@@ -216,7 +216,7 @@ func (r ApiDeleteWebhookUserRequest) Execute() (*PremiumWebhookDeleteResponse, *
 DeleteWebhookUser Delete premium webhook user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Tracked user id
+ @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
  @return ApiDeleteWebhookUserRequest
 */
 func (a *PremiumAPIService) DeleteWebhookUser(ctx context.Context, id string) ApiDeleteWebhookUserRequest {
@@ -379,7 +379,7 @@ type ApiGetWebhookSettingsRequest struct {
 	ApiService *PremiumAPIService
 }
 
-func (r ApiGetWebhookSettingsRequest) Execute() (*http.Response, error) {
+func (r ApiGetWebhookSettingsRequest) Execute() (*PremiumWebhookGetResponse, *http.Response, error) {
 	return r.ApiService.GetWebhookSettingsExecute(r)
 }
 
@@ -397,16 +397,18 @@ func (a *PremiumAPIService) GetWebhookSettings(ctx context.Context) ApiGetWebhoo
 }
 
 // Execute executes the request
-func (a *PremiumAPIService) GetWebhookSettingsExecute(r ApiGetWebhookSettingsRequest) (*http.Response, error) {
+//  @return PremiumWebhookGetResponse
+func (a *PremiumAPIService) GetWebhookSettingsExecute(r ApiGetWebhookSettingsRequest) (*PremiumWebhookGetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *PremiumWebhookGetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PremiumAPIService.GetWebhookSettings")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/public/v1/premium/webhook"
@@ -462,19 +464,19 @@ func (a *PremiumAPIService) GetWebhookSettingsExecute(r ApiGetWebhookSettingsReq
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -487,26 +489,35 @@ func (a *PremiumAPIService) GetWebhookSettingsExecute(r ApiGetWebhookSettingsReq
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SendError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiUpdateWebhookUserRequest struct {
@@ -521,7 +532,7 @@ func (r ApiUpdateWebhookUserRequest) PremiumWebhookUserUpdateRequest(premiumWebh
 	return r
 }
 
-func (r ApiUpdateWebhookUserRequest) Execute() (*http.Response, error) {
+func (r ApiUpdateWebhookUserRequest) Execute() (*PremiumWebhookUpdateResponse, *http.Response, error) {
 	return r.ApiService.UpdateWebhookUserExecute(r)
 }
 
@@ -529,7 +540,7 @@ func (r ApiUpdateWebhookUserRequest) Execute() (*http.Response, error) {
 UpdateWebhookUser Update premium webhook user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Tracked user id
+ @param id Tracked user MongoDB ObjectId: 24 hexadecimal characters
  @return ApiUpdateWebhookUserRequest
 */
 func (a *PremiumAPIService) UpdateWebhookUser(ctx context.Context, id string) ApiUpdateWebhookUserRequest {
@@ -541,16 +552,18 @@ func (a *PremiumAPIService) UpdateWebhookUser(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-func (a *PremiumAPIService) UpdateWebhookUserExecute(r ApiUpdateWebhookUserRequest) (*http.Response, error) {
+//  @return PremiumWebhookUpdateResponse
+func (a *PremiumAPIService) UpdateWebhookUserExecute(r ApiUpdateWebhookUserRequest) (*PremiumWebhookUpdateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *PremiumWebhookUpdateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PremiumAPIService.UpdateWebhookUser")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/public/v1/premium/webhook/users/{id}"
@@ -560,7 +573,7 @@ func (a *PremiumAPIService) UpdateWebhookUserExecute(r ApiUpdateWebhookUserReque
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.premiumWebhookUserUpdateRequest == nil {
-		return nil, reportError("premiumWebhookUserUpdateRequest is required and must be specified")
+		return localVarReturnValue, nil, reportError("premiumWebhookUserUpdateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -612,19 +625,19 @@ func (a *PremiumAPIService) UpdateWebhookUserExecute(r ApiUpdateWebhookUserReque
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -637,46 +650,55 @@ func (a *PremiumAPIService) UpdateWebhookUserExecute(r ApiUpdateWebhookUserReque
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v SendError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v SendError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SendError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

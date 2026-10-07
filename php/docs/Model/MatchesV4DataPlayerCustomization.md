@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bloomline** | [**\OpenAPI\Client\Model\MatchesV4DataPlayerBloomline**](MatchesV4DataPlayerBloomline.md) |  | [optional]
 **card** | **string** |  |
 **preferred_level_border** | **string** |  | [optional]
 **title** | **string** |  |

@@ -1,5 +1,6 @@
 # PremiumWebhookUserResponse
 
+Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
 
 ## Properties
 
@@ -9,10 +10,10 @@ Name | Type | Description | Notes
 **enabled** | **bool** |  | 
 **events** | [**List[PremiumWebhookEvent]**](PremiumWebhookEvent.md) |  | 
 **id** | **str** |  | 
-**last_checked_at** | **int** |  | [optional] 
-**last_match** | **str** |  | [optional] 
-**last_mmr** | **int** |  | [optional] 
-**puuid** | **str** |  | 
+**last_checked_at** | **int** |  | 
+**last_match** | **str** |  | 
+**last_mmr** | **int** |  | 
+**puuid** | **UUID** |  | 
 **region** | **str** |  | 
 **updated_at** | **int** |  | 
 

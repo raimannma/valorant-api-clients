@@ -17,8 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from henrikdev_api_client.models.matches_v4_data_round_player import MatchesV4DataRoundPlayer
+from henrikdev_api_client.models.matches_v4_data_team_health import MatchesV4DataTeamHealth
 from henrikdev_api_client.models.matches_v4_data_team_premier_roster import MatchesV4DataTeamPremierRoster
 from henrikdev_api_client.models.matches_v4_data_team_rounds import MatchesV4DataTeamRounds
 from typing import Optional, Set
@@ -27,13 +30,17 @@ from pydantic_core import to_jsonable_python
 
 class MatchesV4DataTeam(BaseModel):
     """
-    MatchesV4DataTeam
+    Join teams by the opaque team_id; team_number is an upstream number, not an array index.
     """ # noqa: E501
+    health: Optional[MatchesV4DataTeamHealth] = None
+    mvp: Optional[MatchesV4DataRoundPlayer] = None
+    placement: Optional[Annotated[int, Field(strict=True, ge=0)]] = None
     premier_roster: Optional[MatchesV4DataTeamPremierRoster] = None
     rounds: MatchesV4DataTeamRounds
     team_id: StrictStr
+    team_number: Optional[Annotated[int, Field(strict=True, ge=0)]] = None
     won: StrictBool
-    __properties: ClassVar[List[str]] = ["premier_roster", "rounds", "team_id", "won"]
+    __properties: ClassVar[List[str]] = ["health", "mvp", "placement", "premier_roster", "rounds", "team_id", "team_number", "won"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,16 +81,42 @@ class MatchesV4DataTeam(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of health
+        if self.health:
+            _dict['health'] = self.health.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mvp
+        if self.mvp:
+            _dict['mvp'] = self.mvp.to_dict()
         # override the default output from pydantic by calling `to_dict()` of premier_roster
         if self.premier_roster:
             _dict['premier_roster'] = self.premier_roster.to_dict()
         # override the default output from pydantic by calling `to_dict()` of rounds
         if self.rounds:
             _dict['rounds'] = self.rounds.to_dict()
+        # set to None if health (nullable) is None
+        # and model_fields_set contains the field
+        if self.health is None and "health" in self.model_fields_set:
+            _dict['health'] = None
+
+        # set to None if mvp (nullable) is None
+        # and model_fields_set contains the field
+        if self.mvp is None and "mvp" in self.model_fields_set:
+            _dict['mvp'] = None
+
+        # set to None if placement (nullable) is None
+        # and model_fields_set contains the field
+        if self.placement is None and "placement" in self.model_fields_set:
+            _dict['placement'] = None
+
         # set to None if premier_roster (nullable) is None
         # and model_fields_set contains the field
         if self.premier_roster is None and "premier_roster" in self.model_fields_set:
             _dict['premier_roster'] = None
+
+        # set to None if team_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.team_number is None and "team_number" in self.model_fields_set:
+            _dict['team_number'] = None
 
         return _dict
 
@@ -97,9 +130,13 @@ class MatchesV4DataTeam(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "health": MatchesV4DataTeamHealth.from_dict(obj["health"]) if obj.get("health") is not None else None,
+            "mvp": MatchesV4DataRoundPlayer.from_dict(obj["mvp"]) if obj.get("mvp") is not None else None,
+            "placement": obj.get("placement"),
             "premier_roster": MatchesV4DataTeamPremierRoster.from_dict(obj["premier_roster"]) if obj.get("premier_roster") is not None else None,
             "rounds": MatchesV4DataTeamRounds.from_dict(obj["rounds"]) if obj.get("rounds") is not None else None,
             "team_id": obj.get("team_id"),
+            "team_number": obj.get("team_number"),
             "won": obj.get("won")
         })
         return _obj

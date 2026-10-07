@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// EsportsV2PlayerTimespan the model 'EsportsV2PlayerTimespan'
+// EsportsV2PlayerTimespan VLR player agent-statistics timespan. Values are case-sensitive; omission selects 90d.
 type EsportsV2PlayerTimespan string
 
 // List of EsportsV2PlayerTimespan

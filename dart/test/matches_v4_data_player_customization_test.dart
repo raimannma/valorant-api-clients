@@ -16,6 +16,11 @@ void main() {
   // final instance = MatchesV4DataPlayerCustomization();
 
   group('test MatchesV4DataPlayerCustomization', () {
+    // MatchesV4DataPlayerBloomline bloomline
+    test('to test the property `bloomline`', () async {
+      // TODO
+    });
+
     // String card
     test('to test the property `card`', () async {
       // TODO

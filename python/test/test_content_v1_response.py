@@ -49,46 +49,127 @@ class TestContentV1Response(unittest.TestCase):
                         henrikdev_api_client.models.content_item.ContentItem(
                             asset_name = '', 
                             id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
                             name = '', )
                         ], 
                     characters = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     charm_levels = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     charms = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     chromas = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     equips = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     game_modes = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     maps = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     player_cards = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     player_titles = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     skin_levels = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     skins = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     spray_levels = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     sprays = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     version = '', ),
                 status = 0
@@ -109,46 +190,127 @@ class TestContentV1Response(unittest.TestCase):
                         henrikdev_api_client.models.content_item.ContentItem(
                             asset_name = '', 
                             id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
                             name = '', )
                         ], 
                     characters = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     charm_levels = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     charms = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     chromas = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     equips = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     game_modes = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     maps = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     player_cards = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     player_titles = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     skin_levels = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     skins = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     spray_levels = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     sprays = [
-                        
+                        henrikdev_api_client.models.content_item.ContentItem(
+                            asset_name = '', 
+                            id = '', 
+                            localized_names = {
+                                'key' : ''
+                                }, 
+                            name = '', )
                         ], 
                     version = '', ),
                 status = 0,

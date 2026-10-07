@@ -16,13 +16,13 @@ pub struct Mmrv3Account {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "puuid")]
-    pub puuid: String,
+    pub puuid: uuid::Uuid,
     #[serde(rename = "tag")]
     pub tag: String,
 }
 
 impl Mmrv3Account {
-    pub fn new(name: String, puuid: String, tag: String) -> Mmrv3Account {
+    pub fn new(name: String, puuid: uuid::Uuid, tag: String) -> Mmrv3Account {
         Mmrv3Account {
             name,
             puuid,

@@ -9,15 +9,18 @@ Name | Type | Description | Notes
 **Agent** | [**AgentIdNameCombo**](AgentIdNameCombo.md) |  | 
 **Behavior** | [**MatchesV4DataPlayerBehavior**](MatchesV4DataPlayerBehavior.md) |  | 
 **Customization** | [**MatchesV4DataPlayerCustomization**](MatchesV4DataPlayerCustomization.md) |  | 
+**DraftedAbilityCasts** | Pointer to [**[]MatchesV4DataPlayerDraftedAbilityCast**](MatchesV4DataPlayerDraftedAbilityCast.md) |  | [optional] 
 **Economy** | [**MatchesV4DataPlayerEconomy**](MatchesV4DataPlayerEconomy.md) |  | 
 **Name** | **string** |  | 
 **PartyId** | **string** |  | 
+**Performance** | Pointer to [**NullableMatchesV4DataPlayerPerformance**](MatchesV4DataPlayerPerformance.md) |  | [optional] 
 **Platform** | **string** |  | 
 **Puuid** | **string** |  | 
 **SessionPlaytimeInMs** | **int32** |  | 
 **Stats** | [**MatchesV4DataPlayerStats**](MatchesV4DataPlayerStats.md) |  | 
 **Tag** | **string** |  | 
 **TeamId** | **string** |  | 
+**TeamNumber** | Pointer to **NullableInt32** |  | [optional] 
 **Tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
 
 ## Methods
@@ -139,6 +142,41 @@ and a boolean to check if the value has been set.
 SetCustomization sets Customization field to given value.
 
 
+### GetDraftedAbilityCasts
+
+`func (o *MatchesV4DataPlayer) GetDraftedAbilityCasts() []MatchesV4DataPlayerDraftedAbilityCast`
+
+GetDraftedAbilityCasts returns the DraftedAbilityCasts field if non-nil, zero value otherwise.
+
+### GetDraftedAbilityCastsOk
+
+`func (o *MatchesV4DataPlayer) GetDraftedAbilityCastsOk() (*[]MatchesV4DataPlayerDraftedAbilityCast, bool)`
+
+GetDraftedAbilityCastsOk returns a tuple with the DraftedAbilityCasts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDraftedAbilityCasts
+
+`func (o *MatchesV4DataPlayer) SetDraftedAbilityCasts(v []MatchesV4DataPlayerDraftedAbilityCast)`
+
+SetDraftedAbilityCasts sets DraftedAbilityCasts field to given value.
+
+### HasDraftedAbilityCasts
+
+`func (o *MatchesV4DataPlayer) HasDraftedAbilityCasts() bool`
+
+HasDraftedAbilityCasts returns a boolean if a field has been set.
+
+### SetDraftedAbilityCastsNil
+
+`func (o *MatchesV4DataPlayer) SetDraftedAbilityCastsNil(b bool)`
+
+ SetDraftedAbilityCastsNil sets the value for DraftedAbilityCasts to be an explicit nil
+
+### UnsetDraftedAbilityCasts
+`func (o *MatchesV4DataPlayer) UnsetDraftedAbilityCasts()`
+
+UnsetDraftedAbilityCasts ensures that no value is present for DraftedAbilityCasts, not even an explicit nil
 ### GetEconomy
 
 `func (o *MatchesV4DataPlayer) GetEconomy() MatchesV4DataPlayerEconomy`
@@ -199,6 +237,41 @@ and a boolean to check if the value has been set.
 SetPartyId sets PartyId field to given value.
 
 
+### GetPerformance
+
+`func (o *MatchesV4DataPlayer) GetPerformance() MatchesV4DataPlayerPerformance`
+
+GetPerformance returns the Performance field if non-nil, zero value otherwise.
+
+### GetPerformanceOk
+
+`func (o *MatchesV4DataPlayer) GetPerformanceOk() (*MatchesV4DataPlayerPerformance, bool)`
+
+GetPerformanceOk returns a tuple with the Performance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPerformance
+
+`func (o *MatchesV4DataPlayer) SetPerformance(v MatchesV4DataPlayerPerformance)`
+
+SetPerformance sets Performance field to given value.
+
+### HasPerformance
+
+`func (o *MatchesV4DataPlayer) HasPerformance() bool`
+
+HasPerformance returns a boolean if a field has been set.
+
+### SetPerformanceNil
+
+`func (o *MatchesV4DataPlayer) SetPerformanceNil(b bool)`
+
+ SetPerformanceNil sets the value for Performance to be an explicit nil
+
+### UnsetPerformance
+`func (o *MatchesV4DataPlayer) UnsetPerformance()`
+
+UnsetPerformance ensures that no value is present for Performance, not even an explicit nil
 ### GetPlatform
 
 `func (o *MatchesV4DataPlayer) GetPlatform() string`
@@ -319,6 +392,41 @@ and a boolean to check if the value has been set.
 SetTeamId sets TeamId field to given value.
 
 
+### GetTeamNumber
+
+`func (o *MatchesV4DataPlayer) GetTeamNumber() int32`
+
+GetTeamNumber returns the TeamNumber field if non-nil, zero value otherwise.
+
+### GetTeamNumberOk
+
+`func (o *MatchesV4DataPlayer) GetTeamNumberOk() (*int32, bool)`
+
+GetTeamNumberOk returns a tuple with the TeamNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeamNumber
+
+`func (o *MatchesV4DataPlayer) SetTeamNumber(v int32)`
+
+SetTeamNumber sets TeamNumber field to given value.
+
+### HasTeamNumber
+
+`func (o *MatchesV4DataPlayer) HasTeamNumber() bool`
+
+HasTeamNumber returns a boolean if a field has been set.
+
+### SetTeamNumberNil
+
+`func (o *MatchesV4DataPlayer) SetTeamNumberNil(b bool)`
+
+ SetTeamNumberNil sets the value for TeamNumber to be an explicit nil
+
+### UnsetTeamNumber
+`func (o *MatchesV4DataPlayer) UnsetTeamNumber()`
+
+UnsetTeamNumber ensures that no value is present for TeamNumber, not even an explicit nil
 ### GetTier
 
 `func (o *MatchesV4DataPlayer) GetTier() TierIdNameCombo`

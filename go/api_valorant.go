@@ -29,7 +29,7 @@ type ApiCrosshairRequest struct {
 	id *string
 }
 
-// Crosshair code
+// Required crosshair code
 func (r ApiCrosshairRequest) Id(id string) ApiCrosshairRequest {
 	r.id = &id
 	return r
@@ -70,10 +70,11 @@ func (a *ValorantAPIService) CrosshairExecute(r ApiCrosshairRequest) (*http.Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	if r.id == nil {
+		return nil, reportError("id is required and must be specified")
 	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -142,6 +143,39 @@ func (a *ValorantAPIService) CrosshairExecute(r ApiCrosshairRequest) (*http.Resp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v SendError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -390,6 +424,10 @@ func (a *ValorantAPIService) EsportsEventsV2Execute(r ApiEsportsEventsV2Request)
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -705,6 +743,10 @@ func (a *ValorantAPIService) EsportsPlayerMatchesV2Execute(r ApiEsportsPlayerMat
 
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1204,6 +1246,10 @@ func (a *ValorantAPIService) EsportsTeamMatchesV2Execute(r ApiEsportsTeamMatches
 
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1617,8 +1663,8 @@ func (a *ValorantAPIService) EsportsTeamV2Execute(r ApiEsportsTeamV2Request) (*E
 type ApiGetAccoladesByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	puuid string
 }
 
@@ -1630,12 +1676,12 @@ func (r ApiGetAccoladesByIdRequest) Execute() (*AccoladesV1Response, *http.Respo
 GetAccoladesById Get player accolades by PUUID (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param puuid Player UUID
  @return ApiGetAccoladesByIdRequest
 */
-func (a *ValorantAPIService) GetAccoladesById(ctx context.Context, affinity string, platform string, puuid string) ApiGetAccoladesByIdRequest {
+func (a *ValorantAPIService) GetAccoladesById(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, puuid string) ApiGetAccoladesByIdRequest {
 	return ApiGetAccoladesByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1786,8 +1832,8 @@ func (a *ValorantAPIService) GetAccoladesByIdExecute(r ApiGetAccoladesByIdReques
 type ApiGetAccoladesByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	name string
 	tag string
 }
@@ -1800,13 +1846,13 @@ func (r ApiGetAccoladesByNameRequest) Execute() (*AccoladesV1Response, *http.Res
 GetAccoladesByName Get player accolades by name (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetAccoladesByNameRequest
 */
-func (a *ValorantAPIService) GetAccoladesByName(ctx context.Context, affinity string, platform string, name string, tag string) ApiGetAccoladesByNameRequest {
+func (a *ValorantAPIService) GetAccoladesByName(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, name string, tag string) ApiGetAccoladesByNameRequest {
 	return ApiGetAccoladesByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2651,11 +2697,11 @@ func (a *ValorantAPIService) GetAccountV2Execute(r ApiGetAccountV2Request) (*Acc
 type ApiGetContentV1Request struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	locale *string
+	locale *ValorantContentLocale
 }
 
-// Locale code (e.g., en-US, de-DE) - optional
-func (r ApiGetContentV1Request) Locale(locale string) ApiGetContentV1Request {
+// Content locale; case-insensitive. Omission selects en-US.
+func (r ApiGetContentV1Request) Locale(locale ValorantContentLocale) ApiGetContentV1Request {
 	r.locale = &locale
 	return r
 }
@@ -2815,29 +2861,736 @@ func (a *ValorantAPIService) GetContentV1Execute(r ApiGetContentV1Request) (*Con
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetMasteryAgentByIdRequest struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	platform ValorantPlatform
+	puuid string
+	agentId string
+}
+
+func (r ApiGetMasteryAgentByIdRequest) Execute() (*AgentMasteryV1DetailResponse, *http.Response, error) {
+	return r.ApiService.GetMasteryAgentByIdExecute(r)
+}
+
+/*
+GetMasteryAgentById Get agent mastery by PUUID (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
+ @param puuid Player UUID
+ @param agentId Agent UUID
+ @return ApiGetMasteryAgentByIdRequest
+*/
+func (a *ValorantAPIService) GetMasteryAgentById(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, puuid string, agentId string) ApiGetMasteryAgentByIdRequest {
+	return ApiGetMasteryAgentByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		platform: platform,
+		puuid: puuid,
+		agentId: agentId,
+	}
+}
+
+// Execute executes the request
+//  @return AgentMasteryV1DetailResponse
+func (a *ValorantAPIService) GetMasteryAgentByIdExecute(r ApiGetMasteryAgentByIdRequest) (*AgentMasteryV1DetailResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AgentMasteryV1DetailResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.GetMasteryAgentById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"platform"+"}", url.PathEscape(parameterValueToString(r.platform, "platform")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"puuid"+"}", url.PathEscape(parameterValueToString(r.puuid, "puuid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"agent_id"+"}", url.PathEscape(parameterValueToString(r.agentId, "agentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetMasteryAgentByNameRequest struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	platform ValorantPlatform
+	name string
+	tag string
+	agentId string
+}
+
+func (r ApiGetMasteryAgentByNameRequest) Execute() (*AgentMasteryV1DetailResponse, *http.Response, error) {
+	return r.ApiService.GetMasteryAgentByNameExecute(r)
+}
+
+/*
+GetMasteryAgentByName Get agent mastery by name (v1)
+
+Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
+ @param name Riot ID name
+ @param tag Riot ID tag
+ @param agentId Agent UUID
+ @return ApiGetMasteryAgentByNameRequest
+*/
+func (a *ValorantAPIService) GetMasteryAgentByName(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, name string, tag string, agentId string) ApiGetMasteryAgentByNameRequest {
+	return ApiGetMasteryAgentByNameRequest{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		platform: platform,
+		name: name,
+		tag: tag,
+		agentId: agentId,
+	}
+}
+
+// Execute executes the request
+//  @return AgentMasteryV1DetailResponse
+func (a *ValorantAPIService) GetMasteryAgentByNameExecute(r ApiGetMasteryAgentByNameRequest) (*AgentMasteryV1DetailResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AgentMasteryV1DetailResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.GetMasteryAgentByName")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"platform"+"}", url.PathEscape(parameterValueToString(r.platform, "platform")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tag"+"}", url.PathEscape(parameterValueToString(r.tag, "tag")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"agent_id"+"}", url.PathEscape(parameterValueToString(r.agentId, "agentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetMasteryByIdRequest struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	platform ValorantPlatform
+	puuid string
+}
+
+func (r ApiGetMasteryByIdRequest) Execute() (*AgentMasteryV1Response, *http.Response, error) {
+	return r.ApiService.GetMasteryByIdExecute(r)
+}
+
+/*
+GetMasteryById Get all agent mastery by PUUID (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
+ @param puuid Player UUID
+ @return ApiGetMasteryByIdRequest
+*/
+func (a *ValorantAPIService) GetMasteryById(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, puuid string) ApiGetMasteryByIdRequest {
+	return ApiGetMasteryByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		platform: platform,
+		puuid: puuid,
+	}
+}
+
+// Execute executes the request
+//  @return AgentMasteryV1Response
+func (a *ValorantAPIService) GetMasteryByIdExecute(r ApiGetMasteryByIdRequest) (*AgentMasteryV1Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AgentMasteryV1Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.GetMasteryById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"platform"+"}", url.PathEscape(parameterValueToString(r.platform, "platform")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"puuid"+"}", url.PathEscape(parameterValueToString(r.puuid, "puuid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetMasteryByNameRequest struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	platform ValorantPlatform
+	name string
+	tag string
+}
+
+func (r ApiGetMasteryByNameRequest) Execute() (*AgentMasteryV1Response, *http.Response, error) {
+	return r.ApiService.GetMasteryByNameExecute(r)
+}
+
+/*
+GetMasteryByName Get all agent mastery by name (v1)
+
+Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
+ @param name Riot ID name
+ @param tag Riot ID tag
+ @return ApiGetMasteryByNameRequest
+*/
+func (a *ValorantAPIService) GetMasteryByName(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, name string, tag string) ApiGetMasteryByNameRequest {
+	return ApiGetMasteryByNameRequest{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		platform: platform,
+		name: name,
+		tag: tag,
+	}
+}
+
+// Execute executes the request
+//  @return AgentMasteryV1Response
+func (a *ValorantAPIService) GetMasteryByNameExecute(r ApiGetMasteryByNameRequest) (*AgentMasteryV1Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AgentMasteryV1Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.GetMasteryByName")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"platform"+"}", url.PathEscape(parameterValueToString(r.platform, "platform")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tag"+"}", url.PathEscape(parameterValueToString(r.tag, "tag")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetMatchesV3ByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	puuid string
 	mode *string
+	queue *string
 	map_ *string
 	size *int32
 }
 
-// Game mode filter (optional)
+// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
 func (r ApiGetMatchesV3ByIdRequest) Mode(mode string) ApiGetMatchesV3ByIdRequest {
 	r.mode = &mode
 	return r
 }
 
-// Map filter (optional)
+// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+func (r ApiGetMatchesV3ByIdRequest) Queue(queue string) ApiGetMatchesV3ByIdRequest {
+	r.queue = &queue
+	return r
+}
+
+// Map display name, matched case-insensitively.
 func (r ApiGetMatchesV3ByIdRequest) Map_(map_ string) ApiGetMatchesV3ByIdRequest {
 	r.map_ = &map_
 	return r
 }
 
-// Number of results (optional)
+// Positive integer result count; values above 10 are capped at 10.
 func (r ApiGetMatchesV3ByIdRequest) Size(size int32) ApiGetMatchesV3ByIdRequest {
 	r.size = &size
 	return r
@@ -2851,11 +3604,11 @@ func (r ApiGetMatchesV3ByIdRequest) Execute() (*MatchesV3ListResponse, *http.Res
 GetMatchesV3ById Get matches by PUUID (v3)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param puuid Player UUID
  @return ApiGetMatchesV3ByIdRequest
 */
-func (a *ValorantAPIService) GetMatchesV3ById(ctx context.Context, affinity string, puuid string) ApiGetMatchesV3ByIdRequest {
+func (a *ValorantAPIService) GetMatchesV3ById(ctx context.Context, affinity ValorantAffinity, puuid string) ApiGetMatchesV3ByIdRequest {
 	return ApiGetMatchesV3ByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2890,11 +3643,18 @@ func (a *ValorantAPIService) GetMatchesV3ByIdExecute(r ApiGetMatchesV3ByIdReques
 	if r.mode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "form", "")
 	}
+	if r.queue != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "queue", r.queue, "form", "")
+	}
 	if r.map_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "map", r.map_, "form", "")
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	} else {
+		var defaultValue int32 = 5
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
+		r.size = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3013,27 +3773,34 @@ func (a *ValorantAPIService) GetMatchesV3ByIdExecute(r ApiGetMatchesV3ByIdReques
 type ApiGetMatchesV3ByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	name string
 	tag string
-	mode *MatchMode
+	mode *string
+	queue *string
 	map_ *string
 	size *int32
 }
 
-// Game mode filter (optional)
-func (r ApiGetMatchesV3ByNameRequest) Mode(mode MatchMode) ApiGetMatchesV3ByNameRequest {
+// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+func (r ApiGetMatchesV3ByNameRequest) Mode(mode string) ApiGetMatchesV3ByNameRequest {
 	r.mode = &mode
 	return r
 }
 
-// Map filter (optional)
+// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+func (r ApiGetMatchesV3ByNameRequest) Queue(queue string) ApiGetMatchesV3ByNameRequest {
+	r.queue = &queue
+	return r
+}
+
+// Map display name, matched case-insensitively.
 func (r ApiGetMatchesV3ByNameRequest) Map_(map_ string) ApiGetMatchesV3ByNameRequest {
 	r.map_ = &map_
 	return r
 }
 
-// Number of results (optional)
+// Positive integer result count; values above 10 are capped at 10.
 func (r ApiGetMatchesV3ByNameRequest) Size(size int32) ApiGetMatchesV3ByNameRequest {
 	r.size = &size
 	return r
@@ -3047,12 +3814,12 @@ func (r ApiGetMatchesV3ByNameRequest) Execute() (*MatchesV3ListResponse, *http.R
 GetMatchesV3ByName Get matches by name (v3)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetMatchesV3ByNameRequest
 */
-func (a *ValorantAPIService) GetMatchesV3ByName(ctx context.Context, affinity string, name string, tag string) ApiGetMatchesV3ByNameRequest {
+func (a *ValorantAPIService) GetMatchesV3ByName(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiGetMatchesV3ByNameRequest {
 	return ApiGetMatchesV3ByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3089,11 +3856,18 @@ func (a *ValorantAPIService) GetMatchesV3ByNameExecute(r ApiGetMatchesV3ByNameRe
 	if r.mode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "form", "")
 	}
+	if r.queue != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "queue", r.queue, "form", "")
+	}
 	if r.map_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "map", r.map_, "form", "")
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	} else {
+		var defaultValue int32 = 5
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
+		r.size = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3212,34 +3986,41 @@ func (a *ValorantAPIService) GetMatchesV3ByNameExecute(r ApiGetMatchesV3ByNameRe
 type ApiGetMatchesV4ByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	puuid string
 	mode *string
+	queue *string
 	map_ *string
 	size *int32
 	start *int32
 }
 
-// Game mode filter (optional)
+// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
 func (r ApiGetMatchesV4ByIdRequest) Mode(mode string) ApiGetMatchesV4ByIdRequest {
 	r.mode = &mode
 	return r
 }
 
-// Map filter (optional)
+// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+func (r ApiGetMatchesV4ByIdRequest) Queue(queue string) ApiGetMatchesV4ByIdRequest {
+	r.queue = &queue
+	return r
+}
+
+// Map display name, matched case-insensitively.
 func (r ApiGetMatchesV4ByIdRequest) Map_(map_ string) ApiGetMatchesV4ByIdRequest {
 	r.map_ = &map_
 	return r
 }
 
-// Number of results (optional)
+// Positive integer result count; values above 10 are capped at 10.
 func (r ApiGetMatchesV4ByIdRequest) Size(size int32) ApiGetMatchesV4ByIdRequest {
 	r.size = &size
 	return r
 }
 
-// Start index for pagination (optional)
+// Zero-based offset; start plus capped size must fit a signed 32-bit integer.
 func (r ApiGetMatchesV4ByIdRequest) Start(start int32) ApiGetMatchesV4ByIdRequest {
 	r.start = &start
 	return r
@@ -3253,12 +4034,12 @@ func (r ApiGetMatchesV4ByIdRequest) Execute() (*MatchesV4HistoryResponse, *http.
 GetMatchesV4ById Get matches by PUUID (v4)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param puuid Player UUID
  @return ApiGetMatchesV4ByIdRequest
 */
-func (a *ValorantAPIService) GetMatchesV4ById(ctx context.Context, affinity string, platform string, puuid string) ApiGetMatchesV4ByIdRequest {
+func (a *ValorantAPIService) GetMatchesV4ById(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, puuid string) ApiGetMatchesV4ByIdRequest {
 	return ApiGetMatchesV4ByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3295,14 +4076,25 @@ func (a *ValorantAPIService) GetMatchesV4ByIdExecute(r ApiGetMatchesV4ByIdReques
 	if r.mode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "form", "")
 	}
+	if r.queue != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "queue", r.queue, "form", "")
+	}
 	if r.map_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "map", r.map_, "form", "")
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	} else {
+		var defaultValue int32 = 5
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
+		r.size = &defaultValue
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
+	} else {
+		var defaultValue int32 = 0
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", defaultValue, "form", "")
+		r.start = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3421,35 +4213,42 @@ func (a *ValorantAPIService) GetMatchesV4ByIdExecute(r ApiGetMatchesV4ByIdReques
 type ApiGetMatchesV4ByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	name string
 	tag string
 	mode *string
+	queue *string
 	map_ *string
 	size *int32
 	start *int32
 }
 
-// Game mode filter (optional)
+// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
 func (r ApiGetMatchesV4ByNameRequest) Mode(mode string) ApiGetMatchesV4ByNameRequest {
 	r.mode = &mode
 	return r
 }
 
-// Map filter (optional)
+// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+func (r ApiGetMatchesV4ByNameRequest) Queue(queue string) ApiGetMatchesV4ByNameRequest {
+	r.queue = &queue
+	return r
+}
+
+// Map display name, matched case-insensitively.
 func (r ApiGetMatchesV4ByNameRequest) Map_(map_ string) ApiGetMatchesV4ByNameRequest {
 	r.map_ = &map_
 	return r
 }
 
-// Number of results (optional)
+// Positive integer result count; values above 10 are capped at 10.
 func (r ApiGetMatchesV4ByNameRequest) Size(size int32) ApiGetMatchesV4ByNameRequest {
 	r.size = &size
 	return r
 }
 
-// Start index for pagination (optional)
+// Zero-based offset; start plus capped size must fit a signed 32-bit integer.
 func (r ApiGetMatchesV4ByNameRequest) Start(start int32) ApiGetMatchesV4ByNameRequest {
 	r.start = &start
 	return r
@@ -3463,13 +4262,13 @@ func (r ApiGetMatchesV4ByNameRequest) Execute() (*MatchesV4HistoryResponse, *htt
 GetMatchesV4ByName Get matches by name (v4)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetMatchesV4ByNameRequest
 */
-func (a *ValorantAPIService) GetMatchesV4ByName(ctx context.Context, affinity string, platform string, name string, tag string) ApiGetMatchesV4ByNameRequest {
+func (a *ValorantAPIService) GetMatchesV4ByName(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, name string, tag string) ApiGetMatchesV4ByNameRequest {
 	return ApiGetMatchesV4ByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3508,14 +4307,25 @@ func (a *ValorantAPIService) GetMatchesV4ByNameExecute(r ApiGetMatchesV4ByNameRe
 	if r.mode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "form", "")
 	}
+	if r.queue != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "queue", r.queue, "form", "")
+	}
 	if r.map_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "map", r.map_, "form", "")
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	} else {
+		var defaultValue int32 = 5
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
+		r.size = &defaultValue
 	}
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
+	} else {
+		var defaultValue int32 = 0
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", defaultValue, "form", "")
+		r.start = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3634,7 +4444,7 @@ func (a *ValorantAPIService) GetMatchesV4ByNameExecute(r ApiGetMatchesV4ByNameRe
 type ApiGetMmrHistoryByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	puuid string
 }
 
@@ -3646,11 +4456,11 @@ func (r ApiGetMmrHistoryByIdRequest) Execute() (*MMRHistoryV1Response, *http.Res
 GetMmrHistoryById Get MMR history by PUUID (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param puuid Player UUID
  @return ApiGetMmrHistoryByIdRequest
 */
-func (a *ValorantAPIService) GetMmrHistoryById(ctx context.Context, affinity string, puuid string) ApiGetMmrHistoryByIdRequest {
+func (a *ValorantAPIService) GetMmrHistoryById(ctx context.Context, affinity ValorantAffinity, puuid string) ApiGetMmrHistoryByIdRequest {
 	return ApiGetMmrHistoryByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3799,7 +4609,7 @@ func (a *ValorantAPIService) GetMmrHistoryByIdExecute(r ApiGetMmrHistoryByIdRequ
 type ApiGetMmrHistoryByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	name string
 	tag string
 }
@@ -3812,12 +4622,12 @@ func (r ApiGetMmrHistoryByNameRequest) Execute() (*MMRHistoryV1Response, *http.R
 GetMmrHistoryByName Get MMR history by name (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetMmrHistoryByNameRequest
 */
-func (a *ValorantAPIService) GetMmrHistoryByName(ctx context.Context, affinity string, name string, tag string) ApiGetMmrHistoryByNameRequest {
+func (a *ValorantAPIService) GetMmrHistoryByName(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiGetMmrHistoryByNameRequest {
 	return ApiGetMmrHistoryByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3968,8 +4778,8 @@ func (a *ValorantAPIService) GetMmrHistoryByNameExecute(r ApiGetMmrHistoryByName
 type ApiGetMmrHistoryV2ByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	puuid string
 }
 
@@ -3981,12 +4791,12 @@ func (r ApiGetMmrHistoryV2ByIdRequest) Execute() (*MMRHistoryV2Response, *http.R
 GetMmrHistoryV2ById Get MMR history by PUUID (v2)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param puuid Player UUID
  @return ApiGetMmrHistoryV2ByIdRequest
 */
-func (a *ValorantAPIService) GetMmrHistoryV2ById(ctx context.Context, affinity string, platform string, puuid string) ApiGetMmrHistoryV2ByIdRequest {
+func (a *ValorantAPIService) GetMmrHistoryV2ById(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, puuid string) ApiGetMmrHistoryV2ByIdRequest {
 	return ApiGetMmrHistoryV2ByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4137,8 +4947,8 @@ func (a *ValorantAPIService) GetMmrHistoryV2ByIdExecute(r ApiGetMmrHistoryV2ById
 type ApiGetMmrHistoryV2ByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	name string
 	tag string
 }
@@ -4151,13 +4961,13 @@ func (r ApiGetMmrHistoryV2ByNameRequest) Execute() (*MMRHistoryV2Response, *http
 GetMmrHistoryV2ByName Get MMR history by name (v2)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetMmrHistoryV2ByNameRequest
 */
-func (a *ValorantAPIService) GetMmrHistoryV2ByName(ctx context.Context, affinity string, platform string, name string, tag string) ApiGetMmrHistoryV2ByNameRequest {
+func (a *ValorantAPIService) GetMmrHistoryV2ByName(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, name string, tag string) ApiGetMmrHistoryV2ByNameRequest {
 	return ApiGetMmrHistoryV2ByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4310,7 +5120,7 @@ func (a *ValorantAPIService) GetMmrHistoryV2ByNameExecute(r ApiGetMmrHistoryV2By
 type ApiGetMmrV1ByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	puuid string
 }
 
@@ -4322,11 +5132,11 @@ func (r ApiGetMmrV1ByIdRequest) Execute() (*MMRV1Response, *http.Response, error
 GetMmrV1ById Get MMR by PUUID (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param puuid Player UUID
  @return ApiGetMmrV1ByIdRequest
 */
-func (a *ValorantAPIService) GetMmrV1ById(ctx context.Context, affinity string, puuid string) ApiGetMmrV1ByIdRequest {
+func (a *ValorantAPIService) GetMmrV1ById(ctx context.Context, affinity ValorantAffinity, puuid string) ApiGetMmrV1ByIdRequest {
 	return ApiGetMmrV1ByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4475,7 +5285,7 @@ func (a *ValorantAPIService) GetMmrV1ByIdExecute(r ApiGetMmrV1ByIdRequest) (*MMR
 type ApiGetMmrV1ByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	name string
 	tag string
 }
@@ -4488,12 +5298,12 @@ func (r ApiGetMmrV1ByNameRequest) Execute() (*MMRV1Response, *http.Response, err
 GetMmrV1ByName Get MMR by name (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetMmrV1ByNameRequest
 */
-func (a *ValorantAPIService) GetMmrV1ByName(ctx context.Context, affinity string, name string, tag string) ApiGetMmrV1ByNameRequest {
+func (a *ValorantAPIService) GetMmrV1ByName(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiGetMmrV1ByNameRequest {
 	return ApiGetMmrV1ByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4644,7 +5454,7 @@ func (a *ValorantAPIService) GetMmrV1ByNameExecute(r ApiGetMmrV1ByNameRequest) (
 type ApiGetMmrV2ByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	puuid string
 }
 
@@ -4656,11 +5466,11 @@ func (r ApiGetMmrV2ByIdRequest) Execute() (*MMRV2Response, *http.Response, error
 GetMmrV2ById Get MMR by PUUID (v2)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param puuid Player UUID
  @return ApiGetMmrV2ByIdRequest
 */
-func (a *ValorantAPIService) GetMmrV2ById(ctx context.Context, affinity string, puuid string) ApiGetMmrV2ByIdRequest {
+func (a *ValorantAPIService) GetMmrV2ById(ctx context.Context, affinity ValorantAffinity, puuid string) ApiGetMmrV2ByIdRequest {
 	return ApiGetMmrV2ByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4809,7 +5619,7 @@ func (a *ValorantAPIService) GetMmrV2ByIdExecute(r ApiGetMmrV2ByIdRequest) (*MMR
 type ApiGetMmrV2ByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	name string
 	tag string
 }
@@ -4822,12 +5632,12 @@ func (r ApiGetMmrV2ByNameRequest) Execute() (*MMRV2Response, *http.Response, err
 GetMmrV2ByName Get MMR by name (v2)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetMmrV2ByNameRequest
 */
-func (a *ValorantAPIService) GetMmrV2ByName(ctx context.Context, affinity string, name string, tag string) ApiGetMmrV2ByNameRequest {
+func (a *ValorantAPIService) GetMmrV2ByName(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiGetMmrV2ByNameRequest {
 	return ApiGetMmrV2ByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4978,8 +5788,8 @@ func (a *ValorantAPIService) GetMmrV2ByNameExecute(r ApiGetMmrV2ByNameRequest) (
 type ApiGetMmrV3ByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	puuid string
 }
 
@@ -4991,12 +5801,12 @@ func (r ApiGetMmrV3ByIdRequest) Execute() (*MMRV3Response, *http.Response, error
 GetMmrV3ById Get MMR by PUUID (v3)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param puuid Player UUID
  @return ApiGetMmrV3ByIdRequest
 */
-func (a *ValorantAPIService) GetMmrV3ById(ctx context.Context, affinity string, platform string, puuid string) ApiGetMmrV3ByIdRequest {
+func (a *ValorantAPIService) GetMmrV3ById(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, puuid string) ApiGetMmrV3ByIdRequest {
 	return ApiGetMmrV3ByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5147,8 +5957,8 @@ func (a *ValorantAPIService) GetMmrV3ByIdExecute(r ApiGetMmrV3ByIdRequest) (*MMR
 type ApiGetMmrV3ByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	name string
 	tag string
 }
@@ -5161,13 +5971,13 @@ func (r ApiGetMmrV3ByNameRequest) Execute() (*MMRV3Response, *http.Response, err
 GetMmrV3ByName Get MMR by name (v3)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiGetMmrV3ByNameRequest
 */
-func (a *ValorantAPIService) GetMmrV3ByName(ctx context.Context, affinity string, platform string, name string, tag string) ApiGetMmrV3ByNameRequest {
+func (a *ValorantAPIService) GetMmrV3ByName(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, name string, tag string) ApiGetMmrV3ByNameRequest {
 	return ApiGetMmrV3ByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5320,13 +6130,14 @@ func (a *ValorantAPIService) GetMmrV3ByNameExecute(r ApiGetMmrV3ByNameRequest) (
 type ApiLeaderboardV1Request struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	season *string
 	name *string
 	tag *string
+	puuid *string
 }
 
-// Season ID (optional)
+// Short season ID, such as e9a1; omission selects the current season
 func (r ApiLeaderboardV1Request) Season(season string) ApiLeaderboardV1Request {
 	r.season = &season
 	return r
@@ -5344,7 +6155,13 @@ func (r ApiLeaderboardV1Request) Tag(tag string) ApiLeaderboardV1Request {
 	return r
 }
 
-func (r ApiLeaderboardV1Request) Execute() (interface{}, *http.Response, error) {
+// Player UUID to search for
+func (r ApiLeaderboardV1Request) Puuid(puuid string) ApiLeaderboardV1Request {
+	r.puuid = &puuid
+	return r
+}
+
+func (r ApiLeaderboardV1Request) Execute() (*LeaderboardV1Response, *http.Response, error) {
 	return r.ApiService.LeaderboardV1Execute(r)
 }
 
@@ -5352,10 +6169,10 @@ func (r ApiLeaderboardV1Request) Execute() (interface{}, *http.Response, error) 
 LeaderboardV1 Get leaderboard (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @return ApiLeaderboardV1Request
 */
-func (a *ValorantAPIService) LeaderboardV1(ctx context.Context, affinity string) ApiLeaderboardV1Request {
+func (a *ValorantAPIService) LeaderboardV1(ctx context.Context, affinity ValorantAffinity) ApiLeaderboardV1Request {
 	return ApiLeaderboardV1Request{
 		ApiService: a,
 		ctx: ctx,
@@ -5364,13 +6181,13 @@ func (a *ValorantAPIService) LeaderboardV1(ctx context.Context, affinity string)
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *ValorantAPIService) LeaderboardV1Execute(r ApiLeaderboardV1Request) (interface{}, *http.Response, error) {
+//  @return LeaderboardV1Response
+func (a *ValorantAPIService) LeaderboardV1Execute(r ApiLeaderboardV1Request) (*LeaderboardV1Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  *LeaderboardV1Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.LeaderboardV1")
@@ -5393,6 +6210,9 @@ func (a *ValorantAPIService) LeaderboardV1Execute(r ApiLeaderboardV1Request) (in
 	}
 	if r.tag != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "tag", r.tag, "form", "")
+	}
+	if r.puuid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "puuid", r.puuid, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5511,14 +6331,14 @@ func (a *ValorantAPIService) LeaderboardV1Execute(r ApiLeaderboardV1Request) (in
 type ApiLeaderboardV2Request struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	season *string
 	name *string
 	tag *string
 	puuid *string
 }
 
-// Season ID (optional)
+// Short season ID, such as e9a1; omission selects the current season
 func (r ApiLeaderboardV2Request) Season(season string) ApiLeaderboardV2Request {
 	r.season = &season
 	return r
@@ -5542,7 +6362,7 @@ func (r ApiLeaderboardV2Request) Puuid(puuid string) ApiLeaderboardV2Request {
 	return r
 }
 
-func (r ApiLeaderboardV2Request) Execute() (*LeaderboardV2Response, *http.Response, error) {
+func (r ApiLeaderboardV2Request) Execute() (*ValorantLeaderboardV2Response, *http.Response, error) {
 	return r.ApiService.LeaderboardV2Execute(r)
 }
 
@@ -5550,10 +6370,10 @@ func (r ApiLeaderboardV2Request) Execute() (*LeaderboardV2Response, *http.Respon
 LeaderboardV2 Get leaderboard (v2)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @return ApiLeaderboardV2Request
 */
-func (a *ValorantAPIService) LeaderboardV2(ctx context.Context, affinity string) ApiLeaderboardV2Request {
+func (a *ValorantAPIService) LeaderboardV2(ctx context.Context, affinity ValorantAffinity) ApiLeaderboardV2Request {
 	return ApiLeaderboardV2Request{
 		ApiService: a,
 		ctx: ctx,
@@ -5562,13 +6382,13 @@ func (a *ValorantAPIService) LeaderboardV2(ctx context.Context, affinity string)
 }
 
 // Execute executes the request
-//  @return LeaderboardV2Response
-func (a *ValorantAPIService) LeaderboardV2Execute(r ApiLeaderboardV2Request) (*LeaderboardV2Response, *http.Response, error) {
+//  @return ValorantLeaderboardV2Response
+func (a *ValorantAPIService) LeaderboardV2Execute(r ApiLeaderboardV2Request) (*ValorantLeaderboardV2Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LeaderboardV2Response
+		localVarReturnValue  *ValorantLeaderboardV2Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.LeaderboardV2")
@@ -5712,42 +6532,56 @@ func (a *ValorantAPIService) LeaderboardV2Execute(r ApiLeaderboardV2Request) (*L
 type ApiLeaderboardV3Request struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
-	season *string
-	size *int32
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	page *int32
+	size *int32
+	seasonShort *string
+	seasonId *string
 	name *string
 	tag *string
+	puuid *string
 }
 
-// Season ID (optional)
-func (r ApiLeaderboardV3Request) Season(season string) ApiLeaderboardV3Request {
-	r.season = &season
-	return r
-}
-
-// Number of results per page (optional)
-func (r ApiLeaderboardV3Request) Size(size int32) ApiLeaderboardV3Request {
-	r.size = &size
-	return r
-}
-
-// Page number (optional)
+// Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
 func (r ApiLeaderboardV3Request) Page(page int32) ApiLeaderboardV3Request {
 	r.page = &page
 	return r
 }
 
-// Player name to search for (optional)
+// Positive integer result count; only ASCII decimal digits are accepted.
+func (r ApiLeaderboardV3Request) Size(size int32) ApiLeaderboardV3Request {
+	r.size = &size
+	return r
+}
+
+// Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+func (r ApiLeaderboardV3Request) SeasonShort(seasonShort string) ApiLeaderboardV3Request {
+	r.seasonShort = &seasonShort
+	return r
+}
+
+// Season UUID; mutually exclusive with season_short.
+func (r ApiLeaderboardV3Request) SeasonId(seasonId string) ApiLeaderboardV3Request {
+	r.seasonId = &seasonId
+	return r
+}
+
+// Player name to search for.
 func (r ApiLeaderboardV3Request) Name(name string) ApiLeaderboardV3Request {
 	r.name = &name
 	return r
 }
 
-// Player tag to search for (optional)
+// Player tag to search for.
 func (r ApiLeaderboardV3Request) Tag(tag string) ApiLeaderboardV3Request {
 	r.tag = &tag
+	return r
+}
+
+// Player UUID to search for.
+func (r ApiLeaderboardV3Request) Puuid(puuid string) ApiLeaderboardV3Request {
+	r.puuid = &puuid
 	return r
 }
 
@@ -5759,11 +6593,11 @@ func (r ApiLeaderboardV3Request) Execute() (*LeaderboardV3Response, *http.Respon
 LeaderboardV3 Get leaderboard (v3)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @return ApiLeaderboardV3Request
 */
-func (a *ValorantAPIService) LeaderboardV3(ctx context.Context, affinity string, platform string) ApiLeaderboardV3Request {
+func (a *ValorantAPIService) LeaderboardV3(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform) ApiLeaderboardV3Request {
 	return ApiLeaderboardV3Request{
 		ApiService: a,
 		ctx: ctx,
@@ -5795,20 +6629,34 @@ func (a *ValorantAPIService) LeaderboardV3Execute(r ApiLeaderboardV3Request) (*L
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.season != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	} else {
+		var defaultValue int32 = 1000
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
+		r.size = &defaultValue
 	}
-	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	if r.seasonShort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season_short", r.seasonShort, "form", "")
+	}
+	if r.seasonId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "season_id", r.seasonId, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.tag != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "tag", r.tag, "form", "")
+	}
+	if r.puuid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "puuid", r.puuid, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6088,7 +6936,7 @@ func (a *ValorantAPIService) MatchV2Execute(r ApiMatchV2Request) (*MatchesV2Resp
 type ApiMatchV4Request struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	matchId string
 }
 
@@ -6100,11 +6948,11 @@ func (r ApiMatchV4Request) Execute() (*MatchesV4Response, *http.Response, error)
 MatchV4 Get match details (v4)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param matchId Match UUID
  @return ApiMatchV4Request
 */
-func (a *ValorantAPIService) MatchV4(ctx context.Context, affinity string, matchId string) ApiMatchV4Request {
+func (a *ValorantAPIService) MatchV4(ctx context.Context, affinity ValorantAffinity, matchId string) ApiMatchV4Request {
 	return ApiMatchV4Request{
 		ApiService: a,
 		ctx: ctx,
@@ -6255,7 +7103,7 @@ type ApiPremierByIdRequest struct {
 	ApiService *ValorantAPIService
 	id string
 	season *string
-	affinity *string
+	affinity *ValorantAffinity
 }
 
 // Premier season id (optional)
@@ -6264,8 +7112,8 @@ func (r ApiPremierByIdRequest) Season(season string) ApiPremierByIdRequest {
 	return r
 }
 
-// Region/affinity for fallback resolution (optional)
-func (r ApiPremierByIdRequest) Affinity(affinity string) ApiPremierByIdRequest {
+// Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+func (r ApiPremierByIdRequest) Affinity(affinity ValorantAffinity) ApiPremierByIdRequest {
 	r.affinity = &affinity
 	return r
 }
@@ -6444,7 +7292,7 @@ func (r ApiPremierByIdHistoryRequest) Season(season string) ApiPremierByIdHistor
 	return r
 }
 
-func (r ApiPremierByIdHistoryRequest) Execute() (*PremierTeamV1Response, *http.Response, error) {
+func (r ApiPremierByIdHistoryRequest) Execute() (*PremierTeamHistoryV1Response, *http.Response, error) {
 	return r.ApiService.PremierByIdHistoryExecute(r)
 }
 
@@ -6464,13 +7312,13 @@ func (a *ValorantAPIService) PremierByIdHistory(ctx context.Context, id string) 
 }
 
 // Execute executes the request
-//  @return PremierTeamV1Response
-func (a *ValorantAPIService) PremierByIdHistoryExecute(r ApiPremierByIdHistoryRequest) (*PremierTeamV1Response, *http.Response, error) {
+//  @return PremierTeamHistoryV1Response
+func (a *ValorantAPIService) PremierByIdHistoryExecute(r ApiPremierByIdHistoryRequest) (*PremierTeamHistoryV1Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PremierTeamV1Response
+		localVarReturnValue  *PremierTeamHistoryV1Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.PremierByIdHistory")
@@ -6602,13 +7450,180 @@ func (a *ValorantAPIService) PremierByIdHistoryExecute(r ApiPremierByIdHistoryRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPremierByIdV2Request struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	id string
+}
+
+func (r ApiPremierByIdV2Request) Execute() (*PremierTeamV2Response, *http.Response, error) {
+	return r.ApiService.PremierByIdV2Execute(r)
+}
+
+/*
+PremierByIdV2 Get live Premier team by ID (v2)
+
+Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param id Team UUID
+ @return ApiPremierByIdV2Request
+*/
+func (a *ValorantAPIService) PremierByIdV2(ctx context.Context, affinity ValorantAffinity, id string) ApiPremierByIdV2Request {
+	return ApiPremierByIdV2Request{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return PremierTeamV2Response
+func (a *ValorantAPIService) PremierByIdV2Execute(r ApiPremierByIdV2Request) (*PremierTeamV2Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PremierTeamV2Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.PremierByIdV2")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v2/premier/teams/{affinity}/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiPremierByNameRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
 	name string
 	tag string
 	season *string
-	affinity *string
+	affinity *ValorantAffinity
 }
 
 // Premier season id (optional)
@@ -6617,8 +7632,8 @@ func (r ApiPremierByNameRequest) Season(season string) ApiPremierByNameRequest {
 	return r
 }
 
-// Region/affinity for fallback resolution (optional)
-func (r ApiPremierByNameRequest) Affinity(affinity string) ApiPremierByNameRequest {
+// Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+func (r ApiPremierByNameRequest) Affinity(affinity ValorantAffinity) ApiPremierByNameRequest {
 	r.affinity = &affinity
 	return r
 }
@@ -6926,6 +7941,558 @@ func (a *ValorantAPIService) PremierByNameHistoryExecute(r ApiPremierByNameHisto
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPremierByNameV2Request struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	name string
+	tag string
+}
+
+func (r ApiPremierByNameV2Request) Execute() (*PremierTeamV2Response, *http.Response, error) {
+	return r.ApiService.PremierByNameV2Execute(r)
+}
+
+/*
+PremierByNameV2 Get live Premier team by team name (v2)
+
+Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param name Premier team name
+ @param tag Premier team tag
+ @return ApiPremierByNameV2Request
+*/
+func (a *ValorantAPIService) PremierByNameV2(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiPremierByNameV2Request {
+	return ApiPremierByNameV2Request{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		name: name,
+		tag: tag,
+	}
+}
+
+// Execute executes the request
+//  @return PremierTeamV2Response
+func (a *ValorantAPIService) PremierByNameV2Execute(r ApiPremierByNameV2Request) (*PremierTeamV2Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PremierTeamV2Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.PremierByNameV2")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v2/premier/teams/{affinity}/{name}/{tag}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tag"+"}", url.PathEscape(parameterValueToString(r.tag, "tag")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPremierByPlayerNameRequest struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	name string
+	tag string
+}
+
+func (r ApiPremierByPlayerNameRequest) Execute() (*PremierTeamV2Response, *http.Response, error) {
+	return r.ApiService.PremierByPlayerNameExecute(r)
+}
+
+/*
+PremierByPlayerName Get live Premier team by player Riot ID (v2)
+
+Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param name Player Riot ID name
+ @param tag Player Riot ID tag
+ @return ApiPremierByPlayerNameRequest
+*/
+func (a *ValorantAPIService) PremierByPlayerName(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiPremierByPlayerNameRequest {
+	return ApiPremierByPlayerNameRequest{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		name: name,
+		tag: tag,
+	}
+}
+
+// Execute executes the request
+//  @return PremierTeamV2Response
+func (a *ValorantAPIService) PremierByPlayerNameExecute(r ApiPremierByPlayerNameRequest) (*PremierTeamV2Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PremierTeamV2Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.PremierByPlayerName")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v2/premier/players/{affinity}/{name}/{tag}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"tag"+"}", url.PathEscape(parameterValueToString(r.tag, "tag")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPremierByPuuidRequest struct {
+	ctx context.Context
+	ApiService *ValorantAPIService
+	affinity ValorantAffinity
+	puuid string
+}
+
+func (r ApiPremierByPuuidRequest) Execute() (*PremierTeamV2Response, *http.Response, error) {
+	return r.ApiService.PremierByPuuidExecute(r)
+}
+
+/*
+PremierByPuuid Get live Premier team by player PUUID (v2)
+
+Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param affinity Region/affinity; case-insensitive
+ @param puuid Player UUID
+ @return ApiPremierByPuuidRequest
+*/
+func (a *ValorantAPIService) PremierByPuuid(ctx context.Context, affinity ValorantAffinity, puuid string) ApiPremierByPuuidRequest {
+	return ApiPremierByPuuidRequest{
+		ApiService: a,
+		ctx: ctx,
+		affinity: affinity,
+		puuid: puuid,
+	}
+}
+
+// Execute executes the request
+//  @return PremierTeamV2Response
+func (a *ValorantAPIService) PremierByPuuidExecute(r ApiPremierByPuuidRequest) (*PremierTeamV2Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PremierTeamV2Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.PremierByPuuid")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/valorant/v2/premier/players/{affinity}/{puuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"affinity"+"}", url.PathEscape(parameterValueToString(r.affinity, "affinity")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"puuid"+"}", url.PathEscape(parameterValueToString(r.puuid, "puuid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_query"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("api_key", key)
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key_header"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v SendError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -6944,22 +8511,8 @@ func (a *ValorantAPIService) PremierByNameHistoryExecute(r ApiPremierByNameHisto
 type ApiPremierLeaderboardRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	conference *string
-	division *string
+	affinity ValorantAffinity
 	season *string
-}
-
-// Conference filter (optional)
-func (r ApiPremierLeaderboardRequest) Conference(conference string) ApiPremierLeaderboardRequest {
-	r.conference = &conference
-	return r
-}
-
-// Division filter (optional)
-func (r ApiPremierLeaderboardRequest) Division(division string) ApiPremierLeaderboardRequest {
-	r.division = &division
-	return r
 }
 
 // Premier season id (optional)
@@ -6975,11 +8528,13 @@ func (r ApiPremierLeaderboardRequest) Execute() (*PremierSearchResponse, *http.R
 /*
 PremierLeaderboard Get Premier leaderboard (v1)
 
+Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
  @return ApiPremierLeaderboardRequest
 */
-func (a *ValorantAPIService) PremierLeaderboard(ctx context.Context, affinity string) ApiPremierLeaderboardRequest {
+func (a *ValorantAPIService) PremierLeaderboard(ctx context.Context, affinity ValorantAffinity) ApiPremierLeaderboardRequest {
 	return ApiPremierLeaderboardRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7009,12 +8564,6 @@ func (a *ValorantAPIService) PremierLeaderboardExecute(r ApiPremierLeaderboardRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.conference != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "conference", r.conference, "form", "")
-	}
-	if r.division != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "division", r.division, "form", "")
-	}
 	if r.season != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
 	}
@@ -7139,6 +8688,8 @@ type ApiPremierSearchRequest struct {
 	tag *string
 	id *string
 	season *string
+	conference *string
+	division *int32
 }
 
 // Team name to search for (optional)
@@ -7153,7 +8704,7 @@ func (r ApiPremierSearchRequest) Tag(tag string) ApiPremierSearchRequest {
 	return r
 }
 
-// Team UUID to search for (optional)
+// Team UUID to search for; cannot be combined with name or tag
 func (r ApiPremierSearchRequest) Id(id string) ApiPremierSearchRequest {
 	r.id = &id
 	return r
@@ -7162,6 +8713,18 @@ func (r ApiPremierSearchRequest) Id(id string) ApiPremierSearchRequest {
 // Premier season id (optional)
 func (r ApiPremierSearchRequest) Season(season string) ApiPremierSearchRequest {
 	r.season = &season
+	return r
+}
+
+// Current upstream Premier conference key; case-insensitive; not a fixed enum
+func (r ApiPremierSearchRequest) Conference(conference string) ApiPremierSearchRequest {
+	r.conference = &conference
+	return r
+}
+
+// Division filter; integer from 1 through 21
+func (r ApiPremierSearchRequest) Division(division int32) ApiPremierSearchRequest {
+	r.division = &division
 	return r
 }
 
@@ -7214,6 +8777,12 @@ func (a *ValorantAPIService) PremierSearchExecute(r ApiPremierSearchRequest) (*P
 	}
 	if r.season != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "season", r.season, "form", "")
+	}
+	if r.conference != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "conference", r.conference, "form", "")
+	}
+	if r.division != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "division", r.division, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7332,7 +8901,7 @@ func (a *ValorantAPIService) PremierSearchExecute(r ApiPremierSearchRequest) (*P
 type ApiQueueStatusRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 }
 
 func (r ApiQueueStatusRequest) Execute() (*QueueStatusV1, *http.Response, error) {
@@ -7343,10 +8912,10 @@ func (r ApiQueueStatusRequest) Execute() (*QueueStatusV1, *http.Response, error)
 QueueStatus Get queue status (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @return ApiQueueStatusRequest
 */
-func (a *ValorantAPIService) QueueStatus(ctx context.Context, affinity string) ApiQueueStatusRequest {
+func (a *ValorantAPIService) QueueStatus(ctx context.Context, affinity ValorantAffinity) ApiQueueStatusRequest {
 	return ApiQueueStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7508,6 +9077,8 @@ func (r ApiRawRequest) Execute() (*RawV1Response, *http.Response, error) {
 /*
 Raw Get raw Riot API data (v1)
 
+Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRawRequest
 */
@@ -7661,7 +9232,7 @@ func (a *ValorantAPIService) RawExecute(r ApiRawRequest) (*RawV1Response, *http.
 type ApiStatusRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 }
 
 func (r ApiStatusRequest) Execute() (*StatusV1, *http.Response, error) {
@@ -7672,10 +9243,10 @@ func (r ApiStatusRequest) Execute() (*StatusV1, *http.Response, error) {
 Status Get status (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @return ApiStatusRequest
 */
-func (a *ValorantAPIService) Status(ctx context.Context, affinity string) ApiStatusRequest {
+func (a *ValorantAPIService) Status(ctx context.Context, affinity ValorantAffinity) ApiStatusRequest {
 	return ApiStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7822,10 +9393,10 @@ func (a *ValorantAPIService) StatusExecute(r ApiStatusRequest) (*StatusV1, *http
 type ApiStoreFeaturedRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	version string
+	version ValorantStoreVersion
 }
 
-func (r ApiStoreFeaturedRequest) Execute() (*StoreFeaturedV1, *http.Response, error) {
+func (r ApiStoreFeaturedRequest) Execute() (*ValorantStoreFeaturedResponse, *http.Response, error) {
 	return r.ApiService.StoreFeaturedExecute(r)
 }
 
@@ -7833,10 +9404,10 @@ func (r ApiStoreFeaturedRequest) Execute() (*StoreFeaturedV1, *http.Response, er
 StoreFeatured Get featured store items
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param version API version (v1, v2)
+ @param version Response version; v1 returns an object envelope and v2 returns an array envelope
  @return ApiStoreFeaturedRequest
 */
-func (a *ValorantAPIService) StoreFeatured(ctx context.Context, version string) ApiStoreFeaturedRequest {
+func (a *ValorantAPIService) StoreFeatured(ctx context.Context, version ValorantStoreVersion) ApiStoreFeaturedRequest {
 	return ApiStoreFeaturedRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7845,13 +9416,13 @@ func (a *ValorantAPIService) StoreFeatured(ctx context.Context, version string) 
 }
 
 // Execute executes the request
-//  @return StoreFeaturedV1
-func (a *ValorantAPIService) StoreFeaturedExecute(r ApiStoreFeaturedRequest) (*StoreFeaturedV1, *http.Response, error) {
+//  @return ValorantStoreFeaturedResponse
+func (a *ValorantAPIService) StoreFeaturedExecute(r ApiStoreFeaturedRequest) (*ValorantStoreFeaturedResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StoreFeaturedV1
+		localVarReturnValue  *ValorantStoreFeaturedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.StoreFeatured")
@@ -7983,21 +9554,23 @@ func (a *ValorantAPIService) StoreFeaturedExecute(r ApiStoreFeaturedRequest) (*S
 type ApiStoreOffersRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	version string
+	version ValorantStoreVersion
 }
 
-func (r ApiStoreOffersRequest) Execute() (*StoreOffersV1Response, *http.Response, error) {
+func (r ApiStoreOffersRequest) Execute() (*http.Response, error) {
 	return r.ApiService.StoreOffersExecute(r)
 }
 
 /*
 StoreOffers Get store offers
 
+Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param version API version (v1, v2)
+ @param version Legacy API version
  @return ApiStoreOffersRequest
 */
-func (a *ValorantAPIService) StoreOffers(ctx context.Context, version string) ApiStoreOffersRequest {
+func (a *ValorantAPIService) StoreOffers(ctx context.Context, version ValorantStoreVersion) ApiStoreOffersRequest {
 	return ApiStoreOffersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8006,18 +9579,16 @@ func (a *ValorantAPIService) StoreOffers(ctx context.Context, version string) Ap
 }
 
 // Execute executes the request
-//  @return StoreOffersV1Response
-func (a *ValorantAPIService) StoreOffersExecute(r ApiStoreOffersRequest) (*StoreOffersV1Response, *http.Response, error) {
+func (a *ValorantAPIService) StoreOffersExecute(r ApiStoreOffersRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StoreOffersV1Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ValorantAPIService.StoreOffers")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/valorant/{version}/store-offers"
@@ -8074,19 +9645,19 @@ func (a *ValorantAPIService) StoreOffersExecute(r ApiStoreOffersRequest) (*Store
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -8094,79 +9665,62 @@ func (a *ValorantAPIService) StoreOffersExecute(r ApiStoreOffersRequest) (*Store
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v SendError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v SendError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v SendError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiStoredMatchesRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	name string
 	tag string
 	mode *string
+	queue *string
 	map_ *string
 	size *int32
+	page *int32
 }
 
-// Game mode filter (optional)
+// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
 func (r ApiStoredMatchesRequest) Mode(mode string) ApiStoredMatchesRequest {
 	r.mode = &mode
 	return r
 }
 
-// Map filter (optional)
+// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+func (r ApiStoredMatchesRequest) Queue(queue string) ApiStoredMatchesRequest {
+	r.queue = &queue
+	return r
+}
+
+// Map display name, matched case-insensitively.
 func (r ApiStoredMatchesRequest) Map_(map_ string) ApiStoredMatchesRequest {
 	r.map_ = &map_
 	return r
 }
 
-// Number of results (optional)
+// Positive integer result count. Omit for unlimited results.
 func (r ApiStoredMatchesRequest) Size(size int32) ApiStoredMatchesRequest {
 	r.size = &size
+	return r
+}
+
+// One-based page. Supplying page requires size.
+func (r ApiStoredMatchesRequest) Page(page int32) ApiStoredMatchesRequest {
+	r.page = &page
 	return r
 }
 
@@ -8178,12 +9732,12 @@ func (r ApiStoredMatchesRequest) Execute() (*StoredMatchesResponse, *http.Respon
 StoredMatches Get stored matches by name (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiStoredMatchesRequest
 */
-func (a *ValorantAPIService) StoredMatches(ctx context.Context, affinity string, name string, tag string) ApiStoredMatchesRequest {
+func (a *ValorantAPIService) StoredMatches(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiStoredMatchesRequest {
 	return ApiStoredMatchesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8220,11 +9774,21 @@ func (a *ValorantAPIService) StoredMatchesExecute(r ApiStoredMatchesRequest) (*S
 	if r.mode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "form", "")
 	}
+	if r.queue != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "queue", r.queue, "form", "")
+	}
 	if r.map_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "map", r.map_, "form", "")
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8343,28 +9907,42 @@ func (a *ValorantAPIService) StoredMatchesExecute(r ApiStoredMatchesRequest) (*S
 type ApiStoredMatchesByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	puuid string
 	mode *string
+	queue *string
 	map_ *string
 	size *int32
+	page *int32
 }
 
-// Game mode filter (optional)
+// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
 func (r ApiStoredMatchesByIdRequest) Mode(mode string) ApiStoredMatchesByIdRequest {
 	r.mode = &mode
 	return r
 }
 
-// Map filter (optional)
+// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+func (r ApiStoredMatchesByIdRequest) Queue(queue string) ApiStoredMatchesByIdRequest {
+	r.queue = &queue
+	return r
+}
+
+// Map display name, matched case-insensitively.
 func (r ApiStoredMatchesByIdRequest) Map_(map_ string) ApiStoredMatchesByIdRequest {
 	r.map_ = &map_
 	return r
 }
 
-// Number of results (optional)
+// Positive integer result count. Omit for unlimited results.
 func (r ApiStoredMatchesByIdRequest) Size(size int32) ApiStoredMatchesByIdRequest {
 	r.size = &size
+	return r
+}
+
+// One-based page. Supplying page requires size.
+func (r ApiStoredMatchesByIdRequest) Page(page int32) ApiStoredMatchesByIdRequest {
+	r.page = &page
 	return r
 }
 
@@ -8376,11 +9954,11 @@ func (r ApiStoredMatchesByIdRequest) Execute() (*StoredMatchesResponse, *http.Re
 StoredMatchesById Get stored matches by PUUID (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param puuid Player UUID
  @return ApiStoredMatchesByIdRequest
 */
-func (a *ValorantAPIService) StoredMatchesById(ctx context.Context, affinity string, puuid string) ApiStoredMatchesByIdRequest {
+func (a *ValorantAPIService) StoredMatchesById(ctx context.Context, affinity ValorantAffinity, puuid string) ApiStoredMatchesByIdRequest {
 	return ApiStoredMatchesByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8415,11 +9993,21 @@ func (a *ValorantAPIService) StoredMatchesByIdExecute(r ApiStoredMatchesByIdRequ
 	if r.mode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "form", "")
 	}
+	if r.queue != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "queue", r.queue, "form", "")
+	}
 	if r.map_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "map", r.map_, "form", "")
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8538,15 +10126,22 @@ func (a *ValorantAPIService) StoredMatchesByIdExecute(r ApiStoredMatchesByIdRequ
 type ApiStoredMmrHistoryRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	name string
 	tag string
 	size *int32
+	page *int32
 }
 
-// Number of results (optional)
+// Positive integer result count. Omit for unlimited results.
 func (r ApiStoredMmrHistoryRequest) Size(size int32) ApiStoredMmrHistoryRequest {
 	r.size = &size
+	return r
+}
+
+// One-based page. Supplying page requires size.
+func (r ApiStoredMmrHistoryRequest) Page(page int32) ApiStoredMmrHistoryRequest {
+	r.page = &page
 	return r
 }
 
@@ -8558,12 +10153,12 @@ func (r ApiStoredMmrHistoryRequest) Execute() (*StoredMMRResponse, *http.Respons
 StoredMmrHistory Get stored MMR history by name (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiStoredMmrHistoryRequest
 */
-func (a *ValorantAPIService) StoredMmrHistory(ctx context.Context, affinity string, name string, tag string) ApiStoredMmrHistoryRequest {
+func (a *ValorantAPIService) StoredMmrHistory(ctx context.Context, affinity ValorantAffinity, name string, tag string) ApiStoredMmrHistoryRequest {
 	return ApiStoredMmrHistoryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8599,6 +10194,13 @@ func (a *ValorantAPIService) StoredMmrHistoryExecute(r ApiStoredMmrHistoryReques
 
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8717,14 +10319,21 @@ func (a *ValorantAPIService) StoredMmrHistoryExecute(r ApiStoredMmrHistoryReques
 type ApiStoredMmrHistoryByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 	puuid string
 	size *int32
+	page *int32
 }
 
-// Number of results (optional)
+// Positive integer result count. Omit for unlimited results.
 func (r ApiStoredMmrHistoryByIdRequest) Size(size int32) ApiStoredMmrHistoryByIdRequest {
 	r.size = &size
+	return r
+}
+
+// One-based page. Supplying page requires size.
+func (r ApiStoredMmrHistoryByIdRequest) Page(page int32) ApiStoredMmrHistoryByIdRequest {
+	r.page = &page
 	return r
 }
 
@@ -8736,11 +10345,11 @@ func (r ApiStoredMmrHistoryByIdRequest) Execute() (*StoredMMRResponse, *http.Res
 StoredMmrHistoryById Get stored MMR history by PUUID (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @param puuid Player UUID
  @return ApiStoredMmrHistoryByIdRequest
 */
-func (a *ValorantAPIService) StoredMmrHistoryById(ctx context.Context, affinity string, puuid string) ApiStoredMmrHistoryByIdRequest {
+func (a *ValorantAPIService) StoredMmrHistoryById(ctx context.Context, affinity ValorantAffinity, puuid string) ApiStoredMmrHistoryByIdRequest {
 	return ApiStoredMmrHistoryByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8774,6 +10383,13 @@ func (a *ValorantAPIService) StoredMmrHistoryByIdExecute(r ApiStoredMmrHistoryBy
 
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8892,16 +10508,23 @@ func (a *ValorantAPIService) StoredMmrHistoryByIdExecute(r ApiStoredMmrHistoryBy
 type ApiStoredMmrHistoryV2Request struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	name string
 	tag string
 	size *int32
+	page *int32
 }
 
-// Number of results (optional)
+// Positive integer result count. Omit for unlimited results.
 func (r ApiStoredMmrHistoryV2Request) Size(size int32) ApiStoredMmrHistoryV2Request {
 	r.size = &size
+	return r
+}
+
+// One-based page. Supplying page requires size.
+func (r ApiStoredMmrHistoryV2Request) Page(page int32) ApiStoredMmrHistoryV2Request {
+	r.page = &page
 	return r
 }
 
@@ -8913,13 +10536,13 @@ func (r ApiStoredMmrHistoryV2Request) Execute() (*StoredMMRV2Response, *http.Res
 StoredMmrHistoryV2 Get stored MMR history by name (v2)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param name Riot ID name
  @param tag Riot ID tag
  @return ApiStoredMmrHistoryV2Request
 */
-func (a *ValorantAPIService) StoredMmrHistoryV2(ctx context.Context, affinity string, platform string, name string, tag string) ApiStoredMmrHistoryV2Request {
+func (a *ValorantAPIService) StoredMmrHistoryV2(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, name string, tag string) ApiStoredMmrHistoryV2Request {
 	return ApiStoredMmrHistoryV2Request{
 		ApiService: a,
 		ctx: ctx,
@@ -8957,6 +10580,13 @@ func (a *ValorantAPIService) StoredMmrHistoryV2Execute(r ApiStoredMmrHistoryV2Re
 
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9075,15 +10705,22 @@ func (a *ValorantAPIService) StoredMmrHistoryV2Execute(r ApiStoredMmrHistoryV2Re
 type ApiStoredMmrHistoryV2ByIdRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
-	platform string
+	affinity ValorantAffinity
+	platform ValorantPlatform
 	puuid string
 	size *int32
+	page *int32
 }
 
-// Number of results (optional)
+// Positive integer result count. Omit for unlimited results.
 func (r ApiStoredMmrHistoryV2ByIdRequest) Size(size int32) ApiStoredMmrHistoryV2ByIdRequest {
 	r.size = &size
+	return r
+}
+
+// One-based page. Supplying page requires size.
+func (r ApiStoredMmrHistoryV2ByIdRequest) Page(page int32) ApiStoredMmrHistoryV2ByIdRequest {
+	r.page = &page
 	return r
 }
 
@@ -9095,12 +10732,12 @@ func (r ApiStoredMmrHistoryV2ByIdRequest) Execute() (*StoredMMRV2Response, *http
 StoredMmrHistoryV2ById Get stored MMR history by PUUID (v2)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
- @param platform Platform (pc, console)
+ @param affinity Region/affinity; case-insensitive
+ @param platform Platform; case-insensitive
  @param puuid Player UUID
  @return ApiStoredMmrHistoryV2ByIdRequest
 */
-func (a *ValorantAPIService) StoredMmrHistoryV2ById(ctx context.Context, affinity string, platform string, puuid string) ApiStoredMmrHistoryV2ByIdRequest {
+func (a *ValorantAPIService) StoredMmrHistoryV2ById(ctx context.Context, affinity ValorantAffinity, platform ValorantPlatform, puuid string) ApiStoredMmrHistoryV2ByIdRequest {
 	return ApiStoredMmrHistoryV2ByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -9136,6 +10773,13 @@ func (a *ValorantAPIService) StoredMmrHistoryV2ByIdExecute(r ApiStoredMmrHistory
 
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9254,7 +10898,7 @@ func (a *ValorantAPIService) StoredMmrHistoryV2ByIdExecute(r ApiStoredMmrHistory
 type ApiVersionRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	affinity string
+	affinity ValorantAffinity
 }
 
 func (r ApiVersionRequest) Execute() (*VersionV1Response, *http.Response, error) {
@@ -9265,10 +10909,10 @@ func (r ApiVersionRequest) Execute() (*VersionV1Response, *http.Response, error)
 Version Get game version (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param affinity Region/affinity (e.g., na, eu, ap, kr)
+ @param affinity Region/affinity; case-insensitive
  @return ApiVersionRequest
 */
-func (a *ValorantAPIService) Version(ctx context.Context, affinity string) ApiVersionRequest {
+func (a *ValorantAPIService) Version(ctx context.Context, affinity ValorantAffinity) ApiVersionRequest {
 	return ApiVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -9415,12 +11059,12 @@ func (a *ValorantAPIService) VersionExecute(r ApiVersionRequest) (*VersionV1Resp
 type ApiWebsiteRequest struct {
 	ctx context.Context
 	ApiService *ValorantAPIService
-	countryCode string
-	category *string
+	countryCode ValorantWebsiteLocale
+	category *ValorantWebsiteCategory
 }
 
-// Category filter (optional)
-func (r ApiWebsiteRequest) Category(category string) ApiWebsiteRequest {
+// Category filter; case-sensitive
+func (r ApiWebsiteRequest) Category(category ValorantWebsiteCategory) ApiWebsiteRequest {
 	r.category = &category
 	return r
 }
@@ -9433,10 +11077,10 @@ func (r ApiWebsiteRequest) Execute() (*WebsiteV1Response, *http.Response, error)
 Website Get website content (v1)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param countryCode Country code (e.g., en-us, de-de)
+ @param countryCode Website locale; case-insensitive
  @return ApiWebsiteRequest
 */
-func (a *ValorantAPIService) Website(ctx context.Context, countryCode string) ApiWebsiteRequest {
+func (a *ValorantAPIService) Website(ctx context.Context, countryCode ValorantWebsiteLocale) ApiWebsiteRequest {
 	return ApiWebsiteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -9597,9 +11241,11 @@ func (r ApiWebsiteByIdRequest) Execute() (*WebsiteByIdV1Response, *http.Response
 /*
 WebsiteById Get website entry by ID (v1)
 
+Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param dbId Database ID of the website entry
- @param countryCode Country code (e.g., en-us, de-de)
+ @param countryCode Ignored locale segment; any string is accepted
  @return ApiWebsiteByIdRequest
 */
 func (a *ValorantAPIService) WebsiteById(ctx context.Context, dbId string, countryCode string) ApiWebsiteByIdRequest {

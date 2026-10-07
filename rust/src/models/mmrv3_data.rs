@@ -17,18 +17,27 @@ pub struct Mmrv3Data {
     pub account: Box<models::Mmrv3Account>,
     #[serde(rename = "current")]
     pub current: Box<models::Mmrv3Current>,
+    #[serde(rename = "latest_update")]
+    pub latest_update: Box<models::MmrHistoryV2History>,
+    #[serde(rename = "lifetime_prestige", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub lifetime_prestige: Option<Option<std::collections::HashMap<String, models::Mmrv3LifetimePrestige>>>,
     #[serde(rename = "peak", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub peak: Option<Option<Box<models::Mmrv3Peak>>>,
+    #[serde(rename = "ranked_state")]
+    pub ranked_state: Box<models::Mmrv3RankedState>,
     #[serde(rename = "seasonal")]
     pub seasonal: Vec<models::Mmrv3Seasonal>,
 }
 
 impl Mmrv3Data {
-    pub fn new(account: models::Mmrv3Account, current: models::Mmrv3Current, seasonal: Vec<models::Mmrv3Seasonal>) -> Mmrv3Data {
+    pub fn new(account: models::Mmrv3Account, current: models::Mmrv3Current, latest_update: models::MmrHistoryV2History, ranked_state: models::Mmrv3RankedState, seasonal: Vec<models::Mmrv3Seasonal>) -> Mmrv3Data {
         Mmrv3Data {
             account: Box::new(account),
             current: Box::new(current),
+            latest_update: Box::new(latest_update),
+            lifetime_prestige: None,
             peak: None,
+            ranked_state: Box::new(ranked_state),
             seasonal,
         }
     }

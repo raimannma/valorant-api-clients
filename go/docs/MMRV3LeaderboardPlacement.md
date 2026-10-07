@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Rank** | **int32** |  | 
-**UpdatedAt** | **string** |  | 
+**UpdatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewMMRV3LeaderboardPlacement
 
-`func NewMMRV3LeaderboardPlacement(rank int32, updatedAt string, ) *MMRV3LeaderboardPlacement`
+`func NewMMRV3LeaderboardPlacement(rank int32, updatedAt time.Time, ) *MMRV3LeaderboardPlacement`
 
 NewMMRV3LeaderboardPlacement instantiates a new MMRV3LeaderboardPlacement object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetRank sets Rank field to given value.
 
 ### GetUpdatedAt
 
-`func (o *MMRV3LeaderboardPlacement) GetUpdatedAt() string`
+`func (o *MMRV3LeaderboardPlacement) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *MMRV3LeaderboardPlacement) GetUpdatedAtOk() (*string, bool)`
+`func (o *MMRV3LeaderboardPlacement) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *MMRV3LeaderboardPlacement) SetUpdatedAt(v string)`
+`func (o *MMRV3LeaderboardPlacement) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

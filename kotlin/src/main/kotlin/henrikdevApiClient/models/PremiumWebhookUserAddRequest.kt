@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
  *
  * @param enabled 
  * @param events 
@@ -42,7 +42,7 @@ import com.squareup.moshi.JsonClass
 data class PremiumWebhookUserAddRequest (
 
     @Json(name = "enabled")
-    val enabled: kotlin.Boolean? = null,
+    val enabled: kotlin.Boolean? = true,
 
     @Json(name = "events")
     val events: kotlin.collections.List<PremiumWebhookEvent>? = null,
@@ -51,7 +51,7 @@ data class PremiumWebhookUserAddRequest (
     val name: kotlin.String? = null,
 
     @Json(name = "puuid")
-    val puuid: kotlin.String? = null,
+    val puuid: java.util.UUID? = null,
 
     @Json(name = "tag")
     val tag: kotlin.String? = null

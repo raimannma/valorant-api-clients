@@ -6,18 +6,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cluster** | **str** |  | [optional] 
-**game_length_in_ms** | **int** |  | 
+**game_length_in_ms** | **int** | Match duration in milliseconds. | 
 **game_version** | **str** |  | 
 **is_completed** | **bool** |  | 
 **map** | [**MapIdNameCombo**](MapIdNameCombo.md) |  | 
-**match_id** | **str** |  | 
+**match_id** | **UUID** |  | 
+**mvp** | [**MatchesV4DataRoundPlayer**](MatchesV4DataRoundPlayer.md) |  | [optional] 
 **party_rr_penaltys** | [**List[MatchesV4DataMetadataPartyRRPenalty]**](MatchesV4DataMetadataPartyRRPenalty.md) |  | 
 **platform** | **str** |  | 
 **premier** | **object** |  | [optional] 
 **queue** | [**MatchesV4DataMetadataQueue**](MatchesV4DataMetadataQueue.md) |  | 
 **region** | **str** |  | [optional] 
 **season** | [**SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 
-**started_at** | **str** |  | 
+**started_at** | **datetime** |  | 
 
 ## Example
 

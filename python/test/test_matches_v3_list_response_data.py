@@ -207,8 +207,12 @@ class TestMatchesV3ListResponseData(unittest.TestCase):
                             damage_made = 56, 
                             damage_received = 56, 
                             economy = henrikdev_api_client.models.matches_v2_data_player_economy.MatchesV2DataPlayerEconomy(
-                                loadout_value = , 
-                                spent = , ), 
+                                loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                                    average = 1.337, 
+                                    overall = 56, ), 
+                                spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                                    average = 1.337, 
+                                    overall = 56, ), ), 
                             level = 0, 
                             name = '', 
                             party_id = '', 
@@ -236,7 +240,65 @@ class TestMatchesV3ListResponseData(unittest.TestCase):
                             team = '', )
                         ], 
                     red = [
-                        
+                        henrikdev_api_client.models.matches_v2_data_player.MatchesV2DataPlayer(
+                            ability_casts = henrikdev_api_client.models.matches_v2_data_player_ability_casts.MatchesV2DataPlayerAbilityCasts(
+                                c_cast = 0, 
+                                e_cast = 0, 
+                                q_cast = 0, 
+                                x_cast = 0, ), 
+                            assets = henrikdev_api_client.models.matches_v2_data_player_assets.MatchesV2DataPlayerAssets(
+                                agent = henrikdev_api_client.models.matches_v2_data_player_assets_agent.MatchesV2DataPlayerAssetsAgent(
+                                    bust = '', 
+                                    full = '', 
+                                    killfeed = '', 
+                                    small = '', ), 
+                                card = henrikdev_api_client.models.matches_v2_data_player_assets_card.MatchesV2DataPlayerAssetsCard(
+                                    large = '', 
+                                    small = '', 
+                                    wide = '', ), ), 
+                            behavior = henrikdev_api_client.models.matches_v2_data_player_behavior.MatchesV2DataPlayerBehavior(
+                                afk_rounds = 1.337, 
+                                friendly_fire = henrikdev_api_client.models.matches_v2_data_player_behavior_friendly_fire.MatchesV2DataPlayerBehaviorFriendlyFire(
+                                    incoming = 1.337, 
+                                    outgoing = 1.337, ), 
+                                rounds_in_spawn = 1.337, ), 
+                            character = '', 
+                            currenttier = 0, 
+                            currenttier_patched = '', 
+                            damage_made = 56, 
+                            damage_received = 56, 
+                            economy = henrikdev_api_client.models.matches_v2_data_player_economy.MatchesV2DataPlayerEconomy(
+                                loadout_value = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                                    average = 1.337, 
+                                    overall = 56, ), 
+                                spent = henrikdev_api_client.models.matches_v2_data_player_economy_value.MatchesV2DataPlayerEconomyValue(
+                                    average = 1.337, 
+                                    overall = 56, ), ), 
+                            level = 0, 
+                            name = '', 
+                            party_id = '', 
+                            platform = henrikdev_api_client.models.matches_v2_data_platform.MatchesV2DataPlatform(
+                                os = henrikdev_api_client.models.matches_v2_data_platform_os.MatchesV2DataPlatformOs(
+                                    name = '', 
+                                    version = '', ), 
+                                type = '', ), 
+                            player_card = '', 
+                            player_title = '', 
+                            puuid = '', 
+                            session_playtime = henrikdev_api_client.models.matches_v2_data_player_session_playtime.MatchesV2DataPlayerSessionPlaytime(
+                                milliseconds = 0, 
+                                minutes = 0, 
+                                seconds = 0, ), 
+                            stats = henrikdev_api_client.models.matches_v2_data_player_stats.MatchesV2DataPlayerStats(
+                                assists = 0, 
+                                bodyshots = 0, 
+                                deaths = 0, 
+                                headshots = 0, 
+                                kills = 0, 
+                                legshots = 0, 
+                                score = 56, ), 
+                            tag = '', 
+                            team = '', )
                         ], ),
                 rounds = [
                     henrikdev_api_client.models.matches_v2_data_round.MatchesV2DataRound(
@@ -326,10 +388,19 @@ class TestMatchesV3ListResponseData(unittest.TestCase):
                                         killer_puuid = '', 
                                         killer_team = '', 
                                         player_locations_on_kill = [
-                                            
+                                            henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                                                location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                    x = 56, 
+                                                    y = 56, ), 
+                                                player_display_name = '', 
+                                                player_puuid = '', 
+                                                player_team = '', 
+                                                view_radians = 1.337, )
                                             ], 
                                         secondary_fire_mode = True, 
-                                        victim_death_location = , 
+                                        victim_death_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                            x = 56, 
+                                            y = 56, ), 
                                         victim_display_name = '', 
                                         victim_puuid = '', 
                                         victim_team = '', )
@@ -511,10 +582,19 @@ class TestMatchesV3ListResponseData(unittest.TestCase):
                                         killer_puuid = '', 
                                         killer_team = '', 
                                         player_locations_on_kill = [
-                                            
+                                            henrikdev_api_client.models.matches_v2_data_round_player_locations_on_event.MatchesV2DataRoundPlayerLocationsOnEvent(
+                                                location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                                    x = 56, 
+                                                    y = 56, ), 
+                                                player_display_name = '', 
+                                                player_puuid = '', 
+                                                player_team = '', 
+                                                view_radians = 1.337, )
                                             ], 
                                         secondary_fire_mode = True, 
-                                        victim_death_location = , 
+                                        victim_death_location = henrikdev_api_client.models.matches_v2_data_round_event_location.MatchesV2DataRoundEventLocation(
+                                            x = 56, 
+                                            y = 56, ), 
                                         victim_display_name = '', 
                                         victim_puuid = '', 
                                         victim_team = '', )

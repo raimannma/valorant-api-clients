@@ -17,8 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
+from uuid import UUID
 from henrikdev_api_client.models.map_id_name_combo import MapIdNameCombo
 from henrikdev_api_client.models.season_id_short_combo import SeasonIdShortCombo
 from henrikdev_api_client.models.tier_id_name_combo import TierIdNameCombo
@@ -28,19 +31,30 @@ from pydantic_core import to_jsonable_python
 
 class StoredMMRV2(BaseModel):
     """
-    StoredMMRV2
+    Stored competitive update. Optional enrichment fields are null for older records; tier IDs and ELO preserve the original ranking schema.
     """ # noqa: E501
-    var_date: StrictStr = Field(alias="date")
+    afk_penalty: Optional[StrictInt] = None
+    competitive_movement: Optional[StrictStr] = None
+    var_date: datetime = Field(alias="date")
     elo: StrictInt
+    is_placement_match: Optional[StrictBool] = None
     last_change: StrictInt
     map: MapIdNameCombo
-    match_id: StrictStr
+    match_id: UUID
+    match_length: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, description="Match duration in milliseconds; null when unavailable.")
+    new_map_incentive_rr_forgiven: Optional[StrictInt] = None
+    queue_id: Optional[StrictStr] = None
     refunded_rr: StrictInt
     rr: StrictInt
+    rr_before_update: Optional[StrictInt] = None
+    rr_penalty: Optional[Union[StrictFloat, StrictInt]] = None
+    rr_performance_bonus: Optional[StrictInt] = None
     season: SeasonIdShortCombo
     tier: TierIdNameCombo
+    tier_before_update: Optional[TierIdNameCombo] = None
     was_derank_protected: StrictBool
-    __properties: ClassVar[List[str]] = ["date", "elo", "last_change", "map", "match_id", "refunded_rr", "rr", "season", "tier", "was_derank_protected"]
+    was_derank_protection_replenished: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["afk_penalty", "competitive_movement", "date", "elo", "is_placement_match", "last_change", "map", "match_id", "match_length", "new_map_incentive_rr_forgiven", "queue_id", "refunded_rr", "rr", "rr_before_update", "rr_penalty", "rr_performance_bonus", "season", "tier", "tier_before_update", "was_derank_protected", "was_derank_protection_replenished"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,6 +104,64 @@ class StoredMMRV2(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tier
         if self.tier:
             _dict['tier'] = self.tier.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tier_before_update
+        if self.tier_before_update:
+            _dict['tier_before_update'] = self.tier_before_update.to_dict()
+        # set to None if afk_penalty (nullable) is None
+        # and model_fields_set contains the field
+        if self.afk_penalty is None and "afk_penalty" in self.model_fields_set:
+            _dict['afk_penalty'] = None
+
+        # set to None if competitive_movement (nullable) is None
+        # and model_fields_set contains the field
+        if self.competitive_movement is None and "competitive_movement" in self.model_fields_set:
+            _dict['competitive_movement'] = None
+
+        # set to None if is_placement_match (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_placement_match is None and "is_placement_match" in self.model_fields_set:
+            _dict['is_placement_match'] = None
+
+        # set to None if match_length (nullable) is None
+        # and model_fields_set contains the field
+        if self.match_length is None and "match_length" in self.model_fields_set:
+            _dict['match_length'] = None
+
+        # set to None if new_map_incentive_rr_forgiven (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_map_incentive_rr_forgiven is None and "new_map_incentive_rr_forgiven" in self.model_fields_set:
+            _dict['new_map_incentive_rr_forgiven'] = None
+
+        # set to None if queue_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.queue_id is None and "queue_id" in self.model_fields_set:
+            _dict['queue_id'] = None
+
+        # set to None if rr_before_update (nullable) is None
+        # and model_fields_set contains the field
+        if self.rr_before_update is None and "rr_before_update" in self.model_fields_set:
+            _dict['rr_before_update'] = None
+
+        # set to None if rr_penalty (nullable) is None
+        # and model_fields_set contains the field
+        if self.rr_penalty is None and "rr_penalty" in self.model_fields_set:
+            _dict['rr_penalty'] = None
+
+        # set to None if rr_performance_bonus (nullable) is None
+        # and model_fields_set contains the field
+        if self.rr_performance_bonus is None and "rr_performance_bonus" in self.model_fields_set:
+            _dict['rr_performance_bonus'] = None
+
+        # set to None if tier_before_update (nullable) is None
+        # and model_fields_set contains the field
+        if self.tier_before_update is None and "tier_before_update" in self.model_fields_set:
+            _dict['tier_before_update'] = None
+
+        # set to None if was_derank_protection_replenished (nullable) is None
+        # and model_fields_set contains the field
+        if self.was_derank_protection_replenished is None and "was_derank_protection_replenished" in self.model_fields_set:
+            _dict['was_derank_protection_replenished'] = None
+
         return _dict
 
     @classmethod
@@ -102,16 +174,27 @@ class StoredMMRV2(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "afk_penalty": obj.get("afk_penalty"),
+            "competitive_movement": obj.get("competitive_movement"),
             "date": obj.get("date"),
             "elo": obj.get("elo"),
+            "is_placement_match": obj.get("is_placement_match"),
             "last_change": obj.get("last_change"),
             "map": MapIdNameCombo.from_dict(obj["map"]) if obj.get("map") is not None else None,
             "match_id": obj.get("match_id"),
+            "match_length": obj.get("match_length"),
+            "new_map_incentive_rr_forgiven": obj.get("new_map_incentive_rr_forgiven"),
+            "queue_id": obj.get("queue_id"),
             "refunded_rr": obj.get("refunded_rr"),
             "rr": obj.get("rr"),
+            "rr_before_update": obj.get("rr_before_update"),
+            "rr_penalty": obj.get("rr_penalty"),
+            "rr_performance_bonus": obj.get("rr_performance_bonus"),
             "season": SeasonIdShortCombo.from_dict(obj["season"]) if obj.get("season") is not None else None,
             "tier": TierIdNameCombo.from_dict(obj["tier"]) if obj.get("tier") is not None else None,
-            "was_derank_protected": obj.get("was_derank_protected")
+            "tier_before_update": TierIdNameCombo.from_dict(obj["tier_before_update"]) if obj.get("tier_before_update") is not None else None,
+            "was_derank_protected": obj.get("was_derank_protected"),
+            "was_derank_protection_replenished": obj.get("was_derank_protection_replenished")
         })
         return _obj
 

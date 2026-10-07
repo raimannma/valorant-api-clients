@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Page** | Pointer to **NullableInt32** |  | [optional] 
+**Page** | Pointer to **NullableInt32** |  | [optional] [default to 1]
 **Region** | Pointer to [**NullableEsportsV2Region**](EsportsV2Region.md) |  | [optional] 
 **Type** | Pointer to [**NullableEsportsV2EventType**](EsportsV2EventType.md) |  | [optional] 
 

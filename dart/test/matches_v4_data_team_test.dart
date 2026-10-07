@@ -16,6 +16,21 @@ void main() {
   // final instance = MatchesV4DataTeam();
 
   group('test MatchesV4DataTeam', () {
+    // MatchesV4DataTeamHealth health
+    test('to test the property `health`', () async {
+      // TODO
+    });
+
+    // MatchesV4DataRoundPlayer mvp
+    test('to test the property `mvp`', () async {
+      // TODO
+    });
+
+    // int placement
+    test('to test the property `placement`', () async {
+      // TODO
+    });
+
     // MatchesV4DataTeamPremierRoster premierRoster
     test('to test the property `premierRoster`', () async {
       // TODO
@@ -28,6 +43,11 @@ void main() {
 
     // String teamId
     test('to test the property `teamId`', () async {
+      // TODO
+    });
+
+    // int teamNumber
+    test('to test the property `teamNumber`', () async {
       // TODO
     });
 

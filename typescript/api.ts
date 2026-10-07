@@ -141,6 +141,71 @@ export interface AgentIdNameCombo {
     'id': string;
     'name': string;
 }
+export interface AgentMasteryV1Account {
+    'name': string;
+    'puuid': string;
+    'tag': string;
+}
+export interface AgentMasteryV1Agent {
+    'agent': AgentMasteryV1Reference;
+    'customization': AgentMasteryV1Customization;
+    'flourish': AgentMasteryV1Flourish;
+    'modules'?: Array<AgentMasteryV1Module> | null;
+    'tracks': Array<AgentMasteryV1Track>;
+}
+export interface AgentMasteryV1Customization {
+    'background'?: AgentMasteryV1Reference | null;
+    'border'?: AgentMasteryV1Reference | null;
+    'clip'?: AgentMasteryV1Reference | null;
+    'hype'?: AgentMasteryV1Reference | null;
+}
+export interface AgentMasteryV1Data {
+    'account': AgentMasteryV1Account;
+    'agents': Array<AgentMasteryV1Agent>;
+}
+export interface AgentMasteryV1DetailData {
+    'account': AgentMasteryV1Account;
+    'mastery': AgentMasteryV1Agent;
+}
+export interface AgentMasteryV1DetailResponse {
+    'data': AgentMasteryV1DetailData;
+    'status': number;
+}
+export interface AgentMasteryV1Flourish {
+    'long_level'?: number | null;
+    'short_level'?: number | null;
+}
+export interface AgentMasteryV1Module {
+    'id'?: string | null;
+    'name'?: string | null;
+    'stat': AgentMasteryV1Reference;
+    'value': number;
+}
+export interface AgentMasteryV1Reference {
+    'id': string;
+    'name'?: string | null;
+}
+export interface AgentMasteryV1Response {
+    'data': AgentMasteryV1Data;
+    'status': number;
+}
+export interface AgentMasteryV1Track {
+    'id': string;
+    'level'?: number | null;
+    'name'?: string | null;
+}
+/**
+ * BSON Extended JSON datetime; milliseconds since the Unix epoch are encoded as a string.
+ */
+export interface BsonDateTimeResponse {
+    '$date': BsonMillisecondsResponse;
+}
+export interface BsonMillisecondsResponse {
+    '$numberLong': string;
+}
+export interface BsonObjectIdResponse {
+    '$oid': string;
+}
 export interface Bundle {
     'CurrencyID': string;
     'DataAssetID': string;
@@ -300,6 +365,9 @@ export const EsportsV2EventStatus = {
 export type EsportsV2EventStatus = typeof EsportsV2EventStatus[keyof typeof EsportsV2EventStatus];
 
 
+/**
+ * VLR event type. Values are case-sensitive; omission selects upcoming events.
+ */
 
 export const EsportsV2EventType = {
     Completed: 'completed',
@@ -545,6 +613,9 @@ export interface EsportsV2PlayerTeam {
     'logo': string;
     'name': string;
 }
+/**
+ * VLR player agent-statistics timespan. Values are case-sensitive; omission selects 90d.
+ */
 
 export const EsportsV2PlayerTimespan = {
     _30d: '30d',
@@ -556,6 +627,9 @@ export const EsportsV2PlayerTimespan = {
 export type EsportsV2PlayerTimespan = typeof EsportsV2PlayerTimespan[keyof typeof EsportsV2PlayerTimespan];
 
 
+/**
+ * VLR esports region filter. Values are case-sensitive; omission selects all regions.
+ */
 
 export const EsportsV2Region = {
     NorthAmerica: 'north_america',
@@ -675,6 +749,10 @@ export interface LeaderboardPVPPlayer {
     'rankedRating': number;
     'tagLine': string;
 }
+export interface LeaderboardV1Response {
+    'data': Array<LeaderboardPVPPlayer>;
+    'status': number;
+}
 export interface LeaderboardV2Response {
     'immortal_1_threshold': number;
     'immortal_2_threshold': number;
@@ -751,17 +829,34 @@ export interface MMRHistoryV2Data {
     'account': MMRV3Account;
     'history': Array<MMRHistoryV2History>;
 }
+/**
+ * Competitive update. Optional upstream fields are null when unavailable; tiers retain original IDs with season-aware names, and ELO is calculated from the original ID.
+ */
 export interface MMRHistoryV2History {
+    'afk_penalty'?: number | null;
+    'competitive_movement'?: string | null;
     'date': string;
     'elo': number;
+    'is_placement_match'?: boolean | null;
     'last_change': number;
     'map': MapIdNameCombo;
     'match_id': string;
+    /**
+     * Match duration in milliseconds; null when unavailable.
+     */
+    'match_length'?: number | null;
+    'new_map_incentive_rr_forgiven'?: number | null;
+    'queue_id'?: string | null;
     'refunded_rr': number;
     'rr': number;
+    'rr_before_update'?: number | null;
+    'rr_penalty'?: number | null;
+    'rr_performance_bonus'?: number | null;
     'season': SeasonIdShortCombo;
     'tier': TierIdNameCombo;
+    'tier_before_update'?: TierIdNameCombo | null;
     'was_derank_protected': boolean;
+    'was_derank_protection_replenished'?: boolean | null;
 }
 export interface MMRHistoryV2Response {
     'data': MMRHistoryV2Data;
@@ -817,22 +912,31 @@ export interface MMRV3Account {
 }
 export interface MMRV3Current {
     'elo': number;
+    'games_needed_for_leaderboard': number;
     'games_needed_for_rating': number;
+    'is_at_rank_protected_tier'?: boolean | null;
     'last_change': number;
     'leaderboard_placement'?: MMRV3LeaderboardPlacement | null;
     'rank_protection_shields': number;
+    'rank_protection_status'?: string | null;
     'rr': number;
     'tier': TierIdNameCombo;
 }
 export interface MMRV3Data {
     'account': MMRV3Account;
     'current': MMRV3Current;
+    'latest_update': MMRHistoryV2History;
+    'lifetime_prestige'?: { [key: string]: MMRV3LifetimePrestige; } | null;
     'peak'?: MMRV3Peak | null;
+    'ranked_state': MMRV3RankedState;
     'seasonal': Array<MMRV3Seasonal>;
 }
 export interface MMRV3LeaderboardPlacement {
     'rank': number;
     'updated_at': string;
+}
+export interface MMRV3LifetimePrestige {
+    'count': number;
 }
 export interface MMRV3Peak {
     'ranking_schema': string;
@@ -840,24 +944,42 @@ export interface MMRV3Peak {
     'season': SeasonIdShortCombo;
     'tier': TierIdNameCombo;
 }
+export interface MMRV3RankedState {
+    'is_act_rank_badge_hidden'?: boolean | null;
+    'is_leaderboard_anonymized'?: boolean | null;
+}
 export interface MMRV3Response {
     'data': MMRV3Data;
     'status': number;
 }
 export interface MMRV3Seasonal {
+    /**
+     * Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.
+     */
+    'act_rank': TierIdNameCombo;
     'act_wins': Array<TierIdNameCombo>;
     'end_rr': number;
     'end_tier': TierIdNameCombo;
     'games': number;
+    'games_needed_for_rating': number;
     'leaderboard_placement'?: MMRV3LeaderboardPlacement | null;
+    'prestige'?: { [key: string]: MMRV3SeasonalPrestige; } | null;
     'ranking_schema': string;
     'season': SeasonIdShortCombo;
     'wins': number;
+    'wins_with_placements': number;
+}
+export interface MMRV3SeasonalPrestige {
+    'delta': number;
+    'total': number;
 }
 export interface MapIdNameCombo {
     'id': string;
     'name': string;
 }
+/**
+ * Legacy match classification, not the accepted match-history mode query values. Match-history filters use strings resolved against the current upstream queue catalog.
+ */
 
 export const MatchMode = {
     Competitive: 'Competitive',
@@ -1211,11 +1333,15 @@ export interface MatchesV4DataKill {
 }
 export interface MatchesV4DataMetadata {
     'cluster'?: string | null;
+    /**
+     * Match duration in milliseconds.
+     */
     'game_length_in_ms': number;
     'game_version': string;
     'is_completed': boolean;
     'map': MapIdNameCombo;
     'match_id': string;
+    'mvp'?: MatchesV4DataRoundPlayer | null;
     'party_rr_penaltys': Array<MatchesV4DataMetadataPartyRRPenalty>;
     'platform': string;
     'premier'?: any;
@@ -1243,21 +1369,27 @@ export interface MatchesV4DataObserver {
     'tag': string;
     'title_id': string;
 }
+/**
+ * Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
+ */
 export interface MatchesV4DataPlayer {
     'ability_casts': MatchesV4DataPlayerAbilityCasts;
     'account_level': number;
     'agent': AgentIdNameCombo;
     'behavior': MatchesV4DataPlayerBehavior;
     'customization': MatchesV4DataPlayerCustomization;
+    'drafted_ability_casts'?: Array<MatchesV4DataPlayerDraftedAbilityCast> | null;
     'economy': MatchesV4DataPlayerEconomy;
     'name': string;
     'party_id': string;
+    'performance'?: MatchesV4DataPlayerPerformance | null;
     'platform': string;
     'puuid': string;
     'session_playtime_in_ms': number;
     'stats': MatchesV4DataPlayerStats;
     'tag': string;
     'team_id': string;
+    'team_number'?: number | null;
     'tier': TierIdNameCombo;
 }
 export interface MatchesV4DataPlayerAbilityCasts {
@@ -1275,22 +1407,105 @@ export interface MatchesV4DataPlayerBehaviorFriendlyFire {
     'incoming': number;
     'outgoing': number;
 }
+export interface MatchesV4DataPlayerBloomline {
+    'clip_id': string;
+    'hype_id': string;
+    'level': number;
+    'plank_background_id': string;
+}
 export interface MatchesV4DataPlayerCustomization {
+    'bloomline'?: MatchesV4DataPlayerBloomline | null;
     'card': string;
     'preferred_level_border'?: string | null;
     'title': string;
+}
+/**
+ * Drafted ability ID. name is null when no authoritative ability name is available.
+ */
+export interface MatchesV4DataPlayerDraftedAbility {
+    'id': string;
+    'name'?: string | null;
+}
+/**
+ * Casts at one ability upgrade level and branch. Slots: grenade, ability1, ability2, ultimate.
+ */
+export interface MatchesV4DataPlayerDraftedAbilityCast {
+    'ability': MatchesV4DataPlayerDraftedAbility;
+    'branch'?: string | null;
+    'casts': number;
+    'level': number;
+    'slot': string;
 }
 export interface MatchesV4DataPlayerEconomy {
     'loadout_value': MatchesV4DataPlayerEconomyLoadoutValue;
     'spent': MatchesV4DataPlayerEconomySpent;
 }
 export interface MatchesV4DataPlayerEconomyLoadoutValue {
+    /**
+     * Loadout value in credits per round played by this player; zero when rounds played is zero.
+     */
     'average': number;
+    /**
+     * Sum of loadout values in credits across reported player rounds.
+     */
     'overall': number;
 }
 export interface MatchesV4DataPlayerEconomySpent {
+    /**
+     * Credits spent per round played by this player; zero when rounds played is zero.
+     */
     'average': number;
+    /**
+     * Total credits spent across reported player rounds.
+     */
     'overall': number;
+}
+/**
+ * Riot performance evaluation, separate from stats.score and raw match statistics. Null values are unavailable, not zero.
+ */
+export interface MatchesV4DataPlayerPerformance {
+    'breakdown': MatchesV4DataPlayerPerformanceBreakdown;
+    'ratings'?: MatchesV4DataPlayerPerformanceRatings | null;
+    'score'?: number | null;
+}
+/**
+ * Performance values, not event counts or damage totals. adjusted_deaths can be negative; no percentage scale is implied.
+ */
+export interface MatchesV4DataPlayerPerformanceBreakdown {
+    'adjusted_deaths'?: number | null;
+    'adjusted_kills'?: number | null;
+    'assists'?: number | null;
+    'damage'?: number | null;
+    'defuses'?: number | null;
+    'plants'?: number | null;
+    'trades'?: number | null;
+    'utility_usage'?: number | null;
+}
+/**
+ * Known trends: double_down, down, neutral, up, double_up. Unknown upstream trends are preserved.
+ */
+export interface MatchesV4DataPlayerPerformanceCombatRatings {
+    'damage': string;
+    'death_impact': string;
+    'kill_impact': string;
+    'trades': string;
+}
+/**
+ * Known grades: pass, merit, distinction. Unknown upstream grades are preserved.
+ */
+export interface MatchesV4DataPlayerPerformanceRatings {
+    'combat'?: MatchesV4DataPlayerPerformanceCombatRatings | null;
+    'grade': string;
+    'utility'?: MatchesV4DataPlayerPerformanceUtilityRatings | null;
+}
+/**
+ * Known trends: double_down, down, neutral, up, double_up. Unknown upstream trends are preserved.
+ */
+export interface MatchesV4DataPlayerPerformanceUtilityRatings {
+    'assists': string;
+    'defuses': string;
+    'plants': string;
+    'utility_usage': string;
 }
 export interface MatchesV4DataPlayerStats {
     'assists': number;
@@ -1308,12 +1523,16 @@ export interface MatchesV4DataPlayerStatsDamage {
 }
 export interface MatchesV4DataRound {
     'ceremony': string;
+    'ceremony_player'?: MatchesV4DataRoundPlayer | null;
+    'ceremony_team'?: string | null;
     'defuse'?: MatchesV4DataRoundDefuse | null;
+    'first_blood'?: MatchesV4DataRoundPlayer | null;
     'id': number;
     'plant'?: MatchesV4DataRoundPlant | null;
     'result': string;
     'stats': Array<MatchesV4DataRoundPlayerStats>;
     'winning_team': string;
+    'winning_team_role'?: string | null;
 }
 export interface MatchesV4DataRoundDefuse {
     'location': MatchesV4DataRoundLocation;
@@ -1388,11 +1607,22 @@ export interface MatchesV4DataRoundPlayerStatsStats {
     'legshots': number;
     'score': number;
 }
+/**
+ * Join teams by the opaque team_id; team_number is an upstream number, not an array index.
+ */
 export interface MatchesV4DataTeam {
+    'health'?: MatchesV4DataTeamHealth | null;
+    'mvp'?: MatchesV4DataRoundPlayer | null;
+    'placement'?: number | null;
     'premier_roster'?: MatchesV4DataTeamPremierRoster | null;
     'rounds': MatchesV4DataTeamRounds;
     'team_id': string;
+    'team_number'?: number | null;
     'won': boolean;
+}
+export interface MatchesV4DataTeamHealth {
+    'remaining': number;
+    'starting': number;
 }
 export interface MatchesV4DataTeamPremierRoster {
     'customization': MatchesV4DataTeamPremierRosterCustomization;
@@ -1508,11 +1738,92 @@ export interface PremierTeamV1ResponseDataStats {
     'rounds_won': number;
     'wins': number;
 }
+export interface PremierTeamV2Member {
+    'joined_at': string;
+    'puuid': string;
+    'role': PremierTeamV2Role;
+}
+export interface PremierTeamV2Placement {
+    'conference': string;
+    'division': number;
+    'is_provisional': boolean;
+    'points': number;
+}
+export interface PremierTeamV2Response {
+    'data': PremierTeamV2ResponseData;
+    'status': number;
+}
+export interface PremierTeamV2ResponseData {
+    'created_at': string;
+    'current_season': PremierTeamV2Season;
+    'customization': PremierTeamV1ResponseDataCustomization;
+    'id': string;
+    'member': Array<PremierTeamV2Member>;
+    'name': string;
+    'seasons': Array<PremierTeamV2Season>;
+    'tag': string;
+}
+export interface PremierTeamV2Role {
+    'id': number;
+    'name': string;
+}
+export interface PremierTeamV2Rounds {
+    'lost': number;
+    'won': number;
+}
+export interface PremierTeamV2Season {
+    'crest': string;
+    'enrolled': boolean;
+    'has_earned_prestige': boolean;
+    'has_earned_promotion_for_next_season': boolean;
+    'id': string;
+    'name'?: string | null;
+    'placement': PremierTeamV2Placement;
+    'promotion_applied': boolean;
+    'stats': PremierTeamV2Stats;
+}
+export interface PremierTeamV2Stats {
+    'losses': number;
+    'matches': number;
+    'rounds': PremierTeamV2Rounds;
+    'wins': number;
+}
+export interface PremiumPlanResponse {
+    '_id'?: BsonObjectIdResponse | null;
+    'active': boolean;
+    'background_requests_cost': number | null;
+    'cache_ttl_seconds': number;
+    'features': Array<string>;
+    'id': string;
+    'name': string;
+    'rate_limits': Array<PremiumRateLimitResponse>;
+    'webhook_poll_interval_seconds': number;
+    'webhook_user_limit': number;
+}
+export interface PremiumRateLimitResponse {
+    'interval_minutes': number;
+    'requests': number;
+}
 export interface PremiumWebhookDeleteData {
     'deleted': boolean;
 }
 export interface PremiumWebhookDeleteResponse {
     'data': PremiumWebhookDeleteData;
+}
+export interface PremiumWebhookEnrichedUserResponse {
+    '_id': BsonObjectIdResponse | null;
+    'created_at': BsonDateTimeResponse;
+    'display_name': string | null;
+    'display_tag': string | null;
+    'enabled': boolean;
+    'events': Array<PremiumWebhookEvent>;
+    'last_checked_at': BsonDateTimeResponse | null;
+    'last_match': string | null;
+    'last_mmr': number | null;
+    'puuid': string;
+    'region': string;
+    'updated_at': BsonDateTimeResponse;
+    'userid': string;
 }
 
 export const PremiumWebhookEvent = {
@@ -1523,6 +1834,55 @@ export const PremiumWebhookEvent = {
 export type PremiumWebhookEvent = typeof PremiumWebhookEvent[keyof typeof PremiumWebhookEvent];
 
 
+export interface PremiumWebhookGetData {
+    'plan': PremiumPlanResponse | null;
+    'settings': PremiumWebhookSettingsResponse | null;
+    'users': Array<PremiumWebhookEnrichedUserResponse>;
+}
+export interface PremiumWebhookGetResponse {
+    'data': PremiumWebhookGetData;
+}
+
+export const PremiumWebhookMatchVersion = {
+    V2: 'v2',
+    V4: 'v4',
+} as const;
+
+export type PremiumWebhookMatchVersion = typeof PremiumWebhookMatchVersion[keyof typeof PremiumWebhookMatchVersion];
+
+
+
+export const PremiumWebhookMmrHistoryVersion = {
+    V1: 'v1',
+    V2: 'v2',
+} as const;
+
+export type PremiumWebhookMmrHistoryVersion = typeof PremiumWebhookMmrHistoryVersion[keyof typeof PremiumWebhookMmrHistoryVersion];
+
+
+export interface PremiumWebhookSettingsResponse {
+    '_id'?: BsonObjectIdResponse | null;
+    'created_at': BsonDateTimeResponse;
+    'enabled': boolean;
+    'events': Array<PremiumWebhookEvent>;
+    'match_response_schema': PremiumWebhookMatchVersion;
+    'mmr_history_response_schema': PremiumWebhookMmrHistoryVersion;
+    'secret': string;
+    'updated_at': BsonDateTimeResponse;
+    'url': string;
+    'userid': string;
+}
+
+
+export interface PremiumWebhookUpdateData {
+    'success': boolean;
+}
+export interface PremiumWebhookUpdateResponse {
+    'data': PremiumWebhookUpdateData;
+}
+/**
+ * Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
+ */
 export interface PremiumWebhookUserAddRequest {
     'enabled'?: boolean;
     'events'?: Array<PremiumWebhookEvent>;
@@ -1537,18 +1897,24 @@ export interface PremiumWebhookUserMutationData {
 export interface PremiumWebhookUserMutationResponse {
     'data': PremiumWebhookUserMutationData;
 }
+/**
+ * Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
+ */
 export interface PremiumWebhookUserResponse {
     'created_at': number;
     'enabled': boolean;
     'events': Array<PremiumWebhookEvent>;
     'id': string;
-    'last_checked_at'?: number | null;
-    'last_match'?: string | null;
-    'last_mmr'?: number | null;
+    'last_checked_at': number | null;
+    'last_match': string | null;
+    'last_mmr': number | null;
     'puuid': string;
     'region': string;
     'updated_at': number;
 }
+/**
+ * Replaces the tracked user\'s event filters. At least one event is required; omitted or empty events return HTTP 400. Event names are case-insensitive.
+ */
 export interface PremiumWebhookUserUpdateRequest {
     'events'?: Array<PremiumWebhookEvent>;
 }
@@ -1615,17 +1981,37 @@ export interface RawV1ErrorData {
     'error': boolean;
     'id': string;
 }
+/**
+ * Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
+ */
 export interface RawV1Payload {
-    'platform'?: string | null;
+    'platform'?: ValorantPlatform | null;
     'queries'?: string | null;
-    'region': string;
-    'type': string;
+    'region': ValorantAffinity;
+    'type': RawV1ResourceType;
     'value': RawV1PayloadValues;
 }
+
+
 /**
  * @type RawV1PayloadValues
+ * A UUID string or a nonempty UUID array. Matchdetails fetches every array entry; all other resource types use only the first entry.
  */
 export type RawV1PayloadValues = Array<string> | string;
+
+/**
+ * Raw Riot resource. Values are case-sensitive.
+ */
+
+export const RawV1ResourceType = {
+    Matchdetails: 'matchdetails',
+    Matchhistory: 'matchhistory',
+    Mmr: 'mmr',
+    Competitiveupdates: 'competitiveupdates',
+} as const;
+
+export type RawV1ResourceType = typeof RawV1ResourceType[keyof typeof RawV1ResourceType];
+
 
 export interface RawV1Response {
     'data': RawV1ResponseData | null;
@@ -1678,31 +2064,32 @@ export interface StatusV1Data {
 export interface StoreFeaturedV1 {
     'FeaturedBundle': FeaturedBundle;
 }
-export interface StoreOffersV1 {
-    'Offers': Array<StoreOffersV1Offer>;
-    'UpgradeCurrencyOffers': Array<StoreOffersV1UpgradeCurrency>;
-}
-export interface StoreOffersV1Offer {
-    'Cost': { [key: string]: number; };
-    'IsDirectPurchase': boolean;
-    'OfferID': string;
-    'Rewards': Array<StoreOffersV1Reward>;
-    'StartDate': string;
-}
-export interface StoreOffersV1Response {
-    'data': StoreOffersV1;
+export interface StoreFeaturedV1Response {
+    'data': StoreFeaturedV1;
     'status': number;
 }
-export interface StoreOffersV1Reward {
-    'ItemID': string;
-    'ItemTypeID': string;
-    'Quantity': number;
+export interface StoreFeaturedV2 {
+    'bundle_price': number;
+    'bundle_uuid': string;
+    'expires_at': string;
+    'items': Array<StoreFeaturedV2Item>;
+    'seconds_remaining': number;
+    'whole_sale_only': boolean;
 }
-export interface StoreOffersV1UpgradeCurrency {
-    'DiscountedPercent': number;
-    'Offer': StoreOffersV1Offer;
-    'OfferID': string;
-    'StorefrontItemID': string;
+export interface StoreFeaturedV2Item {
+    'amount': number;
+    'base_price': number;
+    'discount_percent': number;
+    'discounted_price': number;
+    'image': string | null;
+    'name': string;
+    'promo_item': boolean;
+    'type': string;
+    'uuid': string;
+}
+export interface StoreFeaturedV2Response {
+    'data': Array<StoreFeaturedV2>;
+    'status': number;
 }
 export interface StoredMMR {
     'date': string;
@@ -1731,17 +2118,34 @@ export interface StoredMMRTier {
     'id': number;
     'name': string;
 }
+/**
+ * Stored competitive update. Optional enrichment fields are null for older records; tier IDs and ELO preserve the original ranking schema.
+ */
 export interface StoredMMRV2 {
+    'afk_penalty'?: number | null;
+    'competitive_movement'?: string | null;
     'date': string;
     'elo': number;
+    'is_placement_match'?: boolean | null;
     'last_change': number;
     'map': MapIdNameCombo;
     'match_id': string;
+    /**
+     * Match duration in milliseconds; null when unavailable.
+     */
+    'match_length'?: number | null;
+    'new_map_incentive_rr_forgiven'?: number | null;
+    'queue_id'?: string | null;
     'refunded_rr': number;
     'rr': number;
+    'rr_before_update'?: number | null;
+    'rr_penalty'?: number | null;
+    'rr_performance_bonus'?: number | null;
     'season': SeasonIdShortCombo;
     'tier': TierIdNameCombo;
+    'tier_before_update'?: TierIdNameCombo | null;
     'was_derank_protected': boolean;
+    'was_derank_protection_replenished'?: boolean | null;
 }
 export interface StoredMMRV2Response {
     'data': Array<StoredMMRV2>;
@@ -1812,6 +2216,127 @@ export interface TierIdNameCombo {
     'id': number;
     'name': string;
 }
+/**
+ * Valorant affinity. Inputs are case-insensitive.
+ */
+
+export const ValorantAffinity = {
+    Na: 'na',
+    Eu: 'eu',
+    Ap: 'ap',
+    Kr: 'kr',
+    Br: 'br',
+    Latam: 'latam',
+} as const;
+
+export type ValorantAffinity = typeof ValorantAffinity[keyof typeof ValorantAffinity];
+
+
+/**
+ * Content locale. Inputs are case-insensitive; omitted locale defaults to en-US.
+ */
+
+export const ValorantContentLocale = {
+    ArAe: 'ar-AE',
+    DeDe: 'de-DE',
+    EnGb: 'en-GB',
+    EnUs: 'en-US',
+    EsEs: 'es-ES',
+    EsMx: 'es-MX',
+    FrFr: 'fr-FR',
+    IdId: 'id-ID',
+    ItIt: 'it-IT',
+    JaJp: 'ja-JP',
+    KoKr: 'ko-KR',
+    PlPl: 'pl-PL',
+    PtBr: 'pt-BR',
+    RuRu: 'ru-RU',
+    ThTh: 'th-TH',
+    TrTr: 'tr-TR',
+    ViVn: 'vi-VN',
+    ZhCn: 'zh-CN',
+    ZhTw: 'zh-TW',
+} as const;
+
+export type ValorantContentLocale = typeof ValorantContentLocale[keyof typeof ValorantContentLocale];
+
+
+/**
+ * @type ValorantLeaderboardV2Response
+ * Unfiltered v2 leaderboards return metadata and players without a status/data envelope. Player-filtered requests return the v1 status/data player-array envelope.
+ */
+export type ValorantLeaderboardV2Response = LeaderboardV1Response | LeaderboardV2Response;
+
+/**
+ * Public Valorant platform. Inputs are case-insensitive; individual console brands are not accepted.
+ */
+
+export const ValorantPlatform = {
+    Pc: 'pc',
+    Console: 'console',
+} as const;
+
+export type ValorantPlatform = typeof ValorantPlatform[keyof typeof ValorantPlatform];
+
+
+/**
+ * @type ValorantStoreFeaturedResponse
+ * The v1 path returns the raw featured bundle envelope; the v2 path returns the parsed bundle list envelope.
+ */
+export type ValorantStoreFeaturedResponse = StoreFeaturedV1Response | StoreFeaturedV2Response;
+
+/**
+ * Store response version. Values are case-sensitive.
+ */
+
+export const ValorantStoreVersion = {
+    V1: 'v1',
+    V2: 'v2',
+} as const;
+
+export type ValorantStoreVersion = typeof ValorantStoreVersion[keyof typeof ValorantStoreVersion];
+
+
+/**
+ * Website category filter. Values are case-sensitive.
+ */
+
+export const ValorantWebsiteCategory = {
+    GameUpdates: 'game_updates',
+    Dev: 'dev',
+    Esports: 'esports',
+    Announcements: 'announcements',
+    PatchNotes: 'patch_notes',
+    Community: 'community',
+} as const;
+
+export type ValorantWebsiteCategory = typeof ValorantWebsiteCategory[keyof typeof ValorantWebsiteCategory];
+
+
+/**
+ * Website locale. Inputs are case-insensitive.
+ */
+
+export const ValorantWebsiteLocale = {
+    EnUs: 'en-us',
+    EnGb: 'en-gb',
+    DeDe: 'de-de',
+    EsEs: 'es-es',
+    FrFr: 'fr-fr',
+    ItIt: 'it-it',
+    RuRu: 'ru-ru',
+    TrTr: 'tr-tr',
+    EsMx: 'es-mx',
+    JaJp: 'ja-jp',
+    KoKr: 'ko-kr',
+    PtBr: 'pt-br',
+    PlPl: 'pl-pl',
+    ViVn: 'vi-vn',
+} as const;
+
+export type ValorantWebsiteLocale = typeof ValorantWebsiteLocale[keyof typeof ValorantWebsiteLocale];
+
+
 export interface VersionV1Data {
     'branch': string;
     'build_date': string;
@@ -1903,7 +2428,7 @@ export const PremiumApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Delete premium webhook user
-         * @param {string} id Tracked user id
+         * @param {string} id Tracked user MongoDB ObjectId: 24 hexadecimal characters
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1979,7 +2504,7 @@ export const PremiumApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Update premium webhook user
-         * @param {string} id Tracked user id
+         * @param {string} id Tracked user MongoDB ObjectId: 24 hexadecimal characters
          * @param {PremiumWebhookUserUpdateRequest} premiumWebhookUserUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2046,7 +2571,7 @@ export const PremiumApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Delete premium webhook user
-         * @param {string} id Tracked user id
+         * @param {string} id Tracked user MongoDB ObjectId: 24 hexadecimal characters
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -2062,7 +2587,7 @@ export const PremiumApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWebhookSettings(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getWebhookSettings(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremiumWebhookGetResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhookSettings(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PremiumApi.getWebhookSettings']?.[localVarOperationServerIndex]?.url;
@@ -2071,12 +2596,12 @@ export const PremiumApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Update premium webhook user
-         * @param {string} id Tracked user id
+         * @param {string} id Tracked user MongoDB ObjectId: 24 hexadecimal characters
          * @param {PremiumWebhookUserUpdateRequest} premiumWebhookUserUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWebhookUser(id: string, premiumWebhookUserUpdateRequest: PremiumWebhookUserUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async updateWebhookUser(id: string, premiumWebhookUserUpdateRequest: PremiumWebhookUserUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremiumWebhookUpdateResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookUser(id, premiumWebhookUserUpdateRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PremiumApi.updateWebhookUser']?.[localVarOperationServerIndex]?.url;
@@ -2117,7 +2642,7 @@ export const PremiumApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookSettings(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        getWebhookSettings(options?: RawAxiosRequestConfig): AxiosPromise<PremiumWebhookGetResponse> {
             return localVarFp.getWebhookSettings(options).then((request) => request(axios, basePath));
         },
         /**
@@ -2127,7 +2652,7 @@ export const PremiumApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhookUser(requestParameters: PremiumApiUpdateWebhookUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        updateWebhookUser(requestParameters: PremiumApiUpdateWebhookUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremiumWebhookUpdateResponse> {
             return localVarFp.updateWebhookUser(requestParameters.id, requestParameters.premiumWebhookUserUpdateRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -2145,7 +2670,7 @@ export interface PremiumApiAddWebhookUserRequest {
  */
 export interface PremiumApiDeleteWebhookUserRequest {
     /**
-     * Tracked user id
+     * Tracked user MongoDB ObjectId: 24 hexadecimal characters
      */
     readonly id: string
 }
@@ -2155,7 +2680,7 @@ export interface PremiumApiDeleteWebhookUserRequest {
  */
 export interface PremiumApiUpdateWebhookUserRequest {
     /**
-     * Tracked user id
+     * Tracked user MongoDB ObjectId: 24 hexadecimal characters
      */
     readonly id: string
 
@@ -2220,11 +2745,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Generate crosshair image (v1)
-         * @param {string} [id] Crosshair code
+         * @param {string} id Required crosshair code
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crosshair: async (id?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        crosshair: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('crosshair', 'id', id)
             const localVarPath = `/valorant/v1/crosshair/generate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2653,13 +3180,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get player accolades by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAccoladesById: async (affinity: string, platform: string, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAccoladesById: async (affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getAccoladesById', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -2701,14 +3228,14 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get player accolades by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAccoladesByName: async (affinity: string, platform: string, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAccoladesByName: async (affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getAccoladesByName', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -2941,11 +3468,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get content (v1)
-         * @param {string} [locale] Locale code (e.g., en-US, de-DE) - optional
+         * @param {ValorantContentLocale} [locale] Content locale; case-insensitive. Omission selects en-US.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getContentV1: async (locale?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getContentV1: async (locale?: ValorantContentLocale, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/valorant/v1/content`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2980,17 +3507,226 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
-         * @summary Get matches by PUUID (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get agent mastery by PUUID (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} agentId Agent UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMatchesV3ById: async (affinity: string, puuid: string, mode?: string, map?: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMasteryAgentById: async (affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, agentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('getMasteryAgentById', 'affinity', affinity)
+            // verify required parameter 'platform' is not null or undefined
+            assertParamExists('getMasteryAgentById', 'platform', platform)
+            // verify required parameter 'puuid' is not null or undefined
+            assertParamExists('getMasteryAgentById', 'puuid', puuid)
+            // verify required parameter 'agentId' is not null or undefined
+            assertParamExists('getMasteryAgentById', 'agentId', agentId)
+            const localVarPath = `/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)))
+                .replace('{agent_id}', encodeURIComponent(String(agentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get agent mastery by name (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {string} name Riot ID name
+         * @param {string} tag Riot ID tag
+         * @param {string} agentId Agent UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMasteryAgentByName: async (affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, agentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('getMasteryAgentByName', 'affinity', affinity)
+            // verify required parameter 'platform' is not null or undefined
+            assertParamExists('getMasteryAgentByName', 'platform', platform)
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('getMasteryAgentByName', 'name', name)
+            // verify required parameter 'tag' is not null or undefined
+            assertParamExists('getMasteryAgentByName', 'tag', tag)
+            // verify required parameter 'agentId' is not null or undefined
+            assertParamExists('getMasteryAgentByName', 'agentId', agentId)
+            const localVarPath = `/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)))
+                .replace('{agent_id}', encodeURIComponent(String(agentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get all agent mastery by PUUID (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {string} puuid Player UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMasteryById: async (affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('getMasteryById', 'affinity', affinity)
+            // verify required parameter 'platform' is not null or undefined
+            assertParamExists('getMasteryById', 'platform', platform)
+            // verify required parameter 'puuid' is not null or undefined
+            assertParamExists('getMasteryById', 'puuid', puuid)
+            const localVarPath = `/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get all agent mastery by name (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {string} name Riot ID name
+         * @param {string} tag Riot ID tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMasteryByName: async (affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('getMasteryByName', 'affinity', affinity)
+            // verify required parameter 'platform' is not null or undefined
+            assertParamExists('getMasteryByName', 'platform', platform)
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('getMasteryByName', 'name', name)
+            // verify required parameter 'tag' is not null or undefined
+            assertParamExists('getMasteryByName', 'tag', tag)
+            const localVarPath = `/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{platform}', encodeURIComponent(String(platform)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get matches by PUUID (v3)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} puuid Player UUID
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMatchesV3ById: async (affinity: ValorantAffinity, puuid: string, mode?: string, queue?: string, map?: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMatchesV3ById', 'affinity', affinity)
             // verify required parameter 'puuid' is not null or undefined
@@ -3019,6 +3755,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['mode'] = mode;
             }
 
+            if (queue !== undefined) {
+                localVarQueryParameter['queue'] = queue;
+            }
+
             if (map !== undefined) {
                 localVarQueryParameter['map'] = map;
             }
@@ -3041,16 +3781,17 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get matches by name (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {MatchMode} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMatchesV3ByName: async (affinity: string, name: string, tag: string, mode?: MatchMode, map?: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMatchesV3ByName: async (affinity: ValorantAffinity, name: string, tag: string, mode?: string, queue?: string, map?: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMatchesV3ByName', 'affinity', affinity)
             // verify required parameter 'name' is not null or undefined
@@ -3082,6 +3823,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['mode'] = mode;
             }
 
+            if (queue !== undefined) {
+                localVarQueryParameter['queue'] = queue;
+            }
+
             if (map !== undefined) {
                 localVarQueryParameter['map'] = map;
             }
@@ -3104,17 +3849,18 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get matches by PUUID (v4)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
-         * @param {number} [start] Start index for pagination (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
+         * @param {number} [start] Zero-based offset; start plus capped size must fit a signed 32-bit integer.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMatchesV4ById: async (affinity: string, platform: string, puuid: string, mode?: string, map?: string, size?: number, start?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMatchesV4ById: async (affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, mode?: string, queue?: string, map?: string, size?: number, start?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMatchesV4ById', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -3146,6 +3892,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['mode'] = mode;
             }
 
+            if (queue !== undefined) {
+                localVarQueryParameter['queue'] = queue;
+            }
+
             if (map !== undefined) {
                 localVarQueryParameter['map'] = map;
             }
@@ -3172,18 +3922,19 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get matches by name (v4)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
-         * @param {number} [start] Start index for pagination (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
+         * @param {number} [start] Zero-based offset; start plus capped size must fit a signed 32-bit integer.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMatchesV4ByName: async (affinity: string, platform: string, name: string, tag: string, mode?: string, map?: string, size?: number, start?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMatchesV4ByName: async (affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, mode?: string, queue?: string, map?: string, size?: number, start?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMatchesV4ByName', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -3218,6 +3969,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['mode'] = mode;
             }
 
+            if (queue !== undefined) {
+                localVarQueryParameter['queue'] = queue;
+            }
+
             if (map !== undefined) {
                 localVarQueryParameter['map'] = map;
             }
@@ -3244,12 +3999,12 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR history by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrHistoryById: async (affinity: string, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrHistoryById: async (affinity: ValorantAffinity, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrHistoryById', 'affinity', affinity)
             // verify required parameter 'puuid' is not null or undefined
@@ -3288,13 +4043,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR history by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrHistoryByName: async (affinity: string, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrHistoryByName: async (affinity: ValorantAffinity, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrHistoryByName', 'affinity', affinity)
             // verify required parameter 'name' is not null or undefined
@@ -3336,13 +4091,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR history by PUUID (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrHistoryV2ById: async (affinity: string, platform: string, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrHistoryV2ById: async (affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrHistoryV2ById', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -3384,14 +4139,14 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR history by name (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrHistoryV2ByName: async (affinity: string, platform: string, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrHistoryV2ByName: async (affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrHistoryV2ByName', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -3436,12 +4191,12 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrV1ById: async (affinity: string, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrV1ById: async (affinity: ValorantAffinity, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrV1ById', 'affinity', affinity)
             // verify required parameter 'puuid' is not null or undefined
@@ -3480,13 +4235,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrV1ByName: async (affinity: string, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrV1ByName: async (affinity: ValorantAffinity, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrV1ByName', 'affinity', affinity)
             // verify required parameter 'name' is not null or undefined
@@ -3528,12 +4283,12 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR by PUUID (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrV2ById: async (affinity: string, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrV2ById: async (affinity: ValorantAffinity, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrV2ById', 'affinity', affinity)
             // verify required parameter 'puuid' is not null or undefined
@@ -3572,13 +4327,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR by name (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrV2ByName: async (affinity: string, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrV2ByName: async (affinity: ValorantAffinity, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrV2ByName', 'affinity', affinity)
             // verify required parameter 'name' is not null or undefined
@@ -3620,13 +4375,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR by PUUID (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrV3ById: async (affinity: string, platform: string, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrV3ById: async (affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrV3ById', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -3668,14 +4423,14 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get MMR by name (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMmrV3ByName: async (affinity: string, platform: string, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMmrV3ByName: async (affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('getMmrV3ByName', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -3720,14 +4475,15 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get leaderboard (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} [season] Season ID (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} [season] Short season ID, such as e9a1; omission selects the current season
          * @param {string} [name] Player name to search for (optional)
          * @param {string} [tag] Player tag to search for (optional)
+         * @param {string} [puuid] Player UUID to search for
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        leaderboardV1: async (affinity: string, season?: string, name?: string, tag?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        leaderboardV1: async (affinity: ValorantAffinity, season?: string, name?: string, tag?: string, puuid?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('leaderboardV1', 'affinity', affinity)
             const localVarPath = `/valorant/v1/leaderboard/{affinity}`
@@ -3761,6 +4517,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['tag'] = tag;
             }
 
+            if (puuid !== undefined) {
+                localVarQueryParameter['puuid'] = puuid;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3775,15 +4535,15 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get leaderboard (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} [season] Season ID (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} [season] Short season ID, such as e9a1; omission selects the current season
          * @param {string} [name] Player name to search for (optional)
          * @param {string} [tag] Player tag to search for (optional)
          * @param {string} [puuid] Player UUID to search for (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        leaderboardV2: async (affinity: string, season?: string, name?: string, tag?: string, puuid?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        leaderboardV2: async (affinity: ValorantAffinity, season?: string, name?: string, tag?: string, puuid?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('leaderboardV2', 'affinity', affinity)
             const localVarPath = `/valorant/v2/leaderboard/{affinity}`
@@ -3835,17 +4595,19 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get leaderboard (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
-         * @param {string} [season] Season ID (optional)
-         * @param {number} [size] Number of results per page (optional)
-         * @param {number} [page] Page number (optional)
-         * @param {string} [name] Player name to search for (optional)
-         * @param {string} [tag] Player tag to search for (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {number} [page] Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
+         * @param {number} [size] Positive integer result count; only ASCII decimal digits are accepted.
+         * @param {string} [seasonShort] Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+         * @param {string} [seasonId] Season UUID; mutually exclusive with season_short.
+         * @param {string} [name] Player name to search for.
+         * @param {string} [tag] Player tag to search for.
+         * @param {string} [puuid] Player UUID to search for.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        leaderboardV3: async (affinity: string, platform: string, season?: string, size?: number, page?: number, name?: string, tag?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        leaderboardV3: async (affinity: ValorantAffinity, platform: ValorantPlatform, page?: number, size?: number, seasonShort?: string, seasonId?: string, name?: string, tag?: string, puuid?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('leaderboardV3', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -3870,16 +4632,20 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // authentication api_key_header required
             await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
 
-            if (season !== undefined) {
-                localVarQueryParameter['season'] = season;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
             if (size !== undefined) {
                 localVarQueryParameter['size'] = size;
             }
 
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
+            if (seasonShort !== undefined) {
+                localVarQueryParameter['season_short'] = seasonShort;
+            }
+
+            if (seasonId !== undefined) {
+                localVarQueryParameter['season_id'] = seasonId;
             }
 
             if (name !== undefined) {
@@ -3888,6 +4654,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
 
             if (tag !== undefined) {
                 localVarQueryParameter['tag'] = tag;
+            }
+
+            if (puuid !== undefined) {
+                localVarQueryParameter['puuid'] = puuid;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -3944,12 +4714,12 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get match details (v4)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} matchId Match UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        matchV4: async (affinity: string, matchId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        matchV4: async (affinity: ValorantAffinity, matchId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('matchV4', 'affinity', affinity)
             // verify required parameter 'matchId' is not null or undefined
@@ -3990,11 +4760,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Get Premier team by ID (v1)
          * @param {string} id Team UUID
          * @param {string} [season] Premier season id (optional)
-         * @param {string} [affinity] Region/affinity for fallback resolution (optional)
+         * @param {ValorantAffinity} [affinity] Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierById: async (id: string, season?: string, affinity?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierById: async (id: string, season?: string, affinity?: ValorantAffinity, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('premierById', 'id', id)
             const localVarPath = `/valorant/v1/premier/{id}`
@@ -4081,16 +4851,60 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+         * @summary Get live Premier team by ID (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} id Team UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByIdV2: async (affinity: ValorantAffinity, id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('premierByIdV2', 'affinity', affinity)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('premierByIdV2', 'id', id)
+            const localVarPath = `/valorant/v2/premier/teams/{affinity}/{id}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{id}', encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary Get Premier team by name (v1)
          * @param {string} name Team name
          * @param {string} tag Team tag
          * @param {string} [season] Premier season id (optional)
-         * @param {string} [affinity] Region/affinity for fallback resolution (optional)
+         * @param {ValorantAffinity} [affinity] Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierByName: async (name: string, tag: string, season?: string, affinity?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierByName: async (name: string, tag: string, season?: string, affinity?: ValorantAffinity, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('premierByName', 'name', name)
             // verify required parameter 'tag' is not null or undefined
@@ -4184,16 +4998,154 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+         * @summary Get live Premier team by team name (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} name Premier team name
+         * @param {string} tag Premier team tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByNameV2: async (affinity: ValorantAffinity, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('premierByNameV2', 'affinity', affinity)
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('premierByNameV2', 'name', name)
+            // verify required parameter 'tag' is not null or undefined
+            assertParamExists('premierByNameV2', 'tag', tag)
+            const localVarPath = `/valorant/v2/premier/teams/{affinity}/{name}/{tag}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Resolves the player\'s Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+         * @summary Get live Premier team by player Riot ID (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} name Player Riot ID name
+         * @param {string} tag Player Riot ID tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByPlayerName: async (affinity: ValorantAffinity, name: string, tag: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('premierByPlayerName', 'affinity', affinity)
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('premierByPlayerName', 'name', name)
+            // verify required parameter 'tag' is not null or undefined
+            assertParamExists('premierByPlayerName', 'tag', tag)
+            const localVarPath = `/valorant/v2/premier/players/{affinity}/{name}/{tag}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{name}', encodeURIComponent(String(name)))
+                .replace('{tag}', encodeURIComponent(String(tag)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetches the player\'s current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+         * @summary Get live Premier team by player PUUID (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} puuid Player UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByPuuid: async (affinity: ValorantAffinity, puuid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'affinity' is not null or undefined
+            assertParamExists('premierByPuuid', 'affinity', affinity)
+            // verify required parameter 'puuid' is not null or undefined
+            assertParamExists('premierByPuuid', 'puuid', puuid)
+            const localVarPath = `/valorant/v2/premier/players/{affinity}/{puuid}`
+                .replace('{affinity}', encodeURIComponent(String(affinity)))
+                .replace('{puuid}', encodeURIComponent(String(puuid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "api_key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
          * @summary Get Premier leaderboard (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} [conference] Conference filter (optional)
-         * @param {string} [division] Division filter (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
          * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierLeaderboard: async (affinity: string, conference?: string, division?: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierLeaderboard: async (affinity: ValorantAffinity, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('premierLeaderboard', 'affinity', affinity)
             const localVarPath = `/valorant/v1/premier/leaderboard/{affinity}`
@@ -4215,14 +5167,6 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             // authentication api_key_header required
             await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
 
-            if (conference !== undefined) {
-                localVarQueryParameter['conference'] = conference;
-            }
-
-            if (division !== undefined) {
-                localVarQueryParameter['division'] = division;
-            }
-
             if (season !== undefined) {
                 localVarQueryParameter['season'] = season;
             }
@@ -4243,12 +5187,14 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Search Premier teams (v1)
          * @param {string} [name] Team name to search for (optional)
          * @param {string} [tag] Team tag to search for (optional)
-         * @param {string} [id] Team UUID to search for (optional)
+         * @param {string} [id] Team UUID to search for; cannot be combined with name or tag
          * @param {string} [season] Premier season id (optional)
+         * @param {string} [conference] Current upstream Premier conference key; case-insensitive; not a fixed enum
+         * @param {number} [division] Division filter; integer from 1 through 21
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierSearch: async (name?: string, tag?: string, id?: string, season?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        premierSearch: async (name?: string, tag?: string, id?: string, season?: string, conference?: string, division?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/valorant/v1/premier/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4283,6 +5229,14 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['season'] = season;
             }
 
+            if (conference !== undefined) {
+                localVarQueryParameter['conference'] = conference;
+            }
+
+            if (division !== undefined) {
+                localVarQueryParameter['division'] = division;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4297,11 +5251,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get queue status (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        queueStatus: async (affinity: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        queueStatus: async (affinity: ValorantAffinity, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('queueStatus', 'affinity', affinity)
             const localVarPath = `/valorant/v1/queue-status/{affinity}`
@@ -4335,7 +5289,7 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
          * @summary Get raw Riot API data (v1)
          * @param {RawV1Payload} rawV1Payload 
          * @param {*} [options] Override http request option.
@@ -4378,11 +5332,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get status (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        status: async (affinity: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        status: async (affinity: ValorantAffinity, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('status', 'affinity', affinity)
             const localVarPath = `/valorant/v1/status/{affinity}`
@@ -4418,11 +5372,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get featured store items
-         * @param {string} version API version (v1, v2)
+         * @param {ValorantStoreVersion} version Response version; v1 returns an object envelope and v2 returns an array envelope
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storeFeatured: async (version: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storeFeatured: async (version: ValorantStoreVersion, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'version' is not null or undefined
             assertParamExists('storeFeatured', 'version', version)
             const localVarPath = `/valorant/{version}/store-featured`
@@ -4456,13 +5410,13 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
          * @summary Get store offers
-         * @param {string} version API version (v1, v2)
+         * @param {ValorantStoreVersion} version Legacy API version
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storeOffers: async (version: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storeOffers: async (version: ValorantStoreVersion, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'version' is not null or undefined
             assertParamExists('storeOffers', 'version', version)
             const localVarPath = `/valorant/{version}/store-offers`
@@ -4498,16 +5452,18 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get stored matches by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storedMatches: async (affinity: string, name: string, tag: string, mode?: string, map?: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storedMatches: async (affinity: ValorantAffinity, name: string, tag: string, mode?: string, queue?: string, map?: string, size?: number, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('storedMatches', 'affinity', affinity)
             // verify required parameter 'name' is not null or undefined
@@ -4539,12 +5495,20 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['mode'] = mode;
             }
 
+            if (queue !== undefined) {
+                localVarQueryParameter['queue'] = queue;
+            }
+
             if (map !== undefined) {
                 localVarQueryParameter['map'] = map;
             }
 
             if (size !== undefined) {
                 localVarQueryParameter['size'] = size;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -4561,15 +5525,17 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get stored matches by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storedMatchesById: async (affinity: string, puuid: string, mode?: string, map?: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storedMatchesById: async (affinity: ValorantAffinity, puuid: string, mode?: string, queue?: string, map?: string, size?: number, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('storedMatchesById', 'affinity', affinity)
             // verify required parameter 'puuid' is not null or undefined
@@ -4598,12 +5564,20 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['mode'] = mode;
             }
 
+            if (queue !== undefined) {
+                localVarQueryParameter['queue'] = queue;
+            }
+
             if (map !== undefined) {
                 localVarQueryParameter['map'] = map;
             }
 
             if (size !== undefined) {
                 localVarQueryParameter['size'] = size;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -4620,14 +5594,15 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get stored MMR history by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storedMmrHistory: async (affinity: string, name: string, tag: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storedMmrHistory: async (affinity: ValorantAffinity, name: string, tag: string, size?: number, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('storedMmrHistory', 'affinity', affinity)
             // verify required parameter 'name' is not null or undefined
@@ -4659,6 +5634,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['size'] = size;
             }
 
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4673,13 +5652,14 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get stored MMR history by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storedMmrHistoryById: async (affinity: string, puuid: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storedMmrHistoryById: async (affinity: ValorantAffinity, puuid: string, size?: number, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('storedMmrHistoryById', 'affinity', affinity)
             // verify required parameter 'puuid' is not null or undefined
@@ -4708,6 +5688,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['size'] = size;
             }
 
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4722,15 +5706,16 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get stored MMR history by name (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storedMmrHistoryV2: async (affinity: string, platform: string, name: string, tag: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storedMmrHistoryV2: async (affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, size?: number, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('storedMmrHistoryV2', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -4765,6 +5750,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['size'] = size;
             }
 
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4779,14 +5768,15 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get stored MMR history by PUUID (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storedMmrHistoryV2ById: async (affinity: string, platform: string, puuid: string, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        storedMmrHistoryV2ById: async (affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, size?: number, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('storedMmrHistoryV2ById', 'affinity', affinity)
             // verify required parameter 'platform' is not null or undefined
@@ -4818,6 +5808,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['size'] = size;
             }
 
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4832,11 +5826,11 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get game version (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        version: async (affinity: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        version: async (affinity: ValorantAffinity, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'affinity' is not null or undefined
             assertParamExists('version', 'affinity', affinity)
             const localVarPath = `/valorant/v1/version/{affinity}`
@@ -4872,12 +5866,12 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Get website content (v1)
-         * @param {string} countryCode Country code (e.g., en-us, de-de)
-         * @param {string} [category] Category filter (optional)
+         * @param {ValorantWebsiteLocale} countryCode Website locale; case-insensitive
+         * @param {ValorantWebsiteCategory} [category] Category filter; case-sensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        website: async (countryCode: string, category?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        website: async (countryCode: ValorantWebsiteLocale, category?: ValorantWebsiteCategory, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'countryCode' is not null or undefined
             assertParamExists('website', 'countryCode', countryCode)
             const localVarPath = `/valorant/v1/website/{country_code}`
@@ -4915,10 +5909,10 @@ export const ValorantApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
          * @summary Get website entry by ID (v1)
          * @param {string} dbId Database ID of the website entry
-         * @param {string} countryCode Country code (e.g., en-us, de-de)
+         * @param {string} countryCode Ignored locale segment; any string is accepted
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4970,11 +5964,11 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Generate crosshair image (v1)
-         * @param {string} [id] Crosshair code
+         * @param {string} id Required crosshair code
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async crosshair(id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async crosshair(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.crosshair(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.crosshair']?.[localVarOperationServerIndex]?.url;
@@ -5106,13 +6100,13 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get player accolades by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAccoladesById(affinity: string, platform: string, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccoladesV1Response>> {
+        async getAccoladesById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccoladesV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAccoladesById(affinity, platform, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getAccoladesById']?.[localVarOperationServerIndex]?.url;
@@ -5121,14 +6115,14 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get player accolades by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAccoladesByName(affinity: string, platform: string, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccoladesV1Response>> {
+        async getAccoladesByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccoladesV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAccoladesByName(affinity, platform, name, tag, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getAccoladesByName']?.[localVarOperationServerIndex]?.url;
@@ -5195,29 +6189,94 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get content (v1)
-         * @param {string} [locale] Locale code (e.g., en-US, de-DE) - optional
+         * @param {ValorantContentLocale} [locale] Content locale; case-insensitive. Omission selects en-US.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getContentV1(locale?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentV1Response>> {
+        async getContentV1(locale?: ValorantContentLocale, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getContentV1(locale, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getContentV1']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @summary Get matches by PUUID (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get agent mastery by PUUID (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} agentId Agent UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMatchesV3ById(affinity: string, puuid: string, mode?: string, map?: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV3ListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV3ById(affinity, puuid, mode, map, size, options);
+        async getMasteryAgentById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, agentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AgentMasteryV1DetailResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMasteryAgentById(affinity, platform, puuid, agentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMasteryAgentById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get agent mastery by name (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {string} name Riot ID name
+         * @param {string} tag Riot ID tag
+         * @param {string} agentId Agent UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMasteryAgentByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, agentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AgentMasteryV1DetailResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMasteryAgentByName(affinity, platform, name, tag, agentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMasteryAgentByName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get all agent mastery by PUUID (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {string} puuid Player UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMasteryById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AgentMasteryV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMasteryById(affinity, platform, puuid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMasteryById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get all agent mastery by name (v1)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {string} name Riot ID name
+         * @param {string} tag Riot ID tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMasteryByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AgentMasteryV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMasteryByName(affinity, platform, name, tag, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMasteryByName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get matches by PUUID (v3)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} puuid Player UUID
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMatchesV3ById(affinity: ValorantAffinity, puuid: string, mode?: string, queue?: string, map?: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV3ListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV3ById(affinity, puuid, mode, queue, map, size, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMatchesV3ById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5225,17 +6284,18 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get matches by name (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {MatchMode} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMatchesV3ByName(affinity: string, name: string, tag: string, mode?: MatchMode, map?: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV3ListResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV3ByName(affinity, name, tag, mode, map, size, options);
+        async getMatchesV3ByName(affinity: ValorantAffinity, name: string, tag: string, mode?: string, queue?: string, map?: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV3ListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV3ByName(affinity, name, tag, mode, queue, map, size, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMatchesV3ByName']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5243,18 +6303,19 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get matches by PUUID (v4)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
-         * @param {number} [start] Start index for pagination (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
+         * @param {number} [start] Zero-based offset; start plus capped size must fit a signed 32-bit integer.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMatchesV4ById(affinity: string, platform: string, puuid: string, mode?: string, map?: string, size?: number, start?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV4HistoryResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV4ById(affinity, platform, puuid, mode, map, size, start, options);
+        async getMatchesV4ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, mode?: string, queue?: string, map?: string, size?: number, start?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV4HistoryResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV4ById(affinity, platform, puuid, mode, queue, map, size, start, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMatchesV4ById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5262,19 +6323,20 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get matches by name (v4)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
-         * @param {number} [start] Start index for pagination (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count; values above 10 are capped at 10.
+         * @param {number} [start] Zero-based offset; start plus capped size must fit a signed 32-bit integer.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMatchesV4ByName(affinity: string, platform: string, name: string, tag: string, mode?: string, map?: string, size?: number, start?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV4HistoryResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV4ByName(affinity, platform, name, tag, mode, map, size, start, options);
+        async getMatchesV4ByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, mode?: string, queue?: string, map?: string, size?: number, start?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV4HistoryResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMatchesV4ByName(affinity, platform, name, tag, mode, queue, map, size, start, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMatchesV4ByName']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5282,12 +6344,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR history by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrHistoryById(affinity: string, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV1Response>> {
+        async getMmrHistoryById(affinity: ValorantAffinity, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrHistoryById(affinity, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrHistoryById']?.[localVarOperationServerIndex]?.url;
@@ -5296,13 +6358,13 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR history by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrHistoryByName(affinity: string, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV1Response>> {
+        async getMmrHistoryByName(affinity: ValorantAffinity, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrHistoryByName(affinity, name, tag, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrHistoryByName']?.[localVarOperationServerIndex]?.url;
@@ -5311,13 +6373,13 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR history by PUUID (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrHistoryV2ById(affinity: string, platform: string, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV2Response>> {
+        async getMmrHistoryV2ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV2Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrHistoryV2ById(affinity, platform, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrHistoryV2ById']?.[localVarOperationServerIndex]?.url;
@@ -5326,14 +6388,14 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR history by name (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrHistoryV2ByName(affinity: string, platform: string, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV2Response>> {
+        async getMmrHistoryV2ByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRHistoryV2Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrHistoryV2ByName(affinity, platform, name, tag, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrHistoryV2ByName']?.[localVarOperationServerIndex]?.url;
@@ -5342,12 +6404,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrV1ById(affinity: string, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV1Response>> {
+        async getMmrV1ById(affinity: ValorantAffinity, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrV1ById(affinity, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrV1ById']?.[localVarOperationServerIndex]?.url;
@@ -5356,13 +6418,13 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrV1ByName(affinity: string, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV1Response>> {
+        async getMmrV1ByName(affinity: ValorantAffinity, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrV1ByName(affinity, name, tag, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrV1ByName']?.[localVarOperationServerIndex]?.url;
@@ -5371,12 +6433,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR by PUUID (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrV2ById(affinity: string, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV2Response>> {
+        async getMmrV2ById(affinity: ValorantAffinity, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV2Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrV2ById(affinity, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrV2ById']?.[localVarOperationServerIndex]?.url;
@@ -5385,13 +6447,13 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR by name (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrV2ByName(affinity: string, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV2Response>> {
+        async getMmrV2ByName(affinity: ValorantAffinity, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV2Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrV2ByName(affinity, name, tag, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrV2ByName']?.[localVarOperationServerIndex]?.url;
@@ -5400,13 +6462,13 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR by PUUID (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrV3ById(affinity: string, platform: string, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV3Response>> {
+        async getMmrV3ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV3Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrV3ById(affinity, platform, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrV3ById']?.[localVarOperationServerIndex]?.url;
@@ -5415,14 +6477,14 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get MMR by name (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMmrV3ByName(affinity: string, platform: string, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV3Response>> {
+        async getMmrV3ByName(affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MMRV3Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMmrV3ByName(affinity, platform, name, tag, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.getMmrV3ByName']?.[localVarOperationServerIndex]?.url;
@@ -5431,15 +6493,16 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get leaderboard (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} [season] Season ID (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} [season] Short season ID, such as e9a1; omission selects the current season
          * @param {string} [name] Player name to search for (optional)
          * @param {string} [tag] Player tag to search for (optional)
+         * @param {string} [puuid] Player UUID to search for
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async leaderboardV1(affinity: string, season?: string, name?: string, tag?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.leaderboardV1(affinity, season, name, tag, options);
+        async leaderboardV1(affinity: ValorantAffinity, season?: string, name?: string, tag?: string, puuid?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LeaderboardV1Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.leaderboardV1(affinity, season, name, tag, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.leaderboardV1']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5447,15 +6510,15 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get leaderboard (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} [season] Season ID (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} [season] Short season ID, such as e9a1; omission selects the current season
          * @param {string} [name] Player name to search for (optional)
          * @param {string} [tag] Player tag to search for (optional)
          * @param {string} [puuid] Player UUID to search for (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async leaderboardV2(affinity: string, season?: string, name?: string, tag?: string, puuid?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LeaderboardV2Response>> {
+        async leaderboardV2(affinity: ValorantAffinity, season?: string, name?: string, tag?: string, puuid?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValorantLeaderboardV2Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.leaderboardV2(affinity, season, name, tag, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.leaderboardV2']?.[localVarOperationServerIndex]?.url;
@@ -5464,18 +6527,20 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get leaderboard (v3)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
-         * @param {string} [season] Season ID (optional)
-         * @param {number} [size] Number of results per page (optional)
-         * @param {number} [page] Page number (optional)
-         * @param {string} [name] Player name to search for (optional)
-         * @param {string} [tag] Player tag to search for (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
+         * @param {number} [page] Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
+         * @param {number} [size] Positive integer result count; only ASCII decimal digits are accepted.
+         * @param {string} [seasonShort] Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+         * @param {string} [seasonId] Season UUID; mutually exclusive with season_short.
+         * @param {string} [name] Player name to search for.
+         * @param {string} [tag] Player tag to search for.
+         * @param {string} [puuid] Player UUID to search for.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async leaderboardV3(affinity: string, platform: string, season?: string, size?: number, page?: number, name?: string, tag?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LeaderboardV3Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.leaderboardV3(affinity, platform, season, size, page, name, tag, options);
+        async leaderboardV3(affinity: ValorantAffinity, platform: ValorantPlatform, page?: number, size?: number, seasonShort?: string, seasonId?: string, name?: string, tag?: string, puuid?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LeaderboardV3Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.leaderboardV3(affinity, platform, page, size, seasonShort, seasonId, name, tag, puuid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.leaderboardV3']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5496,12 +6561,12 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get match details (v4)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} matchId Match UUID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async matchV4(affinity: string, matchId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV4Response>> {
+        async matchV4(affinity: ValorantAffinity, matchId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MatchesV4Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.matchV4(affinity, matchId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.matchV4']?.[localVarOperationServerIndex]?.url;
@@ -5512,11 +6577,11 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * @summary Get Premier team by ID (v1)
          * @param {string} id Team UUID
          * @param {string} [season] Premier season id (optional)
-         * @param {string} [affinity] Region/affinity for fallback resolution (optional)
+         * @param {ValorantAffinity} [affinity] Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierById(id: string, season?: string, affinity?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
+        async premierById(id: string, season?: string, affinity?: ValorantAffinity, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.premierById(id, season, affinity, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierById']?.[localVarOperationServerIndex]?.url;
@@ -5530,10 +6595,24 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierByIdHistory(id: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
+        async premierByIdHistory(id: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamHistoryV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.premierByIdHistory(id, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByIdHistory']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+         * @summary Get live Premier team by ID (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} id Team UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async premierByIdV2(affinity: ValorantAffinity, id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV2Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByIdV2(affinity, id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByIdV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -5542,11 +6621,11 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * @param {string} name Team name
          * @param {string} tag Team tag
          * @param {string} [season] Premier season id (optional)
-         * @param {string} [affinity] Region/affinity for fallback resolution (optional)
+         * @param {ValorantAffinity} [affinity] Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierByName(name: string, tag: string, season?: string, affinity?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
+        async premierByName(name: string, tag: string, season?: string, affinity?: ValorantAffinity, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.premierByName(name, tag, season, affinity, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByName']?.[localVarOperationServerIndex]?.url;
@@ -5568,17 +6647,59 @@ export const ValorantApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
+         * Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+         * @summary Get live Premier team by team name (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} name Premier team name
+         * @param {string} tag Premier team tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async premierByNameV2(affinity: ValorantAffinity, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV2Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByNameV2(affinity, name, tag, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByNameV2']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Resolves the player\'s Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+         * @summary Get live Premier team by player Riot ID (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} name Player Riot ID name
+         * @param {string} tag Player Riot ID tag
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async premierByPlayerName(affinity: ValorantAffinity, name: string, tag: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV2Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByPlayerName(affinity, name, tag, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByPlayerName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Fetches the player\'s current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+         * @summary Get live Premier team by player PUUID (v2)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {string} puuid Player UUID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async premierByPuuid(affinity: ValorantAffinity, puuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierTeamV2Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierByPuuid(affinity, puuid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierByPuuid']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
          * @summary Get Premier leaderboard (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} [conference] Conference filter (optional)
-         * @param {string} [division] Division filter (optional)
+         * @param {ValorantAffinity} affinity Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
          * @param {string} [season] Premier season id (optional)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierLeaderboard(affinity: string, conference?: string, division?: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierLeaderboard(affinity, conference, division, season, options);
+        async premierLeaderboard(affinity: ValorantAffinity, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierLeaderboard(affinity, season, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierLeaderboard']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5588,13 +6709,15 @@ export const ValorantApiFp = function(configuration?: Configuration) {
          * @summary Search Premier teams (v1)
          * @param {string} [name] Team name to search for (optional)
          * @param {string} [tag] Team tag to search for (optional)
-         * @param {string} [id] Team UUID to search for (optional)
+         * @param {string} [id] Team UUID to search for; cannot be combined with name or tag
          * @param {string} [season] Premier season id (optional)
+         * @param {string} [conference] Current upstream Premier conference key; case-insensitive; not a fixed enum
+         * @param {number} [division] Division filter; integer from 1 through 21
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async premierSearch(name?: string, tag?: string, id?: string, season?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.premierSearch(name, tag, id, season, options);
+        async premierSearch(name?: string, tag?: string, id?: string, season?: string, conference?: string, division?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PremierSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.premierSearch(name, tag, id, season, conference, division, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.premierSearch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5602,18 +6725,18 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get queue status (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async queueStatus(affinity: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueueStatusV1>> {
+        async queueStatus(affinity: ValorantAffinity, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueueStatusV1>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.queueStatus(affinity, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.queueStatus']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
+         * Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
          * @summary Get raw Riot API data (v1)
          * @param {RawV1Payload} rawV1Payload 
          * @param {*} [options] Override http request option.
@@ -5628,11 +6751,11 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get status (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async status(affinity: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusV1>> {
+        async status(affinity: ValorantAffinity, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusV1>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.status(affinity, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.status']?.[localVarOperationServerIndex]?.url;
@@ -5641,24 +6764,24 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get featured store items
-         * @param {string} version API version (v1, v2)
+         * @param {ValorantStoreVersion} version Response version; v1 returns an object envelope and v2 returns an array envelope
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storeFeatured(version: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoreFeaturedV1>> {
+        async storeFeatured(version: ValorantStoreVersion, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValorantStoreFeaturedResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.storeFeatured(version, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storeFeatured']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
+         * Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
          * @summary Get store offers
-         * @param {string} version API version (v1, v2)
+         * @param {ValorantStoreVersion} version Legacy API version
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storeOffers(version: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoreOffersV1Response>> {
+        async storeOffers(version: ValorantStoreVersion, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.storeOffers(version, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storeOffers']?.[localVarOperationServerIndex]?.url;
@@ -5667,17 +6790,19 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get stored matches by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storedMatches(affinity: string, name: string, tag: string, mode?: string, map?: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMatchesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMatches(affinity, name, tag, mode, map, size, options);
+        async storedMatches(affinity: ValorantAffinity, name: string, tag: string, mode?: string, queue?: string, map?: string, size?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMatchesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMatches(affinity, name, tag, mode, queue, map, size, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storedMatches']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5685,16 +6810,18 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get stored matches by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {string} [mode] Game mode filter (optional)
-         * @param {string} [map] Map filter (optional)
-         * @param {number} [size] Number of results (optional)
+         * @param {string} [mode] Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+         * @param {string} [queue] Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+         * @param {string} [map] Map display name, matched case-insensitively.
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storedMatchesById(affinity: string, puuid: string, mode?: string, map?: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMatchesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMatchesById(affinity, puuid, mode, map, size, options);
+        async storedMatchesById(affinity: ValorantAffinity, puuid: string, mode?: string, queue?: string, map?: string, size?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMatchesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMatchesById(affinity, puuid, mode, queue, map, size, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storedMatchesById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5702,15 +6829,16 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get stored MMR history by name (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storedMmrHistory(affinity: string, name: string, tag: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistory(affinity, name, tag, size, options);
+        async storedMmrHistory(affinity: ValorantAffinity, name: string, tag: string, size?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistory(affinity, name, tag, size, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storedMmrHistory']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5718,14 +6846,15 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get stored MMR history by PUUID (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storedMmrHistoryById(affinity: string, puuid: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistoryById(affinity, puuid, size, options);
+        async storedMmrHistoryById(affinity: ValorantAffinity, puuid: string, size?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistoryById(affinity, puuid, size, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storedMmrHistoryById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5733,16 +6862,17 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get stored MMR history by name (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} name Riot ID name
          * @param {string} tag Riot ID tag
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storedMmrHistoryV2(affinity: string, platform: string, name: string, tag: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRV2Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistoryV2(affinity, platform, name, tag, size, options);
+        async storedMmrHistoryV2(affinity: ValorantAffinity, platform: ValorantPlatform, name: string, tag: string, size?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRV2Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistoryV2(affinity, platform, name, tag, size, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storedMmrHistoryV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5750,15 +6880,16 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get stored MMR history by PUUID (v2)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
-         * @param {string} platform Platform (pc, console)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
+         * @param {ValorantPlatform} platform Platform; case-insensitive
          * @param {string} puuid Player UUID
-         * @param {number} [size] Number of results (optional)
+         * @param {number} [size] Positive integer result count. Omit for unlimited results.
+         * @param {number} [page] One-based page. Supplying page requires size.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async storedMmrHistoryV2ById(affinity: string, platform: string, puuid: string, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRV2Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistoryV2ById(affinity, platform, puuid, size, options);
+        async storedMmrHistoryV2ById(affinity: ValorantAffinity, platform: ValorantPlatform, puuid: string, size?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StoredMMRV2Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.storedMmrHistoryV2ById(affinity, platform, puuid, size, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.storedMmrHistoryV2ById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -5766,11 +6897,11 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get game version (v1)
-         * @param {string} affinity Region/affinity (e.g., na, eu, ap, kr)
+         * @param {ValorantAffinity} affinity Region/affinity; case-insensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async version(affinity: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VersionV1Response>> {
+        async version(affinity: ValorantAffinity, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VersionV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.version(affinity, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.version']?.[localVarOperationServerIndex]?.url;
@@ -5779,22 +6910,22 @@ export const ValorantApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get website content (v1)
-         * @param {string} countryCode Country code (e.g., en-us, de-de)
-         * @param {string} [category] Category filter (optional)
+         * @param {ValorantWebsiteLocale} countryCode Website locale; case-insensitive
+         * @param {ValorantWebsiteCategory} [category] Category filter; case-sensitive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async website(countryCode: string, category?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebsiteV1Response>> {
+        async website(countryCode: ValorantWebsiteLocale, category?: ValorantWebsiteCategory, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebsiteV1Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.website(countryCode, category, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ValorantApi.website']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
+         * Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
          * @summary Get website entry by ID (v1)
          * @param {string} dbId Database ID of the website entry
-         * @param {string} countryCode Country code (e.g., en-us, de-de)
+         * @param {string} countryCode Ignored locale segment; any string is accepted
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5820,7 +6951,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crosshair(requestParameters: ValorantApiCrosshairRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        crosshair(requestParameters: ValorantApiCrosshairRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.crosshair(requestParameters.id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5984,6 +7115,46 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getContentV1(requestParameters.locale, options).then((request) => request(axios, basePath));
         },
         /**
+         * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get agent mastery by PUUID (v1)
+         * @param {ValorantApiGetMasteryAgentByIdRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMasteryAgentById(requestParameters: ValorantApiGetMasteryAgentByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<AgentMasteryV1DetailResponse> {
+            return localVarFp.getMasteryAgentById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.agentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get agent mastery by name (v1)
+         * @param {ValorantApiGetMasteryAgentByNameRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMasteryAgentByName(requestParameters: ValorantApiGetMasteryAgentByNameRequest, options?: RawAxiosRequestConfig): AxiosPromise<AgentMasteryV1DetailResponse> {
+            return localVarFp.getMasteryAgentByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.agentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get all agent mastery by PUUID (v1)
+         * @param {ValorantApiGetMasteryByIdRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMasteryById(requestParameters: ValorantApiGetMasteryByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<AgentMasteryV1Response> {
+            return localVarFp.getMasteryById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+         * @summary Get all agent mastery by name (v1)
+         * @param {ValorantApiGetMasteryByNameRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMasteryByName(requestParameters: ValorantApiGetMasteryByNameRequest, options?: RawAxiosRequestConfig): AxiosPromise<AgentMasteryV1Response> {
+            return localVarFp.getMasteryByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 
          * @summary Get matches by PUUID (v3)
          * @param {ValorantApiGetMatchesV3ByIdRequest} requestParameters Request parameters.
@@ -5991,7 +7162,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         getMatchesV3ById(requestParameters: ValorantApiGetMatchesV3ByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<MatchesV3ListResponse> {
-            return localVarFp.getMatchesV3ById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.getMatchesV3ById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6001,7 +7172,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         getMatchesV3ByName(requestParameters: ValorantApiGetMatchesV3ByNameRequest, options?: RawAxiosRequestConfig): AxiosPromise<MatchesV3ListResponse> {
-            return localVarFp.getMatchesV3ByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.getMatchesV3ByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6011,7 +7182,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         getMatchesV4ById(requestParameters: ValorantApiGetMatchesV4ByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<MatchesV4HistoryResponse> {
-            return localVarFp.getMatchesV4ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(axios, basePath));
+            return localVarFp.getMatchesV4ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6021,7 +7192,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         getMatchesV4ByName(requestParameters: ValorantApiGetMatchesV4ByNameRequest, options?: RawAxiosRequestConfig): AxiosPromise<MatchesV4HistoryResponse> {
-            return localVarFp.getMatchesV4ByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(axios, basePath));
+            return localVarFp.getMatchesV4ByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6130,8 +7301,8 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        leaderboardV1(requestParameters: ValorantApiLeaderboardV1Request, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.leaderboardV1(requestParameters.affinity, requestParameters.season, requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+        leaderboardV1(requestParameters: ValorantApiLeaderboardV1Request, options?: RawAxiosRequestConfig): AxiosPromise<LeaderboardV1Response> {
+            return localVarFp.leaderboardV1(requestParameters.affinity, requestParameters.season, requestParameters.name, requestParameters.tag, requestParameters.puuid, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6140,7 +7311,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        leaderboardV2(requestParameters: ValorantApiLeaderboardV2Request, options?: RawAxiosRequestConfig): AxiosPromise<LeaderboardV2Response> {
+        leaderboardV2(requestParameters: ValorantApiLeaderboardV2Request, options?: RawAxiosRequestConfig): AxiosPromise<ValorantLeaderboardV2Response> {
             return localVarFp.leaderboardV2(requestParameters.affinity, requestParameters.season, requestParameters.name, requestParameters.tag, requestParameters.puuid, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6151,7 +7322,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         leaderboardV3(requestParameters: ValorantApiLeaderboardV3Request, options?: RawAxiosRequestConfig): AxiosPromise<LeaderboardV3Response> {
-            return localVarFp.leaderboardV3(requestParameters.affinity, requestParameters.platform, requestParameters.season, requestParameters.size, requestParameters.page, requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+            return localVarFp.leaderboardV3(requestParameters.affinity, requestParameters.platform, requestParameters.page, requestParameters.size, requestParameters.seasonShort, requestParameters.seasonId, requestParameters.name, requestParameters.tag, requestParameters.puuid, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6190,8 +7361,18 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        premierByIdHistory(requestParameters: ValorantApiPremierByIdHistoryRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV1Response> {
+        premierByIdHistory(requestParameters: ValorantApiPremierByIdHistoryRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamHistoryV1Response> {
             return localVarFp.premierByIdHistory(requestParameters.id, requestParameters.season, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+         * @summary Get live Premier team by ID (v2)
+         * @param {ValorantApiPremierByIdV2Request} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByIdV2(requestParameters: ValorantApiPremierByIdV2Request, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV2Response> {
+            return localVarFp.premierByIdV2(requestParameters.affinity, requestParameters.id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6214,14 +7395,44 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.premierByNameHistory(requestParameters.name, requestParameters.tag, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+         * @summary Get live Premier team by team name (v2)
+         * @param {ValorantApiPremierByNameV2Request} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByNameV2(requestParameters: ValorantApiPremierByNameV2Request, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV2Response> {
+            return localVarFp.premierByNameV2(requestParameters.affinity, requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Resolves the player\'s Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+         * @summary Get live Premier team by player Riot ID (v2)
+         * @param {ValorantApiPremierByPlayerNameRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByPlayerName(requestParameters: ValorantApiPremierByPlayerNameRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV2Response> {
+            return localVarFp.premierByPlayerName(requestParameters.affinity, requestParameters.name, requestParameters.tag, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetches the player\'s current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+         * @summary Get live Premier team by player PUUID (v2)
+         * @param {ValorantApiPremierByPuuidRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        premierByPuuid(requestParameters: ValorantApiPremierByPuuidRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierTeamV2Response> {
+            return localVarFp.premierByPuuid(requestParameters.affinity, requestParameters.puuid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
          * @summary Get Premier leaderboard (v1)
          * @param {ValorantApiPremierLeaderboardRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         premierLeaderboard(requestParameters: ValorantApiPremierLeaderboardRequest, options?: RawAxiosRequestConfig): AxiosPromise<PremierSearchResponse> {
-            return localVarFp.premierLeaderboard(requestParameters.affinity, requestParameters.conference, requestParameters.division, requestParameters.season, options).then((request) => request(axios, basePath));
+            return localVarFp.premierLeaderboard(requestParameters.affinity, requestParameters.season, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6231,7 +7442,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         premierSearch(requestParameters: ValorantApiPremierSearchRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PremierSearchResponse> {
-            return localVarFp.premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, requestParameters.season, options).then((request) => request(axios, basePath));
+            return localVarFp.premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, requestParameters.season, requestParameters.conference, requestParameters.division, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6244,7 +7455,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.queueStatus(requestParameters.affinity, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
          * @summary Get raw Riot API data (v1)
          * @param {ValorantApiRawRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -6270,17 +7481,17 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storeFeatured(requestParameters: ValorantApiStoreFeaturedRequest, options?: RawAxiosRequestConfig): AxiosPromise<StoreFeaturedV1> {
+        storeFeatured(requestParameters: ValorantApiStoreFeaturedRequest, options?: RawAxiosRequestConfig): AxiosPromise<ValorantStoreFeaturedResponse> {
             return localVarFp.storeFeatured(requestParameters.version, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
          * @summary Get store offers
          * @param {ValorantApiStoreOffersRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        storeOffers(requestParameters: ValorantApiStoreOffersRequest, options?: RawAxiosRequestConfig): AxiosPromise<StoreOffersV1Response> {
+        storeOffers(requestParameters: ValorantApiStoreOffersRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.storeOffers(requestParameters.version, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6291,7 +7502,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         storedMatches(requestParameters: ValorantApiStoredMatchesRequest, options?: RawAxiosRequestConfig): AxiosPromise<StoredMatchesResponse> {
-            return localVarFp.storedMatches(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.storedMatches(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6301,7 +7512,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         storedMatchesById(requestParameters: ValorantApiStoredMatchesByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<StoredMatchesResponse> {
-            return localVarFp.storedMatchesById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.storedMatchesById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6311,7 +7522,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         storedMmrHistory(requestParameters: ValorantApiStoredMmrHistoryRequest, options?: RawAxiosRequestConfig): AxiosPromise<StoredMMRResponse> {
-            return localVarFp.storedMmrHistory(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.storedMmrHistory(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.size, requestParameters.page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6321,7 +7532,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         storedMmrHistoryById(requestParameters: ValorantApiStoredMmrHistoryByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<StoredMMRResponse> {
-            return localVarFp.storedMmrHistoryById(requestParameters.affinity, requestParameters.puuid, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.storedMmrHistoryById(requestParameters.affinity, requestParameters.puuid, requestParameters.size, requestParameters.page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6331,7 +7542,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         storedMmrHistoryV2(requestParameters: ValorantApiStoredMmrHistoryV2Request, options?: RawAxiosRequestConfig): AxiosPromise<StoredMMRV2Response> {
-            return localVarFp.storedMmrHistoryV2(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.storedMmrHistoryV2(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.size, requestParameters.page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6341,7 +7552,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         storedMmrHistoryV2ById(requestParameters: ValorantApiStoredMmrHistoryV2ByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<StoredMMRV2Response> {
-            return localVarFp.storedMmrHistoryV2ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.size, options).then((request) => request(axios, basePath));
+            return localVarFp.storedMmrHistoryV2ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.size, requestParameters.page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6364,7 +7575,7 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.website(requestParameters.countryCode, requestParameters.category, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
          * @summary Get website entry by ID (v1)
          * @param {ValorantApiWebsiteByIdRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -6381,9 +7592,9 @@ export const ValorantApiFactory = function (configuration?: Configuration, baseP
  */
 export interface ValorantApiCrosshairRequest {
     /**
-     * Crosshair code
+     * Required crosshair code
      */
-    readonly id?: string
+    readonly id: string
 }
 
 /**
@@ -6466,14 +7677,14 @@ export interface ValorantApiEsportsTeamV2Request {
  */
 export interface ValorantApiGetAccoladesByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Player UUID
@@ -6486,14 +7697,14 @@ export interface ValorantApiGetAccoladesByIdRequest {
  */
 export interface ValorantApiGetAccoladesByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Riot ID name
@@ -6581,19 +7792,24 @@ export interface ValorantApiGetAccountV2Request {
  */
 export interface ValorantApiGetContentV1Request {
     /**
-     * Locale code (e.g., en-US, de-DE) - optional
+     * Content locale; case-insensitive. Omission selects en-US.
      */
-    readonly locale?: string
+    readonly locale?: ValorantContentLocale
 }
 
 /**
- * Request parameters for getMatchesV3ById operation in ValorantApi.
+ * Request parameters for getMasteryAgentById operation in ValorantApi.
  */
-export interface ValorantApiGetMatchesV3ByIdRequest {
+export interface ValorantApiGetMasteryAgentByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Platform; case-insensitive
+     */
+    readonly platform: ValorantPlatform
 
     /**
      * Player UUID
@@ -6601,17 +7817,117 @@ export interface ValorantApiGetMatchesV3ByIdRequest {
     readonly puuid: string
 
     /**
-     * Game mode filter (optional)
+     * Agent UUID
+     */
+    readonly agentId: string
+}
+
+/**
+ * Request parameters for getMasteryAgentByName operation in ValorantApi.
+ */
+export interface ValorantApiGetMasteryAgentByNameRequest {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Platform; case-insensitive
+     */
+    readonly platform: ValorantPlatform
+
+    /**
+     * Riot ID name
+     */
+    readonly name: string
+
+    /**
+     * Riot ID tag
+     */
+    readonly tag: string
+
+    /**
+     * Agent UUID
+     */
+    readonly agentId: string
+}
+
+/**
+ * Request parameters for getMasteryById operation in ValorantApi.
+ */
+export interface ValorantApiGetMasteryByIdRequest {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Platform; case-insensitive
+     */
+    readonly platform: ValorantPlatform
+
+    /**
+     * Player UUID
+     */
+    readonly puuid: string
+}
+
+/**
+ * Request parameters for getMasteryByName operation in ValorantApi.
+ */
+export interface ValorantApiGetMasteryByNameRequest {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Platform; case-insensitive
+     */
+    readonly platform: ValorantPlatform
+
+    /**
+     * Riot ID name
+     */
+    readonly name: string
+
+    /**
+     * Riot ID tag
+     */
+    readonly tag: string
+}
+
+/**
+ * Request parameters for getMatchesV3ById operation in ValorantApi.
+ */
+export interface ValorantApiGetMatchesV3ByIdRequest {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Player UUID
+     */
+    readonly puuid: string
+
+    /**
+     * Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
      */
     readonly mode?: string
 
     /**
-     * Map filter (optional)
+     * Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+     */
+    readonly queue?: string
+
+    /**
+     * Map display name, matched case-insensitively.
      */
     readonly map?: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count; values above 10 are capped at 10.
      */
     readonly size?: number
 }
@@ -6621,9 +7937,9 @@ export interface ValorantApiGetMatchesV3ByIdRequest {
  */
 export interface ValorantApiGetMatchesV3ByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Riot ID name
@@ -6636,17 +7952,22 @@ export interface ValorantApiGetMatchesV3ByNameRequest {
     readonly tag: string
 
     /**
-     * Game mode filter (optional)
+     * Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
      */
-    readonly mode?: MatchMode
+    readonly mode?: string
 
     /**
-     * Map filter (optional)
+     * Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+     */
+    readonly queue?: string
+
+    /**
+     * Map display name, matched case-insensitively.
      */
     readonly map?: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count; values above 10 are capped at 10.
      */
     readonly size?: number
 }
@@ -6656,14 +7977,14 @@ export interface ValorantApiGetMatchesV3ByNameRequest {
  */
 export interface ValorantApiGetMatchesV4ByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Player UUID
@@ -6671,22 +7992,27 @@ export interface ValorantApiGetMatchesV4ByIdRequest {
     readonly puuid: string
 
     /**
-     * Game mode filter (optional)
+     * Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
      */
     readonly mode?: string
 
     /**
-     * Map filter (optional)
+     * Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+     */
+    readonly queue?: string
+
+    /**
+     * Map display name, matched case-insensitively.
      */
     readonly map?: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count; values above 10 are capped at 10.
      */
     readonly size?: number
 
     /**
-     * Start index for pagination (optional)
+     * Zero-based offset; start plus capped size must fit a signed 32-bit integer.
      */
     readonly start?: number
 }
@@ -6696,14 +8022,14 @@ export interface ValorantApiGetMatchesV4ByIdRequest {
  */
 export interface ValorantApiGetMatchesV4ByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Riot ID name
@@ -6716,22 +8042,27 @@ export interface ValorantApiGetMatchesV4ByNameRequest {
     readonly tag: string
 
     /**
-     * Game mode filter (optional)
+     * Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
      */
     readonly mode?: string
 
     /**
-     * Map filter (optional)
+     * Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+     */
+    readonly queue?: string
+
+    /**
+     * Map display name, matched case-insensitively.
      */
     readonly map?: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count; values above 10 are capped at 10.
      */
     readonly size?: number
 
     /**
-     * Start index for pagination (optional)
+     * Zero-based offset; start plus capped size must fit a signed 32-bit integer.
      */
     readonly start?: number
 }
@@ -6741,9 +8072,9 @@ export interface ValorantApiGetMatchesV4ByNameRequest {
  */
 export interface ValorantApiGetMmrHistoryByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Player UUID
@@ -6756,9 +8087,9 @@ export interface ValorantApiGetMmrHistoryByIdRequest {
  */
 export interface ValorantApiGetMmrHistoryByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Riot ID name
@@ -6776,14 +8107,14 @@ export interface ValorantApiGetMmrHistoryByNameRequest {
  */
 export interface ValorantApiGetMmrHistoryV2ByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Player UUID
@@ -6796,14 +8127,14 @@ export interface ValorantApiGetMmrHistoryV2ByIdRequest {
  */
 export interface ValorantApiGetMmrHistoryV2ByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Riot ID name
@@ -6821,9 +8152,9 @@ export interface ValorantApiGetMmrHistoryV2ByNameRequest {
  */
 export interface ValorantApiGetMmrV1ByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Player UUID
@@ -6836,9 +8167,9 @@ export interface ValorantApiGetMmrV1ByIdRequest {
  */
 export interface ValorantApiGetMmrV1ByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Riot ID name
@@ -6856,9 +8187,9 @@ export interface ValorantApiGetMmrV1ByNameRequest {
  */
 export interface ValorantApiGetMmrV2ByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Player UUID
@@ -6871,9 +8202,9 @@ export interface ValorantApiGetMmrV2ByIdRequest {
  */
 export interface ValorantApiGetMmrV2ByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Riot ID name
@@ -6891,14 +8222,14 @@ export interface ValorantApiGetMmrV2ByNameRequest {
  */
 export interface ValorantApiGetMmrV3ByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Player UUID
@@ -6911,14 +8242,14 @@ export interface ValorantApiGetMmrV3ByIdRequest {
  */
 export interface ValorantApiGetMmrV3ByNameRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Riot ID name
@@ -6936,12 +8267,12 @@ export interface ValorantApiGetMmrV3ByNameRequest {
  */
 export interface ValorantApiLeaderboardV1Request {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Season ID (optional)
+     * Short season ID, such as e9a1; omission selects the current season
      */
     readonly season?: string
 
@@ -6954,6 +8285,11 @@ export interface ValorantApiLeaderboardV1Request {
      * Player tag to search for (optional)
      */
     readonly tag?: string
+
+    /**
+     * Player UUID to search for
+     */
+    readonly puuid?: string
 }
 
 /**
@@ -6961,12 +8297,12 @@ export interface ValorantApiLeaderboardV1Request {
  */
 export interface ValorantApiLeaderboardV2Request {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Season ID (optional)
+     * Short season ID, such as e9a1; omission selects the current season
      */
     readonly season?: string
 
@@ -6991,39 +8327,49 @@ export interface ValorantApiLeaderboardV2Request {
  */
 export interface ValorantApiLeaderboardV3Request {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
-     * Season ID (optional)
-     */
-    readonly season?: string
-
-    /**
-     * Number of results per page (optional)
-     */
-    readonly size?: number
-
-    /**
-     * Page number (optional)
+     * Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
      */
     readonly page?: number
 
     /**
-     * Player name to search for (optional)
+     * Positive integer result count; only ASCII decimal digits are accepted.
+     */
+    readonly size?: number
+
+    /**
+     * Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+     */
+    readonly seasonShort?: string
+
+    /**
+     * Season UUID; mutually exclusive with season_short.
+     */
+    readonly seasonId?: string
+
+    /**
+     * Player name to search for.
      */
     readonly name?: string
 
     /**
-     * Player tag to search for (optional)
+     * Player tag to search for.
      */
     readonly tag?: string
+
+    /**
+     * Player UUID to search for.
+     */
+    readonly puuid?: string
 }
 
 /**
@@ -7041,9 +8387,9 @@ export interface ValorantApiMatchV2Request {
  */
 export interface ValorantApiMatchV4Request {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Match UUID
@@ -7066,9 +8412,9 @@ export interface ValorantApiPremierByIdRequest {
     readonly season?: string
 
     /**
-     * Region/affinity for fallback resolution (optional)
+     * Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
      */
-    readonly affinity?: string
+    readonly affinity?: ValorantAffinity
 }
 
 /**
@@ -7084,6 +8430,21 @@ export interface ValorantApiPremierByIdHistoryRequest {
      * Premier season id (optional)
      */
     readonly season?: string
+}
+
+/**
+ * Request parameters for premierByIdV2 operation in ValorantApi.
+ */
+export interface ValorantApiPremierByIdV2Request {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Team UUID
+     */
+    readonly id: string
 }
 
 /**
@@ -7106,9 +8467,9 @@ export interface ValorantApiPremierByNameRequest {
     readonly season?: string
 
     /**
-     * Region/affinity for fallback resolution (optional)
+     * Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
      */
-    readonly affinity?: string
+    readonly affinity?: ValorantAffinity
 }
 
 /**
@@ -7132,23 +8493,68 @@ export interface ValorantApiPremierByNameHistoryRequest {
 }
 
 /**
+ * Request parameters for premierByNameV2 operation in ValorantApi.
+ */
+export interface ValorantApiPremierByNameV2Request {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Premier team name
+     */
+    readonly name: string
+
+    /**
+     * Premier team tag
+     */
+    readonly tag: string
+}
+
+/**
+ * Request parameters for premierByPlayerName operation in ValorantApi.
+ */
+export interface ValorantApiPremierByPlayerNameRequest {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Player Riot ID name
+     */
+    readonly name: string
+
+    /**
+     * Player Riot ID tag
+     */
+    readonly tag: string
+}
+
+/**
+ * Request parameters for premierByPuuid operation in ValorantApi.
+ */
+export interface ValorantApiPremierByPuuidRequest {
+    /**
+     * Region/affinity; case-insensitive
+     */
+    readonly affinity: ValorantAffinity
+
+    /**
+     * Player UUID
+     */
+    readonly puuid: string
+}
+
+/**
  * Request parameters for premierLeaderboard operation in ValorantApi.
  */
 export interface ValorantApiPremierLeaderboardRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
      */
-    readonly affinity: string
-
-    /**
-     * Conference filter (optional)
-     */
-    readonly conference?: string
-
-    /**
-     * Division filter (optional)
-     */
-    readonly division?: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Premier season id (optional)
@@ -7171,7 +8577,7 @@ export interface ValorantApiPremierSearchRequest {
     readonly tag?: string
 
     /**
-     * Team UUID to search for (optional)
+     * Team UUID to search for; cannot be combined with name or tag
      */
     readonly id?: string
 
@@ -7179,6 +8585,16 @@ export interface ValorantApiPremierSearchRequest {
      * Premier season id (optional)
      */
     readonly season?: string
+
+    /**
+     * Current upstream Premier conference key; case-insensitive; not a fixed enum
+     */
+    readonly conference?: string
+
+    /**
+     * Division filter; integer from 1 through 21
+     */
+    readonly division?: number
 }
 
 /**
@@ -7186,9 +8602,9 @@ export interface ValorantApiPremierSearchRequest {
  */
 export interface ValorantApiQueueStatusRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 }
 
 /**
@@ -7203,9 +8619,9 @@ export interface ValorantApiRawRequest {
  */
 export interface ValorantApiStatusRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 }
 
 /**
@@ -7213,9 +8629,9 @@ export interface ValorantApiStatusRequest {
  */
 export interface ValorantApiStoreFeaturedRequest {
     /**
-     * API version (v1, v2)
+     * Response version; v1 returns an object envelope and v2 returns an array envelope
      */
-    readonly version: string
+    readonly version: ValorantStoreVersion
 }
 
 /**
@@ -7223,9 +8639,9 @@ export interface ValorantApiStoreFeaturedRequest {
  */
 export interface ValorantApiStoreOffersRequest {
     /**
-     * API version (v1, v2)
+     * Legacy API version
      */
-    readonly version: string
+    readonly version: ValorantStoreVersion
 }
 
 /**
@@ -7233,9 +8649,9 @@ export interface ValorantApiStoreOffersRequest {
  */
 export interface ValorantApiStoredMatchesRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Riot ID name
@@ -7248,19 +8664,29 @@ export interface ValorantApiStoredMatchesRequest {
     readonly tag: string
 
     /**
-     * Game mode filter (optional)
+     * Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
      */
     readonly mode?: string
 
     /**
-     * Map filter (optional)
+     * Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+     */
+    readonly queue?: string
+
+    /**
+     * Map display name, matched case-insensitively.
      */
     readonly map?: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count. Omit for unlimited results.
      */
     readonly size?: number
+
+    /**
+     * One-based page. Supplying page requires size.
+     */
+    readonly page?: number
 }
 
 /**
@@ -7268,9 +8694,9 @@ export interface ValorantApiStoredMatchesRequest {
  */
 export interface ValorantApiStoredMatchesByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Player UUID
@@ -7278,19 +8704,29 @@ export interface ValorantApiStoredMatchesByIdRequest {
     readonly puuid: string
 
     /**
-     * Game mode filter (optional)
+     * Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
      */
     readonly mode?: string
 
     /**
-     * Map filter (optional)
+     * Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+     */
+    readonly queue?: string
+
+    /**
+     * Map display name, matched case-insensitively.
      */
     readonly map?: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count. Omit for unlimited results.
      */
     readonly size?: number
+
+    /**
+     * One-based page. Supplying page requires size.
+     */
+    readonly page?: number
 }
 
 /**
@@ -7298,9 +8734,9 @@ export interface ValorantApiStoredMatchesByIdRequest {
  */
 export interface ValorantApiStoredMmrHistoryRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Riot ID name
@@ -7313,9 +8749,14 @@ export interface ValorantApiStoredMmrHistoryRequest {
     readonly tag: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count. Omit for unlimited results.
      */
     readonly size?: number
+
+    /**
+     * One-based page. Supplying page requires size.
+     */
+    readonly page?: number
 }
 
 /**
@@ -7323,9 +8764,9 @@ export interface ValorantApiStoredMmrHistoryRequest {
  */
 export interface ValorantApiStoredMmrHistoryByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
      * Player UUID
@@ -7333,9 +8774,14 @@ export interface ValorantApiStoredMmrHistoryByIdRequest {
     readonly puuid: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count. Omit for unlimited results.
      */
     readonly size?: number
+
+    /**
+     * One-based page. Supplying page requires size.
+     */
+    readonly page?: number
 }
 
 /**
@@ -7343,14 +8789,14 @@ export interface ValorantApiStoredMmrHistoryByIdRequest {
  */
 export interface ValorantApiStoredMmrHistoryV2Request {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Riot ID name
@@ -7363,9 +8809,14 @@ export interface ValorantApiStoredMmrHistoryV2Request {
     readonly tag: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count. Omit for unlimited results.
      */
     readonly size?: number
+
+    /**
+     * One-based page. Supplying page requires size.
+     */
+    readonly page?: number
 }
 
 /**
@@ -7373,14 +8824,14 @@ export interface ValorantApiStoredMmrHistoryV2Request {
  */
 export interface ValorantApiStoredMmrHistoryV2ByIdRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 
     /**
-     * Platform (pc, console)
+     * Platform; case-insensitive
      */
-    readonly platform: string
+    readonly platform: ValorantPlatform
 
     /**
      * Player UUID
@@ -7388,9 +8839,14 @@ export interface ValorantApiStoredMmrHistoryV2ByIdRequest {
     readonly puuid: string
 
     /**
-     * Number of results (optional)
+     * Positive integer result count. Omit for unlimited results.
      */
     readonly size?: number
+
+    /**
+     * One-based page. Supplying page requires size.
+     */
+    readonly page?: number
 }
 
 /**
@@ -7398,9 +8854,9 @@ export interface ValorantApiStoredMmrHistoryV2ByIdRequest {
  */
 export interface ValorantApiVersionRequest {
     /**
-     * Region/affinity (e.g., na, eu, ap, kr)
+     * Region/affinity; case-insensitive
      */
-    readonly affinity: string
+    readonly affinity: ValorantAffinity
 }
 
 /**
@@ -7408,14 +8864,14 @@ export interface ValorantApiVersionRequest {
  */
 export interface ValorantApiWebsiteRequest {
     /**
-     * Country code (e.g., en-us, de-de)
+     * Website locale; case-insensitive
      */
-    readonly countryCode: string
+    readonly countryCode: ValorantWebsiteLocale
 
     /**
-     * Category filter (optional)
+     * Category filter; case-sensitive
      */
-    readonly category?: string
+    readonly category?: ValorantWebsiteCategory
 }
 
 /**
@@ -7428,7 +8884,7 @@ export interface ValorantApiWebsiteByIdRequest {
     readonly dbId: string
 
     /**
-     * Country code (e.g., en-us, de-de)
+     * Ignored locale segment; any string is accepted
      */
     readonly countryCode: string
 }
@@ -7444,7 +8900,7 @@ export class ValorantApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public crosshair(requestParameters: ValorantApiCrosshairRequest = {}, options?: RawAxiosRequestConfig) {
+    public crosshair(requestParameters: ValorantApiCrosshairRequest, options?: RawAxiosRequestConfig) {
         return ValorantApiFp(this.configuration).crosshair(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7625,6 +9081,50 @@ export class ValorantApi extends BaseAPI {
     }
 
     /**
+     * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+     * @summary Get agent mastery by PUUID (v1)
+     * @param {ValorantApiGetMasteryAgentByIdRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getMasteryAgentById(requestParameters: ValorantApiGetMasteryAgentByIdRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).getMasteryAgentById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.agentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+     * @summary Get agent mastery by name (v1)
+     * @param {ValorantApiGetMasteryAgentByNameRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getMasteryAgentByName(requestParameters: ValorantApiGetMasteryAgentByNameRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).getMasteryAgentByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.agentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+     * @summary Get all agent mastery by PUUID (v1)
+     * @param {ValorantApiGetMasteryByIdRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getMasteryById(requestParameters: ValorantApiGetMasteryByIdRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).getMasteryById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot\'s source semantics.
+     * @summary Get all agent mastery by name (v1)
+     * @param {ValorantApiGetMasteryByNameRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getMasteryByName(requestParameters: ValorantApiGetMasteryByNameRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).getMasteryByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 
      * @summary Get matches by PUUID (v3)
      * @param {ValorantApiGetMatchesV3ByIdRequest} requestParameters Request parameters.
@@ -7632,7 +9132,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public getMatchesV3ById(requestParameters: ValorantApiGetMatchesV3ByIdRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).getMatchesV3ById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).getMatchesV3ById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7643,7 +9143,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public getMatchesV3ByName(requestParameters: ValorantApiGetMatchesV3ByNameRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).getMatchesV3ByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).getMatchesV3ByName(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7654,7 +9154,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public getMatchesV4ById(requestParameters: ValorantApiGetMatchesV4ByIdRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).getMatchesV4ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).getMatchesV4ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7665,7 +9165,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public getMatchesV4ByName(requestParameters: ValorantApiGetMatchesV4ByNameRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).getMatchesV4ByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).getMatchesV4ByName(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.start, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7786,7 +9286,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public leaderboardV1(requestParameters: ValorantApiLeaderboardV1Request, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).leaderboardV1(requestParameters.affinity, requestParameters.season, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).leaderboardV1(requestParameters.affinity, requestParameters.season, requestParameters.name, requestParameters.tag, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7808,7 +9308,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public leaderboardV3(requestParameters: ValorantApiLeaderboardV3Request, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).leaderboardV3(requestParameters.affinity, requestParameters.platform, requestParameters.season, requestParameters.size, requestParameters.page, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).leaderboardV3(requestParameters.affinity, requestParameters.platform, requestParameters.page, requestParameters.size, requestParameters.seasonShort, requestParameters.seasonId, requestParameters.name, requestParameters.tag, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7856,6 +9356,17 @@ export class ValorantApi extends BaseAPI {
     }
 
     /**
+     * Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+     * @summary Get live Premier team by ID (v2)
+     * @param {ValorantApiPremierByIdV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public premierByIdV2(requestParameters: ValorantApiPremierByIdV2Request, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).premierByIdV2(requestParameters.affinity, requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 
      * @summary Get Premier team by name (v1)
      * @param {ValorantApiPremierByNameRequest} requestParameters Request parameters.
@@ -7878,14 +9389,47 @@ export class ValorantApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+     * @summary Get live Premier team by team name (v2)
+     * @param {ValorantApiPremierByNameV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public premierByNameV2(requestParameters: ValorantApiPremierByNameV2Request, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).premierByNameV2(requestParameters.affinity, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Resolves the player\'s Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+     * @summary Get live Premier team by player Riot ID (v2)
+     * @param {ValorantApiPremierByPlayerNameRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public premierByPlayerName(requestParameters: ValorantApiPremierByPlayerNameRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).premierByPlayerName(requestParameters.affinity, requestParameters.name, requestParameters.tag, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetches the player\'s current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+     * @summary Get live Premier team by player PUUID (v2)
+     * @param {ValorantApiPremierByPuuidRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public premierByPuuid(requestParameters: ValorantApiPremierByPuuidRequest, options?: RawAxiosRequestConfig) {
+        return ValorantApiFp(this.configuration).premierByPuuid(requestParameters.affinity, requestParameters.puuid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
      * @summary Get Premier leaderboard (v1)
      * @param {ValorantApiPremierLeaderboardRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     public premierLeaderboard(requestParameters: ValorantApiPremierLeaderboardRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierLeaderboard(requestParameters.affinity, requestParameters.conference, requestParameters.division, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierLeaderboard(requestParameters.affinity, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7896,7 +9440,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public premierSearch(requestParameters: ValorantApiPremierSearchRequest = {}, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, requestParameters.season, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).premierSearch(requestParameters.name, requestParameters.tag, requestParameters.id, requestParameters.season, requestParameters.conference, requestParameters.division, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7911,7 +9455,7 @@ export class ValorantApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
      * @summary Get raw Riot API data (v1)
      * @param {ValorantApiRawRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -7944,7 +9488,7 @@ export class ValorantApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
      * @summary Get store offers
      * @param {ValorantApiStoreOffersRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -7962,7 +9506,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public storedMatches(requestParameters: ValorantApiStoredMatchesRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).storedMatches(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).storedMatches(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7973,7 +9517,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public storedMatchesById(requestParameters: ValorantApiStoredMatchesByIdRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).storedMatchesById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.map, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).storedMatchesById(requestParameters.affinity, requestParameters.puuid, requestParameters.mode, requestParameters.queue, requestParameters.map, requestParameters.size, requestParameters.page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7984,7 +9528,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public storedMmrHistory(requestParameters: ValorantApiStoredMmrHistoryRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).storedMmrHistory(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).storedMmrHistory(requestParameters.affinity, requestParameters.name, requestParameters.tag, requestParameters.size, requestParameters.page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7995,7 +9539,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public storedMmrHistoryById(requestParameters: ValorantApiStoredMmrHistoryByIdRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).storedMmrHistoryById(requestParameters.affinity, requestParameters.puuid, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).storedMmrHistoryById(requestParameters.affinity, requestParameters.puuid, requestParameters.size, requestParameters.page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8006,7 +9550,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public storedMmrHistoryV2(requestParameters: ValorantApiStoredMmrHistoryV2Request, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).storedMmrHistoryV2(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).storedMmrHistoryV2(requestParameters.affinity, requestParameters.platform, requestParameters.name, requestParameters.tag, requestParameters.size, requestParameters.page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8017,7 +9561,7 @@ export class ValorantApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public storedMmrHistoryV2ById(requestParameters: ValorantApiStoredMmrHistoryV2ByIdRequest, options?: RawAxiosRequestConfig) {
-        return ValorantApiFp(this.configuration).storedMmrHistoryV2ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.size, options).then((request) => request(this.axios, this.basePath));
+        return ValorantApiFp(this.configuration).storedMmrHistoryV2ById(requestParameters.affinity, requestParameters.platform, requestParameters.puuid, requestParameters.size, requestParameters.page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8043,7 +9587,7 @@ export class ValorantApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
      * @summary Get website entry by ID (v1)
      * @param {ValorantApiWebsiteByIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.

@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Legacy match classification, not the accepted match-history mode query values. Match-history filters use strings resolved against the current upstream queue catalog.
  *
  * Values: Competitive,Unrated,Custom,Practice,Unknown
  */

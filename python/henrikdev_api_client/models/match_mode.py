@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MatchMode(str, Enum):
     """
-    MatchMode
+    Legacy match classification, not the accepted match-history mode query values. Match-history filters use strings resolved against the current upstream queue catalog.
     """
 
     """

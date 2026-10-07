@@ -12,6 +12,7 @@ package henrikdevapiclient
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -22,18 +23,20 @@ var _ MappedNullable = &MatchesV4DataMetadata{}
 // MatchesV4DataMetadata struct for MatchesV4DataMetadata
 type MatchesV4DataMetadata struct {
 	Cluster NullableString `json:"cluster,omitempty"`
+	// Match duration in milliseconds.
 	GameLengthInMs int64 `json:"game_length_in_ms"`
 	GameVersion string `json:"game_version"`
 	IsCompleted bool `json:"is_completed"`
 	Map MapIdNameCombo `json:"map"`
 	MatchId string `json:"match_id"`
+	Mvp NullableMatchesV4DataRoundPlayer `json:"mvp,omitempty"`
 	PartyRrPenaltys []MatchesV4DataMetadataPartyRRPenalty `json:"party_rr_penaltys"`
 	Platform string `json:"platform"`
 	Premier interface{} `json:"premier,omitempty"`
 	Queue MatchesV4DataMetadataQueue `json:"queue"`
 	Region NullableString `json:"region,omitempty"`
 	Season SeasonIdShortCombo `json:"season"`
-	StartedAt string `json:"started_at"`
+	StartedAt time.Time `json:"started_at"`
 }
 
 type _MatchesV4DataMetadata MatchesV4DataMetadata
@@ -42,7 +45,7 @@ type _MatchesV4DataMetadata MatchesV4DataMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMatchesV4DataMetadata(gameLengthInMs int64, gameVersion string, isCompleted bool, map_ MapIdNameCombo, matchId string, partyRrPenaltys []MatchesV4DataMetadataPartyRRPenalty, platform string, queue MatchesV4DataMetadataQueue, season SeasonIdShortCombo, startedAt string) *MatchesV4DataMetadata {
+func NewMatchesV4DataMetadata(gameLengthInMs int64, gameVersion string, isCompleted bool, map_ MapIdNameCombo, matchId string, partyRrPenaltys []MatchesV4DataMetadataPartyRRPenalty, platform string, queue MatchesV4DataMetadataQueue, season SeasonIdShortCombo, startedAt time.Time) *MatchesV4DataMetadata {
 	this := MatchesV4DataMetadata{}
 	this.GameLengthInMs = gameLengthInMs
 	this.GameVersion = gameVersion
@@ -227,6 +230,48 @@ func (o *MatchesV4DataMetadata) SetMatchId(v string) {
 	o.MatchId = v
 }
 
+// GetMvp returns the Mvp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchesV4DataMetadata) GetMvp() MatchesV4DataRoundPlayer {
+	if o == nil || IsNil(o.Mvp.Get()) {
+		var ret MatchesV4DataRoundPlayer
+		return ret
+	}
+	return *o.Mvp.Get()
+}
+
+// GetMvpOk returns a tuple with the Mvp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchesV4DataMetadata) GetMvpOk() (*MatchesV4DataRoundPlayer, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Mvp.Get(), o.Mvp.IsSet()
+}
+
+// HasMvp returns a boolean if a field has been set.
+func (o *MatchesV4DataMetadata) HasMvp() bool {
+	if o != nil && o.Mvp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMvp gets a reference to the given NullableMatchesV4DataRoundPlayer and assigns it to the Mvp field.
+func (o *MatchesV4DataMetadata) SetMvp(v MatchesV4DataRoundPlayer) {
+	o.Mvp.Set(&v)
+}
+// SetMvpNil sets the value for Mvp to be an explicit nil
+func (o *MatchesV4DataMetadata) SetMvpNil() {
+	o.Mvp.Set(nil)
+}
+
+// UnsetMvp ensures that no value is present for Mvp, not even an explicit nil
+func (o *MatchesV4DataMetadata) UnsetMvp() {
+	o.Mvp.Unset()
+}
+
 // GetPartyRrPenaltys returns the PartyRrPenaltys field value
 func (o *MatchesV4DataMetadata) GetPartyRrPenaltys() []MatchesV4DataMetadataPartyRRPenalty {
 	if o == nil {
@@ -399,9 +444,9 @@ func (o *MatchesV4DataMetadata) SetSeason(v SeasonIdShortCombo) {
 }
 
 // GetStartedAt returns the StartedAt field value
-func (o *MatchesV4DataMetadata) GetStartedAt() string {
+func (o *MatchesV4DataMetadata) GetStartedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -410,7 +455,7 @@ func (o *MatchesV4DataMetadata) GetStartedAt() string {
 
 // GetStartedAtOk returns a tuple with the StartedAt field value
 // and a boolean to check if the value has been set.
-func (o *MatchesV4DataMetadata) GetStartedAtOk() (*string, bool) {
+func (o *MatchesV4DataMetadata) GetStartedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -418,7 +463,7 @@ func (o *MatchesV4DataMetadata) GetStartedAtOk() (*string, bool) {
 }
 
 // SetStartedAt sets field value
-func (o *MatchesV4DataMetadata) SetStartedAt(v string) {
+func (o *MatchesV4DataMetadata) SetStartedAt(v time.Time) {
 	o.StartedAt = v
 }
 
@@ -440,6 +485,9 @@ func (o MatchesV4DataMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["is_completed"] = o.IsCompleted
 	toSerialize["map"] = o.Map
 	toSerialize["match_id"] = o.MatchId
+	if o.Mvp.IsSet() {
+		toSerialize["mvp"] = o.Mvp.Get()
+	}
 	toSerialize["party_rr_penaltys"] = o.PartyRrPenaltys
 	toSerialize["platform"] = o.Platform
 	if o.Premier != nil {

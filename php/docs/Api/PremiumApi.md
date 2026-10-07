@@ -109,7 +109,7 @@ $apiInstance = new OpenAPI\Client\Api\PremiumApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Tracked user id
+$id = 'id_example'; // string | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 
 try {
     $result = $apiInstance->deleteWebhookUser($id);
@@ -123,7 +123,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Tracked user id | |
+| **id** | **string**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | |
 
 ### Return type
 
@@ -145,7 +145,7 @@ try {
 ## `getWebhookSettings()`
 
 ```php
-getWebhookSettings()
+getWebhookSettings(): \OpenAPI\Client\Model\PremiumWebhookGetResponse
 ```
 
 Get premium webhook settings
@@ -176,7 +176,8 @@ $apiInstance = new OpenAPI\Client\Api\PremiumApi(
 );
 
 try {
-    $apiInstance->getWebhookSettings();
+    $result = $apiInstance->getWebhookSettings();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PremiumApi->getWebhookSettings: ', $e->getMessage(), PHP_EOL;
 }
@@ -188,7 +189,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**\OpenAPI\Client\Model\PremiumWebhookGetResponse**](../Model/PremiumWebhookGetResponse.md)
 
 ### Authorization
 
@@ -206,7 +207,7 @@ void (empty response body)
 ## `updateWebhookUser()`
 
 ```php
-updateWebhookUser($id, $premium_webhook_user_update_request)
+updateWebhookUser($id, $premium_webhook_user_update_request): \OpenAPI\Client\Model\PremiumWebhookUpdateResponse
 ```
 
 Update premium webhook user
@@ -235,11 +236,12 @@ $apiInstance = new OpenAPI\Client\Api\PremiumApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Tracked user id
+$id = 'id_example'; // string | Tracked user MongoDB ObjectId: 24 hexadecimal characters
 $premium_webhook_user_update_request = new \OpenAPI\Client\Model\PremiumWebhookUserUpdateRequest(); // \OpenAPI\Client\Model\PremiumWebhookUserUpdateRequest
 
 try {
-    $apiInstance->updateWebhookUser($id, $premium_webhook_user_update_request);
+    $result = $apiInstance->updateWebhookUser($id, $premium_webhook_user_update_request);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PremiumApi->updateWebhookUser: ', $e->getMessage(), PHP_EOL;
 }
@@ -249,12 +251,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Tracked user id | |
+| **id** | **string**| Tracked user MongoDB ObjectId: 24 hexadecimal characters | |
 | **premium_webhook_user_update_request** | [**\OpenAPI\Client\Model\PremiumWebhookUserUpdateRequest**](../Model/PremiumWebhookUserUpdateRequest.md)|  | |
 
 ### Return type
 
-void (empty response body)
+[**\OpenAPI\Client\Model\PremiumWebhookUpdateResponse**](../Model/PremiumWebhookUpdateResponse.md)
 
 ### Authorization
 

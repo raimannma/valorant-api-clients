@@ -19,6 +19,9 @@
 | **tag** | **kotlin.String** |  |  |
 | **teamId** | **kotlin.String** |  |  |
 | **tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  |  |
+| **draftedAbilityCasts** | [**kotlin.collections.List&lt;MatchesV4DataPlayerDraftedAbilityCast&gt;**](MatchesV4DataPlayerDraftedAbilityCast.md) |  |  [optional] |
+| **performance** | [**MatchesV4DataPlayerPerformance**](MatchesV4DataPlayerPerformance.md) |  |  [optional] |
+| **teamNumber** | **kotlin.Int** |  |  [optional] |
 
 
 

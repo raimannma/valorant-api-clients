@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enabled** | **bool** |  | [optional]
+**enabled** | **bool** |  | [optional] [default to true]
 **events** | [**\OpenAPI\Client\Model\PremiumWebhookEvent[]**](PremiumWebhookEvent.md) |  | [optional]
 **name** | **string** |  | [optional]
 **puuid** | **string** |  | [optional]

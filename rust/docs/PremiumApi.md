@@ -49,7 +49,7 @@ Delete premium webhook user
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | Tracked user id | [required] |
+**id** | **String** | Tracked user MongoDB ObjectId: 24 hexadecimal characters | [required] |
 
 ### Return type
 
@@ -69,7 +69,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_webhook_settings
 
-> get_webhook_settings()
+> models::PremiumWebhookGetResponse get_webhook_settings()
 Get premium webhook settings
 
 ### Parameters
@@ -78,7 +78,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
- (empty response body)
+[**models::PremiumWebhookGetResponse**](PremiumWebhookGetResponse.md)
 
 ### Authorization
 
@@ -94,7 +94,7 @@ This endpoint does not need any parameter.
 
 ## update_webhook_user
 
-> update_webhook_user(id, premium_webhook_user_update_request)
+> models::PremiumWebhookUpdateResponse update_webhook_user(id, premium_webhook_user_update_request)
 Update premium webhook user
 
 ### Parameters
@@ -102,12 +102,12 @@ Update premium webhook user
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | Tracked user id | [required] |
+**id** | **String** | Tracked user MongoDB ObjectId: 24 hexadecimal characters | [required] |
 **premium_webhook_user_update_request** | [**PremiumWebhookUserUpdateRequest**](PremiumWebhookUserUpdateRequest.md) |  | [required] |
 
 ### Return type
 
- (empty response body)
+[**models::PremiumWebhookUpdateResponse**](PremiumWebhookUpdateResponse.md)
 
 ### Authorization
 

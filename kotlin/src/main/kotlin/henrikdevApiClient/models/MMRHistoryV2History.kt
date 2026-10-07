@@ -31,7 +31,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Competitive update. Optional upstream fields are null when unavailable; tiers retain original IDs with season-aware names, and ELO is calculated from the original ID.
  *
  * @param date 
  * @param elo 
@@ -43,13 +43,24 @@ import com.squareup.moshi.JsonClass
  * @param season 
  * @param tier 
  * @param wasDerankProtected 
+ * @param afkPenalty 
+ * @param competitiveMovement 
+ * @param isPlacementMatch 
+ * @param matchLength Match duration in milliseconds; null when unavailable.
+ * @param newMapIncentiveRrForgiven 
+ * @param queueId 
+ * @param rrBeforeUpdate 
+ * @param rrPenalty 
+ * @param rrPerformanceBonus 
+ * @param tierBeforeUpdate 
+ * @param wasDerankProtectionReplenished 
  */
 
 
 data class MMRHistoryV2History (
 
     @Json(name = "date")
-    val date: kotlin.String,
+    val date: java.time.OffsetDateTime,
 
     @Json(name = "elo")
     val elo: kotlin.Int,
@@ -61,7 +72,7 @@ data class MMRHistoryV2History (
     val map: MapIdNameCombo,
 
     @Json(name = "match_id")
-    val matchId: kotlin.String,
+    val matchId: java.util.UUID,
 
     @Json(name = "refunded_rr")
     val refundedRr: kotlin.Int,
@@ -76,7 +87,41 @@ data class MMRHistoryV2History (
     val tier: TierIdNameCombo,
 
     @Json(name = "was_derank_protected")
-    val wasDerankProtected: kotlin.Boolean
+    val wasDerankProtected: kotlin.Boolean,
+
+    @Json(name = "afk_penalty")
+    val afkPenalty: kotlin.Int? = null,
+
+    @Json(name = "competitive_movement")
+    val competitiveMovement: kotlin.String? = null,
+
+    @Json(name = "is_placement_match")
+    val isPlacementMatch: kotlin.Boolean? = null,
+
+    /* Match duration in milliseconds; null when unavailable. */
+    @Json(name = "match_length")
+    val matchLength: kotlin.Long? = null,
+
+    @Json(name = "new_map_incentive_rr_forgiven")
+    val newMapIncentiveRrForgiven: kotlin.Int? = null,
+
+    @Json(name = "queue_id")
+    val queueId: kotlin.String? = null,
+
+    @Json(name = "rr_before_update")
+    val rrBeforeUpdate: kotlin.Int? = null,
+
+    @Json(name = "rr_penalty")
+    val rrPenalty: kotlin.Double? = null,
+
+    @Json(name = "rr_performance_bonus")
+    val rrPerformanceBonus: kotlin.Int? = null,
+
+    @Json(name = "tier_before_update")
+    val tierBeforeUpdate: TierIdNameCombo? = null,
+
+    @Json(name = "was_derank_protection_replenished")
+    val wasDerankProtectionReplenished: kotlin.Boolean? = null
 
 ) {
 

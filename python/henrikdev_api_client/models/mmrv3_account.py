@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,7 +29,7 @@ class MMRV3Account(BaseModel):
     MMRV3Account
     """ # noqa: E501
     name: StrictStr
-    puuid: StrictStr
+    puuid: UUID
     tag: StrictStr
     __properties: ClassVar[List[str]] = ["name", "puuid", "tag"]
 

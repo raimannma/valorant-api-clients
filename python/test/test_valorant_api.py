@@ -145,6 +145,34 @@ class TestValorantApi(unittest.TestCase):
         """
         pass
 
+    def test_get_mastery_agent_by_id(self) -> None:
+        """Test case for get_mastery_agent_by_id
+
+        Get agent mastery by PUUID (v1)
+        """
+        pass
+
+    def test_get_mastery_agent_by_name(self) -> None:
+        """Test case for get_mastery_agent_by_name
+
+        Get agent mastery by name (v1)
+        """
+        pass
+
+    def test_get_mastery_by_id(self) -> None:
+        """Test case for get_mastery_by_id
+
+        Get all agent mastery by PUUID (v1)
+        """
+        pass
+
+    def test_get_mastery_by_name(self) -> None:
+        """Test case for get_mastery_by_name
+
+        Get all agent mastery by name (v1)
+        """
+        pass
+
     def test_get_matches_v3_by_id(self) -> None:
         """Test case for get_matches_v3_by_id
 
@@ -292,6 +320,13 @@ class TestValorantApi(unittest.TestCase):
         """
         pass
 
+    def test_premier_by_id_v2(self) -> None:
+        """Test case for premier_by_id_v2
+
+        Get live Premier team by ID (v2)
+        """
+        pass
+
     def test_premier_by_name(self) -> None:
         """Test case for premier_by_name
 
@@ -303,6 +338,27 @@ class TestValorantApi(unittest.TestCase):
         """Test case for premier_by_name_history
 
         Get Premier team history by name (v1)
+        """
+        pass
+
+    def test_premier_by_name_v2(self) -> None:
+        """Test case for premier_by_name_v2
+
+        Get live Premier team by team name (v2)
+        """
+        pass
+
+    def test_premier_by_player_name(self) -> None:
+        """Test case for premier_by_player_name
+
+        Get live Premier team by player Riot ID (v2)
+        """
+        pass
+
+    def test_premier_by_puuid(self) -> None:
+        """Test case for premier_by_puuid
+
+        Get live Premier team by player PUUID (v2)
         """
         pass
 

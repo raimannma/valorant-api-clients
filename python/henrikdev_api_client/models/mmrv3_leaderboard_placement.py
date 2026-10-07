@@ -17,7 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -29,7 +30,7 @@ class MMRV3LeaderboardPlacement(BaseModel):
     MMRV3LeaderboardPlacement
     """ # noqa: E501
     rank: Annotated[int, Field(strict=True, ge=0)]
-    updated_at: StrictStr
+    updated_at: datetime
     __properties: ClassVar[List[str]] = ["rank", "updated_at"]
 
     model_config = ConfigDict(

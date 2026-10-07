@@ -19,15 +19,15 @@ import (
 // checks if the PremiumWebhookUserResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PremiumWebhookUserResponse{}
 
-// PremiumWebhookUserResponse struct for PremiumWebhookUserResponse
+// PremiumWebhookUserResponse Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
 type PremiumWebhookUserResponse struct {
 	CreatedAt int64 `json:"created_at"`
 	Enabled bool `json:"enabled"`
 	Events []PremiumWebhookEvent `json:"events"`
-	Id string `json:"id"`
-	LastCheckedAt NullableInt64 `json:"last_checked_at,omitempty"`
-	LastMatch NullableString `json:"last_match,omitempty"`
-	LastMmr NullableInt32 `json:"last_mmr,omitempty"`
+	Id string `json:"id" validate:"regexp=^[0-9a-fA-F]{24}$"`
+	LastCheckedAt NullableInt64 `json:"last_checked_at"`
+	LastMatch NullableString `json:"last_match"`
+	LastMmr NullableInt32 `json:"last_mmr"`
 	Puuid string `json:"puuid"`
 	Region string `json:"region"`
 	UpdatedAt int64 `json:"updated_at"`
@@ -39,12 +39,15 @@ type _PremiumWebhookUserResponse PremiumWebhookUserResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPremiumWebhookUserResponse(createdAt int64, enabled bool, events []PremiumWebhookEvent, id string, puuid string, region string, updatedAt int64) *PremiumWebhookUserResponse {
+func NewPremiumWebhookUserResponse(createdAt int64, enabled bool, events []PremiumWebhookEvent, id string, lastCheckedAt NullableInt64, lastMatch NullableString, lastMmr NullableInt32, puuid string, region string, updatedAt int64) *PremiumWebhookUserResponse {
 	this := PremiumWebhookUserResponse{}
 	this.CreatedAt = createdAt
 	this.Enabled = enabled
 	this.Events = events
 	this.Id = id
+	this.LastCheckedAt = lastCheckedAt
+	this.LastMatch = lastMatch
+	this.LastMmr = lastMmr
 	this.Puuid = puuid
 	this.Region = region
 	this.UpdatedAt = updatedAt
@@ -155,16 +158,18 @@ func (o *PremiumWebhookUserResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetLastCheckedAt returns the LastCheckedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLastCheckedAt returns the LastCheckedAt field value
+// If the value is explicit nil, the zero value for int64 will be returned
 func (o *PremiumWebhookUserResponse) GetLastCheckedAt() int64 {
-	if o == nil || IsNil(o.LastCheckedAt.Get()) {
+	if o == nil || o.LastCheckedAt.Get() == nil {
 		var ret int64
 		return ret
 	}
+
 	return *o.LastCheckedAt.Get()
 }
 
-// GetLastCheckedAtOk returns a tuple with the LastCheckedAt field value if set, nil otherwise
+// GetLastCheckedAtOk returns a tuple with the LastCheckedAt field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PremiumWebhookUserResponse) GetLastCheckedAtOk() (*int64, bool) {
@@ -174,39 +179,23 @@ func (o *PremiumWebhookUserResponse) GetLastCheckedAtOk() (*int64, bool) {
 	return o.LastCheckedAt.Get(), o.LastCheckedAt.IsSet()
 }
 
-// HasLastCheckedAt returns a boolean if a field has been set.
-func (o *PremiumWebhookUserResponse) HasLastCheckedAt() bool {
-	if o != nil && o.LastCheckedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastCheckedAt gets a reference to the given NullableInt64 and assigns it to the LastCheckedAt field.
+// SetLastCheckedAt sets field value
 func (o *PremiumWebhookUserResponse) SetLastCheckedAt(v int64) {
 	o.LastCheckedAt.Set(&v)
 }
-// SetLastCheckedAtNil sets the value for LastCheckedAt to be an explicit nil
-func (o *PremiumWebhookUserResponse) SetLastCheckedAtNil() {
-	o.LastCheckedAt.Set(nil)
-}
 
-// UnsetLastCheckedAt ensures that no value is present for LastCheckedAt, not even an explicit nil
-func (o *PremiumWebhookUserResponse) UnsetLastCheckedAt() {
-	o.LastCheckedAt.Unset()
-}
-
-// GetLastMatch returns the LastMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLastMatch returns the LastMatch field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *PremiumWebhookUserResponse) GetLastMatch() string {
-	if o == nil || IsNil(o.LastMatch.Get()) {
+	if o == nil || o.LastMatch.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.LastMatch.Get()
 }
 
-// GetLastMatchOk returns a tuple with the LastMatch field value if set, nil otherwise
+// GetLastMatchOk returns a tuple with the LastMatch field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PremiumWebhookUserResponse) GetLastMatchOk() (*string, bool) {
@@ -216,39 +205,23 @@ func (o *PremiumWebhookUserResponse) GetLastMatchOk() (*string, bool) {
 	return o.LastMatch.Get(), o.LastMatch.IsSet()
 }
 
-// HasLastMatch returns a boolean if a field has been set.
-func (o *PremiumWebhookUserResponse) HasLastMatch() bool {
-	if o != nil && o.LastMatch.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastMatch gets a reference to the given NullableString and assigns it to the LastMatch field.
+// SetLastMatch sets field value
 func (o *PremiumWebhookUserResponse) SetLastMatch(v string) {
 	o.LastMatch.Set(&v)
 }
-// SetLastMatchNil sets the value for LastMatch to be an explicit nil
-func (o *PremiumWebhookUserResponse) SetLastMatchNil() {
-	o.LastMatch.Set(nil)
-}
 
-// UnsetLastMatch ensures that no value is present for LastMatch, not even an explicit nil
-func (o *PremiumWebhookUserResponse) UnsetLastMatch() {
-	o.LastMatch.Unset()
-}
-
-// GetLastMmr returns the LastMmr field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLastMmr returns the LastMmr field value
+// If the value is explicit nil, the zero value for int32 will be returned
 func (o *PremiumWebhookUserResponse) GetLastMmr() int32 {
-	if o == nil || IsNil(o.LastMmr.Get()) {
+	if o == nil || o.LastMmr.Get() == nil {
 		var ret int32
 		return ret
 	}
+
 	return *o.LastMmr.Get()
 }
 
-// GetLastMmrOk returns a tuple with the LastMmr field value if set, nil otherwise
+// GetLastMmrOk returns a tuple with the LastMmr field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PremiumWebhookUserResponse) GetLastMmrOk() (*int32, bool) {
@@ -258,27 +231,9 @@ func (o *PremiumWebhookUserResponse) GetLastMmrOk() (*int32, bool) {
 	return o.LastMmr.Get(), o.LastMmr.IsSet()
 }
 
-// HasLastMmr returns a boolean if a field has been set.
-func (o *PremiumWebhookUserResponse) HasLastMmr() bool {
-	if o != nil && o.LastMmr.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastMmr gets a reference to the given NullableInt32 and assigns it to the LastMmr field.
+// SetLastMmr sets field value
 func (o *PremiumWebhookUserResponse) SetLastMmr(v int32) {
 	o.LastMmr.Set(&v)
-}
-// SetLastMmrNil sets the value for LastMmr to be an explicit nil
-func (o *PremiumWebhookUserResponse) SetLastMmrNil() {
-	o.LastMmr.Set(nil)
-}
-
-// UnsetLastMmr ensures that no value is present for LastMmr, not even an explicit nil
-func (o *PremiumWebhookUserResponse) UnsetLastMmr() {
-	o.LastMmr.Unset()
 }
 
 // GetPuuid returns the Puuid field value
@@ -367,15 +322,9 @@ func (o PremiumWebhookUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["events"] = o.Events
 	toSerialize["id"] = o.Id
-	if o.LastCheckedAt.IsSet() {
-		toSerialize["last_checked_at"] = o.LastCheckedAt.Get()
-	}
-	if o.LastMatch.IsSet() {
-		toSerialize["last_match"] = o.LastMatch.Get()
-	}
-	if o.LastMmr.IsSet() {
-		toSerialize["last_mmr"] = o.LastMmr.Get()
-	}
+	toSerialize["last_checked_at"] = o.LastCheckedAt.Get()
+	toSerialize["last_match"] = o.LastMatch.Get()
+	toSerialize["last_mmr"] = o.LastMmr.Get()
 	toSerialize["puuid"] = o.Puuid
 	toSerialize["region"] = o.Region
 	toSerialize["updated_at"] = o.UpdatedAt
@@ -391,6 +340,9 @@ func (o *PremiumWebhookUserResponse) UnmarshalJSON(data []byte) (err error) {
 		"enabled",
 		"events",
 		"id",
+		"last_checked_at",
+		"last_match",
+		"last_mmr",
 		"puuid",
 		"region",
 		"updated_at",

@@ -11,10 +11,12 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// RawV1PayloadValues : A UUID string or a nonempty UUID array. Matchdetails fetches every array entry; all other resource types use only the first entry.
+/// A UUID string or a nonempty UUID array. Matchdetails fetches every array entry; all other resource types use only the first entry.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RawV1PayloadValues {
-    String(String),
+    String(uuid::Uuid),
     ArrayVecString(Vec<String>),
 }
 

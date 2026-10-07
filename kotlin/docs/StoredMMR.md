@@ -4,11 +4,11 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **date** | **kotlin.String** |  |  |
+| **date** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  |
 | **elo** | **kotlin.Int** |  |  |
 | **lastMmrChange** | **kotlin.Int** |  |  |
 | **map** | [**StoredMMRMap**](StoredMMRMap.md) |  |  |
-| **matchId** | **kotlin.String** |  |  |
+| **matchId** | [**java.util.UUID**](java.util.UUID.md) |  |  |
 | **rankingInTier** | **kotlin.Int** |  |  |
 | **season** | [**StoredMMRSeason**](StoredMMRSeason.md) |  |  |
 | **tier** | [**StoredMMRTier**](StoredMMRTier.md) |  |  |

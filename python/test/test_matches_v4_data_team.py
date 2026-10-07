@@ -35,6 +35,15 @@ class TestMatchesV4DataTeam(unittest.TestCase):
         model = MatchesV4DataTeam()
         if include_optional:
             return MatchesV4DataTeam(
+                health = henrikdev_api_client.models.matches_v4_data_team_health.MatchesV4DataTeamHealth(
+                    remaining = 0, 
+                    starting = 0, ),
+                mvp = henrikdev_api_client.models.matches_v4_data_round_player.MatchesV4DataRoundPlayer(
+                    name = '', 
+                    puuid = '', 
+                    tag = '', 
+                    team = '', ),
+                placement = 0,
                 premier_roster = henrikdev_api_client.models.matches_v4_data_team_premier_roster.MatchesV4DataTeamPremierRoster(
                     customization = henrikdev_api_client.models.matches_v2_data_team_roster_customization.MatchesV2DataTeamRosterCustomization(
                         icon = '', 
@@ -52,6 +61,7 @@ class TestMatchesV4DataTeam(unittest.TestCase):
                     lost = 0, 
                     won = 0, ),
                 team_id = '',
+                team_number = 0,
                 won = True
             )
         else:

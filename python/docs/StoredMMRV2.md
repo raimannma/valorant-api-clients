@@ -1,20 +1,32 @@
 # StoredMMRV2
 
+Stored competitive update. Optional enrichment fields are null for older records; tier IDs and ELO preserve the original ranking schema.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_date** | **str** |  | 
+**afk_penalty** | **int** |  | [optional] 
+**competitive_movement** | **str** |  | [optional] 
+**var_date** | **datetime** |  | 
 **elo** | **int** |  | 
+**is_placement_match** | **bool** |  | [optional] 
 **last_change** | **int** |  | 
 **map** | [**MapIdNameCombo**](MapIdNameCombo.md) |  | 
-**match_id** | **str** |  | 
+**match_id** | **UUID** |  | 
+**match_length** | **int** | Match duration in milliseconds; null when unavailable. | [optional] 
+**new_map_incentive_rr_forgiven** | **int** |  | [optional] 
+**queue_id** | **str** |  | [optional] 
 **refunded_rr** | **int** |  | 
 **rr** | **int** |  | 
+**rr_before_update** | **int** |  | [optional] 
+**rr_penalty** | **float** |  | [optional] 
+**rr_performance_bonus** | **int** |  | [optional] 
 **season** | [**SeasonIdShortCombo**](SeasonIdShortCombo.md) |  | 
 **tier** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | 
+**tier_before_update** | [**TierIdNameCombo**](TierIdNameCombo.md) |  | [optional] 
 **was_derank_protected** | **bool** |  | 
+**was_derank_protection_replenished** | **bool** |  | [optional] 
 
 ## Example
 

@@ -35,6 +35,11 @@ class TestMatchesV4DataPlayerCustomization(unittest.TestCase):
         model = MatchesV4DataPlayerCustomization()
         if include_optional:
             return MatchesV4DataPlayerCustomization(
+                bloomline = henrikdev_api_client.models.matches_v4_data_player_bloomline.MatchesV4DataPlayerBloomline(
+                    clip_id = '', 
+                    hype_id = '', 
+                    level = 0, 
+                    plank_background_id = '', ),
                 card = '',
                 preferred_level_border = '',
                 title = ''

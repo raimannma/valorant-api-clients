@@ -17,8 +17,8 @@ use super::{Error, configuration, ContentType};
 /// struct for passing parameters to the method [`crosshair`]
 #[derive(Clone, Debug)]
 pub struct CrosshairParams {
-    /// Crosshair code
-    pub id: Option<String>
+    /// Required crosshair code
+    pub id: String
 }
 
 /// struct for passing parameters to the method [`esports_event_v2`]
@@ -84,10 +84,10 @@ pub struct EsportsTeamV2Params {
 /// struct for passing parameters to the method [`get_accolades_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetAccoladesByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Player UUID
     pub puuid: String
 }
@@ -95,10 +95,10 @@ pub struct GetAccoladesByIdParams {
 /// struct for passing parameters to the method [`get_accolades_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetAccoladesByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
@@ -148,87 +148,147 @@ pub struct GetAccountV2Params {
 /// struct for passing parameters to the method [`get_content_v1`]
 #[derive(Clone, Debug)]
 pub struct GetContentV1Params {
-    /// Locale code (e.g., en-US, de-DE) - optional
-    pub locale: Option<String>
+    /// Content locale; case-insensitive. Omission selects en-US.
+    pub locale: Option<models::ValorantContentLocale>
+}
+
+/// struct for passing parameters to the method [`get_mastery_agent_by_id`]
+#[derive(Clone, Debug)]
+pub struct GetMasteryAgentByIdParams {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
+    /// Player UUID
+    pub puuid: String,
+    /// Agent UUID
+    pub agent_id: String
+}
+
+/// struct for passing parameters to the method [`get_mastery_agent_by_name`]
+#[derive(Clone, Debug)]
+pub struct GetMasteryAgentByNameParams {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
+    /// Riot ID name
+    pub name: String,
+    /// Riot ID tag
+    pub tag: String,
+    /// Agent UUID
+    pub agent_id: String
+}
+
+/// struct for passing parameters to the method [`get_mastery_by_id`]
+#[derive(Clone, Debug)]
+pub struct GetMasteryByIdParams {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
+    /// Player UUID
+    pub puuid: String
+}
+
+/// struct for passing parameters to the method [`get_mastery_by_name`]
+#[derive(Clone, Debug)]
+pub struct GetMasteryByNameParams {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
+    /// Riot ID name
+    pub name: String,
+    /// Riot ID tag
+    pub tag: String
 }
 
 /// struct for passing parameters to the method [`get_matches_v3_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetMatchesV3ByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Player UUID
     pub puuid: String,
-    /// Game mode filter (optional)
+    /// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
     pub mode: Option<String>,
-    /// Map filter (optional)
+    /// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+    pub queue: Option<String>,
+    /// Map display name, matched case-insensitively.
     pub map: Option<String>,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count; values above 10 are capped at 10.
+    pub size: Option<u32>
 }
 
 /// struct for passing parameters to the method [`get_matches_v3_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetMatchesV3ByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
     pub tag: String,
-    /// Game mode filter (optional)
-    pub mode: Option<models::MatchMode>,
-    /// Map filter (optional)
+    /// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
+    pub mode: Option<String>,
+    /// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+    pub queue: Option<String>,
+    /// Map display name, matched case-insensitively.
     pub map: Option<String>,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count; values above 10 are capped at 10.
+    pub size: Option<u32>
 }
 
 /// struct for passing parameters to the method [`get_matches_v4_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetMatchesV4ByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Player UUID
     pub puuid: String,
-    /// Game mode filter (optional)
+    /// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
     pub mode: Option<String>,
-    /// Map filter (optional)
+    /// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+    pub queue: Option<String>,
+    /// Map display name, matched case-insensitively.
     pub map: Option<String>,
-    /// Number of results (optional)
-    pub size: Option<i32>,
-    /// Start index for pagination (optional)
-    pub start: Option<i32>
+    /// Positive integer result count; values above 10 are capped at 10.
+    pub size: Option<u32>,
+    /// Zero-based offset; start plus capped size must fit a signed 32-bit integer.
+    pub start: Option<u32>
 }
 
 /// struct for passing parameters to the method [`get_matches_v4_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetMatchesV4ByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
     pub tag: String,
-    /// Game mode filter (optional)
+    /// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
     pub mode: Option<String>,
-    /// Map filter (optional)
+    /// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+    pub queue: Option<String>,
+    /// Map display name, matched case-insensitively.
     pub map: Option<String>,
-    /// Number of results (optional)
-    pub size: Option<i32>,
-    /// Start index for pagination (optional)
-    pub start: Option<i32>
+    /// Positive integer result count; values above 10 are capped at 10.
+    pub size: Option<u32>,
+    /// Zero-based offset; start plus capped size must fit a signed 32-bit integer.
+    pub start: Option<u32>
 }
 
 /// struct for passing parameters to the method [`get_mmr_history_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetMmrHistoryByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Player UUID
     pub puuid: String
 }
@@ -236,8 +296,8 @@ pub struct GetMmrHistoryByIdParams {
 /// struct for passing parameters to the method [`get_mmr_history_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetMmrHistoryByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
@@ -247,10 +307,10 @@ pub struct GetMmrHistoryByNameParams {
 /// struct for passing parameters to the method [`get_mmr_history_v2_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetMmrHistoryV2ByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Player UUID
     pub puuid: String
 }
@@ -258,10 +318,10 @@ pub struct GetMmrHistoryV2ByIdParams {
 /// struct for passing parameters to the method [`get_mmr_history_v2_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetMmrHistoryV2ByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
@@ -271,8 +331,8 @@ pub struct GetMmrHistoryV2ByNameParams {
 /// struct for passing parameters to the method [`get_mmr_v1_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetMmrV1ByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Player UUID
     pub puuid: String
 }
@@ -280,8 +340,8 @@ pub struct GetMmrV1ByIdParams {
 /// struct for passing parameters to the method [`get_mmr_v1_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetMmrV1ByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
@@ -291,8 +351,8 @@ pub struct GetMmrV1ByNameParams {
 /// struct for passing parameters to the method [`get_mmr_v2_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetMmrV2ByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Player UUID
     pub puuid: String
 }
@@ -300,8 +360,8 @@ pub struct GetMmrV2ByIdParams {
 /// struct for passing parameters to the method [`get_mmr_v2_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetMmrV2ByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
@@ -311,10 +371,10 @@ pub struct GetMmrV2ByNameParams {
 /// struct for passing parameters to the method [`get_mmr_v3_by_id`]
 #[derive(Clone, Debug)]
 pub struct GetMmrV3ByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Player UUID
     pub puuid: String
 }
@@ -322,10 +382,10 @@ pub struct GetMmrV3ByIdParams {
 /// struct for passing parameters to the method [`get_mmr_v3_by_name`]
 #[derive(Clone, Debug)]
 pub struct GetMmrV3ByNameParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
@@ -335,22 +395,24 @@ pub struct GetMmrV3ByNameParams {
 /// struct for passing parameters to the method [`leaderboard_v1`]
 #[derive(Clone, Debug)]
 pub struct LeaderboardV1Params {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Season ID (optional)
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Short season ID, such as e9a1; omission selects the current season
     pub season: Option<String>,
     /// Player name to search for (optional)
     pub name: Option<String>,
     /// Player tag to search for (optional)
-    pub tag: Option<String>
+    pub tag: Option<String>,
+    /// Player UUID to search for
+    pub puuid: Option<String>
 }
 
 /// struct for passing parameters to the method [`leaderboard_v2`]
 #[derive(Clone, Debug)]
 pub struct LeaderboardV2Params {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Season ID (optional)
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Short season ID, such as e9a1; omission selects the current season
     pub season: Option<String>,
     /// Player name to search for (optional)
     pub name: Option<String>,
@@ -363,20 +425,24 @@ pub struct LeaderboardV2Params {
 /// struct for passing parameters to the method [`leaderboard_v3`]
 #[derive(Clone, Debug)]
 pub struct LeaderboardV3Params {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
-    /// Season ID (optional)
-    pub season: Option<String>,
-    /// Number of results per page (optional)
-    pub size: Option<i32>,
-    /// Page number (optional)
-    pub page: Option<i32>,
-    /// Player name to search for (optional)
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
+    /// Positive one-based page; supplying page requires size. Only ASCII decimal digits are accepted.
+    pub page: Option<u32>,
+    /// Positive integer result count; only ASCII decimal digits are accepted.
+    pub size: Option<u32>,
+    /// Short season ID, such as e9a1; mutually exclusive with season_id. Omit both for the current season.
+    pub season_short: Option<String>,
+    /// Season UUID; mutually exclusive with season_short.
+    pub season_id: Option<String>,
+    /// Player name to search for.
     pub name: Option<String>,
-    /// Player tag to search for (optional)
-    pub tag: Option<String>
+    /// Player tag to search for.
+    pub tag: Option<String>,
+    /// Player UUID to search for.
+    pub puuid: Option<String>
 }
 
 /// struct for passing parameters to the method [`match_v2`]
@@ -389,8 +455,8 @@ pub struct MatchV2Params {
 /// struct for passing parameters to the method [`match_v4`]
 #[derive(Clone, Debug)]
 pub struct MatchV4Params {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Match UUID
     pub match_id: String
 }
@@ -402,8 +468,8 @@ pub struct PremierByIdParams {
     pub id: String,
     /// Premier season id (optional)
     pub season: Option<String>,
-    /// Region/affinity for fallback resolution (optional)
-    pub affinity: Option<String>
+    /// Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+    pub affinity: Option<models::ValorantAffinity>
 }
 
 /// struct for passing parameters to the method [`premier_by_id_history`]
@@ -415,6 +481,15 @@ pub struct PremierByIdHistoryParams {
     pub season: Option<String>
 }
 
+/// struct for passing parameters to the method [`premier_by_id_v2`]
+#[derive(Clone, Debug)]
+pub struct PremierByIdV2Params {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Team UUID
+    pub id: String
+}
+
 /// struct for passing parameters to the method [`premier_by_name`]
 #[derive(Clone, Debug)]
 pub struct PremierByNameParams {
@@ -424,8 +499,8 @@ pub struct PremierByNameParams {
     pub tag: String,
     /// Premier season id (optional)
     pub season: Option<String>,
-    /// Region/affinity for fallback resolution (optional)
-    pub affinity: Option<String>
+    /// Region/affinity for fallback resolution; validation is case-insensitive, but use lowercase for persisted team matching
+    pub affinity: Option<models::ValorantAffinity>
 }
 
 /// struct for passing parameters to the method [`premier_by_name_history`]
@@ -439,15 +514,42 @@ pub struct PremierByNameHistoryParams {
     pub season: Option<String>
 }
 
+/// struct for passing parameters to the method [`premier_by_name_v2`]
+#[derive(Clone, Debug)]
+pub struct PremierByNameV2Params {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Premier team name
+    pub name: String,
+    /// Premier team tag
+    pub tag: String
+}
+
+/// struct for passing parameters to the method [`premier_by_player_name`]
+#[derive(Clone, Debug)]
+pub struct PremierByPlayerNameParams {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Player Riot ID name
+    pub name: String,
+    /// Player Riot ID tag
+    pub tag: String
+}
+
+/// struct for passing parameters to the method [`premier_by_puuid`]
+#[derive(Clone, Debug)]
+pub struct PremierByPuuidParams {
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Player UUID
+    pub puuid: String
+}
+
 /// struct for passing parameters to the method [`premier_leaderboard`]
 #[derive(Clone, Debug)]
 pub struct PremierLeaderboardParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Conference filter (optional)
-    pub conference: Option<String>,
-    /// Division filter (optional)
-    pub division: Option<String>,
+    /// Region/affinity; validation is case-insensitive; use lowercase for persisted team matching
+    pub affinity: models::ValorantAffinity,
     /// Premier season id (optional)
     pub season: Option<String>
 }
@@ -459,17 +561,21 @@ pub struct PremierSearchParams {
     pub name: Option<String>,
     /// Team tag to search for (optional)
     pub tag: Option<String>,
-    /// Team UUID to search for (optional)
+    /// Team UUID to search for; cannot be combined with name or tag
     pub id: Option<String>,
     /// Premier season id (optional)
-    pub season: Option<String>
+    pub season: Option<String>,
+    /// Current upstream Premier conference key; case-insensitive; not a fixed enum
+    pub conference: Option<String>,
+    /// Division filter; integer from 1 through 21
+    pub division: Option<i32>
 }
 
 /// struct for passing parameters to the method [`queue_status`]
 #[derive(Clone, Debug)]
 pub struct QueueStatusParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity
 }
 
 /// struct for passing parameters to the method [`raw`]
@@ -481,122 +587,138 @@ pub struct RawParams {
 /// struct for passing parameters to the method [`status`]
 #[derive(Clone, Debug)]
 pub struct StatusParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity
 }
 
 /// struct for passing parameters to the method [`store_featured`]
 #[derive(Clone, Debug)]
 pub struct StoreFeaturedParams {
-    /// API version (v1, v2)
-    pub version: String
+    /// Response version; v1 returns an object envelope and v2 returns an array envelope
+    pub version: models::ValorantStoreVersion
 }
 
 /// struct for passing parameters to the method [`store_offers`]
 #[derive(Clone, Debug)]
 pub struct StoreOffersParams {
-    /// API version (v1, v2)
-    pub version: String
+    /// Legacy API version
+    pub version: models::ValorantStoreVersion
 }
 
 /// struct for passing parameters to the method [`stored_matches`]
 #[derive(Clone, Debug)]
 pub struct StoredMatchesParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
     pub tag: String,
-    /// Game mode filter (optional)
+    /// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
     pub mode: Option<String>,
-    /// Map filter (optional)
+    /// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+    pub queue: Option<String>,
+    /// Map display name, matched case-insensitively.
     pub map: Option<String>,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count. Omit for unlimited results.
+    pub size: Option<u32>,
+    /// One-based page. Supplying page requires size.
+    pub page: Option<u32>
 }
 
 /// struct for passing parameters to the method [`stored_matches_by_id`]
 #[derive(Clone, Debug)]
 pub struct StoredMatchesByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Player UUID
     pub puuid: String,
-    /// Game mode filter (optional)
+    /// Current catalog queue ID or legacy mode name; must resolve to the same queue when queue is also supplied.
     pub mode: Option<String>,
-    /// Map filter (optional)
+    /// Validated alias of mode; current catalog queue IDs and legacy mode names are accepted.
+    pub queue: Option<String>,
+    /// Map display name, matched case-insensitively.
     pub map: Option<String>,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count. Omit for unlimited results.
+    pub size: Option<u32>,
+    /// One-based page. Supplying page requires size.
+    pub page: Option<u32>
 }
 
 /// struct for passing parameters to the method [`stored_mmr_history`]
 #[derive(Clone, Debug)]
 pub struct StoredMmrHistoryParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
     pub tag: String,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count. Omit for unlimited results.
+    pub size: Option<u32>,
+    /// One-based page. Supplying page requires size.
+    pub page: Option<u32>
 }
 
 /// struct for passing parameters to the method [`stored_mmr_history_by_id`]
 #[derive(Clone, Debug)]
 pub struct StoredMmrHistoryByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
     /// Player UUID
     pub puuid: String,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count. Omit for unlimited results.
+    pub size: Option<u32>,
+    /// One-based page. Supplying page requires size.
+    pub page: Option<u32>
 }
 
 /// struct for passing parameters to the method [`stored_mmr_history_v2`]
 #[derive(Clone, Debug)]
 pub struct StoredMmrHistoryV2Params {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Riot ID name
     pub name: String,
     /// Riot ID tag
     pub tag: String,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count. Omit for unlimited results.
+    pub size: Option<u32>,
+    /// One-based page. Supplying page requires size.
+    pub page: Option<u32>
 }
 
 /// struct for passing parameters to the method [`stored_mmr_history_v2_by_id`]
 #[derive(Clone, Debug)]
 pub struct StoredMmrHistoryV2ByIdParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String,
-    /// Platform (pc, console)
-    pub platform: String,
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity,
+    /// Platform; case-insensitive
+    pub platform: models::ValorantPlatform,
     /// Player UUID
     pub puuid: String,
-    /// Number of results (optional)
-    pub size: Option<i32>
+    /// Positive integer result count. Omit for unlimited results.
+    pub size: Option<u32>,
+    /// One-based page. Supplying page requires size.
+    pub page: Option<u32>
 }
 
 /// struct for passing parameters to the method [`version`]
 #[derive(Clone, Debug)]
 pub struct VersionParams {
-    /// Region/affinity (e.g., na, eu, ap, kr)
-    pub affinity: String
+    /// Region/affinity; case-insensitive
+    pub affinity: models::ValorantAffinity
 }
 
 /// struct for passing parameters to the method [`website`]
 #[derive(Clone, Debug)]
 pub struct WebsiteParams {
-    /// Country code (e.g., en-us, de-de)
-    pub country_code: String,
-    /// Category filter (optional)
-    pub category: Option<String>
+    /// Website locale; case-insensitive
+    pub country_code: models::ValorantWebsiteLocale,
+    /// Category filter; case-sensitive
+    pub category: Option<models::ValorantWebsiteCategory>
 }
 
 /// struct for passing parameters to the method [`website_by_id`]
@@ -604,7 +726,7 @@ pub struct WebsiteParams {
 pub struct WebsiteByIdParams {
     /// Database ID of the website entry
     pub db_id: String,
-    /// Country code (e.g., en-us, de-de)
+    /// Ignored locale segment; any string is accepted
     pub country_code: String
 }
 
@@ -614,6 +736,9 @@ pub struct WebsiteByIdParams {
 #[serde(untagged)]
 pub enum CrosshairError {
     Status400(models::SendError),
+    Status401(models::SendError),
+    Status403(models::SendError),
+    Status404(models::SendError),
     Status500(models::SendError),
     UnknownValue(serde_json::Value),
 }
@@ -764,6 +889,46 @@ pub enum GetAccountV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetContentV1Error {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_mastery_agent_by_id`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMasteryAgentByIdError {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_mastery_agent_by_name`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMasteryAgentByNameError {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_mastery_by_id`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMasteryByIdError {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_mastery_by_name`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMasteryByNameError {
     Status400(models::SendError),
     Status404(models::SendError),
     Status500(models::SendError),
@@ -980,6 +1145,16 @@ pub enum PremierByIdHistoryError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`premier_by_id_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PremierByIdV2Error {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`premier_by_name`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -995,7 +1170,40 @@ pub enum PremierByNameError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PremierByNameHistoryError {
-    Status400(),
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`premier_by_name_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PremierByNameV2Error {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status409(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`premier_by_player_name`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PremierByPlayerNameError {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`premier_by_puuid`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PremierByPuuidError {
+    Status400(models::SendError),
+    Status404(models::SendError),
+    Status500(models::SendError),
     UnknownValue(serde_json::Value),
 }
 
@@ -1063,9 +1271,7 @@ pub enum StoreFeaturedError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum StoreOffersError {
-    Status400(models::SendError),
     Status404(models::SendError),
-    Status500(models::SendError),
     UnknownValue(serde_json::Value),
 }
 
@@ -1165,9 +1371,7 @@ pub async fn crosshair(configuration: &configuration::Configuration, params: Cro
     let uri_str = format!("{}/valorant/v1/crosshair/generate", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = params.id {
-        req_builder = req_builder.query(&[("id", &param_value.to_string())]);
-    }
+    req_builder = req_builder.query(&[("id", &params.id.to_string())]);
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
         let value = match apikey.prefix {
@@ -1678,7 +1882,7 @@ pub async fn esports_team_v2(configuration: &configuration::Configuration, param
 
 pub async fn get_accolades_by_id(configuration: &configuration::Configuration, params: GetAccoladesByIdParams) -> Result<models::AccoladesV1Response, Error<GetAccoladesByIdError>> {
 
-    let uri_str = format!("{}/valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v1/by-puuid/accolades/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -1728,7 +1932,7 @@ pub async fn get_accolades_by_id(configuration: &configuration::Configuration, p
 
 pub async fn get_accolades_by_name(configuration: &configuration::Configuration, params: GetAccoladesByNameParams) -> Result<models::AccoladesV1Response, Error<GetAccoladesByNameError>> {
 
-    let uri_str = format!("{}/valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v1/accolades/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2041,13 +2245,220 @@ pub async fn get_content_v1(configuration: &configuration::Configuration, params
     }
 }
 
+/// Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+pub async fn get_mastery_agent_by_id(configuration: &configuration::Configuration, params: GetMasteryAgentByIdParams) -> Result<models::AgentMasteryV1DetailResponse, Error<GetMasteryAgentByIdError>> {
+
+    let uri_str = format!("{}/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}/{agent_id}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), puuid=crate::apis::urlencode(params.puuid), agent_id=crate::apis::urlencode(params.agent_id));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentMasteryV1DetailResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentMasteryV1DetailResponse`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetMasteryAgentByIdError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Includes numeric modules when returned by Riot. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+pub async fn get_mastery_agent_by_name(configuration: &configuration::Configuration, params: GetMasteryAgentByNameParams) -> Result<models::AgentMasteryV1DetailResponse, Error<GetMasteryAgentByNameError>> {
+
+    let uri_str = format!("{}/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}/{agent_id}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag), agent_id=crate::apis::urlencode(params.agent_id));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentMasteryV1DetailResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentMasteryV1DetailResponse`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetMasteryAgentByNameError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+pub async fn get_mastery_by_id(configuration: &configuration::Configuration, params: GetMasteryByIdParams) -> Result<models::AgentMasteryV1Response, Error<GetMasteryByIdError>> {
+
+    let uri_str = format!("{}/valorant/v1/by-puuid/agent-mastery/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), puuid=crate::apis::urlencode(params.puuid));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentMasteryV1Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentMasteryV1Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetMasteryByIdError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Modules are null when not included by Riot; use the single-agent endpoint for modules. Unknown metadata names and omitted levels are null. Short and long levels retain Riot's source semantics.
+pub async fn get_mastery_by_name(configuration: &configuration::Configuration, params: GetMasteryByNameParams) -> Result<models::AgentMasteryV1Response, Error<GetMasteryByNameError>> {
+
+    let uri_str = format!("{}/valorant/v1/agent-mastery/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgentMasteryV1Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgentMasteryV1Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetMasteryByNameError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
 pub async fn get_matches_v3_by_id(configuration: &configuration::Configuration, params: GetMatchesV3ByIdParams) -> Result<models::MatchesV3ListResponse, Error<GetMatchesV3ByIdError>> {
 
-    let uri_str = format!("{}/valorant/v3/by-puuid/matches/{affinity}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v3/by-puuid/matches/{affinity}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.queue {
+        req_builder = req_builder.query(&[("queue", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.map {
         req_builder = req_builder.query(&[("map", &param_value.to_string())]);
@@ -2102,11 +2513,14 @@ pub async fn get_matches_v3_by_id(configuration: &configuration::Configuration, 
 
 pub async fn get_matches_v3_by_name(configuration: &configuration::Configuration, params: GetMatchesV3ByNameParams) -> Result<models::MatchesV3ListResponse, Error<GetMatchesV3ByNameError>> {
 
-    let uri_str = format!("{}/valorant/v3/matches/{affinity}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v3/matches/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.queue {
+        req_builder = req_builder.query(&[("queue", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.map {
         req_builder = req_builder.query(&[("map", &param_value.to_string())]);
@@ -2161,11 +2575,14 @@ pub async fn get_matches_v3_by_name(configuration: &configuration::Configuration
 
 pub async fn get_matches_v4_by_id(configuration: &configuration::Configuration, params: GetMatchesV4ByIdParams) -> Result<models::MatchesV4HistoryResponse, Error<GetMatchesV4ByIdError>> {
 
-    let uri_str = format!("{}/valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v4/by-puuid/matches/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.queue {
+        req_builder = req_builder.query(&[("queue", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.map {
         req_builder = req_builder.query(&[("map", &param_value.to_string())]);
@@ -2223,11 +2640,14 @@ pub async fn get_matches_v4_by_id(configuration: &configuration::Configuration, 
 
 pub async fn get_matches_v4_by_name(configuration: &configuration::Configuration, params: GetMatchesV4ByNameParams) -> Result<models::MatchesV4HistoryResponse, Error<GetMatchesV4ByNameError>> {
 
-    let uri_str = format!("{}/valorant/v4/matches/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v4/matches/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.queue {
+        req_builder = req_builder.query(&[("queue", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.map {
         req_builder = req_builder.query(&[("map", &param_value.to_string())]);
@@ -2285,7 +2705,7 @@ pub async fn get_matches_v4_by_name(configuration: &configuration::Configuration
 
 pub async fn get_mmr_history_by_id(configuration: &configuration::Configuration, params: GetMmrHistoryByIdParams) -> Result<models::MmrHistoryV1Response, Error<GetMmrHistoryByIdError>> {
 
-    let uri_str = format!("{}/valorant/v1/by-puuid/mmr-history/{affinity}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v1/by-puuid/mmr-history/{affinity}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2335,7 +2755,7 @@ pub async fn get_mmr_history_by_id(configuration: &configuration::Configuration,
 
 pub async fn get_mmr_history_by_name(configuration: &configuration::Configuration, params: GetMmrHistoryByNameParams) -> Result<models::MmrHistoryV1Response, Error<GetMmrHistoryByNameError>> {
 
-    let uri_str = format!("{}/valorant/v1/mmr-history/{affinity}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v1/mmr-history/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2385,7 +2805,7 @@ pub async fn get_mmr_history_by_name(configuration: &configuration::Configuratio
 
 pub async fn get_mmr_history_v2_by_id(configuration: &configuration::Configuration, params: GetMmrHistoryV2ByIdParams) -> Result<models::MmrHistoryV2Response, Error<GetMmrHistoryV2ByIdError>> {
 
-    let uri_str = format!("{}/valorant/v2/by-puuid/mmr-history/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v2/by-puuid/mmr-history/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2435,7 +2855,7 @@ pub async fn get_mmr_history_v2_by_id(configuration: &configuration::Configurati
 
 pub async fn get_mmr_history_v2_by_name(configuration: &configuration::Configuration, params: GetMmrHistoryV2ByNameParams) -> Result<models::MmrHistoryV2Response, Error<GetMmrHistoryV2ByNameError>> {
 
-    let uri_str = format!("{}/valorant/v2/mmr-history/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v2/mmr-history/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2485,7 +2905,7 @@ pub async fn get_mmr_history_v2_by_name(configuration: &configuration::Configura
 
 pub async fn get_mmr_v1_by_id(configuration: &configuration::Configuration, params: GetMmrV1ByIdParams) -> Result<models::Mmrv1Response, Error<GetMmrV1ByIdError>> {
 
-    let uri_str = format!("{}/valorant/v1/by-puuid/mmr/{affinity}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v1/by-puuid/mmr/{affinity}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2535,7 +2955,7 @@ pub async fn get_mmr_v1_by_id(configuration: &configuration::Configuration, para
 
 pub async fn get_mmr_v1_by_name(configuration: &configuration::Configuration, params: GetMmrV1ByNameParams) -> Result<models::Mmrv1Response, Error<GetMmrV1ByNameError>> {
 
-    let uri_str = format!("{}/valorant/v1/mmr/{affinity}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v1/mmr/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2585,7 +3005,7 @@ pub async fn get_mmr_v1_by_name(configuration: &configuration::Configuration, pa
 
 pub async fn get_mmr_v2_by_id(configuration: &configuration::Configuration, params: GetMmrV2ByIdParams) -> Result<models::Mmrv2Response, Error<GetMmrV2ByIdError>> {
 
-    let uri_str = format!("{}/valorant/v2/by-puuid/mmr/{affinity}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v2/by-puuid/mmr/{affinity}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2635,7 +3055,7 @@ pub async fn get_mmr_v2_by_id(configuration: &configuration::Configuration, para
 
 pub async fn get_mmr_v2_by_name(configuration: &configuration::Configuration, params: GetMmrV2ByNameParams) -> Result<models::Mmrv2Response, Error<GetMmrV2ByNameError>> {
 
-    let uri_str = format!("{}/valorant/v2/mmr/{affinity}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v2/mmr/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2685,7 +3105,7 @@ pub async fn get_mmr_v2_by_name(configuration: &configuration::Configuration, pa
 
 pub async fn get_mmr_v3_by_id(configuration: &configuration::Configuration, params: GetMmrV3ByIdParams) -> Result<models::Mmrv3Response, Error<GetMmrV3ByIdError>> {
 
-    let uri_str = format!("{}/valorant/v3/by-puuid/mmr/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v3/by-puuid/mmr/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2735,7 +3155,7 @@ pub async fn get_mmr_v3_by_id(configuration: &configuration::Configuration, para
 
 pub async fn get_mmr_v3_by_name(configuration: &configuration::Configuration, params: GetMmrV3ByNameParams) -> Result<models::Mmrv3Response, Error<GetMmrV3ByNameError>> {
 
-    let uri_str = format!("{}/valorant/v3/mmr/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v3/mmr/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -2783,68 +3203,9 @@ pub async fn get_mmr_v3_by_name(configuration: &configuration::Configuration, pa
     }
 }
 
-pub async fn leaderboard_v1(configuration: &configuration::Configuration, params: LeaderboardV1Params) -> Result<serde_json::Value, Error<LeaderboardV1Error>> {
+pub async fn leaderboard_v1(configuration: &configuration::Configuration, params: LeaderboardV1Params) -> Result<models::LeaderboardV1Response, Error<LeaderboardV1Error>> {
 
-    let uri_str = format!("{}/valorant/v1/leaderboard/{affinity}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = params.season {
-        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = params.name {
-        req_builder = req_builder.query(&[("name", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = params.tag {
-        req_builder = req_builder.query(&[("tag", &param_value.to_string())]);
-    }
-    if let Some(ref apikey) = configuration.api_key {
-        let key = apikey.key.clone();
-        let value = match apikey.prefix {
-            Some(ref prefix) => format!("{} {}", prefix, key),
-            None => key,
-        };
-        req_builder = req_builder.query(&[("api_key", value)]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref apikey) = configuration.api_key {
-        let key = apikey.key.clone();
-        let value = match apikey.prefix {
-            Some(ref prefix) => format!("{} {}", prefix, key),
-            None => key,
-        };
-        req_builder = req_builder.header("Authorization", value);
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `serde_json::Value`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `serde_json::Value`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<LeaderboardV1Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-pub async fn leaderboard_v2(configuration: &configuration::Configuration, params: LeaderboardV2Params) -> Result<models::LeaderboardV2Response, Error<LeaderboardV2Error>> {
-
-    let uri_str = format!("{}/valorant/v2/leaderboard/{affinity}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity));
+    let uri_str = format!("{}/valorant/v1/leaderboard/{affinity}", configuration.base_path, affinity=params.affinity.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.season {
@@ -2894,8 +3255,70 @@ pub async fn leaderboard_v2(configuration: &configuration::Configuration, params
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LeaderboardV2Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LeaderboardV2Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::LeaderboardV1Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::LeaderboardV1Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<LeaderboardV1Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+pub async fn leaderboard_v2(configuration: &configuration::Configuration, params: LeaderboardV2Params) -> Result<models::ValorantLeaderboardV2Response, Error<LeaderboardV2Error>> {
+
+    let uri_str = format!("{}/valorant/v2/leaderboard/{affinity}", configuration.base_path, affinity=params.affinity.to_string());
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = params.season {
+        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.name {
+        req_builder = req_builder.query(&[("name", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.tag {
+        req_builder = req_builder.query(&[("tag", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.puuid {
+        req_builder = req_builder.query(&[("puuid", &param_value.to_string())]);
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ValorantLeaderboardV2Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ValorantLeaderboardV2Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -2906,23 +3329,29 @@ pub async fn leaderboard_v2(configuration: &configuration::Configuration, params
 
 pub async fn leaderboard_v3(configuration: &configuration::Configuration, params: LeaderboardV3Params) -> Result<models::LeaderboardV3Response, Error<LeaderboardV3Error>> {
 
-    let uri_str = format!("{}/valorant/v3/leaderboard/{affinity}/{platform}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform));
+    let uri_str = format!("{}/valorant/v3/leaderboard/{affinity}/{platform}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = params.season {
-        req_builder = req_builder.query(&[("season", &param_value.to_string())]);
+    if let Some(ref param_value) = params.page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.size {
         req_builder = req_builder.query(&[("size", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = params.page {
-        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
+    if let Some(ref param_value) = params.season_short {
+        req_builder = req_builder.query(&[("season_short", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.season_id {
+        req_builder = req_builder.query(&[("season_id", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.name {
         req_builder = req_builder.query(&[("name", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.tag {
         req_builder = req_builder.query(&[("tag", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.puuid {
+        req_builder = req_builder.query(&[("puuid", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
@@ -3021,7 +3450,7 @@ pub async fn match_v2(configuration: &configuration::Configuration, params: Matc
 
 pub async fn match_v4(configuration: &configuration::Configuration, params: MatchV4Params) -> Result<models::MatchesV4Response, Error<MatchV4Error>> {
 
-    let uri_str = format!("{}/valorant/v4/match/{affinity}/{match_id}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), match_id=crate::apis::urlencode(params.match_id));
+    let uri_str = format!("{}/valorant/v4/match/{affinity}/{match_id}", configuration.base_path, affinity=params.affinity.to_string(), match_id=crate::apis::urlencode(params.match_id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -3125,7 +3554,7 @@ pub async fn premier_by_id(configuration: &configuration::Configuration, params:
     }
 }
 
-pub async fn premier_by_id_history(configuration: &configuration::Configuration, params: PremierByIdHistoryParams) -> Result<models::PremierTeamV1Response, Error<PremierByIdHistoryError>> {
+pub async fn premier_by_id_history(configuration: &configuration::Configuration, params: PremierByIdHistoryParams) -> Result<models::PremierTeamHistoryV1Response, Error<PremierByIdHistoryError>> {
 
     let uri_str = format!("{}/valorant/v1/premier/{id}/history", configuration.base_path, id=crate::apis::urlencode(params.id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -3168,12 +3597,63 @@ pub async fn premier_by_id_history(configuration: &configuration::Configuration,
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PremierTeamV1Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PremierTeamV1Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PremierTeamHistoryV1Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PremierTeamHistoryV1Response`")))),
         }
     } else {
         let content = resp.text().await?;
         let entity: Option<PremierByIdHistoryError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Fetches directly from Riot without caching. Includes the current season and season summaries, member roles and join dates. Season names are resolved from cached metadata and are null when unavailable. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. Leaderboard ranks and match history are not included.
+pub async fn premier_by_id_v2(configuration: &configuration::Configuration, params: PremierByIdV2Params) -> Result<models::PremierTeamV2Response, Error<PremierByIdV2Error>> {
+
+    let uri_str = format!("{}/valorant/v2/premier/teams/{affinity}/{id}", configuration.base_path, affinity=params.affinity.to_string(), id=crate::apis::urlencode(params.id));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PremierTeamV2Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PremierTeamV2Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<PremierByIdV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -3287,17 +3767,165 @@ pub async fn premier_by_name_history(configuration: &configuration::Configuratio
     }
 }
 
-pub async fn premier_leaderboard(configuration: &configuration::Configuration, params: PremierLeaderboardParams) -> Result<models::PremierSearchResponse, Error<PremierLeaderboardError>> {
+/// Resolves distinct candidate team IDs from the existing team index, then verifies their current name, tag and affinity against Riot without roster caching. Teams absent from the index cannot be discovered by name. At most 25 candidates are checked, with at most four concurrent roster fetches and a ten-second deadline covering index lookup and Riot verification. More than 25 candidates, an expired deadline or a non-404 upstream failure returns 500 rather than a partial result. Stale Riot 404 candidates are skipped. A unique result or 404 requires complete candidate exhaustion; two verified live matches return 409. Returns the same response as team lookup by ID; the seasons list may include the current season.
+pub async fn premier_by_name_v2(configuration: &configuration::Configuration, params: PremierByNameV2Params) -> Result<models::PremierTeamV2Response, Error<PremierByNameV2Error>> {
 
-    let uri_str = format!("{}/valorant/v1/premier/leaderboard/{affinity}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity));
+    let uri_str = format!("{}/valorant/v2/premier/teams/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = params.conference {
-        req_builder = req_builder.query(&[("conference", &param_value.to_string())]);
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
     }
-    if let Some(ref param_value) = params.division {
-        req_builder = req_builder.query(&[("division", &param_value.to_string())]);
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PremierTeamV2Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PremierTeamV2Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<PremierByNameV2Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Resolves the player's Riot ID to a PUUID using a live alias lookup, then fetches their current Premier roster without caching. Returns the same response as team lookup by ID.
+pub async fn premier_by_player_name(configuration: &configuration::Configuration, params: PremierByPlayerNameParams) -> Result<models::PremierTeamV2Response, Error<PremierByPlayerNameError>> {
+
+    let uri_str = format!("{}/valorant/v2/premier/players/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PremierTeamV2Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PremierTeamV2Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<PremierByPlayerNameError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Fetches the player's current roster directly from Riot without caching, using the same response as team lookup v2. Includes the current season, season summaries and member roles. The seasons list may also include the current season and is sorted by ID, not chronologically. Dates are UTC RFC 3339. A player without a roster returns 404.
+pub async fn premier_by_puuid(configuration: &configuration::Configuration, params: PremierByPuuidParams) -> Result<models::PremierTeamV2Response, Error<PremierByPuuidError>> {
+
+    let uri_str = format!("{}/valorant/v2/premier/players/{affinity}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), puuid=crate::apis::urlencode(params.puuid));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.query(&[("api_key", value)]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("Authorization", value);
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PremierTeamV2Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PremierTeamV2Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<PremierByPuuidError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Conference and division filters are path segments on the registered routes /valorant/v1/premier/leaderboard/{affinity}/{conference} and /valorant/v1/premier/leaderboard/{affinity}/{conference}/{division}, not query parameters. Conference keys come from the current upstream catalog and are case-insensitive; division is an integer from 1 through 21. Use lowercase affinity for persisted team matching.
+pub async fn premier_leaderboard(configuration: &configuration::Configuration, params: PremierLeaderboardParams) -> Result<models::PremierSearchResponse, Error<PremierLeaderboardError>> {
+
+    let uri_str = format!("{}/valorant/v1/premier/leaderboard/{affinity}", configuration.base_path, affinity=params.affinity.to_string());
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
     if let Some(ref param_value) = params.season {
         req_builder = req_builder.query(&[("season", &param_value.to_string())]);
     }
@@ -3363,6 +3991,12 @@ pub async fn premier_search(configuration: &configuration::Configuration, params
     if let Some(ref param_value) = params.season {
         req_builder = req_builder.query(&[("season", &param_value.to_string())]);
     }
+    if let Some(ref param_value) = params.conference {
+        req_builder = req_builder.query(&[("conference", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.division {
+        req_builder = req_builder.query(&[("division", &param_value.to_string())]);
+    }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
         let value = match apikey.prefix {
@@ -3410,7 +4044,7 @@ pub async fn premier_search(configuration: &configuration::Configuration, params
 
 pub async fn queue_status(configuration: &configuration::Configuration, params: QueueStatusParams) -> Result<models::QueueStatusV1, Error<QueueStatusError>> {
 
-    let uri_str = format!("{}/valorant/v1/queue-status/{affinity}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity));
+    let uri_str = format!("{}/valorant/v1/queue-status/{affinity}", configuration.base_path, affinity=params.affinity.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -3458,6 +4092,7 @@ pub async fn queue_status(configuration: &configuration::Configuration, params: 
     }
 }
 
+/// Matchdetails accepts one or multiple match UUIDs and returns an object for one result or an array for multiple results. Individual match lookup failures are embedded in the successful data envelope. Other resource types use a player UUID, use only the first array entry, and forward queries unchanged. Empty value arrays are invalid.
 pub async fn raw(configuration: &configuration::Configuration, params: RawParams) -> Result<models::RawV1Response, Error<RawError>> {
 
     let uri_str = format!("{}/valorant/v1/raw", configuration.base_path);
@@ -3511,7 +4146,7 @@ pub async fn raw(configuration: &configuration::Configuration, params: RawParams
 
 pub async fn status(configuration: &configuration::Configuration, params: StatusParams) -> Result<models::StatusV1, Error<StatusError>> {
 
-    let uri_str = format!("{}/valorant/v1/status/{affinity}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity));
+    let uri_str = format!("{}/valorant/v1/status/{affinity}", configuration.base_path, affinity=params.affinity.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -3559,9 +4194,9 @@ pub async fn status(configuration: &configuration::Configuration, params: Status
     }
 }
 
-pub async fn store_featured(configuration: &configuration::Configuration, params: StoreFeaturedParams) -> Result<models::StoreFeaturedV1, Error<StoreFeaturedError>> {
+pub async fn store_featured(configuration: &configuration::Configuration, params: StoreFeaturedParams) -> Result<models::ValorantStoreFeaturedResponse, Error<StoreFeaturedError>> {
 
-    let uri_str = format!("{}/valorant/{version}/store-featured", configuration.base_path, version=crate::apis::urlencode(params.version));
+    let uri_str = format!("{}/valorant/{version}/store-featured", configuration.base_path, version=params.version.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -3599,8 +4234,8 @@ pub async fn store_featured(configuration: &configuration::Configuration, params
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::StoreFeaturedV1`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::StoreFeaturedV1`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ValorantStoreFeaturedResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ValorantStoreFeaturedResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -3609,9 +4244,10 @@ pub async fn store_featured(configuration: &configuration::Configuration, params
     }
 }
 
-pub async fn store_offers(configuration: &configuration::Configuration, params: StoreOffersParams) -> Result<models::StoreOffersV1Response, Error<StoreOffersError>> {
+/// Removed by Riot. This endpoint unconditionally returns 404 with RiotImplementationRemoved.
+pub async fn store_offers(configuration: &configuration::Configuration, params: StoreOffersParams) -> Result<(), Error<StoreOffersError>> {
 
-    let uri_str = format!("{}/valorant/{version}/store-offers", configuration.base_path, version=crate::apis::urlencode(params.version));
+    let uri_str = format!("{}/valorant/{version}/store-offers", configuration.base_path, version=params.version.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -3638,20 +4274,9 @@ pub async fn store_offers(configuration: &configuration::Configuration, params: 
     let resp = configuration.client.execute(req).await?;
 
     let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
 
     if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::StoreOffersV1Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::StoreOffersV1Response`")))),
-        }
+        Ok(())
     } else {
         let content = resp.text().await?;
         let entity: Option<StoreOffersError> = serde_json::from_str(&content).ok();
@@ -3661,17 +4286,23 @@ pub async fn store_offers(configuration: &configuration::Configuration, params: 
 
 pub async fn stored_matches(configuration: &configuration::Configuration, params: StoredMatchesParams) -> Result<models::StoredMatchesResponse, Error<StoredMatchesError>> {
 
-    let uri_str = format!("{}/valorant/v1/stored-matches/{affinity}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v1/stored-matches/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.queue {
+        req_builder = req_builder.query(&[("queue", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.map {
         req_builder = req_builder.query(&[("map", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.size {
         req_builder = req_builder.query(&[("size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
@@ -3720,17 +4351,23 @@ pub async fn stored_matches(configuration: &configuration::Configuration, params
 
 pub async fn stored_matches_by_id(configuration: &configuration::Configuration, params: StoredMatchesByIdParams) -> Result<models::StoredMatchesResponse, Error<StoredMatchesByIdError>> {
 
-    let uri_str = format!("{}/valorant/v1/by-puuid/stored-matches/{affinity}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v1/by-puuid/stored-matches/{affinity}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.mode {
         req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.queue {
+        req_builder = req_builder.query(&[("queue", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.map {
         req_builder = req_builder.query(&[("map", &param_value.to_string())]);
     }
     if let Some(ref param_value) = params.size {
         req_builder = req_builder.query(&[("size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
@@ -3779,11 +4416,14 @@ pub async fn stored_matches_by_id(configuration: &configuration::Configuration, 
 
 pub async fn stored_mmr_history(configuration: &configuration::Configuration, params: StoredMmrHistoryParams) -> Result<models::StoredMmrResponse, Error<StoredMmrHistoryError>> {
 
-    let uri_str = format!("{}/valorant/v1/stored-mmr-history/{affinity}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v1/stored-mmr-history/{affinity}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.size {
         req_builder = req_builder.query(&[("size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
@@ -3832,11 +4472,14 @@ pub async fn stored_mmr_history(configuration: &configuration::Configuration, pa
 
 pub async fn stored_mmr_history_by_id(configuration: &configuration::Configuration, params: StoredMmrHistoryByIdParams) -> Result<models::StoredMmrResponse, Error<StoredMmrHistoryByIdError>> {
 
-    let uri_str = format!("{}/valorant/v1/by-puuid/stored-mmr-history/{affinity}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v1/by-puuid/stored-mmr-history/{affinity}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.size {
         req_builder = req_builder.query(&[("size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
@@ -3885,11 +4528,14 @@ pub async fn stored_mmr_history_by_id(configuration: &configuration::Configurati
 
 pub async fn stored_mmr_history_v2(configuration: &configuration::Configuration, params: StoredMmrHistoryV2Params) -> Result<models::StoredMmrv2Response, Error<StoredMmrHistoryV2Error>> {
 
-    let uri_str = format!("{}/valorant/v2/stored-mmr-history/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
+    let uri_str = format!("{}/valorant/v2/stored-mmr-history/{affinity}/{platform}/{name}/{tag}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), name=crate::apis::urlencode(params.name), tag=crate::apis::urlencode(params.tag));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.size {
         req_builder = req_builder.query(&[("size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
@@ -3938,11 +4584,14 @@ pub async fn stored_mmr_history_v2(configuration: &configuration::Configuration,
 
 pub async fn stored_mmr_history_v2_by_id(configuration: &configuration::Configuration, params: StoredMmrHistoryV2ByIdParams) -> Result<models::StoredMmrv2Response, Error<StoredMmrHistoryV2ByIdError>> {
 
-    let uri_str = format!("{}/valorant/v2/by-puuid/stored-mmr-history/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity), platform=crate::apis::urlencode(params.platform), puuid=crate::apis::urlencode(params.puuid));
+    let uri_str = format!("{}/valorant/v2/by-puuid/stored-mmr-history/{affinity}/{platform}/{puuid}", configuration.base_path, affinity=params.affinity.to_string(), platform=params.platform.to_string(), puuid=crate::apis::urlencode(params.puuid));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.size {
         req_builder = req_builder.query(&[("size", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.page {
+        req_builder = req_builder.query(&[("page", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
         let key = apikey.key.clone();
@@ -3991,7 +4640,7 @@ pub async fn stored_mmr_history_v2_by_id(configuration: &configuration::Configur
 
 pub async fn version(configuration: &configuration::Configuration, params: VersionParams) -> Result<models::VersionV1Response, Error<VersionError>> {
 
-    let uri_str = format!("{}/valorant/v1/version/{affinity}", configuration.base_path, affinity=crate::apis::urlencode(params.affinity));
+    let uri_str = format!("{}/valorant/v1/version/{affinity}", configuration.base_path, affinity=params.affinity.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -4041,7 +4690,7 @@ pub async fn version(configuration: &configuration::Configuration, params: Versi
 
 pub async fn website(configuration: &configuration::Configuration, params: WebsiteParams) -> Result<models::WebsiteV1Response, Error<WebsiteError>> {
 
-    let uri_str = format!("{}/valorant/v1/website/{country_code}", configuration.base_path, country_code=crate::apis::urlencode(params.country_code));
+    let uri_str = format!("{}/valorant/v1/website/{country_code}", configuration.base_path, country_code=params.country_code.to_string());
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = params.category {
@@ -4092,6 +4741,7 @@ pub async fn website(configuration: &configuration::Configuration, params: Websi
     }
 }
 
+/// Looks up the entry by database ID only. The country_code path segment is ignored, is not validated, and does not select the entry locale.
 pub async fn website_by_id(configuration: &configuration::Configuration, params: WebsiteByIdParams) -> Result<models::WebsiteByIdV1Response, Error<WebsiteByIdError>> {
 
     let uri_str = format!("{}/valorant/v1/website/{country_code}/{db_id}", configuration.base_path, db_id=crate::apis::urlencode(params.db_id), country_code=crate::apis::urlencode(params.country_code));

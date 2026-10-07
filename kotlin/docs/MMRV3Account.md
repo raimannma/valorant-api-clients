@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **name** | **kotlin.String** |  |  |
-| **puuid** | **kotlin.String** |  |  |
+| **puuid** | [**java.util.UUID**](java.util.UUID.md) |  |  |
 | **tag** | **kotlin.String** |  |  |
 
 

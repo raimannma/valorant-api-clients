@@ -19,12 +19,12 @@ import (
 // checks if the RawV1Payload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RawV1Payload{}
 
-// RawV1Payload struct for RawV1Payload
+// RawV1Payload Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
 type RawV1Payload struct {
-	Platform NullableString `json:"platform,omitempty"`
+	Platform NullableValorantPlatform `json:"platform,omitempty"`
 	Queries NullableString `json:"queries,omitempty"`
-	Region string `json:"region"`
-	Type string `json:"type"`
+	Region ValorantAffinity `json:"region"`
+	Type RawV1ResourceType `json:"type"`
 	Value RawV1PayloadValues `json:"value"`
 }
 
@@ -34,7 +34,7 @@ type _RawV1Payload RawV1Payload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRawV1Payload(region string, type_ string, value RawV1PayloadValues) *RawV1Payload {
+func NewRawV1Payload(region ValorantAffinity, type_ RawV1ResourceType, value RawV1PayloadValues) *RawV1Payload {
 	this := RawV1Payload{}
 	this.Region = region
 	this.Type = type_
@@ -51,9 +51,9 @@ func NewRawV1PayloadWithDefaults() *RawV1Payload {
 }
 
 // GetPlatform returns the Platform field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RawV1Payload) GetPlatform() string {
+func (o *RawV1Payload) GetPlatform() ValorantPlatform {
 	if o == nil || IsNil(o.Platform.Get()) {
-		var ret string
+		var ret ValorantPlatform
 		return ret
 	}
 	return *o.Platform.Get()
@@ -62,7 +62,7 @@ func (o *RawV1Payload) GetPlatform() string {
 // GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RawV1Payload) GetPlatformOk() (*string, bool) {
+func (o *RawV1Payload) GetPlatformOk() (*ValorantPlatform, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,8 +78,8 @@ func (o *RawV1Payload) HasPlatform() bool {
 	return false
 }
 
-// SetPlatform gets a reference to the given NullableString and assigns it to the Platform field.
-func (o *RawV1Payload) SetPlatform(v string) {
+// SetPlatform gets a reference to the given NullableValorantPlatform and assigns it to the Platform field.
+func (o *RawV1Payload) SetPlatform(v ValorantPlatform) {
 	o.Platform.Set(&v)
 }
 // SetPlatformNil sets the value for Platform to be an explicit nil
@@ -135,9 +135,9 @@ func (o *RawV1Payload) UnsetQueries() {
 }
 
 // GetRegion returns the Region field value
-func (o *RawV1Payload) GetRegion() string {
+func (o *RawV1Payload) GetRegion() ValorantAffinity {
 	if o == nil {
-		var ret string
+		var ret ValorantAffinity
 		return ret
 	}
 
@@ -146,7 +146,7 @@ func (o *RawV1Payload) GetRegion() string {
 
 // GetRegionOk returns a tuple with the Region field value
 // and a boolean to check if the value has been set.
-func (o *RawV1Payload) GetRegionOk() (*string, bool) {
+func (o *RawV1Payload) GetRegionOk() (*ValorantAffinity, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -154,14 +154,14 @@ func (o *RawV1Payload) GetRegionOk() (*string, bool) {
 }
 
 // SetRegion sets field value
-func (o *RawV1Payload) SetRegion(v string) {
+func (o *RawV1Payload) SetRegion(v ValorantAffinity) {
 	o.Region = v
 }
 
 // GetType returns the Type field value
-func (o *RawV1Payload) GetType() string {
+func (o *RawV1Payload) GetType() RawV1ResourceType {
 	if o == nil {
-		var ret string
+		var ret RawV1ResourceType
 		return ret
 	}
 
@@ -170,7 +170,7 @@ func (o *RawV1Payload) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RawV1Payload) GetTypeOk() (*string, bool) {
+func (o *RawV1Payload) GetTypeOk() (*RawV1ResourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -178,7 +178,7 @@ func (o *RawV1Payload) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *RawV1Payload) SetType(v string) {
+func (o *RawV1Payload) SetType(v RawV1ResourceType) {
 	o.Type = v
 }
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Average** | **float32** |  | 
-**Overall** | **int32** |  | 
+**Average** | **float32** | Credits spent per round played by this player; zero when rounds played is zero. | 
+**Overall** | **int32** | Total credits spent across reported player rounds. | 
 
 ## Methods
 
