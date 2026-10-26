@@ -49,7 +49,7 @@ data class MatchesV4DataPlayerPerformanceCombatRatings (
     val killImpact: kotlin.String,
 
     @Json(name = "trades")
-    val trades: kotlin.String
+    val trades: kotlin.String? = null
 
 ) {
 

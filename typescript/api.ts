@@ -1488,7 +1488,7 @@ export interface MatchesV4DataPlayerPerformanceCombatRatings {
     'damage': string;
     'death_impact': string;
     'kill_impact': string;
-    'trades': string;
+    'trades'?: string | null;
 }
 /**
  * Known grades: pass, merit, distinction. Unknown upstream grades are preserved.

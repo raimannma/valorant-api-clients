@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +30,7 @@ class MatchesV4DataPlayerPerformanceCombatRatings(BaseModel):
     damage: StrictStr
     death_impact: StrictStr
     kill_impact: StrictStr
-    trades: StrictStr
+    trades: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["damage", "death_impact", "kill_impact", "trades"]
 
     model_config = ConfigDict(
@@ -72,6 +72,11 @@ class MatchesV4DataPlayerPerformanceCombatRatings(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if trades (nullable) is None
+        # and model_fields_set contains the field
+        if self.trades is None and "trades" in self.model_fields_set:
+            _dict['trades'] = None
+
         return _dict
 
     @classmethod

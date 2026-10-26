@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **damage** | **string** |  | [default to undefined]
 **death_impact** | **string** |  | [default to undefined]
 **kill_impact** | **string** |  | [default to undefined]
-**trades** | **string** |  | [default to undefined]
+**trades** | **string** |  | [optional] [default to undefined]
 
 ## Example
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **damage** | **str** |  | 
 **death_impact** | **str** |  | 
 **kill_impact** | **str** |  | 
-**trades** | **str** |  | 
+**trades** | **str** |  | [optional] 
 
 ## Example
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **damage** | **String** |  | 
 **deathImpact** | **String** |  | 
 **killImpact** | **String** |  | 
-**trades** | **String** |  | 
+**trades** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Damage** | **string** |  | 
 **DeathImpact** | **string** |  | 
 **KillImpact** | **string** |  | 
-**Trades** | **string** |  | 
+**Trades** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewMatchesV4DataPlayerPerformanceCombatRatings
 
-`func NewMatchesV4DataPlayerPerformanceCombatRatings(damage string, deathImpact string, killImpact string, trades string, ) *MatchesV4DataPlayerPerformanceCombatRatings`
+`func NewMatchesV4DataPlayerPerformanceCombatRatings(damage string, deathImpact string, killImpact string, ) *MatchesV4DataPlayerPerformanceCombatRatings`
 
 NewMatchesV4DataPlayerPerformanceCombatRatings instantiates a new MatchesV4DataPlayerPerformanceCombatRatings object
 This constructor will assign default values to properties that have it defined,
@@ -107,7 +107,22 @@ and a boolean to check if the value has been set.
 
 SetTrades sets Trades field to given value.
 
+### HasTrades
 
+`func (o *MatchesV4DataPlayerPerformanceCombatRatings) HasTrades() bool`
+
+HasTrades returns a boolean if a field has been set.
+
+### SetTradesNil
+
+`func (o *MatchesV4DataPlayerPerformanceCombatRatings) SetTradesNil(b bool)`
+
+ SetTradesNil sets the value for Trades to be an explicit nil
+
+### UnsetTrades
+`func (o *MatchesV4DataPlayerPerformanceCombatRatings) UnsetTrades()`
+
+UnsetTrades ensures that no value is present for Trades, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

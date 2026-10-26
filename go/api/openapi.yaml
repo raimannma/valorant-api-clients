@@ -17836,12 +17836,12 @@ components:
         kill_impact:
           type: string
         trades:
+          nullable: true
           type: string
       required:
       - damage
       - death_impact
       - kill_impact
-      - trades
     MatchesV4DataPlayerPerformanceRatings:
       description: "Known grades: pass, merit, distinction. Unknown upstream grades\
         \ are preserved."

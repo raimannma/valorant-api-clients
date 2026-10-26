@@ -7,7 +7,7 @@
 | **damage** | **kotlin.String** |  |  |
 | **deathImpact** | **kotlin.String** |  |  |
 | **killImpact** | **kotlin.String** |  |  |
-| **trades** | **kotlin.String** |  |  |
+| **trades** | **kotlin.String** |  |  [optional] |
 
 
 

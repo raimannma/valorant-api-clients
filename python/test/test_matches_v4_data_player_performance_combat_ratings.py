@@ -45,7 +45,6 @@ class TestMatchesV4DataPlayerPerformanceCombatRatings(unittest.TestCase):
                 damage = '',
                 death_impact = '',
                 kill_impact = '',
-                trades = '',
         )
         """
 

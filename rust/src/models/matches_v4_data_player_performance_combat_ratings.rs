@@ -20,18 +20,18 @@ pub struct MatchesV4DataPlayerPerformanceCombatRatings {
     pub death_impact: String,
     #[serde(rename = "kill_impact")]
     pub kill_impact: String,
-    #[serde(rename = "trades")]
-    pub trades: String,
+    #[serde(rename = "trades", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub trades: Option<Option<String>>,
 }
 
 impl MatchesV4DataPlayerPerformanceCombatRatings {
     /// Known trends: double_down, down, neutral, up, double_up. Unknown upstream trends are preserved.
-    pub fn new(damage: String, death_impact: String, kill_impact: String, trades: String) -> MatchesV4DataPlayerPerformanceCombatRatings {
+    pub fn new(damage: String, death_impact: String, kill_impact: String) -> MatchesV4DataPlayerPerformanceCombatRatings {
         MatchesV4DataPlayerPerformanceCombatRatings {
             damage,
             death_impact,
             kill_impact,
-            trades,
+            trades: None,
         }
     }
 }

@@ -24,7 +24,7 @@ type MatchesV4DataPlayerPerformanceCombatRatings struct {
 	Damage string `json:"damage"`
 	DeathImpact string `json:"death_impact"`
 	KillImpact string `json:"kill_impact"`
-	Trades string `json:"trades"`
+	Trades NullableString `json:"trades,omitempty"`
 }
 
 type _MatchesV4DataPlayerPerformanceCombatRatings MatchesV4DataPlayerPerformanceCombatRatings
@@ -33,12 +33,11 @@ type _MatchesV4DataPlayerPerformanceCombatRatings MatchesV4DataPlayerPerformance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMatchesV4DataPlayerPerformanceCombatRatings(damage string, deathImpact string, killImpact string, trades string) *MatchesV4DataPlayerPerformanceCombatRatings {
+func NewMatchesV4DataPlayerPerformanceCombatRatings(damage string, deathImpact string, killImpact string) *MatchesV4DataPlayerPerformanceCombatRatings {
 	this := MatchesV4DataPlayerPerformanceCombatRatings{}
 	this.Damage = damage
 	this.DeathImpact = deathImpact
 	this.KillImpact = killImpact
-	this.Trades = trades
 	return &this
 }
 
@@ -122,28 +121,46 @@ func (o *MatchesV4DataPlayerPerformanceCombatRatings) SetKillImpact(v string) {
 	o.KillImpact = v
 }
 
-// GetTrades returns the Trades field value
+// GetTrades returns the Trades field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MatchesV4DataPlayerPerformanceCombatRatings) GetTrades() string {
-	if o == nil {
+	if o == nil || IsNil(o.Trades.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Trades
+	return *o.Trades.Get()
 }
 
-// GetTradesOk returns a tuple with the Trades field value
+// GetTradesOk returns a tuple with the Trades field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MatchesV4DataPlayerPerformanceCombatRatings) GetTradesOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Trades, true
+	return o.Trades.Get(), o.Trades.IsSet()
 }
 
-// SetTrades sets field value
+// HasTrades returns a boolean if a field has been set.
+func (o *MatchesV4DataPlayerPerformanceCombatRatings) HasTrades() bool {
+	if o != nil && o.Trades.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrades gets a reference to the given NullableString and assigns it to the Trades field.
 func (o *MatchesV4DataPlayerPerformanceCombatRatings) SetTrades(v string) {
-	o.Trades = v
+	o.Trades.Set(&v)
+}
+// SetTradesNil sets the value for Trades to be an explicit nil
+func (o *MatchesV4DataPlayerPerformanceCombatRatings) SetTradesNil() {
+	o.Trades.Set(nil)
+}
+
+// UnsetTrades ensures that no value is present for Trades, not even an explicit nil
+func (o *MatchesV4DataPlayerPerformanceCombatRatings) UnsetTrades() {
+	o.Trades.Unset()
 }
 
 func (o MatchesV4DataPlayerPerformanceCombatRatings) MarshalJSON() ([]byte, error) {
@@ -159,7 +176,9 @@ func (o MatchesV4DataPlayerPerformanceCombatRatings) ToMap() (map[string]interfa
 	toSerialize["damage"] = o.Damage
 	toSerialize["death_impact"] = o.DeathImpact
 	toSerialize["kill_impact"] = o.KillImpact
-	toSerialize["trades"] = o.Trades
+	if o.Trades.IsSet() {
+		toSerialize["trades"] = o.Trades.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -171,7 +190,6 @@ func (o *MatchesV4DataPlayerPerformanceCombatRatings) UnmarshalJSON(data []byte)
 		"damage",
 		"death_impact",
 		"kill_impact",
-		"trades",
 	}
 
 	allProperties := make(map[string]interface{})
