@@ -33,19 +33,17 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param agentStats 
- * @param currentTeams 
- * @param eventPlacements 
- * @param id 
- * @param name 
- * @param pastTeams 
- * @param socials 
- * @param avatar 
- * @param country 
- * @param realName 
- * @param totalWinnings 
+ * @param agentStats
+ * @param currentTeams
+ * @param eventPlacements
+ * @param id
+ * @param name
+ * @param pastTeams
+ * @param socials
+ * @param avatar
+ * @param country
+ * @param realName
+ * @param totalWinnings
  */
 
 

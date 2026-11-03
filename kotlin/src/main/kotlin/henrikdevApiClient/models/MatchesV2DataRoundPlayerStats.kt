@@ -32,24 +32,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param abilityCasts 
- * @param bodyshots 
- * @param damage 
- * @param damageEvents 
- * @param economy 
- * @param headshots 
- * @param killEvents 
- * @param kills 
- * @param legshots 
- * @param playerDisplayName 
- * @param playerPuuid 
- * @param playerTeam 
- * @param score 
- * @param stayedInSpawn 
- * @param wasAfk 
- * @param wasPenalized 
+ * @param abilityCasts
+ * @param bodyshots
+ * @param damage
+ * @param damageEvents
+ * @param economy
+ * @param headshots
+ * @param killEvents
+ * @param kills
+ * @param legshots
+ * @param playerDisplayName
+ * @param playerPuuid
+ * @param playerTeam
+ * @param score
+ * @param stayedInSpawn
+ * @param wasAfk
+ * @param wasPenalized
  */
 
 

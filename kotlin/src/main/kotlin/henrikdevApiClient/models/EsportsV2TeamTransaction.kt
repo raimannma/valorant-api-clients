@@ -29,13 +29,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param action 
- * @param player 
- * @param position 
- * @param date 
- * @param referenceUrl 
+ * @param action
+ * @param player
+ * @param position
+ * @param date
+ * @param referenceUrl
  */
 
 

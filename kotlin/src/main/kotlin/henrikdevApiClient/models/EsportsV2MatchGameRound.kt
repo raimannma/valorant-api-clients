@@ -28,11 +28,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param round 
- * @param winningSite 
- * @param winningTeam 
+ * @param round
+ * @param winningSite
+ * @param winningTeam
  */
 
 

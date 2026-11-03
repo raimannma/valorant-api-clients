@@ -31,21 +31,19 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param assists 
- * @param character 
- * @param damage 
- * @param deaths 
- * @param kills 
- * @param level 
- * @param puuid 
- * @param score 
- * @param shots 
- * @param team 
- * @param tier 
- * @param name 
- * @param tag 
+ * @param assists
+ * @param character
+ * @param damage
+ * @param deaths
+ * @param kills
+ * @param level
+ * @param puuid
+ * @param score
+ * @param shots
+ * @param team
+ * @param tier
+ * @param name
+ * @param tag
  */
 
 

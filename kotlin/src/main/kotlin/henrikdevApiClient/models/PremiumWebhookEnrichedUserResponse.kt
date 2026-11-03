@@ -31,21 +31,19 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param id 
- * @param createdAt 
- * @param displayName 
- * @param displayTag 
- * @param enabled 
- * @param events 
- * @param lastCheckedAt 
- * @param lastMatch 
- * @param lastMmr 
- * @param puuid 
- * @param region 
- * @param updatedAt 
- * @param userid 
+ * @param id
+ * @param createdAt
+ * @param displayName
+ * @param displayTag
+ * @param enabled
+ * @param events
+ * @param lastCheckedAt
+ * @param lastMatch
+ * @param lastMmr
+ * @param puuid
+ * @param region
+ * @param updatedAt
+ * @param userid
  */
 
 

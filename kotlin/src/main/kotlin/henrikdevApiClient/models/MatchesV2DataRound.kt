@@ -31,15 +31,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param bombDefused 
- * @param bombPlanted 
- * @param defuseEvents 
- * @param endType 
- * @param plantEvents 
- * @param playerStats 
- * @param winningTeam 
+ * @param bombDefused
+ * @param bombPlanted
+ * @param defuseEvents
+ * @param endType
+ * @param plantEvents
+ * @param playerStats
+ * @param winningTeam
  */
 
 

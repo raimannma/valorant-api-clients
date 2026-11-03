@@ -32,18 +32,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param assistants 
- * @param killer 
- * @param location 
- * @param playerLocations 
- * @param round 
- * @param secondaryFireMode 
- * @param timeInMatchInMs 
- * @param timeInRoundInMs 
- * @param victim 
- * @param weapon 
+ * @param assistants
+ * @param killer
+ * @param location
+ * @param playerLocations
+ * @param round
+ * @param secondaryFireMode
+ * @param timeInMatchInMs
+ * @param timeInRoundInMs
+ * @param victim
+ * @param weapon
  */
 
 

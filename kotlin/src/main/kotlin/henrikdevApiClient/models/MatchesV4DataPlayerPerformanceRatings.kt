@@ -32,9 +32,9 @@ import com.squareup.moshi.JsonClass
 /**
  * Known grades: pass, merit, distinction. Unknown upstream grades are preserved.
  *
- * @param grade 
- * @param combat 
- * @param utility 
+ * @param grade
+ * @param combat
+ * @param utility
  */
 
 

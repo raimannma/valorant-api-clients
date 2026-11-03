@@ -29,11 +29,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param afkRounds 
- * @param friendlyFire 
- * @param roundsInSpawn 
+ * @param afkRounds
+ * @param friendlyFire
+ * @param roundsInSpawn
  */
 
 

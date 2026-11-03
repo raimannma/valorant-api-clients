@@ -31,11 +31,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param meta 
- * @param stats 
- * @param teams 
+ * @param meta
+ * @param stats
+ * @param teams
  */
 
 

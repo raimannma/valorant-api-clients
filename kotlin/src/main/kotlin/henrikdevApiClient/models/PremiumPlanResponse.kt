@@ -30,18 +30,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param active 
- * @param backgroundRequestsCost 
- * @param cacheTtlSeconds 
- * @param features 
- * @param id 
- * @param name 
- * @param rateLimits 
- * @param webhookPollIntervalSeconds 
- * @param webhookUserLimit 
- * @param id 
+ * @param active
+ * @param backgroundRequestsCost
+ * @param cacheTtlSeconds
+ * @param features
+ * @param id
+ * @param name
+ * @param rateLimits
+ * @param webhookPollIntervalSeconds
+ * @param webhookUserLimit
+ * @param id
  */
 
 

@@ -28,12 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param fullPartyBypass 
- * @param invalid 
- * @param max 
- * @param min 
+ * @param fullPartyBypass
+ * @param invalid
+ * @param max
+ * @param min
  */
 
 

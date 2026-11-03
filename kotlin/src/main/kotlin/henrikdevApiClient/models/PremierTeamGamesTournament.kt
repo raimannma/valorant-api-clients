@@ -28,14 +28,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param matches 
- * @param placement 
- * @param placementLeagueBonus 
- * @param pointsAfter 
- * @param pointsBefore 
- * @param tournamentId 
+ * @param matches
+ * @param placement
+ * @param placementLeagueBonus
+ * @param pointsAfter
+ * @param pointsBefore
+ * @param tournamentId
  */
 
 

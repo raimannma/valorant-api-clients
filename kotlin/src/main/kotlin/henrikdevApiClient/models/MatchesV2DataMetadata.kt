@@ -29,23 +29,21 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param gameLength 
- * @param gameStart 
- * @param gameStartPatched 
- * @param gameVersion 
- * @param matchid 
- * @param modeId 
- * @param platform 
- * @param premierInfo 
- * @param roundsPlayed 
- * @param seasonId 
- * @param cluster 
- * @param map 
- * @param mode 
- * @param queue 
- * @param region 
+ * @param gameLength
+ * @param gameStart
+ * @param gameStartPatched
+ * @param gameVersion
+ * @param matchid
+ * @param modeId
+ * @param platform
+ * @param premierInfo
+ * @param roundsPlayed
+ * @param seasonId
+ * @param cluster
+ * @param map
+ * @param mode
+ * @param queue
+ * @param region
  */
 
 

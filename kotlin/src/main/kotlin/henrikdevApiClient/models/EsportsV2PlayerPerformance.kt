@@ -31,14 +31,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param clutches 
- * @param defuses 
- * @param econRating 
- * @param multiKills 
- * @param plants 
- * @param player 
+ * @param clutches
+ * @param defuses
+ * @param econRating
+ * @param multiKills
+ * @param plants
+ * @param player
  */
 
 

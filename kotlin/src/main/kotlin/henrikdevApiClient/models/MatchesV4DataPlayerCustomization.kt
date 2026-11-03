@@ -29,12 +29,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param card 
- * @param title 
- * @param bloomline 
- * @param preferredLevelBorder 
+ * @param card
+ * @param title
+ * @param bloomline
+ * @param preferredLevelBorder
  */
 
 

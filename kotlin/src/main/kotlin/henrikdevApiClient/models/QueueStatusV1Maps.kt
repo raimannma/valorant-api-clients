@@ -29,10 +29,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param enabled 
- * @param map 
+ * @param enabled
+ * @param map
  */
 
 

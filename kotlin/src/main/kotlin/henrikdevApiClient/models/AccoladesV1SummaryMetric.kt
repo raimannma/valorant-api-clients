@@ -29,12 +29,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param bestValue 
- * @param count 
- * @param id 
- * @param type 
+ * @param bestValue
+ * @param count
+ * @param id
+ * @param type
  */
 
 

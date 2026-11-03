@@ -34,11 +34,11 @@ import com.squareup.moshi.JsonClass
 /**
  * Raw Riot request. Resource names are case-sensitive. Region and platform are case-insensitive; platform defaults to pc. Matchdetails accepts one or multiple match UUIDs, ignores queries, and returns an object for one result or an array for multiple results. Other resources use a player UUID (only the first array entry) and forward queries unchanged; include the leading ? when supplying a query string.
  *
- * @param region 
- * @param type 
- * @param `value` 
- * @param platform 
- * @param queries 
+ * @param region
+ * @param type
+ * @param `value`
+ * @param platform
+ * @param queries
  */
 
 

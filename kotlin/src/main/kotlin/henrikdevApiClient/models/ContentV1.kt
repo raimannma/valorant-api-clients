@@ -29,24 +29,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param acts 
- * @param ceremonies 
- * @param characters 
- * @param charmLevels 
- * @param charms 
- * @param chromas 
- * @param equips 
- * @param gameModes 
- * @param maps 
- * @param playerCards 
- * @param playerTitles 
- * @param skinLevels 
- * @param skins 
- * @param sprayLevels 
- * @param sprays 
- * @param version 
+ * @param acts
+ * @param ceremonies
+ * @param characters
+ * @param charmLevels
+ * @param charms
+ * @param chromas
+ * @param equips
+ * @param gameModes
+ * @param maps
+ * @param playerCards
+ * @param playerTitles
+ * @param skinLevels
+ * @param skins
+ * @param sprayLevels
+ * @param sprays
+ * @param version
  */
 
 

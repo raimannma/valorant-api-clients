@@ -28,22 +28,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param acs 
- * @param adr 
- * @param apr 
- * @param assists 
- * @param deaths 
- * @param fdpr 
- * @param firstDeaths 
- * @param firstKills 
- * @param fkpr 
- * @param kast 
- * @param kd 
- * @param kills 
- * @param kpr 
- * @param rating 
+ * @param acs
+ * @param adr
+ * @param apr
+ * @param assists
+ * @param deaths
+ * @param fdpr
+ * @param firstDeaths
+ * @param firstKills
+ * @param fkpr
+ * @param kast
+ * @param kd
+ * @param kills
+ * @param kpr
+ * @param rating
  */
 
 

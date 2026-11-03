@@ -30,10 +30,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param loadoutValue 
- * @param spent 
+ * @param loadoutValue
+ * @param spent
  */
 
 

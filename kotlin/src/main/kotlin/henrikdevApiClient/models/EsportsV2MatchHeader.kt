@@ -29,14 +29,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param date 
- * @param event 
- * @param format 
- * @param note 
- * @param patch 
- * @param status 
+ * @param date
+ * @param event
+ * @param format
+ * @param note
+ * @param patch
+ * @param status
  */
 
 

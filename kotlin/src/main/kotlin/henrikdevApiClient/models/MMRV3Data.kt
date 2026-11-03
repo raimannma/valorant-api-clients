@@ -35,15 +35,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param account 
- * @param current 
- * @param latestUpdate 
- * @param rankedState 
- * @param seasonal 
- * @param lifetimePrestige 
- * @param peak 
+ * @param account
+ * @param current
+ * @param latestUpdate
+ * @param rankedState
+ * @param seasonal
+ * @param lifetimePrestige
+ * @param peak
  */
 
 

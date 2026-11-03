@@ -28,13 +28,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param bodyshots 
- * @param headshots 
- * @param kills 
- * @param legshots 
- * @param score 
+ * @param bodyshots
+ * @param headshots
+ * @param kills
+ * @param legshots
+ * @param score
  */
 
 

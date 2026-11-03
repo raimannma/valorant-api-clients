@@ -33,13 +33,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param agent 
- * @param customization 
- * @param flourish 
- * @param tracks 
- * @param modules 
+ * @param agent
+ * @param customization
+ * @param flourish
+ * @param tracks
+ * @param modules
  */
 
 

@@ -28,8 +28,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
  * @param average Loadout value in credits per round played by this player; zero when rounds played is zero.
  * @param overall Sum of loadout values in credits across reported player rounds.
  */

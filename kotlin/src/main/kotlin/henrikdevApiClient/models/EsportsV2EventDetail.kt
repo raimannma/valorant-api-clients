@@ -29,15 +29,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param event 
- * @param id 
- * @param series 
- * @param slug 
- * @param tags 
- * @param teams 
- * @param date 
+ * @param event
+ * @param id
+ * @param series
+ * @param slug
+ * @param tags
+ * @param teams
+ * @param date
  */
 
 

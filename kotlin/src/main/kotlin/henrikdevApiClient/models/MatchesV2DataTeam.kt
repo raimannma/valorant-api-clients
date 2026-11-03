@@ -29,12 +29,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param hasWon 
- * @param roster 
- * @param roundsLost 
- * @param roundsWon 
+ * @param hasWon
+ * @param roster
+ * @param roundsLost
+ * @param roundsWon
  */
 
 

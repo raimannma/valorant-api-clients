@@ -28,12 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param cCast 
- * @param eCast 
- * @param qCast 
- * @param xCast 
+ * @param cCast
+ * @param eCast
+ * @param qCast
+ * @param xCast
  */
 
 

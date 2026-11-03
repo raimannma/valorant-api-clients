@@ -28,12 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param clipId 
- * @param hypeId 
- * @param level 
- * @param plankBackgroundId 
+ * @param clipId
+ * @param hypeId
+ * @param level
+ * @param plankBackgroundId
  */
 
 

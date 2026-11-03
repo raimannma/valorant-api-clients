@@ -31,16 +31,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param date 
- * @param elo 
- * @param lastMmrChange 
- * @param map 
- * @param matchId 
- * @param rankingInTier 
- * @param season 
- * @param tier 
+ * @param date
+ * @param elo
+ * @param lastMmrChange
+ * @param map
+ * @param matchId
+ * @param rankingInTier
+ * @param season
+ * @param tier
  */
 
 

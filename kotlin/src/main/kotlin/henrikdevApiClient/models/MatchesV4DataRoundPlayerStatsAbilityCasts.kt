@@ -28,12 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param ability1 
- * @param ability2 
- * @param grenade 
- * @param ultimate 
+ * @param ability1
+ * @param ability2
+ * @param grenade
+ * @param ultimate
  */
 
 

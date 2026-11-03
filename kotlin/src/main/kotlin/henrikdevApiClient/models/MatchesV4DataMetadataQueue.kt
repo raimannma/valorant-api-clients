@@ -28,11 +28,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param id 
- * @param modeType 
- * @param name 
+ * @param id
+ * @param modeType
+ * @param name
  */
 
 

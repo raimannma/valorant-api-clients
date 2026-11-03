@@ -29,14 +29,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param basePrice 
- * @param currencyID 
- * @param discountPercent 
- * @param discountedPrice 
- * @param isPromoItem 
- * @param item 
+ * @param basePrice
+ * @param currencyID
+ * @param discountPercent
+ * @param discountedPrice
+ * @param isPromoItem
+ * @param item
  */
 
 

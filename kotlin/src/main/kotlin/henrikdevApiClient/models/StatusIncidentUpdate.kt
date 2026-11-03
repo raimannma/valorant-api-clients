@@ -29,15 +29,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param author 
- * @param createdAt 
- * @param id 
- * @param publish 
- * @param publishLocations 
- * @param translations 
- * @param updatedAt 
+ * @param author
+ * @param createdAt
+ * @param id
+ * @param publish
+ * @param publishLocations
+ * @param translations
+ * @param updatedAt
  */
 
 

@@ -34,14 +34,14 @@ import com.squareup.moshi.JsonClass
 /**
  * Join teams by the opaque team_id; team_number is an upstream number, not an array index.
  *
- * @param rounds 
- * @param teamId 
- * @param won 
- * @param health 
- * @param mvp 
- * @param placement 
- * @param premierRoster 
- * @param teamNumber 
+ * @param rounds
+ * @param teamId
+ * @param won
+ * @param health
+ * @param mvp
+ * @param placement
+ * @param premierRoster
+ * @param teamNumber
  */
 
 

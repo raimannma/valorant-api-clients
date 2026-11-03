@@ -33,22 +33,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
  * @param gameLengthInMs Match duration in milliseconds.
- * @param gameVersion 
- * @param isCompleted 
- * @param map 
- * @param matchId 
- * @param partyRrPenaltys 
- * @param platform 
- * @param queue 
- * @param season 
- * @param startedAt 
- * @param cluster 
- * @param mvp 
- * @param premier 
- * @param region 
+ * @param gameVersion
+ * @param isCompleted
+ * @param map
+ * @param matchId
+ * @param partyRrPenaltys
+ * @param platform
+ * @param queue
+ * @param season
+ * @param startedAt
+ * @param cluster
+ * @param mvp
+ * @param premier
+ * @param region
  */
 
 

@@ -28,11 +28,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param count 
- * @param percentage 
- * @param rounds 
+ * @param count
+ * @param percentage
+ * @param rounds
  */
 
 

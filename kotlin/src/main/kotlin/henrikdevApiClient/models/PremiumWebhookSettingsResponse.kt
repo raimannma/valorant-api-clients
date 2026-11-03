@@ -33,18 +33,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param createdAt 
- * @param enabled 
- * @param events 
- * @param matchResponseSchema 
- * @param mmrHistoryResponseSchema 
- * @param secret 
- * @param updatedAt 
- * @param url 
- * @param userid 
- * @param id 
+ * @param createdAt
+ * @param enabled
+ * @param events
+ * @param matchResponseSchema
+ * @param mmrHistoryResponseSchema
+ * @param secret
+ * @param updatedAt
+ * @param url
+ * @param userid
+ * @param id
  */
 
 

@@ -28,16 +28,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param allowDropOut 
- * @param allowLenientSurrender 
- * @param allowOvertimeDrawVote 
- * @param assignRandomAgents 
- * @param overtimeWinByTwo 
- * @param overtimeWinByTwoCapped 
- * @param premierMode 
- * @param skipPregame 
+ * @param allowDropOut
+ * @param allowLenientSurrender
+ * @param allowOvertimeDrawVote
+ * @param assignRandomAgents
+ * @param overtimeWinByTwo
+ * @param overtimeWinByTwoCapped
+ * @param premierMode
+ * @param skipPregame
  */
 
 

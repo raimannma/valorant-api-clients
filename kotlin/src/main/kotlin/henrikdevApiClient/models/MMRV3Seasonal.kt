@@ -32,20 +32,18 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
  * @param actRank Legacy tier-name mapping of upstream seasonal Rank, retained for compatibility. The upstream meaning of Rank is unverified; do not treat this as leaderboard placement.
- * @param actWins 
- * @param endRr 
- * @param endTier 
- * @param games 
- * @param gamesNeededForRating 
- * @param rankingSchema 
- * @param season 
- * @param wins 
- * @param winsWithPlacements 
- * @param leaderboardPlacement 
- * @param prestige 
+ * @param actWins
+ * @param endRr
+ * @param endTier
+ * @param games
+ * @param gamesNeededForRating
+ * @param rankingSchema
+ * @param season
+ * @param wins
+ * @param winsWithPlacements
+ * @param leaderboardPlacement
+ * @param prestige
  */
 
 

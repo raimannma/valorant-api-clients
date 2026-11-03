@@ -31,11 +31,11 @@ import com.squareup.moshi.JsonClass
 /**
  * Casts at one ability upgrade level and branch. Slots: grenade, ability1, ability2, ultimate.
  *
- * @param ability 
- * @param casts 
- * @param level 
- * @param slot 
- * @param branch 
+ * @param ability
+ * @param casts
+ * @param level
+ * @param slot
+ * @param branch
  */
 
 

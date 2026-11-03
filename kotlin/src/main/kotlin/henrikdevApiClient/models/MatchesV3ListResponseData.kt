@@ -35,16 +35,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param coaches 
- * @param isAvailable 
- * @param kills 
- * @param observers 
- * @param rounds 
- * @param metadata 
- * @param players 
- * @param teams 
+ * @param coaches
+ * @param isAvailable
+ * @param kills
+ * @param observers
+ * @param rounds
+ * @param metadata
+ * @param players
+ * @param teams
  */
 
 

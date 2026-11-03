@@ -29,13 +29,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param location 
- * @param playerDisplayName 
- * @param playerPuuid 
- * @param playerTeam 
- * @param viewRadians 
+ * @param location
+ * @param playerDisplayName
+ * @param playerPuuid
+ * @param playerTeam
+ * @param viewRadians
  */
 
 

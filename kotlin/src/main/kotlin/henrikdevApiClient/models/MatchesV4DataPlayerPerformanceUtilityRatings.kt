@@ -30,10 +30,10 @@ import com.squareup.moshi.JsonClass
 /**
  * Known trends: double_down, down, neutral, up, double_up. Unknown upstream trends are preserved.
  *
- * @param assists 
- * @param defuses 
- * @param plants 
- * @param utilityUsage 
+ * @param assists
+ * @param defuses
+ * @param plants
+ * @param utilityUsage
  */
 
 

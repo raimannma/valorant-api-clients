@@ -32,9 +32,9 @@ import com.squareup.moshi.JsonClass
 /**
  * Riot performance evaluation, separate from stats.score and raw match statistics. Null values are unavailable, not zero.
  *
- * @param breakdown 
- * @param ratings 
- * @param score 
+ * @param breakdown
+ * @param ratings
+ * @param score
  */
 
 

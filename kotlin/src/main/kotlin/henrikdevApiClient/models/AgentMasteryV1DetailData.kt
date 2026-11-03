@@ -30,10 +30,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param account 
- * @param mastery 
+ * @param account
+ * @param mastery
  */
 
 

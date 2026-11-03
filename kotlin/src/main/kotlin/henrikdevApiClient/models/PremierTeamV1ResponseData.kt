@@ -32,17 +32,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param customization 
- * @param enrolled 
- * @param id 
- * @param member 
- * @param name 
- * @param placement 
- * @param ranked 
- * @param stats 
- * @param tag 
+ * @param customization
+ * @param enrolled
+ * @param id
+ * @param member
+ * @param name
+ * @param placement
+ * @param ranked
+ * @param stats
+ * @param tag
  */
 
 

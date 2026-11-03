@@ -30,10 +30,10 @@ import com.squareup.moshi.JsonClass
 /**
  * Known trends: double_down, down, neutral, up, double_up. Unknown upstream trends are preserved.
  *
- * @param damage 
- * @param deathImpact 
- * @param killImpact 
- * @param trades 
+ * @param damage
+ * @param deathImpact
+ * @param killImpact
+ * @param trades
  */
 
 

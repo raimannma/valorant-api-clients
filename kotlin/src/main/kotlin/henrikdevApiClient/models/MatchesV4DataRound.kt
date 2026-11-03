@@ -32,19 +32,17 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param ceremony 
- * @param id 
- * @param result 
- * @param stats 
- * @param winningTeam 
- * @param ceremonyPlayer 
- * @param ceremonyTeam 
- * @param defuse 
- * @param firstBlood 
- * @param plant 
- * @param winningTeamRole 
+ * @param ceremony
+ * @param id
+ * @param result
+ * @param stats
+ * @param winningTeam
+ * @param ceremonyPlayer
+ * @param ceremonyTeam
+ * @param defuse
+ * @param firstBlood
+ * @param plant
+ * @param winningTeamRole
  */
 
 

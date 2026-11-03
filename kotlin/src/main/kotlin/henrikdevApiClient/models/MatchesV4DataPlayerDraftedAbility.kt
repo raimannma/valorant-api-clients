@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * Drafted ability ID. name is null when no authoritative ability name is available.
  *
- * @param id 
- * @param name 
+ * @param id
+ * @param name
  */
 
 

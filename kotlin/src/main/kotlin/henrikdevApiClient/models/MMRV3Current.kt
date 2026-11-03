@@ -30,18 +30,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param elo 
- * @param gamesNeededForLeaderboard 
- * @param gamesNeededForRating 
- * @param lastChange 
- * @param rankProtectionShields 
- * @param rr 
- * @param tier 
- * @param isAtRankProtectedTier 
- * @param leaderboardPlacement 
- * @param rankProtectionStatus 
+ * @param elo
+ * @param gamesNeededForLeaderboard
+ * @param gamesNeededForRating
+ * @param lastChange
+ * @param rankProtectionShields
+ * @param rr
+ * @param tier
+ * @param isAtRankProtectedTier
+ * @param leaderboardPlacement
+ * @param rankProtectionStatus
  */
 
 

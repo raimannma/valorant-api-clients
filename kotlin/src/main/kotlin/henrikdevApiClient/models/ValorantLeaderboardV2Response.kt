@@ -33,16 +33,16 @@ import com.squareup.moshi.JsonClass
 /**
  * Unfiltered v2 leaderboards return metadata and players without a status/data envelope. Player-filtered requests return the v1 status/data player-array envelope.
  *
- * @param immortal1Threshold 
- * @param immortal2Threshold 
- * @param immortal3Threshold 
- * @param lastUpdate 
- * @param nextUpdate 
- * @param players 
- * @param radiantThreshold 
- * @param totalPlayers 
- * @param `data` 
- * @param status 
+ * @param immortal1Threshold
+ * @param immortal2Threshold
+ * @param immortal3Threshold
+ * @param lastUpdate
+ * @param nextUpdate
+ * @param players
+ * @param radiantThreshold
+ * @param totalPlayers
+ * @param `data`
+ * @param status
  */
 
 

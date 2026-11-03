@@ -30,17 +30,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param createdAt 
- * @param id 
- * @param incidentSeverity 
- * @param platforms 
- * @param titles 
- * @param updates 
- * @param archiveAt 
- * @param maintenanceStatus 
- * @param updatedAt 
+ * @param createdAt
+ * @param id
+ * @param incidentSeverity
+ * @param platforms
+ * @param titles
+ * @param updates
+ * @param archiveAt
+ * @param maintenanceStatus
+ * @param updatedAt
  */
 
 

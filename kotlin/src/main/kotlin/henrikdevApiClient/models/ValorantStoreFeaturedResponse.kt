@@ -33,8 +33,8 @@ import com.squareup.moshi.JsonClass
 /**
  * The v1 path returns the raw featured bundle envelope; the v2 path returns the parsed bundle list envelope.
  *
- * @param `data` 
- * @param status 
+ * @param `data`
+ * @param status
  */
 
 

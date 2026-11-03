@@ -31,16 +31,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param createdAt 
- * @param currentSeason 
- * @param customization 
- * @param id 
- * @param member 
- * @param name 
- * @param seasons 
- * @param tag 
+ * @param createdAt
+ * @param currentSeason
+ * @param customization
+ * @param id
+ * @param member
+ * @param name
+ * @param seasons
+ * @param tag
  */
 
 

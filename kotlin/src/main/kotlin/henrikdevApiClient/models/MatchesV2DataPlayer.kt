@@ -35,28 +35,26 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param abilityCasts 
- * @param assets 
- * @param behavior 
- * @param currenttier 
- * @param currenttierPatched 
- * @param damageMade 
- * @param damageReceived 
- * @param economy 
- * @param level 
- * @param name 
- * @param partyId 
- * @param platform 
- * @param playerCard 
- * @param playerTitle 
- * @param puuid 
- * @param sessionPlaytime 
- * @param stats 
- * @param tag 
- * @param team 
- * @param character 
+ * @param abilityCasts
+ * @param assets
+ * @param behavior
+ * @param currenttier
+ * @param currenttierPatched
+ * @param damageMade
+ * @param damageReceived
+ * @param economy
+ * @param level
+ * @param name
+ * @param partyId
+ * @param platform
+ * @param playerCard
+ * @param playerTitle
+ * @param puuid
+ * @param sessionPlaytime
+ * @param stats
+ * @param tag
+ * @param team
+ * @param character
  */
 
 

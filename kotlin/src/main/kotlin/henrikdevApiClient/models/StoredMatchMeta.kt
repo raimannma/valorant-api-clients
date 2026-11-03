@@ -30,16 +30,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param id 
- * @param map 
- * @param mode 
- * @param region 
- * @param season 
- * @param startedAt 
- * @param version 
- * @param cluster 
+ * @param id
+ * @param map
+ * @param mode
+ * @param region
+ * @param season
+ * @param startedAt
+ * @param version
+ * @param cluster
  */
 
 

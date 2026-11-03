@@ -28,13 +28,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param `1v1` 
- * @param `1v2` 
- * @param `1v3` 
- * @param `1v4` 
- * @param `1v5` 
+ * @param `1v1`
+ * @param `1v2`
+ * @param `1v3`
+ * @param `1v4`
+ * @param `1v5`
  */
 
 

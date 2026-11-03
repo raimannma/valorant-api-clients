@@ -30,12 +30,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param rankingSchema 
- * @param rr 
- * @param season 
- * @param tier 
+ * @param rankingSchema
+ * @param rr
+ * @param season
+ * @param tier
  */
 
 

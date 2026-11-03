@@ -31,16 +31,16 @@ import com.squareup.moshi.JsonClass
 /**
  * Tracked user. Missing last_match, last_mmr and last_checked_at are serialized as null, not omitted. last_match is the polling marker as a string of Unix milliseconds, not a match UUID. last_checked_at, created_at and updated_at are Unix seconds.
  *
- * @param createdAt 
- * @param enabled 
- * @param events 
- * @param id 
- * @param lastCheckedAt 
- * @param lastMatch 
- * @param lastMmr 
- * @param puuid 
- * @param region 
- * @param updatedAt 
+ * @param createdAt
+ * @param enabled
+ * @param events
+ * @param id
+ * @param lastCheckedAt
+ * @param lastMatch
+ * @param lastMmr
+ * @param puuid
+ * @param region
+ * @param updatedAt
  */
 
 

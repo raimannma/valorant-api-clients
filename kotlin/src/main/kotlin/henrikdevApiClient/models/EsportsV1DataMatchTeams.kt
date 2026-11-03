@@ -29,14 +29,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param code 
- * @param gameWins 
- * @param hasWon 
- * @param icon 
- * @param name 
- * @param record 
+ * @param code
+ * @param gameWins
+ * @param hasWon
+ * @param icon
+ * @param name
+ * @param record
  */
 
 

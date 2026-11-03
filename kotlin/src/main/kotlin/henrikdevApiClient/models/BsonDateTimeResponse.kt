@@ -31,7 +31,7 @@ import com.squareup.moshi.JsonClass
 /**
  * BSON Extended JSON datetime; milliseconds since the Unix epoch are encoded as a string.
  *
- * @param dollarDate 
+ * @param dollarDate
  */
 
 

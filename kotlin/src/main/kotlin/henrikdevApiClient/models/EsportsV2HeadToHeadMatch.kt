@@ -31,12 +31,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param date 
- * @param event 
- * @param match 
- * @param score 
+ * @param date
+ * @param event
+ * @param match
+ * @param score
  */
 
 

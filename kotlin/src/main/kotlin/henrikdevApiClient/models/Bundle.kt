@@ -29,15 +29,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param currencyID 
- * @param dataAssetID 
- * @param durationRemainingInSeconds 
- * @param ID 
- * @param items 
- * @param totalDiscountPercent 
- * @param wholesaleOnly 
+ * @param currencyID
+ * @param dataAssetID
+ * @param durationRemainingInSeconds
+ * @param ID
+ * @param items
+ * @param totalDiscountPercent
+ * @param wholesaleOnly
  */
 
 

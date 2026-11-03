@@ -30,11 +30,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param agent 
- * @param stats 
- * @param usage 
+ * @param agent
+ * @param stats
+ * @param usage
  */
 
 

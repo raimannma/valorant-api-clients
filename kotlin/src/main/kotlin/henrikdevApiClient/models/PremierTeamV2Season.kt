@@ -30,17 +30,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param crest 
- * @param enrolled 
- * @param hasEarnedPrestige 
- * @param hasEarnedPromotionForNextSeason 
- * @param id 
- * @param placement 
- * @param promotionApplied 
- * @param stats 
- * @param name 
+ * @param crest
+ * @param enrolled
+ * @param hasEarnedPrestige
+ * @param hasEarnedPromotionForNextSeason
+ * @param id
+ * @param placement
+ * @param promotionApplied
+ * @param stats
+ * @param name
  */
 
 

@@ -29,16 +29,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param immortal1Threshold 
- * @param immortal2Threshold 
- * @param immortal3Threshold 
- * @param lastUpdate 
- * @param nextUpdate 
- * @param players 
- * @param radiantThreshold 
- * @param totalPlayers 
+ * @param immortal1Threshold
+ * @param immortal2Threshold
+ * @param immortal3Threshold
+ * @param lastUpdate
+ * @param nextUpdate
+ * @param players
+ * @param radiantThreshold
+ * @param totalPlayers
  */
 
 

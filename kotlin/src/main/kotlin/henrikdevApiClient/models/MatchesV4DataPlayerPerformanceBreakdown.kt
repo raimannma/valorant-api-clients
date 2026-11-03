@@ -30,14 +30,14 @@ import com.squareup.moshi.JsonClass
 /**
  * Performance values, not event counts or damage totals. adjusted_deaths can be negative; no percentage scale is implied.
  *
- * @param adjustedDeaths 
- * @param adjustedKills 
- * @param assists 
- * @param damage 
- * @param defuses 
- * @param plants 
- * @param trades 
- * @param utilityUsage 
+ * @param adjustedDeaths
+ * @param adjustedKills
+ * @param assists
+ * @param damage
+ * @param defuses
+ * @param plants
+ * @param trades
+ * @param utilityUsage
  */
 
 

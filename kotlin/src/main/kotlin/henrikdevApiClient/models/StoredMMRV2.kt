@@ -33,27 +33,27 @@ import com.squareup.moshi.JsonClass
 /**
  * Stored competitive update. Optional enrichment fields are null for older records; tier IDs and ELO preserve the original ranking schema.
  *
- * @param date 
- * @param elo 
- * @param lastChange 
- * @param map 
- * @param matchId 
- * @param refundedRr 
- * @param rr 
- * @param season 
- * @param tier 
- * @param wasDerankProtected 
- * @param afkPenalty 
- * @param competitiveMovement 
- * @param isPlacementMatch 
+ * @param date
+ * @param elo
+ * @param lastChange
+ * @param map
+ * @param matchId
+ * @param refundedRr
+ * @param rr
+ * @param season
+ * @param tier
+ * @param wasDerankProtected
+ * @param afkPenalty
+ * @param competitiveMovement
+ * @param isPlacementMatch
  * @param matchLength Match duration in milliseconds; null when unavailable.
- * @param newMapIncentiveRrForgiven 
- * @param queueId 
- * @param rrBeforeUpdate 
- * @param rrPenalty 
- * @param rrPerformanceBonus 
- * @param tierBeforeUpdate 
- * @param wasDerankProtectionReplenished 
+ * @param newMapIncentiveRrForgiven
+ * @param queueId
+ * @param rrBeforeUpdate
+ * @param rrPenalty
+ * @param rrPerformanceBonus
+ * @param tierBeforeUpdate
+ * @param wasDerankProtectionReplenished
  */
 
 

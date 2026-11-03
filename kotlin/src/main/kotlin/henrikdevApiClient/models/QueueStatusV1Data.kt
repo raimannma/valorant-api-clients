@@ -33,22 +33,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param enabled 
- * @param gameRules 
- * @param highSkill 
- * @param maps 
- * @param mode 
- * @param modeId 
- * @param numberOfTeams 
- * @param partySize 
- * @param platforms 
- * @param ranked 
- * @param requiredAccountLevel 
- * @param skillDisparity 
- * @param teamSize 
- * @param tournament 
+ * @param enabled
+ * @param gameRules
+ * @param highSkill
+ * @param maps
+ * @param mode
+ * @param modeId
+ * @param numberOfTeams
+ * @param partySize
+ * @param platforms
+ * @param ranked
+ * @param requiredAccountLevel
+ * @param skillDisparity
+ * @param teamSize
+ * @param tournament
  */
 
 

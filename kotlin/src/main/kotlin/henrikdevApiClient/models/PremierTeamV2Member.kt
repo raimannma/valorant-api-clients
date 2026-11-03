@@ -29,11 +29,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param joinedAt 
- * @param puuid 
- * @param role 
+ * @param joinedAt
+ * @param puuid
+ * @param role
  */
 
 

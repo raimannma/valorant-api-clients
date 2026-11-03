@@ -28,15 +28,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param alias 
- * @param id 
- * @param isCaptain 
- * @param role 
- * @param avatar 
- * @param countryCode 
- * @param realName 
+ * @param alias
+ * @param id
+ * @param isCaptain
+ * @param role
+ * @param avatar
+ * @param countryCode
+ * @param realName
  */
 
 

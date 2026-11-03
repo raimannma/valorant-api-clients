@@ -28,12 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param after 
- * @param before 
- * @param returned 
- * @param total 
+ * @param after
+ * @param before
+ * @param returned
+ * @param total
  */
 
 

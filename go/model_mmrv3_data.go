@@ -138,11 +138,11 @@ func (o *MMRV3Data) GetLifetimePrestige() map[string]MMRV3LifetimePrestige {
 // GetLifetimePrestigeOk returns a tuple with the LifetimePrestige field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MMRV3Data) GetLifetimePrestigeOk() (map[string]MMRV3LifetimePrestige, bool) {
+func (o *MMRV3Data) GetLifetimePrestigeOk() (*map[string]MMRV3LifetimePrestige, bool) {
 	if o == nil || IsNil(o.LifetimePrestige) {
-		return map[string]MMRV3LifetimePrestige{}, false
+		return nil, false
 	}
-	return o.LifetimePrestige, true
+	return &o.LifetimePrestige, true
 }
 
 // HasLifetimePrestige returns a boolean if a field has been set.

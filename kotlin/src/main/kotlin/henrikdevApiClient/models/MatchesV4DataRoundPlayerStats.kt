@@ -33,16 +33,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param abilityCasts 
- * @param damageEvents 
- * @param economy 
- * @param player 
- * @param receivedPenalty 
- * @param stats 
- * @param stayedInSpawn 
- * @param wasAfk 
+ * @param abilityCasts
+ * @param damageEvents
+ * @param economy
+ * @param player
+ * @param receivedPenalty
+ * @param stats
+ * @param stayedInSpawn
+ * @param wasAfk
  */
 
 

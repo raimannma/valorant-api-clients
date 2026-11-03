@@ -28,11 +28,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param maxPartySize 
- * @param maxTier 
- * @param minTier 
+ * @param maxPartySize
+ * @param maxTier
+ * @param minTier
  */
 
 

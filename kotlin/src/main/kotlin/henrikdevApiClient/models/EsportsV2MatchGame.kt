@@ -30,13 +30,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param map 
- * @param rounds 
- * @param teams 
- * @param durationInS 
- * @param pickedBy 
+ * @param map
+ * @param rounds
+ * @param teams
+ * @param durationInS
+ * @param pickedBy
  */
 
 

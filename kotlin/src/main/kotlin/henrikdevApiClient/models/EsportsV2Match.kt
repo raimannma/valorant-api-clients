@@ -36,17 +36,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param games 
- * @param headToHead 
- * @param metadata 
- * @param pastMatches 
- * @param streams 
- * @param teams 
- * @param vods 
- * @param economy 
- * @param performance 
+ * @param games
+ * @param headToHead
+ * @param metadata
+ * @param pastMatches
+ * @param streams
+ * @param teams
+ * @param vods
+ * @param economy
+ * @param performance
  */
 
 

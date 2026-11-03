@@ -30,11 +30,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param players 
- * @param thresholds 
- * @param updatedAt 
+ * @param players
+ * @param thresholds
+ * @param updatedAt
  */
 
 

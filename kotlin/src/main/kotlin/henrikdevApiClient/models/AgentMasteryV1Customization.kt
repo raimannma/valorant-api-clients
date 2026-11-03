@@ -29,12 +29,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param background 
- * @param border 
- * @param clip 
- * @param hype 
+ * @param background
+ * @param border
+ * @param clip
+ * @param hype
  */
 
 

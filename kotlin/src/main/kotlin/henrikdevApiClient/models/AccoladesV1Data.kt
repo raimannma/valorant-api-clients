@@ -31,11 +31,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param account 
- * @param matches 
- * @param summary 
+ * @param account
+ * @param matches
+ * @param summary
  */
 
 

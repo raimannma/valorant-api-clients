@@ -30,12 +30,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param loadoutValue 
- * @param remaining 
- * @param armor 
- * @param weapon 
+ * @param loadoutValue
+ * @param remaining
+ * @param armor
+ * @param weapon
  */
 
 

@@ -31,15 +31,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param date 
- * @param league 
- * @param match 
- * @param state 
- * @param tournament 
- * @param type 
- * @param vod 
+ * @param date
+ * @param league
+ * @param match
+ * @param state
+ * @param tournament
+ * @param type
+ * @param vod
  */
 
 

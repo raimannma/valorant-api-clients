@@ -32,23 +32,21 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param assistants 
- * @param damageWeaponAssets 
- * @param damageWeaponId 
- * @param killTimeInMatch 
- * @param killTimeInRound 
- * @param killerDisplayName 
- * @param killerPuuid 
- * @param killerTeam 
- * @param playerLocationsOnKill 
- * @param secondaryFireMode 
- * @param victimDeathLocation 
- * @param victimDisplayName 
- * @param victimPuuid 
- * @param victimTeam 
- * @param damageWeaponName 
+ * @param assistants
+ * @param damageWeaponAssets
+ * @param damageWeaponId
+ * @param killTimeInMatch
+ * @param killTimeInRound
+ * @param killerDisplayName
+ * @param killerPuuid
+ * @param killerTeam
+ * @param playerLocationsOnKill
+ * @param secondaryFireMode
+ * @param victimDeathLocation
+ * @param victimDisplayName
+ * @param victimPuuid
+ * @param victimTeam
+ * @param damageWeaponName
  */
 
 

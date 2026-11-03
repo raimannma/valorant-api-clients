@@ -31,12 +31,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param defuseLocation 
- * @param defuseTimeInRound 
- * @param defusedBy 
- * @param playerLocationsOnDefuse 
+ * @param defuseLocation
+ * @param defuseTimeInRound
+ * @param defusedBy
+ * @param playerLocationsOnDefuse
  */
 
 

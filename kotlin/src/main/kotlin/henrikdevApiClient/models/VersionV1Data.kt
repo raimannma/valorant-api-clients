@@ -28,15 +28,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param branch 
- * @param buildDate 
- * @param buildVer 
- * @param lastChecked 
- * @param region 
- * @param version 
- * @param versionForApi 
+ * @param branch
+ * @param buildDate
+ * @param buildVer
+ * @param lastChecked
+ * @param region
+ * @param version
+ * @param versionForApi
  */
 
 

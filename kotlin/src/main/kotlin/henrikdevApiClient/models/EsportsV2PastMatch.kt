@@ -31,13 +31,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param date 
- * @param isWin 
- * @param match 
- * @param opponent 
- * @param score 
+ * @param date
+ * @param isWin
+ * @param match
+ * @param opponent
+ * @param score
  */
 
 

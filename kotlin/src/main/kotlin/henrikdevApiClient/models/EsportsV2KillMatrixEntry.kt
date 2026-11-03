@@ -28,12 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param deaths 
- * @param killer 
- * @param kills 
- * @param victim 
+ * @param deaths
+ * @param killer
+ * @param kills
+ * @param victim
  */
 
 

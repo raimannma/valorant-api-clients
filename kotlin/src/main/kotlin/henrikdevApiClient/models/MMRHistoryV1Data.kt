@@ -30,19 +30,17 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param currenttier 
- * @param currenttierpatched 
- * @param date 
- * @param dateRaw 
- * @param elo 
- * @param images 
- * @param map 
- * @param matchId 
- * @param mmrChangeToLastGame 
- * @param rankingInTier 
- * @param seasonId 
+ * @param currenttier
+ * @param currenttierpatched
+ * @param date
+ * @param dateRaw
+ * @param elo
+ * @param images
+ * @param map
+ * @param matchId
+ * @param mmrChangeToLastGame
+ * @param rankingInTier
+ * @param seasonId
  */
 
 

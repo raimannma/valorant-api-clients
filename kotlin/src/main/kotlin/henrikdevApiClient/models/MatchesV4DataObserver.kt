@@ -28,16 +28,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param accountLevel 
- * @param cardId 
- * @param name 
- * @param partyId 
- * @param puuid 
- * @param sessionPlaytimeInMs 
- * @param tag 
- * @param titleId 
+ * @param accountLevel
+ * @param cardId
+ * @param name
+ * @param partyId
+ * @param puuid
+ * @param sessionPlaytimeInMs
+ * @param tag
+ * @param titleId
  */
 
 

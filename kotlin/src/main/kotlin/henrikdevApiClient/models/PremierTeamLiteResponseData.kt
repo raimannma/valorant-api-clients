@@ -29,22 +29,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param affinity 
- * @param conference 
- * @param customization 
- * @param division 
- * @param id 
- * @param losses 
- * @param name 
- * @param ranked 
- * @param ranking 
- * @param region 
- * @param score 
- * @param tag 
- * @param updatedAt 
- * @param wins 
+ * @param affinity
+ * @param conference
+ * @param customization
+ * @param division
+ * @param id
+ * @param losses
+ * @param name
+ * @param ranked
+ * @param ranking
+ * @param region
+ * @param score
+ * @param tag
+ * @param updatedAt
+ * @param wins
  */
 
 

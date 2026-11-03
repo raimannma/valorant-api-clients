@@ -30,14 +30,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param bySeason 
- * @param currentData 
- * @param highestRank 
- * @param name 
- * @param puuid 
- * @param tag 
+ * @param bySeason
+ * @param currentData
+ * @param highestRank
+ * @param name
+ * @param puuid
+ * @param tag
  */
 
 

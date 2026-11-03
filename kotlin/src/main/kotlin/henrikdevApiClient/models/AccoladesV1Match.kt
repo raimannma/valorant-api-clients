@@ -29,11 +29,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param players 
- * @param matchId 
- * @param startedAt 
+ * @param players
+ * @param matchId
+ * @param startedAt
  */
 
 

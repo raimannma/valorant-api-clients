@@ -263,11 +263,11 @@ func (o *MMRV3Seasonal) GetPrestige() map[string]MMRV3SeasonalPrestige {
 // GetPrestigeOk returns a tuple with the Prestige field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MMRV3Seasonal) GetPrestigeOk() (map[string]MMRV3SeasonalPrestige, bool) {
+func (o *MMRV3Seasonal) GetPrestigeOk() (*map[string]MMRV3SeasonalPrestige, bool) {
 	if o == nil || IsNil(o.Prestige) {
-		return map[string]MMRV3SeasonalPrestige{}, false
+		return nil, false
 	}
-	return o.Prestige, true
+	return &o.Prestige, true
 }
 
 // HasPrestige returns a boolean if a field has been set.

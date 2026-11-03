@@ -28,11 +28,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param milliseconds 
- * @param minutes 
- * @param seconds 
+ * @param milliseconds
+ * @param minutes
+ * @param seconds
  */
 
 

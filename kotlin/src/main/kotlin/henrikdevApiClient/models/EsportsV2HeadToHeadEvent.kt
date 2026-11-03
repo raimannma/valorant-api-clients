@@ -28,11 +28,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param icon 
- * @param name 
- * @param series 
+ * @param icon
+ * @param name
+ * @param series
  */
 
 

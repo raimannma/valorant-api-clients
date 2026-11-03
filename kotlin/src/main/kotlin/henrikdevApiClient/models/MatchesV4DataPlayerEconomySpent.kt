@@ -28,8 +28,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
  * @param average Credits spent per round played by this player; zero when rounds played is zero.
  * @param overall Total credits spent across reported player rounds.
  */

@@ -126,11 +126,11 @@ func (o *ContentItem) GetLocalizedNames() map[string]string {
 // GetLocalizedNamesOk returns a tuple with the LocalizedNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContentItem) GetLocalizedNamesOk() (map[string]string, bool) {
+func (o *ContentItem) GetLocalizedNamesOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.LocalizedNames) {
-		return map[string]string{}, false
+		return nil, false
 	}
-	return o.LocalizedNames, true
+	return &o.LocalizedNames, true
 }
 
 // HasLocalizedNames returns a boolean if a field has been set.

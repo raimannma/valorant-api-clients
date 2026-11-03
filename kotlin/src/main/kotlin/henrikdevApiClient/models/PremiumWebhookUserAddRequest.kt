@@ -31,11 +31,11 @@ import com.squareup.moshi.JsonClass
 /**
  * Provide a non-empty PUUID or both name and tag. PUUID takes precedence when both are provided. Event names are case-insensitive; omitted or empty events inherit the webhook settings. Enabled defaults to true.
  *
- * @param enabled 
- * @param events 
- * @param name 
- * @param puuid 
- * @param tag 
+ * @param enabled
+ * @param events
+ * @param name
+ * @param puuid
+ * @param tag
  */
 
 

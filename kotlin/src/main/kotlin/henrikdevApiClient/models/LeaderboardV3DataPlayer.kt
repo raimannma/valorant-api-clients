@@ -28,20 +28,18 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param card 
- * @param isAnonymized 
- * @param isBanned 
- * @param leaderboardRank 
- * @param name 
- * @param rr 
- * @param tag 
- * @param tier 
- * @param title 
- * @param updatedAt 
- * @param wins 
- * @param puuid 
+ * @param card
+ * @param isAnonymized
+ * @param isBanned
+ * @param leaderboardRank
+ * @param name
+ * @param rr
+ * @param tag
+ * @param tier
+ * @param title
+ * @param updatedAt
+ * @param wins
+ * @param puuid
  */
 
 

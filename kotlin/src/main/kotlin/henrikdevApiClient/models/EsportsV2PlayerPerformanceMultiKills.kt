@@ -28,12 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
- *
- * @param `2k` 
- * @param `3k` 
- * @param `4k` 
- * @param `5k` 
+ * @param `2k`
+ * @param `3k`
+ * @param `4k`
+ * @param `5k`
  */
 
 

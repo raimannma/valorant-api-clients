@@ -39,24 +39,24 @@ import com.squareup.moshi.JsonClass
 /**
  * Join teams by team_id, not team_number or array position. Optional additions are null when unavailable. drafted_ability_casts is [] when reported empty.
  *
- * @param abilityCasts 
- * @param accountLevel 
- * @param agent 
- * @param behavior 
- * @param customization 
- * @param economy 
- * @param name 
- * @param partyId 
- * @param platform 
- * @param puuid 
- * @param sessionPlaytimeInMs 
- * @param stats 
- * @param tag 
- * @param teamId 
- * @param tier 
- * @param draftedAbilityCasts 
- * @param performance 
- * @param teamNumber 
+ * @param abilityCasts
+ * @param accountLevel
+ * @param agent
+ * @param behavior
+ * @param customization
+ * @param economy
+ * @param name
+ * @param partyId
+ * @param platform
+ * @param puuid
+ * @param sessionPlaytimeInMs
+ * @param stats
+ * @param tag
+ * @param teamId
+ * @param tier
+ * @param draftedAbilityCasts
+ * @param performance
+ * @param teamNumber
  */
 
 
